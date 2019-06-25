@@ -1,0 +1,5567 @@
+﻿syntax = "proto2";
+
+package Wlst.iifx;
+
+option java_package = "wlst.iifx";
+	//****************************光控*****************************
+ 
+message Head { //start
+    // 序号(必填)，默认0
+	optional int64 idx = 1; 
+	optional int32 ver = 2; // 协议版本(必填,默认为协议发布⽇期6位整型)。当前版本为 180628
+	optional string if_name = 3; // 接⼝名称(可选)
+
+	optional int64 if_dt = 100; // 请求或返回时间(必填)
+	optional int32 if_st = 101; // 接⼝操作状态(返回必填)
+	// 1-操作成功, 0-操作失败, 原因参考msg, 
+	// 41-数据库连接失败,42-指令提交失败(socket pool),45-数据库提交失败,46-参数错误
+	// 99-接⼝参数暂不⽀持
+	optional string if_msg = 102; // 返回填写，失败时填充详细原因(可选)
+
+	repeated int32 addr_ids = 1001; // 设备清单列表  部分接口可方便使用 INT32
+	repeated int64 addr_lds = 1002; // 设备清单列表  部分接口可方便使用 Long
+
+	// 此次请求/应答是否使用分页，20-100 使用分页，历史记录、数据查询要求必须分页
+	optional int32 paging_num = 200;  
+	// 分页序号,1开始
+	optional int32 paging_idx = 201;  
+	// 分页总数
+	optional int32 paging_total = 202;  
+	// 查询记录总数，[返回时填写] ，每次查询最大返回1000组数据 ，[特殊接口除外]
+	optional int32 paging_record_total = 204;  
+	// 点击查询按钮还是页码：查询-0 页码-1
+	optional int32 paging_flag = 205 ; 
+}
+
+ //----------------------------------------------数据服务和前端传输格式----------------------------------------------
+message MsgWithIif
+{	
+	optional Head head = 1;
+	
+	// 请求指定终端指定时间段内的周设置
+    optional GetRtusWeekTimeInfo GetRtusWeekTimeInfo_get = 1001 ;
+	// 返回指定终端指定时间段内的周设置
+	repeated RtuWeekTimeInfo RtuWeekTimeInfo_back = 1002 ;
+	
+	// 南瑞单灯 设置/读取经纬度以及开关灯偏移时间
+    optional NRSetOrZcTudeAndDeviation NROrder1004 = 1003 ;
+	// 南瑞单灯 设置控制器id以及灯头分组
+    optional NRSetOrZcCtrlPara NROrder1030 = 1005 ;
+	// 南瑞单灯 设置/读取组策略（时间表）
+    optional NRSetOrZcTimeTable NROrder1035 = 1007 ;
+	
+	
+	//单灯全局分组的请求与保存。
+	optional SluGrpSet post4078 = 104078;
+	optional SluGrpSet back4078 = 114078;
+	
+	//查询时间段内区域亮灯率
+	optional GetAreaLightRate get1248 = 101248;
+	optional GetAreaLightRate bak1248 = 111248;	
+	//新增区域亮灯率
+	optional AddOrUpdateAreaLightRate post4044 = 104044;
+	//修改区域亮灯率
+	optional AddOrUpdateAreaLightRate post4045 = 104045;
+	//删除区域亮灯率
+	optional DelAreaLightRate post4046 = 104046;
+	
+	// ---------------------------------------------- 单灯方案管理 ----------------------------------------------
+	//获取区域所有的单灯分组信息
+	optional InfoRq get1221 = 101221;
+	optional SluPlanGrpInfoBk back1221 = 111221;
+	
+	//获取所有的单灯指令列表列表
+	optional InfoRq get1223 = 101223;
+	optional SluPlanBriefInfo back1223 = 111223;
+	//获取某一指令详细信息
+	optional SluPlanDetailInfoRq get1224 = 101224;
+	optional SluPlanDetailInfo back1224 = 111224;
+	//删除单灯指令
+	optional SluPlanDetailInfoRq post4074 = 104074;
+	//保存单灯指令
+	optional SluPlanDetailInfo post4075 = 104075;
+	
+	//获取区域所有的方案列表信息
+	optional InfoRq get1225 = 101225;
+	optional SluPlanBandingInfo back1225 = 111225;
+	//获取某一方案详细信息
+	optional SluPlanDetailInfoRq get1226 = 101226;
+	optional SluPlanBandingDetailInfo back1226 = 111226;
+	//删除方案
+	optional SluPlanDetailInfoRq post4076 = 104076;
+	//保存方案
+	optional SluPlanBandingDetailInfo post4077 = 104077;
+}
+
+
+message CommAns
+{	
+	optional Head head = 1;
+}
+
+
+
+
+
+//终端运行信息
+message RtuRunningInfo  { 
+ 
+	//基本参数
+	message RtuRunningInfoOne
+	{
+	    // 设备逻辑地址
+		optional int32 rtu_id = 1 ;
+		// 设备物理地址
+		optional int32 rtu_phy_id = 2 ;
+
+		//数据采集时间 数据通信时间  0无数据
+		optional int64  date_create=3;
+
+		//时间 YYYY-MM-DD HH:MM:SS 如 2018-10-10 15:22:03
+		optional string  date_create_string=111;
+
+		// 工作状态  类型 数据 0、不用,1、 停运，2、 使用等
+		optional int32  rtu_state_code=4;
+
+		// 当前故障数
+		optional int32  error_count=5;
+
+		// 当前所有回路的总电流
+		optional double current_sum=6;
+
+		// 开关量输出吸合的数量
+		optional int32 switch_out_open_count =7 ;
+
+		optional string  ip_addr=8;
+		
+	}
+
+	message RtuRunningError 
+	{
+	    // 终端总数
+		optional int32 rtu_count = 1 ;
+		
+		// 使用终端数
+		optional int32 rtu_used_count = 2 ;
+
+		//在线终端数
+		optional int32  rtu_online_count=3;
+
+		//当前存在故障的终端数量
+		optional int32  error_rtu_count=4;
+
+		// 当前所有的终端的故障总数
+		optional int32  error_count=5;
+		
+	}
+	optional Head head = 1;
+	repeated RtuRunningInfoOne Items = 2;
+	optional RtuRunningError RunningError = 3;
+}
+
+
+
+message gtOnline {
+        optional Head head = 1;
+		optional int64 date_start = 4; // 开始时间
+		optional int64 date_end = 5; // 结束时间
+		repeated int32 rtu_ids = 6; // 空表示全部区域
+}
+
+message Online {
+    message OnlineItem {
+	   optional int32 rtu_num = 3  ; // 终端总数
+	   optional int32 rtu_is_used = 10; // 使用总数
+	   optional int32 rtu_online = 11; // 在线总数
+	   optional double rtu_online_rate = 12; // 在线率
+	   optional int64 date_create = 14; // 采集时间
+	   	//时间 YYYY-MM-DD HH:MM:SS 如 2018-10-10 15:22:03
+		optional string  date_create_string=111;
+	   }
+
+        optional Head head = 1;
+	repeated OnlineItem Items = 2;
+}
+
+
+ 
+//----------------------------------------------用户管理----------------------------------------------
+//-----------------------------获取用户信息-----------------------------
+
+message UserInfoBk
+{
+	// 返回时携带
+	optional Head head = 1;
+	// 用户信息列表
+	repeated UserInfo Items  = 2 ;
+	//请求的用户名列表
+	repeated string RequestUserIds  = 3 ;
+	// 用户信息
+	message UserInfo
+	{
+		// 用户id
+		optional string user_id  = 1 ;
+		// 用户姓名
+		optional string user_name  = 2 ;
+		// 电话
+		optional string user_tel  = 3 ;
+		// 所属部门
+		optional string user_dept  = 4 ;
+		// 用户角色
+		optional int32 user_role_id  = 5 ;
+		// 用户角色名称
+		optional string user_role_name  = 6 ;
+	}
+}
+
+message UserInfoRq
+{
+	// 需要请求的用户信息列表，若所请求用户具有管理员权限，则空表示请求所有用户，若无管理员权限则空表示请求自己用户信息
+	repeated string RequestUserIds  = 2 ;
+}
+
+//-----------------------------新增和修改用户-----------------------------
+message  AddOrUpdateUserInfo
+{
+	// 返回时携带
+	optional Head head = 1;
+	// 用户id
+	optional string user_id  = 2 ;
+	// 用户姓名
+	optional string user_name  = 3 ;
+	// 电话
+	optional string user_tel  = 4 ;
+	// 所属部门
+	optional string user_dept  = 5 ;
+	// 用户角色
+	optional string user_role  = 6 ;
+	// 用户密码【增加协议默认密码123456，修改协议密码不修改】
+	optional string user_pw  = 7 ;
+	// 用户角色[增加协议可修改，管理员可修改，自己修改角色不允许]
+	optional int32 user_role_id  = 8 ;
+}
+
+
+// ---------------删除用户-----------------------------
+message  DelUserInfo
+{
+	// 返回时携带
+	optional Head head = 1;
+	// 用户id
+	optional string user_id  = 2 ;
+
+}
+ 
+
+//-----------------------------重置密码-----------------------------
+message  ResetUserPsw
+{
+	// 返回时携带
+	optional Head head = 1;
+	// 用户id
+	optional string user_id  = 2 ;
+	// 用户密码
+	optional string user_pw  = 7 ;
+}
+
+//-----------------------------用户自己修改自己的密码-----------------
+message  UpdateUserPsw
+{
+	// 用户id
+	optional string user_id  = 2 ;
+	// 用户old密码
+	optional string user_pw_old  = 7 ;	
+	// 用户new密码
+	optional string user_pw_new  = 8 ;
+}
+
+
+
+
+
+//----------------------------------------------角色管理----------------------------------------------
+//-----------------------------获取角色信息-----------------------------
+ 
+message RoleInfoBk
+{
+	// 返回时携带
+	optional Head head = 1;
+	// 角色信息列表
+	repeated RoleInfo Items  = 2 ;
+
+	//请求的角色列表
+	repeated int32 RequestRoleIds  = 3 ;
+	// 角色信息
+	message RoleInfo
+	{
+		// 角色id
+		optional int32 role_id  = 1 ;
+		// 角色名
+		optional string role_name  = 2 ;
+		// 描述
+		optional string role_desc  = 3 ;
+		//可查看的模块功能 R BS页面控制
+		repeated int32 read_page  = 4;
+		//可操作与编辑的模块功能 WX BS页面控制
+		repeated int32 edit_page  = 5 ;
+		//可查看的区域 R 监控区域管理
+		repeated int32 read_area  = 6 ;
+		//可操作的区域 WX 监控区域管理
+		repeated int32 edit_area  = 7 ;
+	}
+}
+
+message RoleInfoRq
+{
+	//则空表示请求所有 
+	repeated int32 RequestRoleIds  = 2 ;
+}
+
+//-----------------------------新增和修改角色-----------------------------
+message  AddRoleInfo
+{
+	// 返回时携带
+	optional Head head = 1;
+	// 角色信息 
+	optional RoleInfoBk.RoleInfo Info  = 2 ;
+}
+ 
+
+//-----------------------------删除角色-----------------------------
+message  DelRoleInfo
+{
+	optional Head head = 1;
+	// 角色id
+	optional int32 Role_id  = 2;
+}
+
+//------------------------------用户获取角色信息 ----------------------
+message RoleUserInfoRq
+{
+	//用户名称 
+	optional string RequestUserName  = 1 ;
+}
+
+message RoleUserInfoBk
+{
+	optional Head head = 1;
+	//角色信息 
+	optional RoleInfoBk.RoleInfo UserRole  = 2 ;
+}
+
+ 
+
+ 
+//----------------------------------------------批量操作----------------------------------------------
+
+
+//-----------------------------删除自定义方案-----------------------------
+message DelPlanBatchOperationInfo
+{
+	// 需要删除的自定义方案
+	optional int32 PlanId = 1 ;
+}
+
+//-----------------------------保存自定义方案-----------------------------
+message AddPlanBatchOperationInfo
+{
+	// 方案名称
+	optional string plan_name  = 2 ;
+	// 信息列表
+	repeated PlanInfoAdd ItemsPlan = 3 ;
+	//方案信息
+	message PlanInfoAdd
+	{
+		//区域地址
+		optional int32 area_id = 1 ;
+		//组地址
+		optional int32 group_id = 2 ;
+		// 开关量输出列表 选中的
+		repeated int32 ItemsSwitchout = 3 ;
+	}
+}
+
+//-----------------------------加载自定义方案-----------------------------
+message PlanBatchOperationInfo
+{
+	// 方案地址
+	optional int32 plan_id  = 2 ;		
+	// 方案名称
+	optional string plan_name  = 3 ; 		
+	// 信息列表
+	repeated PlanInfo ItemsPlan = 4 ;		
+	//方案信息
+	message PlanInfo
+	{
+		// 区域地址
+		optional int32 area_id = 1 ;				
+		// 区域名称
+		optional string area_name  = 2 ; 				
+		// 组地址
+		optional int32 group_id = 3 ;				
+		// 组名称
+		optional string group_name  = 4 ; 				
+		// 开关量输出列表 选中的
+		repeated int32 ItemsSwitchout = 5 ;
+	}
+}
+
+message PlanBatchOperationInfoBk
+{
+	//返回时 携带	  
+	optional Head head = 1;
+	// 请求的自定义方案 列表 
+	repeated int32 PlanIds = 2 ;
+	// 批量操作方案信息 
+	repeated PlanBatchOperationInfo ItemsPlan = 3 ;
+
+}
+
+message PlanBatchOperationInfoRq
+{
+	// 1、请求自定义方案的扼要信息 即ItemsPlan为空，不包含详细的设备清单，2、请求设备清单
+	optional int32 Op = 3 ;
+				
+	// 需要请求的自定义方案 列表，为空则请求所有，否则为指定的自定义方案 
+	repeated int32 PlanIds = 2 ;
+}
+
+//-----------------------------选中时间表解析-----------------------------
+//提交
+message PlanRtuTimetableInfo
+{
+	//需要解析的选择的时间表分组
+	repeated PlanTimeTableInfo ItemsSelect = 2 ;
+	message PlanTimeTableInfo
+	{
+		// 所属区域地址
+		optional int32  area_id = 4 ;
+		// 时间表地址
+		optional int32 timetable_id  = 1 ;				
+	}		
+}
+
+
+//返回
+message PlanRtuTimetableInfoBk
+{
+	// 返回时携带
+	optional Head head = 1;
+	//需要解析的选择的分组或时间表分组
+	repeated PlanGrpInfo ItemsPlan = 2 ;
+	
+	message PlanGrpInfo
+	{
+		// 1、组， 2、特殊终端
+		optional int32 Op  = 1 ;
+		// 所属区域地址
+		optional int32  area_id = 2;
+		// 所属分组地址  或终端物理地址
+		optional int32 group_or_rtuphy__id  = 3 ;				
+		// 开关量输出列表 绑定该时间表的
+		repeated int32 ItemsSwitchout = 4 ;
+		// 终端逻辑地址 如果op=2
+		optional int32 rtu_id_if_thisisrtu  = 5 ;	
+		// 组名称 或终端名称
+		optional string group_or_rtu_name  = 6 ;
+		// 时间表地址
+		optional int32 timetable_id  = 7 ;	
+		// 区域名称
+		optional string area_name  = 8 ;
+	}
+}
+
+//-----------------------------解析勾选的分组到操作界面-----------------------------
+//提交
+message PlanGrpTransRtu
+{
+
+		//需要解析的选择的分组或时间表分组
+		repeated PlanGrpInfo ItemsPlan = 2 ;
+		
+		message PlanGrpInfo
+		{
+				// 所属区域地址
+				optional int32  area_id = 4 ;
+				// 所属分组地址 如果为特殊终端则直接添加名称之类的返回
+				optional int32 group_or_rtu_id  = 1 ;				
+				// 开关量输出列表 选中的
+				repeated int32 ItemsSwitchout = 3 ;
+		}
+}
+
+//返回
+message PlanGrpTransRtuBk
+{
+	//返回时 携带	  
+	optional Head head = 1;
+	// 方案终端信息
+	repeated PlanGrpTransRtuBkItem PlanRtuItems = 2 ;
+			
+	message PlanGrpTransRtuBkItem
+	{
+		// 设备逻辑地址
+		optional int32 rtu_id = 1 ;
+		// 设备物理地址
+		optional int32 rtu_phy_id = 2 ;
+		// 终端名称
+		optional string  rtu_name = 3 ;
+		// 工作状态  类型 数据 0、不用,1、 停运，2、 使用等
+		optional int32  rtu_state_code = 5 ;
+		// 所属区域地址
+		optional int32  area_id = 4 ;
+		// 区域名称
+		optional string area_name  = 8 ;
+		// 所属组地址
+		optional int32  group_id = 7;
+		// 组名称
+		optional string group_name  = 9 ;
+		// 开关量输出列表 选中的
+		repeated int32 ItemsSwitchout = 10 ;
+	}	
+}
+
+
+  
+////----------------------------------------------通信协议设计：-------------------------------------------------------------------------------------------------------------------
+
+//----------------------------------------------区域、分组 综合快速查询 应用于：区域 - 分组  -终端的 快速查询----------------------------------------------
+message QueryRtuBiref
+{
+
+	//终端模糊查询 匹配字
+	optional string RtuLikeQyert  = 1 ;
+	//区域信息
+	optional int32 AreaId  = 2 ;
+	//组信息
+	optional int32 GroupId  = 3;
+
+
+	// 设备类型  1、终端，2、单灯，3、光控，4、抄表，5、线路检测，6、漏电保护器,7、节能设备
+	optional int32 OpRtuType  = 4 ;
+
+	// 11、终端模糊查询;         请求：RtuLikeQyert、OpRtuType需要填写 ; 返回： ItemsRtu 有数据 ，备注：模糊查询针对整套系统有效
+	
+	// 21、所有区域简要信息请求; 请求：OpRtuType 需要填写； 返回： ItemsArea 包含该区域的简要信息，区域下属性ItemsRtu无数据
+	// 22、所有区域简要信息请求; 请求：OpRtuType 需要填写； 返回： ItemsArea 包含该区域的简要信息，区域下属性ItemsArea[0].ItemsRtu有数据，其他ItemsRtu无数据
+	// 23、所有区域简要信息请求; 请求：OpRtuType 需要填写，
+	//     返回: ItemsArea 包含该区域的简要信息，区域下属性ItemsRtu无数据, 
+	//          ItemsGroup 包含该分组的简要信息，分组下属性ItemsRtu[0]有数据，其他ItemsRtu无数据,
+	// 24、特定区域信息请求;     请求：AreaId、OpRtuType 需要填写 ； 返回 ：ItemsArea 包含该区域的简要信息，区域下属性ItemsRtu有数据
+	
+	// 31、区域分组信息查询；     请求：AreaId、OpRtuType 需要填写； 返回：ItemsGroup 包含有分组的简要信息，分组下属性ItemsRtu有数据,
+	// 32、区域分组简要信息查询；     请求：AreaId、OpRtuType 需要填写； 返回：ItemsGroup 包含有分组的简要信息，分组下属性ItemsRtu无数据,
+	// 33、区域分组简要信息查询； 请求：AreaId、OpRtuType 需要填写； 返回：ItemsGroup 包含有分组的简要信息，分组下属性ItemsGroup[0].ItemsRtu有数据，其他ItemsRtu无数据,
+	
+	// 41、特定分组的终端信息查询； 请求：AreaId、GroupId、OpRtuType 需要填写； ItemsRtu 为查询的分组的终端数据,
+	optional int32 Op  = 5;
+
+}
+//此为参数查询 不支持分页
+message QueryRtuBirefBk
+{
+
+	//设备扼要信息  主设备、附属设备均在此
+	message RtuInfoBiref
+	{
+		// 设备逻辑地址
+		optional int32 rtu_id = 1 ;
+		// 设备物理地址
+		optional int32 rtu_phy_id = 2 ;
+		// 终端名称
+		optional string  rtu_name = 3 ;
+		// 设备型号  3005、3090、3006
+		optional int32  rtu_model = 4 ;
+	}	
+
+	//组信息
+	message GroupInfoBreif
+	{		
+		// 区域地址
+		optional int32 Area_id  = 1 ;
+		// 组地址 -1表示未划分组的设备
+		optional int32 Group_id  = 2 ;
+		// 组名称
+		optional string  Group_name = 3 ;
+		// 终端列表
+		repeated RtuInfoBiref ItemsRtu = 5 ;
+	}
+
+	//区域信息
+	message AreaInfoBrief
+	{		
+		// 区域地址  0 表示 默认区域 ，若系统未设置区域 则只有默认区域
+		optional int32 Area_id  = 1 ;
+		// 名称
+		optional string  Area_name = 3 ;
+		// 终端列表
+		repeated RtuInfoBiref ItemsRtu = 5 ;
+	}
+
+	//返回时 携带	  	  
+	optional Head head = 1;
+	//查询的条件
+	optional QueryRtuBiref QueryInfo=2;
+	// 区域列表
+	repeated AreaInfoBrief ItemsArea  = 3 ;
+	// 分组列表
+	repeated GroupInfoBreif ItemsGroup = 4 ;
+	// 终端列表
+	repeated RtuInfoBiref ItemsRtu = 5 ;
+}
+
+//----------------------------------------------区域、分组 请求----------------------------------------------
+
+//设备扼要信息  主设备、附属设备均在此
+message RtuInfo
+{
+	// 设备逻辑地址
+	optional int32 rtu_id = 1 ;
+	// 设备物理地址
+	optional int32 rtu_phy_id = 2 ;
+	// 终端名称
+	optional string  rtu_name = 3 ;
+	// 设备型号  3005、3090、3006
+	optional int32  rtu_model = 4 ;
+	// 0、不用，1、停运，2、使用
+	optional int32  rtu_used = 5 ;
+	// 0、主设备，其他、所连接设备地址
+	optional int32  rtu_fid = 6 ;
+	// 设备类型  1、终端，2、单灯，3、光控，4、抄表，5、线路检测，6、漏电保护器,7、节能设备
+	optional int32  rtu_type= 7 ;
+	// 当前设备的操作权限 ，0、无权限，1、可查看数据，2、具备开关灯与设置等高级权限
+	optional int32  right= 8 ;
+	//终端总电流
+    optional double  current_sum= 9 ;
+    //设备故障总数
+    optional int32  error_count= 10 ;
+	//终端状态；1、停运，2、不用，3、开灯[表示有电流]正常，4、开灯[表示有电流]有故障，5、关灯[表示无电流]正常，6、关灯[表示无电流]有故障，7、离线
+	optional int32 image_type=11;
+	//如果本终端为附属设备，所连接的主设备的名称  显示时显示主设备名称，若此设备为主设备，则此名称中间层填写本设备的名称
+    optional string rtu_fname=12;
+    //如果本终端为附属设备，所连接的主设备的物理地址  显示时显示主设备物理地址，若此设备为主设备，则此地址中间层填写本设备的物理地址
+    optional int32 rtu_fphy_id=13;
+	// 区域地址
+	optional int32 area_id = 14 ;
+	// 区域名称
+	optional string area_name = 15 ;
+}	
+
+
+//区域信息
+message AreaInfo
+{		
+	//返回时 携带	  
+	optional Head head = 1;
+	// 区域地址  0 表示 默认区域 ，若系统未设置区域 则只有默认区域
+	optional int32 Area_id  = 4 ;
+	// 设备类型  1、终端，2、单灯，3、光控，4、抄表，5、线路检测，6、漏电保护器,7、节能设备  请求时携带，空则为所有设备
+	repeated int32 OpRtuType  = 14 ;
+	// 名称
+	optional string  Area_name = 3 ;
+	// 终端列表
+	repeated RtuInfo ItemsRtu = 2 ;
+}
+
+//组信息
+message GroupInfo
+{		
+	//返回时 携带	  
+	optional Head head = 1;
+	// 区域地址
+	optional int32 Area_id  = 7 ;
+	// 组地址 -1表示未划分组的设备
+	optional int32 Group_id  = 2 ;
+
+	// 设备类型  1、终端，2、单灯，3、光控，4、抄表，5、线路检测，6、漏电保护器,7、节能设备  请求时携带，空则为所有设备
+	repeated int32 OpRtuType  = 14 ;
+
+	// 组名称
+	optional string  Group_name = 3 ;
+	// 终端列表
+	repeated RtuInfo ItemsRtu = 4 ;
+	// 区域mc
+	optional string Area_Name  = 6;
+}
+
+//区域信息列表
+message AreasInfo
+{	
+	//返回时 携带	  
+	optional Head head = 1;
+	//1、只请求区域信息，不需要终端信息 此时AreaInfo中ItemsRtu为空，2、请求区域信息与设备信息，若区域无终端则该区域不返回 默认2 
+	//3、请求区域信息与设备信息，若区域无终端也返回该区域，且用户对该区域可操作
+	optional int32 Op  = 4 ;
+	// 区域信息 为本系统包含的所有的区域信息
+	repeated AreaInfo ItemsArea = 2 ;
+
+	// 设备类型  1、终端，2、单灯，3、光控，4、抄表，5、线路检测，6、漏电保护器,7、节能设备  请求时携带，空则为所有设备
+	repeated int32 OpRtuType  = 14 ;
+	// 区域权限：0-全部 1-只能修改名称
+	optional int32 AreaRight = 15 ;
+}
+
+
+//组信息列表
+message GroupsInfo
+{	
+	//返回时 携带	  	  
+	optional Head head = 1;
+	//1、只请求组信息，不需要终端信息，此时GroupInfo中ItemsRtu为空，2、请求组信息与设备信息，若组无终端则该组不返回 默认2
+	//3、请求组信息与设备信息，若组无终端也返回该组，且用户对该组所在的区域可操作
+	optional int32 Op  = 2 ;
+	// 区域地址 需要请求的区域
+	repeated int32 Area_id  = 3 ;
+	// 组信息
+	repeated GroupInfo ItemsGroup = 4 ;
+	// 设备类型  1、终端，2、单灯，3、光控，4、抄表，5、线路检测，6、漏电保护器,7、节能设备  请求时携带，空则为所有设备
+	repeated int32 OpRtuType  = 14 ;
+	
+}
+// ----------------- 单灯控制参数快速获取 ---------------------------------------------
+//组信息列表
+message SluCtrlAndGrpbriefInfo
+{	
+	message SluCtrlbriefInfoItem
+	{	
+		// 地址 
+		optional int32 ctrl_id  = 1 ;
+		// 物理 显示 地址 
+		optional int32 ctrl_phy_id  = 2 ;
+		// 名称
+		optional string  ctrl_name = 3 ;
+		//1、开灯有故障，2、开灯正常，3、关灯有故障，4、关灯正常，5、不用，6、离线
+		optional int32 image_type=4;
+	}
+	message SluGroupbriefInfoItem
+	{	
+		// 组地址 0表示所有控制器 默认返回整个集中器的控制器列表，包含0组的 -1表示未分组控制器
+		optional int32 Group_id  = 2 ;
+		// 组名称  0-全部 -1-未分组
+		optional string  Group_name = 3 ;
+
+		repeated SluCtrlbriefInfoItem Ctrls=4;
+	}
+	//返回时 携带	  	  
+	optional Head head = 1;
+	// 区域地址 需要请求的区域
+	optional int32 Slu_id  = 3 ;
+	//需要请求的分组列表  若为空 则为全部
+	repeated int32 GroupIds = 4 ;	
+	// 组信息
+	repeated SluGroupbriefInfoItem ItemsGroup = 5 ;	
+}
+
+
+// ----------------- Search 快速搜索 ---------------------------------------------
+//快速搜索
+message Search
+{	
+	// 区域地址 需要请求的区域  空则为所有区域
+	repeated int32 Area_id  = 1 ;
+
+	// 设备类型  1、终端，2、单灯，3、光控，4、抄表，5、线路检测，6、漏电保护器,7、节能设备  请求时携带，空则为所有设备
+	repeated int32 OpRtuType  = 2 ;
+
+	//搜索关键字 ，不能为空 ，可以为  首字母、字符、ip地址、逻辑地址、物理地址
+	optional string SearchKey  = 3 ;
+}
+
+message SearchBk
+{	
+	optional Head head = 1;
+
+	// 设备列表 符合条件的 前100条记录
+	repeated RtuInfo ItemsRtu = 2 ;
+}
+
+
+//-----------------------------区域、分组 加入-----------------------------
+
+//区域信息
+message AddToArea
+{	
+	// 区域地址  0 表示 默认区域 ，需要添加到的区域
+	optional int32 Area_id  = 1 ;
+	// 终端列表
+	repeated int32 ItemsRtu = 2 ;
+}
+
+//组信息
+message AddToGroup
+{		
+	// 区域地址
+	optional int32 Area_id  = 1 ;
+	// 组地址 -1表示未划分组的设备
+	optional int32 Group_id  = 2 ;
+	// 终端列表
+	repeated int32 ItemsRtu = 4 ;
+}
+//-----------------------------区域、分组 更新-----------------------------
+
+//区域信息
+message UpdateAreaOrGrpName
+{	
+// 区域地址
+	optional int32 Area_id  = 1 ;
+	// 组地址  如果为修改区域名称 则不需要填写了
+	optional int32 Group_id  = 2 ;
+	// 终端列表
+	optional string name_new  = 3 ; 
+}
+
+//组信息
+message UpdateAreaOrGrpNameBk
+{	
+	optional Head head = 1;
+	// 区域地址
+	optional int32 Area_id  = 4 ;
+	// 组地址 -1表示未划分组的设备
+	optional int32 Group_id  = 2 ;
+	// 终端列表
+	optional string name_new  = 3 ; 
+}
+
+//-----------------------------区域、分组 增加-----------------------------
+
+message AddAreaOrGroupInfo
+{
+	// 新增名称
+	optional string name_add  = 1 ; 
+	// 区域地址 如果为增加分组的话
+	optional int32 area_id_ifaddgroup  = 2 ;
+}
+
+
+
+//终端分组信息
+message AddAreaOrGroupInfoBk
+{
+	optional Head head = 1;
+    // 区域地址
+	optional int32 area_id  = 2 ;
+	// 新增的名称
+	optional string name_add  = 3 ; 
+	// 分组地址 如果为增加分组的话
+	optional int32 group_id_ifaddgroup  = 4 ;
+}
+
+
+//-----------------------------区域、分组 删除-----------------------------
+
+message DeleteAreaOrGroupInfo
+{
+	// 区域地址默认区域无法删除   即区域 不允许删除
+	optional int32 area_id  = 1 ;		
+	// 分组名称 如果为增加分组的话
+	optional int32 group_id_ifdeletegroup  = 2 ;
+}
+
+
+
+//终端分组信息
+message DeleteAreaOrGroupInfoBk
+{	
+	optional Head head = 1;
+	// 区域地址
+	optional int32 area_id  = 2;
+	// 分组名称 如果为增加分组的话
+	optional int32 group_id_ifdeletegroup  = 3 ;
+}
+
+
+//----------------------------------------------设备在线情况信息----------------------------------------------
+
+//请求终端在线情况
+message RtuOnlineInfoRq
+{
+	//设备类型 0-所有 1-终端 2-单灯
+	optional int32 rtu_model = 1;
+	//状态 0-所有 1-使用 2-停运
+	optional int32 rtu_state = 2;
+	//故障 0-所有 1-有故障 2-无故障
+	optional int32 rtu_fault = 3;
+	//链路情况 0-所有 1-在线 2-离线
+	optional int32 rtu_online = 4;
+}
+
+//终端运行信息
+message RtuOnlineInfo
+{
+	//基本参数
+	message RtuOnlineInfoOne
+	{
+		// 设备逻辑地址
+		optional int32 rtu_id = 1 ;
+		// 设备物理地址
+		optional int32 rtu_phy_id = 2 ;
+		// 终端名称
+		optional string  rtu_name = 3 ;
+		// 设备类型 
+		optional string  rtu_type = 4 ;
+		// 工作状态  类型 数据 0、不用,1、 停运，2、 使用等
+		optional int32  rtu_state_code = 5 ;
+		// 设置ip
+		optional string  ip_addr_set = 6 ;
+		// 连接ip
+		optional string  ip_addr = 7 ;
+		// 当前故障数
+		optional int32  error_count = 8 ;
+		// 通信时间
+		optional int64  date_create = 9 ;
+		// 线路状态  类型 数据 0、离线,1、 在线，
+		optional int32  rtu_online_code = 10 ;
+		//时间 YYYY-MM-DD HH:MM:SS 如 2018-10-10 15:22:03
+		optional string  date_create_string=111;
+
+	}
+
+	optional Head head = 1;
+	repeated RtuOnlineInfoOne Items = 2;
+
+}
+
+ 
+//通信协议设计： 设备管理-终端-运行信息
+
+//----------------------------------------------终端最新数据----------------------------------------------
+
+//终端最新信息
+message RtuMeasureInfo
+{
+	//基本参数
+	message RtuMeasureInfoOne
+	{
+		// 设备逻辑地址
+		optional int32 rtu_id = 1 ;
+		// 设备物理地址
+		optional int32 rtu_phy_id = 2 ;
+		// 终端名称
+		optional string  rtu_name = 3 ;
+		// 终端所在组
+		optional int32  group_id = 4 ;
+		// 终端所在组名
+		optional string  group_name = 5 ;
+		// 终端所在区域
+		optional int32  area_id = 16 ;
+		// 终端所在区域名称
+		optional string  area_name = 17 ;
+		// 工作状态 0、不用,1、 供电停运，2、停电停运，3、供电使用，4、停电使用，5、未知
+		optional int32  rtu_state_code = 6 ;
+		//A相总电流
+		optional double current_sum_a = 7 ;
+		//B相总电流
+		optional double current_sum_b = 8 ;
+		//C相总电流
+		optional double current_sum_c = 9 ;
+		//A相总电压
+		optional double voltage_sum_a = 13 ;
+		//B相总电压
+		optional double voltage_sum_b = 14 ;
+		//C相总电压
+		optional double voltage_sum_c = 15 ;
+		//总功率
+		optional double power_sum = 10 ;
+		//总因数
+		optional double factor_sum = 11 ;
+		//通信时间
+		optional int64  date_create = 12 ;		
+		//时间 YYYY-MM-DD HH:MM:SS 如 2018-10-10 15:22:03
+		optional string  date_create_string=111;
+		
+	}
+	message RtuLoopInfo
+	{
+		// 设备逻辑地址
+		optional int32 rtu_id = 1 ;
+		// 设备回路地址
+		optional int32 rtu_loop_id = 2 ;
+		// 设备回路名称
+		optional string rtu_loop_name = 3 ;
+		// 电压
+		optional double voltage = 4 ;
+		// 电流
+		optional double current = 5 ;
+		// 功率
+		optional double power = 6 ;
+		// 功率因数
+		optional double factor = 7 ;
+		// 参考电流
+		optional double reference_current = 8 ;
+		// 亮灯率
+		optional double bright_rate = 9 ;
+		// 电流上限
+		optional int32 current_upper = 10 ;
+		// 电流下限
+		optional int32 current_lower = 11 ;
+		// 互感器比值
+		optional int32 mutual_inductor_ratio = 12 ;
+		// 检测报警 1、线路报警，2、线路正常 ，3、未知
+		optional int32 line_is_alarm = 13 ;
+		// 线路地址 0表示未设置
+		optional int32 line_id = 14 ;
+		// 线路名称
+		optional string line_name = 15 ;	
+		// 设备回路状态 1、吸合，2、断开
+		optional int32 rtu_loop_state = 16 ;
+		// 回路状态提示：模拟量回路-吸合或断开，门开关回路-打开或正常，线路检测-报警或正常
+		optional string loop_is_alarm_str = 17 ;
+		// 是否屏蔽回路  0、正常，1、屏蔽
+		optional int32 is_shield_loop = 18 ;
+		// 回路背景色
+		optional string bg_color = 19 ;
+	}
+
+	message RtuSwitchOutInfo
+	{
+		// 设备逻辑地址
+		optional int32 rtu_id = 1 ;
+		// 设备回路地址
+		optional int32 rtu_switchout_id = 2 ;
+		// 设备回路状态 1、吸合，2、断开
+		optional int32 rtu_switchout_state = 3 ;
+		// 使用的时间表地址  0未绑定时间表
+		optional int32 timetable_id = 4 ;
+		// 回路今日开关灯时间，开灯、关灯、开灯、关灯 顺序 ，如果存在多段则多个
+		repeated int32 openclose_time = 5 ;
+		// 使用的时间表名称
+		optional string timetable_name = 6 ;
+		// 输出名称
+		optional string rtu_switchout_name = 7 ;
+		// 输出状态与时间表应该处于的状态是否一致  1、一致，2、不一致，3、未知
+		optional int32 rtu_switchout_is_match_timetable = 8 ;
+		// 回路今日开关灯时间，开灯-关灯、开灯-关灯 顺序，如17:30 - 06:00，如果存在多段则多个
+		repeated string openclose_time_string = 9 ;
+	}
+	// 设备逻辑地址
+	optional int32 rtu_id = 1;
+	optional RtuMeasureInfoOne Items = 2 ;
+	//回路信息
+	repeated RtuLoopInfo ItemsLoop = 3 ;
+	//开关量输出信息
+	repeated RtuSwitchOutInfo ItemsSwitchOut =4 ;
+	//标记哪些列需要显示  按照系统选项勾选的列
+	repeated int32 ShowColums = 5 ;	
+	// 当前设备的操作权限 ，0、无权限，1、可查看数据，2、具备开关灯与设置等高级权限
+	optional int32  right= 6 ;
+}
+
+message RtusMeasureInfo
+{	
+	optional Head head = 1;
+	
+	// 手动开灯时确认方法 1、二次确认 ，2、密码确认 ，3、不验证
+	optional int32 light_on_check  = 2 ;
+	// 手动关灯时确认方法 1、二次确认 ，2、密码确认 ，3、不验证
+	optional int32 light_off_check  = 3 ;
+	// 设备图标是否显示故障  1、显示 ，2、不显示  默认显示
+	optional int32 gis_fault_display  = 4 ;
+	//终端运行信息 运行信息具备数据的
+	repeated RtuMeasureInfo ItemsRtu = 5 ;
+
+	//终端运行信息  自date_start时间点选测数据未应答的设备 
+	repeated int32 ItemsNoAnsFromDateStart = 6 ;
+}
+
+message GetRtusMeasureInfo
+{	
+	//1 一般请求 2 巡测时请求数据，带页码
+	optional int32 Op = 1 ;
+	//巡测时的页码
+	optional int32 PageIdx = 2 ;
+	//终端列表 无数据则表示所有终端
+	repeated int32 ItemsRtu = 3 ;
+	//默认值为 0  查询自这个时间点后的选测应答的数据
+	optional int64 DateStart = 4;
+}
+
+//----------------------------------------------终端巡测逻辑----------------------------------------------
+
+
+
+//----------------------------------------------终端历史数据查询----------------------------------------------
+message GetRtusHisdata
+{	
+	optional Head head = 1;
+	//终端列表 无数据则表示所有终端
+	repeated int32 ItemsRtu = 4 ;
+	// 时间
+	optional int64 date_start = 2;
+	// 时间
+	optional int64 date_end = 3;
+}
+
+
+//----------------------------------------------终端指定时间一天历史数据----------------------------------------------
+
+ 
+message RtuMeasureDayInfo
+{
+	// 设备逻辑地址
+	optional int32 rtu_id = 1;
+	// 时间
+	optional int64 date_create = 2;
+
+}
+
+
+//终端运行一天历史数据信息
+message RtuMeasureDayInfoBk
+{
+	message RtuLoopInfo
+	{		  
+		// 设备回路地址
+		optional int32 rtu_loop_id = 1 ;
+		// 设备回路名称
+		optional string rtu_loop_name = 2 ;
+		// 设备回路状态 1、吸合，2、断开
+		optional int32 rtu_loop_state = 16 ;	
+		// 电压
+		optional double voltage = 3 ;
+		// 电流
+		optional double current = 4 ;
+		// 功率
+		optional double power = 5 ;
+		//通信时间
+		optional int64  date_create = 6 ;
+		//时间 YYYY-MM-DD HH:MM:SS 如 2018-10-10 15:22:03
+		optional string  date_create_string=111;
+	}
+
+	message RtuInfo
+	{		  
+		repeated RtuLoopInfo Items = 3 ;
+		//通信时间
+		optional int64  date_create = 6 ;
+	}
+
+
+	optional Head head = 1;	
+	// 设备逻辑地址
+	optional int32 rtu_id = 2;
+	optional int32 rtu_phy_id = 3;// 设备物理地址
+	repeated RtuInfo Items = 4 ;	 
+}
+
+//----------------------------------------------下发  召测  ----------------------------------------------
+//召测终端时钟、召测终端参数、召测终端周设置、召测版本、选测、发送周设置、对时
+message RtuOrderZc
+{
+	// 设备逻辑地址
+	repeated int32 rtu_id = 2;
+}
+
+//----------------------------------------------应答 召测时钟、召测版本、对时应答[仅地址有效]----------------------------------------------
+
+//终端时钟、版本信息
+message AnsRtuOrderZc
+{
+	// 设备逻辑地址
+	optional int32 rtu_id = 1 ;
+	// 时钟信息 or 版本信息
+	optional string time_or_version  = 2 ;	 
+}
+
+//----------------------------------------------应答 发送周设置----------------------------------------------
+
+//终端周设置
+message AnsRtuOrderSetWeekSet
+{
+	// 设备逻辑地址
+	optional int32 rtu_id = 1 ;
+	//下发的周设在数据序号
+	optional int32 weekset_id = 2 ;
+	//需要下发的周设置的总的数量
+	optional int32 order_sum = 3 ;
+}
+
+//----------------------------------------------应答 召测终端参数----------------------------------------------
+
+//终端参数信息
+message AnsRtuOrderRtuPara
+{
+	// 心跳周期
+	optional int32 heart_beat_period = 1 ;
+	//主报周期
+	optional int32 alarm_delays = 2 ;
+	// 工作参数 报警延时（秒）
+	optional int32 error_delays = 3 ;
+	// 通讯参数 主报周期
+	optional int32 report_data_period = 4 ;
+	// 电压量程
+	optional int32 vo_range = 5 ;
+	// 电压上限
+	optional int32 vo_upper = 6 ;
+	// 电压下限
+	optional int32 vo_lower = 7 ;
+	// 开关量输出路数
+	optional int32 switch_out_count = 8 ;
+	// 开关量输入路数
+	optional int32 switch_in_count = 9 ;
+	// 模拟量输入路数
+	optional int32 sin_count = 10 ;
+	// 终端开关量输出信息
+	repeated ZcRtuSwitchOutInfo SwitchOutInfo = 11 ;
+	// 回路信息
+	repeated ZcRtuLoopInfo LoopInfo = 12 ;
+
+	message ZcRtuSwitchOutInfo
+	{
+		// 开关量序号
+		optional int32 switch_out_id = 1 ;			
+		// 开关灯时间;时分，hhmm-hhmm
+		optional string K_open_close_time = 2 ;			
+		// 回路数
+		optional int32 K_count = 3 ;
+		// 开关量输出矢量
+		optional int32 switch_out_verctor = 4 ;
+	}
+
+	message ZcRtuLoopInfo
+	{
+		// 回路序号
+		optional int32 loop_id = 1 ;		
+		// 回路电流量程
+		optional int32 loop_36_range = 2 ;		
+		// 回路电流上限
+		optional int32 loop_36_qupper = 3 ;		
+		// 回路电流下限
+		optional int32 l_36_qlower = 4 ;		
+		// 模拟量输入
+		optional int32 sin_36 = 5 ;		
+		// 跳变报警 ； 0不报警 1报警
+		optional int32 switch_change = 6 ;		
+		// 开关量输出40矢量
+		optional int32 switch_in_40_vector = 7 ;
+		// 回路所属的  开关量序号 若为0 则表示为外箱门之类的，此时 仅loop_id、switch_change、sin_36 有效，其他均--
+		optional int32 switch_out_id = 8 ;		
+	}
+}
+
+
+//----------------------------------------------应答 召测周设置----------------------------------------------
+
+
+//终端周设置信息
+message AnsZcRtuWeekTimeSet
+{
+	// 设备逻辑地址
+	optional int32 rtu_id = 1 ;
+	// 回路信息
+	repeated ZcOneLoopOneWeekTime Info = 2 ;
+	
+	message ZcOneLoopOneWeekTime
+	{
+		// 输出地址
+		optional int32 switchout_id = 1 ;
+		// 第几段
+		optional int32 section_id = 9 ;
+		// 一周开关灯时间；开关时间 hhmm-hhmm ，周日-周六
+		repeated string oneweek_time_info = 2 ;
+	}
+	 
+}
+
+
+//----------------------------------------------开关灯操作----------------------------------------------
+//下发
+message RtuOpenCloseLight
+{
+	// 设备逻辑地址
+	optional int32 rtu_id = 2;
+	// 操作信息 1、开灯，2、关灯，其他不操作
+	optional int32 OP  = 3 ;
+	// 输出回路  1-16
+	repeated int32 switchout_loops  = 4 ;
+}
+
+//控制中心批量操作
+message RtuOpenCloseLightCenter 
+{
+	// 操作信息 1、开灯，2、关灯，其他不操作
+	optional int32 OP  = 3 ;
+	// 操作的设备清单
+	repeated RtuOpenCloseLightCenterItem Items  = 4 ;
+
+	message RtuOpenCloseLightCenterItem
+	{
+		optional int32 switchout_id = 2;
+		repeated int32 rtu_ids  = 4 ;
+	}
+}
+
+
+//应答
+message AnsRtuOpenCloseLight
+{
+	// 设备逻辑地址
+	optional int32 rtu_id = 2;
+	// 操作信息 1、开灯，2、关灯，其他不操作
+	optional int32 OP  = 3 ;
+	// 输出回路  1-16
+	optional int32 switchout_id  = 4 ;
+}
+
+
+//----------------------------------------------终端周设置记录----------------------------------------------
+message GetRtusHisweekset
+{	
+	optional Head head = 1;
+	//终端列表 无数据则表示所有终端
+	repeated int32 ItemsRtu = 4 ;
+	// 时间
+	optional int64 date_start = 2;
+	// 时间
+	optional int64 date_end = 3;
+}
+
+
+message GetRtusHisweeksetbk
+{	message GetRtusHisweeksetbkItem
+	{	
+		//终端 
+		optional int32 rtu_id = 1 ;// 设备逻辑地址
+		optional int32 rtu_phy_id = 7 ;// 设备物理地址
+		optional string rtu_name = 2;
+		//K1-K3,K4-K6,K7-K8,20180101
+		optional string  weekset_type= 3 ;
+		// 时间  发送
+		optional int64 date_snd= 4;
+		// 时间 应答
+		optional int64 date_ans = 5;
+		optional string  reamrk= 6 ;
+
+		//时间 YYYY-MM-DD HH:MM:SS 如 2018-10-10 15:22:03
+		optional string  date_snd_string=111;
+
+		//时间 YYYY-MM-DD HH:MM:SS 如 2018-10-10 15:22:03
+		optional string  date_ans_string=112;
+	}
+
+	optional Head head = 1;
+	//终端列表 无数据则表示所有终端
+	repeated GetRtusHisweeksetbkItem Itemsdata = 4 ;
+}
+
+ 
+//通信协议设计： 故障信息
+
+
+//****************************删除故障*****************************
+message CurErrorDelete 
+{
+    message CurErrorItem
+     {
+		optional int32 rtu_id = 1 ;// 设备逻辑地址
+		optional int32 err_id = 2; // 故障id
+		optional int32 tml_sub_id1 = 10; // 回路序号 或控制系序号或线路序号
+		optional int32 tml_sub_id2 = 11; // 灯头序号 等
+     }
+
+    optional Head head = 1;
+    repeated CurErrorItem Items = 2;
+	optional int32 Op = 3; //1、删除，2、确认 
+}
+
+
+
+
+//****************************故障自定义*****************************
+message SetAlarmErrInfo 
+{  
+	message AlarmErrInfoView 
+	{
+		optional int32 err_id = 1; // 故障id
+		optional string err_name = 2; // 故障名称
+		optional string err_name_custome = 3; // ⾃定义名称
+		optional string err_remark = 4; // 故障解释
+		optional int32 err_level = 5; // 故障等级,1-写db,不推送,0-推送,2-推送置顶,3-
+		optional int32 enable_alarm = 6; // 允许报警
+		optional string err_check_keyword = 7; // 数字⽤关键字
+		optional int32 err_time_set = 8; // 时段报警0-全天,1-开灯,2-关灯,3-⾃定义
+		optional int32 dt_err_custome_start = 9; // ⾃定义时段开始 小时*60+分钟
+		optional int32 dt_err_custome_end = 10; // ⾃定义时段结束 小时*60+分钟
+	}
+	optional Head head = 1; //调用接口时 作为参数  可不填入数据的，接口返回服务器端填写使用
+	repeated AlarmErrInfoView err_info_view = 2;
+}
+
+//****************************现存故障*****************************
+message gtCurFault 
+{
+	optional int64 date_start = 1; // 开始时间 0表示所有
+	optional int64 date_end = 2; // 结束时间
+	repeated int32 rtu_ids = 3; // 空表示全部
+	repeated int32 area_id = 4; // 区域  若rtu_ids为空则读取此值
+	repeated int32 fault_codes = 5; // 空表示全部故障类型
+	optional int32 fault_level = 6; // 故障等级,1-写db,不推送,0-推送,2-推送置顶,3-全部
+	// 设备类型 0、所有设备，1、终端，2、单灯，3、光控，4、抄表，5、线路检测，6、漏电保护器,7、节能设备  请求时携带
+	optional int32 EquType  = 7;
+}
+message CurFault 
+{
+	message CurFaultItem 
+	{
+		optional int64 date_create = 1; // 时间
+		optional int32 rtu_id = 17; // 设备逻辑地址		
+		optional int32 rtu_phy_id = 2 ;// 设备物理地址
+		optional string rtu_name = 3; // 设备名称
+		optional int32 loop_id = 4; // 回路或控制器地址
+		optional string loop_name = 5; // 回路或控制器名称
+		optional int32 lamp_id = 6; // 灯头地址
+		optional string lamp_name = 7; // 灯头名称
+		optional int32 fault_id = 8; // 故障编号
+		optional string fault_name = 9; // 故障名称
+		optional double v = 10; // 电压
+		optional double a = 11; // 电流
+		optional double upper = 12; // 上限
+		optional double lower = 13; // 下限
+		optional int32 count = 14; // 在指定时间段内的报警次数
+		optional string remark = 15; //备注
+		optional int32 is_confird = 16; // 是否已经确认 1、未确认，2、已经确认，3、无需确认[0]
+
+		//时间 YYYY-MM-DD HH:MM:SS 如 2018-10-10 15:22:03
+		optional string  date_create_string=111;
+	}
+	optional Head head = 1; //调用接口时 作为参数  可不填入数据的，接口返回服务器端填写使用
+	repeated CurFaultItem errs = 2; // 查询的故障列表
+}
+
+
+//****************************历史故障*****************************
+message gtPreFault 
+{
+	optional int64 date_start = 6; // 开始时间
+	optional int64 date_end = 2; // 结束时间
+	repeated int32 rtu_ids = 3; // 空表示全部
+	repeated int32 area_id = 4; // 区域  若rtu_ids为空则读取此值
+	repeated int32 fault_codes = 5; // 空表示全部故障类型
+	optional int32 fault_level = 7; // 故障等级,1-写db,不推送,0-推送,2-推送置顶,3-全部
+	// 设备类型 0、所有设备，1、终端，2、单灯，3、光控，4、抄表，5、线路检测，6、漏电保护器,7、节能设备  请求时携带
+	optional int32 EquType  = 8;
+	optional Head head = 1; //调用接口时 作为参数  可不填入数据的，接口返回服务器端填写使用
+}
+message PreFault 
+{
+	message PreFaultItem 
+	{
+		optional int64 date_create = 1; // 时间
+		optional int64 date_dis = 17; // 消警时间
+		optional int32 rtu_id = 2; // 设备逻辑地址
+		optional int32 rtu_phy_id = 18 ;// 设备物理地址
+		optional string rtu_name = 3; // 设备名称
+		optional int32 loop_id = 4; // 回路或控制器地址
+		optional string loop_name = 5; // 回路或控制器名称
+		optional int32 lamp_id = 6; // 灯头地址
+		optional string lamp_name = 7; // 灯头名称
+		optional int32 fault_id = 8; // 故障编号
+		optional string fault_name = 9; // 故障名称
+		optional double v = 10; // 电压
+		optional double a = 11; // 电流
+		optional double upper = 12; // 上限
+		optional double lower = 13; // 下限
+		optional string remark = 15; //备注
+		optional int32 is_confird = 16; // 是否已经确认 1、未确认，2、已经确认，3、无需确认[0]
+
+		//时间 YYYY-MM-DD HH:MM:SS 如 2018-10-10 15:22:03
+		optional string  date_create_string=111;
+		//时间 YYYY-MM-DD HH:MM:SS 如 2018-10-10 15:22:03
+		optional string  date_dis_string=112;
+	}
+	optional Head head = 1; //调用接口时 作为参数  可不填入数据的，接口返回服务器端填写使用
+	repeated PreFaultItem errs = 2; // 查询的故障列表
+}
+
+
+
+ 
+//----------------------------------------------选项----------------------------------------------
+//-----------------------------系统选项-----------------------------
+message SystemOptionInfo
+{
+	// 返回时携带
+	optional Head head = 1;
+
+	// 系统名称
+	optional string sys_name  = 31 ;
+	// 系统经度
+	optional double gis_lon  = 2 ;
+	// 系统纬度
+	optional double gis_lat  = 3 ;
+	// 设备显示排序 1、按设备物理地址，2、按设备逻辑地址，3、按设备名称拼音，4、按分组顺序
+	optional int32 rtu_order  = 4 ;
+	// 设备树显示 1、按地理区域 ，2、按功能区域  目前系统不支持 按地理区域显示的 灰掉地理区域
+	optional int32 area_type  = 5 ;
+	// 光控显示
+	optional int32 lux_id  = 6 ;
+	// 数据查询分页条数 （20-100）
+	optional int32 page_num  = 7 ;
+	// 手动开灯时确认方法 1、二次确认 ，2、密码确认 ，3、不验证
+	optional int32 light_on_check  = 8 ;
+	// 手动关灯时确认方法 1、二次确认 ，2、密码确认 ，3、不验证
+	optional int32 light_off_check  = 9 ;
+	// 选测失败判断时间 单位秒
+	optional int32 rtu_measure_delay  = 10 ;
+	// 运行信息列表显示 1、参考电流 ，2、亮灯率 ，3、互感器比值 ，4、线路 ，5、上限 ，6、下限 ，7、检测 ，8、历史数据列表
+	repeated int32 rtu_running_display  = 11 ;
+
+	// 终端轮询起始时间[分钟 hour*60+minutes]
+	optional int32 rtu_turn_time  = 12 ;
+	// 终端周期执行间隔
+	optional int32 rtu_interval  = 13 ;
+	// 单灯轮询起始时间[分钟 hour*60+minutes]
+	optional int32 slu_turn_time  = 14 ;
+	// 单灯周期执行间隔
+	optional int32 slu_interval  = 15 ;
+	// 线路检测轮询时间[分钟 hour*60+minutes]
+	optional int32 ldu_turn_time  = 16 ;
+	// 线路检测周期执行间隔
+	optional int32 ldu_interval  = 17 ;
+	// 漏电设备轮询时间[分钟 hour*60+minutes]
+	optional int32 leak_turn_time  = 18 ;
+	// 漏电周期执行间隔
+	optional int32 leak_interval  = 19 ;
+	// 节电设备轮询时间[分钟 hour*60+minutes]
+	optional int32 esu_turn_time  = 20 ;
+	// 节电周期执行间隔[分钟 hour*60+minutes]
+	optional int32 esu_interval  = 21 ;
+	// 电表轮询起始时间[分钟 hour*60+minutes]
+	optional int32 mru_turn_time  = 22 ;
+	// 电表周期执行间隔[分钟 hour*60+minutes] 不可设置 1440
+	optional int32 mru_interval  = 23 ; 
+	// 光控轮询起始时间[分钟 hour*60+minutes] 不可设置 0
+	optional int32 lux_turn_time  = 24 ;
+	// 光控执行间隔  不可设置 2分钟
+	optional int32 lux_interval  = 25 ;
+
+
+	// 统计报警次数时间 单位：天
+	optional int32 fault_total_day  = 26 ;
+	// 电压缺项最小值 单位：V
+	optional int32 v_lose_value  = 27 ;
+	// 亮灯率报警下限值 单位：% [30-90]
+	optional int32 bright_rate_lower  = 28 ;
+	// 设备图标是否显示故障  1、显示 ，2、不显示  默认显示
+	optional int32 gis_fault_display  = 29 ;
+	// 光控主报时间  秒
+	optional int32 lux_report_time  = 30 ;
+}
+
+
+ 
+//----------------------------------------------方案管理----------------------------------------------
+//-----------------------------反馈时间表扼要信息、分组绑定时间表信息 供界面呈现-----------------------------
+message TimetablePlanBandingInfo
+{
+	// 返回时携带
+	optional Head head = 1;
+	// 方案分组绑定信息列表
+	repeated TimePlanBandingInfo ItemsBanding  = 2 ;
+	// 区域地址
+	optional int32 area_id = 3 ;
+
+	// 方案扼要列表
+	repeated TimePlanInfoBrief ItemsPlan  = 4 ;
+	// 方案与组绑定信息
+	message TimePlanBandingInfo
+	{
+		// 区域地址
+		optional int32 area_id = 1 ;
+		// 终端或组地址
+		optional int32 group_or_rtu_id  = 2 ;
+		// 终端物理地址或组地址, 请求时发送，保存时不需要
+		optional int32 group_or_rtu_phy_id  = 3 ;
+		// 终端或组名称
+		optional string group_or_rtu_name  = 4 ;
+		// 开关量输出回路地址 1-8
+		repeated int32 switchout_id  = 5 ;
+		// 方案地址  分别为K1-K8使用的方案地址 ，0表示未使用任何方案  必须填满1-8的数据
+		repeated int32 time_plan_id  = 6 ;
+	}
+
+	// 方案扼要信息
+	message TimePlanInfoBrief
+	{
+		// 区域地址
+		optional int32 area_id = 1 ;
+		// 方案地址
+		optional int32 time_plan_id  = 2 ;
+		// 终端或组名称
+		optional string time_plan_name  = 3 ;
+	}
+}
+
+ 
+//----------------------------保存方案组合信息-----------------------------
+//用户绑定 终端时间方案与特设时间方案的  绑定关系
+message TimetablePlanBandingSpecialPlanInfoSave
+{
+
+	// 方案信息列表
+	repeated PlanInfoBandingSpecialPlan ItemsBanding  = 2 ;
+	// 方案信息
+	message PlanInfoBandingSpecialPlan
+	{
+		// 区域地址
+		optional int32 area_id = 1 ;
+		// 时间表方案地址
+		optional int32 time_plan_id  = 2 ;
+		// 方案地址
+		optional int32 special_time_plan_id  = 5 ;
+	}
+}
+//-----------------------------加载现存终端时间方案信息-----------------------------
+//加载区域的  时间表列表  与 特设方案列表
+message TimetablePlanInfoBrief
+{
+	// 返回时携带
+	optional Head head = 1;
+	// 区域地址 为空即为全部
+	repeated int32 area_ids = 2;
+	// 方案信息列表
+	repeated TimePlanInfoBrief ItemsTimePlan  = 3 ;
+	// 特设方案信息
+	repeated SpecialTimePlanInfoBrief ItemsSpecialPlan  = 4 ;
+
+	// 方案扼要信息
+	message TimePlanInfoBrief
+	{
+		// 区域地址
+		optional int32 area_id = 1 ;
+		// 方案地址
+		optional int32 time_plan_id  = 2 ;
+		// 方案名称
+		optional string time_plan_name  = 3 ;
+		// 方案描述
+		optional string time_plan_desc  = 4 ;
+		// 使用特设方案
+		optional int32 special_plan_id  = 5 ;
+		// 区域名称
+		optional string area_name = 6 ;
+	}
+
+	// 特设方案扼要信息
+	message SpecialTimePlanInfoBrief
+	{
+		// 区域地址
+		optional int32 area_id = 1 ;
+		// 特设方案地址
+		optional int32 plan_id  = 5 ;
+		// 特设方案名称
+		optional string plan_name  = 2 ;
+		// 开始时间
+		optional int64 date_start  = 3 ;
+		// 结束时间
+		optional int64 date_end  = 4 ;
+	}
+}
+
+//-----------------------------请求的时间方案或特设方案信息-----------------------------
+message RequestRtuPlanInfo
+{
+	// 区域
+	optional int32 area_id = 1;
+	// 方案序号 
+	optional int32 time_plan_id = 2;
+}
+//-----------------------------请求返回的时间方案信息-----------------------------
+message OneRtuPlanInfo
+{
+	// 区域
+	optional int32 area_id = 1;
+	// 方案序号 
+	optional int32 time_plan_id = 2;
+	// 方案名称
+	optional string time_plan_name  = 3 ;
+	// 方案描述
+	optional string time_plan_desc  = 4 ;
+	// 开灯光控值
+	optional int32 lux_on_value  = 5 ;
+	// 关灯光控值
+	optional int32 lux_off_value  = 6 ;
+	// 光控设备 0 则为偏移 ，有光控则为光控
+	optional int32 lux_id  = 7 ;
+	// 备用光控设备
+	optional int32 lux_backup_id  = 8 ;
+	// 开灯日落偏移值
+	optional int32 light_on_offset  = 9 ;
+	// 关灯日出偏移值
+	optional int32 light_off_offset  = 10 ;
+	// 光控有效时间 10-60
+	optional int32 lux_effective  = 11;
+	
+	
+	// 包含的开关灯规则 
+	repeated TimeTableOnedayPlan ItemsSet  = 12 ;
+	//辅助参数 本周日出时间，周日到周六的，时间为 hour*60+minutes
+	repeated int32 ItemsSunRaiseTimeThisWeek  = 111 ;
+	//辅助参数 本周日落时间，周日到周六的，时间为 hour*60+minutes
+	repeated int32 ItemsSunSetTimeThisWeek  = 112 ;
+	//辅助参数  光控设备参数  
+	repeated LuxParaInfoItem ItemsLux  = 113 ;
+
+	//一天的开关灯的信息
+	message TimeTableOnedayPlan 
+	{
+		// 本规则那几天使用 0为周日  1-6 表示星期几 
+		optional int32 days_week_used  = 1 ;
+		//段序号  最多4段  3005设备只有一段
+		optional int32 section_id = 13;
+		//1、光控，2、偏移，3、定时，4、开灯定长
+		optional int32 type_on = 3;
+		//1、光控，2、偏移，3、定时，4、关灯定长
+		optional int32 type_off = 5;
+		//开灯最后时限
+		optional int32 time_on = 8 [default = 1500];
+		//关灯最后时限
+		optional int32 time_off = 9 [default = 1500];
+	}
+
+	//光控设备信息
+	message LuxParaInfoItem 
+	{
+		//光控设备地址
+		optional int32 lux_id = 13;
+		//如果光控为主设备，则主设备的物理地址，如果为辅助设备则连接的主设备的物理地址
+		optional int32 lux_phy_id = 3;
+		//光控设备名称
+		optional string lux_name = 5;
+	}
+
+}
+//-----------------------------增加或修改时间方案信息-----------------------------
+message AddOrUpdateRtuPlanInfo
+{
+	// 区域
+	optional int32 area_id = 1;
+	// 方案序号 为0 即为增加
+	optional int32 time_plan_id = 2;
+	// 方案名称
+	optional string time_plan_name  = 3 ;
+	// 方案描述
+	optional string time_plan_desc  = 4 ;
+	// 开灯光控值
+	optional int32 lux_on_value  = 5 ;
+	// 关灯光控值
+	optional int32 lux_off_value  = 6 ;
+	// 光控设备 0 则为偏移 ，有光控则为光控
+	optional int32 lux_id  = 7 ;
+	// 备用光控设备
+	optional int32 lux_backup_id  = 8 ;
+	// 开灯日落偏移值
+	optional int32 light_on_offset  = 9 ;
+	// 关灯日出偏移值
+	optional int32 light_off_offset  = 10 ;
+	// 光控有效时间 10-60
+	optional int32 lux_effective  = 11;
+	
+	
+	// 包含的开关灯规则 
+	repeated TimeTableOnedayPlan ItemsSet  = 12 ;
+	//一天的开关灯的信息
+	message TimeTableOnedayPlan 
+	{
+		// 本规则那几天使用 0为周日  1-6 表示星期几 
+		optional int32 days_week_used  = 1 ;
+		//段序号  最多4段  3005设备只有一段
+		optional int32 section_id = 13;
+		//1、光控，2、偏移，3、定时，4、开灯定长
+		optional int32 type_on = 3;
+		//1、光控，2、偏移，3、定时，4、关灯定长
+		optional int32 type_off = 5;
+		//开灯最后时限
+		optional int32 time_on = 8 [default = 1500];
+		//关灯最后时限
+		optional int32 time_off = 9 [default = 1500];
+	}
+}
+//-----------------------------请求返回的特设方案信息-----------------------------
+message 	OneSpecialRtuTimePlanInfo
+{
+	// 区域
+	optional int32 area_id = 14;
+	// 方案序号  为0 即为增加
+	optional int32 special_plan_id = 15;
+	// 方案名称
+	optional string special_plan_name  = 1 ;
+	// 方案描述
+	optional string special_plan_desc  = 2 ;
+	// 开灯光控值
+	optional int32 lux_on_value  = 3 ;
+	// 关灯光控值
+	optional int32 lux_off_value  = 4 ;
+	// 光控设备
+	optional int32 lux_id  = 5 ;
+	// 备用光控设备
+	optional int32 lux_backup_id  = 6 ;
+	// 开灯日落偏移值
+	optional int32 light_on_offset  = 7 ;
+	// 关灯日出偏移值
+	optional int32 light_off_offset  = 8 ;
+	// 光控有效时间
+	optional int32 lux_effective  = 9 ;
+	// 开始时间
+	optional int64 date_start  = 11 ;
+	// 结束时间
+	optional int64 date_end  = 12 ;
+	// 特设方案信息列表
+	repeated SpecialTimePlanInfo ItemsSpecial  = 13 ;
+	
+	// 特设方案绑定列表
+	repeated int32 ItemsBanding  = 16 ;
+
+
+	//辅助参数 一年的日出日落时间，时间为 hour*60+minutes
+	repeated SunSetRiseInfoItem ItemsSunRiseSet  = 111 ;
+	//辅助参数  光控设备参数  
+	repeated OneRtuPlanInfo.LuxParaInfoItem ItemsLux  = 112 ;
+
+
+               // 特设方案控制信息
+	message SpecialTimePlanInfo
+	{
+		//  日期 用tick 如20180309 则使用  20180309 12：00 的时间标记该天
+		optional int64 date = 1;
+		//段序号  最多4段  3005设备只有一段
+		optional int32 section_id = 13;
+		//1、光控，2、偏移，3、定时，4、开灯定长
+		optional int32 type_on = 3;
+		//1、光控，2、偏移，3、定时，4、关灯定长
+		optional int32 type_off = 5;
+		//开灯最后时限
+		optional int32 time_on = 8 [default = 1500];
+		//关灯最后时限
+		optional int32 time_off = 9 [default = 1500];
+
+	}
+
+	message SunSetRiseInfoItem
+	{
+		//月
+		optional int32 month = 1;
+		//日
+		optional int32 day = 2;
+		//日出时间
+		optional int32 sunrise = 3;
+		//日落时间
+		optional int32 sunset = 4;
+	}
+}
+//-----------------------------增加或修改特设方案信息-----------------------------
+message AddOrUpdateSpecialRtuTimePlanInfo
+{
+	// 区域
+	optional int32 area_id = 14;
+	// 方案序号  为0 即为增加
+	optional int32 special_plan_id = 15;
+	// 方案名称
+	optional string special_plan_name  = 1 ;
+	// 方案描述
+	optional string special_plan_desc  = 2 ;
+	// 开灯光控值
+	optional int32 lux_on_value  = 3 ;
+	// 关灯光控值
+	optional int32 lux_off_value  = 4 ;
+	// 光控设备
+	optional int32 lux_id  = 5 ;
+	// 备用光控设备
+	optional int32 lux_backup_id  = 6 ;
+	// 开灯日落偏移值
+	optional int32 light_on_offset  = 7 ;
+	// 关灯日出偏移值
+	optional int32 light_off_offset  = 8 ;
+	// 光控有效时间
+	optional int32 lux_effective  = 9 ;
+	// 开始时间
+	optional int64 date_start  = 11 ;
+	// 结束时间
+	optional int64 date_end  = 12 ;
+	// 特设方案信息列表
+	repeated SpecialTimePlanInfo ItemsSpecial  = 13 ;
+	// 特设方案控制信息
+	message SpecialTimePlanInfo
+	{
+		//  日期 用tick 如20180309 则使用  20180309 12：00 的时间标记该天
+		optional int64 date = 1;
+		//段序号  最多4段  3005设备只有一段
+		optional int32 section_id = 13;
+		//1、光控，2、偏移，3、定时，4、开灯定长
+		optional int32 type_on = 3;
+		//1、光控，2、偏移，3、定时，4、关灯定长
+		optional int32 type_off = 5;
+		//开灯最后时限
+		optional int32 time_on = 8 [default = 1500];
+		//关灯最后时限
+		optional int32 time_off = 9 [default = 1500];
+
+	}
+}
+
+//-----------------------------删除-----------------------------
+//删除
+message DeleteTimetablePlanInfo
+{
+	// 区域地址
+	optional int32 area_id = 1 ;
+
+	// 方案序号   
+	optional int32 plan_id = 15;
+}
+
+
+ 
+//通信协议设计： 系统数据查询
+
+
+//****************************操作记录查询*****************************
+message GetRecordTypes 
+{
+    optional int32 RecordsTypeIn = 2; // 0、全部查询界面，1、终端，2、单灯，3、其他
+}
+
+message GetRecordTypesBk 
+{
+    message RecordTypesItem
+     {
+		optional int32 type_id = 1 ;// 操作编号
+		optional string type_name = 2; // 操作名称
+     }
+
+    optional Head head = 1;
+    repeated RecordTypesItem Items = 2; //顺序按照 给定的顺序进行排序的
+}
+
+//****************************操作记录查询*****************************
+
+message gtOpRecord
+{
+	optional Head head = 1; //调用接口时 作为参数  可不填入数据的，接口返回服务器端填写使用
+	optional int64 date_start = 6; // 开始时间  
+	optional int64 date_end = 2; // 结束时间
+	repeated int32 rtu_ids = 3; // 空表示全部
+	repeated int32 area_id = 4; // 区域  若rtu_ids为空则读取此值 此为空则表示整个系统
+	repeated int32 record_types = 5; // 空表示全部故障类型	
+}
+
+message OpRecord 
+{
+	message OpRecordItem 
+	{
+		optional int64 date_create = 1; // 时间
+		optional int32 rtu_id = 2; // 设备地址
+		optional int32 rtu_phyid = 17; // 设备地址
+		optional string rtu_name = 3; // 设备名称
+
+		optional int32 rtu_fid = 4; // 设备父设备地址
+		optional string rtu_fname = 5; // 父设备名称
+
+
+		optional string op_type_name = 6; // 操作类别名称
+		optional string op_name = 12; // 操作名称
+//		optional int32 op_id = 7; // 操作id
+		optional string op_user = 8; // 操作用户 或 名称
+
+		optional int32 order_type_id = 10; // 1、用户下发，2、用户设置，3、设备应答
+		optional string order_type_name = 11; // 用户下发，2、用户设置，3、设备应答
+
+		optional string content = 15; //内容
+		optional string remark = 16; // 备注
+
+		//时间 YYYY-MM-DD HH:MM:SS 如 2018-10-10 15:22:03
+		optional string  date_create_string=111;
+	}
+	optional Head head = 1; //调用接口时 作为参数  可不填入数据的，接口返回服务器端填写使用
+	repeated OpRecordItem Items = 2; // 查询的数据
+}
+
+
+ 
+//通信协议设计： 统计信息
+
+//----------------------------------------------系统运行情况----------------------------------------------
+
+message SysInfo
+{
+	message SysInfoView
+	{
+		optional string pc_ip = 1; // 服务器IP
+		optional string pc_name = 2;  // 故障名称
+		optional string net_state = 3; // 网络情况
+		optional int32 memory_used = 4; // 使用内存  M
+		optional int32 memory_total = 5; // 内存总数 M
+		optional int32 cpu_used = 6; // CPU使用情况  99 则代表  99%
+		optional int32 net_used = 7; // 网络使用情况  3  则需显示 3%
+		optional string dt_create = 8; // 数据采集时间  2018-6-12 18:29:15
+	}
+
+	message AppInfoView
+	{
+		optional string pc_ip = 1; // 服务器IP
+		optional string app_name = 2;  // 进程名称
+		optional string state = 3; // 进程状态 
+		optional int32 memory_used = 4; // 使用内存  M
+		optional int32 thread_used = 5; // 线程数量
+		optional int32 cpu_used = 6; // CPU使用情况  99 则代表  99%
+		optional int32 handle_used = 7; // 句柄数量
+		optional string dt_create = 8; // 数据采集时间  2018-6-12 18:29:15
+		optional int32 cpu_time = 9; // CPU时间  单位为秒
+		optional string start_time = 10; //  时间  单位为秒
+		optional int32 pid = 11; // 进程pid
+	}
+
+    optional Head head = 1;
+    repeated SysInfoView sys_info = 2; //服务器运行情况
+    repeated AppInfoView app_ours_info = 3;//关键进行运行情况
+    repeated AppInfoView app_all_info = 4; //所有服务器的进行运行情况
+
+}
+
+//----------------------------------------------终端控制成功率----------------------------------------------
+
+message gtControlSuccessRate
+{
+	optional Head head = 1;
+	optional int64 date_start = 4; // 开始时间
+	optional int64 date_end = 5; // 结束时间
+	repeated int32 rtu_ids = 6; // 空表示全部终端		
+	optional int32  operate_type = 10; // 操作类型 1、开灯，2、关灯，-1、全部
+}
+
+message ControlSuccessRate
+{
+	message ControlSuccessRateItem
+	{
+		optional int32 operate_type = 10; // 操作类型 1、开灯，2、关灯
+		optional double lux_value= 11; // 光照度值
+		optional int32 operate_loop_num = 12; // 操作回路数
+		optional int32 operate_success_loop_num = 13; // 操作成功回路数
+		optional double operate_success_rate = 14; // 成功率
+		optional int64 date_create = 15; // 执行时间
+		optional int32 operate_rtu_num = 16;//操作终端数
+		//时间 YYYY-MM-DD HH:MM:SS 如 2018-10-10 15:22:03
+		optional string  date_create_string=111;
+	}
+	optional Head head = 1;
+	repeated ControlSuccessRateItem Items = 2;
+}
+
+
+//----------------------------------------------终端能耗统计 一天所有设备按天统计----------------------------------------------
+message gtRtuElecDay 
+{
+	optional  Head head = 1;
+	optional int64 date_start= 4; // 开始时间
+	optional int64 date_end = 5; // 结束时间
+	repeated int32 rtu_ids = 6; // 空表示全部终端
+}
+
+message RtuElecDay 
+{
+	message RtuElecTotal
+	{
+		optional int32 rtu_sum_total= 10; // 终端数
+		optional double elec_total= 11; // 总耗电量
+		optional double elec_average = 12; // 平均耗电量
+		optional int64 date_create = 13; // 执行时间
+		//时间 YYYY-MM-DD HH:MM:SS 如 2018-10-10 15:22:03
+		optional string  date_create_string=111;
+	}
+	optional Head head = 1;
+	repeated RtuElecTotal  items = 2;
+}
+
+//----------------------------------------------终端能耗统计 按终端统计指定日期的 ----------------------------------------------
+message gtRtuElecRtu
+{
+	optional  Head head = 1;
+	optional int64 date_start= 4; // 开始时间
+	optional int64 date_end = 5; // 结束时间
+	repeated int32 rtu_ids = 6; // 空表示全部终端
+}
+
+message RtuElecRtu
+{
+	message RtuElecItem
+	{
+		optional int32 rtu_id = 1; // 终端id
+		optional int32 rtu_phy_id = 2 ;// 设备物理地址
+		optional string rtu_name = 3; // 终端名称
+		optional double elec_value= 11; // 耗电量
+		optional int32  days = 13; // 统计天数
+		optional double elec_average = 14; // 日耗电量
+	}
+	optional Head head = 1;
+	repeated RtuElecItem items = 2;
+}
+
+
+//----------------------------------------------终端报警处理统计----------------------------------------------
+message gtFaultStatisticsDay
+{
+	optional  Head head = 1;
+	optional int64 date_start= 4; // 开始时间
+	optional int64 date_end = 5; // 结束时间
+	repeated int32 rtu_ids = 6; // 空表示全部终端
+}
+
+
+message FaultStatisticsDay
+{
+	message FaultStatistics
+	{
+		optional int32 rtu_sum_total = 10; // 终端数
+		optional double fault_rtu_num = 11; // 故障终端数
+		optional double fault_rtu_rate = 12; // 终端故障率
+		optional double fault_num = 14; // 故障次数
+		optional double fault_repair_time = 15; // 总故障处理时间  ,消警时间-报警时间
+		optional double fault_repair_time_average = 16; // 平均故障处理时间
+		optional int64 date_create = 13; // 执行时间
+		//时间 YYYY-MM-DD HH:MM:SS 如 2018-10-10 15:22:03
+		optional string  date_create_string=111;
+	}
+	optional Head head = 1;
+	repeated FaultStatistics  Items = 2;
+}
+
+
+
+//----------------------------------------------终端报警处理时间统计----------------------------------------------
+message gtFaultStatisticsRtu
+{
+	optional  Head head = 1;
+	optional int64 date_start= 4; // 开始时间
+	optional int64 date_end = 5; // 结束时间
+	repeated int32 rtu_ids = 6; // 空表示全部终端
+}
+
+message FaultStatisticsRtu
+{
+	message FaultStatisticsItem
+	{
+		optional int32 rtu_id = 1; // 终端id
+		optional int32 rtu_phy_id = 8 ;// 设备物理地址
+		optional string rtu_name = 2; // 终端名称
+		optional int32 fault_num = 3; // 故障次数
+		optional double fault_repair_time = 4; // 故障处理时间  ,消警时间-报警时间
+		optional double fault_repair_time_average = 5; // 平均故障处理时间
+		optional double run_time = 6; // 正常运行时间
+		optional double fault_time = 7; // 故障时间
+		optional int32  days = 13; // 统计天数
+	}
+	optional Head head = 1;
+	repeated FaultStatisticsItem  Items = 2;
+}
+
+
+//----------------------------------------------终端峰值统计----------------------------------------------
+message gtRtuDataStatistics
+{
+	optional  Head head = 1;
+	optional int64 date_start= 4; // 开始时间
+	optional int64 date_end = 5; // 结束时间
+	repeated int32 rtu_ids = 6; // 空表示全部终端
+	optional int32  peak_type = 10; // 峰值类型 1、电压最大值，2、电压最小值，3、电流最大值，4、电流最小值，5、功率最大值，6、功率最小值，-1、全部
+	optional double diff = 7; //偏差比例，即峰值与均值的偏差比例，默认0即isuoyou
+}
+
+message RtuDataStatistics
+{
+	message RtuDataStatisticsItem
+	{
+		optional int32 rtu_id = 1; // 终端id
+		optional int32 rtu_phy_id = 7;// 设备物理地址
+		optional string rtu_name = 2; // 终端名称
+		optional int32 loop_id = 3; // 回路id
+		optional int32 peak_type_id  = 4; // 峰值类型id
+		optional string peak_type = 5; // 峰值类型
+		optional int32 value = 6;//峰值
+		optional double value_average = 9; // 平均
+		optional double value_deviation_rate = 10; // 偏差比例
+		optional int64 date_create = 11; // 执行时间
+		//时间 YYYY-MM-DD HH:MM:SS 如 2018-10-10 15:22:03
+		optional string  date_create_string=111;
+		optional string loop_name = 13; // 回路名称
+	}
+	optional Head head = 1;
+	repeated RtuDataStatisticsItem Items = 2;
+}
+
+
+
+//----------------------------------------------单灯亮灯率统计----------------------------------------------
+message gtSluLightOnRate
+{
+	optional  Head head = 1;
+	optional int64 date_start= 4; // 开始时间
+	optional int64 date_end = 5; // 结束时间
+	repeated  int32 rtu_ids= 6; // 空 表示全部
+}
+
+message SluLightOnRate
+{
+	message SluLightOnRateItem
+	{
+		optional int32 slu_num = 3  ; // 终端总数
+		optional int32 slu_ctrl_count= 10; // 控制器总数[灯杆]
+		optional int32  slu_lamp_count= 11; // 灯头总数
+		optional double slu_light_rate = 13; // 单灯亮灯率
+		optional int64 date_create = 14; // 采集时间
+		optional int32  slu_lamp_should_lighton= 15; // 灯头应亮灯数
+		optional int32  slu_lamp_lighton = 16; // 灯头实际亮灯数
+		//时间 YYYY-MM-DD HH:MM:SS 如 2018-10-10 15:22:03
+		optional string  date_create_string=111;
+	}
+	optional Head head = 1;
+	repeated SluLightOnRateItem Items = 2;
+}
+
+
+
+ 
+//通信协议设计： 设备管理
+//****************************设备型号*****************************
+
+message EquipmentInfoType
+{
+	optional Head head = 1;
+	repeated int32 EquIds=5;//请求的设备，1、终端，2、单灯，3、漏电
+	repeated EquipmentInfoTypeItem ItemType=2;//设备类型
+}
+message EquipmentInfoTypeItem
+{
+	optional int32 EquId=1;//设备类型
+	optional int32 TypeId=5;//设备型号
+	optional string TypeName=6;//名称
+
+}
+
+//****************************新增设备*****************************
+
+message EquipmentInfoAdd
+{
+	optional int32 ThisEquimentAttachRtuId=1;  // 如果增加的为主设备则为0 ，如果为附属设备则该地址为附属设备附属到的主设备地址
+	optional int32 PhyId=2; //增加的设备的物理地址 默认1
+	optional int32 EquipmentMode=3; //设备模型：601-节能， 3005-六路终端设备，3006-八路终端设备， 3090-六路防盗的六路终端设备，1090-两路线路防盗设备，30920- 3090型终端设备作为485附属设备接入终端的虚拟型号，2090-单灯集中器设备，2091-广州南瑞单灯设备， 1080-光控设备，1050-电表设备，9001-漏电设备
+	optional int32 AreaId =4;// 增加新终端到的区域地址
+	optional int32 GroupId=5;//增加新终端到的组地址
+	optional string EquName=6;//设备名称
+
+}
+
+
+message EquipmentInfoUpdate
+{
+	optional int32 RtuId=1; //增加的设备的物理地址 默认1
+	optional int32 RtuPhyId=2; //增加的设备的物理地址 默认1
+	optional int32 EquipmentMode=3; //设备模型：601-节能， 3005-六路终端设备，3006-八路终端设备， 3090-六路防盗的六路终端设备，1090-两路线路防盗设备，30920- 3090型终端设备作为485附属设备接入终端的虚拟型号，2090-单灯集中器设备，2091-广州南瑞单灯设备，1080-光控设备，1050-电表设备，9001-漏电设备
+
+	optional int32 GroupId=5;//增加新终端到的组地址
+	optional string EquName=6;//设备名称
+
+}
+
+message EquipmentInfoBk
+{
+	optional Head head = 1;
+	optional int32 RtuId=2; //设备逻辑地址
+}
+
+
+
+//****************************删除设备*****************************
+
+message EquipmentInfoDelete
+{
+	optional int32 RtuId=1;  // 需要删除的设备地址
+}
+
+message EquipmentInfoDeleteBk
+{
+	optional Head head = 1;
+	repeated int32 RtuIds=2; //删除的设备逻辑地址列表
+}
+
+
+
+//****************************终端参数信息*****************************
+
+//基本参数
+message RtuEquipmentBase
+{
+	// 设备逻辑地址
+	optional int32 RtuId = 1 ;
+	// 设备物理地址
+	optional int32 RtuPhyId = 2 ;
+	// 设备名称
+	optional string RtuName = 3 ;
+	// 工作状态  类型 数据 0、不用,1、 停运，2、 使用等
+	optional int32  RtuStateCode=4;
+
+	// 设备的实际工作状态  类型 数据  1、 停运，2、 使用,0、未知 若实际状态与设置状态不符则会自动下发
+	optional int32  RtuRealState=5;
+
+	// 设备型号  3005 601等
+	optional int32 RtuModel=6;
+
+	// 设备安装信息
+	optional string RtuInstallAddr =11 ;
+
+	// 唯一识别码 其他未知的参数信息
+	optional string RtuArgu = 12 ;
+	// 备注信息
+	optional string RtuRemark = 13 ;
+	// 建立时间
+	optional int64 DateCreate = 14 ;
+	// 数据最后更新时间
+	optional int64 DateUpdate = 15 ;
+
+	// 唯一识别码
+	optional string Idf = 16 ;
+
+	// 电压上限
+	optional int32 VoltageAlarmUpperlimit = 17 ;
+	// 电压下限
+	optional int32 VoltageAlarmLowerlimit = 18;
+
+	// 是否开关量输入状态有电流来判断 
+	optional bool IsSwitchinputJudgebyA = 19;
+
+
+	// 终端使用类型1、路灯，2、亮化，3、广告，4、其他 默认1
+	optional int32 RtuUsedType = 20 ;
+
+	//总电流过载 0未设置
+	optional double Aoverload = 21 ;
+
+	//总电流过载 0未设置
+	optional double AoverAlittle = 22 ;
+		
+
+	// Ip地址
+	optional string StaticIp = 23 ;
+	// 手机号码
+	optional string MobileNo = 24 ;
+	// 模块序列号
+	optional string ModuleSn = 25 ;
+	// 是否有电能模块 0 无 1 有
+	optional int32 IsHasElec = 26 ;
+	// ABC三相电流互感比
+	repeated int32 PhaseRadio = 27 ;
+}
+
+
+
+// 参数
+message RtuPara 
+{ 
+	// 模拟量参数表
+	message RtuAnalogParameter
+	{
+		// 设备逻辑地址
+		optional int32 RtuId = 1 ;
+		// 回路序号
+		optional int32 LoopId = 2 ;
+		// 回路名称
+		optional string LoopName = 3 ;
+		// 电流量程
+		optional int32 CurrentRange = 4 ;
+		// 电流报警上限
+		optional int32 CurrentAlarmUpperlimit = 5 ;
+		// 电流报警下限
+		optional int32 CurrentAlarmLowerlimit = 6 ;
+		// 开关量输入矢量
+		optional int32 VectorSwitchIn = 7 ;
+		// 电压相位代码  0A 1B 2C
+		optional int32 VoltagePhaseCode =15;
+
+		// 开关量输出序号
+		optional int32 SwitchOutputId = 10 ;
+		// 互感器比值
+		optional int32 MutualInductorRatio = 11 ;
+		// 矢量  模拟量矢量
+		optional int32 VectorMoniliang = 12 ;
+		// 开关量 是否跳变报警
+		optional bool IsAlarmHop = 13 ;
+		// 开关量输入 是否为常闭状态
+		optional bool IsSwitchStateClose = 14 ;
+
+		// 是否屏蔽回路  0、正常，1、屏蔽，2 、隐藏
+		optional int32 IsShieldLoop = 17 ;
+
+		// 如果屏蔽小电流，则屏蔽值
+		optional double ShieldLittleA = 19 ;
+		// 回路背景色
+		optional string bg_color = 20 ;
+	}
+
+	// 终端开关量输入参数表(外箱门)
+	message RtuSwitchInputParameter
+	{
+		// 设备逻辑地址
+		optional int32 RtuId = 1 ;
+		// 开关量序号
+		optional int32 LoopId = 2 ;
+		// 开关量输入名称
+		optional string SwitchName = 3 ;
+		// 接触器状态是否常闭
+		optional bool IsSwitchStateClose = 4 ;
+		// 是否跳变报警
+		optional bool IsAlarmHop = 5 ;
+		// 矢量
+		optional int32 SwitchVector = 8 ;
+		// 回路背景色
+		optional string bg_color = 9 ;
+	}
+
+	// 终端开关量输出参数表
+	message RtuSwitchOutputParameter
+	{
+		// 设备逻辑地址
+		optional int32 RtuId = 1 ;
+		// 开关量输出序号
+		optional int32 SwitchId = 2 ;
+		// 开关量输出名称
+		optional string SwitchName = 3 ;
+		// 矢量
+		optional int32 SwitchVecotr = 4 ;
+	}
+
+	optional Head head = 1; //调用接口时 作为参数  可不填入数据的，接口返回服务器端填写使用
+	optional RtuEquipmentBase Baseinfo=5;
+	repeated RtuAnalogParameter loops_info=2; //照明回路参数
+	repeated RtuSwitchInputParameter inputs_info=3; //门类的输入参数
+	repeated RtuSwitchOutputParameter outputs_info=4;//开关量输出参数
+	optional int32 RtuId = 7 ;
+	// 当前设备的操作权限 ，0、无权限，1、可查看数据，2、具备开关灯与设置等高级权限
+	optional int32  right= 8 ;
+}
+
+// 参数
+message RqRtuPara 
+{ 
+	optional int32 RtuId = 1 ;
+}
+
+
+
+
+//****************************单灯集中器数据*****************************
+ 
+message gtSludataCon 
+{
+	optional  Head head = 1; //分页需要
+	optional int64 date_start= 4; // 开始时间
+	optional int64 date_end = 5; // 结束时间
+	repeated int32 slu_ids = 6; // 空表示全部终端
+}
+
+message replygtSludataCon 
+{
+    // 单灯集中器选测数据
+    message DataSluCon
+    {
+        // 数据发生时间  与回路数据联合查询组合成最新数据
+        optional int64 DateCreate = 1 ;
+        optional string DateCreateStr = 110 ;
+        optional int32 SluId = 2 ;
+        //设备显示需要的物理地址
+        optional int32 SluPhyId = 112 ;
+        //设备名称        
+        optional string RtuName = 111 ;
+        // 复位次数 大前天
+        optional int32 Rest3 = 3 ;
+        // 复位次数 前天
+        optional int32 Rest2 = 4 ;
+        // 复位次数 昨天
+        optional int32 Rest1 = 5 ;
+        // 复位次数 今天
+        optional int32 Rest0 = 6 ;
+        // 停运 0-正常，1-停运
+        optional bool IsSluStop = 7 ;
+        // 允许主报 0-禁止主报，1-允许主报
+        optional bool IsEnableAlarm = 8 ;
+        // 开机申请 0-非开机，1-开机
+        optional bool IsPowerOn = 9 ;
+        // gprs通讯 0-485,1-gprs
+        optional bool IsGprs = 10 ;
+        // 集中器参数错误
+        optional bool IsConcentratorArgsError = 11 ;
+         // 控制器参数错误
+        optional bool IsCtrlArgsError = 12 ;
+        // zigbee模块出错
+        optional bool IsZigbeeError = 13 ;
+        // 电力载波模块出错
+        optional bool IsCarrierError = 14 ;
+        // fram出错
+        optional bool IsFramError = 15 ;
+        // 蓝牙模块出错
+        optional bool IsBluetoothError = 16 ;
+        // 硬件时钟出错
+        optional bool IsTimerError = 17 ;
+        // 未知控制器
+        optional int32 UnknowCtrlCount = 18 ;
+        // 通信信道 -10为当前值
+        optional int32 CommunicationChannel = 19 ;
+		//集中器的方案信息
+		repeated DataSluConPlanInfo  items_plan = 20;
+		// 单灯分组id
+        optional int32 GroupId = 21 ;
+		// 单灯分组名称
+        optional string GroupName = 22 ;
+		// 单灯区域id
+        optional int32 AreaId = 23 ;
+		// 单灯区域名称
+        optional string AreaName = 24 ;
+    }
+	message DataSluConPlanInfo 
+	{
+		//定时  经纬度 等，直接显示
+		optional string type= 1;
+		//指令类型 1-定时，2-日落经纬度，3-日出经纬度 ,11 - 光控，12 隧道灯
+		optional int32 OpeMethod= 2;
+		//操作时间  07:09 格式
+		optional string time = 3;
+		// OpeMethod=1 ：定时时间 （hour*60+minutes） ，2或3：偏移值 
+		optional int32 OpeArgu = 4;
+		//开灯  关灯 调光
+		optional string ope = 5; 
+		// 操作类型 1-开灯，2-关灯，3-调光
+		optional int32 CmdType = 6;
+		//操作：  灯1、2
+		optional string lampinfo = 7;
+		// 需要操作的灯头，按照灯头顺序排序：0、不操作，、1 操作 。如列表[0、0、1、1] 则表示灯3灯4 将进行操作
+		repeated int32 LoopCanDo = 8;
+		//控制器： 全部 ，隔一亮一  ，组：1、2、3
+		optional string ctrlinfo =9;
+		//控制器组地址
+		repeated int32 ctrlgrp =10;
+		
+	}
+	optional Head head = 1;
+	repeated DataSluCon  items_data = 2;
+	
+}
+
+
+
+
+//选测集中器数据等
+message SluOrderZc
+{
+	// 设备逻辑地址
+	repeated int32 slu_ids = 2;
+}
+
+//选测集中器数据等
+message GetSluOrderZcdata
+{
+	// 设备逻辑地址
+	repeated int32 slu_ids = 2;
+
+    //查询数据的起始时间  0则表示全部
+    optional int64 date_ctreat_start = 12;
+	//返回数据是否需要把集中器的当日操作方案携带返回 1、需要，0、不需要[巡测的时候不需要的]
+	optional int32 is_need_planinfo = 3;
+
+}
+
+//选测集中器数据等
+message GetSluOrderZcCtrldata
+{
+	// 设备逻辑地址
+	optional int32 slu_id = 2;
+    //空则表示全部
+    repeated int32 slu_ctrl_ids = 3;
+    //查询数据的起始时间  0则表示全部
+    optional int64 date_ctreat_start = 12;
+
+	//返回数据是否需要把集中器的当日操作方案携带返回 1、需要，0、不需要[巡测的时候不需要的]
+	optional int32 is_need_planinfo = 13;
+}
+
+//地图功能获取控制器信息
+message GetCtrldata
+{
+	// 集中器物理地址
+	optional int32 slu_phy_id = 1;
+    //控制器条形码
+    optional int64 ctrl_bar_code = 2;
+}
+
+message replygtSludataMeasure
+{
+    optional Head head = 1;
+	
+	// 手动开灯时确认方法 1、二次确认 ，2、密码确认 ，3、不验证
+	optional int32 light_on_check  = 2 ;
+	// 手动关灯时确认方法 1、二次确认 ，2、密码确认 ，3、不验证
+	optional int32 light_off_check  = 3 ;
+	// 设备图标是否显示故障  1、显示 ，2、不显示  默认显示
+	optional int32 gis_fault_display  = 4 ;
+	
+	repeated replygtSludataCon.DataSluCon slu_data = 5; // 集中器选测返回的数据
+}
+
+
+
+//****************************单灯控制器数据*****************************
+ 
+	//单灯选测数据
+message SluCtrlDataMeasure
+{
+    // 单灯控制器选测数据
+    message DataSluCtrl
+    {
+        // 数据发生时间  与回路数据联合查询组合成最新数据
+        optional int64 DateCreate = 1 ;
+        optional string DateCreateStr = 110 ;
+        // 控制器地址 排序地址
+        optional int32 OrderId = 4 ;
+                // 日 时:分  数据在控制器中生成的时间
+        optional int64  DateTimeCtrl= 5 ;
+        optional string DateTimeCtrlStr = 114;
+                // 温度
+        optional int32 Temperature = 6 ;
+                // 状态 0-正常，1-电压越上限，2-电压越下限，3-通讯故障
+        optional int32 Status = 7 ;
+                // 已校准 0-未校准，1-已校准
+        optional bool IsAdjust = 8 ;
+                // 工作参数设置 0-未设置，1-已设置
+        optional bool IsWorkingArgsSet = 9 ;
+                // 禁止主动报警 0-允许，1-禁止
+        optional bool IsNoAlarm = 10 ;
+                // 停运 0-正常，1-停运
+        optional bool IsCtrlStop = 11 ;
+                // EEPROM故障 0-正常，1-故障
+        optional bool IsEepromError = 12 ;
+                // 温度传感器故障 0-正常，1-故障
+        optional bool IsTemperatureSensor = 13 ;			
+    }
+    //单灯灯头最新数据
+    message DataSluCtrlLamp
+    {
+        // 灯头序号
+        optional int32 LampId = 5 ;
+        optional int64 DateCtrlCreate = 3 ;
+        optional string DateCtrlCreateStr = 110 ;
+
+                // 0 正常，1电压越上线，2 电压越下限，3 通信故障
+        optional int32 State = 4 ;
+               
+                // 功率状态 0-正常，1-功率越上限，2-功率越下限，3-通信异常
+        optional int32 PowerStatus = 6 ;
+                // 灯具漏电 0-正常，1-漏电
+        optional bool IsLeakage = 7 ;
+                // 故障 0-正常，1-光源故障，2-补偿电容故障，3-意外灭灯，4-意外亮灯，5-自熄灯，6-控制器断电告警（苏州）,7-继电器故障
+        optional int32 Fault = 8 ;
+                // 工作状态 0-正常亮灯，1-一档节能，2-二档节能，3-关灯
+        optional int32 StateWorkingOn = 9 ;
+                // 电压
+        optional double Voltage = 10 ;
+                // 电流
+        optional double Current = 11 ;
+                // 有功功率
+        optional double ActivePower = 12 ;
+		        // 功率因数
+        optional double PowerFactor = 18 ;
+        optional double Electricity = 13 ;
+        optional double ElectricityTotal = 14 ;
+				// 开灯时间
+        optional double ActiveTime = 15 ;
+        optional double ActiveTimeTotal = 16 ;
+        //节能档位
+        optional int32 PowerLevel=17;
+    }
+
+    optional Head head = 1;
+    // 集中器地址
+    optional int32 SluId = 2 ;
+    //设备显示需要的物理地址
+    optional int32 SluPhyId = 112 ;
+        //设备名称        
+    optional string RtuName = 111 ;
+    // 控制器地址 逻辑地址
+    optional int32 CtrlId = 3 ;
+    optional string CtrlName = 113 ;
+	// 条形码
+	optional int64 BarCodeId = 14 ;	
+
+    optional DataSluCtrl  Info= 11 ;
+    repeated DataSluCtrlLamp Items= 12 ;
+
+	//单灯的方案信息
+	repeated replygtSludataCon.DataSluConPlanInfo items_plan=13;
+}
+//  历史数据查询
+message gtSludataLamp
+{
+    optional Head head = 1;
+	optional int32 slu_id = 2; // 集中器地址
+	repeated int32 slu_ctrl_ids = 6; // 空表示全部
+	optional int32 lamp_id = 7; // 灯头地址 ，0 表示所有灯头的数据	
+	optional int64 date_start= 4; // 开始时间
+	optional int64 date_end = 5; // 结束时间
+}
+
+message replygtSludataLamp
+{
+    optional Head head = 1;
+	repeated SluCtrlDataMeasure data= 4; // 控制器数据
+}
+
+
+
+message replygtSludataLampMeasure
+{
+    optional Head head = 1;
+	repeated SluCtrlDataMeasure data= 4; // 控制器数据
+	
+}
+
+//****************************单灯控制器物理数据*****************************
+ 
+//单灯控制器物理信息
+message CtrlPhyinfo
+{
+    // 信号强度
+    optional int32 SignalStrength = 2 ;
+        // 路由级数 电力载波 0-6,zigbee 0-10
+    optional int32 Routing = 3 ;
+        // 所在相位 0-无法确定，1-A，2-B，3-C
+    optional int32 Phase = 4 ;
+        // 通信成功次数 1-16
+    optional int32 UsefulCommunicate = 5 ;
+        // 通信总次数 1-16
+    optional int32 AllCommunicate = 6 ;
+        // 控制器回路
+    optional int32 CtrlLoop = 7 ;
+        // 节能方式 0-无控制，1-只有开关灯，2-一档节能，3-二档节能，4-RS485，5-PWM
+    optional int32 PowerSaving = 8 ;
+        // 漏电流测量 0-无，1-有
+    optional bool HasLeakage = 9 ;
+        // 温度采集 0-无，1-有
+    optional bool HasTemperature = 10 ;
+        // 时钟 0-无，1-有
+    optional bool HasTimer = 11 ;
+        // 型号 0-unknow,1-wj2090j
+    optional int32 Model = 12 ;
+
+
+    //数据生成时间 如果为历史数据查询的话有效
+    optional int64 DtCreate = 16 ;
+    optional string DateCreateStr = 110 ;
+
+    // 集中器地址
+    optional int32 SluId = 22 ;
+    //设备显示需要的物理地址
+    optional int32 SluPhyId = 112 ;
+        //设备名称        
+    optional string RtuName = 111 ;
+    // 控制器地址 逻辑地址
+    optional int32 CtrlId = 23 ;
+    optional string CtrlName = 113 ;
+}
+
+//  历史数据查询
+message gtSludataCtrpPhyInfo
+{
+    optional Head head = 1;
+	optional int32 slu_id = 2; // 集中器地址
+	repeated int32 slu_ctrl_ids = 6; // 空表示全部	
+	optional int64 date_start= 4; // 开始时间
+	optional int64 date_end = 5; // 结束时间
+}
+
+message replygtSludataCtrpPhyInfo
+{
+    optional Head head = 1;
+	repeated CtrlPhyinfo data= 4; // 控制器数据
+}
+
+//SluOrderZc
+//  巡测
+ 
+
+message replygtSluPhydataLampMeasure
+{
+    optional Head head = 1;
+	repeated CtrlPhyinfo data= 4; // 控制器数据
+}
+
+
+//****************************单灯辅助数据*****************************
+ 
+
+//单灯辅助数据
+message AssistCtrlData
+{
+    // 集中器地址
+    optional int32 SluId = 22 ;
+    //设备显示需要的物理地址
+    optional int32 SluPhyId = 112 ;
+        //设备名称        
+    optional string RtuName = 111 ;
+    // 控制器地址 逻辑地址
+    optional int32 CtrlId = 23 ;
+    optional string CtrlName = 113 ;
+	// 控制器条形码
+    optional int64 BarCodeId = 24 ;
+	// 控制器灯杆编码
+    optional string LampCode = 25 ;
+    //日 时
+    optional int64  DateTime= 2 ;
+    optional string DateTimeStr = 110 ;
+    // 漏电流 / 100 0xff为满量程，此时=2.55A
+    optional double LeakageCurrent = 3 ;
+    // 灯数据 依次为灯1灯2 灯3 灯4
+    repeated LightData LightDataField = 4 ;
+    message LightData
+    {
+    optional int32 LampId = 1 ;
+                // 最大电压
+    optional double MaxVoltage = 2 ;
+                // 最大电流
+    optional double MaxCurrent = 3 ;
+                // 电量
+    optional double Electricity = 4 ;
+    }
+}
+
+//SluOrderZc
+//  巡测
+
+message replygtSluAssistCtrlDataMeasure
+{
+    optional Head head = 1;
+	repeated AssistCtrlData data= 4; // 控制器数据
+}
+
+
+//****************************集中器读取单灯的参数*****************************
+ 
+//SluOrderZc
+//  巡测
+
+// 读取集中器中控制器的参数信息
+message SluCtrlParaRead
+{
+	message SluCtrlParaReadItem
+	{
+	    // 控制器物理地址
+        optional int32 PhyId = 2 ;
+                // 控制器所属组（5个）
+        repeated int32 CtrlGroup = 3 ;
+                // 控制器条码
+        optional int64 CtrlBarcode = 4 ;
+				// 控制器灯杆编码
+		optional string LampCode = 25 ;
+                // 控制器路由（前4级通信控制器编号1,2,3...)
+        repeated int32 CtrlRoute = 5 ;
+                // 开灯序号
+        optional int32 CtrlOrder = 6 ;
+                // 功率上限
+        optional int32 UppperPowerLimit = 7 ;
+                // 功率下限
+        optional int32 LowerPowerLimit = 8 ;
+                // 控制器上电开灯 true-开灯，false-关灯 依次为灯一灯二，，，
+        repeated bool CtrlPowerTurnon = 9 ;
+                // 控制器状态 false-停运，true-投运
+        optional bool CtrlStatus = 10 ;
+                // 控制器主报 false-禁止主报，true-允许主报
+        optional bool CtrlEnableAlarm = 11 ;
+                // 控制器物理矢量
+        repeated int32 CtrlVector = 12 ;
+                // 额定功率
+        repeated int32 RatedPower = 13 ;
+	}
+
+    optional Head head = 1;
+    // 集中器地址
+    optional int32 SluId = 22 ;
+    //设备显示需要的物理地址
+    optional int32 SluPhyId = 112 ;
+    //设备名称        
+    optional string RtuName = 111 ;
+    
+    repeated SluCtrlParaReadItem Items = 4 ;
+}
+
+
+
+//****************************单灯开关灯、调光操作**********************************
+
+message SluRightOperators
+{
+    // 即时操作
+	message SluRightOperator
+	{
+		optional int32 SluId = 1 ;
+		// 地址类型 0、全部，1、隔一亮一[0,2,4,6...]，2、隔一亮一[1,3,5,7...]，3、隔二亮一[1,4,7...]，4、组：组地址列表填入Addrs中， 11-控制器地址，控制器地址填入 Addrs中
+		optional int32 AddrType = 3 ;
+		// 组或控制器地址列表
+		repeated int32 Addrs = 5 ;
+        // 需要操作的灯头，按照灯头顺序排序：0、不操作，、1 操作 。如列表[0、0、1、1] 则表示灯3灯4 将进行操作
+        repeated int32 LoopCanDo = 9 ;
+ 
+
+        // 操作类型 1-开灯，2-关灯，3-调光
+        optional int32 CmdType = 6 ;
+        // 如果CmdType为3 ，此处填写调光值  0-100
+        optional int32 Scale = 12 ;
+ 
+    }
+	repeated SluRightOperator OperatorItems = 7 ;
+}
+
+//及时操作应答
+message SluRightOperatorReply
+{
+    //及时操作应答
+    message SluRightOperatorReplyItem
+    {
+        optional int32 SluId = 1 ;
+        // 地址类型 0、全部，1、隔一亮一[0,2,4,6...]，2、隔一亮一[1,3,5,7...]，3、隔二亮一[1,4,7...]，4、组：组地址列表填入Addrs中， 11-控制器地址，控制器地址填入 Addrs中
+		optional int32 AddrType = 3 ;
+		// 组或控制器地址列表
+		optional int32 Addrs = 5 ;
+
+        optional int32 Nindex = 12 ; //系统分配的序号
+
+        //硬件返回状态字节
+        optional int32 Status = 13 ;
+        // 1、中间层收到数据，2、设备收到数据
+        optional int32 Op  = 14 ;
+    }
+
+    optional Head head = 1;
+    // 集中器地址
+    optional int32 SluId = 22 ;
+    //设备显示需要的物理地址
+    optional int32 SluPhyId = 112 ;
+    //设备名称        
+    optional string RtuName = 111 ;
+
+    repeated SluRightOperatorReplyItem Items  = 4 ;
+}
+
+
+
+//------------------------------------召测集中器时间方案
+message SluTimeRead
+{
+	message SluTimeReadItem
+	{
+		// 当前记录
+		optional int32 Index = 1 ;
+		// 记录数量
+		optional int32 DataCount = 2 ;
+		// （集中器：操作顺序 0-广播，1-依次）（控制器：数据类型 0-base，1-adv）
+		optional int32 OperationOrder = 3 ;
+		// 指令类型 0-清除(发送到控制器时无此值)，1-定时，2-经纬度，3-即时
+		optional int32 OperationType = 4 ;
+		// 周设置 【周日到周六  1 设置有，0未设置】
+		repeated bool WeekSet = 5 ;
+		// 定时 hh:mm->int32 或偏移量 依据 operation_type定
+		optional int32 TimerOrOff = 6 ;
+		// 地址类型 0、全部，1、隔一亮一[0,2,4,6...]，2、隔一亮一[1,3,5,7...]，3、隔二亮一[1,4,7...]，4、组：组地址列表填入Addrs中， 11-控制器地址，控制器地址填入 Addrs中 ，12 其他
+		optional int32 AddrType = 7 ;
+		// 组或控制器地址列表
+		repeated int32 Addr = 8 ;
+		optional string AddrTypeAndAddrToString = 117 ;
+
+
+        // 需要操作的灯头，按照灯头顺序排序：0、不操作，、1 操作 。如列表[0、0、1、1] 则表示灯3灯4 将进行操作
+        repeated int32 LoopCanDo = 9 ;
+ 
+
+        // 操作类型 1-开灯，2-关灯，3-调光
+        optional int32 CmdType = 16 ;
+        // 如果CmdType为3 ，调光值  0-100
+        optional int32 Scale = 12 ;
+        // pwm频率 /100为发送值
+		optional int32 Rate = 22 ;
+	}
+    optional Head head = 1;
+	optional int32 SluId = 2 ;
+    //设备显示需要的物理地址
+    optional int32 SluPhyId = 112 ;
+    //设备名称        
+    optional string RtuName = 111 ;
+	 // 集中器中时间方案信息
+	 repeated SluTimeReadItem Iems = 14 ;
+}
+//****************************召测与设置参数**********************************
+
+
+//-----------重置以及初始化
+message ResetAndInit
+{
+    // 集中器地址
+    optional int32 SluId = 1 ;
+    optional bool ReConcentrator = 2 ;
+    optional bool HardReZigbee = 3 ;
+    optional bool SoftReZigbee = 4 ;
+    optional bool ReCarrier = 5 ;
+    optional bool InitAll = 6 ;
+    optional bool ClearData = 7 ;
+    optional bool ClearArgs = 8 ;
+    optional bool ClearTask = 9 ;
+
+}
+
+//重置以及初始化数据返回
+message ResetAndInitReply
+{
+    optional Head head = 1;
+    // 集中器地址
+	optional int32 SluId = 2 ;
+    // 1-6、发送指令 是否成功。
+	optional bool IsSuccessfull = 4 ;
+    // 16、复位集中器
+	optional ResetAndInit ZcSetResetAndInit=8;
+}
+
+//-------------集中器参数设置以及召测
+message SluSetAndRead
+{
+    optional Head head = 1;
+    // 集中器地址
+	optional int32 SluId = 2 ;
+    // 1-4 复位网络1到4,5 设置集中器巡测，6 设置集中器报警和投运停运，7 设置集中器参数，
+    // 8 设置集中器报警参数，9 设置控制器域名，10 设置时钟；11 召测集中器参数，
+    // 12 召测控制器域名修改信息，13 召测集中器报警参数，14 召测软件版本，15 召测时钟
+    optional int32 Op = 4 ;
+}
+
+
+//召测数据返回
+message SluSetAndReadReplyOne
+{
+    optional Head head = 1;
+    // 集中器地址
+	optional int32 SluId = 2 ;
+    // 1-4 复位网络1到4,5 设置集中器巡测，6 设置集中器报警和投运停运，7 设置集中器参数，
+    // 8 设置集中器报警参数，9 设置控制器域名
+	optional int32 Op = 3 ;
+    // 1-9、发送指令 是否成功。
+	optional bool IsSuccessfull = 4 ;
+    // 如果操作失败 显示操作失败原因
+	optional string Info = 7 ;
+}
+
+//召测数据返回
+message SluSetAndReadReplyTwo
+{
+    optional Head head = 1;
+    // 集中器地址
+	optional int32 SluId = 2 ;
+    // 10 设置时钟；  15 召测时钟
+	optional int32 Op = 3 ;
+    // 1-6、发送指令 是否成功。
+	optional bool IsSuccessfull = 4 ;
+       
+    // 10、15、召测集中器时钟
+	optional	JzqTimeInfo ZcJzqTime=9;
+    // 如果操作失败 显示操作失败原因
+	optional string Info = 7 ;
+
+    message JzqTimeInfo
+    {
+        // 操作标识0-设置时钟，1-读取时钟tmpx
+        optional int32 OptMark = 1 ;
+                // 时间（c#需加1970-1-1）tmpx
+        optional int64  DateTime= 2 ;
+                // 强制对时tmpx
+        optional int32 ForceTimer = 3 ;
+                // 错误标识 时间数据错误tmpx
+        optional bool DtformatError = 4 ;
+                // 错误标识 时钟超差tmpx
+        optional bool TimerError = 5 ;
+                // 错误标识 对时失败tmpx
+        optional bool TimeFault = 6 ;
+    }
+}
+
+
+//召测数据返回  召测集中器参数，
+message SluSetAndReadReplyThree
+{
+    optional Head head = 1;
+    // 集中器地址
+	optional int32 SluId = 2 ;
+    //发送指令 是否成功。
+	optional bool IsSuccessfull = 4 ;
+        // 11、召测集中器参数
+	optional	JzqPara ZcJzqPara=11;
+      
+    // 如果操作失败 显示操作失败原因
+	optional string Info = 7 ;
+
+    message JzqPara
+    {
+        // 控制器数量tmpx
+        optional int32 Ctrls = 1 ;
+                // 域名tmpx
+        optional int32 DomainName = 2 ;
+                // 电压上限tmpx
+        optional int32 UpperVoltageLimit = 3 ;
+                // 电压下限tmpx
+        optional int32 LowerVoltageLimit = 4 ;
+                // 64位地址tmpx
+        optional int64 MacAddr = 5 ;
+    }
+
+
+
+}
+
+
+//召测数据返回   召测集中器报警参数
+message SluSetAndReadReplyFour
+{
+    optional Head head = 1;
+    // 集中器地址
+	optional int32 SluId = 2 ;
+
+    // 发送指令 是否成功。
+	optional bool IsSuccessfull = 4 ;
+    // 13、召测集中器报警参数
+	optional	JzqAlarmPara ZcJzqAlarmPara=10;
+
+    // 如果操作失败 显示操作失败原因
+	optional string Info = 7 ;
+
+
+
+    message JzqAlarmPara
+    {
+            // 通讯失败次数tmpx
+        optional int32 CommunicationFailures = 1 ;
+                // 功率因数tmpx
+        optional int32 PowerFactor = 2 ;
+                // 通信信道(仅包含启用的通道)tmpx
+        optional int32 CommunicationChannel = 3 ;
+                // 电流最大量程tmpx
+        optional double CurrentRange = 4 ;
+                // 有功最大量程tmpx
+        optional int32 PowerRange = 5 ;
+                // 集中器自动控制功能 1-自动补发，0-不补发tmpx
+        optional int32 AutoMode = 6 ;
+                // 经度tmpx
+        optional double Longitude = 7 ;
+                // 纬度tmpx
+        optional double Latitude = 8 ;
+                // 载波路由模式 1-标准，2-扩展，3-III代，4-IV代，5-自适应tmpx
+        optional int32 CarrierRoutingMode = 9 ;
+                // 蓝牙模块pin码，默认62547600tmpx
+        optional int32 BluetoothPin = 10 ;
+                // 蓝牙安全模式 0-无，1-安全模式1,2-安全模式2tmpx
+        optional int32 BluetoothMode = 11 ;
+                // 集中器通讯类型,concentrator communication type 0-gprs，1-485tmpx
+        optional int32 Cct = 12 ;
+    }
+
+
+}
+
+//召测数据返回  召测控制器域名修改信息，14
+message SluSetAndReadReplyFive
+{
+    optional Head head = 1;
+    // 集中器地址
+	optional int32 SluId = 2 ;
+
+    // 发送指令 是否成功。
+	optional bool IsSuccessfull = 4 ;
+
+    // 12、召测控制器域名修改信息，最多256个 每一个表示域名修改结果 按位置1-256
+	repeated bool ZcCtrlDomainChangeInfo = 5 ;
+
+    // 如果操作失败 显示操作失败原因
+	optional string Info = 7 ;
+
+}
+
+
+//召测数据返回  召测软件版本
+message SluSetAndReadReplySix
+{
+    optional Head head = 1;
+    // 集中器地址
+	optional int32 SluId = 2 ;
+    // 发送指令 是否成功。
+	optional bool IsSuccessfull = 4 ;
+    // 14、召测软件版本
+	optional string ZcSoftVersion = 6 ;
+    // 如果操作失败 显示操作失败原因
+	optional string Info = 7 ;
+
+}
+
+
+
+
+//召测时间方案 读取ReadTimetable 即可
+//召测基本参数指令1： 读取ReadTimer ReadVer  ReadGroup  ，接着发指令2：ReadArgs  ReadSunrise  
+//即时选测 读取 ReadCtrldata  ReadData
+//-------------------------------------------------------------------------------------------召测控制器参数  选测数据、运行参数、组地址、版本、日出日落等
+message SluCtrlArgsRead
+{
+    optional int32 SluId = 1 ;
+    optional int32 CtrlId = 2 ;
+    //1、即时选测运行信息，2、召测控制器基本信息，3、读取控制器存储的时间方案
+	optional int32 Op = 3 ;
+}
+
+//即时选测
+message SluCtrlArgsReplyOne
+{
+    optional Head head = 1;
+    // 集中器地址
+    optional int32 SluId = 2 ;
+    //设备显示需要的物理地址
+    optional int32 SluPhyId = 112 ;
+        //设备名称        
+    optional string RtuName = 111 ;
+    // 控制器地址 逻辑地址
+    optional int32 CtrlId = 33 ;
+    optional string CtrlName = 113 ;
+    //控制器物理地址
+    optional int32 CtrPhyId = 34 ;
+
+    //控制器选测数据
+    optional SluCtrlArgsReplydata.CtrlData CtrlDataField = 8 ;
+    //控制器数据（新）
+    repeated SluCtrlArgsReplydata.CtrlDataNew CtrlDataNewField = 14 ;
+}
+
+message SluCtrlArgsReplyTwo
+{
+
+    optional Head head = 1;
+    // 集中器地址
+    optional int32 SluId = 2 ;
+    //设备显示需要的物理地址
+    optional int32 SluPhyId = 112 ;
+        //设备名称        
+    optional string RtuName = 111 ;
+    // 控制器地址 逻辑地址
+    optional int32 CtrlId = 33 ;
+    optional string CtrlName = 113 ;
+    //控制器物理地址
+    optional int32 CtrPhyId = 34 ;
+
+
+
+    //控制器时钟
+    optional int64 CtrlTime = 5 ;
+    //控制器组地址
+    repeated int32 CtrlGroup = 6 ;
+    //控制器版本
+    optional SluCtrlArgsReplydata.CtrlVer CtrlVerField = 11 ;
+}
+
+
+message SluCtrlArgsReplyThree
+{
+
+    optional Head head = 1;
+    // 集中器地址
+    optional int32 SluId = 2 ;
+    //设备显示需要的物理地址
+    optional int32 SluPhyId = 112 ;
+        //设备名称        
+    optional string RtuName = 111 ;
+    // 控制器地址 逻辑地址
+    optional int32 CtrlId = 33 ;
+    optional string CtrlName = 113 ;
+    //控制器物理地址
+    optional int32 CtrPhyId = 34 ;
+
+
+
+    //控制器运行参数
+    optional SluCtrlArgsReplydata.CtrlPara CtrlParaField = 9 ;
+    //控制器当日日出日落
+    optional SluCtrlArgsReplydata.CtrlSunriseset CtrlSunrisesetField =12 ;
+
+}
+
+
+message SluCtrlArgsReplyFour
+{
+
+    optional Head head = 1;
+    // 集中器地址
+    optional int32 SluId = 2 ;
+    //设备显示需要的物理地址
+    optional int32 SluPhyId = 112 ;
+        //设备名称        
+    optional string RtuName = 111 ;
+    // 控制器地址 逻辑地址
+    optional int32 CtrlId = 33 ;
+    optional string CtrlName = 113 ;
+    //控制器物理地址
+    optional int32 CtrPhyId = 34 ;
+
+    //控制器本地参数
+    repeated SluCtrlArgsReplydata.CtrlRuntime CtrlRuntimeField = 13 ;
+}
+
+
+
+message SluCtrlArgsReplydata
+{
+    message CtrlData
+    {
+        //电压 /100
+        optional double Voltage = 1 ;
+                    //电流 /100
+        repeated double Current = 2 ;
+                    //有功功率 /10
+        repeated double ActivePower = 3 ;
+                    //无功功率 /10
+        repeated double ReactivePower = 4 ;
+                    //最大电压 /100
+        optional double MaxVoltage = 5 ;
+                    //最大电流 /100
+        repeated double MaxCurrent = 6 ;
+                    //累计电量
+        repeated double TotalElectricity = 7 ;
+                    //温度 0xff无效
+        optional int32 Temperature = 8 ;
+                    //漏电流 /100
+        optional double LeakageCurrent = 9 ;
+                    //时钟故障
+        optional int32 TimerError = 10 ;
+        //控制器状态  20180518 xiuzheng
+        optional CtrlStatus CtrlStatus = 12;
+        //灯状态
+        repeated LightStatus LightStatus = 13;
+                    //自复位次数
+        optional int32 ReCount = 11 ;
+    }
+
+    message CtrlDataNew
+    {
+        //电压 /100
+        repeated double Voltage = 1 ;
+                    //电流 /100
+        repeated double Current = 2 ;
+                    //有功功率 /10
+        repeated double ActivePower = 3 ;
+                    //运行时间
+        repeated int32 RunTime = 4 ;
+                    //相位，0-无法确认,1-a,2-b,3-c
+        optional int32 Phase = 5 ;
+                    //累计电量
+        repeated double TotalElectricity = 6 ;
+                    //漏电流 /100
+        optional double LeakageCurrent = 7 ;
+                    //时钟故障
+        optional int32 TimerError = 8 ;
+        //控制器状态
+        optional CtrlStatus CtrlStatus = 10;
+        //灯状态
+        repeated LightStatus LightStatus = 11 ;
+                    //自复位次数
+        optional int32 ReCount = 9 ;
+		            //功率因数
+        repeated double PowerFactor = 12 ;
+    }
+    message CtrlPara
+    {
+        //域名
+        optional int32 DomainName = 1 ;
+                    //控制器状态 false-停运，true-投运
+        optional bool CtrlStatus = 2 ;
+                    //控制器主报 false-禁止主报，true-允许主报
+        optional bool CtrlEnableAlarm = 3 ;
+                    //控制器上电开灯 true-开灯，false-关灯
+        repeated bool CtrlPowerTurnon = 4 ;
+                    //控制器1-4回路矢量
+        repeated int32 CtrlVector = 5 ;
+                    //经度
+        optional double Longitude = 6 ;
+                    //纬度
+        optional double Latitude = 7 ;
+                    //1-4回路额定功率
+        repeated int32 RatedPower = 8 ;
+    }
+
+    message CtrlVer
+    {
+        //控制器回路
+        optional int32 CtrlLoop = 1 ;
+                    //节能方式
+        optional int32 EnergySaving = 2 ;
+                    //有漏电模块
+        optional bool ElectricLeakageModule = 3 ;
+                    //有温度检测模块
+        optional bool TemperatureModule = 4 ;
+                    //有时钟
+        optional bool TimerModule = 5 ;
+                    //型号 0-unknow,1-wj2090j
+        optional string CtrlType = 6 ;
+                    //软件版本
+        optional string Ver = 7 ;
+    }
+
+    message CtrlSunriseset
+    {
+        //当日日出日落时间 hhmm->int32
+        optional int32 Sunrise = 1 ;
+        optional int32 SunSet = 2 ;
+    }
+    message CtrlRuntime
+    {
+                //本地控制数据类型0-基本类型（6字节），1-扩展类型（6+20字节）
+        optional int32 DataType = 1 ;
+                    //输出类型0-继电器，1-pwm输出，2-485
+        optional int32 OutputType = 2 ;
+                    //操作类型1-定时操作，2-经纬度操作，3-即时操作
+        optional int32 OperateType = 3 ;
+                    //有效日期，0-6～周日-周6
+        repeated int32 DateEnable = 4 ;
+                    //开关灯操作时间 hhmm->int32
+        optional int32 OperateTime = 5 ;
+                    //操作偏移 -720~+720
+        optional int32 OperateOff = 6 ;
+                    //继电器操作回路1-4 0-不操作，3-开灯，5-一档节能，a-二档节能，c-关灯
+        repeated int32 RelayOperate = 7 ;
+                    //PWM操作回路
+        repeated int32 PwmLoop = 8 ;
+                    //PWM操作占空比
+        optional int32 PwmPower = 9 ;
+                    //PWM频率 (1~255) * 100
+        optional int32 PwmBaudrate = 10 ;
+                    //485波特率 0-300,1-600,2-1200,3-2400,4-4800,5-9600,6-19200
+        optional int32 Rs485Baudrate = 11 ;
+                    //485校验位 0-无校验，1-奇校验，2-偶校验
+        optional int32 Rs485Check = 12 ;
+    }
+
+    message DataMark
+    {
+                //选测
+        optional bool ReadCtrlDataField = 1 ;
+                    //读取时钟
+        optional bool ReadTimer = 2 ;
+                    //读取运行参数
+        optional bool ReadCtrlParaField = 3 ;
+                    //读取组地址
+        optional bool ReadGroup = 4 ;
+                    //读取版本
+        optional bool ReadVer = 5 ;
+                    //读取当天日出日落
+        optional bool ReadSunrise = 6 ;
+                    //读取本地参数（新）
+        optional bool ReadCtrlRuntimeField = 7 ;
+                    //读取控制器数据（新）
+        optional bool ReadCtrlDataNewField = 8 ;
+    }
+
+    message CtrlStatus
+    {
+                //状态 0-正常，1-电压越上限，2-电压越下限，3-通讯故障
+        optional int32 Status = 1 ;
+                    //已校准 0-未校准，1-已校准
+        optional bool Adjust = 2 ;
+                    //工作参数设置 0-未设置，1-已设置
+        optional bool WorkingArgs = 3 ;
+                    //禁止主动报警 0-允许，1-禁止
+        optional bool NoAlarm = 4 ;
+                    //停运 0-正常，1-停运
+        optional bool OffLine = 5 ;
+                    //EEPROM故障 0-正常，1-故障
+        optional bool EepromError = 6 ;
+                    //温度传感器故障 0-正常，1-故障
+        optional bool TemperatureSensor = 7 ;
+    }
+
+
+    message LightStatus
+    {
+                //功率状态 0-正常，1-功率越上限，2-功率越下限
+        optional int32 PowerStatus = 1 ;
+                    //灯具漏电 0-正常，1-漏电
+        optional bool Leakage = 2 ;
+                    //故障 0-正常，1-光源故障，2-补偿电容故障，3-意外灭灯，4-意外亮灯，5-自熄灯，6-控制器断电告警（苏州）,7-继电器故障
+        optional int32 Fault = 3 ;
+                    //工作状态 0-正常亮灯，1-一档节能，2-二档节能，3-关灯
+        optional int32 WorkingOn = 4 ;
+    }
+}
+
+// ---------------------------------------------------------- 光控历史数据查询----------------------------------------------------------
+
+ message LuxDataRq
+{
+	optional int32 LuxId = 1 ;
+	//时间为毫秒 
+	optional int64 DtStartTime = 2 ;
+	//时间为毫秒 
+	optional int64 DtEndTime = 3 ;
+}
+ 
+message LuxDataBk
+{
+	optional Head head = 1 ;
+	optional int32 LuxId = 5 ;
+	//时间为毫秒 
+	optional int64 DtStartTime = 2 ;
+	//时间为毫秒 
+	optional int64 DtEndTime = 3 ;
+
+	repeated LuxDataItem Info=6;
+	optional int32 LuxShowPhyId = 12 ;
+	optional string LuxName = 13;
+	message LuxDataItem
+	{
+		// 时间为毫秒 
+		optional int64 DateCreate = 3 ;
+		// 时间
+		optional string  DateCreateStr = 2 ;
+		//采集的光控值
+		optional double LuxValue = 4 ;
+	}
+}
+
+// ---------------------------------------------------------- 时间表报表查询----------------------------------------------------------
+
+
+//应答时间表报表执行情况
+message TimeTableReportRecordBk
+{
+	message TimeTableReportRecordItem
+	{
+		//区域地址
+		optional int32 AreaId = 1 ;
+
+		// 区域名称
+		optional int32 AreaName = 24 ;
+
+		// 时间表地址序号
+		optional int32 TimeTableId = 2 ;
+		// 时间表名称
+		optional string  TimeTableName = 23 ;
+		// 记录写入的时间 
+		optional int64 DateCreate = 3 ;
+		// 记录写入的时间
+		optional string  DateCreateStr = 22 ;
+
+		// 记录写入的时间 唯一标示 查询详细数据时需要携带此时间
+		optional int64 DateCreateCs = 30 ;
+
+		// 时间表操作的时间
+		optional int64 DateOpeTime = 25 ;
+		// 时间表操作的时间
+		optional string  DateOpeTimeStr = 26 ;
+		//操作的光控值  "定时" or  光控值 保留2位小数
+		optional string lux = 27 ;
+
+		// 操作的回路总数
+		optional int32 RtuLoopsOpes = 29 ;
+
+		// 成功的回路数
+		optional int32 RtuLoopsSuccess = 5 ;
+		// 失败的回路数
+		optional int32 RtuLoopsFailed = 6 ;
+		// 是否为开灯 1 开灯；0 关灯
+		optional bool IsOpenLight = 7 ;
+		// 开灯  、关灯 
+		optional string  IsOpenLightStr = 28 ;
+
+	}
+
+	optional Head head = 1 ;
+	repeated TimeTableReportRecordItem Items = 9 ;
+
+}
+
+
+message TimeTableReportRecordRq
+{
+	//区域地址   为0 则表示全部区域
+	optional int32 AreaId = 15 ;
+	//查询为 0 则表示 全部
+	optional int32 TimeTableId = 1 ;
+	// 0 全部，1 开灯，2 关灯
+	optional int32 IsOpenLight = 2 ;
+	optional int64 DtStartTime = 3 ;
+	optional int64 DtEndTime = 4 ;
+}
+
+
+message TimeTableReportRecordDetailRq
+{
+	//区域地址    
+	optional int32 AreaId = 15 ;
+	//时间表地址
+	optional int32 TimeTableId = 1 ;
+	// 0 全部，1 开灯，2 关灯
+	optional int32 IsOpenLight = 2 ;
+	//时间 c#的时间的 
+	optional int64 DateCreateCs = 3 ;
+}
+
+message TimeTableReportRecordDetailBk
+{
+	optional Head head = 1 ;
+	// 详细结果
+	repeated RtuOpInfo Items  = 8 ;
+
+	message RtuOpInfo
+	{
+		optional int32 RtuId = 1;
+		optional int32 RtuPhyId = 2 ;
+		optional string RtuName = 3 ;
+		//成功回路列表 
+		repeated int32 LoopsSuccess = 4 ;
+		//失败回路列表 
+		repeated int32 LoopsFaileds = 5 ;
+	}
+}
+// ---------------------------------------------------------- 周设置下发记录查询----------------------------------------------------------
+message RecordWeekTimeBk
+{
+	optional Head head = 1 ;
+	// 详细结果
+	repeated RtuOpInfo Items  = 8 ;
+
+	message RtuOpInfo
+	{
+		optional int32 RtuId = 1;
+		optional int32 RtuPhyId = 2 ;
+		optional string RtuName = 3 ;
+		//下发的时间
+		optional int64 DateCreate = 4 ;
+		//应答的时间
+		optional int64 DateReply = 5 ;
+
+
+		//下发的时间
+		optional string DateCreateStr = 14 ;
+		//应答的时间
+		optional string DateReplyStr = 15 ;
+
+		optional int64 UserName = 35 ;
+	}
+}
+
+
+message RecordWeekTimeRq
+{
+	optional int64 DtStartTime =1 ;
+
+    optional int64 DtEndTime= 2 ;
+	// 为空 则查询全部
+    repeated int32 RtuId = 3 ;
+}
+// ---------------------------------------------------------- 日出日落查询----------------------------------------------------------
+
+//日出日落信息
+message SunRiseSetInfo
+{
+	message SunRiseItem
+	{
+		optional int32 date_month = 1 ;
+		optional int32 date_day = 2 ;
+		optional int32 time_sunrise = 3 ;
+		optional int32 time_sunset = 4 ;
+	}
+	optional Head head = 1 ;
+	// 数据
+	repeated SunRiseItem Items = 2 ;
+}
+
+
+ //----------------------------------------------------------短消息报警记录 ----------------------------------------------------------
+//短消息报警记录查询
+message MsgRecordRq
+{
+	optional int64 DtStartTime = 1 ;
+	optional int64 DtEndTime = 2 ;
+	//为空则查询所有
+	optional int64 UserPhoneNumber = 3 ;
+}
+
+
+//短消息报警记录查询
+message MsgRecordBk
+{
+	message MsgRecordItem
+	{
+		// 生成时间
+		optional int64 DateCreate = 8 ;
+
+		//生成时间
+		optional string DateCreateStr = 14 ;
+
+		// 信息
+		optional string Msg = 10 ;
+		// 用户名 
+		optional string UserName = 11 ;
+		// 用户电话号码
+		optional int64 UserPhoneNumber = 12 ;
+		// 短信发送状态  1 发送成功，2  发送失败
+		optional int32 MsgState = 9 ;
+		// 备注
+		optional string Remark = 17 ;
+	}
+	repeated MsgRecordItem Items= 5;
+}
+
+
+
+
+
+// ---------------------------------------------- 单灯方案管理 分组管理 ----------------------------------------------
+ 
+//  单灯方案分组 请求
+message InfoRq
+{
+	optional int32 area_id = 1 ;
+	//依据不同协议  代表不同的值  
+	optional int32 op_argu = 2;
+}
+
+//  单灯方案分组 请求
+message SluPlanGrpInfoBk  
+{ 
+	//单灯集中器选中的分组信息结构
+	message SluCtrlGrpSelectedItem
+	{
+	    //分组地址
+		optional int32 slu_ctrl_grp_id = 1 ;
+		//分组
+		optional string slu_ctrl_grp_name = 2 ;
+		//分组是否被选中
+		optional bool is_selectd = 3 ;
+	} 
+	//单个集中器 选中的分组信息
+	message SluPlanCtrlGrpSluItemInfo
+	{
+		optional int32 slu_id = 1 ;
+		optional string slu_name = 2;
+		optional int32 slu_phy_id = 4 ;
+
+	    //分组地址列表  选中的分组排前，未选中排后  ，界面默认仅显示6个分组 选中最多6个分组
+		repeated SluCtrlGrpSelectedItem grp_items = 3;
+	} 
+
+	//基本参数
+	message SluPlanGrpItemInfo
+	{
+		optional int32 area_id = 1 ;
+		optional string area_name = 2;
+	    
+		optional int32 grp_id = 3 ;
+		optional string grp_name = 4;
+		
+		// 设备分组信息
+		repeated SluPlanCtrlGrpSluItemInfo items = 5 ;
+		
+	}
+
+	optional Head head = 1;
+	repeated SluPlanGrpItemInfo Items = 2;
+}
+
+//修改分组名称   UpdateAreaOrGrpName
+//返回  UpdateAreaOrGrpNameBk
+
+
+//删除分组  DeleteAreaOrGroupInfo
+//返回  DeleteAreaOrGroupInfoBk
+
+
+//  单灯方案分组 保存
+message SluPlanGrpSave  
+{ 
+	//单灯集中器选中的分组信息结构
+	message SluGrpSaveSelectedItem
+	{
+		optional int32 slu_id = 1 ;
+	    //勾选的分组地址列表
+		repeated int32 slu_ctrl_grp_ids = 2 ;
+	} 
+	
+	optional int32 area_id = 1 ;
+	optional int32 grp_id = 3 ;
+	optional string grp_name = 4 ;
+	repeated SluGrpSaveSelectedItem items = 2;
+}
+
+
+// ---------------------------------------------- 单灯方案管理 指令管理 ----------------------------------------------
+
+//  单灯指令列表
+message SluPlanBriefInfo  
+{ 
+	//单灯方案扼要信息
+	message SluPlanItemBriefInfo
+	{
+		optional int32 area_id = 1 ;
+	    optional int32 time_plan_id = 2 ;
+		optional string time_plan_name = 3 ;
+		optional int64 date_create = 4 ;
+		optional string time_plan_desc = 5 ;
+	} 
+	optional Head head = 1;
+	optional int32 area_id = 3 ;
+	repeated SluPlanItemBriefInfo items = 2;
+}
+
+message SluPlanDetailInfoRq 
+{ 
+	optional int32 area_id = 1 ;
+	optional int32 plan_id = 2 ;
+}
+
+//  单灯指令详细信息
+message SluPlanDetailInfo  
+{ 
+	//光控信息
+	message LuxInfo  
+	{
+		optional int32 lux_id = 1 ;
+		optional int32 lux_phy_id = 2 ;
+		optional string lux_name = 3 ;
+	}
+	optional Head head = 1;
+	optional int32 area_id = 6 ;
+	optional int32 time_plan_id = 2 ;
+	optional string time_plan_name = 3 ;
+	optional int64 date_create = 4 ;
+	optional string time_plan_desc = 5 ;
+
+	
+	optional bool time_plan_isuesd = 7 ;
+ 
+ 	// 一周需要操作的时间 0周日 1 周一  如果包含就操作 不包含就不操作
+	repeated int32 UsedWeekSet = 8 ;
+
+	// 需要操作的灯头，按照灯头顺序排序：0、不操作，、1 操作 。如列表[0、0、1、1] 则表示灯3灯4 将进行操作
+	repeated int32 LoopCanDo = 9 ;
+	// 操作类型 1-开灯，2-关灯，3-调光
+	optional int32 CmdType = 10 ;
+	// 如果CmdType为3 ，此处填写调光值  0-100
+	optional int32 Scale = 12 ;
+
+
+
+	// 指令类型 1-定时，2-日落经纬度，3-日出经纬度 ,11 - 光控，12 隧道灯
+	optional int32 OpeMethod = 13 ;
+				
+	// OpeMethod=1 ：定时时间 （hour*60+minutes） ，2或3：偏移值 
+	optional int32 OpeArgu = 14 ;
+	
+	// 有效时间段开始时间
+	optional int32 TimeOfLightStartEffect = 15 ;
+	// 有效时间段结束时间
+	optional int32 TimeOfLightEndEffect = 16 ;
+
+	// 光控有效起始值
+	optional int32 LuxStartEffect = 17 ;
+	// 光控有效结束值
+	optional int32 LuxEndEffect = 18;
+	// 光控开灯所使用的光控地址
+	optional int32 LightUsedRtuId = 19 ;
+	
+	//系统反馈的光控设备列表 保存的时候不需要填入此参数
+	repeated LuxInfo luxitems=20;
+
+}
+
+// ---------------------------------------------- 单灯方案管理 绑定管理 ----------------------------------------------
+
+//  单灯绑定列表
+message SluPlanBandingInfo  
+{ 
+	//单灯绑定信息
+	message SluPlanBandingBriefInfo
+	{
+		optional int32 area_id = 1 ;
+	    optional int32 plan_id = 2 ;
+		optional string plan_name = 3 ;
+		//保存后修改的时间
+		optional int64 date_create = 4 ;
+		optional string time_plan_desc = 5 ;
+		//是否使用
+		optional bool is_uesd = 6 ;
+	} 
+	optional Head head = 1;
+	optional int32 area_id = 3 ;
+	repeated SluPlanBandingBriefInfo items = 2;
+}
+
+
+//  单灯方案详细信息
+message SluPlanBandingDetailInfo  
+{ 
+	message TimePlanBandingGrpItem
+	{
+		//分组管理中  分组地址
+		optional int32 time_plan_ctrl_grp_id = 2 ;
+		//方案管理中 方案的值
+		optional int32 time_plan_id = 1 ;
+
+		//分组管理中  分组名称 保存的时候此值不需要的
+		optional string time_plan_ctrl_grp_name = 3 ;
+		//方案管理中 方案名称 保存的时候此值不需要的
+		optional string time_plan_name = 4 ;
+	}
+	 
+	optional Head head = 1;
+	optional int32 area_id = 11 ;
+	optional int32 plan_id = 2 ;
+	optional string plan_name = 3 ;
+	//保存后修改的时间 每次保存更新此值
+	optional int64 date_create = 4 ;
+	optional string plan_desc = 5 ;
+	//是否使用
+	optional bool is_uesd = 6 ;
+
+	repeated TimePlanBandingGrpItem items = 7;
+
+}
+
+
+// ---------------------------------------------- 单灯方案下发记录查询 ----------------------------------------------
+
+//单灯方案下发记录
+message SluTimePlanRecord  
+{ 
+	//集中器方案下发记录信息
+	message SluSluTimePlanSendInfo
+	{
+		optional int32 slu_id = 1 ;
+		optional int32 SluPhyId = 2 ;
+		optional string SluName = 3 ;
+		//方案下发时间
+		optional int64 date_create = 4 ;
+		optional string date_create_string = 5;
+		//应答时间  下发时应答时间为 0
+		optional int64 date_reply = 6 ;
+		optional string date_reply_string = 7;
+		//操作用户
+		optional string user_name = 8 ;
+		//备注
+		optional string remark = 9 ;
+	} 
+	optional Head head = 1;
+	repeated SluSluTimePlanSendInfo items = 2;
+}
+
+//请求单灯方案下发记录
+message gtSluTimePlanRecord
+{
+	optional Head head = 1; //调用接口时 作为参数  可不填入数据的，接口返回服务器端填写使用
+	optional int64 date_start = 2; // 开始时间  
+	optional int64 date_end = 3; // 结束时间
+	repeated int32 slu_ids = 4; // 空表示全部
+}
+
+// ---------------------------------------------- 单灯参数管理 ----------------------------------------------
+
+message SluCtrlParaRq
+{
+	optional int32 slu_id = 1 ;
+}
+
+message SluPara
+{
+	//集中器参数
+	message SluParameter
+	{
+		//集中器地址
+		optional int32 RtuId = 1 ;
+
+		//集中器物理地址
+		optional int32 PhyId = 2;
+		
+		// 设备名称
+		optional string RtuName = 3 ;
+
+		// 是否投运
+		optional bool IsUsed = 4 ;
+		// zigbee 地址
+		optional int64 ZigbeeAddress = 5 ;
+		
+		// zigbee域名  1-65383，  电力再载波则为 1-6
+		optional int32 DomainName = 6 ;
+
+		// zigbee启用的信道，数值为  1-16，存在于该列表中则启用，不存在则不启用
+		repeated int32 ChannelUsed = 7 ;
+		
+		// 设备型号  2090等 
+		//optional int32 RtuModel=8;
+
+		// 是否是zigbee单灯 1 是，0 线路载波
+		optional int32 IsZigbee = 9 ;
+		// 1 -PWM ;2 -485  保留暂时不用
+		optional int32 PowerAdjustType = 10 ;
+		// 功率调节频率或波特率
+		optional int32 PowerAdjustBound = 11 ;
+		// Ip地址
+		optional string StaticIp = 24 ;
+		// 手机号码
+		optional string MobileNo = 25 ;
+
+		// 关联的RTU地址 终端物理地址
+		optional int32 RelatedRtuPhyId = 26 ;
+		
+		// 安装日期
+		optional int64 DateCreate = 27 ;
+
+		// 备注信息
+		optional string RtuRemark = 13 ;
+		
+		// 广州南瑞单灯设备识别地址
+		optional int64 Imei = 28 ;
+		// 开灯偏移，-60～60(分钟)
+		optional int32 OnDeviation = 29 ;
+		// 关灯偏移，-60～60(分钟)
+		optional int32 OffDeviation = 30 ;
+	}
+
+	//控制器参数信息
+	message SluCtrlPara
+	{
+		// 1-999 逻辑地址 参数保存的时候必须携带发送过来的此地址  =0 为新增
+		optional int32 CtrlId = 1 ;
+		// 地址  1-256 物理地址
+		optional int32 CtrlPhyId = 2 ;
+		// 父节点地址  即集中控制器地址
+		optional int32 SluId = 3 ;
+		
+		optional string LampCode = 5 ;
+		// 条形码
+		optional int64 BarCodeId = 6 ;
+		// 设备名称  末端灯号等 保留暂时不用
+		optional string RtuName = 7 ;
+		// 是否停运
+		optional bool IsUsed = 8 ;
+		// 是否主动报警
+		optional bool IsAlarmAuto = 9 ;
+		
+		// 灯头数  如1控2（1个控制器控制2个灯头）则为2
+		optional int32 LightCount = 22 ;
+
+		// 是否上电后自动开灯 1-2-3-4
+		repeated bool IsAutoOpenLightWhenElec4 = 13 ;
+		// 额定功率： 0-未设置；1、20；2、100；3、120,4、150,5、200,6、250,7、300,8、400,9、600,10、800,11、1000,12、1500,13、2000，14、50,15,75
+		repeated int32 PowerRate = 21 ;
+		
+		
+		// 路由1-2-3-4  保留暂时不用
+		repeated int32 RoutePass = 26 ;
+
+		//// 回路矢量  1-2-3-4
+		//repeated int32 VectorLoop4 = 17 ;
+		//// 开灯排序地址
+		//optional int32 OrderId = 4 ;
+		//// 功率上限  为额定功率百分比 PowerRate* UpperPower/100
+		//optional int32 UpperPower = 23 ;
+		//// 功率下限  为额定功率百分比 PowerRate* LowerPower/100
+		//optional int32 LowerPower = 24 ;
+	}
+
+	//集中器下的控制器分组分组信息
+	message SluCtrlGroupPara
+	{
+		//分组中的控制器器扼要信息
+		message SluCtrlBriefPara
+		{
+			// 1-999 逻辑地址 参数保存的时候必须携带发送过来的此地址
+			optional int32 CtrlId = 1 ;
+			// 地址  1-256 物理地址
+			optional int32 CtrlPhyId = 2 ;
+			//灯杆编码 保存时候不需要
+			optional string LampCode = 5 ;
+			// 条形码 保存时候不需要
+			optional int64 BarCodeId = 6 ;
+			// 灯头数  如1控2则为2  保存时候不需要
+			optional int32 LightCount = 22 ;
+		}
+		// 组地址  0表示为新增的分组
+		optional int32 GrpId = 2 ;
+		// 组名称
+		optional string GrpName = 3 ;
+		// 控制器设备清单  服务器返回时候携带解析好的 便于客户端呈现
+		repeated SluCtrlBriefPara items = 5 ;
+		//控制器设备清单  客户端保存时候填写控制器的 逻辑地址即可
+		repeated int32 items_ctrls = 6 ;
+	}	
+ 
+	//返回时 携带	  
+	optional Head head = 1;
+	optional int32 slu_id = 2 ;
+	//基础集中器参数
+	optional SluParameter para = 3;
+	//控制器参数信息
+	repeated SluCtrlPara items_ctrls = 4 ;
+	//控制器分组信息
+	repeated SluCtrlGroupPara items_grp = 5 ;
+	//当前设备的操作权限 ，0、无权限，1、可查看数据，2、具备开关灯与设置等高级权限
+	optional int32 right= 6 ;
+	
+}
+
+ 
+
+//1、经纬度不再呈现， 采用系统默认设置的经纬度。由客户端CS设置。
+//2、连续通信失败、功率因数低于、电压报警上限、下限 不再呈现，由中间层采用配置文件进行配置，默认依次为：5,0.6,300,170
+//3、允许巡测、允许主动报警、自动补发指令、启动开关灯巡测[已经不再使用] 不再呈现，由中间层采用配置文件进行配置，默认均为 true.
+//4、蓝牙pin码  中间层配置 ？默认 62547600 ？  需讨论
+
+//1、回路矢量不再显示，默认1-4.
+//2、功率上下限不再显示，默认 180,10  ，通过中间层配置文件进行默认配置。
+//3、开灯序号 不再显示，默认按照物理地址。[追灯效果]
+
+
+// ---------------------------------------------- 用户字体使用功能----------------------------------------------
+
+//请求用户字体信息
+message UserShowFontRq  
+{ 
+	optional Head head = 1;
+	optional string user_id = 2;
+}
+
+//保存和返回用户字体信息
+message UserShowFontInfo
+{ 
+	optional Head head = 1;
+	optional UserShowFont user_sfo = 2;
+	message UserShowFont
+	{ 
+		optional string user_id = 1;
+		repeated int32 font_indexs = 2;
+		repeated int32 fonts = 3;
+	}
+}
+
+//删除用户字体信息
+message DeleteUserShowFontInfo  
+{ 
+	optional Head head = 1;
+	optional string user_id = 2;
+}
+
+// ---------------------------------------------- 请求选中设备的上联和下联设备信息----------------------------------------------
+
+//请求终端当前状态
+message GetEquRelated  
+{ 
+	//设备逻辑地址
+	optional int32 rtu_id = 1;
+}
+
+//返回该设备的上联和下联设备信息
+message RelatedRtus
+{ 
+	optional Head head = 1;
+	repeated RtuInfo rtu_items = 2;
+}
+
+// ---------------------------------------------- 请求终端当前状态功能----------------------------------------------
+
+//请求终端当前状态
+message GetRtusState  
+{ 
+	optional Head head = 1;
+	//请求参数携带一个时间，在此之后的终端状态才返回
+	optional int64 date_start = 2;
+}
+
+//返回状态发生变化的终端
+message RtusState
+{ 
+	optional Head head = 1;
+	repeated RtuStateInfo rtu_items = 2;
+	message RtuStateInfo
+	{ 
+		optional int32 rtu_id = 1;
+		optional int32 rtu_phy_id = 2;
+		optional string rtu_name = 3;
+		//终端状态；1、停运，2、不用，3、开灯[表示有电流]正常，4、开灯[表示有电流]有故障，5、关灯[表示无电流]正常，6、关灯[表示无电流]有故障，7、离线 
+		optional int32 rtu_state=4;
+		//终端开关量输出回路数据 1-吸合 2-断开
+		repeated int32 rtu_switchout_state = 5;
+		//终端模拟量回路数据 1-有电流 2-无电流
+		repeated int32 rtu_analoop_state = 6;
+	}
+}
+
+
+// ---------------------------------------------- 单灯状态读取----------------------------------------------
+message SluStatusRead
+{
+	//slu 如果为空 则为全部
+    repeated int32 slu_id = 1 ;
+	//更新的时间
+	optional int64 time = 2 ;
+}
+
+message SluStatusReturn
+{
+	message SluStatus
+	{
+		message SluCtrlStatus
+		{
+			optional int32 ctrl_id = 1;
+			optional int32 phy_id = 2;
+			optional int64 bar_code = 3;
+			// 0、关灯  ，1、开灯 [功率>10]   
+			optional int32 status = 4;
+		}
+
+		optional int32 slu_id = 1;
+		repeated SluCtrlStatus ctrl_status = 2; 
+	}
+
+	optional Head head = 1;
+	repeated SluStatus slu_status = 2;
+}
+
+// ---------------------------------------------- 请求终端回路的历史数据功能----------------------------------------------
+
+//请求终端回路历史数据
+message GetRtuLoopHistory  
+{ 
+	optional Head head = 1;
+	//终端地址
+	optional int32 rtu_id = 2 ;
+	//终端回路地址
+	optional int32 loop_id= 3 ;
+	// 起始时间
+	optional int64 date_start = 4;
+	// 结束时间
+	optional int64 date_end = 5;
+}
+
+//返回终端回路历史数据
+message RtuLoopHistory
+{ 
+	optional Head head = 1;
+	optional int32 rtu_id = 2;
+	optional int32 rtu_phy_id = 3;
+	optional string rtu_name = 4;
+	// 设备回路地址
+	optional int32 rtu_loop_id = 5 ;
+	// 设备回路名称
+	optional string rtu_loop_name = 6 ;
+	//终端回路数据
+	repeated RtuLoopData loop_items = 7;
+	message RtuLoopData
+	{		
+		// 电压
+		optional double voltage = 1 ;
+		// 电流
+		optional double current = 2 ;
+		// 功率
+		optional double power = 3 ;
+		// 功率因数
+		optional double factor = 4 ;
+		// 亮灯率
+		optional double bright_rate = 5 ;
+		//0 正常，1 下限 2 上限 3 量程
+		optional int32 a_over_range = 6 ;
+		//0 正常，1 下限 2 上限 3 量程
+		optional int32 v_over_range = 7 ;		
+		// 设备回路状态 1、吸合，2、断开
+		optional int32 switch_in_state = 8 ;
+		//发生时间
+		optional int64 date_create = 9 ;
+	}
+}
+
+
+// ---------------------------------------------- 请求日出日落时间功能----------------------------------------------
+
+//请求日出日落时间
+message SunRiseSetTime  
+{ 
+	optional Head head = 1;
+	// 日出时间 为 hour*60+minutes
+	optional int32 sun_rise = 2;
+	// 日落时间 为 hour*60+minutes
+	optional int32 sun_set = 3;
+	// 日出时间str 05:53
+	optional string sun_rise_str = 4;
+	// 日落时间str 18:01
+	optional string sun_set_str = 5;
+}
+
+
+
+// ---------------------------------------------- 主页显示功能----------------------------------------------
+
+//请求当前故障top5的类型和数量
+message TopCurFaultInfo  
+{ 
+	optional Head head = 1;
+	// top5故障列表
+	repeated TopCurFaultItem cur_errs = 2;
+	message TopCurFaultItem
+	{
+		// 故障编号
+		optional int32 fault_id = 1; 
+		// 故障名称
+		optional string fault_name = 2; 
+		// 故障数量
+		optional int32 fault_count = 3; 
+	}	
+}
+
+
+//请求开关灯时间
+message OpenCloseTimeInfo  
+{ 
+	optional Head head = 1;
+	// 日出时间 为 hour*60+minutes
+	optional int32 sun_rise = 2;
+	// 日落时间 为 hour*60+minutes
+	optional int32 sun_set = 3;
+	// 日出时间str 05:53
+	optional string sun_rise_str = 4;
+	// 日落时间str 18:01
+	optional string sun_set_str = 5;
+	// 开灯时间 为 hour*60+minutes
+	optional int32 open_time = 6;
+	// 关灯时间 为 hour*60+minutes
+	optional int32 close_time = 7;
+	// 开灯时间str 05:53
+	optional string open_time_str = 8;
+	// 关灯时间str 18:01
+	optional string close_time_str = 9;
+}
+
+//请求亮灯率趋势
+message BrightRateTrendInfo
+{
+	message BrightRateTrendItem
+	{
+		optional double operate_success_rate = 1; // 成功率
+		optional int64 date_create = 2; // 执行时间
+		//日期
+		optional int32 day=3;
+		//操作成功路数
+		optional int32 operate_success_loop_num=4;
+	}
+	optional Head head = 1;
+	repeated BrightRateTrendItem Items = 2;
+}
+
+//返回终端、单灯在线率走势
+message EquOnlineInfo
+{
+	message EquOnlineItem
+	{
+		// 在线率
+		optional double online_rate = 1; 
+		// 数据时间
+		optional int64 date_create = 2;
+		// 时分 15:04
+		optional string time_str = 3;
+	}	 
+	
+	optional Head head = 1;
+	repeated EquOnlineItem online_items = 2;
+}
+
+//返回故障响应率
+message FaultResponseInfo
+{
+	message FaultResponseItem
+	{
+		// 故障类型 0-推送,1-写db,不推送,2-推送置顶
+		optional int32 fault_level = 1; 
+		// 响应率
+		optional double response_rate = 2;
+	}
+	repeated FaultResponseItem fault_response_items = 1;
+}
+
+//返回最新故障
+message NewFaultInfo
+{
+	message NewFaultItem
+	{
+		optional int64 date_create = 1; // 时间
+		optional int32 rtu_id = 17; // 设备逻辑地址		
+		optional int32 rtu_phy_id = 2 ;// 设备物理地址
+		optional string rtu_name = 3; // 设备名称
+		optional int32 loop_id = 4; // 回路或控制器地址
+		optional string loop_name = 5; // 回路或控制器名称
+		optional int32 lamp_id = 6; // 灯头地址
+		optional string lamp_name = 7; // 灯头名称
+		optional int32 fault_id = 8; // 故障编号
+		optional string fault_name = 9; // 故障名称
+		optional int32 priority_level = 10; // 故障类型 0-推送,1-写db,不推送,2-推送置顶
+		//时间 YYYY-MM-DD HH:MM:SS 如 2018-10-10 15:22:03
+		optional string  date_create_string=111;
+	}	 
+	repeated NewFaultItem new_fault_items = 1;
+}
+
+//返回终端、集中器、控制器活跃率
+message EquActiveInfo
+{
+	message EquActiveItem
+	{
+		// 活跃率
+		optional double active_rate = 1; 
+		// 设备类型 1-终端 2-集中器 3-控制器
+		optional int32 equ_type = 2;
+		// 设备总数
+		optional int32 equ_count = 3;
+		// 在线总数
+		optional int32 equ_online_count = 4;
+	}	 
+	repeated EquActiveItem equ_active_items = 1;
+}
+
+//返回主页显示信息
+message HomePageData
+{	
+	optional Head head = 1;
+	//开关灯时间
+	optional OpenCloseTimeInfo open_close_time = 2;
+	//当前故障top5的类型和数量
+	optional TopCurFaultInfo top_cur_fault = 3;
+	//故障响应率
+	optional FaultResponseInfo fault_reponse = 4;
+	//最新故障
+	optional NewFaultInfo new_fault = 5;
+	//设备活跃率
+	optional EquActiveInfo equ_active = 6;
+}
+
+// ---------------------------------------------- URL获取----------------------------------------------
+
+//获取系统URL
+message SysUrlInfo  
+{ 
+	optional Head head = 1;
+	// 地图url、业务url、websocket url
+	repeated string urls = 2;
+}
+
+// ---------------------------------------------- ArcGis地图功能----------------------------------------
+//获取设备点位信息
+message GisGetTableInfo  
+{
+	//终端运行信息
+	message GisTableInfo  
+	{  
+		//图层名称
+		optional string table_name = 2 ;
+		//属性信息
+		repeated string colum_name = 3;
+	}
+
+	optional Head head = 1;
+	//请求的表名称
+	repeated string table_names = 2 ;
+	//应答的表信息
+	repeated GisTableInfo table_infos = 3;
+}
+
+//返回 CommAns
+//删除点位信息
+message GisDeleteElement
+{
+	optional Head head = 1;
+	//图层名称
+	optional string table_name = 2 ;
+	//列名称信息   列名称[数据库内名称]
+	repeated string colum_names = 3;
+	//列值信息  与colum_names一一对应的 
+	repeated string colum_values = 4;
+}
+
+//返回 CommAns
+//添加点位信息
+message GisAddElement
+{
+	optional Head head = 1;
+	//图层名称
+	optional string table_name = 2 ;
+	//列名称信息   列名称[数据库内名称]
+	repeated string colum_names = 3;
+	//列值信息  与colum_names一一对应的 
+	repeated string colum_values = 4;
+
+	//经度信息  单个点添加  填写一个即可 ，连线则起始到结束的经度列表
+	repeated double gis_x=5;
+	//纬度信息 单个点添加  填写一个即可 ，连线则起始到结束的纬度列表
+	repeated double gis_y=6;
+}
+
+//返回 CommAns
+//更新点位信息
+message GisUpdateElement
+{
+	optional Head head = 1;
+	//图层名称
+	optional string table_name = 2 ;
+	//列名称信息   列名称[数据库内名称]   主键为标记位 bh的字段
+	repeated string colum_names = 3;
+	//列值信息  与colum_names一一对应的   主键为标记位 bh的字段
+	repeated string colum_values = 4;
+
+	//经度信息  单个点修改  填写一个即可 ，不支持连线的修改
+	repeated double gis_x=5;
+	//纬度信息 单个点添加  填写一个即可 ，不支持连线的修改
+	repeated double gis_y=6;
+}
+
+
+// ---------------------------------------------漏电设备----------------------------------------
+//终端运行信息
+message LeakPara  
+{ 
+ 
+	// 漏电线路信息  
+	message LeakParaItem
+	{
+		// 线路序号
+		optional int32 LineId = 2 ;
+		// 线路名称
+		optional string LineName = 5 ;
+
+		// 是否使用 默认使用
+		optional bool IsUsed = 6 ;
+
+		// 1、漏电检测模式，2、温度检测模式
+		optional int32 LeakMode = 10 ;
+
+		// 1、自动分闸，2、自动报警
+		optional int32 AutoBreakOrAutoAlarm = 7 ;
+
+		// 如果漏电模式：a 如果为自动分闸 则为分闸漏电上限值，b如果为自动报警则为漏电报警上限值；
+		//如果为温度检测模式：a 如果为自动分闸则为分闸温度上限值，b 如果为自动报警则为温度报警上限值
+		optional int32 UpperAlarmOrBreakforLeakOrTemperature = 8 ;
+
+		// 如果为自动分闸模式 则为回路自动分闸延迟时间
+		optional int32 TimeDelayforBreak = 9 ;
+	}
+
+	optional Head head = 1;
+	repeated LeakParaItem Items = 2;
+	//漏电逻辑地址  请求时携带此参数 即可
+	optional int32 LeakId = 3;
+
+	//漏电名称
+	optional string LeakName = 4;
+	//漏电物理地址
+	optional int32 LeakPhyId = 5;
+	//漏电连接设备逻辑地址
+	optional int32 LeakFid = 6;
+	//漏电连接设备物理地址 (保存时不用填写)
+	optional int32 LeakFphyId = 7;
+	//漏电连接设备名称 (保存时不用填写)
+	optional string LeakFname = 8;
+}
+
+ 
+//****************************漏电历史数据查询、最新数据查询*****************************
+message RequestLeakData
+{
+	// 终端设备最新数据；与服务器交互数据
+	message LeakNewData
+	{
+		message LeakNewDataItem
+		{
+			// 数据发生时间
+			optional int64 DateCreate = 1 ;
+			// 终端地址
+			optional int32 LeakId = 2 ;
+			// 回路序号
+			optional int32 LeakLineId = 3 ;
+
+			// 1、漏电检测模式，2、温度检测模式
+			optional int32 LeakMode = 4 ;
+
+			// 1、自动分闸，2、自动报警
+			optional int32 AutoBreakOrAutoAlarm = 5 ;
+
+			// 闸状态：1、分闸状态，2、合闸状态
+			optional int32 StateofOnOff = 66 ;
+
+			// 报警状态 1、报警  2、无警
+			optional int32 StateofAlarm = 7 ;
+
+			//上限值
+			// 如果漏电模式：a 如果为自动分闸 则为分闸漏电上限值，b如果为自动报警则为漏电报警上限值；
+			//如果为温度检测模式：a 如果为自动分闸则为分闸温度上限值，b 如果为自动报警则为温度报警上限值
+			optional int32 UpperAlarmOrBreakforLeakOrTemperature = 8 ;
+
+			// 如果为自动分闸模式 则为回路自动分闸延迟时间  主动报警模式无意义
+			optional int32 TimeDelayforBreak = 9 ;
+
+			// 报警值  当设备检测到温度或漏电大于设定的上限值时  设备回记录发生报警时刻的数据
+			optional int32 AlarmValueLeakOrTemperature = 10 ;
+
+			// 当前值  系统选测设备数据时的当前漏电值或温度值
+			optional int32 CurrentLeakOrTemperature  = 11 ;
+
+
+			// 连接终端地址
+			optional int32 LeakFId = 21 ;
+			// 连接终端名称
+			optional string LeakFname = 22 ;
+
+			// 连接终端物理地址
+			optional int32 LeakFphyid = 23 ;
+		}
+
+		// 终端地址
+		optional int32 LeakId = 1 ;
+		//该设备的数据记录
+		repeated LeakNewDataItem Items= 2 ;
+
+	}
+	
+	optional Head head = 1;
+	
+	optional int64 DtStartTime = 11 ;
+	optional int64 DtEndTime = 2 ;
+	
+	//查询全部的时候要求结束时间不能大于起始时间+1小时
+	repeated int32 RtuId = 3 ;
+
+	//漏电值 大于 默认为0  不判断
+	optional int32 LeakA=4;
+	//是否报警  1、报警 ，0、未启用此设置
+	optional int32 IsLeakAlarm=5;
+	//按上限值查询  默认0  不查询此值
+	optional int32 LeakUppper=6;
+
+	//返回的数据
+	repeated LeakNewData  Items = 7 ;
+}
+
+
+
+message LeakOrders
+{
+	//漏电逻辑地址
+	repeated int32 RtuId = 1 ;
+	// 1、设置漏电地址，2、设置漏电运行参数， 3、手动分合闸，4、设置检测门限值，5、 设置时钟，6、复位，  11、选测，12、召测时钟、13 召测参数，14 查询漏电检测器最近事件；
+	optional int32 Op = 3 ;
+
+
+	//漏电回路序号
+	repeated int32 LeakLineId = 8 ;
+
+	//2分闸，1、合闸
+	optional int32 OrderBreaktype = 6 ;
+}
+
+message LeakZcWorkArgs
+{
+	message LeakZcWorkArgsItem
+	{
+		optional int32 LeakId = 1 ;
+		optional int32 LeakLineId = 2 ;
+
+		//启用标志  0-不启用，1-启用
+		optional int32 IsUsed = 3 ;
+		//工作模式 ，0-报警不动作，1-报警并动作
+		optional int32 AlarmWithOption = 4 ;
+		//设置的报警：漏电报警【毫安】/温度报警【摄氏度】
+		optional int32  ValueSet= 5 ;
+		//操作延时
+		optional int32 TimeDelayOpe = 6;
+
+
+		
+		//启用标志  0-不启用，1-启用
+		optional int32 IsUsedSet = 13 ;
+		//工作模式 ，0-报警不动作，1-报警并动作
+		optional int32 AlarmWithOptionSet = 14 ;
+		//设置的报警：漏电报警【毫安】/温度报警【摄氏度】
+		optional int32  ValueSetSet= 15 ;
+		//操作延时
+		optional int32 TimeDelayOpeSet =16;
+
+
+		//启用标志   数据库与召测是否一致  1、一致 ，2、不一致
+		optional int32 IsUsedRight = 113 ;
+		//工作模式   数据库与召测是否一致  1、一致 ，2、不一致
+		optional int32 AlarmWithOptionSetField = 114 ;
+		//设置的报警  数据库与召测是否一致  1、一致 ，2、不一致
+		optional int32  ValueSetSetField= 115 ;
+		//操作延时  数据库与召测是否一致  1、一致 ，2、不一致
+		optional int32 TimeDelayOpeSetField =116;
+	}
+
+	optional Head head = 1;
+	//召测的参数
+	repeated LeakZcWorkArgsItem Items = 2;
+
+	//漏电逻辑地址   
+	optional int32 LeakId = 3;
+	//漏电名称
+	optional string LeakName = 4;
+	//漏电物理地址
+	optional int32 LeakPhyId = 5;
+	//漏电连接设备逻辑地址
+	optional int32 LeakFid = 6;
+	//漏电连接设备物理地址
+	optional int32 LeakFphyId = 7;
+	//漏电连接设备名称
+	optional string LeakFname = 8;
+
+}
+
+// ---------------------------------------------光控设备----------------------------------------
+//光控参数
+message LuxPara  
+{  
+	optional Head head = 1;	
+	//光控逻辑地址  请求时携带此参数 即可
+	optional int32 LuxId = 3;	
+	//光控名称
+	optional string LuxName = 4;
+	//光控物理地址
+	optional int32 LuxPhyId = 5;
+	//光控连接设备逻辑地址
+	optional int32 LuxFid = 6;
+	//光控连接设备物理地址
+	optional int32 LuxFphyId = 7;
+	//光控连接设备名称
+	optional string LuxFname = 8;
+	//通信方式 0 保留，1 电台，2 串口232，3 串口485，4 Zigbee，5 电力载波，6 Socket
+	optional int32 LuxCommTypeCode = 9;
+	//光控工作模式 0 每隔5秒主报(主站模式)，1 选测应答 ，2 根据设定的时间主动上报，默认10秒，GPRS通信，
+	//3 根据设定的时间主动上报，默认10秒，485通信， 4-按自定义间隔主动上报（GPRS通信）(新)
+	optional int32 LuxWorkMode = 10;
+	//光控量程
+	optional int32 LuxRange = 11;
+}
+
+//光控数据查询
+message RequestLuxData
+{
+	// 光控设备数据
+	message LuxDataItem
+	{
+		// 数据发生时间
+		optional int64 DateCreate = 1;
+		// 光控地址
+		optional int32 LuxId = 2;
+		// 光控名称
+		optional string LuxName = 3;
+		// 光控物理地址
+		optional int32 LuxPhyId = 4;
+		// 采集的光控值
+		optional double LuxValue = 5 ;
+	}
+	
+	optional Head head = 1;	
+	optional int64 DtStartTime = 2 ;
+	optional int64 DtEndTime = 3 ;	
+	repeated int32 LuxId = 4 ;
+
+	//返回的数据
+	repeated LuxDataItem  Items = 5 ;
+}
+
+//光控指令
+message LuxOrders
+{
+	//光控逻辑地址
+	optional int32 LuxId = 1 ;
+	//光控物理地址
+	optional int32 LuxPhyId = 2 ;
+	// 1 选测，2 召测模式，3 召测主报时间，4 召测版本，12 设置模式 25，13 设置主报时间38，15 设置光控运行模式 36、37
+	optional int32 Op = 3 ;
+}
+
+// ---------------------------------------------电表设备----------------------------------------
+//电表参数
+message MruPara  
+{  
+	optional Head head = 1;	
+	//电表逻辑地址  请求时携带此参数 即可
+	optional int32 MruId = 3;	
+	//电表名称
+	optional string MruName = 4;
+	//电表物理地址
+	optional int32 MruPhyId = 5;
+	//电表连接设备逻辑地址
+	optional int32 MruFid = 6;
+	//电表连接设备物理地址
+	optional int32 MruFphyId = 7;
+	//电表连接设备名称
+	optional string MruFname = 8;
+	//电表波特率 直接写入 1200,2400,4800 值
+	optional int32 MruBaudrate = 9;
+	//电表变比
+	optional int32 MruRatio = 10;
+	//电表类型 1 ：1997协议；2 ：2007 协议
+	optional int32 MruType = 11;
+	//电表地址
+	optional int32 MruAddr1 = 12;
+	//电表地址
+	optional int32 MruAddr2 = 13;
+	//电表地址
+	optional int32 MruAddr3 = 14;
+	//电表地址
+	optional int32 MruAddr4 = 15;
+	//电表地址
+	optional int32 MruAddr5 = 16;
+	//电表地址
+	optional int32 MruAddr6 = 17;
+}
+
+//****************************电表数据查询*****************************
+//电表数据查询
+message RequestMruData
+{
+	// 电表设备数据
+	message MruDataItem
+	{
+		// 抄表时间
+		optional int64 DateCreate = 1;
+		// 抄表时间str
+		optional string StrDateCreate = 15;
+		// 电表地址
+		optional int32 MruId = 2;
+		// 电表名称
+		optional string MruName = 3;
+		// 电表物理地址
+		optional int32 MruPhyId = 4;
+		// 电表连接设备逻辑地址
+		optional int32 MruFid = 5;
+		// 电表连接设备物理地址
+		optional int32 MruFphyId = 6;
+		//电表连接设备名称
+		optional string MruFname = 14;
+		// 抄表时间类型：0 当前时间；1上月时间；2上上月时间
+		optional int32 DateType=7;
+		// 抄表类型：0保留；1 A相；2 B相；3 C相；4 总电量
+		optional int32 MruType=8;
+		// 抄表值
+		optional double MruData = 9 ;
+		// 电量
+		optional double MruTotal = 10 ;
+		// 差值
+		optional string MruDiffer = 11 ;
+		// 累计差值
+		optional double MruTotalDiffer = 12 ;
+		// 电表表号
+		optional string MruNumber = 13 ;
+	}
+	
+	optional Head head = 1;	
+	optional int64 DtStartTime = 2 ;
+	optional int64 DtEndTime = 3 ;
+	repeated int32 MruId = 4 ;
+
+	//返回的数据
+	repeated MruDataItem  Items = 5 ;
+}
+
+//电表统计数据查询
+message RequestMruStatisticsData
+{
+	// 电表设备统计数据
+	message MruStatisticsDataItem
+	{		
+		// 电表地址
+		optional int32 MruId = 1;
+		// 电表名称
+		optional string MruName = 2;
+		// 电表物理地址
+		optional int32 MruPhyId = 3;
+		// 电表连接设备逻辑地址
+		optional int32 MruFid = 4;
+		// 电表连接设备物理地址
+		optional int32 MruFphyId = 5;
+		//电表连接设备名称
+		optional string MruFname = 6;
+		// 抄表时间类型：0 当前时间；1上月时间；2上上月时间
+		optional int32 DateType=7;
+		// 抄表类型：0保留；1 A相；2 B相；3 C相；4 总电量
+		optional int32 MruType=8;
+		// 起始时间
+		optional int64 DtStartTime = 9;
+		// 起始时间str
+		optional string StrDtStartTime = 10;
+		// 起始抄表值
+		optional double MruDataStart = 11 ;
+		// 起始电量
+		optional double MruTotalStart = 12 ;
+		// 截止时间
+		optional int64 DtEndTime = 13;
+		// 截止时间str
+		optional string StrDtEndTime = 14;
+		// 截止抄表值
+		optional double MruDataEnd = 15 ;
+		// 截止电量
+		optional double MruTotalEnd = 16 ;
+		// 总抄表差额
+		optional double MruDifferData = 17 ;
+		// 总电量差额
+		optional double MruDifferTotal = 18 ;
+		// 电表表号
+		optional string MruNumber = 19 ;
+	}
+	
+	optional Head head = 1;	
+	optional int64 DtStartTime = 2 ;
+	optional int64 DtEndTime = 3 ;
+	repeated int32 MruId = 4 ;
+	// 统计类型 1- 日表 2- 月表 3- 年表
+	optional string StatisticsType = 5 ;
+
+	//返回的数据
+	repeated MruStatisticsDataItem  Items = 6 ;
+}
+
+//查询抄表失败数据
+message RequestMruFailData
+{
+	// 查询抄表失败数据
+	message MruFailDataItem
+	{
+		// 电表地址
+		optional int32 MruId = 1;
+		// 电表名称
+		optional string MruName = 2;
+		// 电表物理地址
+		optional int32 MruPhyId = 3;
+		// 电表连接设备逻辑地址
+		optional int32 MruFid = 4;
+		// 电表连接设备物理地址
+		optional int32 MruFphyId = 5;
+		// 电表连接设备名称
+		optional string MruFname = 6;
+		// 电表表号
+		optional string MruNumber = 7 ;
+	}
+	
+	optional Head head = 1;	
+	optional int64 DtStartTime = 2 ;
+	optional int64 DtEndTime = 3 ;	
+
+	//返回的数据
+	repeated MruFailDataItem  Items = 4 ;
+}
+
+//****************************电表指令*****************************
+message MruOrders
+{
+	//电表逻辑地址
+	optional int32 MruId = 1 ;
+	// 1 读取电表地址，2 读取电表数据
+	optional int32 Op = 2 ;
+	// 抄表类型：0保留；1 A相；2 B相；3 C相；4 总电量
+	optional int32 DataMruType= 3 ;
+    // 抄表时间类型：0 当前时间；1上月时间；2上上月时间
+	optional int32 DataTimeType= 4 ;
+}
+
+//返回抄表数据
+message ReplyReadMruData
+{
+	// 抄表时间
+	optional int64 DateCreate = 1;
+	// 抄表时间str
+	optional string StrDateCreate = 2;
+	// 电表地址
+	optional int32 RtuId = 3 ;
+    // 抄表类型：0保留；1 A相；2 B相；3 C相；4 总电量
+	optional int32 DataMruType= 4 ;
+    // 抄表时间类型：0 当前时间；1上月时间；2上上月时间
+	optional int32 DataTimeType= 5 ;
+	// 电表变比
+	optional int32 MruRatio = 6;
+    // 读取的数据值
+	optional double MruData = 7 ;
+	// 电量
+	optional double MruTotal = 8 ;
+}
+
+//批量抄表
+message MruMeasure
+{
+	//电表逻辑地址 为空则是全部
+	repeated int32 MruId = 1 ;
+}
+
+// ---------------------------------------------线路防盗设备----------------------------------------
+//防盗参数
+message LduPara  
+{
+	message LduLinePars {
+		// 集中器地址
+		optional int32 LduFid = 1;
+		// 回路地址 1-6
+		optional int32 LineId = 2;
+		// 回路1互感器比值
+		optional int32 MutualInductorRadio = 3;
+		// 回路1相位 0-保留，1-A相 ，2-B相 3-C相
+		optional int32 LduPhase = 4;
+		// 回路1开灯信号强度门限
+		optional int32 LduLightonSingleLimit = 5;
+		// 回路1开灯阻抗报警门限
+		optional int32 LduLightonImpedanceLimit = 6;
+		// 回路1亮灯率信号门限
+		optional int32 LduBrightRateAlarmLimit = 7;
+		// 回路1关灯信号强度门限
+		optional int32 LduLightoffSingleLimit = 8;
+		// 回路1关灯阻抗报警门限
+		optional int32 LduLightoffImpedanceLimit = 9;
+		// 回路1末端灯杆
+		optional string LduEndLampportSn = 10;
+		// 主动报警
+		optional bool AlarmAutoReport = 11;
+		// 线路短路主动告警
+		optional bool AlarmLineShortCircuit = 12;
+		// 关灯阻抗主动报警
+		optional bool AlarmLineLightOffImpedance = 13;
+		// 关灯信号强度主动告警
+		optional bool AlarmLineLightOffSingle = 14;
+		// 线路失电主动告警
+		optional bool AlarmLineLosePower = 15;
+		// 亮灯率变化主动告警
+		optional bool AlarmLineBrightRate = 16;
+		// 开灯阻抗主动报警
+		optional bool AlarmLineLightOpenImpedance = 17;
+		// 开灯信号强度主动告警
+		optional bool AlarmLineLightOpenSingel = 18;
+		
+		// 是否使用
+		optional bool IsUsed = 19;
+		// 控制类型 0保留，1 1控1,2 1控2，3 1控3
+		optional int32 LduControlTypeCode = 20;
+		// 线路名称
+		optional string LduLineName = 21;
+		// 回路序号  本防盗检测设备检测的终端回路的回路序号
+		optional int32 LduLoopId = 22;
+		// 故障参数
+		optional int32 LduFaultParam = 23;
+		// 原设计为通信方式，先均为 GPRS -- 0 保留，1 电台，2 串口232，3 串口485，4 Zigbee，5 电力载波，6 Socket  一般为3或6--
+        // 现修改为 单灯是否启用晚上开灯启用巡测 白天关灯关闭巡测 功能 1启用 0不启用该功能
+		optional int32 LduCommTypeCode = 24;
+		// 终端模拟量回路名称
+		repeated string RtuLoopNames = 25;
+	}
+	optional Head head = 1;	
+	//防盗逻辑地址  请求时携带此参数 即可
+	optional int32 LduId = 2;	
+	//防盗名称
+	optional string LduName = 3;
+	//防盗物理地址
+	optional int32 LduPhyId = 4;
+	//防盗连接设备逻辑地址
+	optional int32 LduFid = 5;
+	//防盗连接设备物理地址
+	optional int32 LduFphyId = 6;
+	//防盗连接设备名称
+	optional string LduFname = 7;	
+	//控制器参数
+	repeated LduLinePars ItemsPara = 8;
+}
+
+//防盗召测参数
+message LduZcPara  
+{
+	message LduLinePars {
+		// 回路地址 1-6
+		optional int32 LineId = 2;
+		// 线路名称
+		optional string LduLineName = 3;
+		// 是否使用
+		optional bool IsUsed = 20;	
+		// 回路序号  本防盗检测设备检测的终端回路的回路序号
+		optional int32 LduLoopId = 21;
+		
+		// 设备返回参数
+		// 回路1互感器比值
+		optional int32 MutualInductorRadio = 4;
+		// 回路1相位 0-保留，1-A相 ，2-B相 3-C相
+		optional int32 LduPhase = 5;
+		// 回路1开灯信号强度门限
+		optional int32 LduLightonSingleLimit = 6;
+		// 回路1开灯阻抗报警门限
+		optional int32 LduLightonImpedanceLimit = 7;
+		// 回路1亮灯率信号门限
+		optional int32 LduBrightRateAlarmLimit = 8;
+		// 回路1关灯信号强度门限
+		optional int32 LduLightoffSingleLimit = 9;
+		// 回路1关灯阻抗报警门限
+		optional int32 LduLightoffImpedanceLimit = 10;
+		// 主动报警
+		optional bool AlarmAutoReport = 12;
+		// 线路短路主动告警
+		optional bool AlarmLineShortCircuit = 13;
+		// 关灯阻抗主动报警
+		optional bool AlarmLineLightOffImpedance = 14;
+		// 关灯信号强度主动告警
+		optional bool AlarmLineLightOffSingle = 15;
+		// 线路失电主动告警
+		optional bool AlarmLineLosePower = 16;
+		// 亮灯率变化主动告警
+		optional bool AlarmLineBrightRate = 17;
+		// 开灯阻抗主动报警
+		optional bool AlarmLineLightOpenImpedance = 18;
+		// 开灯信号强度主动告警
+		optional bool AlarmLineLightOpenSingel = 19;		
+		
+		
+		// 系统设置参数
+		// 回路1互感器比值
+		optional int32 MutualInductorRadioSet = 22;
+		// 回路1相位 0-保留，1-A相 ，2-B相 3-C相
+		optional int32 LduPhaseSet = 23;
+		// 回路1开灯信号强度门限
+		optional int32 LduLightonSingleLimitSet = 24;
+		// 回路1开灯阻抗报警门限
+		optional int32 LduLightonImpedanceLimitSet = 25;
+		// 回路1亮灯率信号门限
+		optional int32 LduBrightRateAlarmLimitSet = 26;
+		// 回路1关灯信号强度门限
+		optional int32 LduLightoffSingleLimitSet = 27;
+		// 回路1关灯阻抗报警门限
+		optional int32 LduLightoffImpedanceLimitSet = 28;
+		// 主动报警
+		optional bool AlarmAutoReportSet = 30;
+		// 线路短路主动告警
+		optional bool AlarmLineShortCircuitSet = 31;
+		// 关灯阻抗主动报警
+		optional bool AlarmLineLightOffImpedanceSet = 32;
+		// 关灯信号强度主动告警
+		optional bool AlarmLineLightOffSingleSet = 33;
+		// 线路失电主动告警
+		optional bool AlarmLineLosePowerSet = 34;
+		// 亮灯率变化主动告警
+		optional bool AlarmLineBrightRateSet = 35;
+		// 开灯阻抗主动报警
+		optional bool AlarmLineLightOpenImpedanceSet = 36;
+		// 开灯信号强度主动告警
+		optional bool AlarmLineLightOpenSingelSet = 37;	
+	}
+	optional Head head = 1;	
+	//防盗逻辑地址  请求时携带此参数 即可
+	optional int32 LduId = 2;	
+	//防盗物理地址
+	optional int32 LduPhyId = 3;
+	//防盗连接设备逻辑地址
+	optional int32 LduFid = 4;	
+	//控制器参数
+	repeated LduLinePars ItemsPara = 5;
+}
+
+//防盗数据查询
+message RequestLduData
+{
+	// 线路数据
+	message LduLineDataItem {
+		// 集中器地址
+		optional int32 LduId = 1;
+		//防盗名称
+		optional string LduName = 2;
+		//防盗物理地址
+		optional int32 LduPhyId = 3;
+		//防盗连接设备逻辑地址
+		optional int32 LduFid = 4;
+		//防盗连接设备物理地址
+		optional int32 LduFphyId = 5;
+		//防盗连接设备名称
+		optional string LduFname = 6;
+		// 线路地址 1-6
+		optional int32 LineId = 7;
+		// 线路名称
+		optional string LduLineName = 8;
+		// 数据接收时间
+		optional int64 DateCreate = 9;
+		optional double V = 10;
+		optional double A = 11;
+		// 回路1有功功率
+		optional double PowerActive = 12;
+		// 回路1无功功率
+		optional double PowerReActive = 13;
+		// 回路1功率因数
+		optional double PowerFactor = 14;
+		// 回路1亮灯率
+		optional double BrightRate = 15;
+		// 回路1信号强度 脉冲
+		optional int32 Single = 16;
+		// 回路1阻抗
+		optional int32 Impedance = 17;
+		// 回路1 12s有用信号数量  阻抗数
+		optional int32 NumofUsefullSingleIn12Sec = 18;
+		// 回路1 12s信号数量 跳数
+		optional int32 NumofSingleIn12Sec = 19;
+		// 回路1检测标识 故障参数
+		optional int32 FlagDetection = 20;
+		// 回路1报警标识  故障数据
+		optional int32 FlagAlarm = 21;
+		//线路状态  0、正常，1、被盗，2、短路  不必要再做逻辑检测FlagAlarm与FlagDetection了
+		optional int32 ErrorId = 22;
+	}
+	
+	optional Head head = 1;	
+	optional int64 DtStartTime = 2 ;
+	optional int64 DtEndTime = 3 ;
+	// 集中控制器查询  查询该集中控制器下的线路数据,为空则是全部
+	repeated int32 LduId = 4 ;
+	// 控制器编号 1-6 ,若为0 则不按线路查询
+	optional int32 LineId = 6;
+	//返回的数据
+	repeated LduLineDataItem Items = 5 ;
+}
+
+//防盗指令
+message LduOrders
+{
+	//防盗逻辑地址
+	optional int32 LduId = 1 ;
+	// 控制器编号 1-6 ，包含0或集合为空  则表示所有
+	repeated int32 LineIds = 2;
+	// 1、选测数据，2、召测参数，3、召测版本，4、召测亮灯率，11、设置参数应答，12、设置亮灯率应答，13 清除亮灯率应答
+	optional int32 Op = 3 ;
+}
+
+//设置或召测亮灯率
+message LduBrightLightSetOrZc{
+	message LduLineBrightLightData {
+		// 回路地址 1-6
+		optional int32 LineId = 1;
+		// 亮灯率
+		optional double BrightLightRate = 2;
+	}
+
+	// 集中控制器地址
+	optional int32 LduId = 1;
+	// 控制器亮灯率数据 cd01
+	repeated LduLineBrightLightData ItemsBrightLight = 2;
+}
+
+// ---------------------------------------------- 设备备注----------------------------------------------
+message EquimentRemarkRead
+{
+	//如果为空 则为全部
+    repeated int32 rtu_id = 1 ;
+}
+
+message EquimentRemarkReturn
+{
+	message SingleEquimentRemark
+	{
+		optional int32 rtu_id = 1;
+		optional string remark1 = 2;
+		optional string remark2 = 3;
+		optional string remark3 = 4;
+		optional string remark4 = 5;
+		optional string remark5 = 6;
+		optional string remark6 = 7;
+		optional string remark7 = 8;
+	}
+
+	optional Head head = 1;
+	repeated SingleEquimentRemark equ_remark = 2;
+}
+
+message EquimentRemarkSave
+{
+	message SingleEquimentRemark
+	{
+		optional int32 rtu_id = 1;
+		optional string remark1 = 2;
+		optional string remark2 = 3;
+		optional string remark3 = 4;
+		optional string remark4 = 5;
+		optional string remark5 = 6;
+		optional string remark6 = 7;
+		optional string remark7 = 8;
+	}
+
+	repeated SingleEquimentRemark equ_remark = 1;
+}
+
+// ---------------------------------------------- NB单灯参数----------------------------------------------
+message SluSglCtrlParaRead
+{
+	//如果为空 则为全部
+    repeated int64 imei = 1 ;
+}
+
+message SluSglCtrlParaReturn
+{
+	message SingleSluSglCtrlPara
+	{		
+		optional int32 ctrl_id = 1;
+		optional int64 bar_code_id = 2;
+		optional int64 imei = 3;
+		optional int32 nbtype = 4;
+		optional string lamp_code = 5;
+		optional string ctrl_name = 6;
+		optional int32 is_used = 7;
+		optional int32 is_alarm_auto = 8;
+		repeated int32 is_auto_open_light_when_power_up = 9;
+		repeated int32 vector_loop = 10;
+		repeated int32 power_setting = 11;
+		repeated int32 route_pass = 12;
+		optional int32 light_count= 13;
+		optional int32 upper_power = 14;
+		optional int32 lower_power = 15;
+		optional double ctrl_gis_x = 16;
+		optional double ctrl_gis_y = 17;
+		optional int64 update_time = 18;
+		optional int32 uplink_timer = 19;
+		optional int32 uplink_reply = 20;
+		optional int32 field_index = 21;
+		optional string field_name = 22;
+	}
+
+	message SluSglFieldList
+	{
+		optional int32 field_id = 1;
+		optional string field_name = 2;
+	}
+
+	optional Head head = 1;
+	repeated SingleSluSglCtrlPara slu_sgl_ctrl_para = 2;
+	repeated SluSglFieldList slu_sgl_field = 3;
+}
+
+message SluSglCtrlParaSave
+{
+	message SingleSluSglCtrlPara
+	{		
+		optional int32 ctrl_id = 1;
+		optional int64 bar_code_id = 2;
+		optional int64 imei = 3;
+		optional int32 nbtype = 4;
+		optional string lamp_code = 5;
+		optional string ctrl_name = 6;
+		optional int32 is_used = 7;
+		optional int32 is_alarm_auto = 8;
+		repeated int32 is_auto_open_light_when_power_up = 9;
+		repeated int32 vector_loop = 10;
+		repeated int32 power_setting = 11;
+		repeated int32 route_pass = 12;
+		optional int32 light_count= 13;
+		optional int32 upper_power = 14;
+		optional int32 lower_power = 15;
+		optional double ctrl_gis_x = 16;
+		optional double ctrl_gis_y = 17;
+		optional int32 uplink_timer = 18;
+		optional int32 uplink_reply = 19;
+	}
+
+	repeated SingleSluSglCtrlPara slu_sgl_ctrl_para = 1;
+	optional int32 field_id = 2;
+}
+
+
+
+
+
+//----------------------------------------------终端周设置查询----------------------------------------------
+// 请求指定终端指定时间段内的周设置
+message GetRtusWeekTimeInfo
+{	
+	//protobuf对repeated压缩不够好，所以尽量在后面加上[packed = true]
+	//repeated的[packed = true]只有type为数值的时候才能用
+	//终端列表 无数据则表示所有终端
+	repeated int32 rtu_ids = 1 [packed=true];
+	// 起始时间 java时间，可以查询一天或者几天的数据 （每个时间精确到 年月日即可）
+	optional int64 date_start = 2;
+	// 结束时间 java时间，可以查询一天或者几天的数据 （每个时间精确到 年月日即可）
+	optional int64 date_end = 3;
+}
+
+//单个终端查询期内周设置信息
+message RtuWeekTimeInfo
+{
+  // 设备逻辑地址
+  optional int32 rtu_id = 1 ;
+  //查询段内的开关灯信息
+  repeated OneDayWeekTime info_items = 2 ;
+  // 一天的开关灯信息
+  message OneDayWeekTime
+  {
+	// 时间 java时间
+	optional int64 dt_time = 1;
+	// K1-Kx的第一段开关时间 hhmm-hhmm (为空表示无此段周设置)
+	repeated string week_time_info1 = 2 ;
+	// K1-Kx的第二段开关时间 hhmm-hhmm (为空表示无此段周设置)
+	repeated string week_time_info2 = 3 ;
+	// K1-Kx的第三段开关时间 hhmm-hhmm (为空表示无此段周设置)
+	repeated string week_time_info3 = 4 ;
+	// K1-Kx的第四段开关时间 hhmm-hhmm (为空表示无此段周设置)
+	repeated string week_time_info4 = 5 ;
+  }
+   
+}
+
+//广州南瑞单灯设置/读取经纬度以及开关灯偏移时间
+message NRSetOrZcTudeAndDeviation
+{	
+	optional int32 nr_slu_id = 1 ;//设备逻辑地址
+	optional int32 nr_slu_phy_id = 11 ;//设备物理地址
+	optional string nr_slu_name = 12 ;//设备名称	
+	optional int32 op = 2 ;// 1 设置经纬度以及开关灯偏移时间，2 读取经纬度以及开关灯偏移时间， 3、设置经纬度  4、读取经纬度  
+	optional double longitude = 3; // 经度
+	optional double latitude = 4;  // 纬度
+	optional int32 on_deviation = 5;  // 开灯偏移，-60～60
+	optional int32 off_deviation = 6; // 关灯偏移，-60～60
+	repeated int32 on_do = 7 [packed=true]; // 开灯控制启动，最大32个值，0-关闭，1-启用
+	repeated int32 off_do = 8 [packed=true]; // 关灯控制启动，最大32个值，0-关闭，1-启用
+}
+	
+ 	
+
+//广州南瑞单灯设置控制器id以及灯头分组
+message NRSetOrZcCtrlPara
+{
+	optional int32 nr_slu_id = 1 ;//设备逻辑地址
+	optional int32 nr_slu_phy_id = 11 ;//设备物理地址
+	optional string nr_slu_name = 12 ;//设备名称
+
+	repeated int32 ctrl_ids = 3; // 控制器地址，空则全部
+	
+    repeated Sluitem_config sluitem_config = 4; // 控制器配置信息
+    message Sluitem_config 
+	{
+		optional int32 sluitem_ctrl_id = 10; // 控制器地址
+		optional string sluitem_ctrl_name = 11; // 控制器名称
+        optional int64 sluitem_bar_code = 1; // 控制器标识 条形码
+        optional int32 sluitem_lamps = 2; // 控制器灯头数量，1-3
+        repeated int32 group_id = 3 [packed=true]; // 灯头分组，依据灯头数量填写，依次为1-3灯头的所属组号，组号范围0-255,默认0
+    }
+}	
+
+
+//广州南瑞单灯设置/读取组策略（时间表）
+message NRSetOrZcTimeTable
+{
+	optional int32 nr_slu_id = 1 ;//设备逻辑地址
+
+	
+	optional int32 Op = 3 ;// 1 设置，2 读取
+	
+	repeated Group_config group_config = 4; 
+
+	message Group_config 
+	{
+		optional int32 group_id = 1; // 组id,0-255
+		optional int32 ctrl_by_ll = 2; // 允许经纬度控制
+		optional int32 ctrl_by_timer = 3; // 允许时控
+		repeated Lamp_setup lamp_setup = 4; // 最大6段        
+	}
+
+	message Lamp_setup {
+		optional int32 lamp_ctrl = 1; // 0-关灯，1～99 调光 ，100 开灯 
+		optional int32 lamp_time = 2; // 控制时间，hh*60+mm
+	}
+}
+
+//单灯全局分组设置
+message SluGrpSet
+{
+	message SluInfoItem
+	{
+		message SluCtrlInfo
+		{
+			optional int32 ctrl_id = 1 ;//地址
+			optional int32 ctrl_phyid = 2 ;//地址
+			optional string ctrl_name = 3 ;// 名称
+			optional int32 lamp_count = 5 ;// 灯头数量  ，与 lamp_belong_grp 中的数量一致
+			repeated int32 lamp_belong_grp = 4;  // 1-4灯头归属的分组  ，组地址为 1-255 ,若为0 则表示还未划分分组  
+		}
+
+		optional int32 slu_id = 1 ;//集中器地址
+		optional int32 slu_phy_id = 2 ;//集中器物理地址
+		optional string slu_name = 3 ;// 集中器名称
+
+		repeated SluCtrlInfo ctrls_info = 5;  //控制器信息
+	}
+
+	message GrpInfo
+	{
+		optional int32 grp_global_id = 1 ;//组全局唯一地址  1-  65535*65535
+		optional int32 grp_id = 2 ;//组地址  1-255
+		optional string grp_name = 3 ;// 组名称
+	}
+
+	// 区域地址  
+	optional int32 AreaId =1;
+	//// 1 请求组信息，2、请求单灯集中器清单 ，3、请求单灯信息（分包请求 ）  ， 11、保存组信息 ，13、保存集中器信息 （支持分包保存）
+	optional int32 Op = 3 ;
+
+	// op =  3（请求）、13 （保存）需要填写的数据 
+	repeated SluInfoItem items_slu = 4;
+
+	// op = 1（请求返回）、11（保存） 分组信息 
+	repeated GrpInfo items_grp = 6;
+	
+	//请求的清单  2（应答）、3（请求）
+	repeated int32 items_lst = 5;
+
+}
+
+
+//-----------------------------新增和修改区域亮灯率-----------------------------
+message  AddOrUpdateAreaLightRate
+{
+	// 返回时携带
+	optional Head head = 1;
+
+	// 返回区域亮灯率
+	optional AreaLightRate info = 2 ;
+}
+
+//区域亮灯率
+message  AreaLightRate
+{
+	// 时间
+	optional int64 date_create = 1 ;
+	// 日期 年月日即可 返回时填写
+	optional string date_create_str = 2 ;
+	// 区域id
+	optional int32 area_id = 3 ;
+	// 区域名称 返回时填写
+	optional string area_name = 4 ;
+	// 亮灯率
+	optional double light_rate = 5 ;
+	
+}
+
+
+// ---------------删除区域亮灯率-----------------------------
+message  DelAreaLightRate
+{
+	// 返回时携带
+	optional Head head = 1;
+	// 时间
+	optional int64 date_create  = 2 ;
+
+}
+
+
+// ---------------查询时间段内区域亮灯率-----------------------------
+message  GetAreaLightRate
+{
+	// 返回时携带
+	optional Head head = 1;
+	//区域地址 空则全部
+	repeated int32 area_ids = 2 ;
+	// 起始时间
+	optional int64 date_start = 3;
+	// 结束时间
+	optional int64 date_end = 4;
+	// 返回区域亮灯率
+	repeated AreaLightRate items = 5 ;
+}
+

@@ -1,0 +1,22 @@
+﻿<telerikDocking:RadSplitContainer x:Class="Telerik.Windows.Controls.Override.RadPaneGroupWithRadSplitContainer.RadSplitContainerOverride"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                                     
+                                  xmlns:telerikDocking="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Docking"
+                                xmlns:prism="clr-namespace:Microsoft.Practices.Prism.Regions;assembly=Microsoft.Practices.Prism"
+                                 >
+    <telerikDocking:RadSplitContainer.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Telerik.Windows.Controls.Override;component/RadPaneGroupWithRadSplitContainer/Generi.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </telerikDocking:RadSplitContainer.Resources>
+    <telerikDocking:RadPaneGroup Background="{x:Null}" x:Name="PaneGroup" 
+                                    
+                                 OnItemsChangeded="RadPaneGroupOverride_OnItemsChangeded" prism:RegionManager.RegionName="{Binding PrismRegionName}">
+
+    </telerikDocking:RadPaneGroup>
+</telerikDocking:RadSplitContainer>

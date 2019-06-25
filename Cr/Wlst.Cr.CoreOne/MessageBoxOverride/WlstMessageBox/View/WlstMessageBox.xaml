@@ -1,0 +1,160 @@
+﻿<Window x:Class="Wlst.Cr.CoreOne.MessageBoxOverride.WlstMessageBox.View.WlstMessageBox"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:System="clr-namespace:System;assembly=mscorlib" mc:Ignorable="d"  MinHeight="120"  Width="510" WindowStyle="None"   Background="{x:Null}"  
+        ResizeMode="NoResize"  x:Name="main" SizeToContent="Height" 
+    ShowInTaskbar="False"
+        
+    WindowStartupLocation="CenterOwner"
+        >
+    <Window.Resources>
+      <SolidColorBrush x:Key="HeaderColor" Color="#595959"/>
+        <Color x:Key="HeaderColors">#595959</Color>
+        <Color x:Key="AnimationColorTo">#aaaaaa</Color>
+        <SolidColorBrush x:Key="FontForegroundColor" Color="White"/>
+        <System:Double x:Key="Fontsize">12</System:Double>
+        <SolidColorBrush x:Key="BackgroundColor" Color="#666666"/>
+
+        <!--<SolidColorBrush x:Key="HeaderColor" Color="#FF017BCD"/>
+        <Color x:Key="HeaderColors">#FF017BCD</Color>
+        <Color x:Key="AnimationColorTo">LightBlue</Color>
+        <SolidColorBrush x:Key="BackgroundColor" Color="#b8b5b2"/>
+        <SolidColorBrush x:Key="FontForegroundColor" Color="Black"/>
+        <System:Double x:Key="Fontsize">12</System:Double>-->
+
+
+        <GeometryGroup x:Key="ClosedIcon" FillRule="EvenOdd">
+            <LineGeometry StartPoint="0.5,0.5" EndPoint="9.5,9.5"/>
+            <LineGeometry StartPoint="9.5,0.5" EndPoint="0.5,9.5"/>
+        </GeometryGroup>
+        <Style TargetType="{x:Type Button}" x:Key="BtnForMessageBox">
+            <Setter Property="Foreground" Value="{StaticResource FontForegroundColor}"/>
+            <Setter Property="Width" Value="78"/>
+            <Setter Property="Height" Value="20"/>
+            <Setter Property="FontSize" Value="{DynamicResource Fontsize}"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border BorderBrush="White" BorderThickness="0.6" CornerRadius="3">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualStateGroup.Transitions>
+                                        <VisualTransition From="Normal" To="MouseOver" GeneratedDuration="0:0:0.3"/>
+                                    </VisualStateGroup.Transitions>
+                                    <VisualState x:Name="Normal"/>
+                                    <VisualState x:Name="MouseOver">
+                                        <Storyboard>
+                                            <ColorAnimation Storyboard.TargetName="BackgroundBrush" Storyboard.TargetProperty="Color" To="{StaticResource AnimationColorTo}"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <Border.Background>
+                                <SolidColorBrush x:Name="BackgroundBrush" Color="{StaticResource HeaderColors}"/>
+                            </Border.Background>
+                            <ContentPresenter Margin="{TemplateBinding Padding}"
+                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                          RecognizesAccessKey="True"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="{x:Type Button}" x:Key="BtnForWindowsClose">
+            <Setter Property="Background" Value="{DynamicResource HeaderColor}"/>
+            <Setter Property="Foreground" Value="{StaticResource FontForegroundColor}"/>
+            <Setter Property="Width" Value="20"/>
+            <Setter Property="Height" Value="20"/>
+            <Setter Property="FontSize" Value="{DynamicResource Fontsize}"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border >
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualStateGroup.Transitions>
+                                        <VisualTransition From="Normal" To="MouseOver" GeneratedDuration="0:0:0.2"/>
+                                        <VisualTransition From="MouseOver" To="Normal" GeneratedDuration="0:0:0.2"/>
+                                    </VisualStateGroup.Transitions>
+                                    <VisualState x:Name="Normal"/>
+                                    <VisualState x:Name="MouseOver">
+                                        <Storyboard>
+                                            <ColorAnimation Storyboard.TargetName="BackgroundBrush" Storyboard.TargetProperty="Color" To="{StaticResource AnimationColorTo}"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <Border.Background>
+                                <SolidColorBrush x:Name="BackgroundBrush" Color="{DynamicResource HeaderColors}"/>
+                            </Border.Background>
+                            <ContentPresenter Margin="{TemplateBinding Padding}"
+                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                          RecognizesAccessKey="True"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Border CornerRadius="3">
+        <Grid Background="White">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="24"/>
+                <RowDefinition Height="0"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="30"/>
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0" Background="{DynamicResource HeaderColor}"  MouseLeftButtonDown="WindowMouseLeftButtonDown">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="20"/>
+                    </Grid.ColumnDefinitions>
+                    <Label x:Name="fg" />
+                    <TextBlock Grid.Column="0" Name="Title" FontSize="{DynamicResource Fontsize}" Margin="12,4,12,6" Foreground="{Binding ElementName=fg, Path=Foreground}" Text="{Binding Title}"/>
+                    <Button Grid.Column="1" Style="{StaticResource BtnForWindowsClose}" Command="{Binding BtnCloseWindows}">
+                        <Path Data="{StaticResource ClosedIcon}"
+                                              Stroke="{Binding RelativeSource={RelativeSource AncestorType={x:Type Button}}, Path=Foreground, Mode=OneWay}"
+                                              Stretch="None"
+                                              Width="10" Height="10"/>
+                    </Button>
+                </Grid>
+
+            </StackPanel>
+            <Border Grid.Row="2" BorderBrush="{StaticResource BackgroundColor}" Background="{StaticResource BackgroundColor}"  >
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="50"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock x:Name="lblMsg" Grid.Row="0" Grid.Column="1"  Foreground="{Binding ElementName=fg, Path=Foreground}" FontSize="{DynamicResource Fontsize}"  Margin="20" Text="{Binding Message }"/>
+
+                    <Expander x:Name="Yuling" Grid.Row="1" Grid.Column="1" Header="Show Details" Background="{StaticResource BackgroundColor}"  BorderThickness="0" Visibility="{Binding ShowDetails}">
+                        <TextBlock Text="{Binding InnerMessageDetails}"  Foreground="{Binding ElementName=fg, Path=Foreground}" FontSize="{DynamicResource Fontsize}" TextWrapping="Wrap" 
+                       HorizontalAlignment="Left" VerticalAlignment="Top" TextAlignment="Left"/>
+                    </Expander>
+                </Grid>
+            </Border>
+            <StackPanel Grid.Row="4" Background="{StaticResource BackgroundColor}">
+                <WrapPanel    Orientation="Horizontal" VerticalAlignment="Center" 
+                    HorizontalAlignment="Center" Margin="0 0 5 0">
+                    <Button Content="是" Style="{StaticResource BtnForMessageBox}" Visibility="{Binding YesNoVisibility}" Command="{Binding YesCommand}" Margin="5 0 5 0"  />
+                    <Button Content="否" Style="{StaticResource BtnForMessageBox}" Visibility="{Binding YesNoVisibility}" Command="{Binding NoCommand}" Margin="5 0 5 0"  />
+                    <Button Content="取消" Style="{StaticResource BtnForMessageBox}" Visibility="{Binding CancelVisibility}" Command="{Binding CancelCommand}" Margin="5 0 5 0"  />
+                    <Button Content="确定" Style="{StaticResource BtnForMessageBox}" Visibility="{Binding OkVisibility}" Command="{Binding OkCommand}" Margin="5 0 5 0"  />
+                    <Button Content="关闭" Style="{StaticResource BtnForMessageBox}" Visibility="{Binding CloseVisibility}" Command="{Binding CloseCommand}" Margin="5 0 5 0" />
+                </WrapPanel>
+            </StackPanel>
+        </Grid>
+    </Border>
+
+    </Window>

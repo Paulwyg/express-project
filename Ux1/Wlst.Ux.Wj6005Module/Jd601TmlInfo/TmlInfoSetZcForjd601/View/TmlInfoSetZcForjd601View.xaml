@@ -1,0 +1,182 @@
+﻿<UserControl x:Class="Wlst.Ux.Wj6005Module.Jd601TmlInfo.TmlInfoSetZcForjd601.View.TmlInfoSetZcForjd601View"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             MinHeight="200" MaxHeight="600" MinWidth="600" MaxWidth="1000">
+    <Grid >
+        <GroupBox Header="召测"  HorizontalAlignment="Left" Name="groupBox7" VerticalAlignment="Top">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" MinHeight="30"/>
+                    <RowDefinition Height="Auto" MinHeight="30"/>
+                    <RowDefinition Height="Auto" MinHeight="30"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Label x:Name="fg"/>
+                <Grid Grid.ColumnSpan="4">
+                    <DockPanel >
+                        <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}"  Margin="5,2,5,2"  HorizontalAlignment="Left"  Name="textBlock29" Text="设备地址:" VerticalAlignment="Center" />
+                        <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}"  Margin="5,2,5,2"  HorizontalAlignment="Left"  Name="textBlock30" Text="{Binding ZRtuId}" VerticalAlignment="Center" MinWidth="160" />
+                        <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}"  Margin="5,2,5,2"  HorizontalAlignment="Left"  Name="textBlock31" Text="主动报警:" VerticalAlignment="Center"/>
+                        <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}"  Margin="5,2,5,2"   HorizontalAlignment="Left"  Name="textBlock44" Text="{Binding ZIsActiveAlarm}" VerticalAlignment="Center" MinWidth="160" />
+                        <Button Margin="5,2,5,2"  Content="召测参数" Command="{Binding CmdZcPar}"  HorizontalAlignment="Left"  Name="button2" VerticalAlignment="Center" Width="90" />
+                        <Button Margin="5,2,5,2"  Content="召测时间" Command="{Binding CmdZcTime}"  HorizontalAlignment="Left" Name="button3" VerticalAlignment="Center" Width="90" />
+                        <Button Margin="5,2,5,2"  Content="召测版本" Command="{Binding CmdZcVersion}" HorizontalAlignment="Left"  Name="button4" VerticalAlignment="Center" Width="90" />
+                    </DockPanel>
+                </Grid>
+                <GroupBox Header="临界温度" Grid.Row="1"  HorizontalAlignment="Left"  Name="groupBox10">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" MinHeight="30"/>
+                            <RowDefinition Height="Auto" MinHeight="30"/>
+                            <RowDefinition Height="Auto" MinHeight="30"/>
+                            <RowDefinition Height="Auto" MinHeight="30"/>
+                            <RowDefinition Height="Auto" MinHeight="30"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}"  Margin="5,2,5,2" Name="textBlock77" Text="启动温度:" VerticalAlignment="Center" />
+                        <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}"  Margin="5,2,5,2"  Grid.Row="1" Name="textBlock78" Text="关闭温度:" VerticalAlignment="Center" />
+                        <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}"  Margin="5,2,5,2"  Grid.Row="2" Name="textBlock79" Text="退出节能温度:" VerticalAlignment="Center"/>
+                        <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}"  Margin="5,2,5,2"  Grid.Row="3" Name="textBlock80" Text="强制保护:" VerticalAlignment="Center" />
+                        <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}"  Margin="5,2,5,2"  Grid.Row="4" Name="textBlock81" Text="恢复节能:" VerticalAlignment="Center"/>
+
+                        <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}"  Margin="5,2,5,2"  Grid.Column="1" Name="textBlock83" Text="{Binding ZFanSatrtTemp}" VerticalAlignment="Center" MinWidth="60" />
+                        <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}"  Margin="5,2,5,2"  Grid.Column="1" Grid.Row="1" Name="textBlock84" Text="{Binding ZFanClosedTemp}" VerticalAlignment="Center" MinWidth="60" />
+                        <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}"  Margin="5,2,5,2"  Grid.Column="1" Grid.Row="2" Name="textBlock85" Text="{Binding ZEnerySaveTemp}" VerticalAlignment="Center" MinWidth="60" />
+                        <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}"  Margin="5,2,5,2"  Grid.Column="1" Grid.Row="3" Name="textBlock86" Text="{Binding ZMandatoryProtectTemp}" VerticalAlignment="Center" MinWidth="60" />
+                        <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}"  Margin="5,2,5,2"  Grid.Column="1" Grid.Row="4" Name="textBlock87" Text="{Binding ZRecoverEnergySaveTemp}" VerticalAlignment="Center" MinWidth="60" />
+
+                    </Grid>
+                </GroupBox>
+                <GroupBox Header="节能模式" Grid.Row="1" Grid.Column="1"  Name="groupBox8">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition MinHeight="25" Height="Auto"/>
+                            <RowDefinition MinHeight="25" Height="Auto"/>
+                            <RowDefinition MinHeight="25" Height="Auto"/>
+                            <RowDefinition MinHeight="25" Height="Auto"/>
+                            <RowDefinition MinHeight="25" Height="Auto"/>
+                            <RowDefinition MinHeight="25" Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}"   Margin="5,2,5,2" Name="textBlock32" Text="节能模式：" VerticalAlignment="Center" />
+                        <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}"  Margin="5,2,5,2" Grid.Row="1" Name="textBlock35" Text="时间模式：" VerticalAlignment="Center"/>
+                        <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}"  Margin="5,2,5,2" Grid.Row="2" Name="textBlock37" Text="运行模式：" VerticalAlignment="Center"/>
+                        <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}"  Margin="5,2,5,2" Grid.Row="3" Name="textBlock34" Text="调压速度：" VerticalAlignment="Center"/>
+                        <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}"   Margin="5,2,5,2" Grid.Row="4" Name="textBlock36" Text="通信模式：" VerticalAlignment="Center" />
+                        <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}"  Margin="5,2,5,2" Grid.Row="5" Name="textBlock38" Text="工作模式：" VerticalAlignment="Center"/>
+
+                        <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}"  Margin="5,2,5,2" Grid.Column="1" Name="textBlock33" Text="{Binding ZMode}" VerticalAlignment="Center" MinWidth="60" />
+                        <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}"  Margin="5,2,5,2" Grid.Column="1" Grid.Row="1" Name="textBlock40" Text="{Binding ZTimeMode}" VerticalAlignment="Center" MinWidth="60" />
+                        <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}"  Margin="5,2,5,2" Grid.Column="1" Grid.Row="2" Name="textBlock42" Text="{Binding ZRunMode}" VerticalAlignment="Center" MinWidth="60" />
+                        <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}"  Margin="5,2,5,2" Grid.Column="1" Grid.Row="3" Name="textBlock39" Text="{Binding ZRegulatingSpeed}" VerticalAlignment="Center" MinWidth="60" />
+                        <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}"  Margin="5,2,5,2" Grid.Column="1" Grid.Row="4" Name="textBlock41" Text="{Binding ZCommTypeCode}" VerticalAlignment="Center" MinWidth="60" />
+                        <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}"  Margin="5,2,5,2" Grid.Column="1" Grid.Row="5" Name="textBlock43" Text="{Binding ZWorkMode}" VerticalAlignment="Center" MinWidth="60" />
+                    </Grid>
+                </GroupBox>
+                <GroupBox Header="其他参数" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Left"  Name="groupBox11" >
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" MinHeight="30"/>
+                            <RowDefinition Height="Auto" MinHeight="30"/>
+                            <RowDefinition Height="Auto" MinHeight="30"/>
+                            <RowDefinition Height="Auto" MinHeight="30"/>
+                            <RowDefinition Height="Auto" MinHeight="30"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}"  Margin="5,2,5,2"  Name="textBlock89" Text="A相CT变比:" VerticalAlignment="Center" />
+                        <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}"  Margin="5,2,5,2" Grid.Row="1" Name="textBlock90" Text="B相CT变比:" VerticalAlignment="Center"  />
+                        <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}"  Margin="5,2,5,2" Grid.Row="2" Name="textBlock91" Text="C相CT变比:" VerticalAlignment="Center" />
+                        <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}"  Margin="5,2,5,2" Grid.Column="2" Name="textBlock92" Text="预热时间:" VerticalAlignment="Center" />
+                        <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}"  Margin="5,2,5,2" Grid.Row="1" Grid.Column="2" Name="textBlock93" Text="报警延时:" VerticalAlignment="Center" />
+                        <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}"  Margin="5,2,5,2" Grid.Row="4" Name="textBlock94" Text="程序版本:" VerticalAlignment="Center"/>
+                        <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}"  Margin="5,2,5,2" Grid.Column="1" Name="textBlock95" Text="{Binding ZCtRadioA}" VerticalAlignment="Center" MinWidth="60" />
+                        <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}"  Margin="5,2,5,2" Grid.Row="1" Grid.Column="1" Name="textBlock96" Text="{Binding ZCtRadioB}" VerticalAlignment="Center" MinWidth="60" />
+                        <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}"  Margin="5,2,5,2" Grid.Column="1" Grid.Row="2" Name="textBlock97" Text="{Binding ZCtRadioC}" VerticalAlignment="Center" MinWidth="60" />
+                        <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}"  Margin="5,2,5,2" Grid.Column="3" Name="textBlock98" Text="{Binding ZPreheatingTime}" VerticalAlignment="Center" MinWidth="60" />
+                        <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}"  Margin="5,2,5,2" Grid.Row="1" Grid.Column="3" Name="textBlock99" Text="{Binding ZAlarmDelay}" VerticalAlignment="Center" MinWidth="60" />
+                        <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}"  Margin="5,2,5,2" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3" Name="textBlock100" Text="{Binding ZVersion}" VerticalAlignment="Center" MinWidth="200" />
+                        <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}"  Margin="5,2,5,2" Grid.Row="3" Name="textBlock116" Text="开机时间:" VerticalAlignment="Center" />
+                        <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}"  Margin="5,2,5,2" Grid.Row="2" Grid.Column="2" Name="textBlock118" Text="关机时间:" VerticalAlignment="Center"  />
+                        <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}"  Margin="5,2,5,2" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3"  Name="textBlock119" Text="{Binding ZOpenTime}" VerticalAlignment="Center" MinWidth="200" />
+                        <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}"  Margin="5,2,5,2" Grid.Column="3" Grid.Row="2" Name="textBlock120" Text="{Binding ZCloseTime}" VerticalAlignment="Center" MinWidth="60" />
+                    </Grid>
+                </GroupBox>
+                <GroupBox Header="节能时间" Grid.Row="1" Grid.Column="3" Name="groupBox12">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" MinHeight="30"/>
+                            <RowDefinition Height="Auto" MinHeight="30"/>
+                            <RowDefinition Height="Auto" MinHeight="30"/>
+                            <RowDefinition Height="Auto" MinHeight="30"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}"  Margin="5,2,5,2"  Name="textBlock101" Text="时间1:" VerticalAlignment="Center"/>
+                        <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}"  Margin="5,2,5,2" Grid.Row="1" Name="textBlock103" Text="时间2:" VerticalAlignment="Center"/>
+                        <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}"  Margin="5,2,5,2" Grid.Row="2" Name="textBlock104" Text="时间3:" VerticalAlignment="Center"/>
+                        <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}"  Margin="5,2,5,2" Grid.Row="3" Name="textBlock105" Text="时间4:" VerticalAlignment="Center"/>
+                        <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}"  Margin="5,2,5,2" Grid.Column="2" Grid.Row="0" Name="textBlock106" Text="时间5:" VerticalAlignment="Center"/>
+                        <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}"  Margin="5,2,5,2" Grid.Column="2" Grid.Row="1" Name="textBlock107" Text="时间6:" VerticalAlignment="Center"/>
+                        <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}"  Margin="5,2,5,2" Grid.Column="2" Grid.Row="2" Name="textBlock108" Text="时间7:" VerticalAlignment="Center"/>
+                        <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}"  Margin="5,2,5,2" Grid.Column="2" Grid.Row="3" Name="textBlock109" Text="时间8:" VerticalAlignment="Center" />
+
+                        <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}"  Margin="5,2,5,2" Grid.Column="1" Name="textBlock102" Text="{Binding ZcJd601ParItems[0].Name}" VerticalAlignment="Center" MinWidth="60" />
+                        <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}"  Margin="5,2,5,2" Grid.Row="1" Grid.Column="1" Name="textBlock110" Text="{Binding ZcJd601ParItems[1].Name}" VerticalAlignment="Center" MinWidth="60" />
+                        <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}"  Margin="5,2,5,2" Grid.Row="2" Grid.Column="1" Name="textBlock111" Text="{Binding ZcJd601ParItems[2].Name}" VerticalAlignment="Center" MinWidth="60" />
+
+                        <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}"  Margin="5,2,5,2" Grid.Row="0" Grid.Column="3" Name="textBlock113" Text="{Binding ZcJd601ParItems[4].Name}" VerticalAlignment="Center" MinWidth="60" />
+                        <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}"  Margin="5,2,5,2" Grid.Row="1" Grid.Column="3" Name="textBlock114" Text="{Binding ZcJd601ParItems[5].Name}" VerticalAlignment="Center" MinWidth="60" />
+                        <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}"  Margin="5,2,5,2" Grid.Row="2" Grid.Column="3" Name="textBlock115" Text="{Binding ZcJd601ParItems[6].Name}" VerticalAlignment="Center" MinWidth="60" />
+                        <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}"  Margin="5,2,5,2" Grid.Row="3" Grid.Column="3" Name="textBlock117" Text="{Binding ZcJd601ParItems[7].Name}" VerticalAlignment="Center" MinWidth="60" />
+                        <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}"  Margin="5,2,5,2" Grid.Row="3" Grid.Column="1" Name="textBlock121" Text="{Binding ZcJd601ParItems[3].Name}" VerticalAlignment="Center" MinWidth="60" />
+                    </Grid>
+                </GroupBox>
+                <GroupBox Header="门限值" Grid.Row="2" Grid.ColumnSpan="4" Name="groupBox9" >
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}"  Margin="10,2,10,2" Grid.Column="0" Name="textBlock45" Text="输入过压:" VerticalAlignment="Center"  />
+                        <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}"  Margin="10,2,10,2" Grid.Column="2"  Name="textBlock46" Text="输入欠压:" VerticalAlignment="Center" />
+                        <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}"  Margin="10,2,10,2" Grid.Column="4"  Name="textBlock47" Text="输出过载:" VerticalAlignment="Center" />
+                        <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}"  Margin="10,2,10,2" Grid.Column="6"  Name="textBlock48" Text="输出欠压:" VerticalAlignment="Center" />
+                        <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}"  Margin="10,2,10,2" Grid.Column="1"  Name="textBlock49" Text="{Binding ZInputOvervoltageLimit}" VerticalAlignment="Center" MinWidth="120" />
+                        <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}"  Margin="10,2,10,2" Grid.Column="3"  Name="textBlock50" Text="{Binding ZInputUndervoltageLimit}" VerticalAlignment="Center" MinWidth="120" />
+                        <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}"  Margin="10,2,10,2" Grid.Column="5"  Name="textBlock51" Text="{Binding ZOutputOverloadLimit}" VerticalAlignment="Center" MinWidth="120" />
+                        <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}"  Margin="10,2,10,2" Grid.Column="7"  Name="textBlock52" Text="{Binding ZOutputUndervoltageLimit}" VerticalAlignment="Center" MinWidth="120" />
+                    </Grid>
+                </GroupBox>
+            </Grid>
+        </GroupBox>
+    </Grid>
+</UserControl>

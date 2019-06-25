@@ -1,0 +1,67 @@
+﻿<UserControl x:Class="Wlst.Ux.TimeTableSystem.TimeTableManagViewModel.Views.DetailInfo"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+              
+             xmlns:Views="clr-namespace:Wlst.Ux.TimeTableSystem.TimeTableManagViewModel.Views"
+             xmlns:AppleWindowSet="clr-namespace:Elysium.ThemesSet.AppleWindowSet;assembly=Elysium" mc:Ignorable="d" 
+             d:DesignHeight="200" d:DesignWidth="1000">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="15"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <DockPanel Margin="50,0,0,0">
+            <TextBlock Text="当前选中:"></TextBlock>
+            <TextBlock Text="{Binding TimeTableName}"></TextBlock>
+            <TextBlock></TextBlock>
+        </DockPanel>
+        <ListBox   BorderBrush="Black" BorderThickness="1" Focusable="False" HorizontalAlignment="Left"
+                   Background="Transparent"  Grid.Row="1" ItemsSource="{Binding OneWeekTimeTable}">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Margin="5,5,5,5">
+                        <Views:DetailInfoItem  HorizontalAlignment="Left"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ListBox>    
+       
+        <Grid Margin="50,2,0,0" Grid.Row="3">
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <DockPanel>
+                <TextBlock   HorizontalAlignment="Left" Text="开灯光控值:  "></TextBlock>
+                <TextBlock   HorizontalAlignment="Left" Width="23" Text="{Binding LuxOnValue}"></TextBlock>
+                <TextBlock   HorizontalAlignment="Left" Text=" (Lux)       关灯光控值:  "></TextBlock>
+                <TextBlock   HorizontalAlignment="Left" Width="23"  Text="{Binding LuxOffValue}"></TextBlock>
+                <TextBlock   HorizontalAlignment="Left" Text="(Lux)"></TextBlock>
+            </DockPanel>
+            <DockPanel Grid.Row="1">
+                <TextBlock   HorizontalAlignment="Left" Text="开灯偏移值:  "></TextBlock>
+                <TextBlock   HorizontalAlignment="Left" Width="23"  Text="{Binding LightOnOffset}"></TextBlock>
+                <TextBlock   HorizontalAlignment="Left" Text=" (分)         关灯偏移值:  "></TextBlock>
+                <TextBlock   HorizontalAlignment="Left" Width="23"  Text="{Binding LightOffOffset}"></TextBlock>
+                <TextBlock   HorizontalAlignment="Left" Text="(分)"></TextBlock>
+            </DockPanel>
+            <DockPanel Grid.Row="2">
+                <TextBlock  HorizontalAlignment="Left"  Text="光控有效值:  "></TextBlock>
+                <TextBlock  HorizontalAlignment="Left"  Width="23"  Text="{Binding LuxEffective}"></TextBlock>
+                <TextBlock  HorizontalAlignment="Left"  Text=" (分)"></TextBlock>
+            </DockPanel>
+
+            <DockPanel Grid.Row="3">
+                <TextBlock  HorizontalAlignment="Left" Text="使用的光控:  "></TextBlock>
+                <TextBlock HorizontalAlignment="Left" Text="{Binding LuxName}"></TextBlock>
+            </DockPanel>
+            
+        </Grid>
+    </Grid>
+</UserControl>

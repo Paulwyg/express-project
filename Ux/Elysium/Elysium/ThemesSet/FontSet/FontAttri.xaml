@@ -1,0 +1,93 @@
+﻿<UserControl x:Class="Elysium.ThemesSet.FontSet.FontAttri"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" 
+             MaxHeight="600" MinWidth="300" MaxWidth="1000" MinHeight="250">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+       
+        <GroupBox Margin="2" Header="字体设置" Grid.RowSpan="4" Name="groupBox9" VerticalAlignment="Top">
+            <Grid >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" MinHeight="30"/>
+                    <RowDefinition Height="Auto" MinHeight="30"/>
+                    <RowDefinition Height="Auto" MinHeight="30"/>
+                    <RowDefinition Height="Auto" MinHeight="30"/>
+                    <RowDefinition Height="Auto" MinHeight="30"/>
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Label Margin="5,2,5,2" Grid.Row="0" Content="字体大小(10-18):"  Name="label21" VerticalAlignment="Center" />
+                <Label Margin="5,2,5,2" Grid.Row="1" Content="字体粗细:" Name="label1" VerticalAlignment="Center" />
+                <Label Margin="5,2,5,2" Grid.Row="2" Content="字体样式:" Name="label2" VerticalAlignment="Center" />
+                <Label Margin="5,2,5,2" Grid.Row="3" Content="字形体系:" Name="label4" VerticalAlignment="Center" />
+                <Label Margin="5,2,5,2" Grid.Row="4" Content="字体拉伸:"  Name="label3" VerticalAlignment="Center" Visibility="Collapsed" />
+
+                <TextBox Margin="5,2,5,2" Grid.Row="0" Grid.Column="1" Text="{Binding MyFontSize}" VerticalAlignment="Center" MinWidth="120" />
+                <ComboBox Margin="5,2,5,2" Grid.Row="1" Grid.Column="1" SelectedItem="{Binding MyFontWeight}"  Name="comboBox1" VerticalAlignment="Center" MinWidth="120" />
+                <ComboBox Margin="5,2,5,2" Grid.Row="2" Grid.Column="1" Name="fontstyle" SelectedItem="{Binding MyFontStyle}" VerticalAlignment="Center" MinWidth="120" />
+                <ComboBox Margin="5,2,5,2" Grid.Row="3" Grid.Column="1"  Name="fontfamily" SelectedItem="{Binding MyFontFamily}" VerticalAlignment="Center" MinWidth="120" />
+                <ComboBox Margin="5,2,5,2"  Grid.Row="4" Grid.Column="1" Name="fontstretch" SelectedItem="{Binding MyFontStretch}" VerticalAlignment="Center" MinWidth="120" Visibility="Collapsed" />
+
+                <Button Margin="20,2,20,2" Grid.Row="5" Grid.ColumnSpan="2" Content="字体设置" FontStretch="{Binding MyFontStretch}" FontFamily="{Binding MyFontFamily}" 
+                        FontWeight="{Binding MyFontWeight }" FontStyle="{Binding MyFontStyle}" FontSize="{Binding MyFontSize}"
+                        MinWidth="120" Name="button11" VerticalAlignment="Center"  />
+                
+            </Grid>
+        </GroupBox>
+
+        <GroupBox Margin="2" Header="系统集合类行高设置" Grid.Column="2" Grid.RowSpan="4" Name="groupBox19" VerticalAlignment="Top">
+            <Grid >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" MinHeight="30"/>
+                    <RowDefinition Height="Auto" MinHeight="30"/>
+                    <RowDefinition Height="Auto" MinHeight="30"/>
+                    <RowDefinition Height="Auto" MinHeight="30"/>
+   
+                    <RowDefinition Height="Auto" MinHeight="30"/>
+                    <RowDefinition Height="Auto" MinHeight="30"/>
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Label Margin="5,2,5,2" Grid.Row="2" Content="表数据行高(10-30):"  Name="labe1l21" VerticalAlignment="Center" />
+                <Label Margin="5,2,5,2" Grid.Row="1" Content="表列头行高(10-30):"  Name="labe1l211" VerticalAlignment="Center" />
+<Label Margin="5,2,5,2" Grid.Row="3" Content="树控件行高(10-30):"  Name="labe1l2111" VerticalAlignment="Center" />
+
+                <TextBox Margin="5,2,5,2" Grid.Row="2" Grid.Column="1" Text="{Binding RowHeightt}" Height="{Binding RowHeightt}" VerticalAlignment="Center" MinWidth="120" />
+                <TextBox Margin="5,2,5,2" Grid.Row="1" Grid.Column="1" Text="{Binding RowHeadHeightt}"  Height="{Binding RowHeadHeightt}" VerticalAlignment="Center" MinWidth="120" />
+                <TextBox Margin="5,2,5,2" Grid.Row="3" Grid.Column="1" Text="{Binding RowHeightTree}"  Height="{Binding RowHeightTree}" VerticalAlignment="Center" MinWidth="120" />
+                
+
+                <!--<Button Margin="20,2,20,2" Grid.Row="4" Grid.ColumnSpan="2" Content="行高设置" FontStretch="{Binding MyFontStretch}" FontFamily="{Binding MyFontFamily}" 
+                        FontWeight="{Binding MyFontWeight }" FontStyle="{Binding MyFontStyle}" FontSize="{Binding MyFontSize}"
+                        Width="120" Height="25" Name="button111" VerticalAlignment="Center"  />-->
+
+            </Grid>
+        </GroupBox>
+
+        <Button Margin="20,2,20,2" Grid.Row="1" Grid.Column="1" Content="字体演示"   Name="button1" VerticalAlignment="Center" MinWidth="120" />
+
+        <Button Margin="10,5,10,5" Grid.Row="2" Grid.Column="1" Content="点击查看字体设置叠加效果"  Command="{Binding CmdLook}"  Name="button2" VerticalAlignment="Center" MinWidth="120" />
+        <Button Margin="10,5,10,5" Grid.Row="4" Grid.Column="1" Content="保存设置"  Command="{Binding CmdSave}" Name="button3" VerticalAlignment="Center" MinWidth="120" />
+        <Label Content="{Binding Remind}" VerticalAlignment="Center" Margin="10,3,0,3" HorizontalAlignment="Left" Grid.Row="4"/>
+    </Grid>
+</UserControl>

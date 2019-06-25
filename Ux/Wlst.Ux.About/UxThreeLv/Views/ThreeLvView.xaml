@@ -1,0 +1,44 @@
+﻿<UserControl x:Class="Wlst.Ux.About.UxThreeLv.Views.ThreeLvView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="250">
+    <Grid>
+        <Grid.RowDefinitions >
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="35"/>
+        </Grid.RowDefinitions>
+
+        <Label Content="{Binding xTitle}" VerticalAlignment="Center" Margin="10"/>
+
+        <telerik:RadGridView AutoGenerateColumns="False" ItemsSource="{Binding Records}"   Grid.Row="1"    
+								  Background="Transparent" x:Name="rgv"    
+                                  CanUserFreezeColumns="False" HorizontalAlignment="Left" 
+								  CanUserReorderColumns="True"  
+								  RowIndicatorVisibility="Collapsed"   ShowGroupPanel="False" ShowColumnHeaders="True" SnapsToDevicePixels="True"
+                                  >
+            <telerik:RadGridView.Columns>
+                <telerik:GridViewDataColumn Header="序号" IsFilterable="False" Width="60"  DataMemberBinding="{Binding Index}" IsReadOnly="True" />
+                <telerik:GridViewDataColumn Header="终端地址"   DataMemberBinding="{Binding PhyId}"  IsReadOnly="True"   Width="90"/>
+                <telerik:GridViewDataColumn Header="终端名称" IsFilterable="False"  DataMemberBinding="{Binding RtuName}"  IsReadOnly="True"   Width="160"/>
+                <telerik:GridViewDataColumn Header="总灯头"   DataMemberBinding="{Binding ZDT}"  IsReadOnly="True"  IsVisible= "{Binding xVisi1}"  Width="90"/>
+                <telerik:GridViewDataColumn Header="{Binding Name1}"    DataMemberBinding="{Binding Count}"  IsReadOnly="True" IsVisible= "{Binding xVisi2}"  Width="90"/>
+                <telerik:GridViewDataColumn Header="{Binding Name2}"    DataMemberBinding="{Binding Ratio}"  IsReadOnly="True" IsVisible= "{Binding xVisi2}"  Width="90"/>
+
+                <telerik:GridViewDataColumn Header="回路名称"   DataMemberBinding="{Binding LoopName}"  IsReadOnly="True"  IsVisible= "{Binding xVisi3}"  Width="90"/>
+                <telerik:GridViewDataColumn Header="电量"   DataMemberBinding="{Binding Power}"  IsReadOnly="True"  IsVisible= "{Binding xVisi3}"  Width="90"/>
+                <!--<telerik:GridViewDataColumn Header="发生时间"  IsFilterable="False" DataMemberBinding="{Binding DtCreateTime,StringFormat={}\{0:yyyy-MM-dd HH:mm:ss\}}"  IsReadOnly="True"  MaxWidth="190" MinWidth="60"/>-->
+                
+
+
+            </telerik:RadGridView.Columns>
+        </telerik:RadGridView>
+
+        <Button Content="导出"  Visibility="{Binding ExportVisi}" Grid.Row="2"  HorizontalAlignment="Right"  Margin="10,2,20,2" Width="120"  MinHeight="25" Command="{Binding CmdExport}" />
+
+    </Grid>
+
+</UserControl>

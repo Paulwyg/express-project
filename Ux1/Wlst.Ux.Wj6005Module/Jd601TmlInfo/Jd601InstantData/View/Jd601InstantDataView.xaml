@@ -1,0 +1,261 @@
+﻿<UserControl x:Class="Wlst.Ux.Wj6005Module.Jd601TmlInfo.Jd601InstantData.View.Jd601InstantDataView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="630" d:DesignWidth="1000">
+    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+    <Grid>
+            <Label x:Name="fg"/>
+            <GroupBox Header="数据" Name="groupBox7">
+            <Grid >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" MinHeight="30"/>
+                    <RowDefinition Height="Auto" MinHeight="30"/>
+                    <RowDefinition Height="Auto" MinHeight="30"/>
+                    <RowDefinition Height="Auto" MinHeight="30"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="350"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.ColumnSpan="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label  Margin="5,2,5,2" Grid.Column="0" Name="textBlock29" Content="设备地址:" VerticalAlignment="Center" />
+                    <Label  Margin="5,2,5,2" Grid.Column="2" Name="textBlock41" Content="接收时间:" VerticalAlignment="Center" />
+                    <Label  Margin="5,2,5,2" Grid.Column="4" Name="textBlock44" Content="设备名称:" VerticalAlignment="Center" />
+                    <Label  Margin="5,2,5,2" Grid.Column="1" Name="textBlock42" Content="{Binding RtuId}" MinWidth="120" VerticalAlignment="Center" />
+                    <Label  Margin="5,2,5,2" Grid.Column="3" Name="textBlock43" Content="{Binding OneData.EsuReceiptTime}" MinWidth="120" VerticalAlignment="Center" />
+
+                    <Label Margin="10,2,10,2" Grid.Column="5" Name="textBlock45" Content="{Binding RtuName}" MinWidth="120" MaxWidth="200" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                </Grid>
+                <GroupBox Header="运行参数"  Grid.Row="1"  Name="groupBox6" VerticalAlignment="Top" HorizontalAlignment="Left" Height="172">
+                    <Grid >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" MinHeight="30"/>
+                            <RowDefinition Height="Auto" MinHeight="30"/>
+                            <RowDefinition Height="Auto" MinHeight="30"/>
+                            <RowDefinition Height="Auto" MinHeight="30"/>
+                        </Grid.RowDefinitions>
+                        
+                        <Label Margin="5,2,5,2"  Name="textBlock26" Content="温度:" VerticalAlignment="Center"/>
+                        <Label Margin="5,2,5,2"  Grid.Row="1" Name="textBlock31" Content="开机时间:" VerticalAlignment="Center"/>
+                        <Label  Margin="5,2,5,2"  Grid.Row="2"  Name="textBlock30" Content="节电控制状态:" VerticalAlignment="Center"  />
+                        <Label Margin="5,2,5,2"   Grid.Row="3" Name="textBlock34" Content="故障状态:" VerticalAlignment="Center" />
+
+                        <Label Margin="5,2,5,2"  Grid.Column="1"  Name="textBlock63" Content="{Binding OneData.EsuTemperature}"  MinWidth="60" VerticalAlignment="Center" />
+                        <Label Margin="5,2,5,2"  Grid.Column="1"  Grid.Row="1" Name="textBlock67" Content="{Binding OneData.EsuBootTime}" VerticalAlignment="Center" MinWidth="60" />
+                        <Label Margin="5,2,5,2"  Grid.Column="1"  Grid.Row="2" Name="textBlock69" Content="{Binding OneData.EsuControlState}" VerticalAlignment="Center" MinWidth="60" />
+                        <Label Margin="5,2,5,2"  Grid.Column="1" Grid.ColumnSpan="3"  Grid.Row="3" Name="textBox2"  VerticalAlignment="Center" MinWidth="60" >
+                                <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}"  TextWrapping="Wrap" Text="{Binding OneDataEsuFaultState}" />
+                        </Label>
+
+                        <Label Margin="5,2,5,2"  Grid.Column="2"  Name="textBlock28" Content="风机状态:" VerticalAlignment="Center" />
+                            <Label Margin="5,2,5,2"  Grid.Column="2" Grid.Row="1"  Name="textBlock32" Content="节电运行时间:" VerticalAlignment="Center" />
+                        <Label Margin="5,2,5,2"  Grid.Column="2"  Grid.Row="2"  Name="textBlock33" Content="目标调压值:" VerticalAlignment="Center" />
+
+
+                        <Label Margin="5,2,5,2"  Grid.Column="3"  Name="textBlock64" Content="{Binding OneData.EsuFanState}"   MinWidth="60" VerticalAlignment="Center" />
+                        <Label Margin="5,2,5,2"  Grid.Column="3" Grid.Row="1"  Name="textBlock68" Content="{Binding OneData.EsuRunTime}" VerticalAlignment="Center" MinWidth="60" />
+                        <Label Margin="5,2,5,2"  Grid.Column="3" Grid.Row="2"  Name="textBlock65" Content="{Binding OneData.EsuTargetValue}"   MinWidth="60" VerticalAlignment="Center" />
+
+                    </Grid>
+                </GroupBox>
+
+                <GroupBox Header="电压电流" Grid.Row="1"  Grid.Column="1" Name="groupBox5" VerticalAlignment="Top">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" MinHeight="30"/>
+                            <RowDefinition Height="Auto" MinHeight="30"/>
+                            <RowDefinition Height="Auto" MinHeight="30"/>
+                            <RowDefinition Height="Auto" MinHeight="30"/>
+                            <RowDefinition Height="Auto" MinHeight="30"/>
+                        </Grid.RowDefinitions>
+                        <Label Margin="5,2,0,2"  Name="textBlock2" Content="A相输入电压:" VerticalAlignment="Center" />
+                        <Label Margin="5,2,0,2" Grid.Row="1" Name="textBlock4" Content="A相输出电压:" VerticalAlignment="Center" />
+                        <Label Margin="5,2,0,2" Grid.Row="2" Name="textBlock5" Content="A相输出电流:" VerticalAlignment="Center" />
+                        <Label Margin="5,2,0,2" Grid.Row="3" Name="textBlock9" Content="A相输出功率:" VerticalAlignment="Center" />
+                        <Label Margin="5,2,0,2" Grid.Row="4" Name="textBlock35" Content="A相节电率:" VerticalAlignment="Center" />
+
+                        <Label Grid.Column="1"  Name="textBlock3" Content="{Binding OneData.EsuInputVoltageA}"  MinWidth="60" VerticalAlignment="Center" />
+                        <Label Grid.Column="1" Grid.Row="1" Name="textBlock15" Content="{Binding OneData.EsuOutputVoltageA}"  MinWidth="60" VerticalAlignment="Center" />
+                        <Label Grid.Column="1" Grid.Row="2" Name="textBlock16" Content="{Binding OneData.EsuOutputCurrentA}"  MinWidth="60" VerticalAlignment="Center" />
+                        <Label Grid.Column="1" Grid.Row="3" Name="textBlock17" Content="{Binding OneData.EsuOutputCurrentpA}"  MinWidth="60" VerticalAlignment="Center" />
+                        <Label Grid.Column="1" Grid.Row="4" Name="textBlock38" Content="{Binding OneData.EsuRatioA}" MinWidth="60" VerticalAlignment="Center" />
+
+                        <Label Margin="5,2,0,2" Grid.Column="2"  Name="textBlock6" Content="B相输入电压:" VerticalAlignment="Center" />
+                        <Label Margin="5,2,0,2" Grid.Column="2" Grid.Row="1" Name="textBlock7" Content="B相输出电压:" VerticalAlignment="Center" />
+                        <Label Margin="5,2,0,2" Grid.Column="2" Grid.Row="2" Name="textBlock8" Content="B相输出电流:" VerticalAlignment="Center" />
+                        <Label Margin="5,2,0,2" Grid.Column="2" Grid.Row="3" Name="textBlock13" Content="B相输出功率:" VerticalAlignment="Center" />
+                        <Label Margin="5,2,0,2" Grid.Column="2" Grid.Row="4" Name="textBlock36" Content="B相节电率:" VerticalAlignment="Center" />
+
+
+                        <Label Grid.Column="3" Name="textBlock18" Content="{Binding OneData.EsuInputVoltageB}" MinWidth="60"  VerticalAlignment="Center" />
+                        <Label Grid.Row="1"  Grid.Column="3" Name="textBlock19" Content="{Binding OneData.EsuOutputVoltageB}"  MinWidth="60" VerticalAlignment="Center" />
+                        <Label Grid.Row="2"  Grid.Column="3" Name="textBlock20" Content="{Binding OneData.EsuOutputCurrentB}"  MinWidth="60" VerticalAlignment="Center" />
+                        <Label Grid.Row="3"  Grid.Column="3" Name="textBlock21" Content="{Binding OneData.EsuOutputCurrentpB}"  MinWidth="60" VerticalAlignment="Center" />
+                        <Label Grid.Row="4"  Grid.Column="3" Name="textBlock39" Content="{Binding OneData.EsuRatioB}"  MinWidth="60" VerticalAlignment="Center" />
+
+
+                        <Label Margin="5,2,0,2" Grid.Column="4" Name="textBlock10" Content="C相输入电压:" VerticalAlignment="Center" />
+                        <Label Margin="5,2,0,2" Grid.Column="4" Grid.Row="1" Name="textBlock11" Content="C相输出电压:" VerticalAlignment="Center" />
+                        <Label Margin="5,2,0,2" Grid.Column="4" Grid.Row="2" Name="textBlock12" Content="C相输出电流:" VerticalAlignment="Center" />
+                        <Label Margin="5,2,0,2" Grid.Column="4" Grid.Row="3" Name="textBlock14" Content="C相输出功率:" VerticalAlignment="Center" />
+                        <Label Margin="5,2,0,2" Grid.Column="4" Grid.Row="4" Name="textBlock37" Content="C相节电率:" VerticalAlignment="Center" />
+
+                        <Label  Grid.Column="5" Name="textBlock22" Content="{Binding OneData.EsuInputVoltageC}"  MinWidth="60" VerticalAlignment="Center" />
+                        <Label Grid.Row="1" Grid.Column="5" Name="textBlock23" Content="{Binding OneData.EsuOutputVoltageC}"  MinWidth="60" VerticalAlignment="Center" />
+                        <Label Grid.Row="2" Grid.Column="5" Name="textBlock24" Content="{Binding OneData.EsuOutputCurrentC}"  MinWidth="60" VerticalAlignment="Center" />
+                        <Label Grid.Row="3" Grid.Column="5" Name="textBlock25" Content="{Binding OneData.EsuOutputCurrentpC}"  MinWidth="60" VerticalAlignment="Center" />
+                        <Label Grid.Row="4" Grid.Column="5" Name="textBlock40" Content="{Binding OneData.EsuRatioC}"  MinWidth="60" VerticalAlignment="Center" />
+                    </Grid>
+                </GroupBox>
+
+                <GroupBox Grid.Row="2"  Grid.ColumnSpan="2" Header="硬件数据" Name="groupBox9" VerticalAlignment="Top">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid >
+                            <Grid.RowDefinitions >
+                                <RowDefinition Height="Auto" MinHeight="25"/>
+                                <RowDefinition Height="Auto" MinHeight="25"/>
+                                <RowDefinition Height="Auto" MinHeight="25"/>
+                                <RowDefinition Height="Auto" MinHeight="25"/>
+                                <RowDefinition Height="Auto" MinHeight="25"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Name="textBlock46" Content="今日复位次数:" VerticalAlignment="Center" />
+                            <Label Grid.Row="1" Name="textBlock47" Content="昨天复位次数:" VerticalAlignment="Center" />
+                            <Label Grid.Row="2" Name="textBlock48" Content="前天复位次数:" VerticalAlignment="Center" />
+                            <Label Grid.Row="3" Name="textBlock49" Content="大前天复位次数:" VerticalAlignment="Center" />
+                            <Label Grid.Row="4" Name="textBlock58" Content="开关量输出状态:" VerticalAlignment="Center" />
+
+                            <Label Grid.Column="2" Name="textBlock50" Content="A相电压调节位置:" VerticalAlignment="Center" />
+                            <Label Grid.Column="2" Grid.Row="1" Name="textBlock51" Content="B相电压调节位置:" VerticalAlignment="Center" />
+                            <Label Grid.Column="2" Grid.Row="2" Name="textBlock52" Content="C相电压调节位置:" VerticalAlignment="Center" />
+                            <Label Grid.Column="2" Grid.Row="3" Name="textBlock57" Content="当前调压档位:" VerticalAlignment="Center" />
+                            <Label Grid.Column="2" Grid.Row="4" Name="textBlock59" Content="开关量输入状态:" VerticalAlignment="Center" />
+
+
+                            <Label Grid.Column="4"  Name="textBlock54" Content="节能模式:" VerticalAlignment="Center" />
+                            <Label Grid.Column="4" Grid.Row="1" Name="textBlock55" Content="IGBT状态:" VerticalAlignment="Center" />
+                            <Label Grid.Column="4" Grid.Row="2" Name="textBlock56" Content="IGBT温度:" VerticalAlignment="Center" />
+                            <Label Grid.Column="4" Grid.Row="3" Name="textBlock53" Content="调压等待时间:" VerticalAlignment="Center" />
+                            <Label Grid.Column="4" Grid.Row="4" Name="textBlock60" Content="使用状态:" VerticalAlignment="Center" />
+
+                            <Label Grid.Column="1" Name="textBlock66" Content="{Binding TwoData.RebootTimesToday}" VerticalAlignment="Center" Width="89" />
+                            <Label  Grid.Column="1" Grid.Row="1" Name="textBlock70" Content="{Binding TwoData.RebootTimesYesterday}" VerticalAlignment="Center" Width="89" />
+                            <Label  Grid.Column="1" Grid.Row="2" Name="textBlock71" Content="{Binding TwoData.RebootTimesLastYesterDay}" VerticalAlignment="Center" Width="89" />
+                            <Label  Grid.Column="1" Grid.Row="3" Name="textBlock72" Content="{Binding TwoData.RebootTimesLastLastYesterDay}" VerticalAlignment="Center" Width="89" />
+                            <Label  Grid.Column="1" Grid.Row="4" Name="textBlock73" Content="{Binding TwoData.SwitchOutState}" VerticalAlignment="Center" Width="89" />
+
+                            <Label  Grid.Column="3" Name="textBlock74" Content="{Binding TwoData.CurrentaLocation}" VerticalAlignment="Center" Width="60" />
+                            <Label  Grid.Column="3" Grid.Row="1" Name="textBlock75" Content="{Binding TwoData.CurrentbLocation}" VerticalAlignment="Center" Width="60" />
+                            <Label  Grid.Column="3" Grid.Row="2" Name="textBlock76" Content="{Binding TwoData.CurrentcLocation}" VerticalAlignment="Center" Width="60" />
+                            <Label  Grid.Column="3" Grid.Row="3" Name="textBlock77" Content="{Binding TwoData.CurrentVolLevel}" VerticalAlignment="Center" Width="60" />
+                            <Label  Grid.Column="3" Grid.Row="4" Name="textBlock78" Content="{Binding TwoData.SwitchInState}" VerticalAlignment="Center" Width="60" />
+
+                            <Label  Grid.Column="5" Name="textBlock79" Content="{Binding TwoData.EsuMode}" VerticalAlignment="Center" Width="54" />
+                            <Label  Grid.Column="5" Grid.Row="1" Name="textBlock80" Content="{Binding TwoData.IsIgbt}" VerticalAlignment="Center" Width="54" />
+                            <Label  Grid.Column="5" Grid.Row="2" Name="textBlock81" Content="{Binding TwoData.IgbtTemperture}" VerticalAlignment="Center" Width="54" />
+                            <Label  Grid.Column="5" Grid.Row="3" Name="textBlock82" Content="{Binding TwoData.CurrentWaiteTimes}" VerticalAlignment="Center" Width="54" />
+                            <Label  Grid.Column="5" Grid.Row="4" Name="textBlock83" Content="{Binding TwoData.RunStopState}" VerticalAlignment="Center" Width="54" />
+                        </Grid>
+
+                        
+                        <GroupBox Header="参数使用状态" Grid.Row="1" Grid.ColumnSpan="2" Name="groupBox11">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" MinHeight="20"/>
+                                    <RowDefinition Height="Auto" MinHeight="20"/>
+                                    <RowDefinition Height="Auto" MinHeight="20"/>
+                                    <RowDefinition Height="Auto" MinHeight="20"/>
+                                    <RowDefinition Height="Auto" MinHeight="20"/>
+                                    <RowDefinition Height="Auto" MinHeight="20"/>
+                                    <RowDefinition Height="Auto" MinHeight="20"/>
+                                    <RowDefinition Height="Auto" MinHeight="20"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <CheckBox Grid.Row="0" IsEnabled="False" IsChecked="{Binding TwoData.Args[0]}" Content="物理地址"  Name="checkBox1" VerticalAlignment="Center" />
+                                <CheckBox Grid.Row="1" IsEnabled="False" IsChecked="{Binding TwoData.Args[1]}"  Content="通信模式" Name="checkBox2" VerticalAlignment="Center" />
+                                <CheckBox Grid.Row="2" IsEnabled="False" IsChecked="{Binding TwoData.Args[2]}"  Content="停运/投运"  Name="checkBox3" VerticalAlignment="Center" />
+                                <CheckBox Grid.Row="3" IsEnabled="False" IsChecked="{Binding TwoData.Args[3]}"  Content="组地址"  Name="checkBox4" VerticalAlignment="Center" />
+                                <CheckBox Grid.Row="4" IsEnabled="False" IsChecked="{Binding TwoData.Args[4]}"  Content="A相电流CT变比"  Name="checkBox5" VerticalAlignment="Center" />
+                                <CheckBox Grid.Row="5" IsEnabled="False" IsChecked="{Binding TwoData.Args[5]}"  Content="B相电流CT变比"  Name="checkBox6" VerticalAlignment="Center" />
+                                <CheckBox Grid.Row="6" IsEnabled="False" IsChecked="{Binding TwoData.Args[6]}"  Content="C相电流CT变比"  Name="checkBox7" VerticalAlignment="Center" />
+                                <CheckBox Grid.Row="7" IsEnabled="False" IsChecked="{Binding TwoData.Args[7]}"  Content="供电相数"  Name="checkBox8" VerticalAlignment="Center" />
+                                <CheckBox Grid.Column="1" Grid.Row="0" IsEnabled="False" IsChecked="{Binding TwoData.Args[8]}"  Content="预热时间" Name="checkBox9" VerticalAlignment="Center" />
+                                <CheckBox Grid.Column="1" Grid.Row="1" IsEnabled="False" IsChecked="{Binding TwoData.Args[9]}"  Content="开启风机温度" Name="checkBox10" VerticalAlignment="Center" />
+                                <CheckBox Grid.Column="1" Grid.Row="2" IsEnabled="False" IsChecked="{Binding TwoData.Args[10]}"  Content="退出节能温度" Name="checkBox11" VerticalAlignment="Center" />
+                                <CheckBox Grid.Column="1" Grid.Row="3" IsEnabled="False" IsChecked="{Binding TwoData.Args[11]}"  Content="强制保护温度" Name="checkBox12" VerticalAlignment="Center" />
+                                <CheckBox Grid.Column="1" Grid.Row="4" IsEnabled="False" IsChecked="{Binding TwoData.Args[12]}"  Content="关闭风机温度" Name="checkBox13" VerticalAlignment="Center" />
+                                <CheckBox Grid.Column="1" Grid.Row="5" IsEnabled="False" IsChecked="{Binding TwoData.Args[13]}"  Content="输入过压门限值" Name="checkBox14" VerticalAlignment="Center" />
+                                <CheckBox Grid.Column="1" Grid.Row="6" IsEnabled="False" IsChecked="{Binding TwoData.Args[14]}"  Content="输入欠压门限值" Name="checkBox15" VerticalAlignment="Center" />
+                                <CheckBox Grid.Column="1" Grid.Row="7" IsEnabled="False" IsChecked="{Binding TwoData.Args[15]}"  Content="输出过载门限值" Name="checkBox16" VerticalAlignment="Center" />
+                                <CheckBox Grid.Column="2" Grid.Row="0" IsEnabled="False" IsChecked="{Binding TwoData.Args[16]}"  Content="输出欠压门限值" Name="checkBox17" VerticalAlignment="Center" />
+                                <CheckBox Grid.Column="2" Grid.Row="1" IsEnabled="False" IsChecked="{Binding TwoData.Args[17]}"  Content="调压速度" Name="checkBox18" VerticalAlignment="Center" />
+                                <CheckBox Grid.Column="2" Grid.Row="2" IsEnabled="False" IsChecked="{Binding TwoData.Args[18]}"  Content="恢复节能温度" Name="checkBox19" VerticalAlignment="Center" />
+                                <CheckBox Grid.Column="2" Grid.Row="3" IsEnabled="False" IsChecked="{Binding TwoData.Args[19]}"  Content="时间模式" Name="checkBox20" VerticalAlignment="Center" />
+                                <CheckBox Grid.Column="2" Grid.Row="4" IsEnabled="False" IsChecked="{Binding TwoData.Args[20]}"  Content="工作模式" Name="checkBox21" VerticalAlignment="Center" />
+                                <CheckBox Grid.Column="2" Grid.Row="5" IsEnabled="False" IsChecked="{Binding TwoData.Args[21]}"  Content="主动报警" Name="checkBox22" VerticalAlignment="Center" />
+                                <CheckBox Grid.Column="2" Grid.Row="6" IsEnabled="False" IsChecked="{Binding TwoData.Args[22]}"  Content="报警延时" Name="checkBox23" VerticalAlignment="Center" />
+                                <CheckBox Grid.Column="2" Grid.Row="7" IsEnabled="False" IsChecked="{Binding TwoData.Args[23]}"  Content="节能模式" Name="checkBox24" VerticalAlignment="Center" />
+                                <CheckBox Grid.Column="3" Grid.Row="0" IsEnabled="False" IsChecked="{Binding TwoData.Args[24]}"  Content="自动调压参数表" Name="checkBox25" VerticalAlignment="Center" />
+                                <CheckBox Grid.Column="3" Grid.Row="1" IsEnabled="False" IsChecked="{Binding TwoData.Args[25]}"  Content="模拟量校准" Name="checkBox26" VerticalAlignment="Center" />
+                                <CheckBox Grid.Column="3" Grid.Row="2" IsEnabled="False" IsChecked="{Binding TwoData.Args[26]}"  Content="复位次数" Name="checkBox27" VerticalAlignment="Center" />
+                                <CheckBox Grid.Column="3" Grid.Row="3" IsEnabled="False" IsChecked="{Binding TwoData.Args[27]}"  Content="最后一次计算日出日落"  Name="checkBox28" VerticalAlignment="Center" />
+                                <CheckBox Grid.Column="3" Grid.Row="4" IsEnabled="False" IsChecked="{Binding TwoData.Args[28]}"  Content="经纬度" Name="checkBox29" VerticalAlignment="Center" />
+                            </Grid>
+                        </GroupBox>
+
+                    </Grid>
+                </GroupBox>
+                <Grid Grid.Row="3" Grid.ColumnSpan="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                <Button  Content="即时选测数据" Command="{Binding CmdZcDataOne}" Height="23" Name="button1" VerticalAlignment="Center" Width="124" />
+                    <Button Content="即时硬件数据" Grid.Column="1" Command="{Binding CmdCmdZcDataTwo}" Height="23"  Name="button6" VerticalAlignment="Center" Width="124" />
+                </Grid>
+            </Grid>
+        </GroupBox>
+    </Grid>
+    </ScrollViewer>
+</UserControl>

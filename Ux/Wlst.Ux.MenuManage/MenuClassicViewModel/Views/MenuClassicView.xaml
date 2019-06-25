@@ -1,0 +1,110 @@
+﻿<UserControl x:Class="Wlst.Ux.MenuManage.MenuClassicViewModel.Views.MenuClassicView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+            
+             xmlns:AppleWindowSet="clr-namespace:Elysium.ThemesSet.AppleWindowSet;assembly=Elysium"
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" mc:Ignorable="d" 
+             >
+
+        <Grid HorizontalAlignment="Left">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+        <Grid >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" MinHeight="30"/>
+                <RowDefinition Height="Auto" MinHeight="30"/>
+            </Grid.RowDefinitions>
+            <telerik:RadGridView RowIndicatorVisibility="Collapsed" AutoGenerateColumns="False" x:Name="grd"
+            AllowDrop="True"  ItemsSource="{Binding Path=MenusItems}"   ShowGroupFooters="False" ShowGroupPanel="False">
+                <telerik:RadGridView.Columns >
+                    <telerik:GridViewDataColumn IsFilterable="False"  Header="识别地址" Width="65" MaxWidth="200" DataMemberBinding="{Binding Path=Id}" IsReadOnly="True" />
+                    <telerik:GridViewDataColumn IsFilterable="False"  Header="菜单名称" Width="140" DataMemberBinding="{Binding Path=Text}"  IsReadOnly="True" MaxWidth="340"/>
+                    <telerik:GridViewDataColumn IsFilterable="False"  Header="菜单描述" Width="160" DataMemberBinding="{Binding  Path=Description}"  IsReadOnly="True" MaxWidth="600"/>
+                    <telerik:GridViewDataColumn IsFilterable="False"  Header="菜单提示" Width="120" DataMemberBinding="{Binding  Path=Tooltips}"  IsReadOnly="True" MaxWidth="490"/>
+                    <telerik:GridViewDataColumn  IsFilterable="False" Header="识别信息" Width="120" DataMemberBinding="{Binding Path=Classic}"  IsReadOnly="True" MaxWidth="440"/>
+                    <telerik:GridViewDataColumn IsFilterable="False"  Width="65"  Header="是否显示" >
+                        <telerik:GridViewDataColumn.CellTemplate>
+                            <DataTemplate>
+                                <Border Margin="2"  CornerRadius="3">
+                                    <CheckBox IsChecked="{Binding Path=Selected}"></CheckBox>
+                                </Border>
+                            </DataTemplate>
+                        </telerik:GridViewDataColumn.CellTemplate>
+                    </telerik:GridViewDataColumn>
+                </telerik:RadGridView.Columns>
+            </telerik:RadGridView>
+
+            <Button Margin="5,2,5,2" Content="即时刷新" Command="{Binding CmdReflesh}" MinHeight="25" Width="200" Grid.Row="1"/>
+
+ 
+            <Button  Content="导出"  MinHeight="25" Width="80" Click="Button_Click" HorizontalAlignment="Right" Margin="0,0,50,0" Grid.Row="1"/>
+        </Grid>
+         
+
+        <!--<ListView  Margin="5" 
+            AllowDrop="True"  ItemsSource="{Binding Path=MenusItems}" >
+                <ListView.View>
+                    <GridView AllowsColumnReorder="true" ColumnHeaderToolTip="All MenuItems Here">
+                        <GridViewColumn Header="识别地址" DisplayMemberBinding="{Binding Path=Id,Mode=TwoWay}" Width="70"/>
+                        <GridViewColumn Header="菜单名称"    DisplayMemberBinding="{Binding Path=Text,Mode=TwoWay}"  Width="120" />
+                        <GridViewColumn Header="菜单描述"   DisplayMemberBinding="{Binding  Path=Description,Mode=TwoWay}" Width="240" /> 
+                        <GridViewColumn Header="菜单提示"   DisplayMemberBinding="{Binding  Path=Tooltips,Mode=TwoWay}" Width="180" />
+                        <GridViewColumn Header="识别信息"    DisplayMemberBinding="{Binding Path=Classic,Mode=TwoWay}"  Width="150" />
+                        <GridViewColumn Header="是否显示">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Border
+                                        Margin="2"
+                                        CornerRadius="3">
+                                        <CheckBox IsChecked="{Binding Path=Selected}"></CheckBox>
+                                    </Border>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>-->
+            <Grid Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" MinWidth="180" Margin="5,0,0,0" MaxWidth="290" HorizontalAlignment="Center">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="Auto" MinHeight="30"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+
+            <telerik:RadGridView ShowGroupPanel="False" AutoGenerateColumns="False"  Grid.RowSpan="2"  AllowDrop="True"   HorizontalAlignment="Left" RowIndicatorVisibility="Collapsed"
+                                  ItemsSource="{Binding Path=MenuClassicItems}"    SelectedItem="{Binding Path=CurrentClassicItem, Mode=TwoWay}" >
+                <telerik:RadGridView.Columns >
+                    <telerik:GridViewDataColumn IsFilterable="False"  Header="类别名称" MaxWidth="280" MinWidth="200" DataMemberBinding="{Binding Path=Name,Mode=TwoWay}" IsReadOnly="True" />
+                </telerik:RadGridView.Columns>
+            </telerik:RadGridView>
+            <!--<ListView Grid.ColumnSpan="2" Width="240" 
+                AllowDrop="True"   ItemsSource="{Binding Path=MenuClassicItems}" 
+                      SelectedItem="{Binding Path=CurrentClassicItem, Mode=TwoWay}"  >
+                    <ListView.View>
+                        <GridView  AllowsColumnReorder="true" ColumnHeaderToolTip="TypeItems Here">
+                            <GridViewColumn Header="类别名称"    DisplayMemberBinding="{Binding Path=Name,Mode=TwoWay}"  Width="220" />
+                        </GridView>
+                    </ListView.View>
+                </ListView>-->
+
+
+            <Label Margin="0,2,0,2" Grid.Row="2" MinWidth="120"  Content="母版名称:"/>
+            <TextBox Margin="0,2,0,2" Grid.Row="3" Grid.Column="1" MinWidth="200" Text="{Binding Path=CurrentClassicItem.Name}"/>
+
+            <Button Margin="0,2,0,2" Grid.Row="4" Grid.ColumnSpan="2" MinWidth="200"  Content="新增" Command="{Binding Path=CmdAdd}"/>
+            <Button Margin="0,2,0,2" Grid.Row="5" Grid.ColumnSpan="2" MinWidth="200"   Content="更新" Command="{Binding Path=CmdUpdage}"/>
+            <Button Margin="0,2,0,2" Grid.Row="6" Grid.ColumnSpan="2" MinWidth="200"   Content="删除" Command="{Binding Path=CmdDelete}"/>
+            </Grid>
+            
+          
+        </Grid>
+
+</UserControl>

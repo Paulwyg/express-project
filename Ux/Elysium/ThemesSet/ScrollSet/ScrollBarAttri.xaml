@@ -1,0 +1,152 @@
+﻿<UserControl x:Class="Elysium.ThemesSet.ScrollSet.ScrollBarAttri"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             MaxHeight="600" MinWidth="300" MaxWidth="1000" MinHeight="300">
+    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+    <Grid >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" MinHeight="30"/>
+            <RowDefinition Height="Auto" MinHeight="30"/>
+            <RowDefinition Height="Auto" MinHeight="30"/>
+            <RowDefinition Height="Auto" MinHeight="30"/>
+            <RowDefinition Height="Auto" MinHeight="30"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        
+        <GroupBox Header="一般底层背景色及其高宽度" Margin="5" Grid.RowSpan="2" Name="groupBox1" VerticalAlignment="Top" >
+            <Grid >
+                <Grid.RowDefinitions>
+                    <RowDefinition MinHeight="30" Height="Auto"/>
+                    <RowDefinition MinHeight="30" Height="Auto"/>
+                    <RowDefinition MinHeight="30" Height="Auto"/>
+                    <RowDefinition MinHeight="30" Height="Auto"/>
+                    <RowDefinition  Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                
+                <Label Margin="5,2,5,2" Grid.Row="0" Content="背景颜色:" Name="label1" VerticalAlignment="Center"  />
+                <Label Margin="5,2,5,2" Grid.Row="1" Content="宽度[1 - 30]:"  Name="image1"  VerticalAlignment="Center"/>
+                <Label Margin="5,2,5,2" Grid.Row="2" Content="高度[1 - 30]:"  Name="label3" VerticalAlignment="Center" />
+
+                <xctk:ColorPicker Margin="5,2,5,2" Grid.Row="0" Grid.Column="1" MinWidth="120"  VerticalAlignment="Center"  SelectedColor="{Binding NormalBackground}" />
+                <TextBox Margin="5,2,5,2" Grid.Row="1" Grid.Column="1" Text="{Binding MyWidth}" Name="textBox2" VerticalAlignment="Center" MinWidth="120" />
+                <TextBox Margin="5,2,5,2" Grid.Row="2" Grid.Column="1" Name="textBox1" Text="{Binding MyHeight}" VerticalAlignment="Center" MinWidth="120" />
+
+                <Button Margin="5,2,5,2" Grid.Row="3" Grid.ColumnSpan="2" Background="{Binding NormalBackground}" MinHeight="1" MaxHeight="30" Height="{Binding MyHeight}"
+                          Name="scrollBar2" VerticalAlignment="Center" Width="120"/>
+                <Button Margin="5,2,5,2" Grid.Row="4" Grid.ColumnSpan="2" Background="{Binding NormalBackground}" MinWidth="1" MaxWidth="30" Width="{Binding MyWidth}" Height="30"  Name="button1" VerticalAlignment="Center" />
+            </Grid>
+        </GroupBox>
+
+        <GroupBox Header="滑块平时状态" Margin="5" Grid.Column="1" Name="groupBox2" VerticalAlignment="Top" >
+            <Grid >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" MinHeight="30"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Label Margin="5,2,5,2" Content="滑块颜色:"  Name="label17" VerticalAlignment="Center"  />
+                <xctk:ColorPicker Margin="5,2,5,2" Grid.Column="1" MinWidth="120"  VerticalAlignment="Center"  SelectedColor="{Binding NormalBorderBrush}" />
+                <Button Margin="20,5,20,5" Grid.Row="1" Grid.ColumnSpan="2" Background="{Binding NormalBorderBrush}"  Height="{Binding MyHeight}"
+                       Name="scrollBar1"  VerticalAlignment="Center" MinWidth="120" />
+            </Grid>
+        </GroupBox>
+        <GroupBox Header="滑块被按下的状态" Margin="5" Grid.Column="1" Grid.Row="1"  Name="groupBox3" VerticalAlignment="Top">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" MinHeight="30"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Label Margin="5,2,5,2" Content="滑块颜色:"  Name="label27" VerticalAlignment="Center"  />
+                <xctk:ColorPicker Margin="5,2,5,2" Grid.Column="1" MinWidth="120" VerticalAlignment="Center" SelectedColor="{Binding PressedBorderBrush}" />
+                <Button Margin="20,5,20,5" Grid.Row="1" Grid.ColumnSpan="2" Background="{Binding PressedBorderBrush}" Height="{Binding MyHeight}"  Name="scrollBar3"  VerticalAlignment="Center" MinWidth="120" />
+            </Grid>
+        </GroupBox>
+        <GroupBox Header="滑块不可用时的状态" Margin="5" Grid.Column="1" Grid.Row="2"  Name="groupBox4" VerticalAlignment="Top" >
+            <Grid >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" MinHeight="30"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Label Content="滑块颜色:" Margin="5,2,5,2" Name="label37" VerticalAlignment="Center"  />
+                <xctk:ColorPicker Margin="5,2,5,2"  Grid.Column="1" MinWidth="120" VerticalAlignment="Center"  SelectedColor="{Binding DisableBorderBrush}" />
+                <Button Grid.Row="1" Background="{Binding DisableBorderBrush}" Grid.ColumnSpan="2" Margin="20,5,20,5" Height="{Binding MyHeight}" Name="scrollBar4" VerticalAlignment="Center" MinWidth="120" />
+            </Grid>
+        </GroupBox>
+        <GroupBox Header="鼠标进入时滑块状态" Margin="5" Grid.Column="1" Grid.Row="3"  Name="groupBox6" VerticalAlignment="Top">
+            <Grid >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" MinHeight="30"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Label Content="滑块颜色:" Name="label4" VerticalAlignment="Center"  />
+                <xctk:ColorPicker Grid.Column="1" SelectedColor="{Binding MouseOverBorderBrush}" VerticalAlignment="Center" MinWidth="120" />
+                <Button Grid.Row="1" Grid.ColumnSpan="2" Margin="20,5,20,5" Background="{Binding MouseOverBorderBrush}" Height="{Binding MyHeight}" Name="button5" VerticalAlignment="Center" MinWidth="120" />
+            </Grid>
+        </GroupBox>
+
+        <GroupBox Header="鼠标进入时底层背景色" Margin="5" Grid.Row="2" Name="groupBox5" VerticalAlignment="Top">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" MinHeight="30"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Label Content="背景颜色:"  Name="label2" VerticalAlignment="Center" />
+                <xctk:ColorPicker Grid.Column="1" Margin="5,2,5,2" SelectedColor="{Binding MouseOverBackgroundBrush}" VerticalAlignment="Center" MinWidth="120" />
+                <Button Height="{Binding MyHeight}" Background="{Binding MouseOverBackgroundBrush}" Grid.Row="1" Grid.ColumnSpan="2" Margin="20,5,20,5" Name="button4" VerticalAlignment="Center" MinWidth="120" />
+            </Grid>
+        </GroupBox>
+
+        <GroupBox Header="不可用时底层背景色" Margin="5" Grid.Row="3" Name="groupBox7" VerticalAlignment="Top">
+            <Grid >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" MinHeight="30"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Label Content="背景颜色:"  Name="label5" VerticalAlignment="Center"/>
+                <xctk:ColorPicker SelectedColor="{Binding DisableBackgroundBrush}" VerticalAlignment="Center" MinWidth="120" />
+                <Button Height="{Binding MyHeight}" Background="{Binding DisableBackgroundBrush}" Grid.Row="1" Grid.ColumnSpan="2" Margin="20,5,20,5" Name="button6" VerticalAlignment="Center" MinWidth="120" />
+            </Grid>
+        </GroupBox>
+
+        <Button Content="点击查看以上设置叠加效果" Grid.Row="5" Margin="20,5,20,5" Command="{Binding CmdLook}" Name="button2" VerticalAlignment="Center" MinWidth="120" />
+        <Button Content="保存设置" Grid.Row="5" Margin="20,5,20,5" Grid.Column="1" Command="{Binding CmdSave}" Name="button3" VerticalAlignment="Center" MinWidth="120" />
+        <ScrollBar Grid.Row="4"  Grid.ColumnSpan="2" HorizontalAlignment="Center"  Name="scrollBar5" Orientation="Horizontal" VerticalAlignment="Center" MinWidth="120" />
+    </Grid>
+    </ScrollViewer>
+</UserControl>
+

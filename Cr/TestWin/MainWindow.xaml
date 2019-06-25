@@ -1,0 +1,8 @@
+﻿<Window x:Class="TestWin.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="300" Width="500" xmlns:my="clr-namespace:Framework.Common.Controls">
+    <Grid>
+        <my:DataPager TotalCount="500" PageSize="20" x:Name="dataPager1" VerticalAlignment="Top" />
+    </Grid>
+</Window>

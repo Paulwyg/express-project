@@ -1,0 +1,36 @@
+﻿<UserControl x:Class="Wlst.Ux.CoreDataEventMonitor.SocketDataMonitorViewModel.Views.SocketDataMonitorView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Border Margin="5,5,5,5" CornerRadius="4" BorderBrush="AliceBlue" BorderThickness="0">
+        <Grid>
+            <Grid.RowDefinitions >
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Button Margin="0,0,20,0" Height="25" Width="120" VerticalAlignment="Center" HorizontalAlignment="Right" Content="{Binding CmdName}" Command="{Binding CmdMonitor}"></Button>
+            <ListView  
+            AllowDrop="True" Grid.Row="1"   ItemsSource="{Binding Path=Items}" >
+                <ListView.View>
+                    <GridView  AllowsColumnReorder="true" ColumnHeaderToolTip="All Items Here">
+
+                        <GridViewColumn Header="DtTime"    DisplayMemberBinding="{Binding Path=DtTime}"  Width="40"  />
+                        <GridViewColumn Header="Type"    DisplayMemberBinding="{Binding Path=SocketDataType}" Width="110" />
+
+                        <GridViewColumn Header="Value" DisplayMemberBinding="{Binding Path=Id}" Width="90" />
+                        <GridViewColumn Header="Guid" DisplayMemberBinding="{Binding Path=Guid}" Width="130"/>
+                        <GridViewColumn Header="Cmd" DisplayMemberBinding="{Binding Path=Cmd}" Width="350" />
+                        <GridViewColumn Header="OtherArug" DisplayMemberBinding="{Binding Path=OtherArug}" Width="100" />
+                        <GridViewColumn Header="Data" DisplayMemberBinding="{Binding Path=Data}" Width="50" />
+                        <GridViewColumn Header="MaxTimesSnd"    DisplayMemberBinding="{Binding Path=MaxTimesSnd}"  Width="40"  />
+
+                    </GridView>
+                </ListView.View>
+            </ListView>
+
+        </Grid>
+    </Border>
+</UserControl>

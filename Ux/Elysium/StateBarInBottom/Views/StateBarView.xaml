@@ -1,0 +1,143 @@
+﻿<UserControl x:Class="Wlst.Ux.StateBarModule.StateBarInBottom.Views.StateBarView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+               xmlns:wpfspark="clr-namespace:WPFSpark;assembly=WPFSpark"
+             mc:Ignorable="d" >
+    <Grid  Background="{x:Null }" >
+
+        <Grid>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <!--终端连接信息-->
+                <Grid Grid.Row="4" Margin="0,30,0,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"></RowDefinition>
+                        <RowDefinition Height="25"></RowDefinition>
+                        
+                        <RowDefinition Height="30"></RowDefinition>
+                        <RowDefinition Height="25"></RowDefinition>
+
+                        <RowDefinition Height="30"></RowDefinition>
+                        <RowDefinition Height="25"></RowDefinition>
+
+                        <RowDefinition Height="30"></RowDefinition>
+                        <RowDefinition Height="25"></RowDefinition>
+                    </Grid.RowDefinitions>
+
+                    <Border Name="ErrNumsBackColor" CornerRadius="10" VerticalAlignment="Center"  MouseLeftButtonUp="TextBox_MouseDoubleClick" Height="20" Width="40"  HorizontalAlignment="Center"  Background="#93c47d"  BorderThickness="0" Visibility="{Binding IsShowNewErrArriveOnUi}" >
+                        <TextBox Text="{Binding ErrNums}"  Cursor="Arrow" MouseDoubleClick="TextBox_MouseDoubleClick"  Foreground="White" IsReadOnly="True" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"  FontSize="16" Background="{x:Null}" TextChanged="TextBox_TextChanged" BorderThickness="0" />
+                    </Border>
+                    <TextBlock Text="新故障" Grid.Row="1"  HorizontalAlignment="Center" VerticalAlignment="Top" Foreground="White" Visibility="{Binding IsShowNewErrArriveOnUi}"></TextBlock>
+
+
+                    <Border CornerRadius="10"  Grid.Row="2" VerticalAlignment="Center" Height="20" Width="40"  HorizontalAlignment="Center"   MouseLeftButtonUp="TextBox_MouseDoubleClick_1"  Background="#00B031"  BorderThickness="0"  >
+                        <TextBox Text="{Binding OnLineRuts}" Cursor="Arrow" Foreground="White" IsReadOnly="True" HorizontalAlignment="Center" VerticalAlignment="Center" MouseDoubleClick="TextBox_MouseDoubleClick_1"  HorizontalContentAlignment="Center"   VerticalContentAlignment="Center"  FontSize="16" Background="{x:Null}" BorderThickness="0"  />
+                    </Border>
+                    <TextBlock Text="在线" Grid.Row="3"  HorizontalAlignment="Center" VerticalAlignment="Top" Foreground="White"></TextBlock>
+
+
+                    <Border CornerRadius="10"  Grid.Row="4" VerticalAlignment="Center" Height="20" HorizontalAlignment="Center"   Width="40" Background="#12ADDB"  BorderThickness="0" >
+                        <TextBox Text="{Binding UsedRtus}" Cursor="Arrow" Foreground="White"  IsReadOnly="True" HorizontalAlignment="Center" VerticalAlignment="Center"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center"   FontSize="16" Background="{x:Null}" BorderThickness="0" />
+                    </Border>
+                    <TextBlock Text="使用" Grid.Row="5" HorizontalAlignment="Center" VerticalAlignment="Top" Foreground="White"></TextBlock>
+
+                    <Border CornerRadius="10"  Grid.Row="6" VerticalAlignment="Center" Height="20"  HorizontalAlignment="Center"  Width="40" Background="#2D55BE"  BorderThickness="0" >
+                        <TextBox Text="{Binding RtusTotals}" Cursor="Arrow" Foreground="White"  IsReadOnly="True"  HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"   FontSize="16" Background="{x:Null}" BorderThickness="0" />
+                    </Border>
+                    <TextBlock Text="总数" Grid.Row="7"  HorizontalAlignment="Center" VerticalAlignment="Top" Foreground="White"></TextBlock>
+                </Grid>
+
+
+                <!--通信连接-->
+                <Grid Grid.Row="5" Margin="0,15,0,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="20"></RowDefinition>
+                        <RowDefinition Height="22"></RowDefinition>
+
+                        <!--<RowDefinition Height="20"></RowDefinition>
+                        <RowDefinition Height="22"></RowDefinition>-->
+
+                    </Grid.RowDefinitions>
+
+
+                    <Ellipse HorizontalAlignment="Center" VerticalAlignment="Center" Fill="{Binding ConColor}" Width="15" Height="15" StrokeThickness="0"/>
+                    <TextBlock Text="{Binding ConName}" Grid.Row="1" HorizontalAlignment="Center" ToolTip="{Binding ConTitps}" VerticalAlignment="Top" Foreground="White"></TextBlock>
+
+
+
+                    <!--<Ellipse Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" Fill="{Binding MidConColor}" Width="15" Height="15" StrokeThickness="0"/>
+                    <TextBlock Text="{Binding MidConName}" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Top" Foreground="White"></TextBlock>-->
+
+                </Grid>
+
+                <!--日出日落-->
+                <Grid Grid.Row="6" Margin="0,15,0,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="55"></RowDefinition>
+                        <RowDefinition Height="55"></RowDefinition>
+                        <RowDefinition Height="55"></RowDefinition>
+                        <RowDefinition Height="55"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <StackPanel  Margin="0,5,0,5" Grid.Row="0" Visibility="{Binding ShowWarning}" HorizontalAlignment="Left" >
+
+                        <TextBlock Text="{Binding LuxWarning}"  Margin="10,0,0,0" 
+                                   HorizontalAlignment="Left"  VerticalAlignment="Center"  FontSize="14" Foreground="Red" ></TextBlock>
+                        </StackPanel>
+
+                    <StackPanel  Margin="0,5,0,5" Grid.Row="1" Visibility="{Binding IsLuxVisi}" HorizontalAlignment="Left" >
+                        
+                        <Image Height="24" Width="24" x:Name="sunvalue"></Image>
+
+                        <TextBlock Text="{Binding LuxValuex}" ToolTip="{Binding LuxTooltips}" Mouse.MouseUp="TextBlock_MouseUp_2" Margin="0,0,0,0" 
+                                   HorizontalAlignment="Left"  VerticalAlignment="Center"  FontSize="14" Foreground="White"></TextBlock>
+                        </StackPanel>
+                    <StackPanel  Margin="0,5,0,5" Grid.Row="2" HorizontalAlignment="Left" >
+                        <Image Height="24" Width="24" x:Name="sunraise"></Image>
+                        
+                        <!--<TextBlock Text="{Binding TimeSunRaise}" ToolTip="双击查看即将执行的任务安排" Mouse.MouseUp="TextBlock_MouseUp" Margin="10,0,0,0"
+                                   HorizontalAlignment="Left" VerticalAlignment="Center"  FontSize="16" Foreground="White"></TextBlock>-->
+                        <TextBlock Text="{Binding TimeSunRaise}" ToolTip="双击查看即将执行的时间表安排" Mouse.MouseUp="TextBlock_MouseUp_1" Margin="0,0,0,0"
+                                   HorizontalAlignment="Left" VerticalAlignment="Center"  FontSize="16" Foreground="White"></TextBlock>
+                    </StackPanel>
+
+                    <StackPanel Margin="0,5,0,5" Grid.Row="3"  HorizontalAlignment="Left">
+                        <Image Height="24" Width="24" x:Name="sunset"></Image>
+
+                        <TextBlock Text="{Binding TimeSunSet}"  ToolTip="双击查看即将执行的时间表安排" Mouse.MouseUp="TextBlock_MouseUp_1" Margin="0,0,0,0" 
+                                   HorizontalAlignment="Left" VerticalAlignment="Center"  FontSize="16" Foreground="White"></TextBlock>
+                    </StackPanel>
+
+                </Grid>
+
+
+                <!--时钟-->
+                <Grid Grid.Row="7" Margin="0,0,0,0">
+                    <Grid.RowDefinitions>
+                        <!--<RowDefinition Height="25"></RowDefinition>-->
+                        <RowDefinition Height="0"></RowDefinition>
+                        <!--<RowDefinition Height="25"></RowDefinition>-->
+                    </Grid.RowDefinitions>
+
+                    <!--<TextBlock Text="{Binding TimeNowHour}"   FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White"></TextBlock>-->
+                    <!--<TextBlock Grid.Row="1"  Text="{Binding TimeNowMinute}" HorizontalAlignment="Center" VerticalAlignment="Center"  FontSize="14" Foreground="White"></TextBlock>-->
+                    <!--<TextBlock Grid.Row="2"  Text="{Binding Rightx}" HorizontalAlignment="Center" VerticalAlignment="Center"  FontSize="14" Foreground="White"></TextBlock>-->
+                </Grid>
+
+
+            </Grid>
+        </Grid>
+
+    </Grid>
+</UserControl>

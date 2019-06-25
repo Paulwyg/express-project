@@ -1,0 +1,58 @@
+﻿<UserControl x:Class="Elysium.ThemesSet.AppleWindowSet.AppleWindowAttri"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="500">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto" MinHeight="30"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <GroupBox Header="AppleWindow窗体设置">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" MinHeight="30"/>
+                    <RowDefinition Height="Auto" MinHeight="30"/>
+                    <RowDefinition Height="Auto" MinHeight="30"/>
+                    <RowDefinition Height="Auto" MinHeight="30"/>
+                    <RowDefinition Height="Auto" MinHeight="30"/>
+                </Grid.RowDefinitions>
+                <Label VerticalAlignment="Center" Content="背景颜色:" />
+                <Label Grid.Row="1" VerticalAlignment="Center" Content="字体颜色："/>
+                <Label Grid.Row="2" VerticalAlignment="Center" Content="窗体颜色："/>
+                <Label Grid.Row="3" VerticalAlignment="Center" Content="边框颜色："/>
+                <Label Grid.Row="4" VerticalAlignment="Center" Content="边框厚度："/>
+                
+                <xctk:ColorPicker Margin="5,2,5,2"  Grid.Column="1" MinWidth="120" MinHeight="25" SelectedColor="{Binding Background}" />
+                <xctk:ColorPicker Margin="5,2,5,2" Grid.Row="1"  Grid.Column="1" MinWidth="120" MinHeight="25" SelectedColor="{Binding Foreground}" />
+                <xctk:ColorPicker Margin="5,2,5,2" Grid.Row="2"  Grid.Column="1" MinWidth="120" MinHeight="25" SelectedColor="{Binding HeaderBrush}" />
+                <xctk:ColorPicker Margin="5,2,5,2" Grid.Row="3"  Grid.Column="1" MinWidth="120" MinHeight="25" SelectedColor="{Binding BorderBrush}" />
+                <TextBox Margin="5,2,5,2" Text="{Binding BorderThickness}" Grid.Row="4" Grid.Column="1" MinWidth="120" MinHeight="23"/>
+            </Grid>
+        </GroupBox>
+        <StackPanel Grid.Column="1">
+            <TextBlock Width="200" Text="窗体" Background="{Binding HeaderBrush}" Foreground="{Binding Foreground}"/>
+            <TextBox Background="{Binding Background}" BorderThickness="{Binding BorderThickness}" BorderBrush="{Binding BorderBrush}" Width="200" Height="200"/>
+        </StackPanel>
+        <Grid Grid.Row="1" Grid.ColumnSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="2" MinWidth="120" Margin="20,2,20,2" Content="保存设置" MinHeight="23" Command="{Binding CmdSave}" Name="button3"  />
+        </Grid>
+          
+    </Grid>
+</UserControl>

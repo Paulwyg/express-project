@@ -1,0 +1,405 @@
+﻿<UserControl x:Class="Wlst.Ux.Wj1090Module.LduInfoSet.View.LduInfoSetView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="500" d:DesignWidth="1200">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="30"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Row="2" VerticalAlignment="Center" Orientation="Horizontal">
+                <TextBlock   Text="序号:"></TextBlock>
+                <TextBlock  Text="{Binding PhyId}"></TextBlock>
+
+                <TextBlock Margin="20,0,0,0" Text="集中控制器    地址:"/>
+                <TextBlock Text="{Binding RtuId}"/>
+
+                <TextBlock Margin="20,0,0,0" Text="名称:"></TextBlock>
+                <TextBlock  Text="{Binding RtuName}"></TextBlock>
+
+                <TextBlock Margin="20,0,0,0" Text="连接主设备    地址:"></TextBlock>
+                <TextBlock  Text="{Binding AttachRtuId}"></TextBlock>
+
+                <TextBlock Margin="20,0,0,0" Text="名称:"></TextBlock>
+                <TextBlock  Text="{Binding AttachRtuName}"></TextBlock>
+
+            </StackPanel>
+            
+            <!--<TextBlock Text="集中控制器    地址:"/>
+            <TextBlock Grid.Column="1" Text="{Binding RtuId}"/>-->
+
+            <!--<TextBlock Grid.Column="2" Text="           序号:"></TextBlock>
+            <TextBlock Grid.Column="3" Text="{Binding PhyId}"></TextBlock>-->
+
+            <!--<TextBlock Grid.Column="4" Text="           名称:"></TextBlock>
+            <TextBlock Grid.Column="5" Text="{Binding RtuName}"></TextBlock>-->
+
+            <!--<TextBlock Grid.Row="1" Grid.Column="0" Text="连接主设备    地址:"></TextBlock>
+            <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding AttachRtuId}"></TextBlock>
+
+            <TextBlock Grid.Row="1" Grid.Column="2" Text="           名称:"></TextBlock>
+            <TextBlock Grid.Row="1" Grid.Column="3" Text="{Binding AttachRtuName}"></TextBlock>-->
+            
+            <Button Command="{Binding CmdSetLightOnRate}" Grid.Row="2" Grid.Column="6" Content="设置亮灯率" Margin="0,0,320,0" Width="120" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+            <Button Command="{Binding CmdClearLightOnRate}" Grid.Row="2" Grid.Column="6" Content="清除亮灯率" Margin="0,0,100,0" Width="120" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+        </Grid>
+
+        <ListView MinWidth="600" MaxWidth="1300" MaxHeight="300" ItemsSource="{Binding LineItems}" Grid.Row="1">
+            <ListView.View >
+                <GridView AllowsColumnReorder="true" ColumnHeaderToolTip="All Here">
+                    <GridViewColumn  Header="序号" DisplayMemberBinding="{Binding LduLineID}" Width="50" />
+                    <GridViewColumn  Header="线路名称"  Width="180">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBox Margin="5,0,5,0" Text="{Binding LduLineName}" IsEnabled="{Binding IsEdit}" Width="160" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    
+                    <GridViewColumn  Header="回路绑定"  Width="120">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <!--<TextBox Margin="5,0,5,0" Text="{Binding LduLoopID}" IsEnabled="{Binding IsEdit}" Width="80" HorizontalAlignment="Center" VerticalAlignment="Center"/>-->
+                                <ComboBox Grid.Column="1" Grid.Row="1"  IsEnabled="{Binding IsEdit}" MinWidth="90" HorizontalAlignment="Left" VerticalAlignment="Center"
+                                 ItemsSource="{Binding LoopCollection}" 
+                                 SelectedItem="{Binding SelectedLoopVlue}">
+                                    <ComboBox.ItemTemplate>
+                                        <DataTemplate >
+                                            <TextBlock VerticalAlignment="Center" Text="{Binding Name}"/>
+                                        </DataTemplate>
+                                    </ComboBox.ItemTemplate>
+                                </ComboBox>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn  Header="是否编辑">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <CheckBox Content="编辑"  Margin="5,0,5,0" VerticalAlignment="Center" HorizontalAlignment="Center" IsChecked="{Binding IsEdit}"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn   Header="启用">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <CheckBox Content="使用" Margin="5,0,5,0" VerticalAlignment="Center" HorizontalAlignment="Center" IsEnabled="{Binding IsEdit}" IsChecked="{Binding IsUsed}"></CheckBox>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn  Header="互感器量程" Width="80">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBox Margin="5,0,5,0" Text="{Binding MutualInductorRadio}" Width="60" VerticalAlignment="Center" HorizontalAlignment="Center" IsEnabled="{Binding IsEdit}"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn  Header="相位"  >
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <ComboBox Margin="5,0,5,0" VerticalAlignment="Center"
+                                          ItemsSource="{Binding CollectionLduPhase}" SelectedIndex="{Binding SelectLduPhaseIndex}"
+                                          HorizontalAlignment="Center" IsEnabled="{Binding IsEdit}">
+                                    <ItemsControl.ItemTemplate >
+                                        <DataTemplate>
+                                            <TextBlock Width="40" Text="{Binding Name}"></TextBlock>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ComboBox>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn  Header="末端灯杆号"  Width="120" >
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBox Margin="5,0,5,0" Width="100" HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding LduEndLampportSn}" IsEnabled="{Binding IsEdit}"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn>
+                        <GridViewColumn.HeaderTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <TextBlock Text="关灯阻抗"></TextBlock>
+                                    <TextBlock HorizontalAlignment="Center"  Text=" 门限 "></TextBlock>
+                                </StackPanel>
+                            </DataTemplate>
+                        </GridViewColumn.HeaderTemplate>
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBox  Margin="5,0,5,0" Text="{Binding LduLightoffImpedanceLimit}" IsEnabled="{Binding IsEdit}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn >
+                        <GridViewColumn.HeaderTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <TextBlock Text="关灯信号"></TextBlock>
+                                    <TextBlock HorizontalAlignment="Center"  Text=" 门限 "></TextBlock>
+                                </StackPanel>
+                            </DataTemplate>
+                        </GridViewColumn.HeaderTemplate>
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBox Margin="5,0,5,0" VerticalAlignment="Center" HorizontalAlignment="Center" Text="{Binding LduLightoffSingleLimit}" IsEnabled="{Binding IsEdit}"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn >
+                        <GridViewColumn.HeaderTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <TextBlock Text="开灯阻抗"></TextBlock>
+                                    <TextBlock HorizontalAlignment="Center"  Text=" 门限 "></TextBlock>
+                                </StackPanel>
+                            </DataTemplate>
+                        </GridViewColumn.HeaderTemplate>
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBox Margin="5,0,5,0" Text="{Binding LduLightonImpedanceLimit}" IsEnabled="{Binding IsEdit}" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn >
+                        <GridViewColumn.HeaderTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <TextBlock Text="开灯信号"></TextBlock>
+                                    <TextBlock HorizontalAlignment="Center"  Text=" 门限 "></TextBlock>
+                                </StackPanel>
+                            </DataTemplate>
+                        </GridViewColumn.HeaderTemplate>
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBox Margin="5,0,5,0" Text="{Binding LduLightonSingleLimit}" IsEnabled="{Binding IsEdit}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn >
+                        <GridViewColumn.HeaderTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <TextBlock Text="开灯亮灯率"></TextBlock>
+                                    <TextBlock HorizontalAlignment="Center"  Text=" 门限 "></TextBlock>
+                                </StackPanel>
+                            </DataTemplate>
+                        </GridViewColumn.HeaderTemplate>
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBox Text="{Binding LduBrightRateAlarmLimit}" IsEnabled="{Binding IsEdit}"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn  Header="主动报警" >
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <CheckBox Margin="5,0,5,0" IsChecked="{Binding AlarmAutoReport}" Content="报警" IsEnabled="{Binding IsEdit}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn  Header="线路短路">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <CheckBox Margin="5,0,5,0" Content="报警" IsChecked="{Binding AlarmLineShortCircuit}" IsEnabled="{Binding IsEdit}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn  Header="关灯阻抗">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <CheckBox Margin="5,0,5,0" Content="报警" IsChecked="{Binding AlarmLineLightOffImpedance}" IsEnabled="{Binding IsEdit}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn  Header="关灯脉冲">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <CheckBox Margin="5,0,5,0" Content="报警" IsChecked="{Binding AlarmLineLightOffSingle}" IsEnabled="{Binding IsEdit}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn  Header="供电变化">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <CheckBox Margin="5,0,5,0" Content="报警" IsChecked="{Binding AlarmLineLosePower}" IsEnabled="{Binding IsEdit}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn  Header="亮灯率变化">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <CheckBox Margin="5,0,5,0" Content="报警" IsChecked="{Binding AlarmLineBrightRate}" IsEnabled="{Binding IsEdit}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn  Header="开灯阻抗">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <CheckBox Margin="5,0,5,0" Content="报警" IsChecked="{Binding AlarmLineLightOpenImpedance}" IsEnabled="{Binding IsEdit}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn  Header="开灯脉冲">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <CheckBox Margin="5,0,5,0" Content="报警" IsChecked="{Binding AlarmLineLightOpenSingel}" IsEnabled="{Binding IsEdit}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <TextBlock Text="{Binding DataRecSuccResponseFlag}" Visibility="{Binding VisiRecSuccResponseFlag}" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="30,0,0,0"/>
+        <Button Content="保存并下发" Command="{Binding CmdSaveAndSnd}" Grid.Row="2" Width="120" HorizontalAlignment="Right"  Margin="0,5,320,5"/>
+        <Button Content="招测" Grid.Row="2" Width="120" Command="{Binding CmdBtnZhaoCe}" HorizontalAlignment="Right" Margin="0,5,100,5"/>
+
+
+        <CheckBox Content="隐藏招测数据" IsChecked="{Binding IsHidenRecData}" Visibility="{Binding LvRecVisi}" Grid.Row="3" Height="20" HorizontalAlignment="Right" VerticalAlignment="Top"/>
+        <ListView Margin="0,23,0,0" Visibility="{Binding LvRecVisi}" MinWidth="600" MaxWidth="1300" ItemsSource="{Binding RecLineItems}" Grid.Row="3">
+            <ListView.View >
+                <GridView AllowsColumnReorder="true" ColumnHeaderToolTip="All Here">
+                    <GridViewColumn  Header="序号" DisplayMemberBinding="{Binding LduLineID}" Width="50" />
+                    <GridViewColumn  Header="线路名称" DisplayMemberBinding="{Binding LduLineName}" Width="180" />
+                    <GridViewColumn  Header="回路绑定" DisplayMemberBinding="{Binding SelectedLoopVlue.Name}" Width="80" />
+                    <GridViewColumn   Header="启用">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <CheckBox Content="使用" IsChecked="{Binding IsUsed}"></CheckBox>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn  Header="互感器量程" DisplayMemberBinding="{Binding MutualInductorRadio}"/>
+                    <GridViewColumn  Header="相位" DisplayMemberBinding="{Binding LduPhase}" Width="50" />
+                    <GridViewColumn  Header="末端灯杆号" DisplayMemberBinding="{Binding LduEndLampportSn}" Width="120" />
+                    <GridViewColumn  DisplayMemberBinding="{Binding LduLightoffImpedanceLimit}">
+                        <GridViewColumn.HeaderTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <TextBlock Text="关灯阻抗"></TextBlock>
+                                    <TextBlock HorizontalAlignment="Center"  Text=" 门限 "></TextBlock>
+                                </StackPanel>
+                            </DataTemplate>
+                        </GridViewColumn.HeaderTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn  DisplayMemberBinding="{Binding LduLightoffSingleLimit}">
+                        <GridViewColumn.HeaderTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <TextBlock Text="关灯信号"></TextBlock>
+                                    <TextBlock HorizontalAlignment="Center"  Text=" 门限 "></TextBlock>
+                                </StackPanel>
+                            </DataTemplate>
+                        </GridViewColumn.HeaderTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding LduLightonImpedanceLimit}">
+                        <GridViewColumn.HeaderTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <TextBlock Text="开灯阻抗"></TextBlock>
+                                    <TextBlock HorizontalAlignment="Center"  Text=" 门限 "></TextBlock>
+                                </StackPanel>
+                            </DataTemplate>
+                        </GridViewColumn.HeaderTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn  DisplayMemberBinding="{Binding LduLightonSingleLimit}">
+                        <GridViewColumn.HeaderTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <TextBlock Text="开灯信号"></TextBlock>
+                                    <TextBlock HorizontalAlignment="Center"  Text=" 门限 "></TextBlock>
+                                </StackPanel>
+                            </DataTemplate>
+                        </GridViewColumn.HeaderTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding LduBrightRateAlarmLimit}" >
+                        <GridViewColumn.HeaderTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <TextBlock Text="开灯亮灯率"></TextBlock>
+                                    <TextBlock HorizontalAlignment="Center"  Text=" 门限 "></TextBlock>
+                                </StackPanel>
+                            </DataTemplate>
+                        </GridViewColumn.HeaderTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn  Header="主动报警">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <CheckBox Content="报警" IsChecked="{Binding AlarmAutoReport}"></CheckBox>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn  Header="线路短路">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <CheckBox Content="报警" IsChecked="{Binding AlarmLineShortCircuit}"></CheckBox>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn  Header="关灯阻抗">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <CheckBox Content="报警" IsChecked="{Binding AlarmLineLightOffImpedance}"></CheckBox>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn  Header="关灯脉冲">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <CheckBox Content="报警" IsChecked="{Binding AlarmLineLightOffSingle}"></CheckBox>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn  Header="供电变化">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <CheckBox Content="报警" IsChecked="{Binding AlarmLineLosePower}"></CheckBox>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn  Header="亮灯率变化">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <CheckBox Content="报警" IsChecked="{Binding AlarmLineBrightRate}"></CheckBox>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn  Header="开灯阻抗">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <CheckBox Content="报警" IsChecked="{Binding AlarmLineLightOpenImpedance}"></CheckBox>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn  Header="开灯脉冲">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <CheckBox Content="报警" IsChecked="{Binding AlarmLineLightOpenSingel}"></CheckBox>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+    </Grid>
+</UserControl>

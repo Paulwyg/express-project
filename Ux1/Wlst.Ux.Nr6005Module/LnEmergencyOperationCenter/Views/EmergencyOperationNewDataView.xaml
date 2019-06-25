@@ -1,0 +1,85 @@
+﻿<UserControl x:Class="Wlst.Ux.Nr6005Module.LnEmergencyOperationCenter.Views.EmergencyOperationNewDataView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:Converters="clr-namespace:Wlst.Ux.Nr6005Module.LnEmergencyOperationCenter.Converters"
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="950">
+    <UserControl.Resources>
+        <Converters:BoolToVisibleConverter x:Key="BoolToVisible"/>
+        <Converters:OppositeBoolToVisibleConverter x:Key="OppositeBoolToVisibleConverter"/>
+        <Converters:EnumFilterTypeConverter x:Key="EnumFilterTypeConverter"/>
+        <Converters:StateConverter x:Key="imageconverter"/>
+        <Converters:RtuStateConverter x:Key="rtustateconverter"/>
+        <Converters:OpenCloseAnsConverter x:Key="OpenCloseAnsConverter"/>
+        <Converters:SelectionAnsConverter x:Key="SelectionAnsConverter"/>
+        <Converters:SyncTimeAnsConverter x:Key="SyncTimeAnsConverter"/>
+        <Converters:WeekSndAnsConverter x:Key="WeekSndAnsConverter"/>
+        <Converters:EnumToBoolConverter x:Key="EnumToBoolConverter"/>
+        <Converters:OpposittBoolConverter x:Key="OppositeBoolConverter"/>
+        <Converters:GridEnumToBoolConverter x:Key="GridEnumToBoolConverter"/>
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" MinHeight="30"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*" MinHeight="30"/>
+            <RowDefinition Height="Auto" MinHeight="30"/>
+            <RowDefinition Height="Auto" MinHeight="30"/>
+            <!--<RowDefinition Height="Auto" MinHeight="30"/>-->
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <DockPanel Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="5,0,0,0">
+            <Label  VerticalAlignment="Center"  Width="Auto" Content="巡测:"></Label>
+            <Label  VerticalAlignment="Center" Content="{Binding SumPartolTmlNumer}" Width="50"></Label>
+            <Label  VerticalAlignment="Center"  Width="Auto" Content="应答:"></Label>
+            <Label  VerticalAlignment="Center" Content="{Binding SumAnswerPartolTmlNumber}" Width="50"></Label>
+        </DockPanel>
+      
+            
+        <Button Content="巡测应急终端"   Width="100" Height="25" Margin="10,5,0,5" Grid.Column="2"   HorizontalAlignment="Center" Command="{Binding CmdPatrolEmergency}"   />
+        <Button Content="补测"   Width="100" Height="25" Margin="10,5,0,5" Grid.Column="3"   HorizontalAlignment="Left" Command="{Binding CmdRePatrolEmergency}"   />
+        <Button Content="导出"   Width="100" Height="25" Margin="10,5,0,5" Grid.Column="3"  Grid.Row="3" HorizontalAlignment="Left" Command="{Binding CmdExport}"   />
+        <!--<CheckBox Content="异常" IsChecked="{Binding IsAbnormalChecked}"  Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center"  Margin="10,0,0,0" />-->
+        <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground1}"  Grid.Row="3" Grid.ColumnSpan="2" Width="400" Text="{Binding AnsRemind}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0"/>
+
+        <telerik:RadGridView x:Name="RadGridView1" ShowGroupPanel="False"  Margin="5,5,5,5"
+                             MinWidth="600"  Grid.Row="2" HorizontalAlignment="Left"       Grid.ColumnSpan="4"
+                             ItemsSource="{Binding MeasurePatrolData}"   RowIndicatorVisibility="Collapsed" AlternationCount="0"
+                   IsReadOnly="True"  AutoGenerateColumns="False" ShowColumnHeaders="True">
+            <telerik:RadGridView.RowStyle>
+                <Style TargetType="telerik:GridViewRow">
+                    <Setter Property="Foreground"    Value="{Binding Path=Color, Mode=TwoWay}" />
+                </Style>
+            </telerik:RadGridView.RowStyle>
+            <telerik:RadGridView.Columns>
+                <telerik:GridViewDataColumn Header="序号" HeaderTextAlignment="Center" IsFilterable="False" DataMemberBinding="{Binding Index}" IsReadOnly="True" Width="50"/>
+                <telerik:GridViewDataColumn Header="地址" HeaderTextAlignment="Center" IsFilterable="False" DataMemberBinding="{Binding PhysicalId, StringFormat={}{0:D4}}" IsReadOnly="True" Width="50"/>
+                <telerik:GridViewDataColumn Header="终端名称" IsFilterable="False" DataMemberBinding="{Binding RtuName}" IsReadOnly="True" Width="150"/>
+                <telerik:GridViewDataColumn Header="回路"  IsFilterable="False"  DataMemberBinding="{Binding LoopId}"  IsReadOnly="True" Width="50"/>
+                <telerik:GridViewDataColumn Header="回路名称"  IsFilterable="False"  DataMemberBinding="{Binding LoopName}"  IsReadOnly="True" Width="150"/>
+                <telerik:GridViewDataColumn Header="接触器状态"  DataMemberBinding="{Binding SwitchInState}"  IsReadOnly="True" Width="95"/>
+                <telerik:GridViewDataColumn Header="电流"  DataMemberBinding="{Binding Current}"  IsReadOnly="True" Width="65"/>
+                <telerik:GridViewDataColumn Header="电压"  IsFilterable="False"  DataMemberBinding="{Binding Voltage}"  IsReadOnly="True" Width="65"/>
+                <telerik:GridViewDataColumn Header="采集时间"  IsFilterable="False"  DataMemberBinding="{Binding ReceiveNewDataTime,StringFormat={}\{0:yyyy-MM-dd HH:mm:ss\}}"  IsReadOnly="True" MinWidth="100"/>
+                <telerik:GridViewDataColumn Header="状态"  DataMemberBinding="{Binding State}"  IsReadOnly="True" MinWidth="50"/>
+                <telerik:GridViewDataColumn Header="归属组"   DataMemberBinding="{Binding GroupName}" IsReadOnly="True" Width="150" />
+                <telerik:GridViewDataColumn Header="来源"   DataMemberBinding="{Binding Remarks}" IsReadOnly="True" Width="150" />
+                
+            </telerik:RadGridView.Columns>
+        </telerik:RadGridView>
+
+
+    </Grid>
+
+    <!--<Button Content="导出"   Width="100" Margin="10,5,0,5"   HorizontalAlignment="Left" Command="{Binding CmdExportEmergency}"   />-->
+
+
+</UserControl>

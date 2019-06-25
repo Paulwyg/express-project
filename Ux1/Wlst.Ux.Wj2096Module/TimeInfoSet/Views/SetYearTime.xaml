@@ -1,0 +1,114 @@
+﻿<UserControl x:Class="Wlst.Ux.Wj2096Module.TimeInfoSet.Views.SetYearTime"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="800" Name="setYear">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="30"></RowDefinition>
+        </Grid.RowDefinitions>
+        <telerik:RadGridView AutoGenerateColumns="False" ItemsSource="{Binding RecordSun}" 
+                               x:Name="SunRasieTable1"
+								 Background="Transparent" Margin="0,5,0,0"
+								  HorizontalAlignment="Stretch" 
+								  VerticalAlignment="Stretch" 
+                                  CanUserFreezeColumns="False" 
+								  CanUserReorderColumns="False"  AlternationCount="0"
+								  RowIndicatorVisibility="Collapsed"   ShowGroupPanel="False" ShowColumnHeaders="True" SnapsToDevicePixels="True"
+                                         FrozenColumnCount="1" >
+
+            <telerik:RadGridView.Columns>
+                <telerik:GridViewDataColumn Header="日 期" IsFilterable="False" IsSortable="False" MinWidth="45" MaxWidth="60" DataMemberBinding="{Binding Records[0].Name}" IsReadOnly="True" />
+                <telerik:GridViewDataColumn Header="1 月" IsFilterable="False" IsSortable="False"   MinWidth="70" MaxWidth="120">
+                    <telerik:GridViewDataColumn.CellTemplate>
+                        <DataTemplate >
+                            <TextBox Text="{Binding Records[1].Name,Mode=TwoWay}" />
+                        </DataTemplate>
+                    </telerik:GridViewDataColumn.CellTemplate>
+                </telerik:GridViewDataColumn>
+                <telerik:GridViewDataColumn Header="2 月" IsFilterable="False" IsSortable="False"   MinWidth="70" MaxWidth="120">
+                    <telerik:GridViewDataColumn.CellTemplate>
+                        <DataTemplate >
+                            <TextBox Text="{Binding  Records[2].Name,Mode=TwoWay}" Foreground="{Binding Records[2].Color}"/>
+                        </DataTemplate>
+                    </telerik:GridViewDataColumn.CellTemplate>
+                </telerik:GridViewDataColumn>
+                <telerik:GridViewDataColumn Header="3 月" IsFilterable="False" IsSortable="False"  MinWidth="70" MaxWidth="120">
+                    <telerik:GridViewDataColumn.CellTemplate>
+                        <DataTemplate >
+                            <TextBox Text="{Binding  Records[3].Name,Mode=TwoWay}" Foreground="{Binding Records[3].Color}"/>
+                        </DataTemplate>
+                    </telerik:GridViewDataColumn.CellTemplate>
+                </telerik:GridViewDataColumn>
+                <telerik:GridViewDataColumn Header="4 月" IsFilterable="False" IsSortable="False"   MinWidth="70" MaxWidth="120">
+                    <telerik:GridViewDataColumn.CellTemplate>
+                        <DataTemplate >
+                            <TextBox Text="{Binding  Records[4].Name,Mode=TwoWay}" Foreground="{Binding Records[4].Color}"/>
+                        </DataTemplate>
+                    </telerik:GridViewDataColumn.CellTemplate>
+                </telerik:GridViewDataColumn>
+                <telerik:GridViewDataColumn Header="5 月" IsFilterable="False" IsSortable="False"   MinWidth="70" MaxWidth="120">
+                    <telerik:GridViewDataColumn.CellTemplate>
+                        <DataTemplate >
+                            <TextBox Text="{Binding  Records[5].Name,Mode=TwoWay}" Foreground="{Binding Records[5].Color}"/>
+                        </DataTemplate>
+                    </telerik:GridViewDataColumn.CellTemplate>
+                </telerik:GridViewDataColumn>
+                <telerik:GridViewDataColumn Header="6 月" IsFilterable="False" IsSortable="False"   MinWidth="70" MaxWidth="120">
+                    <telerik:GridViewDataColumn.CellTemplate>
+                        <DataTemplate >
+                            <TextBox Text="{Binding  Records[6].Name,Mode=TwoWay}" Foreground="{Binding Records[6].Color}"/>
+                        </DataTemplate>
+                    </telerik:GridViewDataColumn.CellTemplate>
+                </telerik:GridViewDataColumn>
+                <telerik:GridViewDataColumn Header="7 月" IsFilterable="False" IsSortable="False"   MinWidth="70" MaxWidth="120">
+                    <telerik:GridViewDataColumn.CellTemplate>
+                        <DataTemplate >
+                            <TextBox Text="{Binding  Records[7].Name,Mode=TwoWay}" Foreground="{Binding Records[7].Color}"/>
+                        </DataTemplate>
+                    </telerik:GridViewDataColumn.CellTemplate>
+                </telerik:GridViewDataColumn>
+                <telerik:GridViewDataColumn Header="8 月" IsFilterable="False" IsSortable="False"   MinWidth="70" MaxWidth="120">
+                    <telerik:GridViewDataColumn.CellTemplate>
+                        <DataTemplate >
+                            <TextBox Text="{Binding  Records[8].Name,Mode=TwoWay}" Foreground="{Binding Records[8].Color}"/>
+                        </DataTemplate>
+                    </telerik:GridViewDataColumn.CellTemplate>
+                </telerik:GridViewDataColumn>
+                <telerik:GridViewDataColumn Header="9 月" IsFilterable="False" IsSortable="False"   MinWidth="70" MaxWidth="120">
+                    <telerik:GridViewDataColumn.CellTemplate>
+                        <DataTemplate >
+                            <TextBox Text="{Binding  Records[9].Name,Mode=TwoWay}" Foreground="{Binding Records[9].Color}"/>
+                        </DataTemplate>
+                    </telerik:GridViewDataColumn.CellTemplate>
+                </telerik:GridViewDataColumn>
+                <telerik:GridViewDataColumn Header="10 月" IsFilterable="False" IsSortable="False"   MinWidth="70" MaxWidth="120">
+                    <telerik:GridViewDataColumn.CellTemplate>
+                        <DataTemplate >
+                            <TextBox Text="{Binding  Records[10].Name,Mode=TwoWay}" Foreground="{Binding Records[10].Color}"/>
+                        </DataTemplate>
+                    </telerik:GridViewDataColumn.CellTemplate>
+                </telerik:GridViewDataColumn>
+                <telerik:GridViewDataColumn Header="11 月" IsFilterable="False" IsSortable="False"   MinWidth="70" MaxWidth="120">
+                    <telerik:GridViewDataColumn.CellTemplate>
+                        <DataTemplate >
+                            <TextBox Text="{Binding  Records[11].Name,Mode=TwoWay}" Foreground="{Binding Records[11].Color}"/>
+                        </DataTemplate>
+                    </telerik:GridViewDataColumn.CellTemplate>
+                </telerik:GridViewDataColumn>
+                <telerik:GridViewDataColumn Header="12 月" IsFilterable="False" IsSortable="False"   MinWidth="70" MaxWidth="120">
+                    <telerik:GridViewDataColumn.CellTemplate>
+                        <DataTemplate >
+                            <TextBox Text="{Binding  Records[12].Name,Mode=TwoWay}" Foreground="{Binding Records[12].Color}"/>
+                        </DataTemplate>
+                    </telerik:GridViewDataColumn.CellTemplate>
+                </telerik:GridViewDataColumn>
+            </telerik:RadGridView.Columns>
+        </telerik:RadGridView>
+        <!--<Button Grid.Row="1" Margin="0,0,240,0" HorizontalAlignment="Right" Click="Button_Click_1" Content="确 定" Width="120" Height="25"></Button>-->
+        <Button Grid.Row="1" Margin="0,0,70,0" HorizontalAlignment="Right" Click="Button_Click" Content="导 出" Width="120" Height="25"></Button>
+    </Grid>
+</UserControl>

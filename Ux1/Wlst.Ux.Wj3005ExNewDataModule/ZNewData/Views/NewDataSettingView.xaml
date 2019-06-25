@@ -1,0 +1,104 @@
+﻿<UserControl x:Class="Wlst.Ux.Wj3005ExNewDataModule.ZNewData.Views.NewDataSettingView"
+            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:xctk="clr-namespace:PropertyTools.Wpf;assembly=PropertyTools.Wpf"
+             >
+
+
+    <Grid >
+        <Grid >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" MinHeight="30"></RowDefinition>
+                <RowDefinition Height="Auto" MinHeight="30"></RowDefinition>
+                <RowDefinition Height="Auto" MinHeight="30"></RowDefinition>
+                <RowDefinition Height="Auto" MinHeight="30"></RowDefinition>
+                <RowDefinition Height="Auto" MinHeight="30"></RowDefinition>
+                <RowDefinition Height="Auto" MinHeight="30"></RowDefinition>
+                <RowDefinition Height="Auto" MinHeight="30"></RowDefinition>
+                <RowDefinition Height="Auto" MinHeight="30"></RowDefinition>
+                <RowDefinition Height="Auto" MinHeight="30"></RowDefinition>
+                <RowDefinition Height="Auto" MinHeight="30"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+
+            <DockPanel Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center">
+
+                <TextBlock  Text ="回路行数据高度 :  " VerticalAlignment="Center" HorizontalAlignment="Left" ></TextBlock>
+                <TextBox Width="120" Height="23" VerticalAlignment="Center"  Text="{Binding RowHeight,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+
+            </DockPanel>
+
+            <DockPanel Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center">
+
+                <TextBlock  Text ="开关灯时间长度 :  " VerticalAlignment="Center" HorizontalAlignment="Left" ></TextBlock>
+                <TextBox Width="120" Height="23" VerticalAlignment="Center"  Text="{Binding TimeNameLength,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            </DockPanel>
+
+            <DockPanel Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Center">
+                <TextBlock  Text ="显示终端名长度 :  " VerticalAlignment="Center" HorizontalAlignment="Left" ></TextBlock>
+                <TextBox Width="120" Height="23" VerticalAlignment="Center"  Text="{Binding RtuNameLength,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            </DockPanel>
+            <DockPanel Grid.Row="3" HorizontalAlignment="Left" VerticalAlignment="Center">
+                <TextBlock  Text ="显示回路名长度 :  " VerticalAlignment="Center" HorizontalAlignment="Left" ></TextBlock>
+                <TextBox Width="120" Height="23" VerticalAlignment="Center"  Text="{Binding LoopNameLength,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            </DockPanel>
+
+            <DockPanel Grid.Row="4" HorizontalAlignment="Left" VerticalAlignment="Center">
+                <TextBlock  Text ="采样数据的长度 :  " VerticalAlignment="Center" HorizontalAlignment="Left" ></TextBlock>
+                <TextBox Width="120" Height="23" VerticalAlignment="Center" Text="{Binding VaNameLength,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            </DockPanel>
+            <DockPanel Grid.Row="5" HorizontalAlignment="Left" VerticalAlignment="Center">
+                <TextBlock  Text ="开关闭合颜色    :  " VerticalAlignment="Center" HorizontalAlignment="Left" ></TextBlock>
+                <xctk:ColorPicker Width="120"  Height="23"  VerticalAlignment="Center" SelectedColor="{Binding BackgroundColor}"/>
+               
+            </DockPanel>
+            <DockPanel Grid.Row="6" HorizontalAlignment="Left" VerticalAlignment="Center">
+
+                <CheckBox VerticalAlignment="Center" Content="显示回路的序号" IsChecked="{Binding IsShowLoopId}" Width="200"></CheckBox>
+            </DockPanel>
+
+
+            <DockPanel Margin="20,0,0,0" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center">
+                <TextBlock  Text ="开关量输出K1下回路颜色    :  " VerticalAlignment="Center" HorizontalAlignment="Left" ></TextBlock>
+                <xctk:ColorPicker Width="120"  Height="23"  VerticalAlignment="Center" SelectedColor="{Binding K1BackgroundColor}"/>
+            </DockPanel>
+            <DockPanel Margin="20,0,0,0" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center">
+                <TextBlock  Text ="开关量输出K2下回路颜色    :  " VerticalAlignment="Center" HorizontalAlignment="Left" ></TextBlock>
+                <xctk:ColorPicker Width="120"  Height="23"  VerticalAlignment="Center" SelectedColor="{Binding K2BackgroundColor}"/>
+            </DockPanel>
+            <DockPanel Margin="20,0,0,0" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center">
+                <TextBlock  Text ="开关量输出k3下回路颜色    :  " VerticalAlignment="Center" HorizontalAlignment="Left" ></TextBlock>
+                <xctk:ColorPicker Width="120"  Height="23"  VerticalAlignment="Center" SelectedColor="{Binding K3BackgroundColor}"/>
+            </DockPanel>
+            <DockPanel Margin="20,0,0,0" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center">
+                <TextBlock  Text ="开关量输出K4下回路颜色    :  " VerticalAlignment="Center" HorizontalAlignment="Left" ></TextBlock>
+                <xctk:ColorPicker Width="120"  Height="23"  VerticalAlignment="Center" SelectedColor="{Binding K4BackgroundColor}"/>
+            </DockPanel>
+            <DockPanel Margin="20,0,0,0" Grid.Row="4" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center">
+                <TextBlock  Text ="开关量输出K5下回路颜色    :  " VerticalAlignment="Center" HorizontalAlignment="Left" ></TextBlock>
+                <xctk:ColorPicker Width="120"  Height="23"  VerticalAlignment="Center" SelectedColor="{Binding K5BackgroundColor}"/>
+            </DockPanel>
+            <DockPanel Margin="20,0,0,0" Grid.Row="5" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center">
+                <TextBlock  Text ="开关量输出K6下回路颜色    :  " VerticalAlignment="Center" HorizontalAlignment="Left" ></TextBlock>
+                <xctk:ColorPicker Width="120"  Height="23"  VerticalAlignment="Center" SelectedColor="{Binding K6BackgroundColor}"/>
+            </DockPanel>
+
+            <DockPanel Margin="20,0,0,0" Grid.Row="6" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center">
+                <CheckBox HorizontalAlignment="Left" VerticalAlignment="Center" Content="手动选测显示数据" IsChecked="{Binding OnMeasureShowData}"></CheckBox>
+            </DockPanel>
+            <DockPanel Margin="0,0,0,0" Grid.Row="7" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center">
+                <CheckBox HorizontalAlignment="Left" VerticalAlignment="Center" Content="显示回路数据电压电流等单位" IsChecked="{Binding ShowDw}"></CheckBox>
+            </DockPanel>
+
+            <Button  Tag="11060007" Content="应用" Command="{Binding CmdApply}" Grid.ColumnSpan="2" HorizontalAlignment="Right" Margin="0,0,30,0"
+                     Width="120" Height="25"  Grid.Row="8"></Button>
+        </Grid>
+    </Grid>
+</UserControl>

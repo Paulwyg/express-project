@@ -1,0 +1,97 @@
+﻿<UserControl x:Class="Wlst.Ux.Wj9001Module.NewData.View.NewData"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+        <Grid>
+            
+ 
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="30"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="35"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+             <RowDefinition Height="10"></RowDefinition>
+        </Grid.RowDefinitions>
+
+            <TextBlock Text="{Binding Title}" Grid.Column="1"  VerticalAlignment="Center" Margin="5,5,0,0" HorizontalAlignment="Left" ></TextBlock>
+
+            <DataGrid AutoGenerateColumns="False"  Background="Transparent"   ItemsSource="{Binding LeakLineCollection}"    BorderThickness="1"  
+                      VerticalAlignment="Top"  HorizontalAlignment="Left" Margin="5,10,0,0" 
+                     RowHeight="25"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center"  Grid.Row=" 1" Grid.Column="1"
+                                   >
+                <!--Visibility="{Binding IsDataVisi}"-->
+
+                <!--<DataGrid.RowStyle>
+                    <Style TargetType="DataGridRow">
+                        <Setter Property="Background" Value="{Binding Path=Backgroundx, Mode=OneWay}" />
+                    </Style>
+                </DataGrid.RowStyle>-->
+
+                <DataGrid.Columns>
+                    <DataGridTextColumn   Header="回路序号"  Binding="{Binding LeakLineId}"  />
+                    <DataGridTextColumn Header="线路名称" Binding="{Binding LeakLineName}"/>
+                    <!--<DataGridTextColumn     Header="采集时间"  Binding="{Binding DateCreate, StringFormat={}\{0:yyyy-MM-dd HH:mm:ss\}}"  />-->
+                    <DataGridTextColumn  Header="检测模式"   Binding="{Binding LeakMode}"  />
+                    <DataGridTextColumn  Header="动作模式"   Binding="{Binding AutoBreakOrAutoAlarm}"  />
+                    <DataGridTextColumn  Header="闸状态"  Binding="{Binding StateofOnOff}"  />
+                    <DataGridTextColumn  Header="报警状态"  Binding="{Binding StateofAlarm}"  />
+                    <DataGridTextColumn  Header="上限值"  Binding="{Binding UpperAlarmOrBreakforLeakOrTemperature}"  />
+                    <DataGridTextColumn  Header="延迟时间"  Binding="{Binding TimeDelayforBreak}"  />
+                    <DataGridTextColumn  Header="报警时记录值"  Binding="{Binding AlarmValueLeakOrTemperature}"  />
+                    <DataGridTextColumn  Header="当前值"  Binding="{Binding CurrentLeakOrTemperature}"  />
+
+
+                </DataGrid.Columns>
+
+            </DataGrid>
+            <!--<ListView  VirtualizingStackPanel.IsVirtualizing="True" Background="Transparent" Margin="0,0,30,0" Grid.Row=" 1" Grid.Column="1"
+                     HorizontalAlignment="Left" VirtualizingStackPanel.VirtualizationMode="Recycling"  BorderThickness="0" 
+         ItemsSource="{Binding LeakLineCollection}">
+            <ListView.Resources>
+                <Style TargetType="{x:Type ListViewItem}">
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" 
+                                      Value="White"/>
+                        </Trigger>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter Property="Background"
+                                        Value="Transparent"/>
+                        </Trigger>
+                        <Trigger Property="IsSelected" Value="False">
+                            <Setter Property="Background"
+                                        Value="Transparent"/>
+                        </Trigger>
+                    </Style.Triggers>
+
+                </Style>
+            </ListView.Resources>
+
+
+
+            <ListView.View>
+
+                <GridView  AllowsColumnReorder="True">
+                    <GridViewColumn   Header="回路序号"  DisplayMemberBinding="{Binding LeakId}"  />
+                    <GridViewColumn     Header="采集时间"  DisplayMemberBinding="{Binding DateCreate, StringFormat={}\{0:yyyy-MM-dd HH:mm:ss\}}"  />
+                    <GridViewColumn  Header="检测模式"   DisplayMemberBinding="{Binding LeakMode}"  />
+                    <GridViewColumn  Header="动作模式"   DisplayMemberBinding="{Binding AutoBreakOrAutoAlarm}"  />
+                    <GridViewColumn  Header="闸状态"  DisplayMemberBinding="{Binding StateofOnOff}"  />
+                    <GridViewColumn  Header="报警状态"  DisplayMemberBinding="{Binding StateofAlarm}"  />
+                    <GridViewColumn  Header="上限值"  DisplayMemberBinding="{Binding UpperAlarmOrBreakforLeakOrTemperature}"  />
+                    <GridViewColumn  Header="延迟时间"  DisplayMemberBinding="{Binding TimeDelayforBreak}"  />
+                    <GridViewColumn  Header="报警时记录值"  DisplayMemberBinding="{Binding AlarmValueLeakOrTemperature}"  />
+                    <GridViewColumn  Header="当前值"  DisplayMemberBinding="{Binding CurrentLeakOrTemperature}"  />
+
+                </GridView>
+            </ListView.View>
+        </ListView>-->
+    </Grid>
+    </Grid>
+</UserControl>

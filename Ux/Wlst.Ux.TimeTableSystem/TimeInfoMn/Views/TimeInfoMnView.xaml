@@ -1,0 +1,189 @@
+﻿<UserControl x:Class="Wlst.Ux.TimeTableSystem.TimeInfoMn.Views.TimeInfoMnView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+             xmlns:Views="clr-namespace:Wlst.Ux.TimeTableSystem.TimeInfoMn.Views.BaseView"
+             xmlns:AppleWindowSet="clr-namespace:Elysium.ThemesSet.AppleWindowSet;assembly=Elysium"
+             xmlns:Converters="clr-namespace:Elysium.Converters;assembly=Elysium"
+             xmlns:Service="clr-namespace:Wlst.Ux.TimeTableSystem.TimeInfoMn.Services" mc:Ignorable="d" 
+              
+             d:DesignHeight="900" d:DesignWidth="950">
+    <UserControl.Resources>
+        <Converters:BoolToVisibleConverter x:Key="BoolToVisibleConvert"></Converters:BoolToVisibleConverter>
+        <Service:TimeIsOverTwo x:Key="TimeIsOverTwo"/>
+        <Service:TimeIsNoOverTwo x:Key="TimeIsNoOverTwo"/>
+    </UserControl.Resources>
+
+    <Grid Margin="5">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="30"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <DockPanel Grid.Row="0" Visibility="{Binding Visi}">
+            <TextBlock Grid.Row="1" Text="  当前区域为：" VerticalAlignment="Center" Width="100" HorizontalAlignment="Left"></TextBlock>
+            <ComboBox x:Name="AreaComboBox"  Width="150" Height="18" HorizontalAlignment="Left" Margin="6,0,0,0"
+                      ItemsSource="{Binding AreaName}" DisplayMemberPath="Value" SelectedItem="{Binding AreaComboBoxSelected}" ></ComboBox>
+        </DockPanel>
+
+        <Grid Width="Auto" HorizontalAlignment="Left" Grid.Row="1">
+            <telerik:RadGridView  Background="Transparent"  
+								 x:Name="treeview"
+								  ItemsSource="{Binding ChildTreeItems}"  
+								  AutoGenerateColumns="False" 
+								  HorizontalAlignment="Stretch" 
+								  VerticalAlignment="Stretch" 
+                                  MouseDoubleClick="treeListView_MouseDoubleClick"
+								  Margin="5" 
+                                  CanUserFreezeColumns="False" 
+								  CanUserReorderColumns="False" 
+								 
+								  RowIndicatorVisibility="Collapsed" >
+                <!--<telerik:RadTreeListView.ChildTableDefinitions>
+                    <telerik:TreeListViewTableDefinition  ItemsSource="{Binding ChildTreeItems}" />
+                </telerik:RadTreeListView.ChildTableDefinitions>-->
+                <telerik:RadGridView.Columns>
+
+                    <telerik:GridViewDataColumn  Header="地址及类型"     IsFilterable="False"  DataMemberBinding="{Binding PhyIdMsg}" IsReadOnly="True" Width="90"/>
+                    
+
+                    <telerik:GridViewDataColumn  Header="组、终端名称"   DataMemberBinding="{Binding RtuOrGrpName}" IsReadOnly="True"  Width="150" />
+
+
+                    <telerik:GridViewDataColumn Header="K1时间表"  IsReadOnly="True" 
+                                                Width="85">
+                        <telerik:GridViewDataColumn.CellTemplate>
+                            <DataTemplate >
+                                <TextBlock Text="{Binding Items[0].TimeTableName}" ToolTip="{Binding Items[0].TimeTableNameDescriotion}"></TextBlock>
+                            </DataTemplate>
+                        </telerik:GridViewDataColumn.CellTemplate>
+                    </telerik:GridViewDataColumn>
+                    <telerik:GridViewDataColumn Header="K2时间表"  IsReadOnly="True" Width="85">
+                        <telerik:GridViewDataColumn.CellTemplate>
+                            <DataTemplate >
+                                <TextBlock Text="{Binding Items[1].TimeTableName}" ToolTip="{Binding Items[1].TimeTableNameDescriotion}"></TextBlock>
+                            </DataTemplate>
+                        </telerik:GridViewDataColumn.CellTemplate>
+                    </telerik:GridViewDataColumn>
+                    <telerik:GridViewDataColumn Header="K3时间表"  IsReadOnly="True"  Width="85">
+                        <telerik:GridViewDataColumn.CellTemplate>
+                            <DataTemplate >
+                                <TextBlock Text="{Binding Items[2].TimeTableName}" ToolTip="{Binding Items[2].TimeTableNameDescriotion}"></TextBlock>
+                            </DataTemplate>
+                        </telerik:GridViewDataColumn.CellTemplate>
+                    </telerik:GridViewDataColumn>
+                    <telerik:GridViewDataColumn Header="K4时间表"  IsReadOnly="True"  Width="85">
+                        <telerik:GridViewDataColumn.CellTemplate>
+                            <DataTemplate >
+                                <TextBlock Text="{Binding Items[3].TimeTableName}" ToolTip="{Binding Items[3].TimeTableNameDescriotion}"></TextBlock>
+                            </DataTemplate>
+                        </telerik:GridViewDataColumn.CellTemplate>
+                    </telerik:GridViewDataColumn>
+                    <telerik:GridViewDataColumn Header="K5时间表"  IsReadOnly="True"  Width="85">
+                        <telerik:GridViewDataColumn.CellTemplate>
+                            <DataTemplate >
+                                <TextBlock Text="{Binding Items[4].TimeTableName}" ToolTip="{Binding Items[4].TimeTableNameDescriotion}"></TextBlock>
+                            </DataTemplate>
+                        </telerik:GridViewDataColumn.CellTemplate>
+                    </telerik:GridViewDataColumn>
+                    <telerik:GridViewDataColumn Header="K6时间表"  IsReadOnly="True"  Width="85">
+                        <telerik:GridViewDataColumn.CellTemplate>
+                            <DataTemplate >
+                                <TextBlock Text="{Binding Items[5].TimeTableName}" ToolTip="{Binding Items[5].TimeTableNameDescriotion}"></TextBlock>
+                            </DataTemplate>
+                        </telerik:GridViewDataColumn.CellTemplate>
+                    </telerik:GridViewDataColumn>
+                    <telerik:GridViewDataColumn Header="K7时间表"  IsReadOnly="True"  Width="85">
+                        <telerik:GridViewDataColumn.CellTemplate>
+                            <DataTemplate >
+                                <TextBlock Text="{Binding Items[6].TimeTableName}" ToolTip="{Binding Items[6].TimeTableNameDescriotion}"></TextBlock>
+                            </DataTemplate>
+                        </telerik:GridViewDataColumn.CellTemplate>
+                    </telerik:GridViewDataColumn>
+                    <telerik:GridViewDataColumn Header="K8时间表"  IsReadOnly="True"  Width="85">
+                        <telerik:GridViewDataColumn.CellTemplate>
+                            <DataTemplate >
+                                <TextBlock Text="{Binding Items[7].TimeTableName}" ToolTip="{Binding Items[7].TimeTableNameDescriotion}"></TextBlock>
+                            </DataTemplate>
+                        </telerik:GridViewDataColumn.CellTemplate>
+                    </telerik:GridViewDataColumn>
+                </telerik:RadGridView.Columns>
+            </telerik:RadGridView>
+
+        </Grid>
+
+        <Grid x:Name="TableManage" Visibility="{Binding IsShowTimeTable,Converter={StaticResource BoolToVisibleConvert}}" HorizontalAlignment="Left" Grid.Row="2" Margin="5,5,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <!--<RowDefinition Height="Auto"/>-->
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20"/>
+                    <!--<RowDefinition Height="Auto"/>-->
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="时间表信息:"></TextBlock>
+                <Label x:Name="fg"/>
+                <telerik:RadGridView AutoGenerateColumns="False" RowIndicatorVisibility="Collapsed" ShowGroupPanel="False" ItemsSource="{Binding Items}" 
+                               HorizontalAlignment="Left" MaxHeight="330"  SelectedItem="{Binding CurrentSelectItem}" Grid.Row="1">
+                    <telerik:RadGridView.Columns>
+                    <telerik:GridViewDataColumn Header="序号" IsFilterable="False" IsSortable="False"   DataMemberBinding="{Binding Path=TimeId,Mode=TwoWay}"  Width="60"/>
+                    <telerik:GridViewDataColumn IsFilterable="False" IsSortable="False"  Header="名称"   DataMemberBinding="{Binding  Path=TimeName,Mode=TwoWay}"  Width="120" />
+                        <telerik:GridViewDataColumn IsFilterable="False" IsSortable="False"  Header="描述" Width="125">   
+                            <telerik:GridViewDataColumn.CellTemplate>
+                                <DataTemplate >
+                                    <DockPanel >
+                                        <TextBlock Text="{Binding  Path=TimeDesc,Mode=TwoWay}"/>
+                                        <TextBlock Text="{Binding  Path=TimeDesc1,Mode=TwoWay}" Foreground="Red"/>
+                                    </DockPanel>
+                                </DataTemplate>
+                            </telerik:GridViewDataColumn.CellTemplate>
+                        </telerik:GridViewDataColumn>
+                    </telerik:RadGridView.Columns>
+                </telerik:RadGridView>
+                </Grid>
+            <Grid Grid.Row="0" Grid.Column="1" Margin="10,10,0,10" HorizontalAlignment="Left">
+
+                <Border Height="{Binding CurrentSelectItem.MainIsOverOne[1],Converter={StaticResource TimeIsOverTwo}}" Name="view2"  >
+                    <Views:DetailInfo HorizontalAlignment="Left"   DataContext="{Binding CurrentSelectItem}" />
+                </Border>
+
+                <Border Height="{Binding CurrentSelectItem.MainIsOverOne[1],Converter={StaticResource TimeIsNoOverTwo}}"  >
+                    <Views:DetailInfoFor2 HorizontalAlignment="Left"   DataContext="{Binding CurrentSelectItem}" />
+                </Border>
+
+            </Grid>
+            <Grid Grid.Row="1" Grid.ColumnSpan="2">
+                <Button Content="删 除" Width="100"  Command="{Binding CmdDeleteTimeTable}" Height="25" HorizontalAlignment="Left" Margin="20,5,0,0"/>
+                <Button Content="增 加" Width="100" Command="{Binding CmdAddTimeTable}" Height="25" Grid.Column="0" HorizontalAlignment="Left" Margin="140,5,0,0"  />
+                <Button Content="复制当前增加"  Height="25" Command="{Binding CmdCopyAddTimeTable}" Width="100" Grid.Column="0" HorizontalAlignment="Left" Margin="260,5,0,0"/>
+
+                <Button Content="修 改" Command="{Binding CmdModifyTimeTable}" Width="100" Height="25" Grid.Column="0" HorizontalAlignment="Left" Margin="380,5,0,0"/>
+
+                <Button Content="特设方案" Command="{Binding CmdTemporaryTimeTable}" Width="100" Height="25" Grid.Column="0" HorizontalAlignment="Left" Margin="500,5,0,0"/>
+
+                <Button Content="全年时间查看" Command="{Binding CmdQueryRecordSun}" Width="100" Height="25" Grid.Column="0" HorizontalAlignment="Left" Margin="620,5,0,0"/>
+
+            </Grid>
+        </Grid>
+
+        <DockPanel Grid.Row="3">
+            <TextBlock Grid.Row="1" Text="{Binding Msg}" VerticalAlignment="Center" Width="350" HorizontalAlignment="Left"></TextBlock>
+            <CheckBox IsChecked="{Binding IsShowTimeTable}" Content="显示时间表" Margin="0,0,20,0" VerticalAlignment="Center"></CheckBox>
+            <Button Grid.Row="1" HorizontalAlignment="Right" Margin="0,0,50,0" Content="批量设置" Width="120" Height="25" Command="{Binding CmdSetup}" Visibility="{Binding VisiSetup}"></Button>
+            <Button Grid.Row="1" HorizontalAlignment="Right" Margin="0,0,50,0" Content="导出终端设置" Width="120" Height="25" Command="{Binding CmdExport}"></Button>
+            <Button Grid.Row="1" HorizontalAlignment="Right" Margin="0,0,10,0" Content="保存并发送" Width="120" Height="25" Command="{Binding CmdSave}"></Button>
+            <Button Grid.Row="1" HorizontalAlignment="Right" Visibility="Collapsed" Margin="0,0,170,0" Content="重新加载" Width="120" Height="25" Command="{Binding CmdReflesh}" ></Button>
+        </DockPanel>
+    </Grid>
+</UserControl>

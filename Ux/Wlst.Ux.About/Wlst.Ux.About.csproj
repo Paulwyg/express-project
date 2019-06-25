@@ -1,0 +1,252 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{A125B625-30C7-4895-B1AB-7D892296AB47}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Wlst.Ux.About</RootNamespace>
+    <AssemblyName>Wlst.Ux.About</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\Rr\Binaries\WPF\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>
+    </DocumentationFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Practices.Prism">
+      <HintPath>..\..\Rr\Binaries\WPF\Microsoft.Practices.Prism.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Prism.MefExtensions">
+      <HintPath>..\..\Rr\Binaries\WPF\Microsoft.Practices.Prism.MefExtensions.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Telerik.Windows.Controls, Version=2015.3.2015.40, Culture=neutral, PublicKeyToken=d3625f8bf04286d7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Rr\Binaries\WPF\Telerik.Windows.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.Chart, Version=2015.3.2015.40, Culture=neutral, PublicKeyToken=d3625f8bf04286d7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Rr\Binaries\WPF\Telerik.Windows.Controls.Chart.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.Data, Version=2015.3.2015.40, Culture=neutral, PublicKeyToken=d3625f8bf04286d7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Rr\Binaries\WPF\Telerik.Windows.Controls.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.DataVisualization, Version=2015.3.2015.40, Culture=neutral, PublicKeyToken=d3625f8bf04286d7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Rr\Binaries\WPF\Telerik.Windows.Controls.DataVisualization.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.Docking, Version=2015.3.2015.40, Culture=neutral, PublicKeyToken=d3625f8bf04286d7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Rr\Binaries\WPF\Telerik.Windows.Controls.Docking.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.GridView, Version=2015.3.2015.40, Culture=neutral, PublicKeyToken=d3625f8bf04286d7, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.Windows.Controls.ImageEditor, Version=2015.3.2015.40, Culture=neutral, PublicKeyToken=d3625f8bf04286d7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Rr\Binaries\WPF\Telerik.Windows.Controls.ImageEditor.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.Input, Version=2015.3.2015.40, Culture=neutral, PublicKeyToken=d3625f8bf04286d7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Rr\Binaries\WPF\Telerik.Windows.Controls.Input.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.Navigation, Version=2015.3.2015.40, Culture=neutral, PublicKeyToken=d3625f8bf04286d7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Rr\Binaries\WPF\Telerik.Windows.Controls.Navigation.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.Override, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Rr\Binaries\WPF\Telerik.Windows.Controls.Override.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.PrismAdapter, Version=4.1.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Rr\Binaries\WPF\Telerik.Windows.Controls.PrismAdapter.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.RibbonView, Version=2015.3.2015.40, Culture=neutral, PublicKeyToken=d3625f8bf04286d7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Rr\Binaries\WPF\Telerik.Windows.Controls.RibbonView.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.ScheduleView, Version=2015.3.2015.40, Culture=neutral, PublicKeyToken=d3625f8bf04286d7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Rr\Binaries\WPF\Telerik.Windows.Controls.ScheduleView.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Data, Version=2015.3.2015.40, Culture=neutral, PublicKeyToken=d3625f8bf04286d7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Rr\Binaries\WPF\Telerik.Windows.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Documents, Version=2015.3.2011.40, Culture=neutral, PublicKeyToken=d3625f8bf04286d7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Rr\Binaries\WPF\Telerik.Windows.Documents.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Documents.Core, Version=2015.3.2015.40, Culture=neutral, PublicKeyToken=d3625f8bf04286d7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Rr\Binaries\WPF\Telerik.Windows.Documents.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Documents.Fixed, Version=2015.3.2015.40, Culture=neutral, PublicKeyToken=d3625f8bf04286d7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Rr\Binaries\WPF\Telerik.Windows.Documents.Fixed.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Documents.Flow, Version=2015.3.2015.40, Culture=neutral, PublicKeyToken=d3625f8bf04286d7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Rr\Binaries\WPF\Telerik.Windows.Documents.Flow.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Scheduling.Core, Version=2015.3.2015.40, Culture=neutral, PublicKeyToken=d3625f8bf04286d7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Rr\Binaries\WPF\Telerik.Windows.Scheduling.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Zip, Version=2015.3.2015.40, Culture=neutral, PublicKeyToken=d3625f8bf04286d7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Rr\Binaries\WPF\Telerik.Windows.Zip.dll</HintPath>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="Wlst.Cr.Core">
+      <HintPath>..\..\Rr\Binaries\WPF\Wlst.Cr.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Wlst.Sr.ProtocolPhone">
+      <HintPath>..\..\Rr\Binaries\WPF\Wlst.Sr.ProtocolPhone.dll</HintPath>
+    </Reference>
+    <Reference Include="Wlst.Sr.tmphold, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Rr\Binaries\WPF\Wlst.Sr.tmphold.dll</HintPath>
+    </Reference>
+    <Reference Include="WlstWebBrowser, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Rr\Binaries\WPF\WlstWebBrowser.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="UxAbout\NavToHelp.cs" />
+    <Compile Include="UxAbout\NavToUxAbout.cs" />
+    <Compile Include="UxAbout\Services\IIUxAboutModule.cs" />
+    <Compile Include="Services\MenuIdAssgin.cs" />
+    <Compile Include="Services\ViewIdAssign.cs.cs" />
+    <Compile Include="UxAboutModule.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\EventIdAssign.cs" />
+    <Compile Include="UxAbout\ViewModel\AboutViewModel.cs" />
+    <Compile Include="UxAbout\Views\About.xaml.cs">
+      <DependentUpon>About.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UxAbout\NavToWeb.cs" />
+    <Compile Include="UxAbout\Views\WebPager.xaml.cs">
+      <DependentUpon>WebPager.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UxShowErr\NavToUxShowErr.cs" />
+    <Compile Include="UxShowErr\Sevices\IIUxShowErrModule.cs" />
+    <Compile Include="UxShowErr\ViewModel\EquipmentFaultViewModel.cs" />
+    <Compile Include="UxShowErr\ViewModel\ShowErrViewModel.cs" />
+    <Compile Include="UxShowErr\Views\ShowErrView.xaml.cs">
+      <DependentUpon>ShowErrView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UxThreeLv\NavToUxThreeLv.cs" />
+    <Compile Include="UxThreeLv\Services\IIUxThreeLvModule.cs" />
+    <Compile Include="UxThreeLv\ViewModel\ThreeLvDefine.cs" />
+    <Compile Include="UxThreeLv\ViewModel\ThreeLvViewModel.cs" />
+    <Compile Include="UxThreeLv\Views\ThreeLvView.xaml.cs">
+      <DependentUpon>ThreeLvView.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="UxAbout\Views\About.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UxAbout\Views\WebPager.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UxShowErr\Views\ShowErrView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UxThreeLv\Views\ThreeLvView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Cr\Wlst.Cr.CoreMims\Wlst.Cr.CoreMims.csproj">
+      <Project>{7326E79B-65A6-4E0D-B90D-E1F4D1F10DF3}</Project>
+      <Name>Wlst.Cr.CoreMims</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Cr\Wlst.Cr.CoreOne\Wlst.Cr.CoreOne.csproj">
+      <Project>{0165D704-6A80-43ED-9001-5C14220D6EC2}</Project>
+      <Name>Wlst.Cr.CoreOne</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Sr\Wlst.Sr.EquipemntLightFault\Wlst.Sr.EquipemntLightFault.csproj">
+      <Project>{F1AD5DCB-3CFD-4E3A-9130-69047E45F214}</Project>
+      <Name>Wlst.Sr.EquipemntLightFault</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Ux1\Wlst.Sr.EquipmentInfoHolding\Wlst.Sr.EquipmentInfoHolding.csproj">
+      <Project>{B66A046F-2F0A-429F-9C51-63452D3F6A92}</Project>
+      <Name>Wlst.Sr.EquipmentInfoHolding</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Ux1\Wlst.Ux.Wj9001Module\Wlst.Ux.Wj9001Module.csproj">
+      <Project>{972B5082-AAEE-4C24-A956-9BBB0CE5D826}</Project>
+      <Name>Wlst.Ux.Wj9001Module</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WindowForWlst\WindowForWlst.csproj">
+      <Project>{295CF817-8A13-4B9E-B1E8-34464DFC9481}</Project>
+      <Name>WindowForWlst</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Wlst.Ux.EquipemntLightFault\Wlst.Ux.EquipemntLightFault.csproj">
+      <Project>{9F7A288D-286C-49F6-A61F-E6985BBD7E6A}</Project>
+      <Name>Wlst.Ux.EquipemntLightFault</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

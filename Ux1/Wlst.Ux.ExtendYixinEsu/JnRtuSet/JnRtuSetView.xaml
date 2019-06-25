@@ -1,0 +1,89 @@
+﻿<UserControl x:Class="Wlst.Ux.ExtendYixinEsu.JnRtuSet.JnRtuSetView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="1200">
+    <Grid Margin="15">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="30"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <telerik:RadGridView   AllowDrop="True" AutoGenerateColumns="False" ShowGroupPanel="False" RowIndicatorVisibility="Collapsed"
+                                 ItemsSource="{Binding Path=Items}">
+            <telerik:RadGridView.Columns>
+
+                <telerik:GridViewDataColumn Header="终端地址"  IsResizable="False"  IsFilterable="False"    Width="70"  DataMemberBinding="{Binding Path=RtuShowId,Mode=TwoWay}" IsReadOnly="True" />
+                <telerik:GridViewDataColumn Header="终端名称"  IsResizable="False"  IsFilterable="False"    Width="240"  DataMemberBinding="{Binding Path=RtuShowName,Mode=TwoWay}" IsReadOnly="True" />
+                <!--<telerik:GridViewDataColumn Header="所属厂商"  IsResizable="False"  IsFilterable="False"    Width="70"  DataMemberBinding="{Binding Path=ValueInt1,Mode=TwoWay}" IsReadOnly="True" />-->
+
+                <telerik:GridViewDataColumn Header="设置" Width="100"  IsResizable="False" >
+                    <telerik:GridViewDataColumn.CellTemplate>
+                        <DataTemplate>
+                            <DockPanel  HorizontalAlignment="Left" VerticalAlignment="Center">
+                                <CheckBox IsChecked="{Binding  IsSelectd}" Content="设置"></CheckBox>
+                            </DockPanel>
+                        </DataTemplate>
+                    </telerik:GridViewDataColumn.CellTemplate>
+                </telerik:GridViewDataColumn>
+            </telerik:RadGridView.Columns>
+        </telerik:RadGridView>
+
+        <Grid Grid.Column="1" Margin="10,0,0,0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"></RowDefinition>
+                    <RowDefinition Height="Auto" MinHeight="200"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="30"></RowDefinition>
+                    <RowDefinition Height="250"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <TextBlock Text="厂商信息" HorizontalAlignment="Left" VerticalAlignment="Center"></TextBlock>
+                <telerik:RadGridView Grid.Row="1"  AllowDrop="True" AutoGenerateColumns="False" ShowGroupPanel="False" RowIndicatorVisibility="Collapsed"
+                                 ItemsSource="{Binding Path=ItemsCatlog}" SelectedItem="{Binding CurrentSelectRule}">
+                    <telerik:RadGridView.Columns>
+                        <telerik:GridViewDataColumn Header="序号"  IsResizable="False"    IsFilterable="False"  Width="70"  DataMemberBinding="{Binding Path=Index,Mode=TwoWay}" IsReadOnly="True" />
+                        <telerik:GridViewDataColumn Header="厂商名称"  IsResizable="False" IsFilterable="False"  Width="120"  DataMemberBinding="{Binding Path=NewName,Mode=TwoWay}" IsReadOnly="True" />
+                        <telerik:GridViewDataColumn Header="终端数"  IsResizable="False"  IsFilterable="False"    Width="80"  DataMemberBinding="{Binding Path=Xcount,Mode=TwoWay}" IsReadOnly="True" />
+                    </telerik:RadGridView.Columns>
+                </telerik:RadGridView>
+
+                <Grid Grid.Row="2" Margin="25,5,0,25">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" ></ColumnDefinition>
+                        <ColumnDefinition ></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="当前厂商:" Grid.Row="0" VerticalAlignment="Center"></TextBlock>
+                    <TextBox Width="160" Height="28" Margin="15,0,0,0" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center" Text="{Binding CurrentSelectRule.NewName,UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"></TextBox>
+
+                </Grid>
+
+                <DockPanel  Grid.Row="3" >
+
+                    <Button Content="增加厂商" Width="120" Height="25" Command="{Binding CmdAddCatalog}" HorizontalAlignment="Left" Margin="20,0,0,0" ></Button>
+                    <Button Content="删除当前厂商" Width="120" Height="25" Command="{Binding CmdDeleteCatalog}" HorizontalAlignment="Left" Margin="30,0,0,0" ></Button>
+
+    
+                </DockPanel>
+
+                <StackPanel Margin="0,100,0,0" Grid.Row="4" >
+
+                    <Button Content="向其他在线客户端请求设置信息" Command="{Binding CmdRequestInfoFromOtrCnt}" Width="220" Height="25" HorizontalAlignment="Left" Margin="25,0,0,30" ></Button>
+
+                    <Button Content="保 存" Width="120" Height="25"  Command="{Binding CmdSave}"  HorizontalAlignment="Left"  Margin="75,0,0,0" ></Button>
+
+                </StackPanel>
+
+            </Grid>
+        </Grid>
+
+        <TextBlock Grid.ColumnSpan="2" Grid.Row="1" Text="{Binding Remark}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0"></TextBlock>
+    </Grid>
+</UserControl>

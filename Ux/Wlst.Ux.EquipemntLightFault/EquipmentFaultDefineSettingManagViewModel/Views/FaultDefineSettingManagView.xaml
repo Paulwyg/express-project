@@ -1,0 +1,152 @@
+﻿<UserControl x:Class="Wlst.Ux.EquipemntLightFault.EquipmentFaultDefineSettingManagViewModel.Views.FaultDefineSettingManagView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+               xmlns:Views="clr-namespace:Wlst.Ux.EquipemntLightFault.EquipmentFaultDefineSettingManagViewModel.Views"
+             xmlns:Wpf="clr-namespace:PropertyTools.Wpf;assembly=PropertyTools.Wpf" mc:Ignorable="d" 
+                   xmlns:Converters="clr-namespace:Wlst.Ux.EquipemntLightFault.EquipmentFaultDefineSettingManagViewModel.Converters"
+             d:DesignHeight="500" d:DesignWidth="1100">
+    <UserControl.Resources>
+        <Converters:BoolToStringConverter x:Key="BootToString"/>
+    </UserControl.Resources>
+    <Grid>
+        <Grid x:Name="TableManage">
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition Height="35"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <ListView  Margin="5" Grid.ColumnSpan="3" ItemsSource="{Binding Path=Records}" SelectedItem="{Binding CurrentSelectItem,Mode=TwoWay}">
+                <ListView.View>
+                    <GridView AllowsColumnReorder="true">
+                        <GridViewColumn  DisplayMemberBinding="{Binding Path=FaultId,Mode=TwoWay}" Header="故障编码" Width="65" />
+
+                        <GridViewColumn  Header="故障类别" Width="120" >
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <DockPanel>
+                                        <TextBlock Text="{Binding FaultTypeName}"></TextBlock>
+                                    </DockPanel>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+                        <GridViewColumn  Header="默认名称" Width="120" >
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <DockPanel>
+                                        <TextBlock Text="{Binding FaultName}"></TextBlock>
+                                    </DockPanel>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+                        <GridViewColumn  Header="自定义名称" Width="125" >
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <DockPanel>
+                                        <TextBlock  Width="115" Text="{Binding FaultNameByDefine}"/>
+                                    </DockPanel>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+                        <GridViewColumn   Header="是否报警"  Width="83" >
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <DockPanel>
+                                        <!--<CheckBox IsEnabled="{Binding CheckBoxIsEnable}" IsChecked="{Binding IsEnable}" VerticalAlignment="Center" HorizontalAlignment="Center" Content="是否报警"></CheckBox>-->
+                                        <TextBlock IsEnabled="{Binding CheckBoxIsEnable}"  Text="{Binding IsEnable, Converter={StaticResource BootToString}}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </DockPanel>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+                        <GridViewColumn  Header="备注信息" Width="150" >
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <DockPanel>
+                                        <TextBlock Width="145"  Text="{Binding FaultRemak}"></TextBlock>
+                                    </DockPanel>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+                        <GridViewColumn Header="报警时间选择" DisplayMemberBinding="{Binding Path=AlarmTimeTypeName}" />
+                            <!--<GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                             
+                                    <ComboBox IsEnabled="{Binding IsEnable}" ItemsSource="{Binding CollectionAlarmTimeType}" SelectedIndex="{Binding SelectAlarmTimeTypeIndex}">
+                                        <ItemsControl.ItemTemplate >
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding Name}"></TextBlock>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ComboBox>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>-->
+
+                        <GridViewColumn Header="报警起始时间">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <DockPanel>
+                                        <TextBox Width="30" VerticalAlignment="Center" HorizontalAlignment="Right" Text="{Binding HourStartAlarm}" IsReadOnly="True" IsEnabled="{Binding IsTimeEnable}"/>
+                                        <TextBlock Text=":"></TextBlock>
+                                        <TextBox Width="30" VerticalAlignment="Center" HorizontalAlignment="Left" Text="{Binding MinuteStartAlarm}" IsReadOnly="True" IsEnabled="{Binding IsTimeEnable}"/>
+                                    </DockPanel>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+                        <GridViewColumn Header="报警结束时间">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <DockPanel>
+                                        <TextBox Width="30" VerticalAlignment="Center" HorizontalAlignment="Right" IsReadOnly="True"  Text="{Binding HourEndAlarm}" IsEnabled="{Binding IsTimeEnable}"/>
+                                        <TextBlock Text=":"></TextBlock>
+                                        <TextBox Width="30" VerticalAlignment="Center" HorizontalAlignment="Left" IsReadOnly="True" Text="{Binding MinuteEndAlarm}" IsEnabled="{Binding IsTimeEnable}"/>
+                                    </DockPanel>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+                        <GridViewColumn  Header="颜色" Width="80" >
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Width="30" Height="23" HorizontalAlignment="Center" VerticalAlignment="Center" Background="{Binding Color}"/>
+                                    <!--<Wpf:ColorPicker IsEnabled="{Binding IsEnable}" SelectedColor="{Binding Color}"></Wpf:ColorPicker>-->
+                                   
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn  Header="判断关键字" Width="120" >
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <DockPanel>
+                                        <TextBlock Width="100" IsEnabled="{Binding IsEnable}" Visibility="{Binding IsSelfDefineFault}"  Height="28" Text="{Binding FaultCheckKey}"/>
+                                    </DockPanel>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+
+            <Button Content="增加" Command="{Binding CmdAdd}" Width="120" Height="25" Margin="0,0,450,0" HorizontalAlignment="Right" Grid.Row="1" Grid.ColumnSpan="3"  Grid.Column="0"></Button>
+            <Button Content="删除" Command="{Binding CmdDelete}" Width="120" Height="25" Margin="0,0,250,0" HorizontalAlignment="Right" Grid.Row="1" Grid.ColumnSpan="3"  Grid.Column="0"></Button>
+            <Button Content="修改" Command="{Binding CmdModify}" Width="120" Height="25" Margin="0,0,50,0" HorizontalAlignment="Right" Grid.Row="1" Grid.ColumnSpan="3"  Grid.Column="0"></Button>
+        </Grid>
+        <Grid x:Name="TableAdd" Visibility="Collapsed"  Opacity="0">
+            <Border BorderBrush="Black" BorderThickness="1" Background="White"  Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Views:AddFaultSettingView  Margin="10" DataContext="{Binding AddModel}" />
+            </Border>
+        </Grid>
+        </Grid>
+</UserControl>

@@ -1,0 +1,54 @@
+﻿<UserControl x:Class="Wlst.Ux.WJ3005Module.EmergencyOperationQuery.Views.EmergencyOperationQueryView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" mc:Ignorable="d" 
+             d:DesignHeight="500" d:DesignWidth="900">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" MinHeight="30"/>
+            <RowDefinition Height=" *"/>
+            <RowDefinition Height="Auto" MinHeight="30"/>
+        </Grid.RowDefinitions>
+        <Grid >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Text="起始时间：" Margin="10,2,0,2" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            <!--<xctk:DateTimePicker Grid.Column="1" Margin="10,0,0,0" MinWidth="180" DefaultValue="{Binding BeginDate}"  Text="{Binding BeginDate}" HorizontalAlignment="Left" VerticalAlignment="Center"/>-->
+            <DatePicker SelectedDateFormat="Short"  Grid.Column="1" Margin="10,2,0,2" MinWidth="100" SelectedDate="{Binding BeginDate}" HorizontalAlignment="Left" VerticalAlignment="Center"></DatePicker>
+            <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Grid.Column="2" Margin="30,2,0,2" Text="结束时间：" HorizontalAlignment="Left" VerticalAlignment="Center" />
+            <!--<xctk:DateTimePicker Grid.Column="3" Margin="10,0,0,0" DefaultValue="{Binding EndDate}" Text="{Binding EndDate}" MinWidth="180" HorizontalAlignment="Left" VerticalAlignment="Center"/>-->
+            <DatePicker SelectedDateFormat="Short"  Grid.Column="3" Margin="10,2,0,2"  MinWidth="100" SelectedDate="{Binding EndDate}" HorizontalAlignment="Left" VerticalAlignment="Center"></DatePicker>
+            <Label Grid.Column="4" MinWidth=  "190" />           
+            <Button Content="查 询" Command="{Binding CmdQuery}" Grid.Column="5" HorizontalAlignment="Left" Margin="35,2,10,2" MinWidth="120"  MinHeight="25"/>
+            <Button Content="导出" Click="BtnExportClick"  Grid.Column="6" HorizontalAlignment="Left" Margin="10,2,0,2" MinWidth="120"  MinHeight="25" />
+        </Grid>
+        <telerik:RadGridView x:Name="gridview"   AutoGenerateColumns="False" ItemsSource="{Binding Items}" Grid.Row="1"  
+								 ScrollMode="Deferred" IsReadOnly="True"  ShowGroupPanel="False" 
+                                 HorizontalAlignment="Left" 
+                                  SnapsToDevicePixels="False" ShowColumnFooters="False" UseLayoutRounding="False" RowIndicatorVisibility="Collapsed">
+
+            <telerik:RadGridView.Columns>
+                <telerik:GridViewDataColumn Header="序号" IsFilterable="False" MinWidth="50" MaxWidth="80" DataMemberBinding="{Binding RecordIndex}" IsReadOnly="True" />
+                <telerik:GridViewDataColumn Header="终端地址" IsFilterable="False" MinWidth="60" MaxWidth="80" DataMemberBinding="{Binding PhyId}" IsReadOnly="True" />
+                <telerik:GridViewDataColumn Header="终端名称" IsFilterable="False" MinWidth="150" MaxWidth="180" DataMemberBinding="{Binding RtuName}" IsReadOnly="True" />
+                <telerik:GridViewDataColumn Header="时间" IsFilterable="False" DataMemberBinding="{Binding Time,StringFormat={}\{0:yyyy-MM-dd HH:mm:ss\}}"  IsReadOnly="True" MinWidth="120" MaxWidth="180" />
+                <telerik:GridViewDataColumn Header="回路" IsFilterable="False" Width="100" DataMemberBinding="{Binding Loop}" IsReadOnly="True" />
+                <telerik:GridViewDataColumn Header="指令" IsFilterable="True" DataMemberBinding="{Binding OperatorType}"  IsReadOnly="True" Width="120" />
+                <telerik:GridViewDataColumn Header="类型" IsFilterable="True" DataMemberBinding="{Binding UpLoadOrDownLoad}"  IsReadOnly="True" Width="80"  />             
+                <telerik:GridViewDataColumn Header="备注" IsFilterable="False" IsSortable="False" DataMemberBinding="{Binding Remark}"  IsReadOnly="True" Width="100"  />
+                <telerik:GridViewDataColumn Header="归属组" IsFilterable="False" Width="120"  DataMemberBinding="{Binding Group}" IsReadOnly="True" />
+
+            </telerik:RadGridView.Columns>
+        </telerik:RadGridView>
+        <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Grid.Row="2" Text="{Binding Remind}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0"/>
+    </Grid>
+</UserControl>

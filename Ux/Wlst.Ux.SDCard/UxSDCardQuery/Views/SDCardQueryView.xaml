@@ -1,0 +1,244 @@
+﻿<UserControl x:Class="Wlst.Ux.SDCard.UxSDCardQuery.Views.SDCardQuery"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+             xmlns:Services="clr-namespace:Wlst.Ux.WJ3005Module.ZPartol.PartolViewMoel.Services;assembly=Wlst.Ux.WJ3005Module"
+             mc:Ignorable="d" 
+             d:DesignHeight="500" d:DesignWidth="950">
+    <UserControl.Resources>
+        <Services:ImageConverter x:Key="imageconverter"></Services:ImageConverter>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Label x:Name="fg"/>
+        
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+
+            <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Text="起始时间:" Grid.Column="0" Margin="10,0,0,0" VerticalAlignment="Center"></TextBlock>
+            <DatePicker   HorizontalAlignment="Center"   SelectedDateFormat="Long" Grid.Column="1"   Margin="10,0,0,0" Text="{Binding DtStartTime,Mode=TwoWay}" Width="200"  VerticalAlignment="Center"></DatePicker>
+
+            <DockPanel Grid.Column="2">
+                <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Margin="10,0,0,0" Text="终端地址: " VerticalAlignment="Center"></TextBlock>
+                <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Text="{Binding PhyId}" Width="50" VerticalAlignment="Center"></TextBlock>
+                <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Text="      终端名称: " VerticalAlignment="Center"></TextBlock>
+                <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Width="200" Text="{Binding RtuName}" VerticalAlignment="Center"></TextBlock>
+            </DockPanel>
+
+            <DockPanel HorizontalAlignment="Left" Grid.Column="3" Margin="30,0,0,0">
+                <Button Content="查询"  Command="{Binding CmdQuery}" Height="25" MinWidth="85" ></Button>
+            </DockPanel>
+
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+
+            <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Text="结束时间:" Grid.Column="0" Margin="10,0,0,0" VerticalAlignment="Center" ></TextBlock>
+            <DatePicker  HorizontalAlignment="Center" SelectedDateFormat="Long" Grid.Column="1" Margin="10,0,0,0"  Text="{Binding DtEndTime,Mode=TwoWay}" Width="200"  VerticalAlignment="Center"></DatePicker>
+
+            
+            <DockPanel Grid.Column="2">
+                <TextBlock Text="查询类型:" Margin=" 10,5,10,5"/>
+                <ComboBox ItemsSource="{Binding RecordTypeItems}" SelectedItem="{Binding CurrentSelectedRecordType}"  DisplayMemberPath="Name"  Grid.Column="1" Width="150" Height="25" VerticalAlignment="Center"/>
+            </DockPanel>
+
+            <DockPanel Grid.Column="3" Visibility="{Binding RecordCountVisi}">
+                <TextBlock Text="查询数量（条）:" Margin="10,0,0,0" VerticalAlignment="Center"/>
+                <TextBox Visibility="Visible"   VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10,0,0,0" Width="80" Text="{Binding RecordCount}" ></TextBox>
+            </DockPanel>
+
+            <DockPanel Grid.Column="3" Visibility="{Binding SelectAllTmlVisi}">
+                <CheckBox Content="所有终端" IsChecked="{Binding IsAllTmlChecked}"  Grid.Column="7" VerticalAlignment="Center" Margin="10,0,0,0" />
+            </DockPanel>
+
+
+
+        </Grid>
+
+        <Grid  Grid.Row="2">
+            <Grid.ColumnDefinitions >
+                <ColumnDefinition Width="880"/>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <telerik:RadGridView x:Name="exportgridview" ItemsSource="{Binding Records}" SelectedItem="{Binding CurrentSelectRecord}"
+                                  AutoGenerateColumns="False"
+								 Background="Transparent" Margin="0,5,0,0"
+                                  FrozenColumnCount="4"
+								  RowIndicatorVisibility="Collapsed"
+                                  Height="Auto" VerticalAlignment="Top" ColumnReordered="exportgridview_ColumnReordered" Visibility="{Binding DataVisi}">
+            <telerik:RadGridView.Columns>
+                <telerik:GridViewDataColumn Header="序号" IsFilterable="False" MinWidth="35" MaxWidth="95" DataMemberBinding="{Binding Index}" IsReadOnly="True" />
+                <telerik:GridViewDataColumn Header="终端地址" IsFilterable="False" MinWidth="60" MaxWidth="95" DataMemberBinding="{Binding PhyIdd}" IsReadOnly="True" />
+                <telerik:GridViewDataColumn Header="终端名称" IsFilterable="False" MinWidth="140" MaxWidth="140" DataMemberBinding="{Binding RtuName}" IsReadOnly="True" />
+                <telerik:GridViewDataColumn Header="采集时间" IsFilterable="False" DataMemberBinding="{Binding DtGetDataTime,StringFormat={}\{0:yyyy-MM-dd HH:mm:ss\}}"  IsReadOnly="True" MinWidth="120" MaxWidth="160"/>
+                <telerik:GridViewDataColumn Header="A相电压" IsFilterable="False" IsSortable="False" DataMemberBinding="{Binding RtuVoltageA}"  IsReadOnly="True" MinWidth="55" MaxWidth="105"/>
+                <telerik:GridViewDataColumn Header="B相电压" IsFilterable="False" IsSortable="False" DataMemberBinding="{Binding RtuVoltageB}"  IsReadOnly="True"  MinWidth="55" MaxWidth="105"/>
+                <telerik:GridViewDataColumn Header="C相电压" IsFilterable="False" IsSortable="False" DataMemberBinding="{Binding RtuVoltageC}"  IsReadOnly="True" MinWidth="55" MaxWidth="105"/>
+                <telerik:GridViewDataColumn Header="A相电流" IsFilterable="False" IsSortable="False" DataMemberBinding="{Binding RtuCurrentSumA}"  IsReadOnly="True"  MinWidth="55" MaxWidth="105"/>
+                <telerik:GridViewDataColumn Header="B相电流" IsFilterable="False" IsSortable="False" DataMemberBinding="{Binding RtuCurrentSumB}"  IsReadOnly="True"  MinWidth="55" MaxWidth="105"/>
+                <telerik:GridViewDataColumn Header="C相电流" IsFilterable="False" IsSortable="False" DataMemberBinding="{Binding RtuCurrentSumC}"  IsReadOnly="True"  MinWidth="55" MaxWidth="105"/>
+
+                <telerik:GridViewDataColumn Header="总电流" IsFilterable="False" IsSortable="False" DataMemberBinding="{Binding RtuCurrentTotal}"  IsReadOnly="True"  MinWidth="55" MaxWidth="105"/>
+
+                <telerik:GridViewDataColumn Header="K1" MinWidth="35">
+                    <telerik:GridViewDataColumn.CellTemplate >
+                        <DataTemplate>
+                            <Image HorizontalAlignment="Center" VerticalAlignment="Center"  Source="{Binding Path=LstIsSwitchOutAttraction[0].IsSelected, Converter={StaticResource imageconverter}}" Width="18" Height="18"></Image>
+                        </DataTemplate>
+                    </telerik:GridViewDataColumn.CellTemplate>
+                </telerik:GridViewDataColumn>
+                <telerik:GridViewDataColumn Header="K2" MinWidth="35">
+                    <telerik:GridViewDataColumn.CellTemplate >
+                        <DataTemplate>
+                            <Image HorizontalAlignment="Center" VerticalAlignment="Center"  Source="{Binding Path=LstIsSwitchOutAttraction[1].IsSelected, Converter={StaticResource imageconverter}}"  Width="18" Height="18"></Image>
+                        </DataTemplate>
+                    </telerik:GridViewDataColumn.CellTemplate>
+                </telerik:GridViewDataColumn>
+                <telerik:GridViewDataColumn Header="K3" MinWidth="35">
+                    <telerik:GridViewDataColumn.CellTemplate >
+                        <DataTemplate>
+                            <Image HorizontalAlignment="Center" VerticalAlignment="Center"  Source="{Binding Path=LstIsSwitchOutAttraction[2].IsSelected, Converter={StaticResource imageconverter}}"  Width="18" Height="18"></Image>
+                        </DataTemplate>
+                    </telerik:GridViewDataColumn.CellTemplate>
+                </telerik:GridViewDataColumn>
+                <telerik:GridViewDataColumn Header="K4" MinWidth="35">
+                    <telerik:GridViewDataColumn.CellTemplate >
+                        <DataTemplate>
+                            <Image HorizontalAlignment="Center" VerticalAlignment="Center"  Source="{Binding Path=LstIsSwitchOutAttraction[3].IsSelected, Converter={StaticResource imageconverter}}"  Width="18" Height="18"></Image>
+                        </DataTemplate>
+                    </telerik:GridViewDataColumn.CellTemplate>
+                </telerik:GridViewDataColumn>
+                <telerik:GridViewDataColumn Header="K5" MinWidth="35">
+                    <telerik:GridViewDataColumn.CellTemplate >
+                        <DataTemplate>
+                            <Image HorizontalAlignment="Center" VerticalAlignment="Center"  Source="{Binding Path=LstIsSwitchOutAttraction[4].IsSelected, Converter={StaticResource imageconverter}}"  Width="18" Height="18"></Image>
+                        </DataTemplate>
+                    </telerik:GridViewDataColumn.CellTemplate>
+                </telerik:GridViewDataColumn>
+                <telerik:GridViewDataColumn Header="K6" MinWidth="35">
+                    <telerik:GridViewDataColumn.CellTemplate >
+                        <DataTemplate>
+                            <Image HorizontalAlignment="Center" VerticalAlignment="Center"  Source="{Binding Path=LstIsSwitchOutAttraction[5].IsSelected, Converter={StaticResource imageconverter}}"  Width="18" Height="18"></Image>
+                        </DataTemplate>
+                    </telerik:GridViewDataColumn.CellTemplate>
+                </telerik:GridViewDataColumn>
+                <telerik:GridViewDataColumn Header="K7" MinWidth="35">
+                    <telerik:GridViewDataColumn.CellTemplate >
+                        <DataTemplate>
+                            <Image HorizontalAlignment="Center" VerticalAlignment="Center"  Source="{Binding Path=LstIsSwitchOutAttraction[6].IsSelected, Converter={StaticResource imageconverter}}"  Width="18" Height="18"></Image>
+                        </DataTemplate>
+                    </telerik:GridViewDataColumn.CellTemplate>
+                </telerik:GridViewDataColumn>
+                <telerik:GridViewDataColumn Header="K8" MinWidth="35">
+                    <telerik:GridViewDataColumn.CellTemplate >
+                        <DataTemplate>
+                            <Image HorizontalAlignment="Center" VerticalAlignment="Center"  Source="{Binding Path=LstIsSwitchOutAttraction[7].IsSelected, Converter={StaticResource imageconverter}}"  Width="18" Height="18"></Image>
+                        </DataTemplate>
+                    </telerik:GridViewDataColumn.CellTemplate>
+                </telerik:GridViewDataColumn>
+                <telerik:GridViewDataColumn Header="温度" Name="temp"  IsFilterable="False" IsSortable="False" DataMemberBinding="{Binding Temperature}"   IsReadOnly="True"  MinWidth="40" MaxWidth="40" />
+                <telerik:GridViewDataColumn Header="所属区域"  IsFilterable="False" IsSortable="False" DataMemberBinding="{Binding Area}" IsVisible="{Binding IsEnabled,ElementName=textb}"  IsReadOnly="True"  MinWidth="60" MaxWidth="70" />
+                <telerik:GridViewDataColumn Header="A相功率" IsFilterable="False" IsSortable="False" DataMemberBinding="{Binding RtuPowerSumA}"  IsReadOnly="True"  MinWidth="55" MaxWidth="105" IsVisible="{Binding IsShowSumPower}"/>
+                <telerik:GridViewDataColumn Header="B相功率" IsFilterable="False" IsSortable="False" DataMemberBinding="{Binding RtuPowerSumB}"  IsReadOnly="True"  MinWidth="55" MaxWidth="105" IsVisible="{Binding IsShowSumPower}"/>
+                <telerik:GridViewDataColumn Header="C相功率" IsFilterable="False" IsSortable="False" DataMemberBinding="{Binding RtuPowerSumC}"  IsReadOnly="True"  MinWidth="55" MaxWidth="105" IsVisible="{Binding IsShowSumPower}"/>
+                <telerik:GridViewDataColumn Header="总功率" IsFilterable="False" IsSortable="False" DataMemberBinding="{Binding RtuPowerSum}"  IsReadOnly="True"  MinWidth="55" MaxWidth="105" IsVisible="{Binding IsShowSumPower}"/>
+                <telerik:GridViewDataColumn Header="总功率因数" IsFilterable="False" IsSortable="False" DataMemberBinding="{Binding RtuTotalPowerFactor}"  IsReadOnly="True"  MinWidth="55" MaxWidth="105" IsVisible="{Binding IsShowSumPower}"/>
+            </telerik:RadGridView.Columns>
+        </telerik:RadGridView>
+           
+            
+            
+        </Grid>
+
+        <Grid  Grid.Row="2">
+            <Grid.ColumnDefinitions >
+                <ColumnDefinition Width="880"/>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <telerik:RadGridView x:Name="exportgridview1" ItemsSource="{Binding MaxRecords}" 
+                                  AutoGenerateColumns="False"
+								 Background="Transparent" Margin="0,5,0,0"
+                                  FrozenColumnCount="4"
+								  RowIndicatorVisibility="Collapsed"
+                                  Height="Auto" VerticalAlignment="Top" ColumnReordered="exportgridview_ColumnReordered" Visibility="{Binding MaxDataVisi}">
+                <telerik:RadGridView.Columns>
+                    <telerik:GridViewDataColumn Header="序号" IsFilterable="False" MinWidth="35" MaxWidth="95" DataMemberBinding="{Binding Index}" IsReadOnly="True" />
+                    <telerik:GridViewDataColumn Header="终端地址" IsFilterable="False" MinWidth="60" MaxWidth="95" DataMemberBinding="{Binding RtuId}" IsReadOnly="True" />
+                    <telerik:GridViewDataColumn Header="终端名称" IsFilterable="False" Width="*" DataMemberBinding="{Binding RtuName}" IsReadOnly="True" />
+                    <telerik:GridViewDataColumn Header="采集时间" IsFilterable="False" DataMemberBinding="{Binding DtGetDataTime,StringFormat={}\{0:yyyy-MM-dd HH:mm:ss\}}"  IsReadOnly="True" MinWidth="120" MaxWidth="160"/>
+                    <telerik:GridViewDataColumn Header="回路序号" IsFilterable="False" MinWidth="60" MaxWidth="95" DataMemberBinding="{Binding LoopId}" IsReadOnly="True" />
+                    <telerik:GridViewDataColumn Header="回路名称" IsFilterable="False" MinWidth="250" MaxWidth="350" DataMemberBinding="{Binding LoopName}" IsReadOnly="True" />
+                    <telerik:GridViewDataColumn Header="最大电流" IsFilterable="False" IsSortable="False" DataMemberBinding="{Binding MaxCurrent}"  IsReadOnly="True" MinWidth="55" MaxWidth="105"/>
+                </telerik:RadGridView.Columns>
+            </telerik:RadGridView>
+
+
+
+        </Grid>
+
+        <Grid Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="700"/>
+                <ColumnDefinition Width="Auto"/>
+                <!--<ColumnDefinition Width="Auto"/>-->
+            </Grid.ColumnDefinitions>
+
+
+            <TextBlock Text="{Binding Remind}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0"/>
+            <Button Content="导出"  Grid.Column="1"   Margin="10,2,20,2" MinWidth="120"  MinHeight="25" Command="{Binding CmdExport}" />
+        </Grid>
+
+        <Grid Name="grid1" Visibility="Hidden" IsEnabled="{Binding CountPreErrs}"/>
+
+    </Grid>
+</UserControl>

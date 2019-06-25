@@ -1,0 +1,102 @@
+﻿<UserControl x:Class="Wlst.Ux.Statistics.UxDataStatistics.Views.LdDataView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="1000">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" MinHeight="30"/>
+            <RowDefinition Height="Auto" MinHeight="30"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="30"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="85"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}" Margin="5,2,5,2"  Text="起始时间:" VerticalAlignment="Center" />
+            <DatePicker  HorizontalAlignment="Center" Margin="5,2,5,2" Grid.Column="1" SelectedDateFormat="Short" SelectedDate="{Binding DtStartTime}"     VerticalAlignment="Center" MinWidth="160" />
+            <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}" Margin="50,2,5,2"  Grid.Column="2" Text="结束时间:" VerticalAlignment="Center" />
+            <DatePicker  HorizontalAlignment="Center" Margin="5,2,5,2" Grid.Column="3" SelectedDateFormat="Short" SelectedDate="{Binding DtEndTime}"    VerticalAlignment="Center" MinWidth="160" />
+            <Button Margin="50,2,30,2" Grid.Column="5" Command="{Binding CmdQueryLd}" Content="查询" MinHeight="25"  VerticalAlignment="Center" MinWidth="120" />
+        </Grid>
+        <DockPanel Grid.Row="1" >
+            <TextBlock Foreground="Red"    Text="{Binding PhyId}" FontSize="15" VerticalAlignment="Center" HorizontalAlignment="Left"  Margin="10,0,0,0"/>
+            <!--<TextBlock Foreground="Red"   Visibility="{Binding ElementName=Tml, Path=IsChecked, Converter={StaticResource BoolToVisible} }" Text="-" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0"/>-->
+            <TextBlock Foreground="Red"  Text="{Binding RtuName}" FontSize="15"  VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0"/>
+
+        </DockPanel>
+        <Grid Grid.Row="2" Height="400">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+
+
+            <telerik:RadCartesianChart x:Name="LineChart"
+										   Palette="{Binding Palette}"
+										   Grid.Row="1">
+
+                <telerik:LineSeries ValueBinding="A" CategoryBinding="Date" ItemsSource="{Binding LineData[0]}">
+                    <telerik:LineSeries.LegendSettings>
+                        <telerik:SeriesLegendSettings Title="线路1" />
+                    </telerik:LineSeries.LegendSettings>
+                </telerik:LineSeries>
+                <telerik:LineSeries ValueBinding="A" CategoryBinding="Date" ItemsSource="{Binding LineData[1]}">
+                    <telerik:LineSeries.LegendSettings>
+                        <telerik:SeriesLegendSettings Title="线路2" />
+                    </telerik:LineSeries.LegendSettings>
+                </telerik:LineSeries>
+                <telerik:LineSeries ValueBinding="A" CategoryBinding="Date" ItemsSource="{Binding LineData[2]}">
+                    <telerik:LineSeries.LegendSettings>
+                        <telerik:SeriesLegendSettings Title="线路3" />
+                    </telerik:LineSeries.LegendSettings>
+                </telerik:LineSeries>
+                <telerik:LineSeries ValueBinding="A" CategoryBinding="Date" ItemsSource="{Binding LineData[3]}">
+                    <telerik:LineSeries.LegendSettings>
+                        <telerik:SeriesLegendSettings Title="线路4" />
+                    </telerik:LineSeries.LegendSettings>
+                </telerik:LineSeries>
+
+                <telerik:RadCartesianChart.HorizontalAxis>
+                   <telerik:DateTimeCategoricalAxis DateTimeComponent="Minute" LabelFormat="MM-dd HH:mm" MajorTickInterval="30" MajorTickLength="2"  />
+                </telerik:RadCartesianChart.HorizontalAxis>
+
+                <telerik:RadCartesianChart.VerticalAxis>
+                    <telerik:LinearAxis Minimum="0" Title="漏电流(mA)"/>
+                </telerik:RadCartesianChart.VerticalAxis>
+
+                <telerik:RadCartesianChart.Grid>
+                    <telerik:CartesianChartGrid MajorLinesVisibility="Y"
+													StripLinesVisibility="Y">
+                        <telerik:CartesianChartGrid.YStripeBrushes>
+                            <SolidColorBrush Color="#FFD7D7D7"
+												 Opacity="0.3" />
+                            <SolidColorBrush Color="Transparent" />
+                        </telerik:CartesianChartGrid.YStripeBrushes>
+                    </telerik:CartesianChartGrid>
+                </telerik:RadCartesianChart.Grid>
+            </telerik:RadCartesianChart>
+
+            <telerik:RadLegend x:Name="LineLegend"
+								   Items="{Binding LegendItems, ElementName=LineChart}"
+								   Grid.Row="1"
+								   Grid.Column="1"/>
+        </Grid>
+
+        <!--<Label Content="{Binding LdRemind }" VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Row="3"></Label>-->
+    </Grid>
+</UserControl>

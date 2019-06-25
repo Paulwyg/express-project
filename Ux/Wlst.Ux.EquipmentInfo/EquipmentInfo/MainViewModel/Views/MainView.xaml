@@ -1,0 +1,36 @@
+﻿<UserControl x:Class="Wlst.Ux.EquipmentInfo.EquipmentInfo.MainViewModel.Views.MainView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:Views="clr-namespace:Wlst.Ux.EquipmentInfo.EquipmentInfo.TerminalInfoViewModel.Views"
+             xmlns:Views1="clr-namespace:Wlst.Ux.EquipmentInfo.EquipmentInfo.SingleLampInfoViewModel.Views"
+             xmlns:Views2="clr-namespace:Wlst.Ux.EquipmentInfo.EquipmentInfo.ElectricMeterInfoViewModel.Views"
+             xmlns:Views3="clr-namespace:Wlst.Ux.EquipmentInfo.EquipmentInfo.LineDetectionInfoViewModel.Views"
+             xmlns:Views4="clr-namespace:Wlst.Ux.EquipmentInfo.EquipmentInfo.LeakageInfoViewModel.Views" mc:Ignorable="d" 
+             d:DesignHeight="800" d:DesignWidth="1000">
+    <Grid>
+        <TabControl Background="Transparent" Margin="5,5,0,0" >
+            <TabItem Header="终端设备信息" x:Name="terminal">
+                <Views:TerminalInfoView  HorizontalAlignment="Left"  ></Views:TerminalInfoView>
+
+            </TabItem>
+            <TabItem Header="单灯设备信息" x:Name="singleLamp">
+                <Views1:SingleLampInfoView HorizontalAlignment="Left"  ></Views1:SingleLampInfoView>
+
+            </TabItem>
+            <TabItem Header="电表设备信息" x:Name="electricMeter">
+                <Views2:ElectricMeterInfoView HorizontalAlignment="Left"  ></Views2:ElectricMeterInfoView>
+
+            </TabItem>
+            <TabItem Header="线路检测信息" x:Name="lineDetection">
+                <Views3:LineDetectionInfoView HorizontalAlignment="Left"  ></Views3:LineDetectionInfoView>
+
+            </TabItem>
+            <TabItem Header="漏电信息" x:Name="Leakage">
+                <Views4:LeakageInfoView HorizontalAlignment="Left"  ></Views4:LeakageInfoView>
+
+            </TabItem>
+        </TabControl>
+    </Grid>
+</UserControl>

@@ -1,0 +1,173 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{DA619624-4D4E-40D0-9991-84319F24F73B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Wlst.Ux.Wj3005ExNewDataExcelModule</RootNamespace>
+    <AssemblyName>Wlst.Ux.Wj3005ExNewDataExcelModule</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\Rr\Binaries\WPF\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Elysium, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Rr\Binaries\WPF\Elysium.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Prism">
+      <HintPath>..\..\Rr\Binaries\WPF\Microsoft.Practices.Prism.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Prism.MefExtensions">
+      <HintPath>..\..\Rr\Binaries\WPF\Microsoft.Practices.Prism.MefExtensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Prism.MefExtensions.Event">
+      <HintPath>..\..\Rr\Binaries\WPF\Microsoft.Practices.Prism.MefExtensions.Event.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="PropertyTools.Wpf">
+      <HintPath>..\..\Rr\Binaries\WPF\PropertyTools.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Telerik.Windows.Controls, Version=2015.3.2015.40, Culture=neutral, PublicKeyToken=d3625f8bf04286d7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Rr\Binaries\WPF\Telerik.Windows.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.GridView, Version=2015.3.2015.40, Culture=neutral, PublicKeyToken=d3625f8bf04286d7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Rr\Binaries\WPF\Telerik.Windows.Controls.GridView.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.Input, Version=2015.3.2015.40, Culture=neutral, PublicKeyToken=d3625f8bf04286d7, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.Windows.Data, Version=2015.3.2015.40, Culture=neutral, PublicKeyToken=d3625f8bf04286d7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Rr\Binaries\WPF\Telerik.Windows.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="Wlst.Cr.Core">
+      <HintPath>..\..\Rr\Binaries\WPF\Wlst.Cr.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Wlst.Cr.Coreb, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="Wlst.Cr.CoreMims">
+      <HintPath>..\..\Rr\Binaries\WPF\Wlst.Cr.CoreMims.dll</HintPath>
+    </Reference>
+    <Reference Include="Wlst.Sr.EquipemntLightFault">
+      <HintPath>..\..\Rr\Binaries\WPF\Wlst.Sr.EquipemntLightFault.dll</HintPath>
+    </Reference>
+    <Reference Include="Wlst.Sr.EquipmentInfoHolding">
+      <HintPath>..\..\Rr\Binaries\WPF\Wlst.Sr.EquipmentInfoHolding.dll</HintPath>
+    </Reference>
+    <Reference Include="Wlst.Sr.Menu">
+      <HintPath>..\..\Rr\Binaries\WPF\Wlst.Sr.Menu.dll</HintPath>
+    </Reference>
+    <Reference Include="Wlst.Sr.ProtocolPhone">
+      <HintPath>..\..\Rr\Binaries\WPF\Wlst.Sr.ProtocolPhone.dll</HintPath>
+    </Reference>
+    <Reference Include="Wlst.Sr.TimeTableSystem">
+      <HintPath>..\..\Rr\Binaries\WPF\Wlst.Sr.TimeTableSystem.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RapidSetRtuAmp\NavToRapidSetRtuAmp.cs" />
+    <Compile Include="RapidSetRtuAmp\RapidSetRtuAmp.xaml.cs">
+      <DependentUpon>RapidSetRtuAmp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="RapidSetRtuAmp\RapidSetRtuAmpViewModel.cs" />
+    <Compile Include="Services\MenuIdAssgin.cs" />
+    <Compile Include="Services\ViewIdAssign.cs" />
+    <Compile Include="UxWj3005ExNewDataModule.cs" />
+    <Compile Include="ZNewData\NewDataSetting\IINewDataSetting.cs" />
+    <Compile Include="ZNewData\NewDataSetting\NewDataSettingViewModel.cs" />
+    <Compile Include="ZNewData\TmlNewDataViewModel\NavLineNewDataSettingView.cs" />
+    <Compile Include="ZNewData\TmlNewDataViewModel\Services\IINewDataViewModel.cs" />
+    <Compile Include="ZNewData\TmlNewDataViewModel\ViewModel\LoopInfox.cs" />
+    <Compile Include="ZNewData\TmlNewDataViewModel\ViewModel\NewDataViewModel.cs" />
+    <Compile Include="ZNewData\TmlNewDataVmLeft\Services\IINewDataVmLeft.cs" />
+    <Compile Include="ZNewData\TmlNewDataVmLeft\ViewModel\LoopInfox.cs" />
+    <Compile Include="ZNewData\TmlNewDataVmLeft\ViewModel\NewDataVmLeft.cs" />
+    <Compile Include="ZNewData\TmlNewDataVmLeft\ViewModel\SwitchOutLoop.cs" />
+    <Compile Include="ZNewData\TmlNewDataVmLeft\view\grd.cs" />
+    <Compile Include="ZNewData\TmlNewDataVmLeft\view\TmlNewDataViewLeft.xaml.cs">
+      <DependentUpon>TmlNewDataViewLeft.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ZNewData\Views\NewDataSettingView.xaml.cs">
+      <DependentUpon>NewDataSettingView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ZNewData\Views\TmlNewDataView.xaml.cs">
+      <DependentUpon>TmlNewDataView.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="RapidSetRtuAmp\RapidSetRtuAmp.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ZNewData\TmlNewDataVmLeft\view\TmlNewDataViewLeft.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ZNewData\Views\NewDataSettingView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ZNewData\Views\TmlNewDataView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Cr\Wlst.Cr.CoreOne\Wlst.Cr.CoreOne.csproj">
+      <Project>{0165D704-6A80-43ED-9001-5C14220D6EC2}</Project>
+      <Name>Wlst.Cr.CoreOne</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Cr\Wlst.Cr.Setting\Wlst.Cr.Setting.csproj">
+      <Project>{A330DF6B-20F7-4FD0-BCA8-2FD5095395FF}</Project>
+      <Name>Wlst.Cr.Setting</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Sr\Wlst.Sr.AssetManageInfoHold\Wlst.Sr.AssetManageInfoHold.csproj">
+      <Project>{A673EE5B-4088-4592-8973-96596D65F938}</Project>
+      <Name>Wlst.Sr.AssetManageInfoHold</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

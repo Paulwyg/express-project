@@ -1,0 +1,62 @@
+﻿<Window x:Class="Wlst.Ux.StateBarModule.Vedio.VideoView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+            	Title="视频播放" Loaded="Window_Loaded" Width="1366" Height="768" 
+	 WindowStartupLocation="CenterScreen" mc:Ignorable="d">
+    <!--<Window.Background>
+        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="#FF0C08F9" Offset="0"/>
+            <GradientStop Color="White" Offset="1"/>
+        </LinearGradientBrush>
+    </Window.Background>
+
+    <Grid x:Name="LayoutRoot">
+        <MediaElement x:Name="video2_wmv" Source="pack://siteoforigin:,,,/Video/xxx.mp4"/>
+    </Grid>-->
+    <Window.Resources>
+        <Storyboard x:Key="video2_wmv">
+            <MediaTimeline BeginTime="00:00:00" Source="pack://siteoforigin:,,,/Video/ffff.mp4" Storyboard.TargetName="video2_wmv" d:DesignTimeNaturalDuration="467.018"/>
+        </Storyboard>
+    </Window.Resources>
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+            <BeginStoryboard x:Name="video2_wmv_BeginStoryboard" Storyboard="{StaticResource video2_wmv}"/>
+        </EventTrigger>
+        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="pause">
+            <PauseStoryboard BeginStoryboardName="video2_wmv_BeginStoryboard"/>
+            <PauseStoryboard BeginStoryboardName="video2_wmv_BeginStoryboard"/>
+        </EventTrigger>
+        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="resume">
+            <ResumeStoryboard BeginStoryboardName="video2_wmv_BeginStoryboard"/>
+            <ResumeStoryboard BeginStoryboardName="video2_wmv_BeginStoryboard"/>
+        </EventTrigger>
+        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="stop">
+            <StopStoryboard BeginStoryboardName="video2_wmv_BeginStoryboard"/>
+            <StopStoryboard BeginStoryboardName="video2_wmv_BeginStoryboard"/>
+        </EventTrigger>
+        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="repeat">
+            <BeginStoryboard x:Name="video2_wmv_BeginStoryboard1" Storyboard="{StaticResource video2_wmv}"/>
+        </EventTrigger>
+    </Window.Triggers>
+    <Window.Background>
+        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="#FF0A06F7" Offset="0"/>
+            <GradientStop Color="White" Offset="1"/>
+        </LinearGradientBrush>
+    </Window.Background>
+
+    <Grid x:Name="LayoutRoot">
+        <Rectangle x:Name="rectangle1" Stroke="#FF7E5906" StrokeThickness="5" Margin="24,13,24,49" OpacityMask="Black" StrokeLineJoin="Round">
+            <Rectangle.Effect>
+                <DropShadowEffect BlurRadius="10" ShadowDepth="5"/>
+            </Rectangle.Effect>
+        </Rectangle>
+        <Button x:Name="pause" HorizontalAlignment="Left" Margin="67,0,0,10" VerticalAlignment="Bottom" Width="68" Height="29" Content="暂 停" Cursor="Hand"/>
+        <Button x:Name="resume" HorizontalAlignment="Left" Margin="167,0,0,10" VerticalAlignment="Bottom" Width="68" Height="29" Content="继 续" Cursor="Hand"/>
+        <Button x:Name="stop" HorizontalAlignment="Right" Margin="0,0,167,10" VerticalAlignment="Bottom" Width="68" Height="29" Content="停 止" Cursor="Hand"/>
+        <Button x:Name="repeat" HorizontalAlignment="Right" Margin="0,0,67,10" VerticalAlignment="Bottom" Width="68" Height="29" Content="重 播" Cursor="Hand"/>
+        <MediaElement x:Name="video2_wmv" Margin="29,18,29,54" Stretch="Fill"/>
+    </Grid>
+</Window>

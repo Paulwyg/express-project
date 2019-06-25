@@ -1,0 +1,78 @@
+﻿<UserControl x:Class="Wlst.Ux.Wj6005Module.Jd601ManageViewModel.Views.Jd601ManageView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+             xmlns:RadTreeViewSet="clr-namespace:Elysium.ThemesSet.RadTreeViewSet;assembly=Elysium" mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+
+    <Grid >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" ></RowDefinition>
+            <RowDefinition Height="Auto" MinHeight="30"></RowDefinition>
+        </Grid.RowDefinitions>
+        <!--<Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Label x:Name="fg"/>
+            <Button Margin="5,2,5,2" Content="刷新" Command="{Binding Reflesh}" MinWidth="60"/>
+            <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}"  Grid.Column="1" Margin="5,2,5,2" VerticalAlignment="Center" Text="节电设备管理"></TextBlock>
+        </Grid>-->
+        <TextBlock Visibility="Collapsed"  Width="{Binding Hightxx}" Height="0" x:Name="txb"/>
+
+        <Label x:Name="fg"/>
+        <Grid  Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Grid.Column="0" Margin="5,2,5,2" VerticalAlignment="Center" Text="立即刷新节电设备列表">
+
+            </TextBlock>
+            <Button Margin="25,2,5,2" Content="刷 新" Grid.Column ="1" Command="{Binding Reflesh}" MinWidth="80" MaxWidth="120" Height="25" HorizontalAlignment="Left"/>
+        </Grid>
+        <telerik:RadTreeView Grid.Row="0" ItemsSource="{Binding CollectionJd601}" Name="tvProperties" Width="Auto" Padding="0" Margin="0" BorderThickness="1"
+                             VirtualizingStackPanel.IsVirtualizing="True" PreviewMouseRightButtonDown="TreeViewItem_PreviewMouseLeftButtonDown"
+                          PreviewMouseLeftButtonUp="tvProperties_PreviewMouseLeftButtonUp"
+                             ScrollViewer.CanContentScroll="False">
+
+            <!--<telerik:RadTreeView.ItemContainerStyle>
+                <Style TargetType="{x:Type telerik:RadTreeViewItem}">
+                    <Setter Property="IsExpanded" Value="{Binding IsExpanded, Mode=TwoWay}" />
+                    <Setter Property="IsSelected" Value="{Binding IsSelected, Mode=TwoWay}" />
+                    <Setter Property="ContextMenu" Value="{DynamicResource  ContextMenuKey}" />
+                    <Setter Property="FontWeight" Value="Normal" />
+                    <Setter Property="BorderThickness" Value="0"/>
+                    <Setter Property="Template" Value="{DynamicResource TreeViewItemDefaultTemplate}" />
+
+                    <Style.Triggers>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter Property="FontWeight" Value="Bold" />
+                            <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource Self}, Path=(RadTreeViewSet:RadTreeViewAttriXaml.ItemRadTreeViewForegroundMouseOver), Mode=OneWay}" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </telerik:RadTreeView.ItemContainerStyle>-->
+            <telerik:RadTreeView.ItemTemplate>
+                <HierarchicalDataTemplate DataType="{x:Type telerik:RadTreeViewItem}" ItemsSource="{Binding Path=CollectionJd601}">
+                    <StackPanel Orientation="Horizontal" >
+                        <!--<Image VerticalAlignment="Center"  Source="{Binding ImagesIcon}" Width="24" Height="24" Margin="0,0,2,2"></Image>-->
+                        <Image VerticalAlignment="Center"  Source="{Binding ImagesIcon}" Width="{Binding ElementName=txb,Path=Width}" Height="{Binding ElementName=txb,Path=Width}" Margin="0,0,2,2"></Image>
+                        <TextBlock VerticalAlignment="Center" Text="{Binding NodeIdFormat}"></TextBlock>
+                    
+                        <TextBlock VerticalAlignment="Center" Text="{Binding NodeName}"></TextBlock>
+
+                        <!--<StackPanel.ToolTip>
+                            <TextBlock VerticalAlignment="Center" Text="{Binding Name}" TextWrapping="Wrap" MaxWidth="200">
+                            </TextBlock>
+                        </StackPanel.ToolTip>-->
+                    </StackPanel>
+                </HierarchicalDataTemplate>
+            </telerik:RadTreeView.ItemTemplate>
+        </telerik:RadTreeView>
+    </Grid>
+</UserControl>

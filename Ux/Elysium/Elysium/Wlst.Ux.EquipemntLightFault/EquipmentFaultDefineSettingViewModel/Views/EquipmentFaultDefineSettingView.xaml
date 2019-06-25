@@ -1,0 +1,267 @@
+﻿<UserControl x:Class="Wlst.Ux.EquipemntLightFault.EquipmentFaultDefineSettingViewModel.Views.EquipmentFaultDefineSettingView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                          
+             xmlns:AppleWindowSet="clr-namespace:Elysium.ThemesSet.AppleWindowSet;assembly=Elysium"
+                        xmlns:telerikDocking="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Docking"
+             xmlns:Wpf="clr-namespace:PropertyTools.Wpf;assembly=PropertyTools.Wpf"
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+             xmlns:Service="clr-namespace:Wlst.Ux.EquipemntLightFault.EquipmentFaultDefineSettingViewModel.Services"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="950">
+    <UserControl.Resources>
+        <Service:IsCheckedMore x:Key="IsCheckedMore"/>
+    </UserControl.Resources>
+
+    <Grid HorizontalAlignment="Left">
+        <Grid Width="Auto">
+            
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+                <RowDefinition Height="35"></RowDefinition>
+                <RowDefinition Height="35"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+            <Label x:Name="fg" Width="0" HorizontalAlignment="Left"/>
+            <telerik:RadGridView Margin="5" Grid.ColumnSpan="3" AllowDrop="True" AutoGenerateColumns="False" ShowGroupPanel="False" RowIndicatorVisibility="Collapsed" Width="900"
+                                 ItemsSource="{Binding Path=Records}" SelectedItem="{Binding CurrentSelectItem}" ScrollViewer.VerticalScrollBarVisibility="Auto" FrozenColumnCount="4" >
+                <telerik:RadGridView.Columns>
+                    <telerik:GridViewDataColumn Header="故障编码"  IsResizable="False"  IsFilterable="False"  Width="70" DataMemberBinding="{Binding Path=FaultId,Mode=TwoWay}" IsReadOnly="True" />
+                    <!--<telerik:GridViewDataColumn Header="故障类别" MinWidth="120" MaxWidth="180">
+                        <telerik:GridViewDataColumn.CellTemplate>
+                            <DataTemplate>
+                                <DockPanel  HorizontalAlignment="Left" VerticalAlignment="Center">
+                                    <TextBlock Margin="1,1,5,1" Text="{Binding FaultTypeName}"></TextBlock>
+                                </DockPanel>
+                            </DataTemplate>
+                        </telerik:GridViewDataColumn.CellTemplate>
+                    </telerik:GridViewDataColumn>-->
+                    <telerik:GridViewDataColumn Header="默认名称" MinWidth="100"  IsResizable="False"   Width="120">
+                        <telerik:GridViewDataColumn.CellTemplate>
+                            <DataTemplate>
+                                <DockPanel  HorizontalAlignment="Left" VerticalAlignment="Center">
+                                    <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Margin="5,3,5,3" Text="{Binding FaultName}"/>
+                                </DockPanel>
+                            </DataTemplate>
+                        </telerik:GridViewDataColumn.CellTemplate>
+                    </telerik:GridViewDataColumn>
+                    <telerik:GridViewDataColumn Header="自定义名称"  Width="130">
+                        <telerik:GridViewDataColumn.CellTemplate>
+                            <DataTemplate>
+                                <DockPanel  VerticalAlignment="Center">
+                                    <TextBox  MinWidth="100" Text="{Binding FaultNameByDefine,UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True, ValidatesOnDataErrors=True, NotifyOnValidationError=True}" Margin="1,1,5,1"></TextBox>
+                                </DockPanel>
+                            </DataTemplate>
+                        </telerik:GridViewDataColumn.CellTemplate>
+                    </telerik:GridViewDataColumn>
+                    <telerik:GridViewDataColumn Header="报警"    IsResizable="False"   Width="80" >
+                        <telerik:GridViewDataColumn.CellTemplate>
+                            <DataTemplate>
+                                <DockPanel  HorizontalAlignment="Left" VerticalAlignment="Center">
+                                    <CheckBox Margin="2,1,5,1"  IsChecked="{Binding IsEnable}" VerticalAlignment="Center" HorizontalAlignment="Center" Content="报警"></CheckBox>
+                                </DockPanel>
+                            </DataTemplate>
+                        </telerik:GridViewDataColumn.CellTemplate>
+                    </telerik:GridViewDataColumn>
+
+                    <telerik:GridViewDataColumn Header="备注信息"    IsResizable="False"  Width="250">
+                        <telerik:GridViewDataColumn.CellTemplate>
+                            <DataTemplate>
+                                <DockPanel HorizontalAlignment="Left" VerticalAlignment="Center">
+                                    <TextBlock  MinWidth="145"  ToolTip="{Binding FaultRemak}" Text="{Binding FaultRemak}"></TextBlock>
+                                </DockPanel>
+                            </DataTemplate>
+                        </telerik:GridViewDataColumn.CellTemplate>
+                    </telerik:GridViewDataColumn>
+                    <!--<telerik:GridViewDataColumn Header="报警时间选择" MinWidth="100" MaxWidth="180">
+                        <telerik:GridViewDataColumn.CellTemplate>
+                            <DataTemplate>
+                                <ComboBox IsEnabled="{Binding IsEnable}" ItemsSource="{Binding CollectionAlarmTimeType}" SelectedIndex="{Binding SelectAlarmTimeTypeIndex}">
+                                    <ItemsControl.ItemTemplate >
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Name}"></TextBlock>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ComboBox>
+                            </DataTemplate>
+                        </telerik:GridViewDataColumn.CellTemplate>
+                    </telerik:GridViewDataColumn>-->
+                    <!--<telerik:GridViewDataColumn Header="报警起始时间"  MinWidth="70" MaxWidth="180">
+                        <telerik:GridViewDataColumn.CellTemplate>
+                                <DataTemplate>
+                                    <DockPanel>
+                                        <TextBox Width="30" VerticalAlignment="Center" HorizontalAlignment="Right" Text="{Binding HourStartAlarm}" IsEnabled="{Binding IsTimeEnable}"></TextBox>
+                                        <TextBlock Text=":"></TextBlock>
+                                        <TextBox Width="30" VerticalAlignment="Center" HorizontalAlignment="Left" Text="{Binding MinuteStartAlarm}" IsEnabled="{Binding IsTimeEnable}"></TextBox>
+                                    </DockPanel>
+                                </DataTemplate>
+                        </telerik:GridViewDataColumn.CellTemplate>
+                    </telerik:GridViewDataColumn>
+                    <telerik:GridViewDataColumn Header="报警结束时间"  MinWidth="70" MaxWidth="180">
+                        <telerik:GridViewDataColumn.CellTemplate>
+                            <DataTemplate>
+                                <DockPanel>
+                                    <TextBox Width="30" VerticalAlignment="Center" HorizontalAlignment="Right" Text="{Binding HourEndAlarm}" IsEnabled="{Binding IsTimeEnable}"></TextBox>
+                                    <TextBlock Text=":"></TextBlock>
+                                    <TextBox Width="30" VerticalAlignment="Center" HorizontalAlignment="Left" Text="{Binding MinuteEndAlarm}" IsEnabled="{Binding IsTimeEnable}"></TextBox>
+                                </DockPanel>
+                            </DataTemplate>
+                        </telerik:GridViewDataColumn.CellTemplate>
+                    </telerik:GridViewDataColumn>-->
+                    <telerik:GridViewDataColumn Header="报警等级"    IsResizable="False"  Width="120">
+                        <telerik:GridViewDataColumn.CellTemplate>
+                            <DataTemplate>
+                                <DockPanel MinHeight="28">
+                                    <ComboBox Width="100" IsEnabled="{Binding IsEnable}" ItemsSource="{Binding CollectionProprity}" DisplayMemberPath="Name" SelectedItem="{Binding CurrentSelectProprity}"  VerticalAlignment="Center"  MinHeight="25" >
+                                        <!--<ComboBoxItem Content="仅记录"  />
+                                        <ComboBoxItem Content="普通报警" />
+                                        <ComboBoxItem Content="置顶显示" />-->
+                                    </ComboBox>
+                                </DockPanel>
+                            </DataTemplate>
+                        </telerik:GridViewDataColumn.CellTemplate>
+                    </telerik:GridViewDataColumn>
+
+                    <telerik:GridViewDataColumn Header="判断关键字"    IsResizable="False"  Width="120">
+                        <telerik:GridViewDataColumn.CellTemplate>
+                            <DataTemplate>
+                                <DockPanel MinHeight="28">
+                                    <TextBox Width="100" IsEnabled="{Binding IsEnable}" Visibility="{Binding IsSelfDefineFault}" VerticalAlignment="Center"  MinHeight="25" Text="{Binding FaultCheckKey}"></TextBox>
+                                </DockPanel>
+                            </DataTemplate>
+                        </telerik:GridViewDataColumn.CellTemplate>
+                    </telerik:GridViewDataColumn>
+
+
+                    <telerik:GridViewDataColumn Header="背景色"     IsResizable="False"   IsVisible="{Binding IsChecked}">
+                        <telerik:GridViewDataColumn.CellTemplate>
+                            <DataTemplate>
+                                <DockPanel>
+                                    <!--<ComboBox Width="80" IsEnabled="{Binding IsEnable}" ItemsSource="{Binding CollectionColor}" DisplayMemberPath="Name" SelectedItem="{Binding SelectColor}"  VerticalAlignment="Center"  MinHeight="25" Foreground="{Binding Color}" />-->
+                                    <ComboBox Width="80" IsEnabled="{Binding IsEnable}" ItemsSource="{Binding CollectionColor}"  SelectedItem="{Binding SelectColor}"  VerticalAlignment="Center"  MinHeight="25" >
+                                        <ComboBox.ItemTemplate> 
+                                            <DataTemplate>
+                                                <DockPanel Background="{Binding Color}" HorizontalAlignment="Center" Width="80" >
+                                                    <TextBlock Width="50" Text="{Binding Name}" Background="{Binding Color}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                                </DockPanel>
+                                            </DataTemplate>
+                                        </ComboBox.ItemTemplate>
+                                    </ComboBox>
+                                </DockPanel>
+                            </DataTemplate>
+                        </telerik:GridViewDataColumn.CellTemplate>
+                    </telerik:GridViewDataColumn>
+
+
+                    <!--<telerik:GridViewDataColumn Header="颜色"     IsResizable="False"   IsVisible="{Binding IsChecked}">
+                        <telerik:GridViewDataColumn.CellTemplate>
+                            <DataTemplate>
+                                <DockPanel>
+                                    <Wpf:ColorPicker IsEnabled="{Binding IsEnable}" SelectedColor="{Binding Color}"></Wpf:ColorPicker>
+                                </DockPanel>
+                            </DataTemplate>
+                        </telerik:GridViewDataColumn.CellTemplate>
+                    </telerik:GridViewDataColumn>-->
+
+                    <telerik:GridViewDataColumn Header="报警时间"  Width="120"  IsResizable="False" IsVisible="{Binding IsChecked}">
+                        <telerik:GridViewDataColumn.CellTemplate>
+                            <DataTemplate>
+                                <DockPanel MinHeight="28">
+                                    <ComboBox Width="100" IsEnabled="{Binding IsEnable}" ItemsSource="{Binding CollectionAlarmTimeType}" DisplayMemberPath="Name" SelectedItem="{Binding SelectAlarmTimeTypeIndex}"  VerticalAlignment="Center"  MinHeight="25" >
+                                        <!--<ComboBoxItem Content="全天" />
+                                        <ComboBoxItem Content="仅开灯" />
+                                        <ComboBoxItem Content="仅关灯" />
+                                        <ComboBoxItem Content="自定义" />-->
+                                    </ComboBox>
+                                </DockPanel>
+                            </DataTemplate>
+                        </telerik:GridViewDataColumn.CellTemplate>
+                    </telerik:GridViewDataColumn>
+
+                    <telerik:GridViewDataColumn Header="自定义时间"   IsResizable="False"  IsVisible="{Binding IsChecked}"><!--{Binding IsChecked,ElementName=IsCheckedBox,Converter={StaticResource IsCheckedMore}}-->
+                        <telerik:GridViewDataColumn.CellTemplate>
+                            <DataTemplate>
+                                <DockPanel MinHeight="28">
+                                    <TextBox Width="25" IsEnabled="{Binding IsTimeEnable}"  VerticalAlignment="Center"  MinHeight="25" Text="{Binding HourStartAlarm}" MaxLength="2" ></TextBox>
+                                    <TextBlock Width="10" IsEnabled="{Binding IsTimeEnable}"  VerticalAlignment="Center"  MinHeight="25" Text=":" />
+                                    <TextBox Width="25" IsEnabled="{Binding IsTimeEnable}"  VerticalAlignment="Center"  MinHeight="25" Text="{Binding MinuteStartAlarm}" MaxLength="2" ></TextBox>
+                                    <TextBlock Width="10" IsEnabled="{Binding IsTimeEnable}"  VerticalAlignment="Center"  MinHeight="25" Text="-" />
+                                    <TextBox Width="25" IsEnabled="{Binding IsTimeEnable}"  VerticalAlignment="Center"  MinHeight="25" Text="{Binding HourEndAlarm}" MaxLength="2" ></TextBox>
+                                    <TextBlock Width="10" IsEnabled="{Binding IsTimeEnable}"  VerticalAlignment="Center"  MinHeight="25" Text=":" />
+                                    <TextBox Width="25" IsEnabled="{Binding IsTimeEnable}"  VerticalAlignment="Center"  MinHeight="25" Text="{Binding MinuteEndAlarm}" MaxLength="2" ></TextBox>
+                                </DockPanel>
+                            </DataTemplate>
+                        </telerik:GridViewDataColumn.CellTemplate>
+                    </telerik:GridViewDataColumn>
+
+                </telerik:RadGridView.Columns>
+            </telerik:RadGridView>
+      
+           
+            <Grid Grid.Row="1" Grid.ColumnSpan="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Text="统计报警次数时间 "  VerticalAlignment="Center"/>
+                <!--<TextBox Grid.Column="1"  Text="{Binding TimeLong}" Width="60" Height="25" VerticalAlignment="Center"/>-->
+                <ComboBox ItemsSource="{Binding TimeItems}" SelectedItem="{Binding CurrentSelectedTime}" DisplayMemberPath="Name" Grid.Column="1" Width="120" Height="25" VerticalAlignment="Center">
+                    
+                </ComboBox>
+                <TextBlock Grid.Column="2" Foreground="{Binding ElementName=fg, Path=Foreground}" Text="      "></TextBlock>
+
+                <TextBlock Margin="15,0,0,0" Grid.Column="3" Foreground="{Binding ElementName=fg, Path=Foreground}" Text="电压缺相最小值[伏] "  VerticalAlignment="Center"/>
+                <TextBox  Grid.Column="4"   Text="{Binding VolBelow,UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True, ValidatesOnDataErrors=True, NotifyOnValidationError=True}" Width="60" Height="25" VerticalAlignment="Center"/>
+
+                <TextBlock Margin="15,0,0,0" Grid.Column="5" Foreground="{Binding ElementName=fg, Path=Foreground}" Text="亮灯率报警下限值 "  VerticalAlignment="Center"/>
+
+                <DockPanel Grid.Column="6"  VerticalAlignment="Center" HorizontalAlignment="Left">
+                               <TextBox    Text="{Binding LdlBelow}" Width="60" Height="25" VerticalAlignment="Center"/>
+                    <TextBlock VerticalAlignment="Center" Text="%  数据介于30%到95%之间"></TextBlock>
+                </DockPanel>
+     
+
+                <!--<Button Content="设置电流上下限" Margin="15,0,0,0" Width="120" Height="25" Command="{Binding CmdSetDlSxx}" Grid.Column="7"></Button>-->
+                <TextBlock Text=""/>
+
+            </Grid>
+
+            <Grid Grid.Row="2" Grid.ColumnSpan="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+               
+                <TextBlock Grid.Column="0" Grid.ColumnSpan="4" Foreground="{Binding ElementName=fg, Path=Foreground}" Text="{Binding ShowMsg}" VerticalAlignment="Center" />
+
+                <Button Margin="20,3,20,3" Grid.Column="5" Content="增加" Command="{Binding CmdAdd}" Width="120" Height="25"  HorizontalAlignment="Right" />
+                <Button Margin="20,3,20,3"  Grid.Column="6" Content="删除" Command="{Binding CmdDelete}" Width="120" Height="25"  HorizontalAlignment="Right" />
+                <Button Margin="20,3,20,3"  Grid.Column="7" Content="保存" Command="{Binding CmdSaveAll}" Width="120" Height="25"  HorizontalAlignment="Right" />
+                <DockPanel Grid.Column="4">
+                    <CheckBox Name="IsCheckedBox" Margin="20,0,0,0" IsChecked="{Binding IsChecked}" Height="25" HorizontalAlignment="Right" />
+                    <TextBlock Text="高级选项" Margin="0,7,0,0"/>
+                </DockPanel>
+            </Grid>
+            
+
+    </Grid>
+    </Grid>
+</UserControl>

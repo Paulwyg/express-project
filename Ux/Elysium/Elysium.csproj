@@ -1,0 +1,759 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{467011FC-64F2-4FB6-8F59-942248260FFB}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Elysium</RootNamespace>
+    <AssemblyName>Elysium</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\ZDebug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>Elysium.XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\Rr\Binaries\WPF\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Expression.Drawing">
+      <HintPath>..\Dll\Microsoft.Expression.Drawing.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Windows.Shell">
+      <HintPath>..\Dll\Microsoft.Windows.Shell.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="PresentationFramework.Classic" />
+    <Reference Include="RibbonControlsLibrary, Version=4.0.0.11019, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\Microsoft Ribbon for WPF\V4.0\RibbonControlsLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Workflow.ComponentModel" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Telerik.Windows.Controls, Version=2013.1.619.40, Culture=neutral, PublicKeyToken=d3625f8bf04286d7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\Cetc50Debug\Telerik.Windows.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.Chart, Version=2015.3.2015.40, Culture=neutral, PublicKeyToken=d3625f8bf04286d7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Rr\Binaries\WPF\Telerik.Windows.Controls.Chart.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.Data, Version=2015.3.2015.40, Culture=neutral, PublicKeyToken=d3625f8bf04286d7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Rr\Binaries\WPF\Telerik.Windows.Controls.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.DataVisualization, Version=2015.3.2015.40, Culture=neutral, PublicKeyToken=d3625f8bf04286d7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Rr\Binaries\WPF\Telerik.Windows.Controls.DataVisualization.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.Docking, Version=2013.1.619.40, Culture=neutral, PublicKeyToken=d3625f8bf04286d7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\Cetc50Debug\Telerik.Windows.Controls.Docking.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.GridView, Version=2013.1.720.40, Culture=neutral, PublicKeyToken=d3625f8bf04286d7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ZDebug\Telerik.Windows.Controls.GridView.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.ImageEditor, Version=2015.3.2015.40, Culture=neutral, PublicKeyToken=d3625f8bf04286d7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Rr\Binaries\WPF\Telerik.Windows.Controls.ImageEditor.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.Input, Version=2015.3.2015.40, Culture=neutral, PublicKeyToken=d3625f8bf04286d7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Rr\Binaries\WPF\Telerik.Windows.Controls.Input.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.Navigation, Version=2013.1.619.40, Culture=neutral, PublicKeyToken=d3625f8bf04286d7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\Cetc50Debug\Telerik.Windows.Controls.Navigation.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.Override, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Rr\Binaries\WPF\Telerik.Windows.Controls.Override.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.PrismAdapter, Version=4.1.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Programes\Develops\MIMS\ZDebug\Telerik.Windows.Controls.PrismAdapter.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.RibbonView, Version=2015.3.2015.40, Culture=neutral, PublicKeyToken=d3625f8bf04286d7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Rr\Binaries\WPF\Telerik.Windows.Controls.RibbonView.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.ScheduleView, Version=2015.3.2015.40, Culture=neutral, PublicKeyToken=d3625f8bf04286d7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Rr\Binaries\WPF\Telerik.Windows.Controls.ScheduleView.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Data, Version=2013.1.619.40, Culture=neutral, PublicKeyToken=d3625f8bf04286d7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\Cetc50Debug\Telerik.Windows.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Documents, Version=2015.3.2011.40, Culture=neutral, PublicKeyToken=d3625f8bf04286d7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Rr\Binaries\WPF\Telerik.Windows.Documents.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Documents.Core, Version=2015.3.2015.40, Culture=neutral, PublicKeyToken=d3625f8bf04286d7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Rr\Binaries\WPF\Telerik.Windows.Documents.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Documents.Fixed, Version=2015.3.2015.40, Culture=neutral, PublicKeyToken=d3625f8bf04286d7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Rr\Binaries\WPF\Telerik.Windows.Documents.Fixed.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Documents.Flow, Version=2015.3.2015.40, Culture=neutral, PublicKeyToken=d3625f8bf04286d7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Rr\Binaries\WPF\Telerik.Windows.Documents.Flow.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Scheduling.Core, Version=2015.3.2015.40, Culture=neutral, PublicKeyToken=d3625f8bf04286d7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Rr\Binaries\WPF\Telerik.Windows.Scheduling.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Zip, Version=2015.3.2015.40, Culture=neutral, PublicKeyToken=d3625f8bf04286d7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Rr\Binaries\WPF\Telerik.Windows.Zip.dll</HintPath>
+    </Reference>
+    <Reference Include="UIAutomationProvider" />
+    <Reference Include="UIAutomationTypes" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="Wlst.Cr.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="WPFToolkit.Extended, Version=1.8.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\WPFToolkit.Extended.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AccentBrushes.cs" />
+    <Compile Include="ControlsOverride\TextBoxOverride\TextBoxWateMarked.cs" />
+    <Compile Include="Controls\AppleWindowStyle\AppleWindowStyle.cs" />
+    <Compile Include="Controls\ApplicationBar\ApplicationBar.cs" />
+    <Compile Include="Controls\ApplicationBar\ApplicationBarDock.cs" />
+    <Compile Include="Controls\ApplicationBar\ApplicationBarPanel.cs" />
+    <Compile Include="Controls\ApplicationBar\ApplicationBarTransitionMode.cs" />
+    <Compile Include="Controls\ApplicationBar\Automation\ApplicationBarAutomationPeer.cs" />
+    <Compile Include="Controls\CommandButtons\Automation\CommandButtonAutomationPeer.cs" />
+    <Compile Include="Controls\CommandButtons\Automation\CommandButtonBaseAutomationPeer.cs" />
+    <Compile Include="Controls\CommandButtons\Automation\DropDownCommandButtonAutomationPeer.cs" />
+    <Compile Include="Controls\CommandButtons\Automation\ToggleCommandButtonAutomationPeer.cs" />
+    <Compile Include="Controls\CommandButtons\CommandButton.cs" />
+    <Compile Include="Controls\CommandButtons\DropDownCommandButton.cs" />
+    <Compile Include="Controls\CommandButtons\DropDownDirection.cs" />
+    <Compile Include="Controls\CommandButtons\Primitives\CommandButtonBase.cs" />
+    <Compile Include="Controls\CommandButtons\ToggleCommandButton.cs" />
+    <Compile Include="Controls\Menus\Automation\SubmenuAutomationPeer.cs" />
+    <Compile Include="Controls\Menus\Submenu.cs" />
+    <Compile Include="Controls\Progress\Automation\ProgressAutomationPeer.cs" />
+    <Compile Include="Controls\Progress\Primitives\ProgressBase.cs" />
+    <Compile Include="Controls\Progress\ProgressBar.cs" />
+    <Compile Include="Controls\Progress\ProgressRing.cs" />
+    <Compile Include="Controls\Progress\ProgressState.cs" />
+    <Compile Include="Controls\ToggleSwitch\Automation\ToggleSwitchAutomationPeer.cs" />
+    <Compile Include="Controls\ToggleSwitch\ToggleSwitch.cs" />
+    <Compile Include="Controls\Window\Window.cs" />
+    <Compile Include="Controls\Window\WindowCommands.cs" />
+    <Compile Include="Converters\AngleToCoordinateConverter.cs" />
+    <Compile Include="Converters\BoolToVisibleConverter.cs" />
+    <Compile Include="Converters\DoubleToGridLengthConverter.cs" />
+    <Compile Include="Converters\DoubleToThicknessConverter.cs" />
+    <Compile Include="Converters\GridLengthToDoubleConverter.cs" />
+    <Compile Include="Converters\IsGreaterThanConverter.cs" />
+    <Compile Include="Converters\NumberPositiveToNegativeConverter.cs" />
+    <Compile Include="Converters\PercentToAngleConverter.cs" />
+    <Compile Include="Converters\TabItemNameConverter.cs" />
+    <Compile Include="Converters\ThicknessConverter.cs" />
+    <Compile Include="Converters\ThicknessPositiveToNegativeConverter.cs" />
+    <Compile Include="Converters\ThicknessToDoubleConverter.cs" />
+    <Compile Include="Documentation\en\Elysium.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Elysium.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Exceptions\InvalidStyleException.cs" />
+    <Compile Include="Extensions\Boxing helpers\BooleanBoxingHelper.cs" />
+    <Compile Include="Extensions\Boxing helpers\BoxingHelper.cs" />
+    <Compile Include="Extensions\Boxing helpers\NullableBooleanBoxingHelper.cs" />
+    <Compile Include="Extensions\Boxing helpers\NullableBoxingHelper.cs" />
+    <Compile Include="Extensions\Collections\Extensions.cs" />
+    <Compile Include="Extensions\Collections\IObservableDictionary.cs" />
+    <Compile Include="Extensions\Collections\ObservableDictionary.cs" />
+    <Compile Include="Extensions\Collections\ObservableKeyValuePair.cs" />
+    <Compile Include="Extensions\ReSharper\JetBrains.Annotations.cs" />
+    <Compile Include="Extensions\Threading helpers\DispatcherExtensions.cs" />
+    <Compile Include="Extensions\Tree helpers\LogicalTreeHelperExtensions.cs" />
+    <Compile Include="Extensions\Tree helpers\VisualTreeHelperExtensions.cs" />
+    <Compile Include="Extensions\TryHelpers\FreezableExtensions.cs" />
+    <Compile Include="Extensions\Validation helpers\CodeAnalysisExtensions.cs" />
+    <Compile Include="Extensions\Validation helpers\ContractExtensions.cs" />
+    <Compile Include="Extensions\Validation helpers\DoubleUtil.cs" />
+    <Compile Include="Extensions\Validation helpers\ThicknessUtil.cs" />
+    <Compile Include="Extensions\Validation helpers\ValidationHelper.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="Manager.cs" />
+    <Compile Include="Native\Interop.cs" />
+    <Compile Include="Native\Monitor.cs" />
+    <Compile Include="Native\Taskbar.cs" />
+    <Compile Include="Native\TaskbarPosition.cs" />
+    <Compile Include="Native\Window.cs" />
+    <Compile Include="Native\Windows.cs" />
+    <Compile Include="Parameters\Bullet.cs" />
+    <Compile Include="Parameters\CheckBox.cs" />
+    <Compile Include="Parameters\ComboBox.cs" />
+    <Compile Include="Parameters\CommandButtons.cs" />
+    <Compile Include="Parameters\Design.cs" />
+    <Compile Include="Parameters\DropDown.cs" />
+    <Compile Include="Parameters\General.cs" />
+    <Compile Include="Parameters\Manager.cs" />
+    <Compile Include="Parameters\MenuBase.cs" />
+    <Compile Include="Parameters\MenuItem.cs" />
+    <Compile Include="Parameters\Progress.cs" />
+    <Compile Include="Parameters\ScrollBar.cs" />
+    <Compile Include="Parameters\Slider.cs" />
+    <Compile Include="Parameters\TabControl.cs" />
+    <Compile Include="Parameters\TabItem.cs" />
+    <Compile Include="Parameters\ToggleSwitch.cs" />
+    <Compile Include="Parameters\Window.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Theme.cs" />
+    <Compile Include="ThemesSet\AppleWindowSet\AppleWindowAttri.xaml.cs">
+      <DependentUpon>AppleWindowAttri.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ThemesSet\AppleWindowSet\AppleWindowAttriDataContext.cs" />
+    <Compile Include="ThemesSet\AppleWindowSet\AppleWindowAttriXaml.cs" />
+    <Compile Include="ThemesSet\ButtonSet\ButtonAttri.xaml.cs">
+      <DependentUpon>ButtonAttri.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ThemesSet\ButtonSet\ButtonAttriDataContext.cs" />
+    <Compile Include="ThemesSet\ButtonSet\ButtonAttriXaml.cs" />
+    <Compile Include="ThemesSet\CheckBoxRadioButtonSet\CheckBoxRadioButtonAttri.xaml.cs">
+      <DependentUpon>CheckBoxRadioButtonAttri.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ThemesSet\CheckBoxRadioButtonSet\CheckBoxRadioButtonXaml.cs" />
+    <Compile Include="ThemesSet\CheckBoxRadioButtonSet\CheckBoxRadioButtonAttriDataContext.cs" />
+    <Compile Include="ThemesSet\ComboBoxListBoxSet\ComboBoxListBoxAttri.xaml.cs">
+      <DependentUpon>ComboBoxListBoxAttri.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ThemesSet\ComboBoxListBoxSet\ComboBoxListBoxAttriDataContext.cs" />
+    <Compile Include="ThemesSet\ComboBoxListBoxSet\ComboBoxListBoxAttriXaml.cs" />
+    <Compile Include="ThemesSet\Common\CommonXaml.cs" />
+    <Compile Include="ThemesSet\Common\ReadSave.cs" />
+    <Compile Include="ThemesSet\Common\RelayCommand.cs" />
+    <Compile Include="ThemesSet\DatePickerSet\DatePickerAttri.xaml.cs">
+      <DependentUpon>DatePickerAttri.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ThemesSet\DatePickerSet\DatePickerAttriDataContext.cs" />
+    <Compile Include="ThemesSet\DatePickerSet\DatePickerAttriXaml.cs" />
+    <Compile Include="ThemesSet\FontSet\FontAttri.xaml.cs">
+      <DependentUpon>FontAttri.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ThemesSet\FontSet\FontAttriDataContext.cs" />
+    <Compile Include="ThemesSet\FontSet\FontAttriXaml.cs" />
+    <Compile Include="ThemesSet\GroupBoxSet\GroupBoxAttri.xaml.cs">
+      <DependentUpon>GroupBoxAttri.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ThemesSet\GroupBoxSet\GroupBoxDataContext.cs" />
+    <Compile Include="ThemesSet\GroupBoxSet\GroupBoxAttriXaml.cs" />
+    <Compile Include="ThemesSet\LabelSet\LabelAttri.xaml.cs">
+      <DependentUpon>LabelAttri.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ThemesSet\LabelSet\LabelAttriDataContext.cs" />
+    <Compile Include="ThemesSet\LabelSet\LabelAttriXaml.cs" />
+    <Compile Include="ThemesSet\ListViewSet\ListViewAttri.xaml.cs">
+      <DependentUpon>ListViewAttri.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ThemesSet\ListViewSet\ListViewAttriDataContext.cs" />
+    <Compile Include="ThemesSet\ListViewSet\ListViewAttriXaml.cs" />
+    <Compile Include="ThemesSet\MenuSet\MenuAttri.xaml.cs">
+      <DependentUpon>MenuAttri.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ThemesSet\MenuSet\MenuAttriDataContext.cs" />
+    <Compile Include="ThemesSet\MenuSet\MenuAttriXaml.cs" />
+    <Compile Include="ThemesSet\MessageBoxOverrideSet\MessageBoxOverrideAttri.xaml.cs">
+      <DependentUpon>MessageBoxOverrideAttri.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ThemesSet\MessageBoxOverrideSet\MessageBoxOverrideAttriDataContext.cs" />
+    <Compile Include="ThemesSet\MessageBoxOverrideSet\MessageBoxOverrideAttriXaml.cs" />
+    <Compile Include="ThemesSet\RadGridViewSet\RadGridViewAttri.xaml.cs">
+      <DependentUpon>RadGridViewAttri.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ThemesSet\RadGridViewSet\RadGridViewAttriDataContext.cs" />
+    <Compile Include="ThemesSet\RadGridViewSet\RadGridViewAttriXaml.cs" />
+    <Compile Include="ThemesSet\RadTreeViewSet\RadTreeViewAttri.xaml.cs">
+      <DependentUpon>RadTreeViewAttri.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ThemesSet\RadTreeViewSet\RadTreeViewAttriDataContext.cs" />
+    <Compile Include="ThemesSet\RadTreeViewSet\RadTreeViewAttriXaml.cs" />
+    <Compile Include="ThemesSet\RibbonMenuSet\RabbionMenuAttri.xaml.cs">
+      <DependentUpon>RabbionMenuAttri.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ThemesSet\RibbonMenuSet\RabbionMenuDataContext.cs" />
+    <Compile Include="ThemesSet\RibbonMenuSet\RabbionMenuXaml.cs" />
+    <Compile Include="ThemesSet\ScrollSet\ScrollAttriDataContext.cs" />
+    <Compile Include="ThemesSet\ScrollSet\ScrollAttriXaml.cs" />
+    <Compile Include="ThemesSet\ScrollSet\ScrollBarAttri.xaml.cs">
+      <DependentUpon>ScrollBarAttri.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ThemesSet\ScrollViewSet\ScrollVeiwAttri.xaml.cs">
+      <DependentUpon>ScrollVeiwAttri.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ThemesSet\ScrollViewSet\ScrollViewerAttriDataContext.cs" />
+    <Compile Include="ThemesSet\ScrollViewSet\ScrollViewerAttriXaml.cs" />
+    <Compile Include="ThemesSet\TabSet\TabAttri.xaml.cs">
+      <DependentUpon>TabAttri.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ThemesSet\TabSet\TabAttriXaml.cs" />
+    <Compile Include="ThemesSet\TabSet\TabAttriDataContext.cs" />
+    <Compile Include="ThemesSet\TextBlockSet\TextBlockAttri.xaml.cs">
+      <DependentUpon>TextBlockAttri.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ThemesSet\TextBlockSet\TextBlockAttriDataContext.cs" />
+    <Compile Include="ThemesSet\TextBlockSet\TextBlockAttriXaml.cs" />
+    <Compile Include="ThemesSet\TextBoxsSet\TextBoxsAttri.xaml.cs">
+      <DependentUpon>TextBoxsAttri.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ThemesSet\TextBoxsSet\TextBoxsAttriDataContext.cs" />
+    <Compile Include="ThemesSet\TextBoxsSet\TextBoxsXaml.cs" />
+    <Compile Include="ThemesSet\TreeViewSet\TreeViewAttri.xaml.cs">
+      <DependentUpon>TreeViewAttri.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ThemesSet\TreeViewSet\TreeViewAttriDataContext.cs" />
+    <Compile Include="ThemesSet\TreeViewSet\TreeViewAttriXaml.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Documentation\Documentation.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Documentation\en\Elysium.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Elysium.cs</LastGenOutput>
+    </None>
+    <None Include="Documentation\ru\Elysium.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Elysium1.xml</LastGenOutput>
+    </None>
+    <None Include="Themes\Generic.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Generic1.xaml</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="AccentBrushes.en.xml" />
+    <Content Include="AccentBrushes.ru.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Controls\ApplicationBar\ApplicationBar.en.xml" />
+    <Content Include="Controls\ApplicationBar\ApplicationBar.ru.xml" />
+    <Content Include="Controls\ApplicationBar\ApplicationBarDock.en.xml" />
+    <Content Include="Controls\ApplicationBar\ApplicationBarDock.ru.xml" />
+    <Content Include="Controls\ApplicationBar\ApplicationBarPanel.en.xml" />
+    <Content Include="Controls\ApplicationBar\ApplicationBarPanel.ru.xml" />
+    <Content Include="Controls\ApplicationBar\ApplicationBarTransitionMode.en.xml" />
+    <Content Include="Controls\ApplicationBar\ApplicationBarTransitionMode.ru.xml" />
+    <Content Include="Controls\ApplicationBar\Automation\ApplicationBarAutomationPeer.en.xml" />
+    <Content Include="Controls\ApplicationBar\Automation\ApplicationBarAutomationPeer.ru.xml" />
+    <Content Include="Controls\CommandButtons\Automation\CommandButtonAutomationPeer.en.xml" />
+    <Content Include="Controls\CommandButtons\Automation\CommandButtonAutomationPeer.ru.xml" />
+    <Content Include="Controls\CommandButtons\Automation\CommandButtonBaseAutomationPeer.en.xml" />
+    <Content Include="Controls\CommandButtons\Automation\CommandButtonBaseAutomationPeer.ru.xml" />
+    <Content Include="Controls\CommandButtons\Automation\DropDownCommandButtonAutomationPeer.en.xml" />
+    <Content Include="Controls\CommandButtons\Automation\DropDownCommandButtonAutomationPeer.ru.xml" />
+    <Content Include="Controls\CommandButtons\Automation\ToggleCommandButtonAutomationPeer.en.xml" />
+    <Content Include="Controls\CommandButtons\Automation\ToggleCommandButtonAutomationPeer.ru.xml" />
+    <Content Include="Controls\CommandButtons\CommandButton.en.xml" />
+    <Content Include="Controls\CommandButtons\CommandButton.ru.xml" />
+    <Content Include="Controls\CommandButtons\DropDownCommandButton.en.xml" />
+    <Content Include="Controls\CommandButtons\DropDownCommandButton.ru.xml" />
+    <Content Include="Controls\CommandButtons\DropDownDirection.en.xml" />
+    <Content Include="Controls\CommandButtons\DropDownDirection.ru.xml" />
+    <Content Include="Controls\CommandButtons\Primitives\CommandButtonBase.en.xml" />
+    <Content Include="Controls\CommandButtons\Primitives\CommandButtonBase.ru.xml" />
+    <Content Include="Controls\CommandButtons\ToggleCommandButton.en.xml" />
+    <Content Include="Controls\CommandButtons\ToggleCommandButton.ru.xml" />
+    <Content Include="Controls\Menus\Automation\SubmenuAutomationPeer.en.xml" />
+    <Content Include="Controls\Menus\Automation\SubmenuAutomationPeer.ru.xml" />
+    <Content Include="Controls\Menus\Submenu.en.xml" />
+    <Content Include="Controls\Menus\Submenu.ru.xml" />
+    <Content Include="Controls\Progress\Automation\ProgressAutomationPeer.en.xml" />
+    <Content Include="Controls\Progress\Automation\ProgressAutomationPeer.ru.xml" />
+    <Content Include="Controls\Progress\Primitives\ProgressBase.en.xml" />
+    <Content Include="Controls\Progress\Primitives\ProgressBase.ru.xml" />
+    <Content Include="Controls\Progress\ProgressBar.en.xml" />
+    <Content Include="Controls\Progress\ProgressBar.ru.xml" />
+    <Content Include="Controls\Progress\ProgressRing.en.xml" />
+    <Content Include="Controls\Progress\ProgressRing.ru.xml" />
+    <Content Include="Controls\Progress\ProgressState.en.xml" />
+    <Content Include="Controls\Progress\ProgressState.ru.xml" />
+    <Content Include="Controls\ToggleSwitch\Automation\ToggleSwitchAutomationPeer.en.xml" />
+    <Content Include="Controls\ToggleSwitch\Automation\ToggleSwitchAutomationPeer.ru.xml" />
+    <Content Include="Controls\ToggleSwitch\ToggleSwitch.en.xml" />
+    <Content Include="Controls\ToggleSwitch\ToggleSwitch.ru.xml" />
+    <Content Include="Controls\Window\Window.en.xml" />
+    <Content Include="Controls\Window\Window.ru.xml" />
+    <Content Include="Controls\Window\WindowCommands.en.xml" />
+    <Content Include="Controls\Window\WindowCommands.ru.xml" />
+    <Content Include="Converters\AngleToCoordinateConverter.en.xml" />
+    <Content Include="Converters\AngleToCoordinateConverter.ru.xml" />
+    <Content Include="Converters\DoubleToGridLengthConverter.en.xml" />
+    <Content Include="Converters\DoubleToGridLengthConverter.ru.xml" />
+    <Content Include="Converters\DoubleToThicknessConverter.en.xml" />
+    <Content Include="Converters\DoubleToThicknessConverter.ru.xml" />
+    <Content Include="Converters\GridLengthToDoubleConverter.en.xml" />
+    <Content Include="Converters\GridLengthToDoubleConverter.ru.xml" />
+    <Content Include="Converters\IsGreaterThanConverter.en.xml" />
+    <Content Include="Converters\IsGreaterThanConverter.ru.xml" />
+    <Content Include="Converters\NumberPositiveToNegativeConverter.en.xml" />
+    <Content Include="Converters\NumberPositiveToNegativeConverter.ru.xml" />
+    <Content Include="Converters\PercentToAngleConverter.en.xml" />
+    <Content Include="Converters\PercentToAngleConverter.ru.xml" />
+    <Content Include="Converters\ThicknessConverter.en.xml" />
+    <Content Include="Converters\ThicknessConverter.ru.xml" />
+    <Content Include="Converters\ThicknessPositiveToNegativeConverter.en.xml" />
+    <Content Include="Converters\ThicknessPositiveToNegativeConverter.ru.xml" />
+    <Content Include="Converters\ThicknessToDoubleConverter.en.xml" />
+    <Content Include="Converters\ThicknessToDoubleConverter.ru.xml" />
+    <Content Include="Documentation\en\Elysium.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Documentation\ru\Elysium.xml" />
+    <Content Include="Documentation\ru\Elysium1.xml">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Elysium.tt</DependentUpon>
+    </Content>
+    <Content Include="Exceptions\InvalidStyleException.en.xml" />
+    <Content Include="Exceptions\InvalidStyleException.ru.xml" />
+    <Content Include="Extensions\Collections\IObservableDictionary.en.xml" />
+    <Content Include="Extensions\Collections\IObservableDictionary.ru.xml" />
+    <Content Include="Extensions\Collections\ObservableDictionary.en.xml" />
+    <Content Include="Extensions\Collections\ObservableDictionary.ru.xml" />
+    <Content Include="Extensions\Collections\ObservableKeyValuePair.en.xml" />
+    <Content Include="Extensions\Collections\ObservableKeyValuePair.ru.xml" />
+    <Content Include="Extensions\Threading helpers\DispatcherExtensions.en.xml" />
+    <Content Include="Extensions\Threading helpers\DispatcherExtensions.ru.xml" />
+    <Content Include="Extensions\Tree helpers\LogicalTreeHelperExtensions.en.xml" />
+    <Content Include="Extensions\Tree helpers\LogicalTreeHelperExtensions.ru.xml" />
+    <Content Include="Extensions\Tree helpers\VisualTreeHelperExtensions.en.xml" />
+    <Content Include="Extensions\Tree helpers\VisualTreeHelperExtensions.ru.xml" />
+    <Content Include="Manager.en.xml" />
+    <Content Include="Manager.ru.xml" />
+    <Content Include="Parameters\Bullet.en.xml" />
+    <Content Include="Parameters\Bullet.ru.xml" />
+    <Content Include="Parameters\CheckBox.en.xml" />
+    <Content Include="Parameters\CheckBox.ru.xml" />
+    <Content Include="Parameters\ComboBox.en.xml" />
+    <Content Include="Parameters\ComboBox.ru.xml" />
+    <Content Include="Parameters\CommandButtons.en.xml" />
+    <Content Include="Parameters\CommandButtons.ru.xml" />
+    <Content Include="Parameters\Design.en.xml" />
+    <Content Include="Parameters\Design.ru.xml" />
+    <Content Include="Parameters\DropDown.en.xml" />
+    <Content Include="Parameters\DropDown.ru.xml" />
+    <Content Include="Parameters\General.en.xml" />
+    <Content Include="Parameters\General.ru.xml" />
+    <Content Include="Parameters\Manager.en.xml" />
+    <Content Include="Parameters\Manager.ru.xml" />
+    <Content Include="Parameters\MenuBase.en.xml" />
+    <Content Include="Parameters\MenuBase.ru.xml" />
+    <Content Include="Parameters\MenuItem.en.xml" />
+    <Content Include="Parameters\MenuItem.ru.xml" />
+    <Content Include="Parameters\Progress.en.xml" />
+    <Content Include="Parameters\Progress.ru.xml" />
+    <Content Include="Parameters\ScrollBar.en.xml" />
+    <Content Include="Parameters\ScrollBar.ru.xml" />
+    <Content Include="Parameters\Slider.en.xml" />
+    <Content Include="Parameters\Slider.ru.xml" />
+    <Content Include="Parameters\TabControl.en.xml" />
+    <Content Include="Parameters\TabControl.ru.xml" />
+    <Content Include="Parameters\TabItem.en.xml" />
+    <Content Include="Parameters\TabItem.ru.xml" />
+    <Content Include="Parameters\ToggleSwitch.en.xml" />
+    <Content Include="Parameters\ToggleSwitch.ru.xml" />
+    <Content Include="Parameters\Window.en.xml" />
+    <Content Include="Parameters\Window.ru.xml" />
+    <Content Include="Theme.en.xml" />
+    <Content Include="Theme.ru.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="ThemesSet\AppleWindowSet\AppleWindowAttri.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ThemesSet\BasicControlSet\BasicControlXaml.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ThemesSet\ButtonSet\ButtonAttri.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ThemesSet\ButtonSet\ButtonStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ThemesSet\CheckBoxRadioButtonSet\CheckBoxRadioButtonAttri.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ThemesSet\CheckBoxRadioButtonSet\CheckBoxRadioButtonStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ThemesSet\ComboBoxListBoxSet\ComboBoxListBoxAttri.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ThemesSet\ComboBoxListBoxSet\ComboBoxListBoxStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ThemesSet\DataGridSet\DataGridStyle2.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ThemesSet\DatePickerSet\DatePickerStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ThemesSet\DatePickerSet\DatePickerAttri.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ThemesSet\FontSet\FontAttri.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ThemesSet\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ThemesSet\GroupBoxSet\GroupBoxStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ThemesSet\GroupBoxSet\GroupBoxAttri.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ThemesSet\LabelSet\LabelAttri.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ThemesSet\ListViewSet\ListViewAttri.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ThemesSet\ListViewSet\ListViewStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ThemesSet\MenuSet\MacMenuStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ThemesSet\MenuSet\MenuAttri.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ThemesSet\MessageBoxOverrideSet\MessageBoxOverrideAttri.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ThemesSet\NewFolder1\BasicControlXaml.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ThemesSet\RadGridViewSet\RadGridViewAttri.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ThemesSet\RadGridViewSet\RadGridViewResources.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ThemesSet\RadGridViewSet\RadGridViewStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ThemesSet\RadPager\RadDataPager_Style.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ThemesSet\RadTreeViewSet\RadTreeViewAttri.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ThemesSet\RadTreeViewSet\RadTreeViewStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ThemesSet\RibbonMenuSet\RabbionMenuStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ThemesSet\RibbonMenuSet\RabbionMenuAttri.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ThemesSet\ScrollSet\ScrollBarAttri.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ThemesSet\ScrollSet\ScrollBarStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ThemesSet\ScrollViewSet\MacScrollViewer.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ThemesSet\ScrollViewSet\ScrollVeiwAttri.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ThemesSet\TabSet\TabAttri.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ThemesSet\TabSet\TabStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ThemesSet\LabelSet\LabelStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ThemesSet\TextBlockSet\TextBlockAttri.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ThemesSet\TextBlockSet\TextBlockStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ThemesSet\TextBoxsSet\TextBoxsAttri.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ThemesSet\TextBoxsSet\TextBoxsStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ThemesSet\TreeViewSet\TreeViewAttri.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ThemesSet\TreeViewSet\TreeViewStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ThemesSet\DataGridSet\DataGridStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Brushes.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\DarkBrushes.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Generic1.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Generic.tt</DependentUpon>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Icons.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\LightBrushes.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\ListView\MacListView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Menus\ContextMenu.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Menus\MacMenu.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Menus\Menu.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Menus\MenuItem.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Menus\Submenu.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\RadControlTheme.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Scrolls\MacScrollBar.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Scrolls\MacScrollViewer.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\SharedResources.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Themes\ColorBrushAttach\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

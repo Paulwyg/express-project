@@ -1,0 +1,29 @@
+﻿<UserControl x:Class="Wlst.Ux.EquipmentInfo.DailyStatistics.MainViewModel.Views.MainView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:Views="clr-namespace:Wlst.Ux.EquipmentInfo.DailyStatistics.TerminalViewModel.Views"
+             xmlns:View="clr-namespace:Wlst.Ux.EquipmentInfo.DailyStatistics.SingleLampViewModel.View"
+             xmlns:View1="clr-namespace:Wlst.Ux.EquipmentInfo.DailyStatistics.LeakageViewModel.View"
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" mc:Ignorable="d" 
+             d:DesignHeight="800" d:DesignWidth="1000">
+    <Grid>      
+        <TabControl Background="Transparent" Margin="5,5,5,5" SelectedIndex="{Binding Indexs}">
+            <TabItem Header="终端设备信息" x:Name="terminal">
+                <Views:TerminalView   x:Name="tv1" ></Views:TerminalView>
+                
+
+            </TabItem>
+            <TabItem Header="单灯设备信息" x:Name="SingleLamp">
+                <View:SingleLampView   x:Name="tv2" ></View:SingleLampView>
+
+            </TabItem>
+
+            <TabItem Header="漏电设备信息" x:Name="Leakage">
+                <View1:LeakageView   x:Name="tv3" ></View1:LeakageView>
+
+            </TabItem>
+        </TabControl>
+    </Grid>
+</UserControl>

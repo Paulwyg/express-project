@@ -1,0 +1,656 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+                    xmlns:animationNavigation="clr-namespace:Telerik.Windows.Controls.Animation;assembly=Telerik.Windows.Controls.Navigation"
+                    xmlns:RadTreeStyle="clr-namespace:Wlst.Ux.EquipemntTree.RadTreeStyle">
+    <Style x:Key="TreeviewFocusVisual">
+        <Setter Property="Control.Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Rectangle Stroke="Transparent"  StrokeThickness="0" Margin="0" />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <telerik:BooleanToVisibilityConverter x:Key="BTVC"/>
+    <telerik:InvertedBooleanToVisibilityConverter x:Key="IBTVC"/>
+
+    <!--RadTreeViewItem-->
+    <ControlTemplate TargetType="telerik:RadTreeViewItem"
+			x:Key="TreeViewItemDefaultTemplate">
+        <Grid x:Name="RootElement">
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup x:Name="EditStates">
+                    <VisualState x:Name="Display" />
+                    <VisualState x:Name="Edit">
+                        <Storyboard>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="EditHeaderElement"
+														   Storyboard.TargetProperty="Visibility" Duration="0">
+                                <DiscreteObjectKeyFrame KeyTime="0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <Visibility>Visible</Visibility>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Header"
+														   Storyboard.TargetProperty="Visibility" Duration="0">
+                                <DiscreteObjectKeyFrame KeyTime="0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <Visibility>Collapsed</Visibility>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </VisualState>
+                </VisualStateGroup>
+
+                <VisualStateGroup x:Name="CommonStates">
+                    <VisualState x:Name="Normal" />
+                    <VisualState x:Name="Disabled">
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetProperty="Opacity"
+											 Storyboard.TargetName="Header" To="0.35" Duration="0:0:0.0" />
+                            <DoubleAnimation Storyboard.TargetProperty="Opacity"
+											 Storyboard.TargetName="Image" To="0.35" Duration="0:0:0.0" />
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="MouseOver">
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetProperty="Opacity"
+											 Storyboard.TargetName="MouseOverVisual" To="1" Duration="0:0:0.1" />
+                        </Storyboard>
+                    </VisualState>
+                </VisualStateGroup>
+
+                <VisualStateGroup x:Name="SelectionStates">
+                    <VisualState x:Name="Unselected" />
+                    <VisualState x:Name="Selected">
+                        <Storyboard>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SelectionVisual"
+														   Storyboard.TargetProperty="Visibility" Duration="0">
+                                <DiscreteObjectKeyFrame KeyTime="0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <Visibility>Visible</Visibility>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="SelectedUnfocused">
+                        <Storyboard>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SelectionUnfocusedVisual"
+														   Storyboard.TargetProperty="Visibility" Duration="0">
+                                <DiscreteObjectKeyFrame KeyTime="0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <Visibility>Visible</Visibility>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </VisualState>
+                </VisualStateGroup>
+
+                <VisualStateGroup x:Name="LoadingOnDemandStates">
+                    <VisualState x:Name="LoadingOnDemand">
+                        <Storyboard>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="LoadingVisual"
+														   Storyboard.TargetProperty="Visibility" Duration="0">
+                                <DiscreteObjectKeyFrame KeyTime="0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <Visibility>Visible</Visibility>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Expander"
+														   Storyboard.TargetProperty="Visibility" Duration="0">
+                                <DiscreteObjectKeyFrame KeyTime="0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <Visibility>Collapsed</Visibility>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                            <DoubleAnimation Storyboard.TargetName="LoadingVisualAngleTransform"
+											 Storyboard.TargetProperty="Angle"
+											 From="0" To="359" Duration="0:0:1" RepeatBehavior="Forever"/>
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="LoadingOnDemandReverse" />
+                </VisualStateGroup>
+
+                <VisualStateGroup x:Name="FocusStates">
+                    <VisualState x:Name="Focused">
+                        <Storyboard>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="FocusVisual"
+														   Storyboard.TargetProperty="Visibility" Duration="0">
+                                <DiscreteObjectKeyFrame KeyTime="0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <Visibility>Visible</Visibility>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Unfocused" />
+                </VisualStateGroup>
+
+                <VisualStateGroup x:Name="ExpandStates">
+                    <VisualState x:Name="Expanded" >
+                        <Storyboard>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ItemsHost"
+														   Storyboard.TargetProperty="Visibility" Duration="0">
+                                <DiscreteObjectKeyFrame KeyTime="0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <Visibility>Visible</Visibility>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Collapsed" />
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid x:Name="HeaderRow" Background="Transparent"
+						MinHeight="{TemplateBinding MinHeight}">
+                <Grid.ColumnDefinitions>
+                    <!-- indent -->
+                    <ColumnDefinition Width="Auto" />
+
+                    <!-- collapse/expand -->
+                    <ColumnDefinition Width="Auto" />
+
+                    <!-- checkbox, radio-->
+                    <ColumnDefinition Width="Auto" />
+
+                    <!-- left image -->
+                    <ColumnDefinition Width="Auto" />
+
+                    <!-- selection, text, edit element -->
+                    <ColumnDefinition Width="Auto" />
+
+                    <!-- empty -->
+                    <ColumnDefinition Width="*" />
+
+                </Grid.ColumnDefinitions>
+
+                <!-- normal-->
+                <Border CornerRadius="2" 
+							Background="{TemplateBinding Background}"
+							BorderBrush="{TemplateBinding BorderBrush}"
+							BorderThickness="{TemplateBinding BorderThickness}"
+							Grid.Column="2" Grid.ColumnSpan="6" />
+
+                <!-- Hover -->
+                <Border x:Name="MouseOverVisual" Opacity="0" Grid.ColumnSpan="6" Grid.Column="2"
+							CornerRadius="0"
+							BorderBrush="Red"
+								BorderThickness="{TemplateBinding BorderThickness}">
+                    <Border BorderBrush="Blue"
+								CornerRadius="0"
+								BorderThickness="{TemplateBinding BorderThickness}"
+								Background="{Binding RelativeSource={RelativeSource Self}, Path=(RadTreeStyle:RadTreeViewAttriXaml.ItemRadTreeViewBackgroundMouseOver), Mode=OneWay}" />
+                </Border>
+
+                <!-- Selection Unfocused-->
+                <Border x:Name="SelectionUnfocusedVisual" Visibility="Collapsed" Grid.ColumnSpan="6"
+							Grid.Column="2"
+							CornerRadius="0"
+							BorderBrush="Yellow"
+								BorderThickness="{TemplateBinding BorderThickness}">
+                    <Border BorderBrush="Red"
+								CornerRadius="0"
+								BorderThickness="{TemplateBinding BorderThickness}"
+								Background="{Binding RelativeSource={RelativeSource Self}, Path=(RadTreeStyle:RadTreeViewAttriXaml.ItemRadTreeViewBackgroundSelected), Mode=OneWay}" />
+                </Border>
+
+                <!-- Select -->
+                <Border x:Name="SelectionVisual" Visibility="Collapsed" Grid.ColumnSpan="6" Grid.Column="2"
+							CornerRadius="0"
+							BorderBrush="Yellow"
+							BorderThickness="{TemplateBinding BorderThickness}">
+                    <Border BorderBrush="Red"
+								CornerRadius="0"
+								BorderThickness="{TemplateBinding BorderThickness}"
+								Background="{Binding RelativeSource={RelativeSource Self}, Path=(RadTreeStyle:RadTreeViewAttriXaml.ItemRadTreeViewBackgroundSelected), Mode=OneWay}" />
+                </Border>
+
+                <!-- indent -->
+                <StackPanel x:Name="IndentContainer" Orientation="Horizontal" >
+                    <Rectangle x:Name="IndentFirstVerticalLine"  Width="1" Visibility="Collapsed"
+								Stroke="Red" VerticalAlignment="Top" >
+                        <Rectangle.Clip>
+                            <RectangleGeometry Rect="0,0,1,10000" />
+                        </Rectangle.Clip>
+                    </Rectangle>
+                </StackPanel>
+
+                <!-- ListRoot decoration -->
+                <Grid Grid.Column="1" x:Name="ListRootContainer" HorizontalAlignment="Center"
+							MinWidth="20">
+
+                    <!-- Lines -->
+                    <Rectangle x:Name="HorizontalLine" Height="1"
+								Stroke="{DynamicResource TreeView_LineColor}" VerticalAlignment="Center"
+								HorizontalAlignment="Right" >
+                        <Rectangle.Clip>
+                            <RectangleGeometry Rect="0,0,10000,1" />
+                        </Rectangle.Clip>
+                    </Rectangle>
+
+                    <Rectangle x:Name="VerticalLine" Width="1"
+									Stroke="{DynamicResource TreeView_LineColor}" VerticalAlignment="Top"
+									HorizontalAlignment="Center" >
+                        <Rectangle.Clip>
+                            <RectangleGeometry Rect="0,0,1,10000" />
+                        </Rectangle.Clip>
+                    </Rectangle>
+
+                    <!-- Collapse/Expand -->
+                    <ToggleButton x:Name="Expander" IsTabStop="False"
+								Background="{TemplateBinding Background}" />
+
+                    <!-- Loading ... -->
+                    <Grid x:Name="LoadingVisual" RenderTransformOrigin="0.5,0.5"
+								Visibility="Collapsed" VerticalAlignment="Center"
+								HorizontalAlignment="Center">
+                        <Grid.RenderTransform>
+                            <TransformGroup>
+                                <RotateTransform x:Name="LoadingVisualAngleTransform" Angle="0"
+											CenterX="0.5" CenterY="0.5" />
+                            </TransformGroup>
+                        </Grid.RenderTransform>
+                        <Path Width="10" Height="10" Stretch="Fill"
+									Stroke="{TemplateBinding Foreground}" StrokeThickness="1"
+									StrokeStartLineCap="Round" Data="M1,0 A1,1,90,1,1,0,-1" />
+
+                        <Path Margin="5,-1.5,0,0" HorizontalAlignment="Left"
+									VerticalAlignment="Top" Width="4" Height="4" Stretch="Fill"
+									Fill="{TemplateBinding Foreground}"
+									Data="M0,-1.1 L0.1,-1 L0,-0.9" StrokeThickness="1" />
+                    </Grid>
+
+                </Grid>
+                <!--/ ListRoot decoration -->
+
+                <!-- Checkbox/Radio -->
+                <CheckBox IsTabStop="False" Grid.Column="2" VerticalAlignment="Center"
+							telerik:StyleManager.Theme="{DynamicResource Theme}"
+							Margin="5,0,0,0" x:Name="CheckBoxElement" Visibility="Collapsed" />
+                <RadioButton IsTabStop="False" Grid.Column="2" Margin="5,0,0,0"
+							telerik:StyleManager.Theme="{DynamicResource Theme}"
+							VerticalAlignment="Center" x:Name="RadioButtonElement"
+							Visibility="Collapsed" />
+
+                <!--/ Checkbox/Radio -->
+
+                <!-- Image and text -->
+                <Image Grid.Column="3" x:Name="Image"
+							MaxWidth="16" MaxHeight="16" Margin="2" HorizontalAlignment="Center"
+							VerticalAlignment="Center" />
+
+                <!-- Focus -->
+                <Rectangle x:Name="FocusVisual" Visibility="Collapsed" Grid.Column="2"
+							Grid.ColumnSpan="6" Stroke="{DynamicResource FocusBrushBlack}"
+							StrokeThickness="1" StrokeDashArray="1 2" IsHitTestVisible="False"
+							RadiusX="3" RadiusY="3" />
+
+                <!-- Content -->
+                <Grid Grid.Column="4" Grid.ColumnSpan="2">
+                    <ContentPresenter x:Name="Header" 
+                        ContentTemplateSelector="{TemplateBinding HeaderTemplateSelector}"
+                        Content="{TemplateBinding Header}"
+							ContentTemplate="{TemplateBinding HeaderTemplate}"
+							HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+							VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+							Margin="{TemplateBinding Padding}" />
+
+                    <ContentPresenter x:Name="EditHeaderElement" Visibility="Collapsed"
+                            ContentTemplateSelector="{TemplateBinding HeaderEditTemplateSelector}"
+							ContentTemplate="{TemplateBinding HeaderEditTemplate}"
+                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+							VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+							Margin="{TemplateBinding Padding}" />
+
+                </Grid>
+            </Grid>
+
+            <ItemsPresenter Grid.Row="1" x:Name="ItemsHost" Visibility="Collapsed"/>
+        </Grid>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsInEditMode" Value="true">
+                <Setter Property="Visibility" TargetName="Header" Value="Collapsed" />
+                <Setter Property="Visibility" TargetName="EditHeaderElement" Value="Visible" />
+            </Trigger>
+            <Trigger Property="IsSelected" Value="true">
+                <Setter Property="Visibility" TargetName="SelectionVisual" Value="Visible" />
+                <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource Self}, Path=(RadTreeStyle:RadTreeViewAttriXaml.ItemRadTreeViewForegroundSelected), Mode=OneWay}" />
+            </Trigger>
+            <Trigger Property="IsFocused" Value="true">
+                <Setter Property="Visibility" TargetName="FocusVisual" Value="Visible" />
+            </Trigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsSelected" Value="True" />
+                    <Condition Property="IsSelectionActive" Value="False" />
+                </MultiTrigger.Conditions>
+                <Setter Property="Opacity" TargetName="SelectionVisual" Value="0" />
+                <Setter Property="Visibility" TargetName="SelectionUnfocusedVisual" Value="Visible" />
+            </MultiTrigger>
+            <Trigger Property="IsEnabled" Value="false">
+                <Setter Property="Opacity" TargetName="Header" Value="0.5" />
+            </Trigger>
+
+            <Trigger Property="IsExpanded" Value="true">
+                <Setter TargetName="ItemsHost" Property="Visibility" Value="Visible" />
+            </Trigger>
+            <Trigger Property="IsLoadingOnDemand" Value="true">
+                <Setter TargetName="LoadingVisual" Property="Visibility" Value="Visible" />
+                <Setter TargetName="Expander" Property="Visibility" Value="Collapsed" />
+                <Trigger.EnterActions>
+                    <BeginStoryboard x:Name="LoadingVisualTransform">
+                        <Storyboard>
+                            <DoubleAnimation From="0" To="359" Duration="0:0:1"
+									RepeatBehavior="Forever"
+									Storyboard.TargetName="LoadingVisualAngleTransform"
+									Storyboard.TargetProperty="Angle" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </Trigger.EnterActions>
+                <Trigger.ExitActions>
+                    <StopStoryboard BeginStoryboardName="LoadingVisualTransform" />
+                </Trigger.ExitActions>
+            </Trigger>
+            <Trigger Property="IsDragOver" Value="True">
+                <Setter Property="Opacity" Value="1" TargetName="MouseOverVisual" />
+            </Trigger>
+            <Trigger Property="IsMouseOver" SourceName="HeaderRow" Value="True">
+                <Setter Property="Opacity" Value="1" TargetName="MouseOverVisual" />
+                <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource Self}, Path=(RadTreeStyle:RadTreeViewAttriXaml.ItemRadTreeViewForegroundMouseOver), Mode=OneWay}" />
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <Style TargetType="telerik:RadTreeViewItem" x:Key="RadTreeViewItemStyle">
+        <Setter Property="FocusVisualStyle" Value="{DynamicResource TreeviewFocusVisual}"/>
+        <Setter Property="HorizontalContentAlignment" Value="Left" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource Self}, Path=(RadTreeStyle:RadTreeViewAttriXaml.ItemRadTreeViewForeground), Mode=OneWay}" />
+        <Setter Property="Background" Value="{Binding RelativeSource={RelativeSource Self}, Path=(RadTreeStyle:RadTreeViewAttriXaml.ItemRadTreeViewBackground), Mode=OneWay}" />
+        <Setter Property="BorderThickness" Value="0" />
+        <!--<Setter Property="FontSize" Value="{Binding RelativeSource={RelativeSource Self}, Path=(FontSet:FontAttriXaml.MyFontSize), Mode=OneWay}" />-->
+        <Setter Property="Padding" Value="1 0 5 0" />
+        <Setter Property="IsDropAllowed" Value="True" />
+        <Setter Property="ItemsOptionListType" Value="Default" />
+        <Setter Property="IsEnabled" Value="True" />
+        <Setter Property="MinHeight" Value="24" />
+        <Setter Property="Template" Value="{DynamicResource TreeViewItemDefaultTemplate}" />
+        <Setter Property="ItemsPanel">
+            <Setter.Value>
+                <ItemsPanelTemplate>
+                    <telerik:TreeViewPanel VerticalAlignment="Bottom" />
+                </ItemsPanelTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="telerik:RadTreeViewItem" BasedOn="{StaticResource RadTreeViewItemStyle}" />
+
+    <!--RadTreeView-->
+    <Style TargetType="telerik:RadTreeView" x:Key="RadTreeViewStyle">
+        <Setter Property="telerik:AnimationManager.AnimationSelector">
+            <Setter.Value>
+                <telerik:AnimationSelector>
+                    <animationNavigation:TreeViewExpandCollapseAnimation AnimationName="Expand"
+							Direction="In" />
+                    <animationNavigation:TreeViewExpandCollapseAnimation AnimationName="Collapse"
+							Direction="Out" />
+                </telerik:AnimationSelector>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="IsDragTooltipEnabled" Value="True" />
+        <!--底色-->
+        <Setter Property="Background" Value="{Binding RelativeSource={RelativeSource Self}, Path=(RadTreeStyle:RadTreeViewAttriXaml.RadTreeViewBackground), Mode=OneWay}" />
+        <Setter Property="BorderThickness" Value="{Binding RelativeSource={RelativeSource Self}, Path=(RadTreeStyle:RadTreeViewAttriXaml.RadTreeViewBorderThickness), Mode=OneWay}" />
+        <Setter Property="BorderBrush" Value="{Binding RelativeSource={RelativeSource Self}, Path=(RadTreeStyle:RadTreeViewAttriXaml.RadTreeViewBorderBrush), Mode=OneWay}" />
+        <Setter Property="IsEnabled" Value="True" />
+        <Setter Property="IsDropPreviewLineEnabled" Value="True" />
+        <!--<Setter Property="FontSize" Value="{Binding RelativeSource={RelativeSource Self}, Path=(FontSet:FontAttriXaml.MyFontSize), Mode=OneWay}" />-->
+        <Setter Property="IsRootLinesEnabled" Value="True" />
+        <Setter Property="IsExpandOnDblClickEnabled" Value="True" />
+        <Setter Property="IsDragPreviewEnabled" Value="True" />
+        <Setter Property="SelectionMode" Value="Single" />
+        <Setter Property="ItemsIndent" Value="20" />
+        <Setter Property="ItemsPanel">
+            <Setter.Value>
+                <ItemsPanelTemplate>
+                    <telerik:TreeViewPanel />
+                </ItemsPanelTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="ItemEditTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <TextBox />
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="ExpanderStyle">
+            <Setter.Value>
+                <Style TargetType="ToggleButton">
+                    <Setter Property="IsEnabled" Value="True" />
+                    <Setter Property="Background" Value="Transparent"/>
+                    <Setter Property="BorderBrush" Value="Red" />
+                    <Setter Property="IsTabStop" Value="False" />
+                    <Setter Property="Cursor" Value="Hand" />
+                    <Setter Property="Width" Value="25"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="ToggleButton">
+                                <Grid Background="Transparent">
+                                    <VisualStateManager.VisualStateGroups>
+                                        <VisualStateGroup x:Name="CommonStates">
+                                            <VisualState x:Name="Normal" />
+                                            <VisualState x:Name="MouseOver">
+                                                <Storyboard>
+                                                    <DoubleAnimation Duration="0:0:0.05"
+															Storyboard.TargetName="ExpandedVisualOver"
+															Storyboard.TargetProperty="Opacity"
+															To="1" />
+                                                    <DoubleAnimation Duration="0:0:0.05"
+															Storyboard.TargetName="CollapsedVisualOver"
+															Storyboard.TargetProperty="Opacity"
+															To="1" />
+                                                </Storyboard>
+                                            </VisualState>
+                                            <VisualState x:Name="Disabled">
+                                                <Storyboard>
+                                                    <ObjectAnimationUsingKeyFrames
+														Storyboard.TargetName="ExpandedVisual"
+														Storyboard.TargetProperty="Fill">
+                                                        <DiscreteObjectKeyFrame KeyTime="0" Value="{DynamicResource ControlElement_Disabled}" />
+                                                    </ObjectAnimationUsingKeyFrames>
+                                                    <ObjectAnimationUsingKeyFrames
+														Storyboard.TargetName="ExpandedVisual"
+														Storyboard.TargetProperty="Stroke">
+                                                        <DiscreteObjectKeyFrame KeyTime="0" Value="{DynamicResource ControlElement_Disabled}" />
+                                                    </ObjectAnimationUsingKeyFrames>
+                                                    <ObjectAnimationUsingKeyFrames
+														Storyboard.TargetName="CollapsedVisual"
+														Storyboard.TargetProperty="Fill">
+                                                        <DiscreteObjectKeyFrame KeyTime="0" Value="{DynamicResource ControlElement_Disabled}" />
+                                                    </ObjectAnimationUsingKeyFrames>
+                                                    <ObjectAnimationUsingKeyFrames
+														Storyboard.TargetName="CollapsedVisual"
+														Storyboard.TargetProperty="Stroke">
+                                                        <DiscreteObjectKeyFrame KeyTime="0" Value="{DynamicResource ControlElement_Disabled}" />
+                                                    </ObjectAnimationUsingKeyFrames>
+                                                </Storyboard>
+                                            </VisualState>
+                                        </VisualStateGroup>
+                                        <VisualStateGroup x:Name="CheckStates">
+                                            <VisualState x:Name="Checked">
+                                                <Storyboard>
+                                                    <DoubleAnimation Duration="0:0:0.05"
+															Storyboard.TargetName="ExpandedStates"
+															Storyboard.TargetProperty="Opacity"
+															To="1" />
+                                                    <DoubleAnimation Duration="0:0:0.05"
+															Storyboard.TargetName="CollapsedStates"
+															Storyboard.TargetProperty="Opacity"
+															To="0" />
+                                                </Storyboard>
+                                            </VisualState>
+                                            <VisualState x:Name="Unchecked">
+                                                <Storyboard>
+                                                    <DoubleAnimation Duration="0:0:0.05"
+															Storyboard.TargetName="ExpandedStates"
+															Storyboard.TargetProperty="Opacity"
+															To="0" />
+                                                    <DoubleAnimation Duration="0:0:0.05"
+															Storyboard.TargetName="CollapsedStates"
+															Storyboard.TargetProperty="Opacity"
+															To="1" />
+                                                </Storyboard>
+                                            </VisualState>
+                                        </VisualStateGroup>
+                                    </VisualStateManager.VisualStateGroups>
+                                    <Grid x:Name="CollapsedStates" Background="Transparent">
+                                        <Path x:Name="CollapsedVisual" Stretch="Fill"
+											Fill="{Binding RelativeSource={RelativeSource Self}, Path=(RadTreeStyle:RadTreeViewAttriXaml.TitleRadTreeViewBackground), Mode=OneWay}"
+											Stroke="{Binding RelativeSource={RelativeSource Self}, Path=(RadTreeStyle:RadTreeViewAttriXaml.TitleRadTreeViewBackground), Mode=OneWay}"
+											Data="M0.5,0.5 L5.2,5.4 L5.2,5.4 L0.5,10.5 z"
+											RenderTransformOrigin="0.5,1"
+											HorizontalAlignment="Center" 
+											Width="6" Height="9" VerticalAlignment="Center" />
+                                        <Path x:Name="CollapsedVisualOver" Opacity="0"
+											Stretch="Fill" 
+											Fill="{Binding RelativeSource={RelativeSource Self}, Path=(RadTreeStyle:RadTreeViewAttriXaml.TitleRadTreeViewBackgroundMouseOver), Mode=OneWay}"
+											Stroke="{Binding RelativeSource={RelativeSource Self}, Path=(RadTreeStyle:RadTreeViewAttriXaml.TitleRadTreeViewBackgroundMouseOver), Mode=OneWay}"
+											Data="M0.5,0.5 L5.2,5.4 L5.2,5.4 L0.5,10.5 z"
+											RenderTransformOrigin="0.5,1"
+											HorizontalAlignment="Center" 
+											Width="6" Height="9" VerticalAlignment="Center" />
+                                    </Grid>
+                                    <Grid x:Name="ExpandedStates" Opacity="0" Background="Transparent">
+                                        <Path x:Name="ExpandedVisual" HorizontalAlignment="Center"
+											Margin="2,1,0,0" Width="7" Height="7"
+											VerticalAlignment="Center" Stretch="Fill"
+										Fill="{Binding RelativeSource={RelativeSource Self}, Path=(RadTreeStyle:RadTreeViewAttriXaml.TitleExplandRadTreeViewBackground), Mode=OneWay}"
+											Stroke="{Binding RelativeSource={RelativeSource Self}, Path=(RadTreeStyle:RadTreeViewAttriXaml.TitleExplandRadTreeViewBackground), Mode=OneWay}"
+											Data="M3.27,3.75 L6.5,0.5 L6.5,6.5 L0.5,6.5 z" />
+                                        <Path x:Name="ExpandedVisualOver"
+											HorizontalAlignment="Center" Margin="2,1,0,0"
+											Width="7" Height="7" VerticalAlignment="Center"
+											Opacity="0" Stretch="Fill" 
+											Fill="{Binding RelativeSource={RelativeSource Self}, Path=(RadTreeStyle:RadTreeViewAttriXaml.TitleExplandRadTreeViewBackgroundMouseOver), Mode=OneWay}"
+											Stroke="{Binding RelativeSource={RelativeSource Self}, Path=(RadTreeStyle:RadTreeViewAttriXaml.TitleExplandRadTreeViewBackgroundMouseOver), Mode=OneWay}"
+											Data="M3.27,3.75 L6.5,0.5 L6.5,6.5 L0.5,6.5 z"/>
+                                    </Grid>
+
+                                </Grid>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsChecked" Value="True">
+                                        <Setter Property="Opacity" TargetName="ExpandedStates"
+												Value="1" />
+                                        <Setter Property="Opacity" TargetName="CollapsedStates"
+												Value="0" />
+                                    </Trigger>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Opacity" TargetName="CollapsedVisualOver"
+												Value="1" />
+                                        <Setter Property="Opacity" TargetName="ExpandedVisualOver"
+												Value="1" />
+                                    </Trigger>
+                                    <Trigger Property="IsEnabled" Value="false">
+                                        <Setter TargetName="ExpandedVisual" Property="Fill" Value="{DynamicResource ControlElement_Disabled}" />
+                                        <Setter TargetName="ExpandedVisual" Property="Stroke" Value="{DynamicResource ControlElement_Disabled}" />
+                                        <Setter TargetName="CollapsedVisual" Property="Fill"  Value="{DynamicResource ControlElement_Disabled}" />
+                                        <Setter TargetName="CollapsedVisual" Property="Stroke"  Value="{DynamicResource ControlElement_Disabled}" />
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="telerik:RadTreeView">
+                    <Grid x:Name="RootElement">
+                        <Grid.Resources>
+                            <Storyboard x:Key="DropRootPossibleState">
+                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ScrollViewer"
+										Storyboard.TargetProperty="Background">
+                                    <DiscreteObjectKeyFrame KeyTime="0">
+                                        <DiscreteObjectKeyFrame.Value>
+                                            <SolidColorBrush Color="#7fFCD590" />
+                                        </DiscreteObjectKeyFrame.Value>
+                                    </DiscreteObjectKeyFrame>
+                                </ObjectAnimationUsingKeyFrames>
+                            </Storyboard>
+                        </Grid.Resources>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="DropStates">
+                                <VisualState x:Name="DropImpossible" />
+                                <VisualState x:Name="DropPossible" />
+                                <VisualState x:Name="DropRootPossible">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ScrollViewer" Storyboard.TargetProperty="Background">
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <SolidColorBrush Color="#7fFCD590" />
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Border BorderBrush="{TemplateBinding BorderBrush}"
+								BorderThickness="{TemplateBinding BorderThickness}"
+								Background="{TemplateBinding Background}">
+                            <Grid>
+                                <ScrollViewer Padding="{TemplateBinding Padding}" IsTabStop="False"
+											  x:Name="ScrollViewer" BorderThickness="0"
+											  Background="{x:Null}"
+                                    CanContentScroll="True"
+											  HorizontalScrollBarVisibility="Auto"
+											  VerticalScrollBarVisibility="Auto">
+                                    <ItemsPresenter />
+                                </ScrollViewer>
+
+                                <Grid x:Name="DragBetweenItemsFeedback" Height="8" Visibility="Collapsed"
+									  HorizontalAlignment="Left" VerticalAlignment="Top"
+									  IsHitTestVisible="False"
+									  Margin="{TemplateBinding Padding}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="8" />
+                                        <ColumnDefinition />
+                                    </Grid.ColumnDefinitions>
+                                    <Ellipse Stroke="{DynamicResource DragBetweenItemsFeedback_BackgroundBrush}"
+											 StrokeThickness="2" HorizontalAlignment="Left"
+											 VerticalAlignment="Center" Width="8" Height="8" />
+                                    <Rectangle Fill="{DynamicResource DragBetweenItemsFeedback_BackgroundBrush}"
+											   RadiusX="2" RadiusY="2" Margin="-2,3,0,0"
+											   VerticalAlignment="Top" Height="2"
+											   Grid.Column="1" />
+                                </Grid>
+                            </Grid>
+                        </Border>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="{Binding RelativeSource={RelativeSource Self}, Path=(RadTreeStyle:RadTreeViewAttriXaml.RadTreeViewBackgroundMouseOver), Mode=OneWay}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <Style TargetType="telerik:RadTreeView" BasedOn="{StaticResource RadTreeViewStyle}" />
+</ResourceDictionary>

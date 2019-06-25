@@ -1,0 +1,121 @@
+﻿<UserControl x:Class="Wlst.Ux.EquipemntLightFault.SendOrderViewModel.Views.SendOrderView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" mc:Ignorable="d" 
+             d:DesignHeight="400" d:DesignWidth="1040">
+    <Grid Visibility="Visible" Name="grid1">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+
+
+
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+            <ColumnDefinition Width="15"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+
+        <telerik:RadTreeListView   AllowDrop="True" AutoGenerateColumns="False" ShowGroupPanel="False" RowIndicatorVisibility="Collapsed" HorizontalAlignment="Left"
+                                 ItemsSource="{Binding SendOrderList}" SelectedItem ="{Binding CurrentSendOrderItem}" Width="300" Grid.Row="1"    Margin="5,5,5,0" Grid.RowSpan="4" Name="rtOrderList">
+
+            <telerik:RadTreeListView.Columns>
+
+                <telerik:GridViewDataColumn Header="终端名称"  IsResizable="False"  IsFilterable="False"    Width="210"  IsReadOnly="True"  DataMemberBinding ="{Binding RtuName}">
+                </telerik:GridViewDataColumn>
+
+                <telerik:GridViewDataColumn  Header="状态" HeaderTextAlignment="Center" Width="80" IsReadOnly="True" DataMemberBinding ="{Binding Status}">
+                </telerik:GridViewDataColumn>
+
+            </telerik:RadTreeListView.Columns>
+        </telerik:RadTreeListView>
+
+
+        <Grid Grid.Column="2" Grid.RowSpan="5">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+
+
+            </Grid.RowDefinitions>
+
+            <Grid  Name="grid2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="50" ></RowDefinition>
+
+
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0" Margin="0,5,0,5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"></RowDefinition>
+                        <RowDefinition Height="30"></RowDefinition>
+                        <RowDefinition Height="30"></RowDefinition>
+                        <RowDefinition Height="30"></RowDefinition>
+                        <RowDefinition Height="30"></RowDefinition>
+                        <RowDefinition Height="30"></RowDefinition>
+                        <RowDefinition Height="30"></RowDefinition>
+                        <RowDefinition Height="30"></RowDefinition>
+                        <RowDefinition Height="30"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="120" ></ColumnDefinition>
+                        <ColumnDefinition Width="200" ></ColumnDefinition>
+                        <ColumnDefinition Width="120" ></ColumnDefinition>
+                        <ColumnDefinition Width="200" ></ColumnDefinition>
+
+
+                        <ColumnDefinition ></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+
+                    <TextBlock Text="故障单号：" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20,0,5,0"></TextBlock>
+                    <TextBox Width="200"  Height="28" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center" IsEnabled="False"  Text="{Binding CurrentSendOrderItem.OrderId}"></TextBox>
+
+
+                    <TextBlock Text="故障名称：" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20,0,5,0" Grid.Column="2" Grid.Row="0"></TextBlock>
+                    <TextBox Width="200"  Height="28" Grid.Column="3" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center" IsEnabled="False"  Text="{Binding CurrentSendOrderItem.FaultName}"></TextBox>
+
+
+                    <TextBlock Text="终端名称：" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20,0,5,0"  Grid.Column="0" Grid.Row="1"></TextBlock>
+                    <TextBox Width="520"  Height="28" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center" IsEnabled="False"  Text="{Binding CurrentSendOrderItem.RtuName}" Grid.ColumnSpan="3" Margin="0,1"></TextBox>
+
+                    <TextBlock Text="所属部门：" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20,0,5,0"  Grid.Column="0" Grid.Row="2"></TextBlock>
+                    <TextBox Width="520"  Height="28" Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Center" IsEnabled="False"  Text="{Binding CurrentSendOrderItem.RtuGroup}" Margin="0,1"></TextBox>
+
+                    <TextBlock Text="单据类别：" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20,0,5,0"  Grid.Column="0" Grid.Row="3"></TextBlock>
+                    <TextBox Width="200"  Height="28" Grid.Column="1" Grid.Row="3" HorizontalAlignment="Left" VerticalAlignment="Center" IsEnabled="False"  Text="{Binding CurrentSendOrderItem.PriorityLevel}"></TextBox>
+
+                    <TextBlock Text="值班人员：" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20,0,5,0"  Grid.Column="2" Grid.Row="3"></TextBlock>
+                    <TextBox Width="200"  Height="28" Grid.Column="3" Grid.Row="3" HorizontalAlignment="Left" VerticalAlignment="Center" IsEnabled="False"  Text="{Binding CurrentSendOrderItem.AdminName}"></TextBox>
+
+                    <TextBlock Text="急修地点：" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20,0,5,0"  Grid.Column="0" Grid.Row="4"></TextBlock>
+                    <TextBox Width="520"  Height="28" Grid.Column="1" Grid.Row="4" HorizontalAlignment="Left" VerticalAlignment="Center" IsEnabled="{Binding CurrentSendOrderItem.MergencyLocationEnable}"  Text="{Binding CurrentSendOrderItem.MergencyLocation}" Grid.ColumnSpan="3" Margin="0,1"></TextBox>
+
+                    <TextBlock Text="维修/急修内容：" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20,0,5,0"  Grid.Column="0" Grid.Row="5"></TextBlock>
+                    <TextBox Width="520"  Height="90" Grid.Column="1" Grid.Row="5" HorizontalAlignment="Left" VerticalAlignment="Center" IsEnabled="True"  Text="{Binding CurrentSendOrderItem.RepairContent}" Grid.ColumnSpan="3" Grid.RowSpan="3" AcceptsReturn="False" TextAlignment="Left" MinLines="1" AutoWordSelection="False" IsManipulationEnabled="False" IsReadOnly="False" IsUndoEnabled="True" OverridesDefaultStyle="False" SnapsToDevicePixels="False" TextWrapping="Wrap" Name="txtOrderContext"></TextBox>
+
+                    <TextBlock Text="派单时间：" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20,0,5,0"  Grid.Column="0" Grid.Row="9"></TextBlock>
+                    <TextBox Width="520"  Height="30" Grid.Column="1" Grid.Row="9" HorizontalAlignment="Left" VerticalAlignment="Center" IsEnabled="False"  Text="{Binding CurrentSendOrderItem.OrderTime}" Grid.ColumnSpan="3"></TextBox>
+
+
+
+
+                </Grid>
+                <Button Content="发单" Command="{Binding CmdSendOrder}" Width="130" Height="25" HorizontalAlignment="Left" Margin="479,9,0,15" Grid.Row="1"></Button>
+                <Label Width="200"  Height="28" Grid.Column="1" Grid.Row="3" HorizontalAlignment="Left" VerticalAlignment="Center" IsEnabled="False"  Margin="20,0,0,0" Content="{Binding MessageShow}"></Label>
+            </Grid>
+
+            <DockPanel  Grid.Row="1" ></DockPanel>
+
+        </Grid>
+
+    </Grid>
+</UserControl>

@@ -1,0 +1,158 @@
+﻿<UserControl x:Class="Wlst.Ux.EquipemntLightFault.UserIndividuationFaultSettingViewModel.View.UserIndividuationFaultSettingView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:Wpf="clr-namespace:PropertyTools.Wpf;assembly=PropertyTools.Wpf"
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+                          
+             xmlns:AppleWindowSet="clr-namespace:Elysium.ThemesSet.AppleWindowSet;assembly=Elysium"
+             mc:Ignorable="d" d:DesignWidth="950" d:DesignHeight="300">
+
+        <Grid HorizontalAlignment="Left">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="35"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="35"></RowDefinition>
+            <RowDefinition Height="35"></RowDefinition>
+        </Grid.RowDefinitions>
+            
+            
+        <Grid Grid.Row="0" VerticalAlignment="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="450"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Label Content="当前用户报警类型：" Grid.Column="0" Margin="10,3,0,2" MinHeight="20" VerticalAlignment="Center" />
+            <Label Content="短消息报警终端设置：" Grid.Column="1" Margin="10,3,0,2" MinHeight="20" VerticalAlignment="Center" />
+
+
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>                
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <telerik:RadTreeListView ShowGroupPanel="False"   Margin="5" AllowDrop="True" AutoGenerateColumns="False"  
+                                 RowIndicatorVisibility="Collapsed" ItemsSource="{Binding Path=Records}" >
+
+                <telerik:RadTreeListView.Columns>
+                    <telerik:GridViewDataColumn Header="故障编码" Width="80">
+                        <telerik:GridViewDataColumn.CellTemplate>
+                            <DataTemplate>
+                                <DockPanel Width="70">
+                                    <TextBlock   HorizontalAlignment="Left" VerticalAlignment="Center" Text="{Binding Path=FaultCode, Mode=TwoWay}"/>
+                                </DockPanel>
+                            </DataTemplate>
+                        </telerik:GridViewDataColumn.CellTemplate>
+                    </telerik:GridViewDataColumn>
+                    <telerik:GridViewDataColumn Header="名称" Width="150">
+                        <telerik:GridViewDataColumn.CellTemplate>
+                            <DataTemplate>
+                                <DockPanel>
+                                    <TextBlock HorizontalAlignment="Left"  Text="{Binding FaultNameByDefine}"></TextBlock>
+                                </DockPanel>
+                            </DataTemplate>
+                        </telerik:GridViewDataColumn.CellTemplate>
+                    </telerik:GridViewDataColumn>
+                    <telerik:GridViewDataColumn Header="是否报警" Width="100">
+                        <telerik:GridViewDataColumn.CellTemplate>
+                            <DataTemplate>
+                                <DockPanel>
+                                    <CheckBox IsChecked="{Binding IsAlarm}" VerticalAlignment="Center" HorizontalAlignment="Center" Content="报警"></CheckBox>
+                                </DockPanel>
+                            </DataTemplate>
+                        </telerik:GridViewDataColumn.CellTemplate>
+                    </telerik:GridViewDataColumn>
+                    <!--<telerik:GridViewDataColumn Header="备注信息" Width="120" IsReadOnly="True" >
+                        <telerik:GridViewDataColumn.CellTemplate>
+                            <DataTemplate>
+                                <DockPanel>
+                                    <TextBlock  ToolTip="{Binding FaultRemak}" Text="{Binding FaultRemak}"></TextBlock>
+                                </DockPanel>
+                            </DataTemplate>
+                        </telerik:GridViewDataColumn.CellTemplate>
+                    </telerik:GridViewDataColumn>-->
+                    <telerik:GridViewDataColumn Header="语音报警次数" Width="110">
+                        <telerik:GridViewDataColumn.CellTemplate>
+                            <DataTemplate>
+                                <DockPanel>
+                                    <TextBox Text="{Binding AlarmTimes}"  Width="80" Height="26"></TextBox>
+                                </DockPanel>
+                            </DataTemplate>
+                        </telerik:GridViewDataColumn.CellTemplate>
+                    </telerik:GridViewDataColumn>
+                    </telerik:RadTreeListView.Columns >
+            </telerik:RadTreeListView>
+
+            <Grid Grid.Column="1" Margin="5">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="30"></RowDefinition>
+                </Grid.RowDefinitions>
+                <telerik:RadTreeListView RowIndicatorVisibility="Collapsed"  FilteringMode="Popup" AutoGenerateColumns="False"   
+							   ItemsSource="{Binding Items}" >
+                <telerik:RadTreeListView.ChildTableDefinitions>
+                    <telerik:TreeListViewTableDefinition  ItemsSource="{Binding ChildTreeItems}" />
+                </telerik:RadTreeListView.ChildTableDefinitions>
+
+                <telerik:RadTreeListView.Columns>
+                    <telerik:GridViewDataColumn  Header="报警" HeaderTextAlignment="Center"  Width="65" IsReadOnly="True">
+                        <telerik:GridViewDataColumn.CellTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                        <CheckBox VerticalAlignment="Center" HorizontalAlignment="Center" IsEnabled="{Binding IsExpanded}" IsChecked="{Binding IsSelected}"/>
+                                </Grid>
+                            </DataTemplate>
+                        </telerik:GridViewDataColumn.CellTemplate>
+                    </telerik:GridViewDataColumn>
+
+                        <telerik:GridViewDataColumn Header="区域名称" IsReadOnly="True"  x:Name="gv" IsVisible="{Binding AreaCount}"   Width="120">
+                        <telerik:GridViewDataColumn.CellTemplate>
+                            <DataTemplate >
+                                    <TextBlock Text="{Binding BackGround}"></TextBlock>
+                            </DataTemplate>
+                        </telerik:GridViewDataColumn.CellTemplate>
+                    </telerik:GridViewDataColumn>
+                        <telerik:GridViewDataColumn  Header="设备或组地址" ToolTip="X/Y表示 该组总共有Y套设备，勾选设备共计X" IsFilterable="False" MinWidth="120" MaxWidth="150"  DataMemberBinding="{Binding WuLiId}" IsReadOnly="True" />
+                   
+                  
+                        <telerik:GridViewDataColumn Header="设备或名称" IsReadOnly="True" Width="180">
+                        <telerik:GridViewDataColumn.CellTemplate>
+                            <DataTemplate >
+                                <TextBlock Text="{Binding NodeName}"></TextBlock>
+                            </DataTemplate>
+                        </telerik:GridViewDataColumn.CellTemplate>
+                    </telerik:GridViewDataColumn>
+
+
+                </telerik:RadTreeListView.Columns>
+            </telerik:RadTreeListView>
+                <DockPanel Grid.Row="1" Margin="5,0,0,0">
+                    <!--<CheckBox IsChecked="{Binding Bselected}" HorizontalAlignment="Left" VerticalAlignment="Center" Content="反选组"></CheckBox>-->
+                    <Button Content="全选或全清" Command="{Binding CmdBselected}"  Grid.Column="1" HorizontalAlignment="Left" Width="80" Height="20"></Button>
+                    <TextBlock Text="              当前选择的为短消息报警终端。" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center"></TextBlock>
+                </DockPanel>
+               
+            </Grid>
+            
+        </Grid>
+            
+        <DockPanel Grid.Row="2" VerticalAlignment="Center">
+            <CheckBox Name="IsCheckedBox" Margin="10,10,0,0" IsChecked="{Binding IsShieldAlarmsThatUserOcLightCause}" Grid.Column="4" Height="25" HorizontalAlignment="Left" />
+            <TextBlock Text="屏蔽因用户手动开关灯产生的报警"  VerticalAlignment="Center" Margin="0,10,10,0"></TextBlock>
+        </DockPanel>
+
+            <Grid Grid.Row="3" VerticalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="450"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+                <Button Content="保存" Command="{Binding CmdSaveAll}" Margin="0,0,50,0" Grid.Column="1" HorizontalAlignment="Right" Width="120" Height="30"></Button>
+                <Label Content="{Binding ShowMsg}" Grid.Column="0" Margin="10,3,0,2" MinHeight="30" VerticalAlignment="Center" />
+            </Grid>
+
+
+
+    </Grid>
+</UserControl>

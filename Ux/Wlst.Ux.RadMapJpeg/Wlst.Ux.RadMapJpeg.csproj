@@ -1,0 +1,170 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{C9CBA5E8-6CF6-417F-B1B2-47151C74D71E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Wlst.Ux.RadMapJpeg</RootNamespace>
+    <AssemblyName>Wlst.Ux.RadMapJpeg</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\ZDebug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\Rr\Binaries\WPF\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="GMap.NET.Core, Version=1.7.0.0, Culture=neutral, PublicKeyToken=b85b9027b614afef, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Rr\Binaries\WPF\GMap.NET.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="GMap.NET.WindowsPresentation, Version=1.7.0.0, Culture=neutral, PublicKeyToken=b85b9027b614afef, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Rr\Binaries\WPF\GMap.NET.WindowsPresentation.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Prism">
+      <HintPath>..\DLL\Microsoft.Practices.Prism.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Prism.MefExtensions">
+      <HintPath>..\DLL\Microsoft.Practices.Prism.MefExtensions.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Telerik.Windows.Controls">
+      <HintPath>..\DLL\Telerik.Windows.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.DataVisualization">
+      <HintPath>..\DLL\Telerik.Windows.Controls.DataVisualization.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.Docking, Version=2012.3.1129.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DLL\Telerik.Windows.Controls.Docking.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.Navigation">
+      <HintPath>..\DLL\Telerik.Windows.Controls.Navigation.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.PrismAdapter">
+      <HintPath>..\DLL\Telerik.Windows.Controls.PrismAdapter.dll</HintPath>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="Wlst.Cr.Core">
+      <HintPath>..\DLL\Wlst.Cr.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Wlst.Cr.Coreb, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="Wlst.Cr.CoreOne, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ZDebug\Wlst.Cr.CoreOne.dll</HintPath>
+    </Reference>
+    <Reference Include="Wlst.Cr.Setting">
+      <HintPath>..\DLL\Wlst.Cr.Setting.dll</HintPath>
+    </Reference>
+    <Reference Include="Wlst.Cr.WjEquipmentBaseModels">
+      <HintPath>..\DLL\Wlst.Cr.WjEquipmentBaseModels.dll</HintPath>
+    </Reference>
+    <Reference Include="Wlst.Sr.EquipemntLightFault, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ZDebug\Wlst.Sr.EquipemntLightFault.dll</HintPath>
+    </Reference>
+    <Reference Include="Wlst.Sr.EquipmentGroupInfoHolding">
+      <HintPath>..\DLL\Wlst.Sr.EquipmentGroupInfoHolding.dll</HintPath>
+    </Reference>
+    <Reference Include="Wlst.Sr.EquipmentInfoHolding">
+      <HintPath>..\DLL\Wlst.Sr.EquipmentInfoHolding.dll</HintPath>
+    </Reference>
+    <Reference Include="Wlst.Sr.EquipmentNewData, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ZDebug\Wlst.Sr.EquipmentNewData.dll</HintPath>
+    </Reference>
+    <Reference Include="Wlst.Sr.Menu">
+      <HintPath>..\DLL\Wlst.Sr.Menu.dll</HintPath>
+    </Reference>
+    <Reference Include="Wlst.Sr.ProtocolPhone, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="LogoOfEqu\Equ.xaml.cs">
+      <DependentUpon>Equ.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MapJepg\Services\GcjSvr.cs" />
+    <Compile Include="MapJepg\Services\IIRadMapJpeg.cs" />
+    <Compile Include="MapJepg\ViewModels\RadMapJpegViewModel.cs" />
+    <Compile Include="Services\MenuIdAssgin.cs" />
+    <Compile Include="Services\ViewIdAssign.cs" />
+    <Compile Include="UxRadMapJpeg.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources\ImageResource.cs" />
+    <Compile Include="Setting\SettingViewModel\NavLineSettingView.cs" />
+    <Compile Include="Setting\SettingViewModel\Services\IISettingViewModel.cs" />
+    <Compile Include="Setting\SettingViewModel\ViewModel\SettingViewModel.cs" />
+    <Compile Include="Views\CustomMarkerDemo.xaml.cs">
+      <DependentUpon>CustomMarkerDemo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MapJpegView.xaml.cs">
+      <DependentUpon>MapJpegView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MapManagerLoader.cs" />
+    <Compile Include="Views\SettingView.xaml.cs">
+      <DependentUpon>SettingView.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="LogoOfEqu\Equ.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CustomMarkerDemo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MapJpegView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\SettingView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Cr\Wlst.Cr.CoreMims\Wlst.Cr.CoreMims.csproj">
+      <Project>{7326E79B-65A6-4E0D-B90D-E1F4D1F10DF3}</Project>
+      <Name>Wlst.Cr.CoreMims</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\bigMarkerGreen.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

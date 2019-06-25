@@ -1,0 +1,13 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:FontSet="clr-namespace:Elysium.ThemesSet.FontSet"
+                    xmlns:GroupBoxSet="clr-namespace:Elysium.ThemesSet.GroupBoxSet">
+
+    <Style TargetType="{x:Type GroupBox}">
+        <Setter Property="FontSize" Value="{Binding RelativeSource={RelativeSource Self}, Path=(FontSet:FontAttriXaml.MyFontSize), Mode=OneWay}" />
+        <Setter Property="BorderThickness" Value="{Binding RelativeSource={RelativeSource Self}, Path=(GroupBoxSet:GroupBoxAttriXaml.BorderThickness), Mode=OneWay}" />
+        <Setter Property="BorderBrush" Value="{Binding RelativeSource={RelativeSource Self}, Path=(GroupBoxSet:GroupBoxAttriXaml.NormalBorderBrush), Mode=OneWay}" />
+        <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource Self}, Path=(GroupBoxSet:GroupBoxAttriXaml.NormalForeground), Mode=OneWay}" />
+        <Setter Property="Margin" Value="2"/>
+    </Style>
+</ResourceDictionary>

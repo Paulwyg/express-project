@@ -1,0 +1,314 @@
+﻿<UserControl x:Class="Wlst.Ux.PrivilegesManage.UserInfoManageViewModel.View.UsersInfoManageView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:OtherHelper="clr-namespace:Wlst.Cr.CoreOne.OtherHelper;assembly=Wlst.Cr.CoreOne"
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+             xmlns:Converters="clr-namespace:Wlst.Ux.PrivilegesManage.SelfInfoChangeViewModel.Converter"
+             mc:Ignorable="d" 
+             d:DesignHeight="460" d:DesignWidth="1000">
+    <UserControl.Resources>
+        <Converters:MobileRightConverter x:Key="MobileConverter"/>
+    </UserControl.Resources>
+    <Grid HorizontalAlignment="Left">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Label x:Name="fg"/>
+        <StackPanel Grid.Row="0" Orientation="Horizontal">
+            <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Margin="10,0,0,0" VerticalAlignment="Center" Text="用户名："/>
+            <TextBox VerticalAlignment="Center" Text="{Binding InquiryKeyWord}" Width="400"/>
+            <Button Margin="30,0,0,0" Content="查询" Command="{Binding BtnInquiry}" VerticalAlignment="Center" MinWidth="60"/>
+            <Button Margin="20,0,0,0" Content="重置" Command="{Binding BtnReSetInquiryKeyWord}" VerticalAlignment="Center" MinWidth="60"/>
+            <Button Margin="20,0,0,0" Content="添加" IsEnabled="{Binding AddEnable}" Command="{Binding BtnAddUser}" VerticalAlignment="Center" MinWidth="60" />
+        </StackPanel>
+
+        <telerik:RadGridView Name="radGridView" ShowGroupPanel="False" AutoGenerateColumns="False" RowIndicatorVisibility="Collapsed" ItemsSource="{Binding UserItems}" Grid.Row="1"  Height="Auto" MinHeight="50" SelectedItem="{Binding Path=CurrentSelectUser, Mode=TwoWay}" >
+            <telerik:RadGridView.Columns>
+                <telerik:GridViewDataColumn Header="用户名" IsFilterable="False"  DataMemberBinding="{Binding Path=UserName,Mode=TwoWay}" Width="80" />
+                <telerik:GridViewDataColumn Header="真实姓名" IsFilterable="False"  DataMemberBinding="{Binding Path=UserRealName,Mode=TwoWay}" Width="80" />
+                <telerik:GridViewDataColumn Header="联系电话" IsFilterable="False"  DataMemberBinding="{Binding Path=UserPhoneNumber,Mode=TwoWay}" Width="100" />
+                <telerik:GridViewDataColumn Header="部门"  IsFilterable="False"  DataMemberBinding="{Binding Path=UserDepartment,Mode=TwoWay}" Width="100" />
+               
+               
+                <telerik:GridViewDataColumn Header="区域管理" IsFilterable="False"  DataMemberBinding="{Binding Path=AreaManage,Mode=TwoWay}" Width="300" />
+                <telerik:GridViewDataColumn Header="操作" Width="135">
+                    <telerik:GridViewDataColumn.CellTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="60"/>
+                                    <ColumnDefinition Width="5"/>
+                                    <ColumnDefinition Width="60"/>
+                                </Grid.ColumnDefinitions>
+                                <Button Content="修改" MinWidth="55" Grid.Column="0" Command="{Binding CmdModflyUser, Mode=OneWay}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                <Button Content="删除" MinWidth="55" Grid.Column="2" Command="{Binding CmdDeleteUser, Mode=OneWay}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            </Grid>
+                        </DataTemplate>
+                    </telerik:GridViewDataColumn.CellTemplate>
+                </telerik:GridViewDataColumn>
+            </telerik:RadGridView.Columns>
+        </telerik:RadGridView>
+
+        <Grid x:Name="add" Grid.Row="2" Height="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.2*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="180"/>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="180"/>
+           
+                <ColumnDefinition Width="1.8*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" MinHeight="30"/>
+                <RowDefinition Height="Auto" MinHeight="30"/>
+                <RowDefinition Height="Auto" MinHeight="30"/>
+                <RowDefinition Height="Auto" MinHeight="30"/>
+                <RowDefinition Height="Auto" MinHeight="30"/>
+                <RowDefinition Height="Auto" MinHeight="30"/>
+                <RowDefinition Height="Auto" MinHeight="30"/>
+                <RowDefinition Height="Auto" MinHeight="30"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <DockPanel Grid.Column="6" Margin="0,0,5,0">
+                <TextBlock Grid.Column="6" Text=" 区域权限：" VerticalAlignment="Center" Visibility="{Binding AreaMulti}" Margin="25,7,0,7"></TextBlock>
+                <CheckBox Content="批量操作" IsChecked="{Binding IsBatch}" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,5,0"/>
+            </DockPanel>
+            
+            <telerik:RadGridView Grid.Row="1" Grid.RowSpan="6" Grid.Column="6"  AutoGenerateColumns="False" RowIndicatorVisibility="Collapsed" ShowGroupPanel="False" Margin="25,0,7,7" ItemsSource="{Binding AddAreaPrivilege}" Visibility="{Binding AreaMulti}" Height="168">
+                <telerik:RadGridView.Columns>
+                    
+                    <telerik:GridViewDataColumn Header="查看" Width="50">
+                        <telerik:GridViewDataColumn.CellTemplate>
+                            <DataTemplate>
+                                <Border Margin="2" CornerRadius="3">
+                                    <CheckBox IsChecked="{Binding IsAreaR}"></CheckBox>
+                                </Border>
+                            </DataTemplate>
+                        </telerik:GridViewDataColumn.CellTemplate>
+                    </telerik:GridViewDataColumn>
+                    <telerik:GridViewDataColumn Header="设置" Width="50">
+                        <telerik:GridViewDataColumn.CellTemplate>
+                            <DataTemplate>
+                                <Border Margin="2" CornerRadius="3">
+                                    <CheckBox IsChecked="{Binding IsAreaW}"></CheckBox>
+                                </Border>
+                            </DataTemplate>
+                        </telerik:GridViewDataColumn.CellTemplate>
+                    </telerik:GridViewDataColumn>
+                    <telerik:GridViewDataColumn Header="操作" Width="50">
+                        <telerik:GridViewDataColumn.CellTemplate>
+                            <DataTemplate>
+                                <Border Margin="2" CornerRadius="3">
+                                    <CheckBox IsChecked="{Binding IsAreaX}"></CheckBox>
+                                </Border>
+                            </DataTemplate>
+                        </telerik:GridViewDataColumn.CellTemplate>
+                    </telerik:GridViewDataColumn>
+                    <telerik:GridViewDataColumn Header="区域ID" MinWidth="50" MaxWidth="150" DataMemberBinding="{Binding Path=AreaId, StringFormat={}{0:D4}}"/>
+                    <telerik:GridViewDataColumn Header="区域名称" Width="130" DataMemberBinding="{Binding Path=AreaName, StringFormat={}{0:D4}}"/>
+                    
+                </telerik:RadGridView.Columns>
+            </telerik:RadGridView>
+            
+            <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" Text="用 户 名 : "/>
+            <TextBox  Grid.Column="2" Grid.Row="0" Text="{Binding AddUserName, Mode=TwoWay, ValidatesOnExceptions=True, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"  VerticalAlignment="Center" MinWidth="150"/>
+
+            <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Grid.Column="1" Grid.Row="1" Text="用户密码：" VerticalAlignment="Center"/>
+            <PasswordBox  Grid.Column="2" Grid.Row="1"    VerticalAlignment="Center"  MinWidth="150"
+                 Background="Transparent"
+                 OtherHelper:PasswordHelper.Attach="True"
+                 OtherHelper:PasswordHelper.Password="{Binding  Path=AddUserPasswrodOne,Mode=TwoWay}" />
+
+            <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Grid.Column="1" Grid.Row="2" Text="确认密码：" VerticalAlignment="Center"/>
+            <PasswordBox Grid.Column="2" Grid.Row="2"  VerticalAlignment="Center"  MinWidth="150"
+                 Background="Transparent"
+                 OtherHelper:PasswordHelper.Attach="True"
+                 OtherHelper:PasswordHelper.Password="{Binding  Path=AddUserPasswrodTwo,Mode=TwoWay}" />
+
+           
+
+
+            
+            <!--<TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Grid.Column="1" Grid.Row="4" VerticalAlignment="Center" Text="用户权限："/>
+          
+            <StackPanel Orientation="Horizontal" Grid.Column="2" Grid.Row="4" Grid.ColumnSpan="5" VerticalAlignment="Center">
+                <CheckBox Margin="10,3,3,3"  IsChecked="{Binding X}" Content="可执行命令"/>
+                <CheckBox Margin="10,3,3,3" IsChecked="{Binding W}" Content="可数据库写入"/>
+                <CheckBox Margin="10,3,3,3"  IsChecked="{Binding R}" Content="可查询"/>
+            </StackPanel>-->
+           
+            <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Grid.Column="4" Grid.Row="0" Text="真实姓名：" VerticalAlignment="Center"/>
+            <TextBox Grid.Column="5" Grid.Row="0" VerticalAlignment="Center" Text="{Binding AddUserRealName}" MinWidth="150"/>
+
+            <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Grid.Column="4" Grid.Row="1" Text="联系电话：" VerticalAlignment="Center"/>
+            <TextBox  Grid.Column="5" Grid.Row="1" VerticalAlignment="Center" Text="{Binding AddUserPhoneNumber}" MinWidth="150"/>
+
+            <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Grid.Column="4" Grid.Row="2" Text="部门：" VerticalAlignment="Center"/>
+
+            <CheckBox IsChecked="{Binding IsUserUserOperatorCode}" Grid.Column="4" Grid.Row="3" Grid.ColumnSpan="2" Content="手机登录核心操作使用操作码" HorizontalAlignment="Left" VerticalAlignment="Center"></CheckBox>
+
+            <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Grid.Column="4" Grid.Row="4" Text="手机操作码：" VerticalAlignment="Center"/>
+            <TextBox  Grid.Column="5" Grid.Row="4" VerticalAlignment="Center" Text="{Binding UserOperatorCode}" MinWidth="150"/>
+
+
+            <TextBox  Grid.Column="5" Grid.Row="2" VerticalAlignment="Center" Text="{Binding AddUserDepartment}" MinWidth="150"/>
+
+            <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Grid.Column="1" VerticalAlignment="Center" Grid.Row="3" Text="手机权限："/>
+            <StackPanel Orientation="Horizontal" Grid.Column="2" Grid.Row="3" VerticalAlignment="Center" Grid.ColumnSpan="2">
+                <RadioButton Margin="0,3,3,3" GroupName="add" IsChecked="{Binding UserMobileRight, Converter={StaticResource MobileConverter}, ConverterParameter=7}" Content="最高"/>
+                <RadioButton Margin="5,3,3,3" GroupName="add" IsChecked="{Binding UserMobileRight, Converter={StaticResource MobileConverter}, ConverterParameter=6}" Content="中级"/>
+                <RadioButton Margin="5,3,3,3" GroupName="add" IsChecked="{Binding UserMobileRight, Converter={StaticResource MobileConverter}, ConverterParameter=0}" Content="可查权限"/>
+            </StackPanel>
+            <StackPanel VerticalAlignment="Center" Margin="10,0,3,5" Grid.Row="6" Grid.Column="0"  Grid.ColumnSpan="6">
+                <TextBlock VerticalAlignment="Center" TextWrapping="Wrap" Foreground="{Binding ElementName=fg, Path=Foreground}" Text="注释：(最高权限：可完成手机端的任何操作；中级权限：可完成下发指令，但不能设置参数；可查权限：只可进行数据查询。"/>
+            </StackPanel>
+            <StackPanel Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="5" Orientation="Horizontal" HorizontalAlignment="Left" Visibility="{Binding AreaOne}">
+                <TextBlock Text="区域权限：" HorizontalAlignment="Center" VerticalAlignment="Center" ></TextBlock>
+                <CheckBox Content="查看   " VerticalAlignment="Center" IsChecked="{Binding R}"></CheckBox>
+                <CheckBox Content="设置   " VerticalAlignment="Center" IsChecked="{Binding W}"></CheckBox>
+                <CheckBox Content="操作   " VerticalAlignment="Center" IsChecked="{Binding X}"></CheckBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"  Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="5">
+                <Button Content="保存" Command="{Binding BtnSaveUser}" Margin="5" Height="25" MinWidth="120" Click="Button_Click" />
+                <Button Margin="100,5,0,5" Height="25" Command="{Binding BtnReSetUser}" Content="重置" MinWidth="120" />
+            </StackPanel>
+        </Grid>
+        <Grid x:Name="update" Grid.Row="2" Height="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.2*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="180"/>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="180"/>
+
+                <ColumnDefinition Width="1.8*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition MinHeight="30" Height="Auto"/>
+                <RowDefinition MinHeight="30" Height="Auto"/>
+                <RowDefinition MinHeight="30" Height="Auto"/>
+                <RowDefinition MinHeight="30" Height="Auto"/>
+                <RowDefinition MinHeight="30" Height="Auto"/>
+                <RowDefinition MinHeight="30" Height="Auto"/>
+                <RowDefinition MinHeight="30" Height="Auto"/>
+                <RowDefinition MinHeight="30" Height="*"/>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Column="6" Text="区域权限：" VerticalAlignment="Center" Margin="25,7,0,7" Visibility="{Binding AreaMulti}"></TextBlock>
+            <telerik:RadGridView Grid.Row="1" Grid.RowSpan="6" Grid.Column="6"  AutoGenerateColumns="False" RowIndicatorVisibility="Collapsed" ShowGroupPanel="False" Margin="25,0,7,7" ItemsSource="{Binding UpdateAreaPrivilege}" Visibility="{Binding AreaMulti}" Height="168">
+                <telerik:RadGridView.Columns>
+                    
+                    <telerik:GridViewDataColumn Header="查看" Width="50">
+                        <telerik:GridViewDataColumn.CellTemplate>
+                            <DataTemplate>
+                                <Border Margin="2" CornerRadius="3">
+                                    <CheckBox IsChecked="{Binding IsAreaR}"></CheckBox>
+                                </Border>
+                            </DataTemplate>
+                        </telerik:GridViewDataColumn.CellTemplate>
+                    </telerik:GridViewDataColumn>
+                    <telerik:GridViewDataColumn Header="设置" Width="50">
+                        <telerik:GridViewDataColumn.CellTemplate>
+                            <DataTemplate>
+                                <Border Margin="2" CornerRadius="3">
+                                    <CheckBox IsChecked="{Binding IsAreaW}"></CheckBox>
+                                </Border>
+                            </DataTemplate>
+                        </telerik:GridViewDataColumn.CellTemplate>
+                    </telerik:GridViewDataColumn>
+                    <telerik:GridViewDataColumn Header="操作" Width="50" >
+                        <telerik:GridViewDataColumn.CellTemplate>
+                            <DataTemplate>
+                                <Border Margin="2" CornerRadius="3">
+                                    <CheckBox IsChecked="{Binding IsAreaX}"></CheckBox>
+                                </Border>
+                            </DataTemplate>
+                        </telerik:GridViewDataColumn.CellTemplate>
+                    </telerik:GridViewDataColumn>
+                    <telerik:GridViewDataColumn Header="区域ID" MinWidth="50" MaxWidth="150" DataMemberBinding="{Binding Path=AreaId, StringFormat={}{0:D4}}"/>
+                    <telerik:GridViewDataColumn Header="区域名称" Width="150" DataMemberBinding="{Binding Path=AreaName, StringFormat={}{0:D4}}"/>
+
+                </telerik:RadGridView.Columns>
+            </telerik:RadGridView>
+            <!--<StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="6" VerticalAlignment="Center">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1.5*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+                </Grid>
+                <TextBlock Text="{Binding AreaId}" VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Column=" 0"/>
+                <TextBlock Text="{Binding AreaName}" VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Column="1"/>
+                <CheckBox Content="查看" VerticalAlignment="Center" HorizontalAlignment="Left" IsChecked="{Binding }"/>
+                
+            </StackPanel>-->
+            <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" Text="用  户  名 : "/>
+            <TextBox Grid.Column="2" Grid.Row="0" IsReadOnly="True" Text="{Binding UpdateUserName}" VerticalAlignment="Center" MinWidth="150"/>
+
+            <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Grid.Column="1" Grid.Row="1" Text="用户密码：" VerticalAlignment="Center"/>
+            <PasswordBox  Grid.Column="2" Grid.Row="1" VerticalAlignment="Center"  MinWidth="150"
+                 Background="Transparent"
+                 OtherHelper:PasswordHelper.Attach="True"
+                 OtherHelper:PasswordHelper.Password="{Binding  Path=UpdateUserPasswrodOne,Mode=TwoWay}" />
+
+            <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Grid.Column="1" Grid.Row="2" Text="确认密码：" VerticalAlignment="Center"/>
+            <PasswordBox  Grid.Column="2" Grid.Row="2"  VerticalAlignment="Center"  MinWidth="150"
+                 Background="Transparent"
+                 OtherHelper:PasswordHelper.Attach="True"
+                 OtherHelper:PasswordHelper.Password="{Binding  Path=UpdateUserPasswrodTwo,Mode=TwoWay}" />
+
+
+           
+
+            <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Grid.Column="4" Grid.Row="0" Text="真实姓名：" VerticalAlignment="Center"/>
+            <TextBox Grid.Column="5" Grid.Row="0"  VerticalAlignment="Center" Text="{Binding UpdateUserRealName}" MinWidth="150"/>
+
+            <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Grid.Column="4" Grid.Row="1"  Text="联系电话：" VerticalAlignment="Center"/>
+            <TextBox   Grid.Column="5" Grid.Row="1" VerticalAlignment="Center" Text="{Binding UpdateUserPhoneNumber}" MinWidth="150"/>
+
+            <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Grid.Column="4" Grid.Row="2" Text="部门：" VerticalAlignment="Center"/>
+            <TextBox  Grid.Column="5" Grid.Row="2" VerticalAlignment="Center" Text="{Binding UpdateUserDepartment}" MinWidth="150"/>
+            <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Grid.Column="1" VerticalAlignment="Center" Grid.Row="3" Text="手机权限："/>
+            <StackPanel Orientation="Horizontal" Grid.Column="2" Grid.Row="3" VerticalAlignment="Center" Grid.ColumnSpan="2">
+                <RadioButton Margin="0,3,3,3" GroupName="update" IsChecked="{Binding UpdateUserMobileRight, Converter={StaticResource MobileConverter}, ConverterParameter=7}" Content="最高"/>
+                <RadioButton Margin="5,3,3,3" GroupName="update" IsChecked="{Binding UpdateUserMobileRight, Converter={StaticResource MobileConverter}, ConverterParameter=6}" Content="中级"/>
+                <RadioButton Margin="5,3,3,3" GroupName="update" IsChecked="{Binding UpdateUserMobileRight, Converter={StaticResource MobileConverter}, ConverterParameter=0}" Content="可查权限"/>
+            </StackPanel>
+
+            <CheckBox IsChecked="{Binding IsUserUserOperatorCode}" Grid.Column="4" Grid.Row="3" Grid.ColumnSpan="2" Content="手机登录核心操作使用操作码" HorizontalAlignment="Left" VerticalAlignment="Center"></CheckBox>
+        
+            <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Grid.Column="4" Grid.Row="4" Text="手机操作码：" VerticalAlignment="Center"/>
+            <TextBox  Grid.Column="5" Grid.Row="4" VerticalAlignment="Center" Text="{Binding UserOperatorCode}" MinWidth="150"/>
+
+            <StackPanel VerticalAlignment="Center" Margin="10,0,3,5" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="6">
+                <TextBlock VerticalAlignment="Center" TextWrapping="Wrap" Foreground="{Binding ElementName=fg, Path=Foreground}" Text="注释：(最高权限：可完成手机端的任何操作；中级权限：可完成下发指令，但不能设置参数；可查权限：只可进行数据查询。"/>
+            </StackPanel>
+            <!--<TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Grid.Row="4" Grid.Column="1" VerticalAlignment="Center" Text="用户权限lalala："/>
+            <StackPanel Orientation="Horizontal" Grid.Column="2" Grid.Row="4" Grid.ColumnSpan="5" VerticalAlignment="Center">
+                <CheckBox Margin="10,3,3,3"  IsChecked="{Binding X}" Content="可执行命令"/>
+                <CheckBox Margin="10,3,3,3" IsChecked="{Binding W}" Content="可数据库写入"/>
+                <CheckBox Margin="10,3,3,3"  IsChecked="{Binding R}" Content="可查询"/>
+            </StackPanel>-->
+
+            <StackPanel Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="5" Orientation="Horizontal" HorizontalAlignment="Left" Visibility="{Binding AreaOne}">
+                <TextBlock Text="区域权限：" HorizontalAlignment="Center" VerticalAlignment="Center" ></TextBlock>
+                <CheckBox Content="查看   " VerticalAlignment="Center" IsChecked="{Binding RUpdate}"></CheckBox>
+                <CheckBox Content="设置   " VerticalAlignment="Center" IsChecked="{Binding WUpdate}"></CheckBox>
+                <CheckBox Content="操作   " VerticalAlignment="Center" IsChecked="{Binding XUpdate}"></CheckBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="5">
+                <Button Content="更新" Command="{Binding BtnFreshUser}" Margin="5" MinWidth="120" />
+                <Button Margin="100,5,0,5" Command="{Binding BtnCancel}" Content="取消" MinWidth="120" />
+            </StackPanel>
+        </Grid>
+    </Grid>
+</UserControl>

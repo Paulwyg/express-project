@@ -1,0 +1,167 @@
+﻿<UserControl x:Class="Wlst.Ux.Wj2090Module.NewData.Views.Uc5"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="600">
+    <Grid Margin="5" x:Name="grd">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"></RowDefinition>
+            <RowDefinition Height="5"></RowDefinition>
+            <RowDefinition Height="30"></RowDefinition>
+            <RowDefinition  MaxHeight="180"></RowDefinition>
+            <RowDefinition  MaxHeight="180"></RowDefinition>
+        </Grid.RowDefinitions>
+        <!--<Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>-->
+        
+        <DockPanel VerticalAlignment="Center">
+
+            <TextBlock Margin="0,0,0,0"  Text="集中器地址:"></TextBlock>
+            <TextBlock Margin="10,0,0,0" Text="{Binding RtuPhyId}"></TextBlock>
+
+            <TextBlock Margin="35,0,0,0" Text="集中器名称:"></TextBlock>
+            <TextBlock Margin="10,0,0,0" Text="{Binding RtuName}"></TextBlock>
+
+            
+            <TextBlock Margin="35,0,0,0" Text="控制器地址:"></TextBlock>
+            <TextBlock Margin="10,0,0,0" Text="{Binding CtrlPhyId}"></TextBlock>
+
+            <TextBlock Margin="35,0,0,0" Text="控制器编号:"></TextBlock>
+            <TextBlock Margin="10,0,0,0" Text="{Binding CtrlLampCode}" MaxWidth="200"></TextBlock>
+        </DockPanel>
+
+        <Grid Grid.Row="1">
+            <Canvas Height="5" Width="{Binding ElementName=xgt,Path=Width}" >
+                <Line Stroke="Red" x:Name="linxxx" StrokeThickness="1"  X1="1" Y1="1"  X2="1"  Y2="1" />
+                <!--<Line Stroke="Red" x:Name="linyyy" StrokeThickness="2"  X1="1" Y1="1"  X2="1"  Y2="1" />-->
+                
+                <TextBox  VerticalAlignment="Center" HorizontalAlignment="Left"  TextAlignment="Left"
+                             Background="Transparent"  Width="0"
+                             BorderThickness="0" IsReadOnly="True" Cursor="Arrow"
+                                Text="{Binding DateTimeCtrl}">
+                    <TextBox.Triggers>
+                        <EventTrigger RoutedEvent="TextBox.TextChanged">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:01.2000000" 
+                                                           Storyboard.TargetName="linxxx" Storyboard.TargetProperty="(Line.X1)">
+                                        <SplineDoubleKeyFrame KeyTime="00:00:00" Value="1"/>
+                                        <SplineDoubleKeyFrame KeyTime="00:00:01.2000000" Value="1"/>
+                                    </DoubleAnimationUsingKeyFrames>
+                                    <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.7000000" 
+                                                           Storyboard.TargetName="linxxx" Storyboard.TargetProperty="(Line.X2)">
+                                        <SplineDoubleKeyFrame KeyTime="00:00:00" Value="1"/>
+                                        <SplineDoubleKeyFrame KeyTime="00:00:00.7000000" Value="2048"/>
+                                    </DoubleAnimationUsingKeyFrames>
+
+                                    <DoubleAnimationUsingKeyFrames BeginTime="00:00:00.2000000" Duration="00:00:00.9000000" 
+                                                           Storyboard.TargetName="linxxx" Storyboard.TargetProperty="(Line.X1)">
+                                        <SplineDoubleKeyFrame KeyTime="00:00:00.2000000" Value="1"/>
+                                        <SplineDoubleKeyFrame KeyTime="00:00:00.9000000" Value="2048"/>
+                                    </DoubleAnimationUsingKeyFrames>
+
+                                </Storyboard>
+
+                            </BeginStoryboard>
+                        </EventTrigger>
+                    </TextBox.Triggers>
+                </TextBox>
+            </Canvas>
+        </Grid>
+        
+        <DockPanel Grid.Row="2" VerticalAlignment="Center">
+            <TextBlock Text="通讯时间:"></TextBlock>
+            <TextBlock Margin="10,0,0,0" Text="{Binding DateCreate}"></TextBlock>
+
+            <TextBlock Margin="35,0,0,0" Text="数据时间:"></TextBlock>
+            <TextBlock Margin="10,0,0,0" Text="{Binding DateTimeCtrl}"></TextBlock>
+            <TextBlock Margin="35,0,0,0" Text="条形码:" Visibility="{Binding VisiArgs}"></TextBlock>
+            <TextBlock Margin="10,0,0,0" Text="{Binding BarCode,StringFormat={}{0:D16}}" Visibility="{Binding VisiArgs}" ></TextBlock>
+        </DockPanel>
+
+
+        <telerik:RadGridView x:Name="ControlParaGridViewxf" AutoGenerateColumns="False" ItemsSource="{Binding TimeInfo}" 
+                                  Margin="0,5,0,0" Grid.Row="3"
+								 Background="Transparent"  Visibility="{Binding VisiTimeInfo}"
+								 HorizontalAlignment="Left" 
+								 VerticalAlignment="Top" MaxHeight="180"
+                                 CanUserFreezeColumns="False" 
+								 CanUserReorderColumns="False" 
+								 RowIndicatorVisibility="Collapsed"   ShowGroupPanel="False" ShowColumnHeaders="True" SnapsToDevicePixels="True">
+            <telerik:RadGridView.Columns>
+                <telerik:GridViewDataColumn Header="类型" IsFilterable="False" IsSortable="False" Width="80"  DataMemberBinding="{Binding Value0}" IsReadOnly="True" />
+
+                <telerik:GridViewDataColumn Header="时间信息" IsFilterable="False" IsSortable="False" Width="240"  DataMemberBinding="{Binding Value1}" IsReadOnly="True" />
+
+
+                <telerik:GridViewDataColumn Header="灯头与操作" IsFilterable="False" IsSortable="False" MinWidth="240"   DataMemberBinding="{Binding Value2}" IsReadOnly="True" />
+              
+                
+            </telerik:RadGridView.Columns>
+        </telerik:RadGridView>
+
+
+        <!--<DockPanel Grid.Row="2" VerticalAlignment="Center">
+            <TextBlock Text="温度:"></TextBlock>
+            <TextBlock Margin="10,0,0,0" Text="{Binding Temperature}"></TextBlock>
+
+            <TextBlock Margin="35,0,0,0" Text="状态:"></TextBlock>
+            <TextBlock Margin="10,0,0,0" Text="{Binding Status}"></TextBlock>
+            <TextBlock Margin="35,0,0,0" Text="是否校准:"></TextBlock>
+            <TextBlock Margin="10,0,0,0" Text="{Binding IsAdjust}"></TextBlock>
+            <TextBlock Margin="35,0,0,0" Text="是否设置工作参数:"></TextBlock>
+            <TextBlock Margin="10,0,0,0" Text="{Binding IsWorkingArgsSet}"></TextBlock>
+        </DockPanel>
+
+        <DockPanel Grid.Row="3" VerticalAlignment="Center">
+            <TextBlock Text="禁止主动报警:"></TextBlock>
+            <TextBlock Margin="10,0,0,0" Text="{Binding IsNoAlarm}"></TextBlock>
+
+            <TextBlock Margin="35,0,0,0" Text="是否停运:"></TextBlock>
+            <TextBlock Margin="10,0,0,0" Text="{Binding IsCtrlStop}"></TextBlock>
+            <TextBlock Margin="35,0,0,0" Text="EEPROM故障:"></TextBlock>
+            <TextBlock Margin="10,0,0,0" Text="{Binding IsEepromError}"></TextBlock>
+            <TextBlock Margin="35,0,0,0" Text="温度传感器故障:"></TextBlock>
+            <TextBlock Margin="10,0,0,0" Text="{Binding IsTemperatureSensor}"></TextBlock>
+        </DockPanel>-->
+
+        <Grid Grid.Row="4" >
+            <telerik:RadGridView x:Name="ControlParaGridView" AutoGenerateColumns="False" ItemsSource="{Binding DataSluCtrlLampItems}" 
+                                 Grid.Row="1"  Margin="0,5,0,0"  Visibility="{Binding VisiData}"
+								 Background="Transparent" 
+								 HorizontalAlignment="Stretch" MaxHeight="180"
+								 VerticalAlignment="Stretch" 
+                                 CanUserFreezeColumns="False" 
+								 CanUserReorderColumns="False" 
+								 RowIndicatorVisibility="Collapsed"   ShowGroupPanel="False" ShowColumnHeaders="True" SnapsToDevicePixels="True">
+                <telerik:RadGridView.Columns>
+                    <telerik:GridViewDataColumn Header="灯头" IsFilterable="False" IsSortable="False" MinWidth="60" MaxWidth="95" DataMemberBinding="{Binding LampId}" IsReadOnly="True" />
+
+                    <telerik:GridViewDataColumn Header="运行状态" IsFilterable="False" IsSortable="False" MinWidth="60" MaxWidth="95" DataMemberBinding="{Binding States}" IsReadOnly="True" />
+
+                    
+                    <telerik:GridViewDataColumn Header="功率状态" IsFilterable="False" IsSortable="False" MinWidth="60" MaxWidth="95" DataMemberBinding="{Binding PowerStatus}" IsReadOnly="True" />
+                    <telerik:GridViewDataColumn Header="漏电" IsFilterable="False" IsSortable="False" MinWidth="60" MaxWidth="95" DataMemberBinding="{Binding IsLeakage}" IsReadOnly="True" />
+                    <telerik:GridViewDataColumn Header="故障" IsFilterable="False" IsSortable="False" MinWidth="90"  DataMemberBinding="{Binding Fault}" IsReadOnly="True" />
+                    <telerik:GridViewDataColumn Header="应有状态" IsFilterable="False" IsSortable="False" MinWidth="70" MaxWidth="95" DataMemberBinding="{Binding StateWorkingOn}" IsReadOnly="True" />
+                    <telerik:GridViewDataColumn Header="电压" IsFilterable="False" IsSortable="False" MinWidth="70" MaxWidth="95" DataMemberBinding="{Binding Voltage}" IsReadOnly="True" />
+                    <telerik:GridViewDataColumn Header="电流" IsFilterable="False" IsSortable="False" MinWidth="70" MaxWidth="95" DataMemberBinding="{Binding Current}" IsReadOnly="True" />
+                    <telerik:GridViewDataColumn Header="有功功率" IsFilterable="False" IsSortable="False" MinWidth="75" MaxWidth="95" DataMemberBinding="{Binding ActivePower}" IsReadOnly="True" />
+                    <telerik:GridViewDataColumn Header="功率因数" IsFilterable="False" IsSortable="False" MinWidth="75" MaxWidth="95" DataMemberBinding="{Binding PwFactor}" IsReadOnly="True" />
+                    <telerik:GridViewDataColumn Header="开灯时间" IsFilterable="False"  MinWidth="75" MaxWidth="95" DataMemberBinding="{Binding ActiveTime}" IsReadOnly="True" />
+                    <!--<telerik:GridViewDataColumn Header="累积时间" IsFilterable="False"  MinWidth="75" MaxWidth="95" DataMemberBinding="{Binding ActiveTimeTotal}" IsReadOnly="True" />-->
+                    <telerik:GridViewDataColumn Header="电量" IsFilterable="False"  MinWidth="75" MaxWidth="95" DataMemberBinding="{Binding Electricity}" IsReadOnly="True" />
+                    <!--<telerik:GridViewDataColumn Header="累积电量" IsFilterable="False"  MinWidth="75" MaxWidth="95" DataMemberBinding="{Binding ElectricityTotal}" IsReadOnly="True" />-->
+                </telerik:RadGridView.Columns>
+            </telerik:RadGridView>
+        </Grid>
+
+    </Grid>
+</UserControl>

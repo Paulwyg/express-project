@@ -1,0 +1,296 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{258BB370-221A-4010-B8F2-CC24C757AA41}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Wlst.Ux.Wj2096Module</RootNamespace>
+    <AssemblyName>Wlst.Ux.Wj2096Module</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\Rr\Binaries\WPF\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DragDropExtend, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Rr\Binaries\WPF\DragDropExtend.dll</HintPath>
+    </Reference>
+    <Reference Include="Elysium, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Rr\Binaries\WPF\Elysium.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Prism">
+      <HintPath>..\..\Rr\Binaries\WPF\Microsoft.Practices.Prism.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Prism.MefExtensions">
+      <HintPath>..\..\Rr\Binaries\WPF\Microsoft.Practices.Prism.MefExtensions.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Telerik.Windows.Controls, Version=2015.3.2015.40, Culture=neutral, PublicKeyToken=d3625f8bf04286d7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Rr\Binaries\WPF\Telerik.Windows.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.Data, Version=2015.3.2015.40, Culture=neutral, PublicKeyToken=d3625f8bf04286d7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Rr\Binaries\WPF\Telerik.Windows.Controls.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.GridView, Version=2015.3.2015.40, Culture=neutral, PublicKeyToken=d3625f8bf04286d7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Rr\Binaries\WPF\Telerik.Windows.Controls.GridView.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.Input, Version=2015.3.2015.40, Culture=neutral, PublicKeyToken=d3625f8bf04286d7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Rr\Binaries\WPF\Telerik.Windows.Controls.Input.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.Navigation, Version=2015.3.2015.40, Culture=neutral, PublicKeyToken=d3625f8bf04286d7, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.Windows.Data, Version=2015.3.2015.40, Culture=neutral, PublicKeyToken=d3625f8bf04286d7" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="Wlst.Cr.Core">
+      <HintPath>..\..\Rr\Binaries\WPF\Wlst.Cr.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Wlst.Cr.Coreb">
+      <HintPath>..\..\Rr\Binaries\WPF\Wlst.Cr.Coreb.dll</HintPath>
+    </Reference>
+    <Reference Include="Wlst.Cr.CoreOne">
+      <HintPath>..\..\Rr\Binaries\WPF\Wlst.Cr.CoreOne.dll</HintPath>
+    </Reference>
+    <Reference Include="Wlst.Sr.ProtocolPhone, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="FieldInfoSet\Converters\BoolToNoVisi.cs" />
+    <Compile Include="FieldInfoSet\Converters\BoolToVisi.cs" />
+    <Compile Include="FieldInfoSet\Converters\NoBool.cs" />
+    <Compile Include="FieldInfoSet\NavToFieldInfoSet.cs" />
+    <Compile Include="FieldInfoSet\Services\IIConcentratorParaInformationViewModel.cs" />
+    <Compile Include="FieldInfoSet\ViewModel\ControlParaItem.cs" />
+    <Compile Include="FieldInfoSet\ViewModel\FieldInfoSetViewModel.cs" />
+    <Compile Include="FieldInfoSet\ViewModel\TreeItemGrplViewModel.cs" />
+    <Compile Include="FieldInfoSet\View\FieldInfoSetView.xaml.cs">
+      <DependentUpon>FieldInfoSetView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ModuleWj2096Export.cs" />
+    <Compile Include="NewData\CtrlDataGrid\Converter\GridEnumVisibleConverter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="NewData\CtrlDataGrid\Services\IIPartolView.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="NewData\CtrlDataGrid\ViewModel\DataSluLamp5.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="NewData\CtrlDataGrid\ViewModel\PartolViewVm.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="NewData\CtrlDataGrid\Views\PartolView.xaml.cs">
+      <DependentUpon>PartolView.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="NewData\CtrlData\Services\IINewData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="NewData\CtrlData\ViewModel\DataSluCtrlLampVm.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="NewData\CtrlData\ViewModel\LightDataVm.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="NewData\CtrlData\ViewModel\NewDataViewModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="NewData\CtrlData\Views\NBNewDataView.xaml.cs">
+      <DependentUpon>NBNewDataView.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Services\EventIdAssign.cs" />
+    <Compile Include="Services\MenuIdAssign.cs" />
+    <Compile Include="Services\ViewIdAssign.cs" />
+    <Compile Include="TimeInfoQuery\IITimeInfoQuery.cs" />
+    <Compile Include="TimeInfoQuery\NavToTimeInfoQuery.cs" />
+    <Compile Include="TimeInfoQuery\TimeInfoOneQueryVm.cs" />
+    <Compile Include="TimeInfoQuery\TimeInfoQueryView.xaml.cs">
+      <DependentUpon>TimeInfoQueryView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TimeInfoQuery\TimeInfoQueryVm.cs" />
+    <Compile Include="TimeInfoSet\NavToTimeInfoSetView.cs" />
+    <Compile Include="TimeInfoSet\Services\IISetYearTime.cs" />
+    <Compile Include="TimeInfoSet\Services\IITimeInfoSet.cs" />
+    <Compile Include="TimeInfoSet\ViewModel\SetYearTimeVm.cs" />
+    <Compile Include="TimeInfoSet\ViewModel\SluTimeCtrlSluOneVm.cs" />
+    <Compile Include="TimeInfoSet\ViewModel\TimeInfoOneVm.cs" />
+    <Compile Include="TimeInfoSet\ViewModel\TimeInfoSetVm.cs" />
+    <Compile Include="TimeInfoSet\ViewModel\TreeNodeCtrl.cs" />
+    <Compile Include="TimeInfoSet\Views\SetYearTime.xaml.cs">
+      <DependentUpon>SetYearTime.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TimeInfoSet\Views\TimeInfoSetView.xaml.cs">
+      <DependentUpon>TimeInfoSetView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TimeInfoSet\Views\UserControl1.xaml.cs">
+      <DependentUpon>UserControl1.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TreeTab\IITreeTab.cs" />
+    <Compile Include="TreeTab\Set\IIWj2096TreeSet.cs" />
+    <Compile Include="TreeTab\Set\NavLineWj2096TreeSet.cs" />
+    <Compile Include="TreeTab\Set\Wj2096TreeSet.cs" />
+    <Compile Include="TreeTab\Set\Wj2096TreeSetLoad.cs" />
+    <Compile Include="TreeTab\Set\Wj2096TreeSetView.xaml.cs">
+      <DependentUpon>Wj2096TreeSetView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TreeTab\TreeTableVm.cs" />
+    <Compile Include="TreeTab\TreeTabView.xaml.cs">
+      <DependentUpon>TreeTabView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TreeTab\vm\RtuAreaItem.cs" />
+    <Compile Include="TreeTab\vm\RtuGrpItem.cs" />
+    <Compile Include="TreeTab\vm\CtrlNodeItem.cs" />
+    <Compile Include="TreeTab\vm\FieldGrpNodeItem.cs" />
+    <Compile Include="TreeTab\vm\FieldNodeItem.cs" />
+    <Compile Include="TreeTab\vm\NodeItemBase.cs" />
+    <Compile Include="UxWj2096Module.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ZcInfo\Converters\BoolToVisibleConverter.cs" />
+    <Compile Include="ZcInfo\ZcConArgs\Services\IIXcConnArgs.cs" />
+    <Compile Include="ZcInfo\ZcConArgs\ViewModels\RunArgs.cs" />
+    <Compile Include="ZcInfo\ZcConArgs\ViewModels\XcConnArgs.cs" />
+    <Compile Include="ZcInfo\ZcConArgs\Views\XcConnArgs.xaml.cs">
+      <DependentUpon>XcConnArgs.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ZcInfo\ZcConLocalArgs\NavToZcConLocalArgs.cs" />
+    <Compile Include="ZcInfo\ZcConLocalArgs\Services\IIXcConnLocalArgs.cs" />
+    <Compile Include="ZcInfo\ZcConLocalArgs\ViewModels\LocalArgs.cs" />
+    <Compile Include="ZcInfo\ZcConLocalArgs\ViewModels\XcConnLocalArgs.cs" />
+    <Compile Include="ZcInfo\ZcConLocalArgs\Views\XcConnLocalArgs.xaml.cs">
+      <DependentUpon>XcConnLocalArgs.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ZOrder\CtrlRightOperator.cs" />
+    <Compile Include="ZOrder\RightOperators.cs" />
+    <Compile Include="ModuleWj2290Export.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Cr\Wlst.Cr.CoreMims\Wlst.Cr.CoreMims.csproj">
+      <Project>{7326E79B-65A6-4E0D-B90D-E1F4D1F10DF3}</Project>
+      <Name>Wlst.Cr.CoreMims</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Cr\Wlst.Cr.MessageBoxOverride\Wlst.Cr.MessageBoxOverride.csproj">
+      <Project>{72A08659-526B-49BE-A3ED-D032300AAC58}</Project>
+      <Name>Wlst.Cr.MessageBoxOverride</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Cr\Wlst.Cr.Setting\Wlst.Cr.Setting.csproj">
+      <Project>{A330DF6B-20F7-4FD0-BCA8-2FD5095395FF}</Project>
+      <Name>Wlst.Cr.Setting</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Sr\Wlst.Sr.Menu\Wlst.Sr.Menu.csproj">
+      <Project>{F0851CF0-EAF8-4C30-A6A2-3237B74CD2B4}</Project>
+      <Name>Wlst.Sr.Menu</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Sr\Wlst.Sr.SlusglInfoHold\Wlst.Sr.SlusglInfoHold.csproj">
+      <Project>{13934D76-5931-4274-B9CD-7172DB703A8C}</Project>
+      <Name>Wlst.Sr.SlusglInfoHold</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Sr\Wlst.Sr.TimeTableSystem\Wlst.Sr.TimeTableSystem.csproj">
+      <Project>{C8EE907E-B8CC-49CF-A3CF-FA06C08F2042}</Project>
+      <Name>Wlst.Sr.TimeTableSystem</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Ux1\Wlst.Sr.EquipmentInfoHolding\Wlst.Sr.EquipmentInfoHolding.csproj">
+      <Project>{B66A046F-2F0A-429F-9C51-63452D3F6A92}</Project>
+      <Name>Wlst.Sr.EquipmentInfoHolding</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Ux1\Wlst.Ux.Wj2090Module\Wlst.Ux.Wj2090Module.csproj">
+      <Project>{7B8CA5C8-7413-4394-B7FB-9285D60C3A11}</Project>
+      <Name>Wlst.Ux.Wj2090Module</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Ux\WindowForWlst\WindowForWlst.csproj">
+      <Project>{295CF817-8A13-4B9E-B1E8-34464DFC9481}</Project>
+      <Name>WindowForWlst</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="FieldInfoSet\View\FieldInfoSetView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="NewData\CtrlDataGrid\Views\PartolView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="NewData\CtrlData\Views\NBNewDataView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TimeInfoQuery\TimeInfoQueryView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="TimeInfoSet\Views\SetYearTime.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TimeInfoSet\Views\TimeInfoSetView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="TimeInfoSet\Views\UserControl1.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="TreeTab\Set\Wj2096TreeSetView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="TreeTab\TreeTabView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ZcInfo\ZcConArgs\Views\XcConnArgs.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ZcInfo\ZcConLocalArgs\Views\XcConnLocalArgs.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

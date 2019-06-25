@@ -1,0 +1,166 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{5A4AE745-C9EB-447E-A458-6A25898349A3}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Wlst.Ux.EquipmentGroupManage</RootNamespace>
+    <AssemblyName>Wlst.Ux.EquipmentGroupManage</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\ZDebug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\Rr\Binaries\WPF\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DragDropExtend">
+      <HintPath>..\DLL\DragDropExtend.dll</HintPath>
+    </Reference>
+    <Reference Include="Elysium, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ZDebug\Elysium.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Prism">
+      <HintPath>..\DLL\Microsoft.Practices.Prism.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Prism.MefExtensions">
+      <HintPath>..\DLL\Microsoft.Practices.Prism.MefExtensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Prism.MefExtensions.Event">
+      <HintPath>..\DLL\Microsoft.Practices.Prism.MefExtensions.Event.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Telerik.Windows.Controls, Version=2012.3.1129.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DLL\Telerik.Windows.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.Docking, Version=2012.3.1129.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DLL\Telerik.Windows.Controls.Docking.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.GridView, Version=2013.1.720.40, Culture=neutral, PublicKeyToken=d3625f8bf04286d7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ZDebug\Telerik.Windows.Controls.GridView.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.Input">
+      <HintPath>..\DLL\Telerik.Windows.Controls.Input.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.Navigation, Version=2012.3.1129.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DLL\Telerik.Windows.Controls.Navigation.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.PrismAdapter">
+      <HintPath>..\DLL\Telerik.Windows.Controls.PrismAdapter.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Data, Version=2012.3.1129.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DLL\Telerik.Windows.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="Wlst.Cr.Core">
+      <HintPath>..\DLL\Wlst.Cr.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Wlst.Cr.Coreb, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="Wlst.Cr.CoreOne, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ZDebug\Wlst.Cr.CoreOne.dll</HintPath>
+    </Reference>
+    <Reference Include="Wlst.Sr.ProtocolPhone, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="GrpMulitManageViewModel\Animations\Animation.cs" />
+    <Compile Include="Services\EventIdAssign.cs" />
+    <Compile Include="UxEquipmentGroupManage.cs" />
+    <Compile Include="GrpMulitManageViewModel\Models\PathItem.cs" />
+    <Compile Include="GrpMulitManageViewModel\Models\RtuItem.cs" />
+    <Compile Include="GrpMulitManageViewModel\Models\TreeItemViewModel.cs" />
+    <Compile Include="GrpMulitManageViewModel\NavToGrpMulitManageView.cs" />
+    <Compile Include="GrpMulitManageViewModel\Services\IIGrpMulitManageView.cs" />
+    <Compile Include="GrpMulitManageViewModel\ViewModel\GrpMulitManageViewModel.cs" />
+    <Compile Include="GrpSingleManageViewModel\NavToGrpSingleManageView.cs" />
+    <Compile Include="GrpSingleManageViewModel\Services\IIGrpSingelShowManage.cs" />
+    <Compile Include="GrpSingleManageViewModel\ViewModels\GrpSingelShowManageViewModel.cs" />
+    <Compile Include="GrpSingleManageViewModel\ViewModels\ItemModel.cs" />
+    <Compile Include="GrpSingleManageViewModel\ViewModels\TreeItemViewModel.cs" />
+    <Compile Include="Models\TreeNodeType.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources\ImageResources.cs" />
+    <Compile Include="Services\MenuIdAssgin.cs" />
+    <Compile Include="Services\PublishEventTypeLocal.cs" />
+    <Compile Include="Services\ViewIdAssign.cs" />
+    <Compile Include="Views\GrpMulitManageView.xaml.cs">
+      <DependentUpon>GrpMulitManageView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\GrpSingleManageView.xaml.cs">
+      <DependentUpon>GrpSingleManageView.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Views\GrpMulitManageView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\GrpSingleManageView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Cr\Wlst.Cr.CoreMims\Wlst.Cr.CoreMims.csproj">
+      <Project>{7326E79B-65A6-4E0D-B90D-E1F4D1F10DF3}</Project>
+      <Name>Wlst.Cr.CoreMims</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Cr\Wlst.Cr.MessageBoxOverride\Wlst.Cr.MessageBoxOverride.csproj">
+      <Project>{72A08659-526B-49BE-A3ED-D032300AAC58}</Project>
+      <Name>Wlst.Cr.MessageBoxOverride</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Sr\Wlst.Sr.TimeTableSystem\Wlst.Sr.TimeTableSystem.csproj">
+      <Project>{C8EE907E-B8CC-49CF-A3CF-FA06C08F2042}</Project>
+      <Name>Wlst.Sr.TimeTableSystem</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Ux1\Wlst.Sr.EquipmentInfoHolding\Wlst.Sr.EquipmentInfoHolding.csproj">
+      <Project>{B66A046F-2F0A-429F-9C51-63452D3F6A92}</Project>
+      <Name>Wlst.Sr.EquipmentInfoHolding</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

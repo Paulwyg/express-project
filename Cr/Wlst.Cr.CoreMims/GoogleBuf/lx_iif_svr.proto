@@ -1,0 +1,329 @@
+﻿syntax = "proto2";
+
+package Wlst.iif;
+import  "lx_iif_http.proto";
+option java_package = "wlst.iif";
+	//****************************MsgWithHttp*****************************
+ 
+message MsgWithHttp 
+{ 
+    // 序号(必填)，头信息 默认必须
+	optional Head head = 1; 
+
+	//[主设备管理]获取所有区域信息  ,仅需设置op即可，op默认为2即返回所有数据包含终端信息；Op设置为1即仅请求区域信息。
+	optional AreasInfo get1131 = 101131;
+	optional AreasInfo bak1131 = 111131;
+
+	//[主设备管理]获取特定区域信息  仅需要填入  Area_id 即可。
+	optional  AreaInfo get1134 = 101134;
+	optional  AreaInfo bak1134= 111134;
+
+	//[主设备管理]获取区域下所有组信息   仅需设置op即可，op默认为2即返回所有数据包含终端信息；Op设置为1即仅请求分组信息。
+	optional GroupsInfo  get1132 = 101132;
+	optional GroupsInfo  bak1132 = 111132;
+
+	//[主设备管理]获取区域下特定组信息 ,需要填写 Area_id、Group_id。
+	optional  GroupInfo get1133= 101133;
+	optional  GroupInfo bak1133= 111133;
+
+
+	//增加区域,仅需要填写：name_add 即可
+	optional AddAreaOrGroupInfo post4001 = 104001;
+	//返回数据：group_id_ifaddgroup 无效。备注：增加区域、分组时仅增加了一个空区域，系统不会执行推送zmq消息。
+	optional AddAreaOrGroupInfoBk back4001 = 114001;
+
+	//增加分组
+	optional AddAreaOrGroupInfo post4002 = 104002;
+	optional AddAreaOrGroupInfoBk back4002 = 114002;
+
+	//删除区域  ,ZMQ推送:mimsmiddle.push.[http端口].4003.[area_id]数据：DeleteAreaOrGroupInfoBk 数据
+	optional DeleteAreaOrGroupInfo post4003 = 104003;
+	//备注1：group_id_ifdeletegroup 无效,备注2：当用户删除区域后，整套系统的终端数据不会变更，需要对显示的终端列表的归属区域进行更新，即所有原归属删除区域的终端需要划分到默认区域中去。
+	optional DeleteAreaOrGroupInfoBk back4003 = 114003;
+
+	//删除分组  ,ZMQ推送:mimsmiddle.push.[http端口].4004.[area_id].[group_id_ifdeletegroup] 数据：DeleteAreaOrGroupInfoBk 数据
+	optional DeleteAreaOrGroupInfo post4004 = 104004;
+	//备注1：group_id_ifdeletegroup 无效,备注2：当用户删除分组后，该分组所属的区域的终端数据不会变更，需要对显示的终端列表的归属分组进行更新，即所有原归属删除分组的终端需要划分到未划分终端列表中去。
+	optional DeleteAreaOrGroupInfoBk back4004 = 114004;
+
+
+	//设备在线情况  
+//	optional RtuOnlineInfoRq get1011 = 101011;
+//	optional RtuOnlineInfo bak1011 = 111011;
+	 
+
+ 
+
+
+
+
+	//	[主设备管理]获取所有区域信息	"仅需设置op即可，op默认为2即返回所有数据包含终端信息；Op设置为1即仅请求区域信息。"	"此接口用于设备管理，即区域的分区、分组的管理界面，其他界面不得使用返回的数据包含终端、单灯的信息，分组下午设备也将呈现"			
+//	optional		AreasInfo		bak1131	 =	111131	;																																																																																																																																																																																																																																																
+	//	[主设备管理]获取特定区域信息	仅需要填入  Area_id 即可。				
+//	optional		AreaInfo		bak1134	 =	111134	;																																																																																																																																																																																																																																																
+	//	[主设备管理]获取区域下所有组信息	"仅需设置op即可，op默认为2即返回所有数据包含终端信息；Op设置为1即仅请求分组信息。"				
+//	optional		GroupsInfo		bak1132	 =	111132	;																																																																																																																																																																																																																																																
+	//	[主设备管理]获取区域下特定组信息	需要填写 Area_id、Group_id。			
+//	optional		GroupInfo		bak1133	 =	111133	;																																																																																																																																																																																																																																																
+	//	增加区域	仅需要填写：name_add 即可	"返回数据：group_id_ifaddgroup 无效。备注：增加区域、分组时仅增加了一个空区域，系统不会执行推送zmq消息。"			
+//	optional		AddAreaOrGroupInfoBk		back4001	 =	114001	;																																																																																																																																																																																																																																																
+	//	增加分组					
+//	optional		AddAreaOrGroupInfoBk		back4002	 =	114002	;																																																																																																																																																																																																																																																
+	//	删除区域	group_id_ifdeletegroup 不需要填写	"备注1：group_id_ifdeletegroup 无效备注2：当用户删除区域后，整套系统的终端数据不会变更，
+	//需要对显示的终端列表的归属区域进行更新，即所有原归属删除区域的终端需要划分到默认区域中去。"	"ZMQ推送:mimsmiddle.push.[http端口].4003.[area_id]数据：DeleteAreaOrGroupInfoBk 数据"	
+//	optional		DeleteAreaOrGroupInfoBk		back4003	 =	114003	;																																																																																																																																																																																																																																																
+	//	删除分组		"备注1：group_id_ifdeletegroup 无效备注2：当用户删除分组后，该分组所属的区域的终端数据不会变更，需要对显示的终端列表的归属分组进行更新，
+	//即所有原归属删除分组的终端需要划分到未划分终端列表中去。"	"ZMQ推送:mimsmiddle.push.[http端口].4004.[area_id].[group_id_ifdeletegroup]数据：DeleteAreaOrGroupInfoBk 数据"	
+//	optional		DeleteAreaOrGroupInfoBk		back4004	 =	114004	;																																																																																																																																																																																																																																																
+	//	更新区域名称			ZMQ推送:mimsmiddle.push.[http端口].4007.[area_id].[area_newname]		optional		UpdateAreaOrGrpNameBk		back4007	 =	114007	;																																																																																																																																																																																																																																																
+	//	更新分组名称			ZMQ推送:mimsmiddle.push.[http端口].4008.[area_id].[grp_id].[grp_newname]		optional		UpdateAreaOrGrpNameBk		back4008	 =	114008	;																																																																																																																																																																																																																																																
+	//	添加设备到区域		备注：区域更新后，终端属归属的区域需要重新运算。	"ZMQ推送:mimsmiddle.push.[http端口].4005.[area_id]数据：AreaInfo数据"	
+	optional		AreaInfo		back4005	 =	114005	;																																																																																																																																																																																																																																																
+	//	添加设备到分组		备注：分组更新后，终端属归属的分组需要重新运算。	"ZMQ推送:mimsmiddle.push.[http端口].4006.[area_id].[Group_id]数据：GroupInfo数据"		
+	optional		GroupInfo		back4006	 =	114006	;																																																																																																																																																																																																																																																
+	//	快速搜索		设备列表，返回符合条件的 前100条记录		
+	optional		SearchBk		bak1006	 =	111006	;																																																																																																																																																																																																																																																
+	//	获取设备信息，综合快速查询 应用于：区域 - 分组  -终端的 快速查询		" // 11、终端模糊查询;         请求：RtuLikeQyert、OpRtuType需要填写 ; 返回： ItemsRtu 有数据 ，备注：模糊查询针对整套系统有效
+	
+	// 21、所有区域简要信息请求; 请求：OpRtuType 需要填写； 返回： ItemsArea 包含该区域的简要信息，区域下属性ItemsRtu无数据
+	// 22、所有区域简要信息请求; 请求：OpRtuType 需要填写； 返回： ItemsArea 包含该区域的简要信息，区域下属性ItemsArea[0].ItemsRtu有数据，其他ItemsRtu无数据
+	// 23、所有区域简要信息请求; 请求：OpRtuType 需要填写，
+	//     返回: ItemsArea 包含该区域的简要信息，区域下属性ItemsRtu无数据, 
+	//          ItemsGroup 包含该分组的简要信息，分组下属性ItemsRtu[0]有数据，其他ItemsRtu无数据,
+	// 24、特定区域信息请求;     请求：AreaId、OpRtuType 需要填写 ； 返回 ：ItemsArea 包含该区域的简要信息，区域下属性ItemsRtu有数据
+	
+	// 31、区域分组信息查询；     请求：AreaId、OpRtuType 需要填写； 返回：ItemsGroup 包含有分组的简要信息，分组下属性ItemsRtu有数据,
+	// 32、区域分组简要信息查询；     请求：AreaId、OpRtuType 需要填写； 返回：ItemsGroup 包含有分组的简要信息，分组下属性ItemsRtu无数据,
+	// 33、区域分组简要信息查询； 请求：AreaId、OpRtuType 需要填写； 返回：ItemsGroup 包含有分组的简要信息，分组下属性ItemsGroup[0].ItemsRtu有数据，其他ItemsRtu无数据,
+	
+	// 41、特定分组的终端信息查询； 请求：AreaId、GroupId、OpRtuType 需要填写； ItemsRtu 为查询的分组的终端数据,"		
+	optional		QueryRtuBirefBk		bak1005	 =	111005	;																																																																																																																																																																																																																																																
+	//	获取设备最新数据				
+	optional		RtusMeasureInfo		bak1021	 =	111021	;																																																																																																																																																																																																																																																
+	//	获取设备历史数据				
+	optional		RtusMeasureInfo		bak1023	 =	111023	;																																																																																																																																																																																																																																																
+	//	获取设备一天的简要历史数据信息				
+	optional		RtuMeasureDayInfoBk		bak1022	 =	111022	;																																																																																																																																																																																																																																																
+																																																																																																																																																																																																																																												
+	//	周设置记录	周设置记录查询			
+	optional		GetRtusHisweeksetbk		bak1101	 =	111101	;																																																																																																																																																																																																																																																
+	//	[终端]获取所有区域信息	"仅需设置op即可，op默认为2即返回所有数据包含终端信息；Op设置为1即仅请求区域信息。"	"超级管理员时返回所有区域信息，非超级管理员时，只返回可操作的区域,且AreaRight=1"	
+	optional		AreasInfo		bak1001	 =	111001	;																																																																																																																																																																																																																																																
+	//	[终端]获取特定区域信息	仅需要填入  Area_id 即可。			
+	optional		AreaInfo		bak1004	 =	111004	;																																																																																																																																																																																																																																																
+	//	[终端]获取区域下所有组信息	"仅需设置op即可，op默认为2即返回所有数据包含终端信息；Op设置为1即仅请求分组信息。"				
+	optional		GroupsInfo		bak1002	 =	111002	;																																																																																																																																																																																																																																																
+	//	[终端]获取区域下特定组信息	需要填写 Area_id、Group_id。			
+	optional		GroupInfo		bak1003	 =	111003	;																																																																																																																																																																																																																																																
+	//	[单灯]获取所有区域信息	"仅需设置op即可，op默认为2即返回所有数据包含终端信息；Op设置为1即仅请求区域信息。"			
+	optional		AreasInfo		bak1141	 =	111141	;																																																																																																																																																																																																																																																
+	//	[单灯]获取特定区域信息	仅需要填入  Area_id 即可。		
+	optional		AreaInfo		bak1144	 =	111144	;																																																																																																																																																																																																																																																
+	//	[单灯]获取区域下所有组信息	"仅需设置op即可，op默认为2即返回所有数据包含终端信息；Op设置为1即仅请求分组信息。"				
+	optional		GroupsInfo		bak1142	 =	111142	;																																																																																																																																																																																																																																																
+	//	[单灯]获取区域下特定组信息	需要填写 Area_id、Group_id。			
+	optional		GroupInfo		bak1143	 =	111143	;																																																																																																																																																																																																																																																
+	//	[电表]获取所有区域信息	"仅需设置op即可，op默认为2即返回所有数据包含终端信息；Op设置为1即仅请求区域信息。"				
+	optional		AreasInfo		bak1151	 =	111151	;																																																																																																																																																																																																																																																
+	//	[电表]获取特定区域信息	仅需要填入  Area_id 即可。			
+	optional		AreaInfo		bak1154	 =	111154	;																																																																																																																																																																																																																																																
+	//	[电表]获取区域下所有组信息	"仅需设置op即可，op默认为2即返回所有数据包含终端信息；Op设置为1即仅请求分组信息。"			
+	optional		GroupsInfo		bak1152	 =	111152	;																																																																																																																																																																																																																																																
+	//	[电表]获取区域下特定组信息	需要填写 Area_id、Group_id。				
+	optional		GroupInfo		bak1153	 =	111153	;																																																																																																																																																																																																																																																
+	//	获取所有区域信息	"仅需设置op即可，op默认为2即返回所有数据包含终端信息；Op设置为1即仅请求区域信息。"			
+	optional		AreasInfo		bak1161	 =	111161	;																																																																																																																																																																																																																																																
+	//	获取特定区域信息	仅需要填入  Area_id 即可。				
+	optional		AreaInfo		bak1164	 =	111164	;																																																																																																																																																																																																																																																
+	//	获取区域下所有组信息	"仅需设置op即可，op默认为2即返回所有数据包含终端信息；Op设置为1即仅请求分组信息。"				
+	optional		GroupsInfo		bak1162	 =	111162	;																																																																																																																																																																																																																																																
+	//	获取区域下特定组信息	需要填写 Area_id、Group_id。				
+	optional		GroupInfo		bak1163	 =	111163	;																																																																																																																																																																																																																																																
+	//	获取所有区域信息	"仅需设置op即可，op默认为2即返回所有数据包含终端信息；Op设置为1即仅请求区域信息。"				
+	optional		AreasInfo		bak1171	 =	111171	;																																																																																																																																																																																																																																																
+	//	获取特定区域信息	仅需要填入  Area_id 即可。			
+	optional		AreaInfo		bak1174	 =	111174	;																																																																																																																																																																																																																																																
+	//	获取区域下所有组信息	"仅需设置op即可，op默认为2即返回所有数据包含终端信息；Op设置为1即仅请求分组信息。"				
+	optional		GroupsInfo		bak1172	 =	111172	;																																																																																																																																																																																																																																																
+	//	获取区域下特定组信息	需要填写 Area_id、Group_id。			
+	optional		GroupInfo		bak1173	 =	111173	;																																																																																																																																																																																																																																																
+	//	获取所有区域信息	"仅需设置op即可，op默认为2即返回所有数据包含终端信息；Op设置为1即仅请求区域信息。"			
+	optional		AreasInfo		bak1181	 =	111181	;																																																																																																																																																																																																																																																
+	//	获取特定区域信息	仅需要填入  Area_id 即可。		
+	optional		AreaInfo		bak1184	 =	111184	;																																																																																																																																																																																																																																																
+	//	获取区域下所有组信息	"仅需设置op即可，op默认为2即返回所有数据包含终端信息；Op设置为1即仅请求分组信息。"			
+	optional		GroupsInfo		bak1182	 =	111182	;																																																																																																																																																																																																																																																
+	//	获取区域下特定组信息	需要填写 Area_id、Group_id。			
+	optional		GroupInfo		bak1183	 =	111183	;																																																																																																																																																																																																																																																
+	//	获取所有区域信息	"仅需设置op即可，op默认为2即返回所有数据包含终端信息；Op设置为2即仅请求区域信息。"			
+	optional		AreasInfo		bak1191	 =	111191	;																																																																																																																																																																																																																																																
+	//	获取特定区域信息	仅需要填入  Area_id 即可。				optional		AreaInfo		bak1194	 =	111194	;																																																																																																																																																																																																																																																
+	//	获取用户信息[管理界面]	若所请求用户具有管理员权限，则RequestUserIds空表示请求所有用户，若无管理员权限则空表示请求自己用户信息			
+	optional		UserInfoBk		bak1031	 =	111031	;																																																																																																																																																																																																																																																
+	//	统一接口获取用户信息	给统一接口验证使用，UserRoleName字段改为用户密码			
+	optional		UserInfoBk		bak1034	 =	111034	;																																																																																																																																																																																																																																																
+	//	新增用户[管理界面]	新增用户时密码无效，默认初始化密码为 123456		"ZMQ推送:mimsmiddle.push.[http端口].4011.[user_id]数据：AddOrUpdateUserInfo"		
+	optional		AddOrUpdateUserInfo		back4011	 =	114011	;																																																																																																																																																																																																																																																
+ 																																																																																																																																																																																																																																															
+	//	修改用户自己的信息	用户自己更新自己的信息，角色、密码不可修改			
+	optional		AddOrUpdateUserInfo		back4019	 =	114019	;																																																																																																																																																																																																																																																
+	//	修改用户[管理界面]	管理员修改的用户信息，密码不可修改		"ZMQ推送:mimsmiddle.push.[http端口].4016.[user_id]数据：AddOrUpdateUserInfo"		
+	optional		AddOrUpdateUserInfo		back4016	 =	114016	;																																																																																																																																																																																																																																																
+	//	通过用户名获取到用户权限信息				
+	optional		RoleUserInfoBk		bak1033	 =	111033	;																																																																																																																																																																																																																																																
+	//	删除用户[管理界面]			"ZMQ推送:mimsmiddle.push.[http端口].4012.[user_id]数据：AddUserInfo"		
+	optional		DelUserInfo		back4012	 =	114012	;																																																																																																																																																																																																																																																
+	//	重置密码[管理界面]	默认重置密码为 123456			
+	optional		ResetUserPsw		back4013	 =	114013	;																																																																																																																																																																																																																																																
+	//	获取角色信息	RequestRoleIds空表示请求所有 				
+	optional		RoleInfoBk		bak1032	 =	111032	;																																																																																																																																																																																																																																																
+	//	新增角色			"ZMQ推送:mimsmiddle.push.[http端口].4014.[Role_id]数据：AddRoleInfo"		
+	optional		AddRoleInfo		back4014	 =	114014	;																																																																																																																																																																																																																																																
+	//	修改角色			"ZMQ推送:mimsmiddle.push.[http端口].4017.[Role_id]数据：AddRoleInfo"		
+	optional		AddRoleInfo		back4017	 =	114017	;																																																																																																																																																																																																																																																
+	//	删除角色			ZMQ推送:mimsmiddle.push.[http端口].4015.[Role_id]	
+	optional		DelRoleInfo		back4015	 =	114015	;																																																																																																																																																																																																																																																
+	 
+	optional		PlanBatchOperationInfoBk		bak1041	 =	111041	;																																																																																																																																																																																																																																																
+	//	选中时间表解析到分组	将使用选中时间表的分组、终端解析出来			
+	optional		PlanRtuTimetableInfoBk		bak1042	 =	111042	;																																																																																																																																																																																																																																																
+	//	解析勾选的分组到操作界面	将选中分组的终端解析出来			
+	optional		PlanGrpTransRtuBk		bak1043	 =	111043	;																																																																																																																																																																																																																																																
+	//	获取分组与时间表的绑定信息	"请求分组与时间表方案的绑定关系 - 显示仅填写 area_id即可"	绑定关系、时间方案扼要信息		
+	optional		TimetablePlanBandingInfo		bak1051	 =	111051	;																																																																																																																																																																																																																																																
+ 																																																																																																																																																																																																																																						
+	//	请求时间表、特设方案扼要信息	请求扼要信息供显示，仅填写area_ids即可	时间表、特设方案扼要信息	
+	optional		TimetablePlanInfoBrief		bak1052	 =	111052	;																																																																																																																																																																																																																																																
+	//	请求具体时间表信息	输入area_id 和 plan_id			
+	optional		OneRtuPlanInfo		bak1053	 =	111053	;																																																																																																																																																																																																																																																
+	//	请求具体特设时间表信息	输入area_id 和 plan_id			
+	optional		OneSpecialRtuTimePlanInfo		bak1054	 =	111054	;																																																																																																																																																																																																																																																
+	 																																																																																																																																																																																																																											
+	//	请求系统选项					
+	optional		SystemOptionInfo		bak1061	 =	111061	;																																																																																																																																																																																																																																																
+ 																																																																																																																																																																																																																													
+	//	请求用户字体信息				
+	optional		UserShowFontInfo		bak1062	 =	111062	;																																																																																																																																																																																																																																																
+	 																																																																																																																																																																																																																												
+	//	请求终端最新信息	在ItemsRtu中填入终端的物理地址				
+	optional		RtusMeasureInfo		bak1063	 =	111063	;																																																																																																																																																																																																																																																
+	//	请求单灯集中器最新信息	在slu_ids中填入集中器的物理地址				
+	optional		ReplygtSludataMeasure		bak1064	 =	111064	;																																																																																																																																																																																																																																																
+	//	请求单灯控制器最新信息	在slu_id中填入集中器的物理地址，在slu_ctrl_id中填入控制器的条形码				
+	optional		ReplygtSludataLampMeasure		bak1065	 =	111065	;																																																																																																																																																																																																																																																
+	//	请求选中设备的上联和下联设备信息					
+	optional		RelatedRtus		bak1068	 =	111068	;																																																																																																																																																																																																																																																
+	//	请求终端当前状态	请求参数携带一个时间date_start，在此之后的终端状态才返回			
+	optional		RtusState		bak1066	 =	111066	;																																																																																																																																																																																																																																																
+	//	地图功能-单灯状态读取，用于更新sde数据库				
+	optional		SluStatusReturn		get9001	 =	109001	;																																																																																																																																																																																																																																																
+	//	请求终端回路的历史数据				
+	optional		RtuLoopHistory		bak1067	 =	111067	;																																																																																																																																																																																																																																																
+																																																																																																																																																																																																																																																														
+	//	请求日出日落时间	每天的00:30分主动推送一条日出日落时间		ZMQ推送:mimsmiddle.push.[http端口].4092.[sun_rise(05:53)].[sun_set(18:01)]		
+	optional		SunRiseSetTime		bak1241	 =	111241	;																																																																																																																																																																																																																																																
+	//	请求当前故障top5的类型和数量				
+	optional		TopCurFaultInfo		bak1242	 =	111242	;																																																																																																																																																																																																																																																
+	//	请求开关灯时间					
+	optional		OpenCloseTimeInfo		bak1243	 =	111243	;																																																																																																																																																																																																																																																
+	//	请求亮灯率趋势					
+	optional		BrightRateTrendInfo		bak1244	 =	111244	;																																																																																																																																																																																																																																																
+	//	请求终端、单灯在线率走势					
+	optional		EquOnlineInfo		bak1245	 =	111245	;																																																																																																																																																																																																																																																
+	//	请求主页显示信息					
+	optional		HomePageData		bak1247	 =	111247	;																																																																																																																																																																																																																																																
+	//	获取系统URL					
+	optional		SysUrlInfo		bak1246	 =	111246	;																																																																																																																																																																																																																																																
+	//	系统运行情况					
+	optional		SysInfo		bak1071	 =	111071	;																																																																																																																																																																																																																																																
+	//	终端控制成功率	时间表开关灯的成功率				
+	optional		ControlSuccessRate		bak1081	 =	111081	;																																																																																																																																																																																																																																																
+	//	终端能耗统	一天所有设备的耗电量，列出各天的			
+	optional		RtuElecDay		bak1082	 =	111082	;																																																																																																																																																																																																																																																
+	//	终端能耗统	当个终端一段时间的耗电量，列出所有设备的				
+	optional		RtuElecRtu		bak1083	 =	111083	;																																																																																																																																																																																																																																																
+	//	终端报警处理统计	平均处理时间统计				
+	optional		FaultStatisticsDay		bak1084	 =	111084	;																																																																																																																																																																																																																																																
+	//	终端报警处理时间统计	正常运行、故障时间等的统计				
+	optional		FaultStatisticsRtu		bak1085	 =	111085	;																																																																																																																																																																																																																																																
+	//	终端峰值统计	电压、电流、功率最大值最小值统计			
+	optional		RtuDataStatistics		bak1086	 =	111086	;																																																																																																																																																																																																																																																
+	//	单灯亮灯率统计	单灯亮灯率统计			
+	optional		SluLightOnRate		bak1087	 =	111087	;																																																																																																																																																																																																																																																
+	//	故障自定义请求				
+	optional		SetAlarmErrInfo		bak1091	 =	111091	;																																																																																																																																																																																																																																																
+	//	现存故障			ZMQ推送新报警:mimsmiddle.push.[http端口].4053.[op(1、新报警，2、消警)].[time(报警时间 or 消警数据的报警的时间)] 	
+	optional		CurFault		bak1092	 =	111092	;																																																																																																																																																																																																																																																
+	//	历史故障				
+	optional		PreFault		bak1093	 =	111093	;																																																																																																																																																																																																																																																
+	//	新增设备			ZMQ推送:mimsmiddle.push.[http端口].4061.[rtu_id].[rtu_mode]		
+	optional		EquipmentInfoBk		back4061	 =	114061	;																																																																																																																																																																																																																																																
+	//	获取设备类型	需填写 EquIds 类数据，不填写则返回所有的终端、单灯、漏电的型号				
+	optional		EquipmentInfoType		bak1121	 =	111121	;																																																																																																																																																																																																																																																
+	//	更新设备			ZMQ推送:mimsmiddle.push.[http端口].4063.[rtu_id].[rtu_mode]		
+	optional		EquipmentInfoBk		back4063	 =	114063	;																																																																																																																																																																																																																																																
+	//	删除设备			ZMQ推送:mimsmiddle.push.[http端口].4062.[rtu_id1].[rtu_id2]...		
+	optional		EquipmentInfoDeleteBk		back4062	 =	114062	;																																																																																																																																																																																																																																																
+	//	操作记录类型请求	"操作记录类型请求,[单灯、终端、所有]"				
+	optional		GetRecordTypesBk		bak1111	 =	111111	;																																																																																																																																																																																																																																																
+	//	操作数据查询	操作数据查询[终端]				
+	optional		OpRecord		bak1112	 =	111112	;																																																																																																																																																																																																																																																
+	//	操作数据查询	操作数据查询[单灯]				
+	optional		OpRecord		bak1113	 =	111113	;																																																																																																																																																																																																																																																
+	//	操作数据查询	操作数据查询[所有]			
+	optional		OpRecord		bak1114	 =	111114	;																																																																																																																																																																																																																																																
+	//	请求集中器历史数据					
+	optional		replygtSludataCon		bak1201	 =	111201	;																																																																																																																																																																																																																																																
+	//	请求单灯历史数据					
+	optional		replygtSludataLamp		bak1202	 =	111202	;																																																																																																																																																																																																																																																
+	//	请求单灯历史物理数据					
+	optional		replygtSludataCtrpPhyInfo		bak1203	 =	111203	;																																																																																																																																																																																																																																																
+	//	集中器数据		增加集中器方案信息items_plan			
+	optional		replygtSludataMeasure		bak1204	 =	111204	;																																																																																																																																																																																																																																																
+	//	获取实时控制器运行数据		增加方案信息items_plan			
+	optional		replygtSludataLampMeasure		bak1205	 =	111205	;																																																																																																																																																																																																																																																
+	//	获取实时巡测控制器物理数据[集中器内的]					
+	optional		replygtSluPhydataLampMeasure		bak1206	 =	111206	;																																																																																																																																																																																																																																																
+	//	获取实时巡测控制器辅助数据[集中器内的]					
+	optional		replygtSluAssistCtrlDataMeasure		bak1207	 =	111207	;																																																																																																																																																																																																																																																
+	//	获取实时巡测控制器参数数据[集中器内的]					
+	optional		SluCtrlParaRead		bak1208	 =	111208	;																																																																																																																																																																																																																																																
+	//	区域集中器的单灯方案分组	"op_argu=2，返回值填充grp_items代表的集中器与分组信息， op_argu=1，grp_items返回空的获取该区域所有的单灯方案分组信息"	仅用户设置了的集中器的信息		
+	optional		SluPlanGrpInfoBk		bak1221	 =	111221	;																																																																																																																																																																																																																																																
+	//	分组名称修改					
+	optional		UpdateAreaOrGrpNameBk		back4071	 =	114071	;																																																																																																																																																																																																																																																
+	//	分组删除					
+	optional		DeleteAreaOrGroupInfoBk		back4072	 =	114072	;																																																																																																																																																																																																																																																
+	//	获取区域下所有集中器的控制器分组信息	op_argu表示分组id				
+	optional		SluPlanGrpInfoBk		bak1222	 =	111222	;																																																																																																																																																																																																																																																
+	//	获取区域所有的单灯指令列表	方案id				
+	optional		SluPlanBriefInfo		bak1223	 =	111223	;																																																																																																																																																																																																																																																
+	//	获取某一指令详细信息	plan_id=0 为获取新建方案模板信息			
+	optional		SluPlanDetailInfo		bak1224	 =	111224	;																																																																																																																																																																																																																																																
+	//	获取区域所有的分组指令绑定的方案列表信息					
+	optional		SluPlanBandingInfo		bak1225	 =	111225	;																																																																																																																																																																																																																																																
+	 																																																																																																																																																																																																																																						
+	//	获取某一方案详细信息					
+	optional		SluPlanBandingDetailInfo		bak1226	 =	111226	;																																																																																																																																																																																																																																																
+ 																																																																																																																																																																																																																																															
+ 																																																																																																																																																																																																																																										
+	//	单灯方案下发记录查询				
+	optional		SluTimePlanRecord		bak1227	 =	111227	;																																																																																																																																																																																																																																																
+																																																																																																																																																																																																																																								
+	//	获取设备点位信息				
+	optional		GisGetTableInfo		bak1231	 =	111231	;																																																																																																																																																																																																																																																
+ 																																																																																																																																																																																																																																															
+	//	参数请求	填写LeakId即可				
+	optional		LeakPara		bak1253	 =	111253	;																																																																																																																																																																																																																																																
+	//	查询最新数据	填写RtuId即可	设备最新数据存放于Items中			
+	optional		RequestLeakData		bak1251	 =	111251	;																																																																																																																																																																																																																																																
+	//	查询历史数据	填写所有信息 实现分页查询	设备最新数据存放于Items中	
+	optional		RequestLeakData		bak1252	 =	111252	;																																																																																																																																																																																																																																																
+	//	参数请求	填写LeakId即可			
+	optional		LeakPara		bak1291	 =	111291	;																																																																																																																																																																																																																																																
+
+
+ 
+
+}
+

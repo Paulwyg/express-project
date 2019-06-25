@@ -1,0 +1,74 @@
+﻿<UserControl x:Class="Wlst.Ux.RadMapJpeg.Views.MapJpegView"
+                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                 xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" >
+  <Grid x:Name="gridMain">
+
+    <Grid.Resources>
+
+      <DataTemplate x:Key="F1">
+
+                <Grid Background="Transparent" x:Name="Grid1"  Visibility="{Binding ImgVis}"
+              telerik:MapLayer.Location="{Binding Path=EquipmentLocation}" telerik:RadDragAndDropManager.AllowDrag="True"
+              telerik:RadDragAndDropManager.DragInfo="OnDragInfo" telerik:RadDragAndDropManager.DragQuery="OnDragQuery"
+              telerik:RadDragAndDropManager.DropInfo="OnDropInfo" telerik:RadDragAndDropManager.DropQuery="OnDropQuery"
+              telerik:MapLayer.ZoomRange="12,16">
+          <!--<Image ToolTip="{Binding Tooltips}" MouseDown="Image_MouseDown" Height="{Binding ImageHeight}"
+                 Width="{Binding ImageWidth}" Source="{Binding ImagesIcon}" Cursor="Arrow" ContextMenu="{Binding Cm}"
+                 Tag="{Binding EquipmentRtuId}">
+          </Image>-->
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto" ></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+                    <Image ToolTip="{Binding Tooltips}" MouseDown="Image_MouseDown" Height="{Binding ImageHeight}"  
+                 Width="{Binding ImageWidth}" Source="{Binding ImagesIcon}" Cursor="Arrow" ContextMenu="{Binding Cm}"
+                 Tag="{Binding EquipmentRtuId}">
+                    </Image>
+                    <TextBlock Grid.Row="1" Grid.Column="1" Visibility="{Binding VisiTooltips}" Background="White" Foreground="Black" Text="{Binding Tooltips}"></TextBlock>
+                </Grid>
+      </DataTemplate>
+
+      <DataTemplate x:Key="F2">
+        <Grid Background="Transparent" x:Name="Grid1"
+              telerik:MapLayer.Location="{Binding Path=EquipmentLocation}" telerik:RadDragAndDropManager.AllowDrag="True"
+              telerik:RadDragAndDropManager.DragInfo="OnDragInfo" telerik:RadDragAndDropManager.DragQuery="OnDragQuery"
+              telerik:RadDragAndDropManager.DropInfo="OnDropInfo" telerik:RadDragAndDropManager.DropQuery="OnDropQuery"
+              telerik:MapLayer.ZoomRange="12,16">
+
+          <DockPanel HorizontalAlignment="Left">
+            <Image ToolTip="{Binding Tooltips}" MouseDown="Image_MouseDown" Height="18" Width="18"
+                   Source="{Binding ImagesIcon}" Cursor="Arrow" ContextMenu="{Binding Cm}" Tag="{Binding EquipmentRtuId}">
+            </Image>
+            <TextBlock Text="Light"></TextBlock>
+          </DockPanel>
+        </Grid>
+      </DataTemplate>
+    </Grid.Resources>
+        <telerik:RadMap x:Name="RadMap1" AllowDrop="True" ZoomLevel="16" MinZoomLevel="{Binding MinZoom}" MaxZoomLevel="16" CacheMode="BitmapCache"  
+                    NavigationVisibility="Collapsed" telerik:RadDragAndDropManager.AllowDrop="True" MouseLocationIndicatorVisibility="Collapsed"
+                    telerik:RadDragAndDropManager.DropInfo="OnDropInfo" telerik:RadDragAndDropManager.DropQuery="OnDropQuery"  
+                    ScaleVisibility="Collapsed"  ZoomChanged="RadMap1_ZoomChanged" PreviewMouseWheel="RadMap1_PreviewMouseWheel"
+                    ZoomBarVisibility="Collapsed" MouseDoubleClickMode="None" CommandBarVisibility="Collapsed" MiniMapExpanderVisibility="Collapsed">
+      <telerik:RadMap.Provider>
+                <telerik:UriImageProvider   x:Name="ImagePri" Uri="pack://siteoforigin:,,,/Map/osm_{zoom}.bmp" />
+      </telerik:RadMap.Provider>
+      <telerik:InformationLayer x:Name="InformationLayer1" ItemsSource="{Binding MainEquipmentList}"
+                                ItemTemplate="{StaticResource F1}"></telerik:InformationLayer>
+      <telerik:InformationLayer x:Name="InformationLayer2" ItemsSource="{Binding AttachEquipmentList}"
+                                ItemTemplate="{StaticResource F2}"></telerik:InformationLayer>
+      <!--<telerik:InformationLayer>
+
+        <TextBlock telerik:MapLayer.Location="{Binding Path=CurrentSelectNode.TooltiopsLocation}" Foreground="White" Background="Gray"
+                   Text="{Binding CurrentSelectNode.Tooltips}"></TextBlock>
+      </telerik:InformationLayer>-->
+
+    </telerik:RadMap>
+    <!--E:\lp\Client\CETC50_Demo\ResourceLibrary\MapJpeg\osm_{zoom}.png  E:\lp\Client\CETC50_Demo\CETC50_Demo\Image\Map\osm_{zoom}.png-->
+  </Grid>
+</UserControl>

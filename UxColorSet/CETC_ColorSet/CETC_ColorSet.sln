@@ -1,0 +1,42 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CETC_ColorSet", "CETC_ColorSet\CETC_ColorSet.csproj", "{FB3E13F7-A9ED-4BEE-9991-E114B0AF76CD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Elysium", "..\..\Ux\Elysium\Elysium.csproj", "{467011FC-64F2-4FB6-8F59-942248260FFB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|Mixed Platforms = Debug|Mixed Platforms
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|Mixed Platforms = Release|Mixed Platforms
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FB3E13F7-A9ED-4BEE-9991-E114B0AF76CD}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{FB3E13F7-A9ED-4BEE-9991-E114B0AF76CD}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{FB3E13F7-A9ED-4BEE-9991-E114B0AF76CD}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{FB3E13F7-A9ED-4BEE-9991-E114B0AF76CD}.Debug|x86.ActiveCfg = Debug|x86
+		{FB3E13F7-A9ED-4BEE-9991-E114B0AF76CD}.Debug|x86.Build.0 = Debug|x86
+		{FB3E13F7-A9ED-4BEE-9991-E114B0AF76CD}.Release|Any CPU.ActiveCfg = Release|x86
+		{FB3E13F7-A9ED-4BEE-9991-E114B0AF76CD}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{FB3E13F7-A9ED-4BEE-9991-E114B0AF76CD}.Release|Mixed Platforms.Build.0 = Release|x86
+		{FB3E13F7-A9ED-4BEE-9991-E114B0AF76CD}.Release|x86.ActiveCfg = Release|x86
+		{FB3E13F7-A9ED-4BEE-9991-E114B0AF76CD}.Release|x86.Build.0 = Release|x86
+		{467011FC-64F2-4FB6-8F59-942248260FFB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{467011FC-64F2-4FB6-8F59-942248260FFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{467011FC-64F2-4FB6-8F59-942248260FFB}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{467011FC-64F2-4FB6-8F59-942248260FFB}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{467011FC-64F2-4FB6-8F59-942248260FFB}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{467011FC-64F2-4FB6-8F59-942248260FFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{467011FC-64F2-4FB6-8F59-942248260FFB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{467011FC-64F2-4FB6-8F59-942248260FFB}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{467011FC-64F2-4FB6-8F59-942248260FFB}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{467011FC-64F2-4FB6-8F59-942248260FFB}.Release|x86.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

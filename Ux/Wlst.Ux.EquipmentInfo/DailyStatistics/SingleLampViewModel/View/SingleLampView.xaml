@@ -1,0 +1,611 @@
+﻿<UserControl x:Class="Wlst.Ux.EquipmentInfo.DailyStatistics.SingleLampViewModel.View.SingleLampView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" mc:Ignorable="d" 
+             d:DesignHeight="800" d:DesignWidth="1000">
+    <UserControl.Resources>
+        <Style x:Key="trackBallLineStyle" TargetType="Polyline">
+            <Setter Property="Visibility" Value="Collapsed" />
+        </Style>
+        <Style x:Key="trackBallInfoStyle" TargetType="telerik:TrackBallInfoControl">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="telerik:TrackBallInfoControl" />
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*" ></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto" ></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid>
+                <DockPanel MinWidth="500">
+                    <TextBlock Text="集中器设备：" HorizontalAlignment="Left" VerticalAlignment="Center"   Margin="10,10,0,5"></TextBlock>
+                    <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Text="{Binding PhyId}" Margin="5,10,0,5"></TextBlock>
+                    <TextBlock Text="-" HorizontalAlignment="Left" VerticalAlignment="Center"   Margin="10,10,10,5"></TextBlock>
+                    <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}"  Text="{Binding SluName}" Margin="0,10,0,5"></TextBlock>
+                    <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}"  Text="共:" Margin="10,10,0,5"></TextBlock>
+                    <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}"  Text="{Binding ControllerNumber}" Margin="10,10,0,5"></TextBlock>
+                    <TextBlock Text="个控制器" HorizontalAlignment="Left" VerticalAlignment="Center"   Margin="5,10,0,5"></TextBlock>
+
+                </DockPanel>
+            </Grid>
+            <Grid  Grid.Row="1">
+                <DockPanel Visibility="{Binding IsVisible}" MinWidth="500">
+                    <TextBlock Text="  关联终端：" HorizontalAlignment="Left" VerticalAlignment="Center"   Margin="10,5,0,10"></TextBlock>
+                    <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Text="{Binding RelatedRtuId}" Margin="5,5,0,10"></TextBlock>
+                    <TextBlock Text="-" HorizontalAlignment="Left" VerticalAlignment="Center"   Margin="10,5,10,10"></TextBlock>
+                    <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}"  Text="{Binding RelatedRtuName}" Margin="0,5,0,10" ></TextBlock>
+                </DockPanel>
+            </Grid>
+            <Grid Grid.Column="1" Grid.RowSpan="2" Margin="30,0,0,5">
+                <DockPanel>
+                    <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}" Margin="0,0,20,0" Text="选择日期:" VerticalAlignment="Center" HorizontalAlignment="Left" ></TextBlock>
+                    <DatePicker SelectedDateFormat="Short"  VerticalAlignment="Center" Width="120"  Margin="0,0,50,0"   SelectedDate="{Binding BeginDate}" HorizontalAlignment="Left"></DatePicker>
+                    <Button Content="查询"  VerticalAlignment="Center" HorizontalAlignment="Left"  Width="120" Height="25" Margin="0,0,0,0" Command="{Binding CmdQuery}" ToolTip="点击左侧终端树中的终端来改变选择的终端"></Button>
+                    <ComboBox VerticalAlignment="Center" HorizontalAlignment="Left" Margin="20,5,5,5" Width="160"
+                              ItemsSource="{Binding PictureName}" SelectedItem="{Binding PictureComboBoxSelected}"></ComboBox>
+                    <Button Content="导出图片" Click="Button_Click_" Width="120" Height="25" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="20,5,5,5"></Button>
+                    <Button Content="打印" Grid.Column="1" Click="Button_Click" Width="120" Height="25" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,5,5,5" Visibility="Collapsed"></Button>
+                </DockPanel>
+            </Grid>
+        </Grid>
+        <GridSplitter Grid.Row="1" HorizontalAlignment="Stretch"  VerticalAlignment="Center" Height="3"></GridSplitter>
+        <Grid Grid.Row="2">
+            <Grid.RowDefinitions >
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <!--<TextBlock Text="集中器时间表" VerticalAlignment="Center" HorizontalAlignment="Left"  Margin="20,5,0,5" FontSize="20"></TextBlock>
+            <Canvas Grid.Row="1" Name="Canvas">
+                <Line Stroke="LightGray" StrokeThickness="3" X1="40" Y1="30" X2="520" Y2="30"></Line>
+                <TextBlock Text="12:00" Canvas.Left="510" Canvas.Top="30"></TextBlock>
+                <TextBlock Text="12:00" Canvas.Left="15" Canvas.Top="30"></TextBlock>
+
+                <ItemsControl  ItemsSource="{Binding OperatorItems}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <Canvas />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemContainerStyle>
+                        <Style TargetType="{x:Type ContentPresenter}">
+                            <Setter Property="Canvas.Left" Value="{Binding Location}" />
+                            <Setter Property="Canvas.Top" Value="28" />
+                        </Style>
+                    </ItemsControl.ItemContainerStyle>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Ellipse Width="6" Height="6" Fill="Blue" ToolTip="{Binding Tooltip}"/>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+
+                <ItemsControl  ItemsSource="{Binding OperatorItems}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <Canvas />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemContainerStyle>
+                        <Style TargetType="{x:Type ContentPresenter}">
+                            <Setter Property="Canvas.Left" Value="{Binding Location}" />
+                            <Setter Property="Canvas.Top" Value="35" />
+                        </Style>
+                    </ItemsControl.ItemContainerStyle>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding DtCreateTime}"></TextBlock>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+
+                <ItemsControl  ItemsSource="{Binding OperatorItems}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <Canvas />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemContainerStyle>
+                        <Style TargetType="{x:Type ContentPresenter}">
+                            <Setter Property="Canvas.Left" Value="{Binding Location}" />
+                            <Setter Property="Canvas.Top" Value="10" />
+                        </Style>
+                    </ItemsControl.ItemContainerStyle>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding OperatorObject}"></TextBlock>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+
+                <ItemsControl  ItemsSource="{Binding OperatorItems}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <Canvas />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemContainerStyle>
+                        <Style TargetType="{x:Type ContentPresenter}">
+                            <Setter Property="Canvas.Left" Value="{Binding Location}" />
+                            <Setter Property="Canvas.Top" Value="45" />
+                        </Style>
+                    </ItemsControl.ItemContainerStyle>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding OperatorName}"></TextBlock>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </Canvas>
+            
+                <ListBox Grid.Row="1" Grid.Column="1"  ItemsSource="{Binding OperatorItems }" VerticalAlignment="Center" HorizontalAlignment="Left"  Margin="10,5,40,5" Width="450">
+                    <ListBox.Template>
+                        <ControlTemplate TargetType="{x:Type ListBox}">
+                            <ScrollViewer Background="Transparent" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+                            <WrapPanel Orientation="Horizontal" IsItemsHost="True" ScrollViewer.CanContentScroll="True"/>
+                            </ScrollViewer>
+                        </ControlTemplate>
+                    </ListBox.Template>
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Tooltip}"></TextBlock>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>-->
+        </Grid>
+        <Grid Grid.Row="3" x:Name="single">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions >
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <!--<Grid  x:Name="RadChart1">
+                <Grid.RowDefinitions >
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+                <TextBlock Text="通信成功率曲线图" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,5,0,5" FontSize="20"></TextBlock>
+                <telerik:RadCartesianChart Grid.Row="1" Margin="10">
+                    <telerik:RadCartesianChart.HorizontalAxis>
+                        <telerik:DateTimeCategoricalAxis PlotMode="OnTicksPadded" LabelFormat="MM-dd"/>
+                    </telerik:RadCartesianChart.HorizontalAxis>
+                    <telerik:RadCartesianChart.VerticalAxis>
+                        <telerik:LinearAxis Maximum="1" Minimum="0" MajorStep="0.1" LabelFormat="P0"/>
+                    </telerik:RadCartesianChart.VerticalAxis>
+                    <telerik:RadCartesianChart.Behaviors>
+                        <telerik:ChartTrackBallBehavior ShowTrackInfo="True"
+												ShowIntersectionPoints="True"
+                                                TrackInfoUpdated="ChartTrackBallBehavior_TrackInfoUpdated" />
+                    </telerik:RadCartesianChart.Behaviors>
+                    <telerik:LineSeries 
+							   CategoryBinding="DateCreate"
+							   ValueBinding="Value"
+							   ItemsSource="{Binding CommunicateItems}">
+
+                        <telerik:LineSeries.TrackBallInfoTemplate>
+                            <DataTemplate >
+                                <StackPanel Margin="3" Orientation="Horizontal">
+                                    <TextBlock Text="成功率：" Margin="0,0,3,0"></TextBlock>
+                                    <TextBlock Text="{Binding DataPoint.Value, StringFormat=P0}" FontWeight="Bold" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </telerik:LineSeries.TrackBallInfoTemplate>
+                    </telerik:LineSeries>
+                </telerik:RadCartesianChart>
+                <Grid Grid.Row="2">
+                    <Grid.ColumnDefinitions >
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Button Content="导出图片" Click="Button_Click_1" Width="100" Height="25" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="20,5,5,5"></Button>
+                    <Button Content="打印" Grid.Column="1" Click="Button_Click1" Width="100" Height="25" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="10,5,5,5"></Button>
+
+                </Grid>
+            </Grid>-->
+            <Grid x:Name="RadChart1">
+                <Grid.RowDefinitions >
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <TextBlock Text="集中器时间表" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,5,0,5" FontSize="20"></TextBlock>
+                <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,20,0">
+                    <!--<Rectangle Fill="Red" Height="2" Width="15" Margin="5,0" />-->
+                    <Ellipse Width="10" Height="10" Fill="Orange" Margin="5,0"></Ellipse>
+                    <TextBlock Text="开灯" Margin="0,0,9,0" />
+                    <Ellipse Width="10" Height="10" Fill="Gray" Margin="5,0"></Ellipse>
+                    <TextBlock Text="关灯" Margin="0,0,9,0"/>
+                    <Ellipse Width="10" Height="10" Fill="Green" Margin="5,0"></Ellipse>
+                    <TextBlock Text="调光" Margin="0,0,9,0"/>
+                </StackPanel>
+                <ScrollViewer x:Name="scrollViewer"  VerticalScrollBarVisibility="Auto" Grid.Row="2" Margin="10">
+                    <Canvas Grid.Row="1">
+                        <Line Stroke="LightGray" StrokeThickness="3" X1="80" Y1="30" X2="560" Y2="30"></Line>
+                        <TextBlock Text="{Binding STime}" Canvas.Left="55" Canvas.Top="10"></TextBlock>
+                        <TextBlock Text="{Binding ETime}" Canvas.Left="550" Canvas.Top="10"></TextBlock>
+                        <TextBlock Text="12:00" Canvas.Left="550" Canvas.Top="30"></TextBlock>
+                        <TextBlock Text="12:00" Canvas.Left="55" Canvas.Top="30"></TextBlock>
+                        <TextBlock Text="{Binding SunRise}" Canvas.Left="{Binding X}" Canvas.Top="35" Visibility="{Binding Visi}"></TextBlock>
+                        <TextBlock Text="{Binding SunSet}" Canvas.Left="{Binding X1}" Canvas.Top="35" Visibility="{Binding Visi}"></TextBlock>
+                        <TextBlock Text="日落时间" Canvas.Left="{Binding X1}" Canvas.Top="3" Visibility="{Binding Visi}"></TextBlock>
+                        <TextBlock Text="日出时间" Canvas.Left="{Binding X}" Canvas.Top="3" Visibility="{Binding Visi}"></TextBlock>
+                        <Image Canvas.Left="{Binding XSunRise}" Canvas.Top="15" Width="20" Height="20" Source="{Binding ImageIcon1}" Visibility="{Binding Visi}"></Image>
+                        <Image Canvas.Left="{Binding XSunSet}" Canvas.Top="17" Width="20" Height="20" Source="{Binding ImageIcon2}" Visibility="{Binding Visi}"></Image>
+                        <Ellipse Canvas.Left="318" Canvas.Top="27" Width="6" Height="6" Fill="Blue" Visibility="{Binding Visi}"/>
+                        <TextBlock Text="00:00" Canvas.Left="310" Canvas.Top="37"></TextBlock>
+
+                        <Line Stroke="LightGray" StrokeThickness="2" StrokeDashArray="2, 2" X1="200" Y1="0" X2="200" Y2="{Binding LineLength}" Visibility="{Binding VisiLine}"></Line>
+                        <Line Stroke="LightGray" StrokeThickness="2" StrokeDashArray="2, 2" X1="320" Y1="0" X2="320" Y2="{Binding LineLength}" Visibility="{Binding VisiLine}"></Line>
+                        <Line Stroke="LightGray" StrokeThickness="2" StrokeDashArray="2, 2" X1="440" Y1="0" X2="440" Y2="{Binding LineLength}" Visibility="{Binding VisiLine}"></Line>
+                        <TextBlock Text="18:00" Canvas.Left="180" Canvas.Top="{Binding LineLength1}" Visibility="{Binding VisiLine}"></TextBlock>
+                        <TextBlock Text="00:00" Canvas.Left="300" Canvas.Top="{Binding LineLength1}" Visibility="{Binding VisiLine}"></TextBlock>
+                        <TextBlock Text="06:00" Canvas.Left="420" Canvas.Top="{Binding LineLength1}" Visibility="{Binding VisiLine}"></TextBlock>
+                        
+                        <ItemsControl  ItemsSource="{Binding OperatorItems}">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <Canvas />
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemContainerStyle>
+                                <Style TargetType="{x:Type ContentPresenter}">
+                                </Style>
+                            </ItemsControl.ItemContainerStyle>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Line Stroke="LightGray" 
+                                              StrokeThickness="3"
+                                              X1="80"
+                                              X2="560"
+                                              Y1="{Binding Y1}"
+                                              Y2="{Binding Y1}" />
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+
+                        <ItemsControl  ItemsSource="{Binding OperatorItems}">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <Canvas />
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemContainerStyle>
+                                <Style TargetType="{x:Type ContentPresenter}">
+                                    <Setter Property="Canvas.Left" Value="{Binding Location}" />
+                                    <Setter Property="Canvas.Top" Value="{Binding Y5}" />
+                                </Style>
+                            </ItemsControl.ItemContainerStyle>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Ellipse Width="6" Height="6" Fill="{Binding Brush}" ToolTip="{Binding Tooltip}"/>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+
+                        <!--<ItemsControl  ItemsSource="{Binding OperatorItems}">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <Canvas />
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemContainerStyle>
+                                <Style TargetType="{x:Type ContentPresenter}">
+                                    <Setter Property="Canvas.Left" Value="{Binding Location}" />
+                                    <Setter Property="Canvas.Top" Value="{Binding Y2}" />
+                                </Style>
+                            </ItemsControl.ItemContainerStyle>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding DtCreateTime}"></TextBlock>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+
+                        <ItemsControl  ItemsSource="{Binding OperatorItems}">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <Canvas />
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemContainerStyle>
+                                <Style TargetType="{x:Type ContentPresenter}">
+                                    <Setter Property="Canvas.Left" Value="{Binding Location}" />
+                                    <Setter Property="Canvas.Top" Value="{Binding Y3}" />
+                                </Style>
+                            </ItemsControl.ItemContainerStyle>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding OperatorObject}"></TextBlock>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>-->
+
+                        <ItemsControl  ItemsSource="{Binding OperatorItems}">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <Canvas />
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemContainerStyle>
+                                <Style TargetType="{x:Type ContentPresenter}">
+                                    <Setter Property="Canvas.Left" Value="10" />
+                                    <Setter Property="Canvas.Top" Value="{Binding Y4}" />
+                                </Style>
+                            </ItemsControl.ItemContainerStyle>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding OperatorName}"></TextBlock>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </Canvas>
+                </ScrollViewer>
+            </Grid>
+            <GridSplitter Grid.Column="1" Grid.RowSpan="3" HorizontalAlignment="Center" VerticalAlignment="Stretch" Width="3"></GridSplitter>
+            <Grid Grid.Column="2" x:Name="RadChart2">
+                <Grid.RowDefinitions >
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+                <TextBlock Text="单灯通信成功率(亮灯率)" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,5,0,5" FontSize="20"></TextBlock>
+                <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,20,0">
+                    <!--<Rectangle Fill="Red" Height="2" Width="15" Margin="5,0" />-->
+                    <Path  Fill="Red" Margin="5,0">
+                        <Path.Data>
+                            <RectangleGeometry Rect="0,3,10,10"/>
+                        </Path.Data>
+                    </Path>
+                    <TextBlock Text="通信成功率" Margin="0,0,9,0" />
+                    <Path  Fill="Blue" Margin="5,0">
+                        <Path.Data>
+                            <RectangleGeometry Rect="0,3,10,10"/>
+                        </Path.Data>
+                    </Path>
+                    <!--<Rectangle Fill="Blue" Height="2" Width="15" Margin="0,0,5,0" />-->
+                    <TextBlock Text="亮灯率" />
+                </StackPanel>
+                <telerik:RadCartesianChart Grid.Row="2" Margin="10">
+                    <telerik:RadCartesianChart.HorizontalAxis>
+                        <telerik:DateTimeCategoricalAxis PlotMode="OnTicksPadded" LabelFormat="MM-dd"/>
+                    </telerik:RadCartesianChart.HorizontalAxis>
+                    <telerik:RadCartesianChart.VerticalAxis>
+                        <telerik:LinearAxis Maximum="1" Minimum="0" MajorStep="0.1" LabelFormat="P0"/>
+                    </telerik:RadCartesianChart.VerticalAxis>
+                    <telerik:RadCartesianChart.Behaviors>
+                        <telerik:ChartTrackBallBehavior ShowTrackInfo="True"
+												ShowIntersectionPoints="True"
+                                                TrackInfoUpdated="ChartTrackBallBehavior_TrackInfoUpdated" />
+                    </telerik:RadCartesianChart.Behaviors>
+                    <telerik:LineSeries  Stroke="Red"
+							   CategoryBinding="DateCreate"
+							   ValueBinding="Value"
+							   ItemsSource="{Binding CommunicateItems}">
+
+                        <telerik:LineSeries.TrackBallInfoTemplate>
+                            <DataTemplate >
+                                <StackPanel Margin="3" Orientation="Horizontal">
+                                    <TextBlock Text="成功率：" Margin="0,0,3,0"></TextBlock>
+                                    <TextBlock Text="{Binding DataPoint.Value, StringFormat=P0}" FontWeight="Bold" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </telerik:LineSeries.TrackBallInfoTemplate>
+                    </telerik:LineSeries>
+
+                    <telerik:LineSeries  Stroke="Blue"
+							   CategoryBinding="DateCreate"
+							   ValueBinding="Value"
+							   ItemsSource="{Binding LightRateItems}">
+                        <telerik:LineSeries.TrackBallInfoTemplate>
+                            <DataTemplate >
+                                <StackPanel Margin="3" Orientation="Horizontal">
+                                    <TextBlock Text="亮灯率：" Margin="0,0,3,0"></TextBlock>
+                                    <TextBlock Text="{Binding DataPoint.Value, StringFormat=P0}" FontWeight="Bold" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </telerik:LineSeries.TrackBallInfoTemplate>
+                    </telerik:LineSeries>
+                </telerik:RadCartesianChart>
+                <Grid Grid.Row="2">
+                    <Grid.ColumnDefinitions >
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <!--<Button Content="导出图片" Click="Button_Click_2" Width="100" Height="25" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="20,5,5,5"></Button>
+                    <Button Content="打印" Grid.Column="1" Click="Button_Click2" Width="100" Height="25" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="10,5,5,5"></Button>-->
+                </Grid>
+            </Grid>
+            <Grid Grid.Row="2" x:Name="RadChart3">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+                <TextBlock Text="故障统计" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,5,0,5" FontSize="20"></TextBlock>
+                <!--<StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,20,0">
+                    <Rectangle Fill="Red" Height="2" Width="25" Margin="5,0" />
+                    <TextBlock Text="故障总数" Margin="0,0,9,0" />
+                </StackPanel>-->
+                <StackPanel  Grid.Row="1" Orientation="Horizontal" Margin="10,5,20,5">
+                    <Path  Fill="Gray" Margin="5,0" Visibility="{Binding FaultCategories[0].IsVisi}">
+                        <Path.Data>
+                            <RectangleGeometry Rect="0,3,10,10"/>
+                        </Path.Data>
+                    </Path>
+                    <TextBlock MinWidth="110" Visibility="{Binding FaultCategories[0].IsVisi}">
+                                     <Run Text="集中器报警:"  />
+                                     <Run x:Name="concentrator" FontWeight="Heavy"/>
+                    </TextBlock>
+                    <Path  Fill="Green" Margin="10,0,5,0" Visibility="{Binding FaultCategories[1].IsVisi}">
+                        <Path.Data>
+                            <RectangleGeometry Rect="0,3,10,10"/>
+                        </Path.Data>
+                    </Path>
+                    <TextBlock Margin="0,0,0,0" MinWidth="100" Visibility="{Binding FaultCategories[1].IsVisi}">
+                                     <Run Text="关灯报警:"  />
+                                     <Run x:Name="close" FontWeight="Heavy"/>
+                    </TextBlock>
+                    <Path  Fill="Orange" Margin="10,0,5,0" Visibility="{Binding FaultCategories[2].IsVisi}">
+                        <Path.Data>
+                            <RectangleGeometry Rect="0,3,10,10"/>
+                        </Path.Data>
+                    </Path>
+                    <TextBlock Margin="0,0,0,0" MinWidth="100" Visibility="{Binding FaultCategories[2].IsVisi}">
+                                      <Run Text="开灯报警:"  />
+                                      <Run x:Name="open" FontWeight="Heavy"/>
+                    </TextBlock>
+                    <Path  Fill="Red" Margin="10,0,5,0" Visibility="{Binding FaultCategories[3].IsVisi}">
+                        <Path.Data>
+                            <RectangleGeometry Rect="0,3,10,10"/>
+                        </Path.Data>
+                    </Path>
+                    <TextBlock Margin="0,0,0,0" MinWidth="100" Visibility="{Binding FaultCategories[3].IsVisi}">
+                                      <Run Text="总数:"  />
+                                      <Run x:Name="sumnumber" FontWeight="Heavy"/>
+                    </TextBlock>
+                </StackPanel>
+                <telerik:RadCartesianChart Grid.Row="2" Margin="10" x:Name="Fault"
+                                           TrackBallLineStyle="{StaticResource trackBallLineStyle}"
+                                           TrackBallInfoStyle="{StaticResource trackBallInfoStyle}">
+                    <telerik:RadCartesianChart.HorizontalAxis>
+                        <telerik:DateTimeCategoricalAxis PlotMode="OnTicksPadded" LabelFormat="MM-dd"/>
+                    </telerik:RadCartesianChart.HorizontalAxis>
+                    <telerik:RadCartesianChart.VerticalAxis>
+                        <telerik:LinearAxis  Minimum="0" MajorStep="{Binding Step1}"/>
+                    </telerik:RadCartesianChart.VerticalAxis>
+                    <telerik:RadCartesianChart.Behaviors>
+                        <telerik:ChartTrackBallBehavior ShowTrackInfo="True"
+												ShowIntersectionPoints="True"
+                                                TrackInfoUpdated="ChartTrackBallBehavior_TrackInfoUpdated_1" />
+                    </telerik:RadCartesianChart.Behaviors>
+                    <!--<telerik:LineSeries 
+							   CategoryBinding="DtCreateTime"
+							   ValueBinding="Count"
+							   ItemsSource="{Binding FaultItems}">
+                    </telerik:LineSeries>-->
+
+                </telerik:RadCartesianChart>
+                <Grid Grid.Row="3" MaxHeight="100">
+                    <Grid.ColumnDefinitions >
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock  Text="单灯报警：" Margin="10,5,0,10"  HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                    <StackPanel Grid.Column="1"  Margin="10,5,10,5" Orientation="Horizontal">
+                        <CheckBox x:Name="con" Width="100" Margin="10,2,0,0" IsChecked="{Binding FaultCategories[0].IsSelected}" HorizontalAlignment="Left" VerticalAlignment="Top" Content="集中器报警" Foreground="Gray"></CheckBox>
+                        <CheckBox x:Name="clo" Width="100" Margin="10,2,0,0" IsChecked="{Binding FaultCategories[1].IsSelected}" HorizontalAlignment="Left" VerticalAlignment="Top" Content="关灯报警" Foreground="Green"></CheckBox>
+                        <CheckBox x:Name="ope" Width="100" Margin="10,2,0,0" IsChecked="{Binding FaultCategories[2].IsSelected}" HorizontalAlignment="Left" VerticalAlignment="Top" Content="开灯报警" Foreground="Orange"></CheckBox>
+                        <CheckBox x:Name="sum" Width="100" Margin="10,2,0,0" IsChecked="{Binding FaultCategories[3].IsSelected}" HorizontalAlignment="Left" VerticalAlignment="Top" Content="故障总数" Foreground="Red"></CheckBox>
+                    </StackPanel>
+                    <!--<ListBox Grid.Column="1" ItemsSource="{Binding TypeItems }" Margin="0,5,10,10">
+                        <ListBox.Template>
+                            <ControlTemplate TargetType="{x:Type ListBox}">
+                                <ScrollViewer Background="Transparent" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+                                <WrapPanel Orientation="Horizontal" IsItemsHost="True" ScrollViewer.CanContentScroll="True"/>
+                                </ScrollViewer>
+                            </ControlTemplate>
+                        </ListBox.Template>
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <CheckBox Width="140" Margin="10,2,0,0" IsChecked="{Binding IsSelected}" HorizontalAlignment="Left" VerticalAlignment="Top" Content="{Binding Name}" Foreground="{Binding Color}"></CheckBox>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                        <ListBox.ItemContainerStyle>
+                            <Style TargetType="ListBoxItem">
+                                <Setter Property="Background" Value="Transparent" />
+                            </Style>
+                        </ListBox.ItemContainerStyle>
+                    </ListBox>-->
+                </Grid>
+                <Grid Grid.Row="3">
+                    <Grid.ColumnDefinitions >
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <!--<Button Content="导出图片" Click="Button_Click_3" Width="100" Height="25" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="20,5,5,5"></Button>
+                    <Button Content="打印" Grid.Column="1" Click="Button_Click3" Width="100" Height="25" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="10,5,5,5"></Button>-->
+
+                </Grid>
+            </Grid>
+            <GridSplitter Grid.Row="1" Grid.ColumnSpan="3"  HorizontalAlignment="Stretch"  VerticalAlignment="Center" Height="3"></GridSplitter>
+            <Grid Grid.Row="2" Grid.Column="2" x:Name="RadChart4">
+                <Grid.RowDefinitions >
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+                <TextBlock Text="电量统计" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,5,0,5" FontSize="20"></TextBlock>
+                <TextBlock Text="千瓦时(kWh)" Grid.Row="1" Margin="5,0,0,0" HorizontalAlignment="Left"></TextBlock>
+                <telerik:RadCartesianChart Grid.Row="2"  Margin="5">
+                    <telerik:RadCartesianChart.HorizontalAxis>
+                        <telerik:DateTimeContinuousAxis  PlotMode="OnTicksPadded" LabelFormat="MM-dd" />
+                    </telerik:RadCartesianChart.HorizontalAxis>
+                    <telerik:RadCartesianChart.VerticalAxis>
+                        <telerik:LinearAxis Minimum="0" MajorStep="{Binding Step2}"/>
+                    </telerik:RadCartesianChart.VerticalAxis>
+                    <telerik:RadCartesianChart.Behaviors>
+                        <telerik:ChartTrackBallBehavior ShowTrackInfo="True"
+												ShowIntersectionPoints="True"
+                                                TrackInfoUpdated="ChartTrackBallBehavior_TrackInfoUpdated" />
+                    </telerik:RadCartesianChart.Behaviors>
+                    <telerik:BarSeries  
+							   CategoryBinding="DateCreate"
+							   ValueBinding="Value"
+							   ItemsSource="{Binding ElectricityItems}">
+                        <telerik:BarSeries.TrackBallInfoTemplate>
+                            <DataTemplate >
+                                <StackPanel Margin="3" Orientation="Horizontal">
+                                    <TextBlock Text="电量：" Margin="0,0,3,0"></TextBlock>
+                                    <TextBlock Text="{Binding DataPoint.Value}" FontWeight="Bold" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </telerik:BarSeries.TrackBallInfoTemplate>
+                    </telerik:BarSeries>
+                </telerik:RadCartesianChart>
+                <Grid Grid.Row="2">
+                    <Grid.ColumnDefinitions >
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <!--<Button Content="导出图片" Click="Button_Click_4" Width="100" Height="25" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="20,5,5,5"></Button>
+                    <Button Content="打印" Grid.Column="1" Click="Button_Click4" Width="100" Height="25" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="10,5,5,5"></Button>-->
+
+                </Grid>
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>

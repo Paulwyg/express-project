@@ -1,0 +1,93 @@
+﻿<#@ template language="C#" hostSpecific="true" debug="true" #>
+<#@ output extension=".xaml" #>
+<#@ Assembly Name="mscorlib.dll" #>
+<#@ Assembly Name="System.Core.dll" #>
+<#@ Assembly Name="System.Xml.dll" #>
+<#@ Assembly Name="System.Xml.Linq.dll" #>
+<#@ import namespace="System" #>
+<#@ import namespace="System.IO" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Collections" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.Xml" #>
+<#@ import namespace="System.Xml.Linq" #>
+<#
+    var root = Host.ResolvePath(@"");
+
+    var output = string.Empty;
+
+    var genericDictionary = XDocument.Parse(
+    @"<ResourceDictionary xmlns=""http://schemas.microsoft.com/winfx/2006/xaml/presentation""
+                          xmlns:x=""http://schemas.microsoft.com/winfx/2006/xaml""
+                          xmlns:ed=""http://schemas.microsoft.com/expression/2010/drawing""
+                          xmlns:shell=""http://schemas.microsoft.com/winfx/2006/xaml/presentation/shell""
+                          xmlns:system=""clr-namespace:System;assembly=mscorlib""
+                          xmlns:params=""clr-namespace:Elysium.Parameters""
+                          xmlns:primitives=""clr-namespace:Elysium.Controls.Primitives""
+                          xmlns:controls=""clr-namespace:Elysium.Controls""
+                          xmlns:converters=""clr-namespace:Elysium.Converters"">
+          <ResourceDictionary.MergedDictionaries>
+              <ResourceDictionary Source=""/Elysium;component/Themes/Brushes.xaml""/>
+              <ResourceDictionary Source=""/Elysium;component/Themes/LightBrushes.xaml""/>
+          </ResourceDictionary.MergedDictionaries>
+      </ResourceDictionary>");
+    
+    var dictionarySources = new List<string>();
+    
+    dictionarySources.Add(@"SharedResources.xaml");
+    dictionarySources.Add(@"Icons.xaml");
+    
+    dictionarySources.Add(@"Buttons\ButtonBase.xaml");
+    dictionarySources.Add(@"Buttons\Button.xaml");
+    dictionarySources.Add(@"Buttons\RepeatButton.xaml");
+    dictionarySources.Add(@"Buttons\ToggleButton.xaml");
+    dictionarySources.Add(@"Buttons\CheckBox.xaml");
+    dictionarySources.Add(@"Buttons\RadioButton.xaml");
+
+    dictionarySources.Add(@"Scrolls\ScrollBar.xaml");
+    dictionarySources.Add(@"Scrolls\ScrollViewer.xaml");
+
+    dictionarySources.Add(@"TextBoxes\TextBoxesBase.xaml");
+    dictionarySources.Add(@"TextBoxes\TextBoxBase.xaml");
+    dictionarySources.Add(@"TextBoxes\TextBox.xaml");
+    dictionarySources.Add(@"TextBoxes\RichTextBox.xaml");
+    dictionarySources.Add(@"TextBoxes\PasswordBox.xaml");
+
+    dictionarySources.Add(@"Selectors\SelectorsItemsBase.xaml");
+    dictionarySources.Add(@"Selectors\ListBoxItem.xaml");
+    dictionarySources.Add(@"Selectors\ComboBoxItem.xaml");
+    dictionarySources.Add(@"Selectors\ListBox.xaml");
+    dictionarySources.Add(@"Selectors\ComboBox.xaml");
+
+    dictionarySources.Add(@"Ranges\ProgressBar.xaml");
+    dictionarySources.Add(@"Ranges\ProgressRing.xaml");
+    dictionarySources.Add(@"Ranges\Slider.xaml");
+    dictionarySources.Add(@"Ranges\ToggleSwitch.xaml");
+
+    dictionarySources.Add(@"Tabs\TabItem.xaml");
+    dictionarySources.Add(@"Tabs\TabControl.xaml");
+
+    dictionarySources.Add(@"Menus\MenuItem.xaml");
+    dictionarySources.Add(@"Menus\Menu.xaml");
+    dictionarySources.Add(@"Menus\Submenu.xaml");
+    dictionarySources.Add(@"Menus\ContextMenu.xaml");
+
+    dictionarySources.Add(@"Buttons\CommandButtonBase.xaml");
+    dictionarySources.Add(@"Buttons\commandButton.xaml");
+    dictionarySources.Add(@"Buttons\ToggleCommandButton.xaml");
+    dictionarySources.Add(@"Buttons\DropDownCommandButton.xaml");
+
+    dictionarySources.Add(@"ApplicationBar\ApplicationBar.xaml");
+
+    dictionarySources.Add(@"Windows\Window.xaml");
+
+    var mergedDictionaries = XName.Get("ResourceDictionary.MergedDictionaries", @"http://schemas.microsoft.com/winfx/2006/xaml/presentation");
+    foreach (var dictionarySource in dictionarySources)
+    {
+        var dictionary = XDocument.Load(Path.Combine(root, dictionarySource));
+        genericDictionary.Root.Add(dictionary.Root.Elements().Where(element => element.Name != mergedDictionaries));
+    }
+
+    output = genericDictionary.ToString(SaveOptions.None);
+#>
+<#= output #>

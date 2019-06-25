@@ -1,0 +1,89 @@
+﻿<Window x:Class="Wlst.Ux.Wj3005ExNewDataExcelModule.RapidSetRtuAmp.RapidSetRtuAmp"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" mc:Ignorable="d" 
+           Topmost="True"   Height="500" Width="750">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="160"></RowDefinition>
+            <RowDefinition Height="45"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="430"></ColumnDefinition>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <telerik:RadGridView  AutoGenerateColumns="False" ItemsSource="{Binding Items}"   Grid.ColumnSpan="2" 
+								  HorizontalAlignment="Left"  
+
+                                    Name="rapidSetAmp"
+                                  CanUserFreezeColumns="False"   
+								  CanUserReorderColumns="True"  ColumnReordered="RadGridView_ColumnReordered"
+								  RowIndicatorVisibility="Collapsed"   ShowGroupPanel="False" ShowColumnHeaders="True" SnapsToDevicePixels="True" >
+
+            <telerik:RadGridView.Columns>
+
+                <telerik:GridViewDataColumn Header="回路"  IsFilterable="False" x:Name="xh0" IsGroupable="False" IsSortable="False"  Width="40"  DataMemberBinding="{Binding LoopId}" IsReadOnly="True" />
+                <telerik:GridViewDataColumn Header="回路名称" IsFilterable="False" x:Name="xh1" IsGroupable="False" IsSortable="False"   Width="150"  DataMemberBinding="{Binding LoopName}" IsReadOnly="True" />
+                <telerik:GridViewDataColumn Header="状态" IsFilterable="False"  IsGroupable="False" IsSortable="False"   Width="60"  DataMemberBinding="{Binding SwitchInState}" IsReadOnly="True" />
+
+
+                <telerik:GridViewDataColumn Header="电压"  IsFilterable="False" IsGroupable="False" IsSortable="False"   Width="75"  DataMemberBinding="{Binding V}"  IsReadOnly="True" />
+
+                <telerik:GridViewDataColumn Header="电流"    IsFilterable="False" IsGroupable="False" IsSortable="False"   Width="75"  DataMemberBinding="{Binding A}"  IsReadOnly="True"/>
+
+
+
+                <telerik:GridViewDataColumn Width="90" Header="上限">
+
+                    <telerik:GridViewDataColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBox  Text="{Binding Upper}" VerticalAlignment="Center" Foreground="{Binding Path=ShowRed}" IsEnabled="{Binding isCanEdit}" Width=" 80" HorizontalAlignment="Left"  />
+                        </DataTemplate>
+                    </telerik:GridViewDataColumn.CellTemplate>
+                </telerik:GridViewDataColumn>
+
+                <telerik:GridViewDataColumn Width="90"  Header="下限"  >
+
+                    <telerik:GridViewDataColumn.CellTemplate>
+                        <DataTemplate>
+
+                            <TextBox  Text="{Binding Lower}" VerticalAlignment="Center" Foreground="{Binding ShowRed}" IsEnabled="{Binding isCanEdit}" Width=" 80" HorizontalAlignment="Left"  />
+
+                        </DataTemplate>
+                    </telerik:GridViewDataColumn.CellTemplate>
+                </telerik:GridViewDataColumn>
+                <telerik:GridViewDataColumn Width="90" Header="额定电流"   >
+
+                    <telerik:GridViewDataColumn.CellTemplate>
+                        <DataTemplate>
+
+                            <TextBox  Text="{Binding RefA}" VerticalAlignment="Center"  IsEnabled="{Binding isCanEdit}" Width=" 80" HorizontalAlignment="Left"  />
+
+                        </DataTemplate>
+                    </telerik:GridViewDataColumn.CellTemplate>
+                </telerik:GridViewDataColumn>
+            </telerik:RadGridView.Columns>
+        </telerik:RadGridView>
+        
+        <TextBlock Name="tbremark" Text="{Binding Path= Show,Mode=TwoWay}" Height="25"  Grid.Row="2" Width="500" Grid.Column="0"  ></TextBlock>
+        <Button Content="保存" Width="120" Height="25" Grid.Row="1"  Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="120,0,0,20" Click="Button_Click"></Button>
+        <Button Content="计算" Width="120" Height="25" Grid.Row="1"  Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="120,0,0,80" Click="Button_Click_1"></Button>
+      
+        
+        <GroupBox Grid.Row="1" Width="730"   Header="引用规则 - 来自上下限设置">
+          
+                <telerik:RadGridView  AllowDrop="True" AutoGenerateColumns="False" ShowGroupPanel="False" RowIndicatorVisibility="Collapsed" Grid.ColumnSpan="10"
+                                 ItemsSource="{Binding Path=ItemsRules}" SelectedItem="{Binding CurrentSelectRule}" HorizontalAlignment="Left" Width="420" Height="140" Margin="0,0,0,0">
+                    <telerik:RadGridView.Columns>
+                        <telerik:GridViewDataColumn Header="起始电流"  IsResizable="False" IsFilterable="False"  Width="100"  DataMemberBinding="{Binding Path=Alow,Mode=TwoWay}" IsReadOnly="True" />
+                        <telerik:GridViewDataColumn Header="结束电流"  IsResizable="False"  IsFilterable="False"    Width="100"  DataMemberBinding="{Binding Path=Amax,Mode=TwoWay}" IsReadOnly="True" />
+                        <telerik:GridViewDataColumn Header="下限系数"  IsResizable="False"  IsFilterable="False"    Width="100"  DataMemberBinding="{Binding Path=LowTimes,Mode=TwoWay}" IsReadOnly="True" />
+                        <telerik:GridViewDataColumn Header="上限系数"  IsResizable="False"  IsFilterable="False"    Width="100"  DataMemberBinding="{Binding Path=MaxTimes,Mode=TwoWay}" IsReadOnly="True" />
+                    </telerik:RadGridView.Columns>
+                </telerik:RadGridView>
+        </GroupBox>
+    </Grid>
+</Window>

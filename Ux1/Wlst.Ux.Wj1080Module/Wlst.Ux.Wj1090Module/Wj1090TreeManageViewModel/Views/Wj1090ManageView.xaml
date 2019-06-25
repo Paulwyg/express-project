@@ -1,0 +1,67 @@
+﻿<UserControl x:Class="Wlst.Ux.Wj1090Module.Wj1090TreeManageViewModel.Views.Wj1090ManageView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+             xmlns:RadTreeViewSet="clr-namespace:Elysium.ThemesSet.RadTreeViewSet;assembly=Elysium" mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+        <Grid.RowDefinitions>
+          
+            <RowDefinition Height="*"></RowDefinition> 
+            <RowDefinition Height="Auto" MinHeight="30"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Label x:Name="fg"/>
+        <Grid  Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+           
+            <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Grid.Column="0" Margin="5,2,5,2" VerticalAlignment="Center" Text="立即刷新防盗设备列表">
+                
+            </TextBlock> <Button Margin="25,2,5,2" Content="刷 新" Grid.Column ="1" Command="{Binding Reflesh}" MinWidth="80" MaxWidth="120" Height="25" HorizontalAlignment="Left"/>
+        </Grid>
+        <telerik:RadTreeView ItemsSource="{Binding CollectionWj1090}" Name="tvProperties" Width="Auto" Padding="0" Margin="0" BorderThickness="1"
+                             VirtualizingStackPanel.IsVirtualizing="True" Background="{x:Null}"
+                           SelectionMode="Single" MouseRightButtonDown="tvProperties_MouseRightButtonDown" PreviewMouseRightButtonDown="TreeViewItem_PreviewMouseLeftButtonDown"
+                             ScrollViewer.CanContentScroll="False">
+
+            <telerik:RadTreeView.ItemContainerStyle>
+                <Style TargetType="{x:Type telerik:RadTreeViewItem}">
+                    <Setter Property="Visibility" Value="{Binding Visi,Mode=TwoWay}"></Setter>
+                    <Setter Property="IsExpanded" Value="{Binding IsExpanded, Mode=TwoWay}" />
+                    <Setter Property="IsSelected" Value="{Binding IsSelected, Mode=TwoWay}" />
+                    <Setter Property="ContextMenu" Value="{Binding Cm}" />
+                    <Setter Property="FontWeight" Value="Normal" />
+                    <!--<Setter Property="Background" Value="{x:Null}"></Setter>-->
+                    <Setter Property="BorderThickness" Value="0"/>
+                    <Setter Property="Template" Value="{DynamicResource TreeViewItemDefaultTemplate}" />
+                    <!--<Setter Property="Foreground" Value="{Binding ForeGround}"></Setter>
+                    <Setter Property="Background" Value="{Binding BackGround}"></Setter>-->
+                    <Style.Triggers>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter Property="FontWeight" Value="Bold" />
+                            <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource Self}, Path=(RadTreeViewSet:RadTreeViewAttriXaml.ItemRadTreeViewForegroundMouseOver), Mode=OneWay}" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </telerik:RadTreeView.ItemContainerStyle>
+            <telerik:RadTreeView.ItemTemplate>
+                <HierarchicalDataTemplate DataType="{x:Type telerik:RadTreeViewItem}"  ItemsSource="{Binding Path=CollectionWj1090}">
+                    <StackPanel Background="{x:Null}" Orientation="Horizontal">
+                        <Image VerticalAlignment="Center"  Source="{Binding ImagesIcon}" Width="24" Height="24" Margin="0,0,2,2"></Image>
+                        <TextBlock VerticalAlignment="Center" Text="{Binding NodeIds}"/>
+                        <TextBlock VerticalAlignment="Center"  Text="{Binding NodeName}"/>
+                        <TextBlock VerticalAlignment="Center" Visibility="{Binding NoUsed}" Foreground="Red" Text="[未启用]"/>
+
+                        <TextBlock VerticalAlignment="Center" Visibility="{Binding ConcentratorCountVisi}" Foreground="Red" Text="[未："/>
+                        <TextBlock VerticalAlignment="Center" Visibility="{Binding ConcentratorCountVisi}" Text="{Binding ConcentratorCount}"/>
+                        <TextBlock VerticalAlignment="Center" Visibility="{Binding ConcentratorCountVisi }" Foreground="Red" Text="]"/>
+                    </StackPanel>
+                </HierarchicalDataTemplate>
+            </telerik:RadTreeView.ItemTemplate>
+        </telerik:RadTreeView>
+    </Grid>
+</UserControl>

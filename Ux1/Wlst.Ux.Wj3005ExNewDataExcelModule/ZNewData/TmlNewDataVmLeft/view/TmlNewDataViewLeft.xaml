@@ -1,0 +1,347 @@
+﻿<UserControl x:Class="Wlst.Ux.Wj3005ExNewDataExcelModule.ZNewData.TmlNewDataVmLeft.view.TmlNewDataViewLeft"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" mc:Ignorable="d" Background="{x:Null}"
+             d:DesignHeight="245" d:DesignWidth="980" Width="{Binding NewDataWidth}">
+    <Grid x:Name="ggg" Background="{x:Null}">
+        <Label x:Name="fg" Width="0" />
+
+        <Grid Height="{Binding MaxHeiht}" x:Name="gidm" MinWidth="495">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="{Binding CanvasHeight}"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+
+
+            <Canvas x:Name="CVAS"   MouseEnter="TextBox_MouseEnter" Mouse.MouseMove="TextBox_MouseEnter" MouseLeave="rrrr_MouseLeave"    Background="#00000001"
+
+                Height="{Binding CanvasHeight}" VerticalAlignment="Top" Width="600"
+                    
+                     HorizontalAlignment="Left" Focusable="true"  AllowDrop="True"  Grid.Row="0" >
+                 
+                <Line Stroke="Red" x:Name="linxxx" StrokeThickness="2"  X1="7" Y1="3"  X2="7"  Y2="3" />
+                <Line Stroke="Red" x:Name="linyyy" StrokeThickness="2"  X1="7" Y1="3"  X2="7"  Y2="3" />
+
+
+                <Border  Background="{x:Null}" CornerRadius="5"  BorderThickness="1"   Canvas.Top="5"  Canvas.Left="5"     VerticalAlignment="Center" HorizontalAlignment="Center"
+                                                Height="50" Width="50" BorderBrush="Blue">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                        </Grid.RowDefinitions>
+
+                        <TextBox  VerticalAlignment="Center" HorizontalAlignment="Center"  TextAlignment="Center" x:Name="rtuname"
+                               Foreground="{Binding ElementName=fg, Path=Foreground}"  
+                             Background="Transparent" MouseDoubleClick="TextBlock_MouseUp"
+                             BorderThickness="0" IsReadOnly="True" Cursor="Arrow" FontSize="20" FontStretch="Medium"
+                               ContextMenu="{DynamicResource  ContextMenuKey}"  Text="{Binding RtuIdPhy}">
+                        </TextBox>
+                        <TextBox   Grid.Row="1"  VerticalAlignment="Center" HorizontalAlignment="Center"  TextAlignment="Center"
+                                     ContextMenu="{DynamicResource  ContextMenuKey}"  BorderThickness="0"
+                             Background="Transparent"  Cursor="Arrow" Foreground="Red"
+                                 Text="{Binding RtuNameAtt}" Visibility="{Binding AssetNameVisi}">
+                        </TextBox>
+                    </Grid>
+
+                </Border>
+                <DockPanel  Canvas.Top="7"  Canvas.Left="65" Margin="0,0,15,0" Height="25" >
+                    <TextBlock   VerticalAlignment="Center" HorizontalAlignment="Left"  TextAlignment="Left"
+                                    Background="Transparent"  Cursor="Arrow"     Text="{Binding RtuName}" >
+                    </TextBlock>
+                </DockPanel>
+          
+
+
+                <DockPanel   Canvas.Top="33"  Canvas.Left="65"  Height="25"     Grid.Row="1"  Width="700">
+                    <TextBox  VerticalAlignment="Top" HorizontalAlignment="Left"  TextAlignment="Left"  
+                               Foreground="{Binding ElementName=fg, Path=Foreground}"  
+                             Background="Transparent"  MouseDoubleClick="TextBox_MouseDoubleClick"
+                             BorderThickness="0" IsReadOnly="True" Cursor="Arrow"
+                                Text="{Binding TimeInfo}">
+                        <TextBox.Triggers>
+                            <EventTrigger 
+        RoutedEvent="TextBox.TextChanged">
+                                <BeginStoryboard>
+
+                                    <Storyboard>
+
+                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:01.2000000" 
+                                                           Storyboard.TargetName="linxxx" Storyboard.TargetProperty="(Line.X1)">
+                                            <SplineDoubleKeyFrame KeyTime="00:00:00" Value="7"/>
+                                            <SplineDoubleKeyFrame KeyTime="00:00:01.2000000" Value="7"/>
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.6000000" 
+                                                           Storyboard.TargetName="linxxx" Storyboard.TargetProperty="(Line.X2)">
+                                            <SplineDoubleKeyFrame KeyTime="00:00:00" Value="7"/>
+                                            <SplineDoubleKeyFrame KeyTime="00:00:00.6000000" Value="300"/>
+                                        </DoubleAnimationUsingKeyFrames>
+
+                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00.2000000" Duration="00:00:00.8000000" 
+                                                           Storyboard.TargetName="linxxx" Storyboard.TargetProperty="(Line.X1)">
+                                            <SplineDoubleKeyFrame KeyTime="00:00:00.2000000" Value="7"/>
+                                            <SplineDoubleKeyFrame KeyTime="00:00:00.8000000" Value="300"/>
+                                        </DoubleAnimationUsingKeyFrames>
+
+
+                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:01.2000000" 
+                                                           Storyboard.TargetName="linyyy" Storyboard.TargetProperty="(Line.Y1)">
+                                            <SplineDoubleKeyFrame KeyTime="00:00:00" Value="3"/>
+                                            <SplineDoubleKeyFrame KeyTime="00:00:01.2000000" Value="3"/>
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.6000000" 
+                                                           Storyboard.TargetName="linyyy" Storyboard.TargetProperty="(Line.Y2)">
+                                            <SplineDoubleKeyFrame KeyTime="00:00:00" Value="3"/>
+                                            <SplineDoubleKeyFrame KeyTime="00:00:00.6000000" Value="{Binding MaxHeiht}"/>
+                                        </DoubleAnimationUsingKeyFrames>
+
+                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00.2000000" Duration="00:00:00.8000000" 
+                                                           Storyboard.TargetName="linyyy" Storyboard.TargetProperty="(Line.Y1)">
+                                            <SplineDoubleKeyFrame KeyTime="00:00:00.2000000" Value="3"/>
+                                            <SplineDoubleKeyFrame KeyTime="00:00:00.8000000" Value="{Binding MaxHeiht}"/>
+                                        </DoubleAnimationUsingKeyFrames>
+
+
+                                    </Storyboard>
+
+                                </BeginStoryboard>
+                            </EventTrigger>
+                        </TextBox.Triggers>
+                    </TextBox>
+                    <TextBlock   HorizontalAlignment="Right" Margin="5,0,0,0" Text="选测失败" Foreground ="Red" Visibility="{Binding IsShowFailVis}" VerticalAlignment="Center" ></TextBlock>
+                    <DatePicker  Width="120" SelectedDateFormat="Short" SelectedDate="{Binding SelectedDateForYes}" HorizontalAlignment="Left" Visibility= "Visible"  VerticalAlignment="Center" x:Name="rrrr"  Margin="10,0,0,0">
+                        </DatePicker>
+                    <!--<Label Width="140" Margin="5,0,0,0" Height="25" HorizontalContentAlignment="Center" VerticalAlignment="Center" Content="{Binding CurSelectedDateTime.Name}"></Label>-->
+                    <ComboBox Width="130" Margin="5,0,0,0" Height="25" ItemsSource="{Binding SelectedDateTime}" DisplayMemberPath="Name" Visibility="Collapsed"
+                              SelectedItem="{Binding CurSelectedDateTime}" HorizontalAlignment="Left" HorizontalContentAlignment="Center" VerticalAlignment="Center" x:Name="tm1" ></ComboBox>
+                    <!--<ComboBox Width="40" Margin="5,0,0,0" Height="25" ItemsSource="{Binding SelectedDateForYes1}" DisplayMemberPath="Name" SelectedItem="{Binding CurSelectedDateForYes1}" HorizontalAlignment="Center" HorizontalContentAlignment="Center"  VerticalAlignment="Center" x:Name="rrbb" ></ComboBox>
+                    <ComboBox Width="40" Margin="5,0,0,0" Height="25" ItemsSource="{Binding SelectedDateForYes2}" DisplayMemberPath="Name" SelectedItem="{Binding CurSelectedDateForYes2}" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" x:Name="rrcc" ></ComboBox>
+                    <TextBox  VerticalAlignment="Top" HorizontalAlignment="Left"  TextAlignment="Left"  x:Name="gggg"
+                               Foreground="{Binding ElementName=fg, Path=Foreground}"  
+                             Background="Transparent"  Visibility="Visible"
+                             BorderThickness="0" IsReadOnly="True" Cursor="Arrow"
+                                Text="{Binding TimeYesterday}" MouseEnter="gggg_MouseEnter">
+                    </TextBox>-->
+                </DockPanel>
+
+
+                <Line Stroke="{Binding SwitchOutInfo[0].Backgroundx}" StrokeThickness="1"  X1="5" Y1="82"  X2="190"  Y2="82" />
+                <DockPanel Width="185"  HorizontalAlignment="Left" VerticalAlignment="Bottom"  Height="22"  Canvas.Top="61"   Canvas.Left="5">
+                    <TextBlock Text="K1" Width="20"  HorizontalAlignment="Left" VerticalAlignment="Bottom"></TextBlock>
+                    <TextBlock Text="{Binding SwitchOutInfo[0].IsOutInCloseState}" Foreground="{Binding SwitchOutInfo[0].TongDuan}" Width="40"  TextAlignment="Center"  HorizontalAlignment="Center" VerticalAlignment="Bottom"></TextBlock>
+                    <TextBlock Text="{Binding SwitchOutInfo[0].TimeInfo}" ToolTip="{Binding SwitchOutInfo[0].TimeTooltipst}" HorizontalAlignment="Left" VerticalAlignment="Bottom"></TextBlock>
+                </DockPanel>
+
+
+                <Line Stroke="{Binding SwitchOutInfo[1].Backgroundx}" StrokeThickness="1"  X1="205" Y1="82"  X2="390"  Y2="82" />
+                <DockPanel Width="185"  HorizontalAlignment="Left" VerticalAlignment="Bottom"  Height="22"    Canvas.Top="61"   Canvas.Left="205">
+                    <TextBlock Text="K2" Width="20"  HorizontalAlignment="Left" VerticalAlignment="Bottom"></TextBlock>
+                    <TextBlock Text="{Binding SwitchOutInfo[1].IsOutInCloseState}" Foreground="{Binding SwitchOutInfo[1].TongDuan}" Width="40"  TextAlignment="Center"  HorizontalAlignment="Center" VerticalAlignment="Bottom"></TextBlock>
+                    <TextBlock Text="{Binding SwitchOutInfo[1].TimeInfo}" ToolTip="{Binding SwitchOutInfo[1].TimeTooltipst}" HorizontalAlignment="Left" VerticalAlignment="Bottom"></TextBlock>
+                </DockPanel>
+
+                <Line Stroke="{Binding SwitchOutInfo[2].Backgroundx}" StrokeThickness="1"  X1="5" Y1="104"  X2="190"  Y2="104" />
+                <DockPanel Width="185"  HorizontalAlignment="Left" VerticalAlignment="Bottom"  Height="22"    Canvas.Top="82"   Canvas.Left="5">
+                    <TextBlock Text="K3" Width="20"  HorizontalAlignment="Left" VerticalAlignment="Bottom"></TextBlock>
+                    <TextBlock Text="{Binding SwitchOutInfo[2].IsOutInCloseState}" Foreground="{Binding SwitchOutInfo[2].TongDuan}" Width="40"  TextAlignment="Center"  HorizontalAlignment="Center" VerticalAlignment="Bottom"></TextBlock>
+                    <TextBlock Text="{Binding SwitchOutInfo[2].TimeInfo}" ToolTip="{Binding SwitchOutInfo[2].TimeTooltipst}" HorizontalAlignment="Left" VerticalAlignment="Bottom"></TextBlock>
+                </DockPanel>
+
+                <Line Stroke="{Binding SwitchOutInfo[3].Backgroundx}" StrokeThickness="1"  X1="205" Y1="104"  X2="390"  Y2="104" />
+                <DockPanel Width="185"  HorizontalAlignment="Left" VerticalAlignment="Bottom"   Height="22"    Canvas.Top="82"   Canvas.Left="205">
+                    <TextBlock Text="K4" Width="20"  HorizontalAlignment="Left" VerticalAlignment="Bottom"></TextBlock>
+                    <TextBlock Text="{Binding SwitchOutInfo[3].IsOutInCloseState}" Foreground="{Binding SwitchOutInfo[3].TongDuan}" Width="40" TextAlignment="Center"   HorizontalAlignment="Center" VerticalAlignment="Bottom"></TextBlock>
+                    <TextBlock Text="{Binding SwitchOutInfo[3].TimeInfo}" ToolTip="{Binding SwitchOutInfo[3].TimeTooltipst}" HorizontalAlignment="Left" VerticalAlignment="Bottom"></TextBlock>
+                </DockPanel>
+
+                <Line Stroke="{Binding SwitchOutInfo[4].Backgroundx}" StrokeThickness="1"  X1="5" Y1="126"  X2="190"  Y2="126" />
+                <DockPanel Width="185"  HorizontalAlignment="Left" VerticalAlignment="Bottom"   Height="22"    Canvas.Top="104"    Canvas.Left="5">
+                    <TextBlock Text="K5" Width="20"  HorizontalAlignment="Left" VerticalAlignment="Bottom"></TextBlock>
+                    <TextBlock Text="{Binding SwitchOutInfo[4].IsOutInCloseState}" Foreground="{Binding SwitchOutInfo[4].TongDuan}" Width="40"  TextAlignment="Center"  HorizontalAlignment="Center" VerticalAlignment="Bottom"></TextBlock>
+                    <TextBlock Text="{Binding SwitchOutInfo[4].TimeInfo}" ToolTip="{Binding SwitchOutInfo[4].TimeTooltipst}" HorizontalAlignment="Left" VerticalAlignment="Bottom"></TextBlock>
+                </DockPanel>
+
+                <Line Stroke="{Binding SwitchOutInfo[5].Backgroundx}" StrokeThickness="1"  X1="205" Y1="126"  X2="390"  Y2="126" />
+                <DockPanel Width="185"  HorizontalAlignment="Left" VerticalAlignment="Bottom"     Height="22"    Canvas.Top="104"    Canvas.Left="205">
+                    <TextBlock Text="K6" Width="20"  HorizontalAlignment="Left" VerticalAlignment="Bottom"></TextBlock>
+                    <TextBlock Text="{Binding SwitchOutInfo[5].IsOutInCloseState}" Foreground="{Binding SwitchOutInfo[5].TongDuan}" Width="40"  TextAlignment="Center"  HorizontalAlignment="Center" VerticalAlignment="Bottom"></TextBlock>
+                    <TextBlock Text="{Binding SwitchOutInfo[5].TimeInfo}" ToolTip="{Binding SwitchOutInfo[5].TimeTooltipst}" HorizontalAlignment="Left" VerticalAlignment="Bottom"></TextBlock>
+                </DockPanel>
+
+                <Line Stroke="{Binding SwitchOutInfo[6].Backgroundx}" StrokeThickness="1"  X1="5" Y1="148"  X2="190"  Y2="148" />
+                <DockPanel Width="185"  HorizontalAlignment="Left" VerticalAlignment="Bottom"    Height="22"    Canvas.Top="126"    Canvas.Left="5">
+                    <TextBlock Text="K7" Width="20"  HorizontalAlignment="Left" VerticalAlignment="Bottom"></TextBlock>
+                    <TextBlock Text="{Binding SwitchOutInfo[6].IsOutInCloseState}" Foreground="{Binding SwitchOutInfo[6].TongDuan}" Width="40" TextAlignment="Center"   HorizontalAlignment="Center" VerticalAlignment="Bottom"></TextBlock>
+                    <TextBlock Text="{Binding SwitchOutInfo[6].TimeInfo}" ToolTip="{Binding SwitchOutInfo[6].TimeTooltipst}" HorizontalAlignment="Left" VerticalAlignment="Bottom"></TextBlock>
+                </DockPanel>
+
+                <Line Stroke="{Binding SwitchOutInfo[7].Backgroundx}"   StrokeThickness="1"  X1="205" Y1="148"  X2="390"  Y2="148" />
+                <DockPanel Width="185"  HorizontalAlignment="Left" VerticalAlignment="Bottom"    Height="22"    Canvas.Top="126"   Canvas.Left="205">
+                    <TextBlock Text="K8" Width="20"  HorizontalAlignment="Left" VerticalAlignment="Bottom"></TextBlock>
+                    <TextBlock Text="{Binding SwitchOutInfo[7].IsOutInCloseState}" Foreground="{Binding SwitchOutInfo[7].TongDuan}" Width="40"  TextAlignment="Center"  HorizontalAlignment="Center" VerticalAlignment="Bottom"></TextBlock>
+                    <TextBlock Text="{Binding SwitchOutInfo[7].TimeInfo}" ToolTip="{Binding SwitchOutInfo[7].TimeTooltipst}" HorizontalAlignment="Left" VerticalAlignment="Bottom"></TextBlock>
+                </DockPanel>
+
+
+
+                <DockPanel  Width="200"  HorizontalAlignment="Left" VerticalAlignment="Bottom" Height="22" Canvas.Top="61" Canvas.Left="400">
+                    <TextBlock  Text="{Binding Ax}"   TextAlignment="Left" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="100" ></TextBlock>
+                    <TextBlock  Text="{Binding AA}"  Margin="10,0,0,0" TextAlignment="Left" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="120" ></TextBlock>
+                    
+                </DockPanel>
+
+                <DockPanel  Width="200"  HorizontalAlignment="Left" VerticalAlignment="Bottom" Height="22" Canvas.Top="82" Canvas.Left="400">
+                    <TextBlock Text="{Binding Bx}"   TextAlignment="Left" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="100"  ></TextBlock>
+                    <TextBlock  Text="{Binding AB}"  Margin="10,0,0,0" TextAlignment="Left" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="120" ></TextBlock>
+
+                </DockPanel>
+
+                <DockPanel  Width="200"  HorizontalAlignment="Left" VerticalAlignment="Bottom" Height="22" Canvas.Top="104" Canvas.Left="400">
+                    <TextBlock Text="{Binding Cx}"    TextAlignment="Left" HorizontalAlignment="Left" VerticalAlignment="Bottom"  ></TextBlock>
+                </DockPanel>
+
+            </Canvas>
+
+            <StackPanel Grid.Row="1" Margin="5,1,2,5" >
+
+
+                <telerik:RadGridView x:Name="lp1234lploopinfo" AutoGenerateColumns="False" ItemsSource="{Binding LoopxInfo}"  MaxHeight="{Binding GridViewDataHeiht}"   
+								 Background="Transparent"   BorderThickness="0"  ColumnReordered="lp1234lploopinfo_ColumnReordered" 
+                                                                               AlternationCount="0"
+								  HorizontalAlignment="Left"  
+                                     PreviewMouseWheel="lp1234lploopinfo_PreviewMouseWheel" 
+                                     PreviewKeyDown="lp1234lploopinfo_KeyDown"
+                                   MouseDoubleClick="lp1234lploopinfo_MouseDoubleClick"
+                                     
+								  VerticalAlignment="Stretch"  ScrollViewer.VerticalScrollBarVisibility="Hidden" 
+                                     
+                                  CanUserFreezeColumns="False"               
+								  CanUserReorderColumns="True" 
+								  RowIndicatorVisibility="Collapsed"   ShowGroupPanel="False" ShowColumnHeaders="True" SnapsToDevicePixels="True" >
+
+                    <telerik:RadGridView.Columns>
+                        <!--{Binding CanDataSc}-->
+                        <telerik:GridViewDataColumn Header="回路"  IsFilterable="False" x:Name="xh0" IsGroupable="False" IsSortable="False"  Width="40"  DataMemberBinding="{Binding LoopId}" IsReadOnly="True" />
+                        <telerik:GridViewDataColumn Header="回路名称" IsFilterable="False" x:Name="xh1" IsGroupable="False" IsSortable="False"   Width="90"  DataMemberBinding="{Binding LoopName}" IsReadOnly="True" />
+
+                        <telerik:GridViewDataColumn Width="40" Header="状态" IsReadOnly="True" >
+
+                            <telerik:GridViewDataColumn.CellTemplate>
+                                <DataTemplate>
+
+                                    <TextBlock Text="{Binding SwitchInState}" VerticalAlignment="Center" HorizontalAlignment="Left" 
+                                               Foreground="{Binding IsRed}"/>
+
+                                </DataTemplate>
+                            </telerik:GridViewDataColumn.CellTemplate>
+                        </telerik:GridViewDataColumn>
+                        <telerik:GridViewDataColumn Header="电压"  IsFilterable="False" IsGroupable="False" IsSortable="False"  DataMemberBinding="{Binding V}"  IsReadOnly="True" />
+                        <telerik:GridViewDataColumn Header="参考电流"  x:Name="xh2"   IsFilterable="False" IsGroupable="False" IsSortable="False"  DataMemberBinding="{Binding RefA}" IsReadOnly="True"/>
+                        <telerik:GridViewDataColumn Header="电流"    IsFilterable="False" IsGroupable="False" IsSortable="False"  DataMemberBinding="{Binding A}"  IsReadOnly="True"/>
+                        <telerik:GridViewDataColumn Header="功率"   x:Name="xh17"    IsFilterable="False" IsGroupable="False" IsSortable="False"  DataMemberBinding="{Binding Power}"  IsReadOnly="True"/>
+                        <telerik:GridViewDataColumn Header="亮灯率" x:Name="xh3"   IsFilterable="False" IsGroupable="False" IsSortable="False"   DataMemberBinding="{Binding BrightRate}"  IsReadOnly="True"/>
+                        <telerik:GridViewDataColumn Header="功率因数"  x:Name="xh4"  IsFilterable="False" IsGroupable="False" IsSortable="False"   DataMemberBinding="{Binding PowerFactor}"  IsReadOnly="True"/>
+                        <telerik:GridViewDataColumn Header="上限" x:Name="xh6"   IsFilterable="False" IsGroupable="False" IsSortable="False"   DataMemberBinding="{Binding Upper}"   IsVisible="{Binding IsDetailCheck}" IsReadOnly="True"/>
+                        <telerik:GridViewDataColumn Header="下限" x:Name="xh7"   IsFilterable="False" IsGroupable="False" IsSortable="False"   DataMemberBinding="{Binding Lower}"   IsVisible="{Binding IsDetailCheck}" IsReadOnly="True"/>
+                        <telerik:GridViewDataColumn Header="互感器比" x:Name="xh5"   IsFilterable="False" IsGroupable="False" IsSortable="False"   DataMemberBinding="{Binding Ratio}"  IsVisible="{Binding IsDetailCheck}" IsReadOnly="True">
+
+                        </telerik:GridViewDataColumn>
+                        <!--<telerik:GridViewDataColumn Header="上线率"    IsFilterable="False" IsGroupable="False" IsSortable="False"  DataMemberBinding="{Binding OnlineRate}" x:Name="adRate" IsVisible="{Binding IsOnlineRateCheck}" IsReadOnly="True" Width="65"/>-->
+
+                        <!--<telerik:GridViewDataColumn Width="40" Header="线路" x:Name="xh8"  >
+
+                            <telerik:GridViewDataColumn.CellTemplate>
+                                <DataTemplate>
+
+                                    <TextBlock  Text="{Binding AttachInfo}" VerticalAlignment="Center" HorizontalAlignment="Left" 
+                                               Foreground="{Binding BackgroundAttach}"/>
+
+                                </DataTemplate>
+                            </telerik:GridViewDataColumn.CellTemplate>
+                        </telerik:GridViewDataColumn>
+
+                        <telerik:GridViewDataColumn Width="40" Header="屏蔽" x:Name="xh18"  >
+
+                            <telerik:GridViewDataColumn.CellTemplate>
+                                <DataTemplate>
+
+                                    <TextBlock  Text="{Binding ShieldLoopMark}" VerticalAlignment="Center" HorizontalAlignment="Left" 
+                                               Foreground="{Binding BackgroundShield}"/>
+
+                                </DataTemplate>
+                            </telerik:GridViewDataColumn.CellTemplate>
+                        </telerik:GridViewDataColumn>-->
+
+
+                        <telerik:GridViewDataColumn Width="40"  IsFilterable="False" IsSortable="False" Header="检测"  x:Name="xh8"  IsReadOnly="True" >
+
+                            <telerik:GridViewDataColumn.CellTemplate>
+                                <DataTemplate>
+
+                                    <TextBlock Height="{Binding RowHeight,ElementName=loopinfo}"  Text="{Binding AttachInfo}"   HorizontalAlignment="Left" 
+                                               Foreground="{Binding BackgroundAttach}"/>
+
+                                </DataTemplate>
+                            </telerik:GridViewDataColumn.CellTemplate>
+                        </telerik:GridViewDataColumn>
+
+
+                        <telerik:GridViewDataColumn Width="80"  IsFilterable="False" IsSortable="False" Header="线路"  x:Name="xh19"  IsReadOnly="True" >
+
+                            <telerik:GridViewDataColumn.CellTemplate>
+                                <DataTemplate>
+
+                                    <TextBlock Height="{Binding RowHeight,ElementName=loopinfo}"  Text="{Binding AttachInfoName}"   HorizontalAlignment="Left" 
+                                               Foreground="{Binding BackgroundAttach}"/>
+
+                                </DataTemplate>
+                            </telerik:GridViewDataColumn.CellTemplate>
+                        </telerik:GridViewDataColumn>
+
+
+                        <telerik:GridViewDataColumn Width="40"  IsFilterable="False" IsSortable="False" Header="屏蔽"  x:Name="xh18"  IsReadOnly="True" >
+
+                            <telerik:GridViewDataColumn.CellTemplate>
+                                <DataTemplate>
+
+                                    <TextBlock Height="{Binding RowHeight,ElementName=loopinfo}"  Text="{Binding ShieldLoopMarkx}"   HorizontalAlignment="Left" 
+                                               Foreground="{Binding BackgroundShield}"/>
+
+                                </DataTemplate>
+                            </telerik:GridViewDataColumn.CellTemplate>
+                        </telerik:GridViewDataColumn>
+               
+
+                        <telerik:GridViewDataColumn Width="45" Header="状态1" x:Name="xh10" IsReadOnly="True" >
+
+                            <telerik:GridViewDataColumn.CellTemplate>
+                                <DataTemplate>
+
+                                    <TextBlock Text="{Binding YesterdaySwitchin}" VerticalAlignment="Center" HorizontalAlignment="Left" 
+                                               Foreground="{Binding YesterdaySwitchinColor}"/>
+
+                                </DataTemplate>
+                            </telerik:GridViewDataColumn.CellTemplate>
+                        </telerik:GridViewDataColumn>
+                        <telerik:GridViewDataColumn Header="电压1"  x:Name="xh11" IsFilterable="False" IsGroupable="False" IsSortable="False"  DataMemberBinding="{Binding YesterdayV}"  IsReadOnly="True"/>
+                        <telerik:GridViewDataColumn Header="电流1"   x:Name="xh12"  IsFilterable="False" IsGroupable="False" IsSortable="False"  DataMemberBinding="{Binding YesterdayA}"  IsReadOnly="True"/>
+                        <telerik:GridViewDataColumn Header="功率1"   x:Name="xh13"  IsFilterable="False" IsGroupable="False" IsSortable="False"  DataMemberBinding="{Binding YesterdayP}"    IsReadOnly="True"/>
+
+
+                    </telerik:RadGridView.Columns>
+                </telerik:RadGridView>
+            </StackPanel>
+            <ListBox Height="86" HorizontalAlignment="Left" Margin="506,33,0,0" Name="tm" VerticalAlignment="Top" Width="135" ItemsSource="{Binding SelectedDateTime}" DisplayMemberPath="Name" SelectedItem="{Binding CurSelectedDateTime}" />
+        </Grid>
+
+
+        <DockPanel HorizontalAlignment="Left" VerticalAlignment="Top"   Margin="0,-35,15,0" Height="25" >
+            <TextBlock   VerticalAlignment="Center" HorizontalAlignment="Left"  TextAlignment="Left"
+                                    Background="Blue"  Cursor="Arrow"     Text="{Binding RtuName}" >
+            </TextBlock>
+        </DockPanel>
+    </Grid>
+</UserControl>

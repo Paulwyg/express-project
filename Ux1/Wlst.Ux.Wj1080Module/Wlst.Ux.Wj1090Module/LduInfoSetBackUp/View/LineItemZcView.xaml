@@ -1,0 +1,53 @@
+﻿<UserControl x:Class="Wlst.Ux.Wj1090Module.LduInfoSet.View.LineItemZcView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="800">
+    <Grid>
+        <GroupBox Header="{Binding LduLineName}" Height="300" HorizontalAlignment="Left" Margin="1,0,1,0" Name="groupBox1" VerticalAlignment="Top" Width="200">
+            <Grid>
+              
+                <TextBlock Height="22" HorizontalAlignment="Left" Margin="5,5,0,0" Name="textBlock1" Text="互感器量程:" VerticalAlignment="Top" Width="71" Grid.ColumnSpan="2" />
+
+                <TextBlock Height="22" HorizontalAlignment="Left" Margin="5,30,0,0" Name="textBlock2" Text="相位:" VerticalAlignment="Top" Width="71" Grid.ColumnSpan="2" />
+                <TextBlock Height="22" HorizontalAlignment="Left" Margin="5,55,0,0" Name="textBlock3" Text="末端灯杆号:" VerticalAlignment="Top" Width="71" Grid.ColumnSpan="2" />
+                <TextBlock Height="22" HorizontalAlignment="Left" Margin="5,80,0,0" Name="textBlock4" Text="关灯阻抗门限:" VerticalAlignment="Top" Width="87" Grid.ColumnSpan="2" />
+                <TextBlock Height="22" HorizontalAlignment="Left" Margin="5,105,0,0" Name="textBlock5" Text="关灯信号门限:" VerticalAlignment="Top" Width="87" Grid.ColumnSpan="2" />
+                <TextBlock Height="22" HorizontalAlignment="Left" Margin="5,130,0,0" Name="textBlock6" Text="开灯阻抗门限:" VerticalAlignment="Top" Width="87" Grid.ColumnSpan="2" />
+                <TextBlock Height="22" HorizontalAlignment="Left" Margin="5,155,0,0" Name="textBlock7" Text="开灯信号门限:" VerticalAlignment="Top" Width="87" Grid.ColumnSpan="2" />
+                <TextBlock Height="22" HorizontalAlignment="Left" Margin="5,180,0,0" Name="textBlock8" Text="开灯亮灯率门限:" VerticalAlignment="Top" Width="87" Grid.ColumnSpan="2" />
+
+                <CheckBox  IsChecked="{Binding AlarmAutoReport}" IsEnabled="False"  Content="主动报警" Height="16" HorizontalAlignment="Left" Margin="5,205,0,0" Name="checkBox4" VerticalAlignment="Top" Width="78" Grid.ColumnSpan="2" />
+                <CheckBox IsChecked="{Binding AlarmLineShortCircuit}" IsEnabled="False"  Content="线路短路" Height="16" HorizontalAlignment="Left" Margin="90,205,0,0" Name="checkBox5" VerticalAlignment="Top" Width="78" Grid.ColumnSpan="2" />
+                <CheckBox IsChecked="{Binding AlarmLineLightOffImpedance}" IsEnabled="False"  Content="关灯阻抗" Height="16" HorizontalAlignment="Left" Margin="5,225,0,0" Name="checkBox6" VerticalAlignment="Top" Width="78" Grid.ColumnSpan="2" />
+                <CheckBox IsChecked="{Binding AlarmLineLightOffSingle}" IsEnabled="False"  Content="关灯脉冲" Height="16" HorizontalAlignment="Left" Margin="90,225,0,0" Name="checkBox7" VerticalAlignment="Top" Width="78" Grid.ColumnSpan="2" />
+                <CheckBox IsChecked="{Binding AlarmLineLosePower}" IsEnabled="False"  Content="供电变化" Height="16" HorizontalAlignment="Left" Margin="5,245,0,0" Name="checkBox8" VerticalAlignment="Top" Width="78" Grid.ColumnSpan="2" />
+                <CheckBox IsChecked="{Binding AlarmLineBrightRate}" IsEnabled="False"  Content="亮灯率变化" Height="16" HorizontalAlignment="Left" Margin="90,245,0,0" Name="checkBox9" VerticalAlignment="Top" Width="90" />
+                <CheckBox IsChecked="{Binding AlarmLineLightOpenImpedance}" IsEnabled="False"   Content="开灯阻抗" Height="16" HorizontalAlignment="Left" Margin="5,265,0,0" Name="checkBox10" VerticalAlignment="Top" Width="78" Grid.ColumnSpan="2" />
+                <CheckBox IsChecked="{Binding AlarmLineLightOpenSingel}" IsEnabled="False"   Content="开灯脉冲" Height="16" HorizontalAlignment="Left" Margin="90,265,0,0" Name="checkBox11" VerticalAlignment="Top" Width="78" Grid.ColumnSpan="2" />
+
+
+                <TextBlock Height="22" Text="{Binding MutualInductorRadio}"     HorizontalAlignment="Left" Margin="90,5,0,0" Name="textBox2" VerticalAlignment="Top" Width="90" Grid.Column="1" Grid.ColumnSpan="2" />
+
+                <ComboBox VerticalAlignment="Top" Margin="90,30,0,0" Width="90" IsEnabled="False"  Height="22"
+                                          ItemsSource="{Binding CollectionLduPhase}" SelectedIndex="{Binding SelectLduPhaseIndex}"
+                                          HorizontalAlignment="Left" >
+                    <ItemsControl.ItemTemplate >
+                        <DataTemplate>
+                            <TextBlock  Text="{Binding Name}"></TextBlock>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ComboBox>
+
+                <TextBlock Height="22" Text="{Binding LduEndLampportSn}"   HorizontalAlignment="Left" Margin="90,55,0,0" Name="textBox4" VerticalAlignment="Top" Width="90" Grid.Column="1" Grid.ColumnSpan="2" />
+                <TextBlock Height="22" Text="{Binding LduLightoffImpedanceLimit}" IsEnabled="{Binding IsEdit}"    HorizontalAlignment="Left" Margin="90,80,0,0" Name="textBox5" VerticalAlignment="Top" Width="90" Grid.Column="1" Grid.ColumnSpan="2" />
+                <TextBlock Height="22" Text="{Binding LduLightoffSingleLimit}" IsEnabled="{Binding IsEdit}"    HorizontalAlignment="Left" Margin="90,105,0,0" Name="textBox6" VerticalAlignment="Top" Width="90" Grid.Column="1" Grid.ColumnSpan="2" />
+                <TextBlock Height="22" Text="{Binding LduLightonImpedanceLimit}" IsEnabled="{Binding IsEdit}"    HorizontalAlignment="Left" Margin="90,130,0,0" Name="textBox7" VerticalAlignment="Top" Width="90" Grid.Column="1" Grid.ColumnSpan="2" />
+                <TextBlock Height="22" Text="{Binding LduLightonSingleLimit}" IsEnabled="{Binding IsEdit}"    HorizontalAlignment="Left" Margin="90,155,0,0" Name="textBox8" VerticalAlignment="Top" Width="90" Grid.Column="1" Grid.ColumnSpan="2" />
+                <TextBlock Height="22" Text="{Binding LduBrightRateAlarmLimit}" IsEnabled="{Binding IsEdit}"    HorizontalAlignment="Left" Margin="90,180,0,0" Name="textBox9" VerticalAlignment="Top" Width="90" Grid.Column="1" Grid.ColumnSpan="2" />
+            </Grid>
+        </GroupBox>
+    </Grid>
+</UserControl>

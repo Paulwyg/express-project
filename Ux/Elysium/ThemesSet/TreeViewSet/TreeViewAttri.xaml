@@ -1,0 +1,219 @@
+﻿<UserControl x:Class="Elysium.ThemesSet.TreeViewSet.TreeViewAttri"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" 
+             MaxHeight="600" MinWidth="300" MaxWidth="1000" MinHeight="300">
+    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+    <Grid >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" MinHeight="30"/>
+            <RowDefinition Height="Auto" MinHeight="30"/>
+            <RowDefinition Height="Auto" MinHeight="30"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <GroupBox Header="内容面板及其边框正常状态设置" Margin="2" MinHeight="220" Grid.RowSpan="2" Name="groupBox1" VerticalAlignment="Top">
+            <Grid >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" MinHeight="30"/>
+                    <RowDefinition Height="Auto" MinHeight="30"/>
+                    <RowDefinition Height="Auto" MinHeight="30"/>
+                    <RowDefinition Height="Auto" MinHeight="30"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                
+                <Label  Margin="5,2,5,2" Content="面板背景色:" Name="label1" VerticalAlignment="Center" />
+                <Label Grid.Row="1" Margin="5,2,5,2" Content="边框颜色:" Name="label2" VerticalAlignment="Center"/>
+                <Label Grid.Row="2" Margin="5,2,5,2" Content="边框宽度:" Name="label3" VerticalAlignment="Center"  />
+
+                <xctk:ColorPicker Grid.Column="1" Margin="5,2,5,2" MinWidth="120" VerticalAlignment="Center"  SelectedColor="{Binding NormalBackground}" />
+                <xctk:ColorPicker  Grid.Column="1" Grid.Row="1" Margin="5,2,5,2" SelectedColor="{Binding NormalBorderBrush}" VerticalAlignment="Center" MinWidth="120" />
+                <TextBox   Grid.Column="1" Grid.Row="2" Margin="5,2,5,2" Text="{Binding BorderThickness}" Name="textBox1" VerticalAlignment="Center" MinWidth="120" />
+
+                <Button Grid.Row="3" Grid.ColumnSpan="2" Margin="20,5,20,5" Background="{Binding NormalBackground}" BorderThickness="{Binding BorderThickness}" 
+                        Content="面板" BorderBrush="{Binding NormalBorderBrush}"
+                        Name="button1" VerticalAlignment="Center" MinWidth="120" />
+                
+               
+               
+             
+            </Grid>
+        </GroupBox>
+       
+        <GroupBox Header="内容面板及其边框不可使用状态设置" Grid.Row="2" Margin="2" Name="groupBox2" VerticalAlignment="Top">
+            <Grid >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" MinHeight="30"/>
+                    <RowDefinition Height="Auto" MinHeight="30"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                
+                <Label Margin="5,2,5,2" Content="面板背景色:" Name="label4" VerticalAlignment="Center" />
+                <Label Margin="5,2,5,2" Grid.Row="1" Content="边框颜色:" Name="label5" VerticalAlignment="Center" />
+
+                <xctk:ColorPicker Margin="5,2,5,2" Grid.Column="1" SelectedColor="{Binding DisableBackground}" VerticalAlignment="Center" MinWidth="120" />
+                <xctk:ColorPicker Margin="5,2,5,2" Grid.Row="1" Grid.Column="1" SelectedColor="{Binding DisableBorderBrush}" VerticalAlignment="Center" MinWidth="120" />
+                <Button Margin="20,5,20,5" Grid.Row="2" Grid.ColumnSpan="2" Background="{Binding DisableBackground}" BorderBrush="{Binding DisableBorderBrush}" BorderThickness="{Binding BorderThickness}" 
+                        Content="面板" Name="button4" VerticalAlignment="Center" MinWidth="120" />
+              
+     
+            </Grid>
+        </GroupBox>
+        <GroupBox Header="单项正常状态设置" Margin="2" Grid.Row="3" Name="groupBox3" VerticalAlignment="Top">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" MinHeight="30"/>
+                    <RowDefinition Height="Auto" MinHeight="30"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                
+                <Label Margin="5,2,5,2" Content="单项背景色:"  Name="label6" VerticalAlignment="Center"  />
+                <Label Margin="5,2,5,2" Grid.Row="1" Content="单项字体色:"  Name="label9" VerticalAlignment="Center"  />
+
+                <xctk:ColorPicker Margin="5,2,5,2" Grid.Column="1"  SelectedColor="{Binding ItemNormalBackground}" VerticalAlignment="Center" MinWidth="120" />
+                <xctk:ColorPicker Margin="5,2,5,2" Grid.Row="1" Grid.Column="1"  SelectedColor="{Binding ItemNormalForeground}" VerticalAlignment="Center" MinWidth="120" />
+
+                <Button Margin="20,5,20,5" Grid.Row="2" Grid.ColumnSpan="2" Background="{Binding ItemNormalBackground}" Foreground="{Binding ItemNormalForeground}" BorderBrush="{Binding ItemNormalBorderBrush}" 
+                        BorderThickness="{Binding ItemBorderThickness}" Content="单条数据" 
+                        Name="button5" VerticalAlignment="Center" MinWidth="120" />
+               
+            
+            </Grid>
+        </GroupBox>
+        
+        <GroupBox Header="单项数据鼠标进入状态设置" Grid.Row="1" Margin="2" Grid.Column="1" Name="groupBox4" VerticalAlignment="Top">
+            <Grid >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" MinHeight="30"/>
+                    <RowDefinition Height="Auto" MinHeight="30"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Label Margin="5,2,5,2" Content="单项背景色:"  Name="label10" VerticalAlignment="Center"  />
+                <Label Grid.Row="1" Margin="5,2,5,2" Content="单项字体色:"  Name="label13" VerticalAlignment="Center"/>
+                <xctk:ColorPicker Grid.Column="1" Margin="5,2,5,2" SelectedColor="{Binding ItemMouseOverBackground}" VerticalAlignment="Center" MinWidth="120" />
+                <xctk:ColorPicker Grid.Row="1" Grid.Column="1" Margin="5,2,5,2" SelectedColor="{Binding ItemMouseOverForeground}" VerticalAlignment="Center" MinWidth="120" />
+
+                <Button Margin="20,5,20,5" Grid.Row="2" Grid.ColumnSpan="2" Background="{Binding ItemMouseOverBackground}" BorderBrush="{Binding ItemNormalBorderBrush}" BorderThickness="{Binding ItemBorderThickness}" 
+                        Content="单条数据" Foreground="{Binding ItemMouseOverForeground}"  Name="button6" VerticalAlignment="Center" MinWidth="120" />
+            
+             
+            </Grid>
+        </GroupBox>
+        <GroupBox Header="单项选中状态设置" Margin="2" Grid.Column="1" Grid.Row="2" Name="groupBox5" VerticalAlignment="Top">
+            <Grid >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" MinHeight="30"/>
+                    <RowDefinition Height="Auto" MinHeight="30"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                
+                <Label Margin="5,2,5,2" Content="单项背景色:"  Name="label11" VerticalAlignment="Center"  />
+                <Label Grid.Row="1" Margin="5,2,5,2" Content="单项字体色:" Name="label12" VerticalAlignment="Center"  />
+
+                <xctk:ColorPicker Grid.Column="1" Margin="5,2,5,2" SelectedColor="{Binding ItemSelectedBackground}" VerticalAlignment="Center" MinWidth="120" />
+                <xctk:ColorPicker Grid.Row="1" Grid.Column="1" Margin="5,2,5,2" SelectedColor="{Binding ItemSelectedForeground}" VerticalAlignment="Center" MinWidth="120" />
+
+                <Button Grid.Row="2" Grid.ColumnSpan="2" Margin="20,5,20,5" Background="{Binding ItemSelectedBackground}" BorderBrush="{Binding ItemNormalBorderBrush}" BorderThickness="{Binding ItemBorderThickness}" 
+                        Content="单条数据" Foreground="{Binding ItemSelectedForeground}"  Name="button7" VerticalAlignment="Center" MinWidth="120" />
+               
+               
+            </Grid>
+        </GroupBox>
+        <GroupBox Header="按钮状态设置" Grid.Column="1" Margin="2"  Name="groupBox6" VerticalAlignment="Top">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" MinHeight="30"/>
+                    <RowDefinition Height="Auto" MinHeight="30"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Label Margin="5,2,5,2" Content="按钮正常颜色:"  Name="label14" VerticalAlignment="Center"/>
+                <Label Grid.Row="1" Margin="5,2,5,2" Content="按钮按下颜色:" Name="label15" VerticalAlignment="Center" />
+
+                <xctk:ColorPicker Grid.Column="1" Margin="5,2,5,2" SelectedColor="{Binding HeaderNormalBackground}" VerticalAlignment="Center" MinWidth="120" />
+                <xctk:ColorPicker Grid.Column="1" Grid.Row="1" Margin="5,2,5,2" SelectedColor="{Binding HeaderMouseOverBackground}" VerticalAlignment="Center" MinWidth="120" />
+
+                <Button Grid.Row="2" Grid.ColumnSpan="2" Margin="20,5,20,5" Background="{Binding HeaderNormalBackground}"  Content="表头" Foreground="{Binding HeaderNormalForeground}" 
+                         Name="button8" VerticalAlignment="Center" MinWidth="120" />
+              
+               
+            </Grid>
+        </GroupBox>
+        <GroupBox Header="单项展开状态设置" Grid.Column="1" Grid.Row="3" Margin="2" Name="groupBox7" VerticalAlignment="Top">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" MinHeight="30"/>
+                    <RowDefinition Height="Auto" MinHeight="30"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Label Margin="5,2,5,2" Content="展开项颜色:"  Name="label7" VerticalAlignment="Center" />
+                <Label Grid.Row="1" Margin="5,2,5,2" Content="展开项字体色:"  Name="label8" VerticalAlignment="Center"  />
+
+                <xctk:ColorPicker Grid.Column="1" Margin="5,2,5,2" SelectedColor="{Binding ItemExpandBackground}" VerticalAlignment="Center" MinWidth="120" />
+                <xctk:ColorPicker Grid.Column="1" Grid.Row="1"  Margin="5,2,5,2" SelectedColor="{Binding ItemExpandForeground}" VerticalAlignment="Center" MinWidth="120" />
+                <Button  Grid.Row="2" Grid.ColumnSpan="2" Margin="20,5,20,5" Background="{Binding ItemSelectedBackground}" BorderBrush="{Binding ItemNormalBorderBrush}" BorderThickness="{Binding ItemBorderThickness}"
+                        Content="单条数据" Foreground="{Binding ItemSelectedForeground}" 
+                        Name="button9" VerticalAlignment="Center" MinWidth="120" />
+             
+             
+            </Grid>
+        </GroupBox>
+        <Grid Grid.Column="2" Grid.RowSpan="4">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" MinHeight="30"/>
+                <RowDefinition Height="Auto" MinHeight="30"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Button Margin="20,5,20,5" Content="点击查看以上设置叠加效果" Command="{Binding CmdLook}"  Name="button2" VerticalAlignment="Center" MinWidth="120" />
+            <Button  Margin="20,5,20,5" Grid.Row="1" Content="保存设置"  Command="{Binding CmdSave}" Name="button3" VerticalAlignment="Center" MinWidth="120" />
+            <TreeView Margin="20,5,20,5"  Grid.Row="2"  Name="treeView1" VerticalAlignment="Top" MinWidth="120">
+                <TreeViewItem Header="上海市">
+                    <TreeViewItem Header="闸北区" />
+                    <TreeViewItem Header="普陀区" />
+                </TreeViewItem>
+                <TreeViewItem Header="北京市">
+                    <TreeViewItem Header="中关村" />
+                    <TreeViewItem Header="海淀区" />
+                </TreeViewItem>
+                <TreeViewItem Header="天津市" />
+            </TreeView>
+        </Grid>
+    </Grid>
+    </ScrollViewer>
+</UserControl>

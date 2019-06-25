@@ -1,0 +1,439 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{7B8CA5C8-7413-4394-B7FB-9285D60C3A11}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Wlst.Ux.Wj2090Module</RootNamespace>
+    <AssemblyName>Wlst.Ux.Wj2090Module</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\ZDebug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\Rr\Binaries\WPF\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DragDropExtend, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="Lurx.Controls, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Rr\Binaries\WPF\Lurx.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Prism">
+      <HintPath>..\..\ZDebug\Microsoft.Practices.Prism.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Prism.MefExtensions">
+      <HintPath>..\..\ZDebug\Microsoft.Practices.Prism.MefExtensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Prism.MefExtensions.Event">
+      <HintPath>..\..\ZDebug\Microsoft.Practices.Prism.MefExtensions.Event.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation">
+      <HintPath>..\..\ZDebug\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Telerik.Windows.Controls, Version=2013.1.1802.40, Culture=neutral, PublicKeyToken=d3625f8bf04286d7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Rr\Binaries\WPF\Telerik.Windows.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.Data, Version=2013.1.1802.40, Culture=neutral, PublicKeyToken=d3625f8bf04286d7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Rr\Binaries\WPF\Telerik.Windows.Controls.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.GridView, Version=2015.3.2011.40, Culture=neutral, PublicKeyToken=d3625f8bf04286d7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Rr\Binaries\WPF\Telerik.Windows.Controls.GridView.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.Navigation, Version=2015.3.2011.40, Culture=neutral, PublicKeyToken=d3625f8bf04286d7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Rr\Binaries\WPF\Telerik.Windows.Controls.Navigation.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Data, Version=2013.1.1802.40, Culture=neutral, PublicKeyToken=d3625f8bf04286d7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Rr\Binaries\WPF\Telerik.Windows.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="WindowForWlst, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Rr\Binaries\WPF\WindowForWlst.dll</HintPath>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="Wlst.Cr.Core">
+      <HintPath>..\..\ZDebug\Wlst.Cr.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Wlst.Cr.Coreb, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="Wlst.Cr.CoreMims, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Rr\Binaries\WPF\Wlst.Cr.CoreMims.dll</HintPath>
+    </Reference>
+    <Reference Include="Wlst.Cr.CoreOne, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Rr\Binaries\WPF\Wlst.Cr.CoreOne.dll</HintPath>
+    </Reference>
+    <Reference Include="Wlst.Cr.MessageBoxOverride, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Rr\Binaries\WPF\Wlst.Cr.MessageBoxOverride.dll</HintPath>
+    </Reference>
+    <Reference Include="Wlst.Cr.PPProtocolSvrCnt, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="Wlst.Cr.Setting, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Rr\Binaries\WPF\Wlst.Cr.Setting.dll</HintPath>
+    </Reference>
+    <Reference Include="Wlst.Sr.EquipemntLightFault, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Rr\Binaries\WPF\Wlst.Sr.EquipemntLightFault.dll</HintPath>
+    </Reference>
+    <Reference Include="Wlst.Sr.EquipmentInfoHolding, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Rr\Binaries\WPF\Wlst.Sr.EquipmentInfoHolding.dll</HintPath>
+    </Reference>
+    <Reference Include="Wlst.Sr.Menu, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Rr\Binaries\WPF\Wlst.Sr.Menu.dll</HintPath>
+    </Reference>
+    <Reference Include="Wlst.Sr.ProtocolPhone, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Rr\Binaries\WPF\Wlst.Sr.ProtocolPhone.dll</HintPath>
+    </Reference>
+    <Reference Include="Wlst.Sr.SlusglInfoHold, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Rr\Binaries\WPF\Wlst.Sr.SlusglInfoHold.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="HisDataQuery\ConcentratorDataQuery\Converter\BoolToVisibleConverter.cs" />
+    <Compile Include="HisDataQuery\ConcentratorDataQuery\Converter\RadioButtonBooleanConverter.cs" />
+    <Compile Include="HisDataQuery\ConcentratorDataQuery\NavToConcentratorDataQuery.cs" />
+    <Compile Include="HisDataQuery\ConcentratorDataQuery\NavToConcentratorDataQuerySlu.cs" />
+    <Compile Include="HisDataQuery\ConcentratorDataQuery\NavToConcentratorDataQuerySluCtrl.cs" />
+    <Compile Include="HisDataQuery\ConcentratorDataQuery\Service\IIConcentratorDataQuery.cs" />
+    <Compile Include="HisDataQuery\ConcentratorDataQuery\ViewModel\DataCtrlItem.cs" />
+    <Compile Include="HisDataQuery\ConcentratorDataQuery\ViewModel\DataPhyItem.cs" />
+    <Compile Include="HisDataQuery\ConcentratorDataQuery\ViewModel\DataSluItem.cs" />
+    <Compile Include="HisDataQuery\ConcentratorDataQuery\ViewModel\ConcentratorDataQueryViewModel.cs" />
+    <Compile Include="HisDataQuery\ConcentratorDataQuery\ViewModel\DataLampItem.cs" />
+    <Compile Include="HisDataQuery\ConcentratorDataQuery\View\ConcentratorDataQueryView.xaml.cs">
+      <DependentUpon>ConcentratorDataQueryView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="HisDataQuery\DataMining\NavToDataMiningView.cs" />
+    <Compile Include="HisDataQuery\DataMining\Services\IIDataQuery.cs" />
+    <Compile Include="HisDataQuery\DataMining\ViewModel\DataCtrlMiningAll.cs" />
+    <Compile Include="HisDataQuery\DataMining\ViewModel\DataCtrlMiningSome.cs" />
+    <Compile Include="HisDataQuery\DataMining\ViewModel\DataLampItemMining.cs" />
+    <Compile Include="HisDataQuery\DataMining\ViewModel\DataQueryVm.cs" />
+    <Compile Include="HisDataQuery\DataMining\Views\DataMiningView.xaml.cs">
+      <DependentUpon>DataMiningView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="HisDataQuery\WeekSetQuery\NavToWeekSetQueryView.cs" />
+    <Compile Include="HisDataQuery\WeekSetQuery\Services\IIWeekSetQuery.cs" />
+    <Compile Include="HisDataQuery\WeekSetQuery\ViewModels\WeekSetItemVm.cs" />
+    <Compile Include="HisDataQuery\WeekSetQuery\ViewModels\WeekSetQueryViewModel.cs" />
+    <Compile Include="HisDataQuery\WeekSetQuery\Views\WeekSetQueryView.xaml.cs">
+      <DependentUpon>WeekSetQueryView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="HisDataQuery\DataMining2\NavToDataMiningView.cs" />
+    <Compile Include="HisDataQuery\DataMining2\Services\IIDataQuery.cs" />
+    <Compile Include="HisDataQuery\DataMining2\ViewModel\DataCtrlMiningAll.cs" />
+    <Compile Include="HisDataQuery\DataMining2\ViewModel\DataCtrlMiningSome.cs" />
+    <Compile Include="HisDataQuery\DataMining2\ViewModel\DataLampItemMining.cs" />
+    <Compile Include="HisDataQuery\DataMining2\ViewModel\DataQueryVm.cs" />
+    <Compile Include="HisDataQuery\DataMining2\Views\DataMiningView.xaml.cs">
+      <DependentUpon>DataMiningView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ModuleWj2090Export.cs" />
+    <Compile Include="NewData\DataSluAssisQuery\DataSluAssisQuery.xaml.cs">
+      <DependentUpon>DataSluAssisQuery.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NewData\DataSluAssisQuery\DataSluAssisQueryViewModel.cs" />
+    <Compile Include="NewData\DataSluAssisQuery\IIDataSluAssisQuery.cs" />
+    <Compile Include="NewData\DataSluAssisQuery\SingleMaxMinData.cs" />
+    <Compile Include="NewData\PartolView\Models\DataSluAssis6.cs" />
+    <Compile Include="NewData\PartolView\Models\DataSluLamp5.cs" />
+    <Compile Include="NewData\PartolView\Models\DataSluPhy4.cs" />
+    <Compile Include="NewData\PartolView\Models\PartolViewVm.cs" />
+    <Compile Include="NewData\PartolView\Models\DataSluUnknow2.cs" />
+    <Compile Include="NewData\PartolView\Services\IIPartolView.cs" />
+    <Compile Include="NewData\PartolView\Views\PartolView.xaml.cs">
+      <DependentUpon>PartolView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NewData\SluData\Services\IINewData.cs" />
+    <Compile Include="NewData\SluData\ViewModel\DataSluCtrlLampVm.cs" />
+    <Compile Include="NewData\SluData\ViewModel\LightDataVm.cs" />
+    <Compile Include="NewData\SluData\ViewModel\NewDataViewModel.cs" />
+    <Compile Include="NewData\SluData\ViewModel\UnknowCtrlVm.cs" />
+    <Compile Include="NewData\SluData\Views\NewDataView.xaml.cs">
+      <DependentUpon>NewDataView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NewData\SluData\Views\Uc1.xaml.cs">
+      <DependentUpon>Uc1.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NewData\SluData\Views\Uc2.xaml.cs">
+      <DependentUpon>Uc2.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NewData\SluData\Views\Uc4.xaml.cs">
+      <DependentUpon>Uc4.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NewData\SluData\Views\Uc5.xaml.cs">
+      <DependentUpon>Uc5.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NewData\SluData\Views\Uc6.xaml.cs">
+      <DependentUpon>Uc6.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Services\CommonSlu.cs" />
+    <Compile Include="Services\EventIdAssign.cs" />
+    <Compile Include="Services\ImageResources.cs" />
+    <Compile Include="Services\MenuIdAssign.cs" />
+    <Compile Include="Services\ViewIdAssign.cs" />
+    <Compile Include="SrInfo\CtrGrpInfo.cs" />
+    <Compile Include="SrInfo\NewDataInfo.cs" />
+    <Compile Include="SrInfo\SluGrpInfoHold.cs" />
+    <Compile Include="SrInfo\TimeInfos.cs" />
+    <Compile Include="TimeInfo\TimeInfoQuery\IITimeInfoQuery.cs" />
+    <Compile Include="TimeInfo\TimeInfoQuery\NavToTimeInfoQuery.cs" />
+    <Compile Include="TimeInfo\TimeInfoQuery\TimeInfoOneQueryVm.cs" />
+    <Compile Include="TimeInfo\TimeInfoQuery\TimeInfoQueryView.xaml.cs">
+      <DependentUpon>TimeInfoQueryView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TimeInfo\TimeInfoQuery\TimeInfoQueryVm.cs" />
+    <Compile Include="TimeInfo\TimeInfoSet\NavToTimeInfoSetView.cs" />
+    <Compile Include="TimeInfo\TimeInfoSet\Services\IITimeInfoSet.cs" />
+    <Compile Include="TimeInfo\TimeInfoSet\ViewModel\SluTimeCtrlSluOneVm.cs" />
+    <Compile Include="TimeInfo\TimeInfoSet\ViewModel\TimeInfoOneVm.cs" />
+    <Compile Include="TimeInfo\TimeInfoSet\ViewModel\TimeInfoSetVm.cs" />
+    <Compile Include="TimeInfo\TimeInfoSet\ViewModel\TreeNodeCtrl.cs" />
+    <Compile Include="TimeInfo\TimeInfoSet\Views\TimeInfoSetView.xaml.cs">
+      <DependentUpon>TimeInfoSetView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TimeInfo\TimeInfoSet\Views\UserControl1.xaml.cs">
+      <DependentUpon>UserControl1.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TreeTab\ExportTreeNode\ExportTreeNodex.cs" />
+    <Compile Include="TreeTab\Set\IIWj2090TreeSet.cs" />
+    <Compile Include="TreeTab\Set\NavLineWj2090TreeSet.cs" />
+    <Compile Include="TreeTab\Set\Wj2090TreeSet.cs" />
+    <Compile Include="TreeTab\Set\Wj2090TreeSetLoad.cs" />
+    <Compile Include="TreeTab\Set\Wj2090TreeSetView.xaml.cs">
+      <DependentUpon>Wj2090TreeSetView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TreeTab\View\Serivices\IIAreaTree.cs" />
+    <Compile Include="TreeTab\View\ViewModels\Readme.cs" />
+    <Compile Include="TreeTab\View\ViewModels\TreeTabViewModel.cs" />
+    <Compile Include="TreeTab\View\ViewModels\TreeTabViewModelEx.cs" />
+    <Compile Include="TreeTab\View\Views\Wj2090TreeView.xaml.cs">
+      <DependentUpon>Wj2090TreeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UxWj2090Module.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Wj2090InfoSet\Converters\BoolToVisibleConverter.cs" />
+    <Compile Include="Wj2090InfoSet\Converters\EnableIntConverter.cs" />
+    <Compile Include="Wj2090InfoSet\Converters\GridEnumVisibleConverter.cs" />
+    <Compile Include="Wj2090InfoSet\NavToWj2090InfoSet.cs" />
+    <Compile Include="Wj2090InfoSet\Services\EnumTypes.cs" />
+    <Compile Include="Wj2090InfoSet\Services\IIConcentratorParaInformationViewModel.cs" />
+    <Compile Include="Wj2090InfoSet\ViewModel\ConcentratorParaInformationViewModel.cs" />
+    <Compile Include="Wj2090InfoSet\ViewModel\ControlParaItem.cs" />
+    <Compile Include="Wj2090InfoSet\ViewModel\TreeItemGrplViewModel.cs" />
+    <Compile Include="Wj2090InfoSet\Views\Wj2090InfoSetView.xaml.cs">
+      <DependentUpon>Wj2090InfoSetView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ZcInfo\Converters\BoolToVisibleConverter.cs" />
+    <Compile Include="ZcInfo\SluTime\IIZcSluTime.cs" />
+    <Compile Include="ZcInfo\SluTime\OneSluTimeInfo.cs" />
+    <Compile Include="ZcInfo\SluTime\ZcSluTimeView.xaml.cs">
+      <DependentUpon>ZcSluTimeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ZcInfo\SluTime\ZcSluTimeVm.cs" />
+    <Compile Include="ZcInfo\ZcConArgs\Services\IIXcConnArgs.cs" />
+    <Compile Include="ZcInfo\ZcConArgs\ViewModels\RunArgs.cs" />
+    <Compile Include="ZcInfo\ZcConArgs\ViewModels\XcConnArgs.cs" />
+    <Compile Include="ZcInfo\ZcConArgs\Views\XcConnArgs.xaml.cs">
+      <DependentUpon>XcConnArgs.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ZcInfo\ZcConLocalArgs\Services\IIXcConnLocalArgs.cs" />
+    <Compile Include="ZcInfo\ZcConLocalArgs\ViewModels\LocalArgs.cs" />
+    <Compile Include="ZcInfo\ZcConLocalArgs\ViewModels\XcConnLocalArgs.cs" />
+    <Compile Include="ZcInfo\ZcConLocalArgs\Views\XcConnLocalArgs.xaml.cs">
+      <DependentUpon>XcConnLocalArgs.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ZcInfo\ZcConnParas\Services\IIZcConnParas.cs" />
+    <Compile Include="ZcInfo\ZcConnParas\ViewModel\OneConnPara.cs" />
+    <Compile Include="ZcInfo\ZcConnParas\ViewModel\ZcConnParas.cs" />
+    <Compile Include="ZcInfo\ZcConnParas\Views\ZcConnParasView.xaml.cs">
+      <DependentUpon>ZcConnParasView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ZOperatorLarge\OrdersGrp\Services\EnumTypes.cs" />
+    <Compile Include="ZOperatorLarge\OrdersGrp\Services\IIOrdersGrp.cs" />
+    <Compile Include="ZOperatorLarge\OrdersGrp\NavToOrdersGrpView.cs" />
+    <Compile Include="ZOperatorLarge\OrdersGrp\ViewModel\OrdersGrpVm.cs" />
+    <Compile Include="ZOperatorLarge\OrdersGrp\ViewModel\TreeNodeBase.cs" />
+    <Compile Include="ZOperatorLarge\OrdersGrp\Views\OrdersLargeGrpView.xaml.cs">
+      <DependentUpon>OrdersLargeGrpView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ZOperatorLarge\OrdersGrp\ViewModel\ReslutGrpItem.cs" />
+    <Compile Include="ZOperatorLarge\OrdersGrp\ViewModel\SluInfo.cs" />
+    <Compile Include="ZOperatorLarge\OrdersGrp\Converters\SyncTimeAnsConverter.cs" />
+    <Compile Include="ZOperatorLarge\OrdersGrp\ViewModel\TreeGroupNode.cs" />
+    <Compile Include="ZOperatorLarge\Partols\IIPartols.cs" />
+    <Compile Include="ZOperatorLarge\Partols\ItemInfo.cs" />
+    <Compile Include="ZOperatorLarge\Partols\NavToPartolsView.cs" />
+    <Compile Include="ZOperatorLarge\Partols\PartolsView.xaml.cs">
+      <DependentUpon>PartolsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ZOperatorLarge\Partols\PartolsVm.cs" />
+    <Compile Include="Zorder\CtrlRightOperator.cs" />
+    <Compile Include="Zorder\RightOperatorHunhe.cs" />
+    <Compile Include="Zorder\RightOperatorHunheCtrl.cs" />
+    <Compile Include="Zorder\RightOperators.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Ux\Elysium\Elysium.csproj">
+      <Project>{467011FC-64F2-4FB6-8F59-942248260FFB}</Project>
+      <Name>Elysium</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Ux\Wlst.Ux.EquipemntTree\Wlst.Ux.EquipemntTree.csproj">
+      <Project>{A640DE91-C86A-4256-A634-688EBECA62DA}</Project>
+      <Name>Wlst.Ux.EquipemntTree</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Ux\Wlst.Ux.Setting\Wlst.Ux.Setting.csproj">
+      <Project>{71F7B8B4-1E4E-4CA9-88B3-2DA44E3E8333}</Project>
+      <Name>Wlst.Ux.Setting</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="HisDataQuery\ConcentratorDataQuery\View\ConcentratorDataQueryView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="HisDataQuery\DataMining\Views\DataMiningView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HisDataQuery\WeekSetQuery\Views\WeekSetQueryView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HisDataQuery\DataMining2\Views\DataMiningView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="NewData\DataSluAssisQuery\DataSluAssisQuery.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="NewData\PartolView\Views\PartolView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="NewData\SluData\Views\NewDataView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="NewData\SluData\Views\Uc1.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="NewData\SluData\Views\Uc2.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="NewData\SluData\Views\Uc4.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="NewData\SluData\Views\Uc5.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="NewData\SluData\Views\Uc6.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TimeInfo\TimeInfoQuery\TimeInfoQueryView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TimeInfo\TimeInfoSet\Views\TimeInfoSetView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TimeInfo\TimeInfoSet\Views\UserControl1.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TreeTab\Set\Wj2090TreeSetView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TreeTab\View\Views\Wj2090TreeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Wj2090InfoSet\Views\Wj2090InfoSetView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ZcInfo\SluTime\ZcSluTimeView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ZcInfo\ZcConArgs\Views\XcConnArgs.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ZcInfo\ZcConLocalArgs\Views\XcConnLocalArgs.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ZcInfo\ZcConnParas\Views\ZcConnParasView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ZOperatorLarge\OrdersGrp\Views\OrdersLargeGrpView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ZOperatorLarge\Partols\PartolsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,241 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{2768D30D-FC34-4004-9C0A-CD1592C52000}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Wlst.Ux.EquipmentInfo</RootNamespace>
+    <AssemblyName>Wlst.Ux.EquipmentInfo</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\Rr\Binaries\WPF\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Practices.Prism, Version=4.1.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Rr\Binaries\WPF\Microsoft.Practices.Prism.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Prism.MefExtensions, Version=4.1.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Rr\Binaries\WPF\Microsoft.Practices.Prism.MefExtensions.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Telerik.Windows.Controls, Version=2015.3.2015.40, Culture=neutral, PublicKeyToken=d3625f8bf04286d7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Rr\Binaries\WPF\Telerik.Windows.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.Chart, Version=2015.3.2015.40, Culture=neutral, PublicKeyToken=d3625f8bf04286d7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Rr\Binaries\WPF\Telerik.Windows.Controls.Chart.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.Data, Version=2015.3.2015.40, Culture=neutral, PublicKeyToken=d3625f8bf04286d7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Rr\Binaries\WPF\Telerik.Windows.Controls.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.GridView, Version=2015.3.2015.40, Culture=neutral, PublicKeyToken=d3625f8bf04286d7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Rr\Binaries\WPF\Telerik.Windows.Controls.GridView.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.Input, Version=2015.3.2015.40, Culture=neutral, PublicKeyToken=d3625f8bf04286d7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Rr\Binaries\WPF\Telerik.Windows.Controls.Input.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.Navigation, Version=2015.3.2015.40, Culture=neutral, PublicKeyToken=d3625f8bf04286d7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Rr\Binaries\WPF\Telerik.Windows.Controls.Navigation.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Data, Version=2015.3.2015.40, Culture=neutral, PublicKeyToken=d3625f8bf04286d7" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="Wlst.Cr.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Rr\Binaries\WPF\Wlst.Cr.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Wlst.Cr.Coreb, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Rr\Binaries\WPF\Wlst.Cr.Coreb.dll</HintPath>
+    </Reference>
+    <Reference Include="Wlst.Cr.CoreMims, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Rr\Binaries\WPF\Wlst.Cr.CoreMims.dll</HintPath>
+    </Reference>
+    <Reference Include="Wlst.Cr.CoreOne, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Rr\Binaries\WPF\Wlst.Cr.CoreOne.dll</HintPath>
+    </Reference>
+    <Reference Include="Wlst.print, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Rr\Binaries\WPF\Wlst.print.dll</HintPath>
+    </Reference>
+    <Reference Include="Wlst.Sr.EquipemntLightFault, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Rr\Binaries\WPF\Wlst.Sr.EquipemntLightFault.dll</HintPath>
+    </Reference>
+    <Reference Include="Wlst.Sr.EquipmentInfoHolding, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Rr\Binaries\WPF\Wlst.Sr.EquipmentInfoHolding.dll</HintPath>
+    </Reference>
+    <Reference Include="Wlst.Sr.ProtocolPhone, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Rr\Binaries\WPF\Wlst.Sr.ProtocolPhone.dll</HintPath>
+    </Reference>
+    <Reference Include="Wlst.Sr.TimeTableSystem, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Rr\Binaries\WPF\Wlst.Sr.TimeTableSystem.dll</HintPath>
+    </Reference>
+    <Reference Include="Wlst.Ux.EquipemntLightFault, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Rr\Binaries\WPF\Wlst.Ux.EquipemntLightFault.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DailyStatistics\LeakageViewModel\ViewModel\LeakageViewModel.cs" />
+    <Compile Include="DailyStatistics\LeakageViewModel\View\LeakageView.xaml.cs">
+      <DependentUpon>LeakageView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DailyStatistics\MainViewModel\NavToMainView.cs" />
+    <Compile Include="DailyStatistics\MainViewModel\Services\IIMainViewModel.cs" />
+    <Compile Include="DailyStatistics\MainViewModel\ViewModel\MainViewModel.cs" />
+    <Compile Include="DailyStatistics\MainViewModel\Views\MainView.xaml.cs">
+      <DependentUpon>MainView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DailyStatistics\SingleLampViewModel\ViewModel\SingleLampViewModel.cs" />
+    <Compile Include="DailyStatistics\SingleLampViewModel\View\SingleLampView.xaml.cs">
+      <DependentUpon>SingleLampView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DailyStatistics\TerminalViewModel\ViewModel\AxisLabelConverter.cs" />
+    <Compile Include="DailyStatistics\TerminalViewModel\ViewModel\ScatterPointTemplateSelector.cs" />
+    <Compile Include="DailyStatistics\TerminalViewModel\ViewModel\TerminalViewModel.cs" />
+    <Compile Include="DailyStatistics\TerminalViewModel\Views\TerminalView.xaml.cs">
+      <DependentUpon>TerminalView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EquipmentInfo\ElectricMeterInfoViewModel\ViewModel\ElectricMeterInfoViewModel.cs" />
+    <Compile Include="EquipmentInfo\ElectricMeterInfoViewModel\Views\ElectricMeterInfoView.xaml.cs">
+      <DependentUpon>ElectricMeterInfoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EquipmentInfo\LeakageInfoViewModel\ViewModel\LeakageInfoViewModel.cs" />
+    <Compile Include="EquipmentInfo\LeakageInfoViewModel\Views\LeakageInfoView.xaml.cs">
+      <DependentUpon>LeakageInfoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EquipmentInfo\LineDetectionInfoViewModel\ViewModel\LineDetectionInfoViewModel.cs" />
+    <Compile Include="EquipmentInfo\LineDetectionInfoViewModel\Views\LineDetectionInfoView.xaml.cs">
+      <DependentUpon>LineDetectionInfoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EquipmentInfo\MainViewModel\NavToUxMainView.cs" />
+    <Compile Include="EquipmentInfo\MainViewModel\Services\IIMainViewModel.cs" />
+    <Compile Include="EquipmentInfo\MainViewModel\ViewModel\MainViewModel.cs" />
+    <Compile Include="EquipmentInfo\MainViewModel\Views\MainView.xaml.cs">
+      <DependentUpon>MainView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Services\EventIdAssign.cs" />
+    <Compile Include="Services\MenuIdAssign.cs" />
+    <Compile Include="Services\ViewIdAssign.cs" />
+    <Compile Include="EquipmentInfo\SingleLampInfoViewModel\ViewModel\SingleLampInfoViewModel.cs" />
+    <Compile Include="EquipmentInfo\SingleLampInfoViewModel\Views\SingleLampInfoView.xaml.cs">
+      <DependentUpon>SingleLampInfoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EquipmentInfo\TerminalInfoViewModel\ViewModel\TerminalInfoViewModel.cs" />
+    <Compile Include="EquipmentInfo\TerminalInfoViewModel\Views\TerminalInfoView.xaml.cs">
+      <DependentUpon>TerminalInfoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SystemData\MainViewModel\NavToMainView.cs" />
+    <Compile Include="SystemData\MainViewModel\Services\IIMainViewModel.cs" />
+    <Compile Include="SystemData\MainViewModel\ViewModel\AxisLabelConverter.cs" />
+    <Compile Include="SystemData\MainViewModel\ViewModel\FaultTypeConverter.cs" />
+    <Compile Include="SystemData\MainViewModel\ViewModel\MainViewModel.cs" />
+    <Compile Include="SystemData\MainViewModel\ViewModel\TimeConverter.cs" />
+    <Compile Include="SystemData\MainViewModel\View\MainView.xaml.cs">
+      <DependentUpon>MainView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UxEquipmentInfo.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="DailyStatistics\LeakageViewModel\View\LeakageView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DailyStatistics\MainViewModel\Views\MainView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DailyStatistics\SingleLampViewModel\View\SingleLampView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DailyStatistics\TerminalViewModel\Views\TerminalView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EquipmentInfo\ElectricMeterInfoViewModel\Views\ElectricMeterInfoView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EquipmentInfo\LeakageInfoViewModel\Views\LeakageInfoView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EquipmentInfo\LineDetectionInfoViewModel\Views\LineDetectionInfoView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EquipmentInfo\MainViewModel\Views\MainView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EquipmentInfo\SingleLampInfoViewModel\Views\SingleLampInfoView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EquipmentInfo\TerminalInfoViewModel\Views\TerminalInfoView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SystemData\MainViewModel\View\MainView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

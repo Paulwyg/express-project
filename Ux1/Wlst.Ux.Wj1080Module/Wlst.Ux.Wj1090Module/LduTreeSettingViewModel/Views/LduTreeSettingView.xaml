@@ -1,0 +1,28 @@
+﻿<UserControl x:Class="Wlst.Ux.Wj1090Module.LduTreeSettingViewModel.Views.LduTreeSettingView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+                   d:DesignHeight="300" d:DesignWidth="600">
+
+    <Grid HorizontalAlignment="Center">
+        <Grid >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <CheckBox Grid.Row="1" IsChecked="{Binding IsShowGrpInTreeModelShowId}" Content="分组显示是否显示ID" VerticalAlignment="Center" ></CheckBox>
+
+            <CheckBox IsChecked="{Binding IsShowTreeOnTab}" Content="是否在主界面树区域显示防盗设备面板" VerticalAlignment="Center" ></CheckBox>
+
+  
+            <Button  Tag="11060007" Content="应用" Command="{Binding CmdApply}" 
+                     Width="120" Height="25" Grid.Row="4"></Button>
+        </Grid>
+    </Grid>
+</UserControl>

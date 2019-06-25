@@ -1,0 +1,33 @@
+﻿<UserControl x:Class="Wlst.Ux.Wj6005Module.Jd601TmlInfo.InfoSet.Views.Jd601TmlInfoView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                
+             xmlns:AppleWindowSet="clr-namespace:Elysium.ThemesSet.AppleWindowSet;assembly=Elysium" 
+             mc:Ignorable="d" 
+             d:DesignHeight="500" d:DesignWidth="1000">
+    <Grid >
+
+        <TabControl  Background="Transparent"  HorizontalAlignment="Left" Margin="10,0,0,0" Name="tabControl1" VerticalAlignment="Top">
+            <!--<TabItem Header="节电参数" Name="tabItem1">
+                <UserControl Content="{Binding SettingControl,Mode=TwoWay}"></UserControl>
+            </TabItem>-->
+            <TabItem Header="节电参数" Name="tabItemParmeterSet">
+                <UserControl  Content="{Binding ParametersSetControl,Mode=TwoWay}"></UserControl>
+            </TabItem>
+            <!--<TabItem Header="招测参数" Name="tabItemGetPar">
+                <UserControl Content="{Binding GetParControl,Mode=TwoWay}"></UserControl>
+            </TabItem>-->
+            <!--<TabItem Header="数据查询与控制" Name="tabItem2">
+                <UserControl   Content="{Binding DataControl,Mode=TwoWay}"></UserControl>
+            </TabItem>-->
+            <TabItem Header="操作控制" Name="OperatorControl">
+                <UserControl   Content="{Binding OperatorControl,Mode=TwoWay}"></UserControl>
+            </TabItem>
+            <TabItem Header="即时数据" Name="InstantData">
+                <UserControl   Content="{Binding InstantData,Mode=TwoWay}"></UserControl>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</UserControl>

@@ -1,0 +1,325 @@
+﻿<UserControl x:Class="Wlst.Ux.Wj6005Module.Jd601TmlInfo.TmlParametersInfoSetForJd601.View.TmlParametersInfoSetForJd601View"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:RadioButtonConverter1="clr-namespace:Wlst.Cr.CoreOne.RadioButtonConverter;assembly=Wlst.Cr.CoreOne"
+             xmlns:TestBoxWaterMarked="clr-namespace:Wlst.Cr.CoreOne.ControlsOverride.TestBoxWaterMarked;assembly=Wlst.Cr.CoreOne"
+             mc:Ignorable="d"  d:DesignHeight="450" d:DesignWidth="1000" >
+    <UserControl.Resources >
+        <RadioButtonConverter1:RadioButtonBooleanConverter x:Key="RadioButtonBooleanConverter"></RadioButtonConverter1:RadioButtonBooleanConverter>
+    </UserControl.Resources>
+    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+    <Grid >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="30"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Label x:Name="fg"/>
+            <Grid Grid.Row="0" Grid.ColumnSpan="3">
+                <GroupBox Header="设备信息" HorizontalAlignment="Left" Margin="10,0,0,0"  Name="groupBox2">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition  Width="Auto" />
+                            <ColumnDefinition Width="150" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="250" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}"  Margin="5,2,5,2" Grid.Column="0" Grid.Row="0"   VerticalAlignment="Center" Text="逻辑地址："/>
+                        <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}"  Margin="5,2,5,2" Grid.Column="1" VerticalAlignment="Center"   Text="{Binding RtuId}"   />
+                        <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}"  Margin="5,2,5,2" Grid.Column="2" Grid.Row="0"  VerticalAlignment="Center"   Text="附属设备名称："/>
+                        <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}"  Margin="5,2,5,2" Grid.Column="0" Grid.Row="1"  VerticalAlignment="Center"   Text="主设备地址：" />
+                        <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}"   Margin="5,2,5,2" Grid.Column="1" Grid.Row="1"  VerticalAlignment="Center"   Text="{Binding AttachRtuId}" />
+                        <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}"  Margin="5,2,5,2" Grid.Column="2" Grid.Row="1" VerticalAlignment="Center"   Text="主设备名称："/>
+                        <TextBox Margin="5,2,5,2" Grid.Column="3"  Text="{Binding RtuName}" VerticalAlignment="Center" />
+                        <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}"  Margin="5,2,5,2"  Grid.Column="3" Grid.Row="1"  Text="{Binding AttachRtuName,UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"  VerticalAlignment="Center" />
+                        <CheckBox Margin="5,2,5,2" Grid.Column="4" Grid.Row="0" Content="是否启用节电设备" IsChecked="{Binding EsyValidIdentify}"  Name="checkBox1" VerticalAlignment="Center" />
+                        <CheckBox Margin="5,2,5,2" Grid.Column="4" Grid.Row="1" Content="是否允许主动报警" IsChecked="{Binding IsActiveAlarm}"  Name="checkBox2" VerticalAlignment="Center" />
+                    </Grid>
+                </GroupBox>
+            </Grid>
+                <GroupBox  Grid.Column="2" Grid.Row="1" Header="门限值设置"   Name="groupBox4">
+                    <Grid >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="75"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" MinHeight="30"/>
+                        <RowDefinition Height="Auto" MinHeight="30"/>
+                        <RowDefinition Height="Auto" MinHeight="30"/>
+                        <RowDefinition Height="Auto" MinHeight="30"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}"  Margin="5,2,5,2" Grid.Column="0" Grid.Row="0"  VerticalAlignment="Center"  Text="输入过压："  />
+                    <TestBoxWaterMarked:WaterMarkedTextBox WaterMark="建议：270伏" Margin="5,2,5,2" Grid.Column="1" Text="{Binding InputOvervoltageLimit}"    MinWidth="60" VerticalAlignment="Center" />
+                    <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}"   Margin="5,2,5,2" Grid.Column="0" Grid.Row="1"  VerticalAlignment="Center"  Text="输入欠压："/>
+                    <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}"   Margin="5,2,5,2" Grid.Column="0" Grid.Row="2"  VerticalAlignment="Center"  Text="输出过载：" />
+                    <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}"   Margin="5,2,5,2" Grid.Column="0" Grid.Row="3"  VerticalAlignment="Center"   Text="输出欠压："  />
+                    <TestBoxWaterMarked:WaterMarkedTextBox   WaterMark="建议：170伏" Margin="5,2,5,2" Grid.Column="1" Grid.Row="1"   Text="{Binding InputUndervoltageLimit}"  MinWidth="60" VerticalAlignment="Center" />
+                    <TestBoxWaterMarked:WaterMarkedTextBox   WaterMark="建议：144安" Margin="5,2,5,2" Grid.Column="1" Grid.Row="2" Text="{Binding OutputOverloadLimit}"  MinWidth="60" VerticalAlignment="Center"  />
+                    <TestBoxWaterMarked:WaterMarkedTextBox   WaterMark="建议：160伏" Margin="5,2,5,2" Grid.Column="1" Grid.Row="3" Text="{Binding OutputUndervoltageLimit}"  MinWidth="60" VerticalAlignment="Center" />
+                    </Grid>
+                </GroupBox>
+                    <GroupBox Header="节能模式设置" Grid.Row="1"  Name="groupBox3"  >
+                        <Grid >
+                            <Grid.RowDefinitions>
+                                <RowDefinition MinHeight="30" Height="Auto"/>
+                                <RowDefinition MinHeight="30" Height="Auto"/>
+                                <RowDefinition MinHeight="30" Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="90"/>
+                                <ColumnDefinition   Width="90"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="90"/>
+                                <ColumnDefinition Width="90"/>
+                            </Grid.ColumnDefinitions>
+                    <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}"  Margin="5,2,5,2" VerticalAlignment="Center" Grid.Column="0" Grid.Row="0"  Text="节能模式："/>
+                    <RadioButton Margin="5,2,5,2" VerticalAlignment="Center" Grid.Column="1" Grid.Row="0" Content="接触器模式"  IsChecked="{Binding Path=IsEsuModeIgbtSelected, Mode=TwoWay, Converter={StaticResource RadioButtonBooleanConverter}, ConverterParameter=false}"/>
+                    <RadioButton x:Name="igbt" Margin="5,2,5,2" VerticalAlignment="Center" Grid.Column="2" Grid.Row="0" Content="IGBT模式"  IsChecked="{Binding Path=IsEsuModeIgbtSelected, Mode=TwoWay, Converter={StaticResource RadioButtonBooleanConverter}, ConverterParameter=true}"/>
+                    <TextBlock IsEnabled="{Binding Path=IsChecked,ElementName=igbt}" Foreground="{Binding ElementName=fg, Path=Foreground}"  Margin="5,2,5,2" Grid.Column="3" Grid.Row="0"   Text="调压速度：" VerticalAlignment="Center" />
+                    <TestBoxWaterMarked:WaterMarkedTextBox WaterMark="IGBT调压速度，默认10" Margin="5,2,5,2" Grid.Column="4" Grid.Row="0" Grid.ColumnSpan="2"  Text="{Binding RegulatingSpeed}" VerticalAlignment="Center" />
+                    <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}"  Margin="5,2,5,2"  VerticalAlignment="Center" Grid.Column="0" Grid.Row="1"  Text="时间模式：" />
+                    <RadioButton  Margin="5,2,5,2" VerticalAlignment="Center" Grid.Column="1" Grid.Row="1" Content="定时模式"  IsChecked="{Binding Path=IsTimeModeDelaySelected, Mode=TwoWay, Converter={StaticResource RadioButtonBooleanConverter}, ConverterParameter=false}" GroupName="g2"/>
+                    <RadioButton Margin="5,2,5,2"  VerticalAlignment="Center" Grid.Column="2" Grid.Row="1" Content="延时模式"  IsChecked="{Binding Path=IsTimeModeDelaySelected, Mode=TwoWay, Converter={StaticResource RadioButtonBooleanConverter}, ConverterParameter=true}" GroupName="g2"/>
+                    <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}"  Margin="5,2,5,2" VerticalAlignment="Center" Grid.Column="0" Grid.Row="2"  Text="运行模式：" />
+                    <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}"  Margin="5,2,5,2" VerticalAlignment="Center" Grid.Column="3" Grid.Row="1"  Text="通信模式："/>
+                    <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}"  Margin="5,2,5,2" VerticalAlignment="Center" Grid.Column="3" Grid.Row="2"  Text="工作模式："/>
+                    <RadioButton Margin="5,2,5,2" VerticalAlignment="Center" Grid.Column="1" Grid.Row="2" Content="自动节能"   IsChecked="{Binding Path=IsRUnModeAutoSelected, Mode=TwoWay, Converter={StaticResource RadioButtonBooleanConverter}, ConverterParameter=true}"  GroupName="g3"/>
+                    <RadioButton Margin="5,2,5,2" VerticalAlignment="Center"  Grid.Column="2" Grid.Row="2"  Content="手动节能"  IsChecked="{Binding Path=IsRUnModeAutoSelected, Mode=TwoWay, Converter={StaticResource RadioButtonBooleanConverter}, ConverterParameter=false}"  GroupName="g3"/>
+                    <RadioButton Margin="5,2,5,2" VerticalAlignment="Center"  Grid.Column="4" Grid.Row="2"  Content="通用模式"  IsChecked="{Binding Path=IsWorkModeNoramlSelected, Mode=TwoWay, Converter={StaticResource RadioButtonBooleanConverter}, ConverterParameter=true}"  GroupName="g4"   />
+                    <RadioButton Margin="5,2,5,2" VerticalAlignment="Center"  Grid.Column="5" Grid.Row="2"  Content="特殊模式"  IsChecked="{Binding Path=IsWorkModeNoramlSelected, Mode=TwoWay, Converter={StaticResource RadioButtonBooleanConverter}, ConverterParameter=false}"  GroupName="g4"  />
+                    <RadioButton Margin="5,2,5,2" VerticalAlignment="Center"  Grid.Column="4" Grid.Row="1"  Content="连接终端"  IsChecked="{Binding Path=IsCommuModeThrouRtuSelected, Mode=TwoWay, Converter={StaticResource RadioButtonBooleanConverter}, ConverterParameter=true}"  GroupName="g5"  />
+                    <RadioButton Margin="5,2,5,2" VerticalAlignment="Center"  Grid.Column="5" Grid.Row="1"  Content="独立通信"  IsChecked="{Binding Path=IsCommuModeThrouRtuSelected, Mode=TwoWay, Converter={StaticResource RadioButtonBooleanConverter}, ConverterParameter=false}"  GroupName="g5" />
+                        </Grid>
+                    </GroupBox>
+                    <GroupBox Header="临界温度设置" Grid.Column="1" Grid.Row="1"  Name="groupBox5">
+                        <Grid >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="75"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition MinHeight="30" Height="Auto"/>
+                        <RowDefinition MinHeight="27" Height="Auto"/>
+                        <RowDefinition MinHeight="27" Height="Auto"/>
+                        <RowDefinition MinHeight="27" Height="Auto"/>
+                        <RowDefinition MinHeight="27" Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}"  Margin="5,2,5,2"  Text="风机启动温度：" VerticalAlignment="Center"/>
+                    <TextBox Margin="5,2,5,2" Text="{Binding FanSatrtTemp}" Grid.Column="1" VerticalAlignment="Center" MinWidth="60" />
+
+                    <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}"  Margin="5,2,5,2" Grid.Row="1"   Name="textBlock20" Text="风机关闭温度：" VerticalAlignment="Center" />
+                    <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}"  Margin="5,2,5,2" Grid.Row="2"  Name="textBlock21" Text="强制保护温度：" VerticalAlignment="Center" />
+                    <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}"  Margin="5,2,5,2" Grid.Row="3"  Name="textBlock22" Text="恢复节能温度：" VerticalAlignment="Center" />
+                    <TextBox Margin="5,2,5,2" Grid.Row="1" Grid.Column="1" Text="{Binding FanClosedTemp}"   Name="textBox7" VerticalAlignment="Center" MinWidth="60" />
+                    <TextBox Margin="5,2,5,2" Grid.Row="2" Grid.Column="1" Text="{Binding MandatoryProtectTemp}" Name="textBox8" VerticalAlignment="Center" MinWidth="60" />
+                    <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}"  Margin="5,2,5,2"  Grid.Row="4"  Name="textBlock23" Text="退出节能温度：" VerticalAlignment="Center" />
+                    <TextBox Margin="5,2,5,2" Grid.Row="4" Grid.Column="1" Text="{Binding EnerySaveTemp}"   Name="textBox10" VerticalAlignment="Center" MinWidth="60" />
+                    <TextBox Margin="5,2,5,2" Grid.Row="3" Grid.Column="1" Text="{Binding RecoverEnergySaveTemp}"   Name="textBox9" VerticalAlignment="Center" MinWidth="60" />
+                        </Grid>
+                    </GroupBox>
+                <GroupBox Header="节能时间设置" Grid.Row="2" Grid.ColumnSpan="2" Name="groupBox16" >
+                    <Grid >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" MinHeight="30"/>
+                        <RowDefinition Height="Auto" MinHeight="30"/>
+                        <RowDefinition Height="Auto" MinHeight="30"/>
+                        <RowDefinition Height="Auto" MinHeight="30"/>
+                    </Grid.RowDefinitions>
+                        <GroupBox Header="时间1"  Name="groupBox17">
+                            <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="60"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="45"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="45"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}"  Margin="5,2,5,2" Text="操作值[v]：" VerticalAlignment="Center"/>
+                            <TextBox Margin="5,2,5,2" Grid.Column="1" Text="{Binding Jd601ParItems[0].EsuOperatoeValue}"  Name="textBox40" VerticalAlignment="Center"/>
+                            <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}"  Margin="5,2,5,2" Grid.Column="2" Text="操作时间：" VerticalAlignment="Center" />
+                            <TextBox Margin="5,2,5,2" Grid.Column="3" Text="{Binding Jd601ParItems[0].EsuOperateTimeHour}"   Name="textBox41" VerticalAlignment="Center"/>
+                            <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}"  Grid.Column="4" Text=":" VerticalAlignment="Center" MinWidth="3" />
+                            <TextBox Margin="5,2,5,2" Grid.Column="5" Text="{Binding Jd601ParItems[0].EsuOperateTimeMinute}"  VerticalAlignment="Center"  />
+                            </Grid>
+                        </GroupBox>
+                        <GroupBox Header="时间2" Grid.Row="1">
+                            <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="60"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="45"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="45"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}"  Margin="5,2,5,2" Text="操作值[v]：" VerticalAlignment="Center"/>
+                            <TextBox Margin="5,2,5,2" Grid.Column="1" Text="{Binding Jd601ParItems[1].EsuOperatoeValue}"  VerticalAlignment="Center"/>
+                            <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}"  Margin="5,2,5,2" Grid.Column="2" Text="操作时间：" VerticalAlignment="Center" />
+                            <TextBox Margin="5,2,5,2" Grid.Column="3" Text="{Binding Jd601ParItems[1].EsuOperateTimeHour}"  VerticalAlignment="Center" />
+                            <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}"  Grid.Column="4" Text=":" VerticalAlignment="Center" MinWidth="3" />
+                            <TextBox Margin="5,2,5,2" Grid.Column="5" Text="{Binding Jd601ParItems[1].EsuOperateTimeMinute}"  VerticalAlignment="Center" />
+                            </Grid>
+                        </GroupBox>
+                        <GroupBox Header="时间5" Grid.Column="1">
+                            <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="60"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="45"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="45"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}"  Margin="5,2,5,2" Text="操作值[v]：" VerticalAlignment="Center"/>
+                            <TextBox Margin="5,2,5,2" Grid.Column="1" Text="{Binding Jd601ParItems[4].EsuOperatoeValue}"  VerticalAlignment="Center"  />
+                            <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}"  Margin="5,2,5,2" Grid.Column="2" Text="操作时间：" VerticalAlignment="Center" />
+                            <TextBox Margin="5,2,5,2" Grid.Column="3" Text="{Binding Jd601ParItems[4].EsuOperateTimeHour}"   VerticalAlignment="Center"  />
+                            <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}"  Grid.Column="4" Text=":" VerticalAlignment="Center" MinWidth="3" />
+                            <TextBox Margin="5,2,5,2" Grid.Column="5" Text="{Binding Jd601ParItems[4].EsuOperateTimeMinute}"   VerticalAlignment="Center"  />
+                            </Grid>
+                        </GroupBox>
+                        <GroupBox Header="时间6" Grid.Column="1" Grid.Row="1">
+                            <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="60"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="45"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="45"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}"  Margin="5,2,5,2" Text="操作值[v]：" VerticalAlignment="Center"/>
+                            <TextBox Grid.Column="1" Margin="5,2,5,2" Text="{Binding Jd601ParItems[5].EsuOperatoeValue}"  VerticalAlignment="Center"/>
+                            <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}"  Margin="5,2,5,2" Grid.Column="2" Text="操作时间：" VerticalAlignment="Center" />
+                            <TextBox Grid.Column="3" Margin="5,2,5,2" Height="22" Text="{Binding Jd601ParItems[5].EsuOperateTimeHour}"   VerticalAlignment="Center" />
+                            <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}"  Grid.Column="4" Text=":" VerticalAlignment="Center" MinWidth="3" />
+                            <TextBox Grid.Column="5" Margin="5,2,5,2" Text="{Binding Jd601ParItems[5].EsuOperateTimeMinute}"  VerticalAlignment="Center" />
+                            </Grid>
+                        </GroupBox>
+                        <GroupBox Header="时间4" Grid.Row="3">
+                            <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="60"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="45"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="45"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}"  Margin="5,2,5,2" Text="操作值[v]：" VerticalAlignment="Center"/>
+                            <TextBox Margin="5,2,5,2" Grid.Column="1" Text="{Binding Jd601ParItems[3].EsuOperatoeValue}" VerticalAlignment="Center"/>
+                            <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}"  Margin="5,2,5,2" Grid.Column="2" Text="操作时间：" VerticalAlignment="Center" />
+                            <TextBox Margin="5,2,5,2" Grid.Column="3" Text="{Binding Jd601ParItems[3].EsuOperateTimeHour}"  VerticalAlignment="Center" />
+                            <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}"  Grid.Column="4" Text=":" VerticalAlignment="Center" MinWidth="3" />
+                            <TextBox Margin="5,2,5,2" Grid.Column="5" Text="{Binding Jd601ParItems[3].EsuOperateTimeMinute}"   VerticalAlignment="Center" />
+                            </Grid>
+                        </GroupBox>
+                        <GroupBox Header="时间3" Grid.Row="2">
+                            <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="60"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="45"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="45"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}"  Margin="5,2,5,2" Text="操作值[v]：" VerticalAlignment="Center"/>
+                            <TextBox Margin="5,2,5,2" Grid.Column="1" Text="{Binding Jd601ParItems[2].EsuOperatoeValue}"  VerticalAlignment="Center"/>
+                            <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}"  Margin="5,2,5,2" Grid.Column="2" Text="操作时间：" VerticalAlignment="Center" />
+                            <TextBox Margin="5,2,5,2" Grid.Column="3"  Text="{Binding Jd601ParItems[2].EsuOperateTimeHour}"   VerticalAlignment="Center" />
+                            <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}"  Grid.Column="4" Text=":" VerticalAlignment="Center" MinWidth="3" />
+                            <TextBox Margin="5,2,5,2" Grid.Column="5" Text="{Binding Jd601ParItems[2].EsuOperateTimeMinute}"  VerticalAlignment="Center"  />
+                            </Grid>
+                        </GroupBox>
+                        <GroupBox Header="时间7" Grid.Row="2" Grid.Column="1">
+                            <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="60"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="45"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="45"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}"  Margin="5,2,5,2" Text="操作值[v]：" VerticalAlignment="Center"/>
+                            <TextBox  Margin="5,2,5,2" Grid.Column="1" Text="{Binding Jd601ParItems[6].EsuOperatoeValue}" VerticalAlignment="Center" />
+                            <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}"  Margin="5,2,5,2" Grid.Column="2" Text="操作时间：" VerticalAlignment="Center" />
+                            <TextBox  Margin="5,2,5,2" Grid.Column="3" Text="{Binding Jd601ParItems[6].EsuOperateTimeHour}" VerticalAlignment="Center"  />
+                            <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}"  Grid.Column="4" Text=":" VerticalAlignment="Center"  />
+                            <TextBox  Margin="5,2,5,2" Grid.Column="5" Text="{Binding Jd601ParItems[6].EsuOperateTimeMinute}"  VerticalAlignment="Center"  />
+                            </Grid>
+                        </GroupBox>
+                        <GroupBox Header="时间8" Grid.Row="3" Grid.Column="1">
+                            <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="60"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="45"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="45"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}"  Margin="5,2,5,2" Text="操作值[v]：" VerticalAlignment="Center"/>
+                            <TextBox Margin="5,2,5,2"  Grid.Column="1" Text="{Binding Jd601ParItems[7].EsuOperatoeValue}"  VerticalAlignment="Center" />
+                            <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}"  Margin="5,2,5,2" Grid.Column="2" Text="操作时间：" VerticalAlignment="Center" />
+                            <TextBox Margin="5,2,5,2"  Grid.Column="3" Height="22" Text="{Binding Jd601ParItems[7].EsuOperateTimeHour}"  VerticalAlignment="Center" />
+                            <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}"  Grid.Column="4" Text=":" VerticalAlignment="Center" Width="3" />
+                            <TextBox Margin="5,2,5,2"  Grid.Column="5" Text="{Binding Jd601ParItems[7].EsuOperateTimeMinute}"   VerticalAlignment="Center"/>
+                            </Grid>
+                        </GroupBox>
+                    </Grid>
+                </GroupBox>
+                <GroupBox Header="其他运行参数" Grid.Column="2" Grid.Row="2" Name="groupBox6">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                        <RowDefinition MinHeight="30" Height="Auto"/>
+                        <RowDefinition MinHeight="30" Height="Auto"/>
+                        <RowDefinition MinHeight="30" Height="Auto"/>
+                        <RowDefinition MinHeight="30" Height="Auto"/>
+                        <RowDefinition MinHeight="30" Height="Auto"/>
+                    </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="75"/>
+                        </Grid.ColumnDefinitions>
+                    <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}"  Margin="5,2,5,2"  Text="A相CT变比：" VerticalAlignment="Center"  />
+                    <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}"  Margin="5,2,5,2"  Grid.Row="1" Text="B相CT变比：" VerticalAlignment="Center"  />
+                    <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}"  Margin="5,2,5,2" Grid.Row="3" Text="预热时间[分]：" VerticalAlignment="Center"  />
+                    <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}"  Margin="5,2,5,2" Grid.Row="4" Text="报警延时[秒]：" VerticalAlignment="Center"  />
+                    <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}"  Margin="5,2,5,2" Grid.Row="2" Text="C相CT变比：" VerticalAlignment="Center"  />
+                        <TextBox Margin="5,2,5,2" Text="{Binding CtRadioA}" Grid.Column="1" VerticalAlignment="Center" MinWidth="60" />
+                    <TextBox Margin="5,2,5,2"  Text="{Binding CtRadioB}"  Grid.Column="1" Grid.Row="1"  VerticalAlignment="Center" MinWidth="60" />
+                    <TextBox Margin="5,2,5,2" Text="{Binding CtRadioC}"  Grid.Column="1" Grid.Row="2"  VerticalAlignment="Center" MinWidth="60"  />
+                    <TextBox Margin="5,2,5,2" Text="{Binding PreheatingTime}"  Grid.Column="1" Grid.Row="3"  VerticalAlignment="Center" MinWidth="60"  />
+                    <TextBox Margin="5,2,5,2" Text="{Binding AlarmDelay}"  Grid.Column="1" Grid.Row="4"  VerticalAlignment="Center" MinWidth="60" />
+                    </Grid>
+                </GroupBox>
+            <TextBlock Margin="5,2,5,2" Foreground="{Binding ElementName=fg, Path=Foreground}"  Grid.Column="0" Text="操作时间设置为0:0则表示不启用" VerticalAlignment="Center" Grid.Row="3" />
+            <Button Margin="5,2,5,2" Content="保存设置" Grid.Row="3" Grid.Column="1"  HorizontalAlignment="Center"  Command="{Binding CmdSave}"   MinWidth="120" />
+            <Button Margin="5,2,5,2" Content="召测隐显" Grid.Row="3" Grid.Column="2"  HorizontalAlignment="Center" Command="{Binding CmdZcVisi}"   MinWidth="120" />
+        <UserControl Grid.Row="5" Grid.ColumnSpan="3" Visibility="{Binding ZcVisi}" Content="{Binding ZcModel}"/>
+        </Grid>
+    </ScrollViewer>
+</UserControl>

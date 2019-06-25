@@ -1,0 +1,214 @@
+﻿<UserControl x:Class="Wlst.Ux.StateBarModule.CommonSet.CommonSettingView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"   
+             
+             
+             mc:Ignorable="d" 
+             d:DesignHeight="850" d:DesignWidth="300">
+ 
+    <Grid >
+        <Grid Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" MinHeight="30"></RowDefinition>
+                <RowDefinition Height="Auto" MinHeight="30"></RowDefinition>
+                <RowDefinition Height="Auto" MinHeight="30"></RowDefinition>
+                <RowDefinition Height="Auto" MinHeight="30"></RowDefinition>
+                <RowDefinition Height="Auto" MinHeight="30"></RowDefinition>
+                <RowDefinition Height="Auto" MinHeight="30"></RowDefinition>
+                <RowDefinition Height="Auto" MinHeight="30"></RowDefinition>
+                <RowDefinition Height="Auto" MinHeight="30"></RowDefinition>
+                <RowDefinition Height="Auto" MinHeight="30"></RowDefinition>
+                <RowDefinition Height="Auto" MinHeight="30"></RowDefinition>
+                <RowDefinition Height="Auto" MinHeight="30"></RowDefinition>
+                <RowDefinition Height="Auto" MinHeight="30"></RowDefinition>
+                <RowDefinition Height="Auto" MinHeight="30"></RowDefinition>
+                <RowDefinition Height="Auto" MinHeight="30"></RowDefinition>
+                <RowDefinition Height="Auto" MinHeight="30"></RowDefinition>
+                <RowDefinition Height="Auto" MinHeight="30"></RowDefinition>
+                <RowDefinition Height="Auto" MinHeight="30"></RowDefinition>
+                <RowDefinition Height="Auto" MinHeight="30"></RowDefinition>
+                <RowDefinition Height="Auto" MinHeight="30"></RowDefinition>
+                <RowDefinition Height="Auto" MinHeight="30"></RowDefinition>
+                <RowDefinition Height="Auto" MinHeight="30"></RowDefinition>
+                <RowDefinition Height="Auto" MinHeight="30"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+
+            <DockPanel Grid.Row="0" HorizontalAlignment="Left" Grid.ColumnSpan="2" VerticalAlignment="Center">
+
+                <TextBlock  Text ="系统名称 :  "  VerticalAlignment="Center" HorizontalAlignment="Left" ></TextBlock>
+                <TextBox Width="380" Height="23" VerticalAlignment="Center"  Text="{Binding SystemName,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding IsD}"></TextBox>
+                <TextBlock Text="[重启有效]" VerticalAlignment="Center" HorizontalAlignment="Left"  ></TextBlock>
+            </DockPanel>
+            <DockPanel Grid.Row="1" HorizontalAlignment="Left" Grid.ColumnSpan="2" VerticalAlignment="Center" Visibility="Collapsed">
+
+                <TextBlock  Text ="样式主题 :  " ToolTip="样式主题修改后下次重启有效." VerticalAlignment="Center" HorizontalAlignment="Left"  ></TextBlock>
+
+                <ComboBox ItemsSource="{Binding StyleItems}" SelectedItem="{Binding CurrentSelectItem}" DisplayMemberPath="Name" IsEnabled="{Binding IsD}" Width="160"></ComboBox>
+                <TextBlock  Text =" [重启有效]" ToolTip="样式主题修改后下次重启有效." VerticalAlignment="Center" HorizontalAlignment="Left" ></TextBlock>
+            </DockPanel>
+
+            <DockPanel Grid.Row="1" HorizontalAlignment="Left" Grid.ColumnSpan="2" VerticalAlignment="Center" >
+
+                <CheckBox Content="时间表设置保存弹出周设置发送情况【不支持多段】" IsChecked="{Binding IsTimeTableSaveShowReport}"></CheckBox>
+
+            </DockPanel>
+            <DockPanel Grid.Row="2" HorizontalAlignment="Left" Grid.ColumnSpan="2" VerticalAlignment="Center">
+                <ComboBox ItemsSource="{Binding OpenCloseLigthSecondConfirm}" SelectedIndex="{Binding IsOpenCloseLigthSecondConfirm}" DisplayMemberPath="Name" IsEnabled="{Binding IsD}" Width="80"></ComboBox>
+                <TextBlock  Text =" 手动开灯验证方式[重启有效]" ToolTip="手动开灯验证方式下次重启有效." VerticalAlignment="Center" HorizontalAlignment="Left" ></TextBlock>
+                <!--<CheckBox Content="手动开关灯二次确认" IsChecked="{Binding IsOpenCloseLigthSecondConfirm}"></CheckBox>-->
+                <TextBlock  Text =" 系统经度：" ToolTip="系统经度：" Margin="50,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" ></TextBlock>
+                <TextBox Width="80" Height="23" VerticalAlignment="Center"  Text="{Binding SystemX,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding IsD}"></TextBox>
+            </DockPanel>
+            <DockPanel Grid.Row="3" HorizontalAlignment="Left" Grid.ColumnSpan="2" VerticalAlignment="Center">
+                <ComboBox ItemsSource="{Binding OpenCloseLigthSecondConfirm}" SelectedIndex="{Binding IsCloseLigthSecondConfirm}" DisplayMemberPath="Name" IsEnabled="{Binding IsD}" Width="80"></ComboBox>
+                <TextBlock  Text =" 手动关灯验证方式[重启有效]" ToolTip="手动关灯验证方式下次重启有效." VerticalAlignment="Center" HorizontalAlignment="Left" ></TextBlock>
+                <TextBlock  Text =" 系统纬度：" ToolTip="系统纬度：" Margin="50,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" ></TextBlock>
+                <TextBox Width="80" Height="23" VerticalAlignment="Center"  Text="{Binding SystemY,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding IsD}"></TextBox>
+
+            </DockPanel>
+            <DockPanel Grid.Row="4" HorizontalAlignment="Left" Grid.ColumnSpan="2" VerticalAlignment="Center">
+
+                <CheckBox Content="备份数据库到本地" IsChecked="{Binding IsCopySvrDataBase}"></CheckBox>
+                <CheckBox  Margin="50,0,0,0" IsChecked="{Binding IsRefreshAfterReCn}" Content="系统重连后,不刷新界面[默认刷新]" ></CheckBox>
+            </DockPanel>
+
+            <DockPanel Grid.Row="5" HorizontalAlignment="Left" Grid.ColumnSpan="2" VerticalAlignment="Center">
+
+
+                <CheckBox IsChecked="{Binding IsShowNewErrArriveOnUi}" Content="是否显示推送故障数量" ></CheckBox>
+            </DockPanel>
+
+            <DockPanel Grid.Row="6" HorizontalAlignment="Left" Grid.ColumnSpan="2" VerticalAlignment="Center">
+
+
+                <CheckBox IsChecked="{Binding IsShowLotStopRunning}" Content="控制中心是否显示批量停运" ></CheckBox>
+            </DockPanel>
+
+            <DockPanel Grid.Row="7" HorizontalAlignment="Left" Grid.ColumnSpan="2" VerticalAlignment="Center">
+
+
+                <CheckBox IsChecked="{Binding IsShowTimeTableOnTime}" Content="开灯后是否立即显示时间表报表" ></CheckBox>
+            </DockPanel>
+
+            <DockPanel Grid.Row="8" HorizontalAlignment="Left" Grid.ColumnSpan="2" VerticalAlignment="Center">
+
+
+                <CheckBox IsChecked="{Binding IsAllowVoiceReport}" Content="开启语音报警 " ></CheckBox>
+            </DockPanel>
+            <DockPanel Grid.Row="9" HorizontalAlignment="Left" Grid.ColumnSpan="2" VerticalAlignment="Center">
+                <CheckBox IsChecked="{Binding IsShowErrsCal}" Content="开启故障统计 [故障查询界面显示故障统计功能]" ></CheckBox>
+            </DockPanel>
+
+            <DockPanel Grid.Row="10" HorizontalAlignment="Left" Grid.ColumnSpan="2" VerticalAlignment="Center">
+                <CheckBox IsChecked="{Binding IsControlCenterNoErr}" Content="控制中心显示屏蔽报警功能" ></CheckBox>
+            </DockPanel>
+
+            <DockPanel Grid.Row="11" HorizontalAlignment="Left" Grid.ColumnSpan="2" VerticalAlignment="Center">
+                <CheckBox IsChecked="{Binding IsShowThisViewOnNewErrArriveInfo}" Content="有新故障时弹出当前故障界面" ></CheckBox>
+            </DockPanel>
+            <DockPanel Grid.Row="12" HorizontalAlignment="Left" Grid.ColumnSpan="2" VerticalAlignment="Center">
+                <ComboBox ItemsSource="{Binding ShowArgsInErrInfo}" SelectedIndex="{Binding IsShowArgsInErrInfo}" DisplayMemberPath="Name"  Width="80"></ComboBox>
+                <TextBlock  Text =" 故障查询包含参数数据[重启有效]" ToolTip="故障查询包含参数数据." VerticalAlignment="Center" HorizontalAlignment="Left" ></TextBlock>
+                <!--<CheckBox IsChecked="{Binding IsShowArgsInErrInfo}" Content="故障查询包含参数数据" ></CheckBox>-->
+            </DockPanel>
+
+
+            <DockPanel Grid.Row="14" HorizontalAlignment="Left" Grid.ColumnSpan="2" VerticalAlignment="Center">
+
+                <TextBlock  Text ="终端参数设置内终端备注改名为： "  VerticalAlignment="Center" HorizontalAlignment="Left" ></TextBlock>
+                <TextBox Width="120" Height="23" VerticalAlignment="Center"  Text="{Binding RemarkName,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ></TextBox>
+
+            </DockPanel>
+
+            <!--<DockPanel Grid.Row="6" HorizontalAlignment="Left" Grid.ColumnSpan="2" VerticalAlignment="Center">
+
+
+                <CheckBox IsChecked="{Binding IsShowFastControl}" Content="终端树显示快速操作框" ></CheckBox>
+            </DockPanel>
+            <DockPanel Grid.Row="7" HorizontalAlignment="Left" Grid.ColumnSpan="2" VerticalAlignment="Center">
+                <Label VerticalAlignment="Center" Grid.ColumnSpan="3" Height="12" Width="100" MouseDoubleClick="IsLdlAs100Per_MouseDoubleClick" Name="IsLdlAs100PerLabel"></Label>
+                <CheckBox IsChecked="{Binding IsLdlAs100Per}" Content="亮灯率有电流即100%" Name="IsLdlAs100Per" Visibility="Hidden" ></CheckBox>
+
+            </DockPanel>-->
+            <!--<DockPanel Grid.Row="10" HorizontalAlignment="Left" Grid.ColumnSpan="2" VerticalAlignment="Center">
+                <CheckBox IsChecked="{Binding IsOnlyShowTmlOnline}" Content="在线数量仅显示终端" ></CheckBox>
+            </DockPanel>-->
+            <DockPanel Grid.Row="14" HorizontalAlignment="Left" Grid.ColumnSpan="2" VerticalAlignment="Center">
+                <Label VerticalAlignment="Center" Grid.ColumnSpan="3" Height="12" Width="100" MouseDoubleClick="Label_MouseDoubleClick" Name="IsOldUseTwoOpenLightSectionLabel"></Label>
+                <CheckBox IsChecked="{Binding IsOldUseTwoOpenLightSection}" Content="老终端支持软件下发二次开关灯(不稳定)" Name="IsOldUseTwoOpenLightSection" Visibility="Hidden" ></CheckBox>
+                <!--Visibility="{Binding IsOldUseTwoOpenLightSection}",Converter={StaticResource IsCheckedOldView}-->
+            </DockPanel>
+
+            <!--<DockPanel Grid.Row="13" HorizontalAlignment="Left" Grid.ColumnSpan="2" VerticalAlignment="Center">
+                <CheckBox IsChecked="{Binding IsShowHLbph}" Content="终端火零检测" ></CheckBox>
+            </DockPanel>-->
+
+            <DockPanel Grid.Row="13" Grid.ColumnSpan="2" VerticalAlignment="Center" Visibility="Visible" HorizontalAlignment="Left">
+                <TextBlock Width="Auto" HorizontalAlignment="Left" VerticalAlignment="Center">添加终端时自动载入以下参数</TextBlock>
+                <Button  Content="清除"  Command="{Binding CmdClearParaFile}" HorizontalAlignment="Left"   Margin="10,0,0,0"
+                     Width="60"  Height="Auto"></Button>
+                <Button  Content="打开"  Command="{Binding CmdOpenParaFile}" HorizontalAlignment="Left"   Margin="10,0,0,0"
+                     Width="60"  Height="Auto"></Button>
+                <Label Margin=" 10,0,0,0" Width="Auto" Content="{Binding LoadParaFileName}"></Label>
+            </DockPanel>
+
+            <DockPanel Grid.Row="15" HorizontalAlignment="Left" Grid.ColumnSpan="2" VerticalAlignment="Center">
+
+                <TextBlock  Text ="屏蔽终端回路小电流：                  "  VerticalAlignment="Center" HorizontalAlignment="Left" ></TextBlock>
+                <TextBox Width="50" Height="23" VerticalAlignment="Center"  Text="{Binding GlobalAShield,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ></TextBox>
+                <Label >A</Label>
+            </DockPanel>
+
+            <DockPanel Grid.Row="16" HorizontalAlignment="Left" Grid.ColumnSpan="2" VerticalAlignment="Center">
+
+                <TextBlock  Text ="地域设置："  VerticalAlignment="Center" HorizontalAlignment="Left" ></TextBlock>
+                <Button  Content="设置"  Command="{Binding CmdSetRegion}" HorizontalAlignment="Left"   Margin="10,0,0,0"
+                         Width="60"  Height="23"></Button>
+                <TextBlock Width="500" Height="23" VerticalAlignment="Center" Margin="20,0,0,0" Text="{Binding GlobalAShield}" ></TextBlock>
+            </DockPanel>
+            <!--<DockPanel Grid.Row="15" HorizontalAlignment="Left" Grid.ColumnSpan="2" VerticalAlignment="Center" Visibility="{Binding IsShowHLbph}">
+                <TextBlock Width="250" HorizontalAlignment="Left" VerticalAlignment="Center">终端火零不平衡报警电流差值上限</TextBlock>
+                <TextBox MinWidth="50" Text="{Binding HLbphUpper}" Margin="1,1,5,1"  ></TextBox>
+                <Label >A</Label>
+            </DockPanel>
+
+            <DockPanel Grid.Row="16" HorizontalAlignment="Left" Grid.ColumnSpan="2" VerticalAlignment="Center" Visibility="{Binding IsShowHLbph}">
+                <TextBlock Margin=" 0,0,0,0" Width="250" HorizontalAlignment="Left" VerticalAlignment="Center">终端火零不平衡消警电流差值下限</TextBlock>
+                <TextBox MinWidth="50" Text="{Binding HLbphLower}" Margin="1,1,5,1" ></TextBox>
+                <Label >A</Label>
+            </DockPanel>
+
+            <DockPanel Grid.Row="17" HorizontalAlignment="Left" Grid.ColumnSpan="2" VerticalAlignment="Center" Visibility="{Binding IsShowHLbph}">
+                <TextBlock Margin=" 0,0,0,0" Width="250"  HorizontalAlignment="Left" VerticalAlignment="Center">终端火零不平衡更新报警值</TextBlock>
+                <TextBox MinWidth="50" Text="{Binding HlbphUpdateAlarm}" Margin="1,1,5,1"  ></TextBox>
+                <Label >A</Label>
+            </DockPanel>
+
+            <DockPanel Grid.Row="18" HorizontalAlignment="Left" Grid.ColumnSpan="2" VerticalAlignment="Center" Visibility="{Binding IsShowHLbph}">
+                <TextBlock Margin=" 0,0,0,0" Width="250"  HorizontalAlignment="Left" VerticalAlignment="Center">终端火零不平衡检测报警次数</TextBlock>
+                <TextBox MinWidth="50" Text="{Binding HLbphTimer}" Margin="1,1,5,1" MaxLength="2" ></TextBox>
+            </DockPanel>
+
+            <DockPanel Grid.Row="19" HorizontalAlignment="Left" Grid.ColumnSpan="2" VerticalAlignment="Center" Visibility="{Binding IsShowHLbph}">
+                <TextBlock Margin=" 0,0,0,0" Width="250"  HorizontalAlignment="Left" VerticalAlignment="Center">火零不平衡应急关灯屏蔽周设置时间</TextBlock>
+                <TextBox MinWidth="50" Text="{Binding HLbphShieldTimer}" Margin="1,1,5,1" MaxLength="2" IsEnabled="{Binding IsD}" ></TextBox>
+                <Label >小时（当天中午12点起多少小时，应急关灯屏蔽周设置)</Label>
+            </DockPanel>-->
+
+
+            <!--<DockPanel Grid.Row="19" HorizontalAlignment="Left" Grid.ColumnSpan="2" VerticalAlignment="Center" Visibility="Visible">
+                <Label Margin=" 5,0,0,0" Width="Auto" Content="{Binding LoadParaFileName}"></Label>
+            </DockPanel>-->
+            <Button  Tag="11060007" Content="应用" ToolTip="样式主题修改后下次重启有效."  Command="{Binding CmdApply}" Grid.ColumnSpan="2" HorizontalAlignment="Right" Margin="0,5,30,5"
+                     Width="120"  Height="25" Grid.Row="20"></Button>
+        </Grid>
+    </Grid>
+</UserControl>

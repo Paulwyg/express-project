@@ -1,0 +1,223 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{5FB96429-600C-435B-B24F-7A19C5B92216}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Wlst.Ux.Wj6005Module</RootNamespace>
+    <AssemblyName>Wlst.Ux.Wj6005Module</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\ZDebug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\Rr\Binaries\WPF\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Elysium, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ZDebug\Elysium.dll</HintPath>
+    </Reference>
+    <Reference Include="Lurx.Controls, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Practices.Prism">
+      <HintPath>..\DLL\Microsoft.Practices.Prism.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Prism.MefExtensions">
+      <HintPath>..\DLL\Microsoft.Practices.Prism.MefExtensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Prism.MefExtensions.Event, Version=4.1.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\Cetc50Debug\Microsoft.Practices.Prism.MefExtensions.Event.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Telerik.Windows.Controls, Version=2013.1.720.40, Culture=neutral, PublicKeyToken=d3625f8bf04286d7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ZDebug\Telerik.Windows.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.Docking, Version=2013.1.720.40, Culture=neutral, PublicKeyToken=d3625f8bf04286d7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ZDebug\Telerik.Windows.Controls.Docking.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.GridView, Version=2013.1.720.40, Culture=neutral, PublicKeyToken=d3625f8bf04286d7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ZDebug\Telerik.Windows.Controls.GridView.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.Input, Version=2013.1.720.40, Culture=neutral, PublicKeyToken=d3625f8bf04286d7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ZDebug\Telerik.Windows.Controls.Input.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.Navigation, Version=2013.1.720.40, Culture=neutral, PublicKeyToken=d3625f8bf04286d7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ZDebug\Telerik.Windows.Controls.Navigation.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.PrismAdapter, Version=4.1.0.1, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.Windows.Data, Version=2013.1.1704.40, Culture=neutral, PublicKeyToken=d3625f8bf04286d7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ZDebug\Telerik.Windows.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="WindowForWlst, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ZDebug\WindowForWlst.dll</HintPath>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="Wlst.Cr.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\Cetc50Debug\Wlst.Cr.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Wlst.Cr.Coreb, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="Wlst.Cr.CoreMims, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ZDebug\Wlst.Cr.CoreMims.dll</HintPath>
+    </Reference>
+    <Reference Include="Wlst.Cr.CoreOne, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ZDebug\Wlst.Cr.CoreOne.dll</HintPath>
+    </Reference>
+    <Reference Include="Wlst.Cr.PPProtocolSvrCnt, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="Wlst.Cr.Setting, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="Wlst.Sr.EquipmentInfoHolding, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\Cetc50Debug\Wlst.Sr.EquipmentInfoHolding.dll</HintPath>
+    </Reference>
+    <Reference Include="Wlst.Sr.Menu, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Rr\Binaries\WPF\Wlst.Sr.Menu.dll</HintPath>
+    </Reference>
+    <Reference Include="Wlst.Sr.PPPandSocketSvr, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ZDebug\Wlst.Sr.PPPandSocketSvr.dll</HintPath>
+    </Reference>
+    <Reference Include="Wlst.Sr.ProtocolPhone, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Rr\Binaries\WPF\Wlst.Sr.ProtocolPhone.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Jd601TmlInfo\Jd601InstantData\Service\IIJd601InstantData.cs" />
+    <Compile Include="Jd601TmlInfo\Jd601InstantData\ViewModel\EsuDataOneItemViewModel.cs" />
+    <Compile Include="Jd601TmlInfo\Jd601InstantData\ViewModel\EsuDataTwoItemViewModel.cs" />
+    <Compile Include="Jd601TmlInfo\Jd601InstantData\ViewModel\Jd601InstantDataViewModel.cs" />
+    <Compile Include="Jd601TmlInfo\Jd601InstantData\View\Jd601InstantDataView.xaml.cs">
+      <DependentUpon>Jd601InstantDataView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Jd601ManageSettingViewModel\Views\Jd601ManageSettingView.xaml.cs">
+      <DependentUpon>Jd601ManageSettingView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Jd601ManageViewModel\NavToJd601ManageView.cs" />
+    <Compile Include="Jd601ManageViewModel\Services\IIJd601ManageView.cs" />
+    <Compile Include="Jd601ManageViewModel\ViewModel\Jd601ManageViewModel.cs" />
+    <Compile Include="Jd601ManageViewModel\ViewModel\TreeNodeWj1090ViewModel.cs" />
+    <Compile Include="Jd601ManageViewModel\Views\Jd601ManageView.xaml.cs">
+      <DependentUpon>Jd601ManageView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Jd601TmlInfo\Jd601OperatorControl\Service\IIJd601OperatorControl.cs" />
+    <Compile Include="Jd601TmlInfo\Jd601OperatorControl\ViewModel\EsuDataOneItemViewModel.cs" />
+    <Compile Include="Jd601TmlInfo\Jd601OperatorControl\ViewModel\Jd601OperatorControlViewModel.cs" />
+    <Compile Include="Jd601TmlInfo\Jd601OperatorControl\View\Jd601OperatorControlView.xaml.cs">
+      <DependentUpon>Jd601OperatorControlView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Jd601TmlInfo\NavToJd601TmlInfoView.cs" />
+    <Compile Include="Jd601TmlInfo\InfoSet\Services\IIJd601TmlInfoView.cs" />
+    <Compile Include="Jd601TmlInfo\InfoSet\ViewModel\Jd601TmlInfoViewModel.cs" />
+    <Compile Include="Jd601TmlInfo\InfoSet\Views\Jd601TmlInfoView.xaml.cs">
+      <DependentUpon>Jd601TmlInfoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Jd601TmlInfo\TmlInfoSetZcForjd601\Services\IITmlInfoSetZcForjd601.cs" />
+    <Compile Include="Jd601TmlInfo\TmlInfoSetZcForjd601\ViewModel\TmlInfoSetZcForjd601ViewModel.cs" />
+    <Compile Include="Jd601TmlInfo\TmlInfoSetZcForjd601\View\TmlInfoSetZcForjd601View.xaml.cs">
+      <DependentUpon>TmlInfoSetZcForjd601View.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BaseViewModel\Jd601ParViewModel.cs" />
+    <Compile Include="Models\EsuControlState.cs" />
+    <Compile Include="Models\Jd601DataTwoAdjustVollevel.cs" />
+    <Compile Include="ModuleExport.cs" />
+    <Compile Include="Resources\ImageResources.cs" />
+    <Compile Include="Services\EventIdAssign.cs" />
+    <Compile Include="Services\MenuIdAssgin.cs" />
+    <Compile Include="Services\ViewIdAssign.cs" />
+    <Compile Include="Models\BaseViewModel\Jd601AdjustInfoViewModel.cs" />
+    <Compile Include="Jd601ManageSettingViewModel\NavLineJd601ManageSettingView.cs" />
+    <Compile Include="Jd601ManageSettingViewModel\Services\IIJd601ManageSettingViewModel.cs" />
+    <Compile Include="Jd601ManageSettingViewModel\ViewModel\Jd601ManageSettingViewModel.cs" />
+    <Compile Include="Jd601TmlInfo\TmlParametersInfoSetForJd601\Services\IITmlParametersInfoSetForJd601.cs" />
+    <Compile Include="Jd601TmlInfo\TmlParametersInfoSetForJd601\ViewModel\TmlParametersInfoSetForJd601ViewModel.cs" />
+    <Compile Include="Jd601TmlInfo\TmlParametersInfoSetForJd601\View\TmlParametersInfoSetForJd601View.xaml.cs">
+      <DependentUpon>TmlParametersInfoSetForJd601View.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UxWj6005Module.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Ux\Wlst.Ux.Setting\Wlst.Ux.Setting.csproj">
+      <Project>{71F7B8B4-1E4E-4CA9-88B3-2DA44E3E8333}</Project>
+      <Name>Wlst.Ux.Setting</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Page Include="Jd601TmlInfo\Jd601InstantData\View\Jd601InstantDataView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Jd601ManageSettingViewModel\Views\Jd601ManageSettingView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Jd601ManageViewModel\Views\Jd601ManageView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Jd601TmlInfo\Jd601OperatorControl\View\Jd601OperatorControlView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Jd601TmlInfo\InfoSet\Views\Jd601TmlInfoView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Jd601TmlInfo\TmlInfoSetZcForjd601\View\TmlInfoSetZcForjd601View.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Jd601TmlInfo\TmlParametersInfoSetForJd601\View\TmlParametersInfoSetForJd601View.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,195 @@
+﻿<UserControl x:Class="Wlst.Ux.EquipemntLightFault.EquipmentFaultRecordQueryViewModel.Views.EquipmentFaultRecordQueryView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                          
+             xmlns:AppleWindowSet="clr-namespace:Elysium.ThemesSet.AppleWindowSet;assembly=Elysium"
+                        xmlns:Services1="clr-namespace:Wlst.Ux.EquipemntLightFault.EquipmentFaultRecordQueryViewModel.Services"
+             xmlns:converters="clr-namespace:Wlst.Ux.EquipemntLightFault.EquipmentFaultRecordQueryViewModel.Converters"
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" mc:Ignorable="d" 
+             d:DesignHeight="500" d:DesignWidth="950">
+    <UserControl.Resources >
+        <Services1:RadioButtonBooleanConverter x:Key="RadioButtonBooleanConverter" />
+        <converters:BoolToVisibleConverter x:Key="BoolToVisible"/>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Label x:Name="fg"/>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <RadioButton GroupName="rbGroupNew" Grid.Column="0"  x:Name="rbnew" VerticalContentAlignment="Center" VerticalAlignment="Center" IsChecked="{Binding Path=IsOldFaultQuery, Mode=TwoWay, Converter={StaticResource RadioButtonBooleanConverter}, ConverterParameter=false}" 
+                         Content="最新故障" />
+            <RadioButton GroupName="rbGroupOld" Grid.Column="1" x:Name="rbold" VerticalContentAlignment="Center" VerticalAlignment="Center" Margin="10,0,0,0" IsChecked="{Binding Path=IsOldFaultQuery, Mode=TwoWay, Converter={StaticResource RadioButtonBooleanConverter}, ConverterParameter=true}" 
+                         Content="历史故障" />
+            <CheckBox IsChecked="{Binding IsNewAllQuery}" IsEnabled="{Binding ElementName=rbnew,Path=IsChecked}" Content="全部" Margin="10,0,0,0" VerticalAlignment="Center" Grid.Column="2"></CheckBox>
+            <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Text="起始时间:" Grid.Column="3" Margin="10,0,0,0" VerticalAlignment="Center"></TextBlock>
+            <DatePicker   HorizontalAlignment="Center"   SelectedDateFormat="Short" Grid.Column="4"   Margin="10,0,0,0" Text="{Binding DtStartTime,Mode=TwoWay}" IsEnabled="{Binding IsFaultQueryTimeStartEnable}" Width="140"  VerticalAlignment="Center"></DatePicker>
+
+            <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Text="结束时间:" Grid.Column="5" Margin="10,0,0,0" VerticalAlignment="Center"></TextBlock>
+            <DatePicker  HorizontalAlignment="Center" SelectedDateFormat="Short" Grid.Column="6"   Text="{Binding DtEndTime,Mode=TwoWay}" IsEnabled="{Binding ElementName=rbold,Path=IsChecked}" Width="140"  VerticalAlignment="Center"></DatePicker>
+            <CheckBox Content="高级搜索" x:Name="AdvancedQuery" IsChecked="{Binding IsAdvancedQueryChecked}"  Grid.Column="7" VerticalAlignment="Center" Margin="10,0,0,0" />
+            <DockPanel HorizontalAlignment="Left" Grid.Column="8" Margin="30,0,0,0">
+                 <Button Content="查询"  Command="{Binding CmdQuery}" Height="25" MinWidth="85"></Button>
+                 <Label Width="25" Height="25" MouseDoubleClick="Label_MouseDoubleClick"></Label>
+                <Button Content="删除"  Command="{Binding CmdDelete}" Visibility="{Binding CmdDeleteVisi}" Height="25" MinWidth="50"></Button>
+            </DockPanel>
+           
+        </Grid>
+        <Grid Visibility="{Binding ElementName=AdvancedQuery,Path=IsChecked, Converter={StaticResource BoolToVisible}}"  Grid.Row="1" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Text="终端故障：" HorizontalAlignment="Left"  Margin="0,10,0,0"  VerticalAlignment="Center"/>
+            <Grid Grid.Column="1" Margin="12,2,0,0" HorizontalAlignment="Left" Grid.ColumnSpan="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <CheckBox  x:Name="Tml" Grid.Column="0" VerticalAlignment="Center" IsChecked="{Binding IsSingleEquipmentQuery}" Content="查询单个终端故障 [通过点击左侧终端树进行终端选择]  "/>
+
+                <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}"  Grid.Column="1" Visibility="{Binding ElementName=Tml, Path=IsChecked, Converter={StaticResource BoolToVisible} }" Text="{Binding RtuName}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0"/>
+                <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}"  Grid.Column="2" Visibility="{Binding ElementName=Tml, Path=IsChecked, Converter={StaticResource BoolToVisible} }" Text="-" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0"/>
+                <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}"  Grid.Column="3" Visibility="{Binding ElementName=Tml, Path=IsChecked, Converter={StaticResource BoolToVisible} }" Text="{Binding PhyId}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0"/>
+
+
+                
+            </Grid>
+
+            <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Text="设备故障：" Margin="0,10,0,0" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <ListBox  HorizontalAlignment="Left" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2"   Margin="0,10,0,0"  MinWidth="100" MaxWidth="960" VerticalAlignment="Top" ItemsSource="{Binding TypeItems }">
+                <ListBox.Template>
+                    <ControlTemplate TargetType="{x:Type ListBox}">
+                        <!--<ScrollViewer Background="Transparent" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">-->
+                        <WrapPanel Orientation="Horizontal" IsItemsHost="True" ScrollViewer.CanContentScroll="True"/>
+                        <!--</ScrollViewer>-->
+                    </ControlTemplate>
+                </ListBox.Template>
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <CheckBox Width="140" Margin="10,2,0,0" IsChecked="{Binding IsSelected}" HorizontalAlignment="Left" VerticalAlignment="Top" Content="{Binding Name}"></CheckBox>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+                <ListBox.ItemContainerStyle>
+                    <Style TargetType="ListBoxItem">
+                        <Setter Property="Background" Value="Transparent"/>
+                    </Style>
+                </ListBox.ItemContainerStyle>
+            </ListBox>
+            <ListBox   Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="2"   Margin="0,10,0,0"  MinWidth="100" MaxWidth="960" VerticalAlignment="Top" ItemsSource="{Binding TypeItems }">
+                <ListBox.Template>
+                    <ControlTemplate TargetType="{x:Type ListBox}">
+                        <!--<ScrollViewer Background="Transparent" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">-->
+                        <WrapPanel Orientation="Vertical" IsItemsHost="True" ScrollViewer.CanContentScroll="True"/>
+                        <!--</ScrollViewer>-->
+                    </ControlTemplate>
+                </ListBox.Template>
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Margin="20,0,0,0" Visibility="{Binding Key.IsSelected, Converter={StaticResource BoolToVisible }}" VerticalAlignment="Top" Grid.Column="0" HorizontalAlignment="Left" Text="{Binding Name}"/>
+                            <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Visibility="{Binding Key.IsSelected, Converter={StaticResource BoolToVisible }}" VerticalAlignment="Top" Grid.Column="1" HorizontalAlignment="Left" Text="："/>
+                            <ListBox  Grid.Column="2" Margin="0,0,0,10" VerticalAlignment="Top"   MinWidth="400" MaxWidth="900"  ItemsSource="{Binding Value }">
+                                <ListBox.Template>
+                                    <ControlTemplate TargetType="{x:Type ListBox}">
+                                        <!--<ScrollViewer Background="Transparent" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">-->
+                                        <WrapPanel Orientation="Horizontal" IsItemsHost="True" ScrollViewer.CanContentScroll="True"/>
+                                        <!--</ScrollViewer>-->
+                                    </ControlTemplate>
+                                </ListBox.Template>
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <CheckBox Width="140" Margin="10,2,0,0" IsChecked="{Binding IsSelected}" VerticalAlignment="Top" Content="{Binding Name}"></CheckBox>
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                                <ListBox.ItemContainerStyle>
+                                    <Style TargetType="ListBoxItem">
+                                        <Setter Property="Background" Value="Transparent"/>
+                                    </Style>
+                                </ListBox.ItemContainerStyle>
+                            </ListBox>
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+                <ListBox.ItemContainerStyle>
+                    <Style TargetType="ListBoxItem">
+                        <Setter Property="Background" Value="Transparent"/>
+                    </Style>
+                </ListBox.ItemContainerStyle>
+            </ListBox>
+
+        </Grid>
+        <telerik:RadGridView AutoGenerateColumns="False" ItemsSource="{Binding Records}" Grid.Row="2" 
+								 Background="Transparent" x:Name="rgv"
+                                  CanUserFreezeColumns="False" HorizontalAlignment="Left"
+								  CanUserReorderColumns="False" 
+								  RowIndicatorVisibility="Collapsed"   ShowGroupPanel="False" ShowColumnHeaders="True" SnapsToDevicePixels="True"
+                                 MouseDoubleClick="rgv_MouseDoubleClick">
+            <telerik:RadGridView.Columns>
+                <telerik:GridViewDataColumn Header="序号" IsFilterable="False" Width="60"  DataMemberBinding="{Binding Index}" IsReadOnly="True" />
+                <telerik:GridViewDataColumn Header="终端地址"    DataMemberBinding="{Binding PhyId}"  IsReadOnly="True"   Width="90"/>
+                <telerik:GridViewDataColumn Header="终端名称" IsFilterable="False"  DataMemberBinding="{Binding RtuName}"  IsReadOnly="True"   Width="160"/>
+                <telerik:GridViewDataColumn Header="故障回路"  IsSortable="False" DataMemberBinding="{Binding RtuLoopName}"  IsReadOnly="True"  MaxWidth="150" MinWidth="120"/>
+                <telerik:GridViewDataColumn Header="故障名称"   DataMemberBinding="{Binding FaultName}"  IsReadOnly="True"  MaxWidth="180" Width="130"/>
+                <!--<telerik:GridViewDataColumn Header="次数"   DataMemberBinding="{Binding Count}"  IsReadOnly="True"  Width="60" />-->
+                <telerik:GridViewDataColumn Header="发生时间"  IsFilterable="False" DataMemberBinding="{Binding DtCreateTime,StringFormat={}\{0:yyyy-MM-dd HH:mm:ss\}}"  IsReadOnly="True"  MaxWidth="190" MinWidth="60"/>
+                <telerik:GridViewDataColumn Header="消除时间"  IsFilterable="False" DataMemberBinding="{Binding DtRemoceTime,StringFormat={}\{0:yyyy-MM-dd HH:mm:ss\}}"  IsVisible="{Binding ElementName=rbold,Path=IsChecked}"  IsReadOnly="True"  MaxWidth="190" MinWidth="60"/>
+
+                <telerik:GridViewDataColumn Header="备注" Width="160" IsFilterable="False" DataMemberBinding="{Binding Remark}"  IsReadOnly="True" />
+
+                
+            </telerik:RadGridView.Columns>
+        </telerik:RadGridView>
+        <Grid Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}"  Text="{Binding Remind}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0"/>
+            <!--<CheckBox IsChecked="{Binding IsShowThisViewOnNewErrArrive}" Content="有新故障时自动弹出并查询" HorizontalAlignment="Right" VerticalAlignment="Center"></CheckBox>-->
+            <CheckBox IsChecked="{Binding IsLockThisViewOnNewErrArrive}" Content="锁定界面" HorizontalAlignment="Right" VerticalAlignment="Center"></CheckBox>
+            <Button Content="导出"  Visibility="{Binding ExportVisi}" Grid.Column="1"  Margin="20,2,20,2" MinWidth="120"  MinHeight="25" Command="{Binding CmdExport}" /> <!--Click="Button_Click"-->
+            <!--<Button Content="打印"  Visibility="{Binding ExportVisi}" Grid.Column="2"  Margin="20,2,20,2" MinWidth="120"  MinHeight="25" Click="Button_Click_1" />-->
+        </Grid>
+    </Grid>
+</UserControl>

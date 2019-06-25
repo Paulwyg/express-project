@@ -1,0 +1,55 @@
+﻿<UserControl x:Class="Wlst.Ux.Nr6005Module.BatchStopRunning.Views.BatchStopRunning"
+                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" mc:Ignorable="d" 
+             xmlns:Converters="clr-namespace:Wlst.Ux.Nr6005Module.BatchStopRunning.Converters"
+             d:DesignHeight="300" d:DesignWidth="950">
+
+    <UserControl.Resources>
+        <Converters:BoolToVisibleConverter x:Key="BoolToVisible"/>
+        <Converters:OppositeBoolToVisibleConverter x:Key="OppositeBoolToVisibleConverter"/>
+    </UserControl.Resources>
+    <Grid>
+
+        <Grid.RowDefinitions >
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="40"/>
+
+        </Grid.RowDefinitions>
+        <telerik:RadGridView Grid.Row="1" Margin="5" Grid.Column="0"  AutoGenerateColumns="False" ItemsSource="{Binding Items}"  >
+            <telerik:RadGridView.RowStyle>
+                <Style TargetType="telerik:GridViewRow">
+                    <Setter Property="Background"    Value="{Binding Path=Color, Mode=TwoWay}" />
+                </Style>
+            </telerik:RadGridView.RowStyle>
+            <telerik:RadGridView.Columns>
+                <telerik:GridViewDataColumn DataMemberBinding="{Binding Path=PhyId}"  IsFilterable="False"  Header="设备地址" MinWidth="100" MaxWidth="180"/>
+                <telerik:GridViewDataColumn DataMemberBinding="{Binding Path=RtuName}"  IsFilterable="False"  Header="设备名称" MinWidth="200" MaxWidth="250"/>
+                <telerik:GridViewDataColumn DataMemberBinding="{Binding Path=RtuState}"  IsFilterable="False"  Header="终端状态" MinWidth="100" MaxWidth="180"/>
+                <telerik:GridViewDataColumn DataMemberBinding="{Binding Path=Answer}"  IsFilterable="False"  Header="操作应答" MinWidth="100" MaxWidth="180"/>
+                <!--<telerik:GridViewDataColumn DataMemberBinding="{Binding Path=DataCreateTime,StringFormat={}\{0:yyyy-MM-dd HH:mm:ss\}}"  IsFilterable="False"  Header="应答时间" MinWidth="140" MaxWidth="180"/>-->
+            </telerik:RadGridView.Columns>
+        </telerik:RadGridView>
+        <DockPanel Grid.Row="3">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="1 " Content="补停运" Height="28" Width="120" Margin="10,0,10,0" Command="{Binding CmdStopRunAgain}" Visibility="{Binding IsStopRun, Converter={StaticResource BoolToVisible} }"/>
+                <Button Grid.Column="2" Content="停运" Height="28" Width="120" Margin="10,0,10,0" Command="{Binding CmdStopRun}" Visibility="{Binding IsStopRun, Converter={StaticResource BoolToVisible} }"/>
+                <Button Grid.Column="3" Content="补解除停运" Height="28" Width="120" Margin="10,0,10,0" Command="{Binding CmdReRunAgain}" Visibility="{Binding IsStopRun, Converter={StaticResource OppositeBoolToVisibleConverter} }"/>
+                <Button Grid.Column="4 " Content="解除停运" Height="28" Width="120" Margin="10,0,10,0" Command="{Binding CmdReRun}" Visibility="{Binding IsStopRun, Converter={StaticResource OppositeBoolToVisibleConverter} }"/>
+                <!--<Button Grid.Column=" 3" Content="关闭" Height="28" Width="120" Margin="10,0,20,0" Command="{Binding CmdClose}"/>-->
+            </Grid>
+        </DockPanel>
+    </Grid>
+</UserControl>

@@ -1,0 +1,81 @@
+﻿<WindowForWlst:CustomChromeWindow  x:Class="Wlst.Ux.EquipemntLightFault.EquipmentFaultDefineSettingViewModel.RtuAmpSxxNew.Views.WatchTmlList"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+                                   xmlns:WindowForWlst="clr-namespace:WindowForWlst;assembly=WindowForWlst"
+                                   mc:Ignorable="d" 
+             Height="700" Width="830">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="35"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <telerik:RadTreeListView   AllowDrop="True" AutoGenerateColumns="False" ShowGroupPanel="False" RowIndicatorVisibility="Collapsed" HorizontalAlignment="Left"
+                                 ItemsSource="{Binding Path=Items}" Width="800" Name="RTLV" Grid.Row="0" FrozenColumnCount="5" Margin="5,0,0,0">
+            <telerik:RadTreeListView.ChildTableDefinitions>
+                <telerik:TreeListViewTableDefinition  ItemsSource="{Binding Child}" />
+            </telerik:RadTreeListView.ChildTableDefinitions>
+            <telerik:RadTreeListView.Columns>
+                <telerik:GridViewDataColumn Header="地址"  IsResizable="False"  IsFilterable="False"    Width="100" IsReadOnly="True" >
+                    <telerik:GridViewDataColumn.CellTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <TextBlock Text="{Binding Path=Id,Mode=TwoWay}"></TextBlock>
+                            </Grid>
+                        </DataTemplate>
+                    </telerik:GridViewDataColumn.CellTemplate>
+                </telerik:GridViewDataColumn>
+
+                <telerik:GridViewDataColumn Header="终端名称"  IsResizable="False"  IsFilterable="False"    Width="250"  IsReadOnly="True" >
+                    <telerik:GridViewDataColumn.CellTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <TextBlock Text="{Binding Path=Name,Mode=TwoWay}"></TextBlock>
+                            </Grid>
+                        </DataTemplate>
+                    </telerik:GridViewDataColumn.CellTemplate>
+                </telerik:GridViewDataColumn>
+
+
+                <telerik:GridViewDataColumn Header="回路"  IsResizable="False"  IsFilterable="False"    Width="70"  IsReadOnly="True" >
+                    <telerik:GridViewDataColumn.CellTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <TextBlock Text="{Binding Path=LoopId,Mode=TwoWay}"></TextBlock>
+                            </Grid>
+                        </DataTemplate>
+                    </telerik:GridViewDataColumn.CellTemplate>
+                </telerik:GridViewDataColumn>
+
+
+                <telerik:GridViewDataColumn Header="回路名称"  IsResizable="False"  IsFilterable="False"    Width="150"  IsReadOnly="True" >
+                    <telerik:GridViewDataColumn.CellTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <TextBlock Text="{Binding Path=LoopName,Mode=TwoWay}"></TextBlock>
+                            </Grid>
+                        </DataTemplate>
+                    </telerik:GridViewDataColumn.CellTemplate>
+                </telerik:GridViewDataColumn>
+
+                <telerik:GridViewDataColumn Header="平均电流"  IsResizable="False"  IsFilterable="False"    Width="120"  IsReadOnly="True" >
+                    <telerik:GridViewDataColumn.CellTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <TextBlock Text="{Binding Path=AverageA, StringFormat={}{0:f2},Mode=TwoWay}"></TextBlock>
+                            </Grid>
+                        </DataTemplate>
+                    </telerik:GridViewDataColumn.CellTemplate>
+                </telerik:GridViewDataColumn>
+
+             </telerik:RadTreeListView.Columns>
+        </telerik:RadTreeListView>
+
+        <Button Content="导 出"  Height="25" Width="100" Margin="560,0,0,0" Grid.Row="1" HorizontalAlignment="Left" Click="Button_Click_1"></Button>
+        <Button Content="确 定"  Height="25" Width="100" Margin="680,0,0,0" Grid.Row="1" HorizontalAlignment="Left" Click="Button_Click"></Button>
+
+    </Grid>
+</WindowForWlst:CustomChromeWindow >

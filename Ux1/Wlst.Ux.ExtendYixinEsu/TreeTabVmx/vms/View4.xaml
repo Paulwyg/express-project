@@ -1,0 +1,167 @@
+﻿<UserControl x:Class="Wlst.Ux.ExtendYixinEsu.TreeTabVmx.vms.View4"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+             xmlns:RadTreeViewSet="clr-namespace:Elysium.ThemesSet.RadTreeViewSet;assembly=Elysium" mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+
+    <Grid Background="{x:Null}" Width="{Binding ElementName=fdt, Path=Width}">
+        <!--<Grid.Resources>
+            <Style x:Name="fff" TargetType="{x:Type ContextMenu}">
+                <Setter Property="SnapsToDevicePixels" Value="True"/>
+                <Setter Property="OverridesDefaultStyle" Value="True"/>
+                <Setter Property="Grid.IsSharedSizeScope" Value="True"/>
+                <Setter Property ="Focusable" Value="False"/>
+                <Setter Property="HasDropShadow" Value="True"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type ContextMenu}">
+                            <Border 
+                      Name="Border"
+                      Background="#6EA0B0"
+                      BorderBrush="#888888"
+                      BorderThickness="1" >
+                                <StackPanel IsItemsHost="True"
+                        KeyboardNavigation.DirectionalNavigation="Cycle"/>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="HasDropShadow" Value="true">
+                                    <Setter TargetName="Border" Property="Padding" Value="0,3,0,3"/>
+                                    <Setter TargetName="Border" Property="CornerRadius" Value="4"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <Style x:Key="f1" TargetType="MenuItem" >
+                <Setter Property="IsCheckable" Value="{Binding IsCheckable}" />
+                <Setter Property="IsChecked" Value="{Binding IsChecked}" />
+                <Setter Property="IsEnabled" Value="{Binding IsEnabled}" />
+                <Setter Property="StaysOpenOnClick" Value="{Binding StaysOpenOnClick}" />
+                <Setter Property="Command" Value="{Binding Command}"></Setter>
+                <Setter Property="Icon" Value="{Binding Image}" />  VirtualizingStackPanel.VirtualizationMode="Recycling"
+            </Style>
+        </Grid.Resources>-->
+        <Grid.RowDefinitions >
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="31"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <telerik:RadTreeView ItemsSource="{Binding ChildTreeItems}" Name="tvProperties" Width="Auto" Padding="0" Margin="0" BorderThickness="1"
+                            Background="{x:Null}" 
+                           SelectionMode="Extended"   
+                             ScrollViewer.CanContentScroll="False"
+           PreviewMouseRightButtonDown= "TreeViewItem_PreviewMouseRightButtonDown"
+                              PreviewMouseLeftButtonDown="TreeViewItem_PreviewMouseLeftButtonDown"
+                             MouseDoubleClick="tvProperties_MouseDoubleClick"
+                  MouseRightButtonDown="TreeViewItem_MouseRightButtonDown"
+                                 >
+
+            <telerik:RadTreeView.ItemContainerStyle>
+                <Style TargetType="{x:Type telerik:RadTreeViewItem}">
+                    <Setter Property="Visibility" Value="{Binding Visi,Mode=TwoWay}"></Setter>
+                    <!--<Setter Property="IsExpanded" Value="{Binding IsExpanded, Mode=TwoWay}" />-->
+                    <Setter Property="IsSelected" Value="{Binding IsSelected, Mode=TwoWay}" />
+                    <Setter Property="ContextMenu" Value="{DynamicResource  ContextMenuKey}" />
+                    <Setter Property="FontWeight" Value="Normal" />
+                    <!--<Setter Property="Background" Value="{x:Null}"></Setter>-->
+                    <Setter Property="BorderThickness" Value="0"/>
+                    <Setter Property="Template" Value="{DynamicResource TreeViewItemDefaultTemplate}" />
+                    <!--<Setter Property="Foreground" Value="{Binding ForeGround}"></Setter>
+                    <Setter Property="Background" Value="{Binding BackGround}"></Setter>-->
+
+                    <!--<Style.Triggers>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter Property="FontWeight" Value="Bold" />
+                            <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource Self}, Path=(RadTreeViewSet:RadTreeViewAttriXaml.ItemRadTreeViewForegroundMouseOver), Mode=OneWay}" />
+                        </Trigger>
+                    </Style.Triggers>-->
+                </Style>
+            </telerik:RadTreeView.ItemContainerStyle>
+            <telerik:RadTreeView.ItemTemplate>
+                <HierarchicalDataTemplate DataType="{x:Type telerik:RadTreeViewItem}"  ItemsSource="{Binding Path=ChildTreeItems}">
+                    <StackPanel Background="{x:Null}" Orientation="Horizontal">
+                        <Image VerticalAlignment="Center"  Source="{Binding ImagesIcon}" Width="24" Height="24" Margin="0,0,2,2"></Image>
+                        <TextBlock VerticalAlignment="Center" Text="{Binding NodeIdFormat}"></TextBlock>
+                        <TextBlock VerticalAlignment="Center" Text="{Binding NodeName}"></TextBlock>
+                        <TextBlock VerticalAlignment="Center" Text="{Binding ExtendRtuCount}"></TextBlock>
+                        <!--<StackPanel.ToolTip> ExtendRtuCount
+                            <TextBlock VerticalAlignment="Center" Text="{Binding Name}" TextWrapping="Wrap" MaxWidth="200">
+                            </TextBlock>
+                        </StackPanel.ToolTip>-->
+                    </StackPanel>
+                </HierarchicalDataTemplate>
+            </telerik:RadTreeView.ItemTemplate>
+        </telerik:RadTreeView>
+
+
+        <telerik:RadTreeView Visibility="{Binding IsSearchTreeVisi}" ItemsSource="{Binding ChildTreeItemsSearch}" Name="tvPropertiess" Width="Auto" MaxHeight="300" 
+                             Padding="0" Margin="5,8,5,0" BorderThickness="1" Grid.Row="1"
+                             VirtualizingStackPanel.IsVirtualizing="True"  IsVirtualizing="True"
+                           SelectionMode="Single" 
+                             ScrollViewer.CanContentScroll="False"
+                   PreviewMouseRightButtonDown= "TreeViewItem_PreviewMouseRightButtonDown"
+                             MouseDoubleClick="tvProperties_MouseDoubleClick"
+                  MouseRightButtonDown="TreeViewItem_MouseRightButtonDown">
+
+            <telerik:RadTreeView.ItemContainerStyle>
+                <Style TargetType="{x:Type telerik:RadTreeViewItem}">
+                    <Setter Property="Visibility" Value="{Binding Visi,Mode=TwoWay}"></Setter>
+                    <!--<Setter Property="IsExpanded" Value="{Binding IsExpanded, Mode=TwoWay}" />-->
+                    <Setter Property="IsSelected" Value="{Binding IsSelected, Mode=TwoWay}" />
+                    <Setter Property="Foreground" Value="Black"/>
+                    <Setter Property="ContextMenu" Value="{DynamicResource  ContextMenuKey}" />
+                    <Setter Property="FontWeight" Value="Normal" />
+                    <Setter Property="BorderThickness" Value="0"/>
+                    <Setter Property="Template" Value="{DynamicResource TreeViewItemDefaultTemplate}" />
+
+                    <!--<Setter Property="Foreground" Value="{Binding ForeGround}"></Setter>
+                    <Setter Property="Background" Value="{Binding BackGround}"></Setter>-->
+
+                    <Style.Triggers>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter Property="FontWeight" Value="Bold" />
+                            <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource Self}, Path=(RadTreeViewSet:RadTreeViewAttriXaml.ItemRadTreeViewForegroundMouseOver), Mode=OneWay}" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </telerik:RadTreeView.ItemContainerStyle>
+            <telerik:RadTreeView.ItemTemplate>
+                <HierarchicalDataTemplate DataType="{x:Type telerik:RadTreeViewItem}"  ItemsSource="{Binding Path=ChildTreeItems}">
+                    <StackPanel Background="{x:Null}" Orientation="Horizontal">
+                        <Image VerticalAlignment="Center"  Source="{Binding ImagesIcon}" Width="24" Height="24" Margin="0,0,2,2"></Image>
+                        <TextBlock VerticalAlignment="Center" Text="{Binding NodeIdFormat}"></TextBlock>
+                        <TextBlock VerticalAlignment="Center" Text="{Binding NodeName,Mode=TwoWay}"></TextBlock>
+
+                        <TextBlock VerticalAlignment="Center" Text=" -- "></TextBlock>
+                        <TextBlock VerticalAlignment="Center" Text="{Binding ExtendSerachConten}"></TextBlock>
+
+                        <!--<StackPanel.ToolTip>
+                            <TextBlock VerticalAlignment="Center" Text="{Binding Name}" TextWrapping="Wrap" MaxWidth="200">
+                            </TextBlock>
+                        </StackPanel.ToolTip>-->
+                    </StackPanel>
+                </HierarchicalDataTemplate>
+            </telerik:RadTreeView.ItemTemplate>
+        </telerik:RadTreeView>
+        <StackPanel Background="#FFAAAAAA" Margin="5,0,5,3" VerticalAlignment="Center" Orientation="Horizontal" MaxHeight="33" Grid.Row="2">
+            <Label Name="lblShow">快速查询</Label>
+            <TextBox Name="SearchTextBox" MinWidth="120" Margin="5,1,5,1"
+                     MinHeight="23"
+                     MaxHeight="25"
+                     Text="{Binding SearchText,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                     AutomationProperties.AutomationId="SearchTextBoxBlock"/>
+            <Button Margin="5,1,0,1" Content="清除" Width="45" Height="23" Command="{Binding CmdClearUpSearchText}"></Button>
+
+
+        </StackPanel>
+
+        <Grid Background="#FFAAAAAA" Height="2" VerticalAlignment="Top" Margin="15,3,5,0" Grid.Row="1" Visibility="{Binding IsSearchTreeVisi}"/>
+
+    </Grid>
+</UserControl>

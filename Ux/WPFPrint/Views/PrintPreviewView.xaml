@@ -1,0 +1,95 @@
+﻿<Window x:Class="HappyPrint.Views.PrintPreviewView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:ignore="http://www.ignore.com"
+        xmlns:converter="clr-namespace:HappyPrint.Converter"
+        xmlns:happyPrint="clr-namespace:HappyPrint"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        mc:Ignorable="d ignore" 
+        d:DesignWidth="1100" 
+        d:DesignHeight="800" 
+        Width="900" 
+        Height="900" 
+        Title="打印预览"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="ToolWindow">
+    <Window.Resources>
+        <converter:PageIndexConverter x:Key="PageIndexConverter"></converter:PageIndexConverter>
+        <converter:OrientationToBoolConverter x:Key="OrientationToBoolConverter"></converter:OrientationToBoolConverter>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"></BooleanToVisibilityConverter>
+    </Window.Resources>
+
+    <Grid x:Name="Grid" IsEnabled="{Binding ControlStatus,Mode=TwoWay}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="40"/>
+        </Grid.RowDefinitions>
+
+        <!--基本信息栏-->
+        <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" Margin="0,0,10,0">
+            <RadioButton x:Name="HCheck" Content="横向" VerticalAlignment="Center" IsChecked="{Binding PageOrientation,Converter={StaticResource OrientationToBoolConverter},ConverterParameter=Landscape}"></RadioButton>
+            <RadioButton x:Name="VCheck" Content="纵向" VerticalAlignment="Center" IsChecked="{Binding PageOrientation,Converter={StaticResource OrientationToBoolConverter},ConverterParameter=Portrait}"></RadioButton>
+        </StackPanel>
+
+        <StackPanel Grid.Row="0" HorizontalAlignment="Left" Orientation="Horizontal" Margin="10,0,0,0">
+            <TextBlock Text="选择打印机：" VerticalAlignment="Center"></TextBlock>
+            <ComboBox Width="200"
+                      VerticalContentAlignment="Center"
+                      ItemsSource="{Binding PrintQueues}" 
+                      SelectedItem="{Binding CurrentPrintQueue}" 
+                      DisplayMemberPath="Name">
+            </ComboBox>
+            <TextBlock Margin="10,0,0,0" Text="选择纸张类型：" VerticalAlignment="Center"></TextBlock>
+            <ComboBox Width="150" VerticalContentAlignment="Center" ItemsSource="{Binding PageMediaSizes}" SelectedItem="{Binding PageSize}" DisplayMemberPath="PageMediaSizeName"></ComboBox>
+        </StackPanel>
+
+        <!--预览界面-->
+        <Grid Grid.Row="1" Background="DarkGray">
+            <ScrollViewer Padding="10" HorizontalScrollBarVisibility="Visible">
+                <happyPrint:DrawingCanvas x:Name="drawingCanvas">
+                    <happyPrint:DrawingCanvas.Effect>
+                        <DropShadowEffect ShadowDepth="1"></DropShadowEffect>
+                    </happyPrint:DrawingCanvas.Effect>
+                </happyPrint:DrawingCanvas>
+            </ScrollViewer>
+        </Grid>
+
+        <!--打印选项-->
+        <Grid Grid.Row="2">
+
+            <DockPanel>
+                <!--Visibility="{Binding ShowProgress,Converter={StaticResource BooleanToVisibilityConverter}}"-->
+                <DockPanel   VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0" Width="220">
+                <TextBlock Text="打印进度：" VerticalAlignment="Center"></TextBlock>
+                <ProgressBar Width="100" Height="25" SmallChange="1" Minimum="0" Maximum="100" IsIndeterminate="{Binding IsIndeterminate}" Value="{Binding ProgressValue}"></ProgressBar>
+                </DockPanel>
+
+                <DockPanel  HorizontalAlignment="Center" Margin="10,0,0,0">
+                <Button ToolTip="上一页" ToolTipService.ShowOnDisabled="True" Width="30" Height="25" Content="←" Margin="0,0,5,0" Command="{Binding LastPageCommand}"></Button>
+                <TextBlock VerticalAlignment="Center">
+                    <Run Text="{Binding CurrentPageIndex,Converter={StaticResource PageIndexConverter}}"></Run>
+                    <Run Text="/"></Run>
+                    <Run Text="{Binding PageCount}"></Run>
+                </TextBlock>
+                <Button ToolTip="下一页" ToolTipService.ShowOnDisabled="True" Width="30" Height="25" Content="→" Margin="5,0,0,0" Command="{Binding NextPageCommand}"></Button>
+                </DockPanel>
+
+             
+
+                <DockPanel  HorizontalAlignment="Left" Margin="10,0,0,0">
+                <xctk:IntegerUpDown x:Name="StartPage" Width="50" VerticalAlignment="Center" Height="25" Minimum="1" Maximum="{Binding ElementName=EndPage,Path=Value}" Value="{Binding StartIndex,Converter={StaticResource PageIndexConverter},UpdateSourceTrigger=PropertyChanged}"></xctk:IntegerUpDown>
+                <TextBlock Text="到" VerticalAlignment="Center"></TextBlock>
+                <xctk:IntegerUpDown x:Name="EndPage"  Margin="10,0,0,0" Width="50" Height="25" Minimum="{Binding ElementName=StartPage,Path=Value}" Maximum="{Binding PageCount}" VerticalContentAlignment="Center" Value="{Binding EndIndex,Converter={StaticResource PageIndexConverter},UpdateSourceTrigger=PropertyChanged}"></xctk:IntegerUpDown>
+                <Button ToolTip="打印所填写的范围内的页" Margin="10,0,0,0" ToolTipService.ShowOnDisabled="True" Width="100" Height="25" Content="打印范围页" x:Name="PageRangeBtn" Command="{Binding PrintRangeCommand}"></Button>
+                <Button ToolTip="打印当前预览的页" Margin="10,0,0,0" ToolTipService.ShowOnDisabled="True" Width="100" Height="25" Content="打印当前页" x:Name="CurrentBtn" Command="{Binding PrintCurrentCommand}"></Button>
+                <Button ToolTip="打印全部页数" Margin="10,0,0,0" ToolTipService.ShowOnDisabled="True" Width="100" Height="25" Content="打印全部页" x:Name="AllBtn" Command="{Binding PrintAllCommand}"></Button>
+                </DockPanel>
+                
+                <TextBlock></TextBlock>
+</DockPanel>
+        </Grid>
+    </Grid>
+</Window>

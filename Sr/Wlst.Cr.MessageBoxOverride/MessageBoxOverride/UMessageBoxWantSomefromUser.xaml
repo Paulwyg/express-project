@@ -1,0 +1,46 @@
+﻿<Window x:Class="Wlst.Cr.MessageBoxOverride.MessageBoxOverride.UMessageBoxWantSomefromUser"
+                        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:OtherHelper="clr-namespace:Wlst.Cr.CoreOne.OtherHelper;assembly=Wlst.Cr.CoreOne"
+        xmlns:MessageBoxOverrideSet="clr-namespace:Elysium.ThemesSet.MessageBoxOverrideSet;assembly=Elysium"
+        Title="UMessageBox" Height="185" Width="350" WindowStyle="None"   Background="{x:Null}"  
+        ResizeMode="NoResize"  x:Name="main"
+        AllowsTransparency="True" WindowStartupLocation="CenterScreen">
+    <Border  Background="{Binding RelativeSource={RelativeSource Self}, Path=(MessageBoxOverrideSet:MessageBoxOverrideAttriXaml.Background), Mode=OneWay}"  CornerRadius="3">
+        <Canvas>
+            <Label x:Name="fg" Width="0" HorizontalAlignment="Left"/>
+            <Border Background="{Binding RelativeSource={RelativeSource Self}, Path=(MessageBoxOverrideSet:MessageBoxOverrideAttriXaml.HeaderBrush), Mode=OneWay}" Canvas.Top="0" Height="25" Width="{Binding ElementName=main, Path=Width,UpdateSourceTrigger=PropertyChanged}" 
+                    BorderThickness="0,0,0,1" BorderBrush="#FFEFE2E2">
+                <TextBlock x:Name="lblTitle" Text="test" HorizontalAlignment="Left" 
+                           Foreground="{Binding ElementName=fg, Path=Foreground}" FontSize="{Binding ElementName=fg, Path=FontSize}"
+                           VerticalAlignment="Center" Margin="5"/>
+            </Border>
+            <TextBlock x:Name="lblMsg"
+                       Foreground="{Binding ElementName=fg, Path=Foreground}" FontSize="{Binding ElementName=fg, Path=FontSize}"
+                       TextWrapping="Wrap" Text="test"
+                       HorizontalAlignment="Center" Canvas.Left="30"
+                       Canvas.Top="40" 
+                       />
+            <TextBox Width="270" Height="25" x:Name="txtTxt"
+                 FontSize="{Binding ElementName=fg, Path=FontSize}"
+                       TextWrapping="Wrap" Text="{Binding  Path=TxtText,Mode=TwoWay}"
+                       HorizontalAlignment="Center" Canvas.Left="30"
+                       Canvas.Top="70">
+                <!--OtherHelper:PasswordHelper.Password="{Binding  Path=TxtText,Mode=TwoWay}"-->
+            </TextBox>
+            <Button  x:Name="btnYes" Content="是" Height="22" Canvas.Bottom="10" Canvas.Right="85" MinWidth="50" Click="Yes_MouseLeftButtonDown" />
+            <Button x:Name="btnNo"  Content="否" Height="22" Canvas.Bottom="10" Canvas.Right="30" MinWidth="50" Click="No_MouseLeftButtonDown" />
+            <!--<Border BorderBrush="#FF60C1C1" BorderThickness="0.5" Height="22" 
+                    Canvas.Bottom="10" Canvas.Right="85" MouseLeftButtonDown="Yes_MouseLeftButtonDown"
+                 Name="border1" Width="49" Background="#FFC7C7C7" CornerRadius="2">
+                <TextBlock Text="确定"  HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Border>
+            <Border BorderBrush="#FF60C1C1" BorderThickness="0.5" Height="22" 
+                    Canvas.Bottom="10" Canvas.Right="30" MouseLeftButtonDown="No_MouseLeftButtonDown"
+                Name="border2" Width="49" CornerRadius="2" Background="#FFC7C7D1">
+                <TextBlock Text="取消"  HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Border>-->
+        </Canvas>
+    </Border>
+</Window>
+

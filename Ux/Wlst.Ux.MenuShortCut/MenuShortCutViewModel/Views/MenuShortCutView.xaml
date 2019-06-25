@@ -1,0 +1,81 @@
+﻿<UserControl x:Class="Wlst.Ux.MenuShortCut.MenuShortCutViewModel.Views.MenuShortCutView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+                          
+             xmlns:AppleWindowSet="clr-namespace:Elysium.ThemesSet.AppleWindowSet;assembly=Elysium"
+             xmlns:RadTreeViewSet="clr-namespace:Elysium.ThemesSet.RadTreeViewSet;assembly=Elysium" mc:Ignorable="d" d:DesignWidth="1000" d:DesignHeight="300">
+    <Grid>
+        <Grid.ColumnDefinitions >
+            <ColumnDefinition Width="Auto" MinWidth="330"></ColumnDefinition>
+            <ColumnDefinition Width="Auto" MinWidth="500"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <telerik:RadTreeView ItemsSource="{Binding ChildTreeItems}"  Background="Transparent"
+                  PreviewMouseRightButtonDown= "TreeViewItem_PreviewMouseRightButtonDown"
+            Name="tvProperties" Width="Auto" Padding="0" Margin="0" BorderThickness="1">
+            <telerik:RadTreeView.ItemContainerStyle>
+                <Style TargetType="{x:Type telerik:RadTreeViewItem}">
+                    <!--<Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource Self}, Path=(RadTreeViewSet:RadTreeViewAttriXaml.ItemRadTreeViewForeground), Mode=OneWay}" />-->
+                    <Setter Property="IsExpanded" Value="{Binding IsExpanded, Mode=TwoWay}" />
+                    <Setter Property="IsSelected" Value="{Binding IsSelected, Mode=TwoWay}" />
+                    <Setter Property="FontWeight" Value="Normal" />
+                    <Setter Property="BorderThickness" Value="0"/>
+                    <Setter Property="Template" Value="{DynamicResource TreeViewItemDefaultTemplate}" />
+                    <Style.Triggers>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter Property="FontWeight" Value="Bold" />
+                            <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource Self}, Path=(RadTreeViewSet:RadTreeViewAttriXaml.ItemRadTreeViewForegroundMouseOver), Mode=OneWay}" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </telerik:RadTreeView.ItemContainerStyle>
+            <telerik:RadTreeView.ItemTemplate>
+                <HierarchicalDataTemplate  ItemsSource="{Binding Path=ChildTreeItems}">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock VerticalAlignment="Center"  Text="{Binding MenuId}"></TextBlock>
+                        <TextBlock VerticalAlignment="Center" Text="-"></TextBlock>
+                        <TextBlock  VerticalAlignment="Center"   Text="{Binding Name}"  />
+                    </StackPanel>
+
+                </HierarchicalDataTemplate>
+            </telerik:RadTreeView.ItemTemplate>
+        </telerik:RadTreeView>
+
+        <Grid Grid.Column="1" >
+            <Grid.ColumnDefinitions >
+                <ColumnDefinition MinWidth="60" Width="Auto"></ColumnDefinition>
+                <ColumnDefinition ></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*"></RowDefinition>
+                <RowDefinition MinHeight="30" Height="Auto"></RowDefinition>
+                <RowDefinition MinHeight="30" Height="Auto"></RowDefinition>
+                <RowDefinition MinHeight="30" Height="Auto"></RowDefinition>
+                <RowDefinition MinHeight="30" Height="Auto"></RowDefinition>
+                <RowDefinition MinHeight="30" Height="Auto"></RowDefinition>
+                <RowDefinition MinHeight="30" Height="Auto"></RowDefinition>
+                <RowDefinition Height="4*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Label Grid.Row="1" Grid.Column="0" VerticalAlignment="Center"  Content="地址:" ></Label>
+            <Label Grid.Row="2" Grid.Column="0" VerticalAlignment="Center"  Content="名称：" ></Label>
+            <Label Grid.Row="3" Grid.Column="0" VerticalAlignment="Center"  Content="提示信息：" ></Label>
+            <Label Grid.Row="4" Grid.Column="0" VerticalAlignment="Center"  Content="快捷键:" ></Label>
+
+            <Label Grid.Row="1" Grid.Column="1" VerticalAlignment="Center"  Content="{Binding MenuId}" ></Label>
+            <Label Grid.Row="2" Grid.Column="1" VerticalAlignment="Center"  Content="{Binding Name}" ></Label>
+            <Label Grid.Row="3" Grid.Column="1" VerticalAlignment="Center"  Content="{Binding Tooltips}" ></Label>
+            <Label Grid.Row="4" Grid.Column="1" VerticalAlignment="Center"  Content="{Binding Warning}" ></Label>
+            <Label Grid.Row="5" Grid.Column="1" VerticalAlignment="Center" Content="{Binding ShortCuts}" ></Label>
+
+            <DockPanel Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center">
+                <Button Content=" 清除设置" Width="120" Height="25" Command="{Binding CmdClean}"></Button>
+                <Button Content="保存设置"  Margin="30,0,0,0" Width="120" Height="25" Command="{Binding CmdOk}"></Button>
+                <Button Content="保存所有" Margin="30,0,0,0" Width="120" Height="25" Command="{Binding CmdSaveAll}"></Button>
+            </DockPanel>
+            
+        </Grid>
+    </Grid>
+</UserControl>

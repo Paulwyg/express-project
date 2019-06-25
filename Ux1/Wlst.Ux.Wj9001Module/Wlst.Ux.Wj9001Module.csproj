@@ -1,0 +1,200 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{972B5082-AAEE-4C24-A956-9BBB0CE5D826}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Wlst.Ux.Wj9001Module</RootNamespace>
+    <AssemblyName>Wlst.Ux.Wj9001Module</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\Rr\Binaries\WPF\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Elysium, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Rr\Binaries\WPF\Elysium.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Prism, Version=4.1.0.1, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Practices.Prism.MefExtensions, Version=4.1.0.1, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Practices.Prism.MefExtensions.Event, Version=4.1.0.1, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Telerik.Windows.Controls, Version=2015.3.2015.40, Culture=neutral, PublicKeyToken=d3625f8bf04286d7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Rr\Binaries\WPF\Telerik.Windows.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.Chart, Version=2015.3.2015.40, Culture=neutral, PublicKeyToken=d3625f8bf04286d7" />
+    <Reference Include="Telerik.Windows.Controls.Data, Version=2015.3.2015.40, Culture=neutral, PublicKeyToken=d3625f8bf04286d7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Rr\Binaries\WPF\Telerik.Windows.Controls.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.Docking, Version=2015.3.2015.40, Culture=neutral, PublicKeyToken=d3625f8bf04286d7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Rr\Binaries\WPF\Telerik.Windows.Controls.Docking.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.GridView, Version=2015.3.2015.40, Culture=neutral, PublicKeyToken=d3625f8bf04286d7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Rr\Binaries\WPF\Telerik.Windows.Controls.GridView.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.Navigation, Version=2015.3.2015.40, Culture=neutral, PublicKeyToken=d3625f8bf04286d7, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.Windows.Data, Version=2015.3.2015.40, Culture=neutral, PublicKeyToken=d3625f8bf04286d7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Rr\Binaries\WPF\Telerik.Windows.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="Wlst.Cr.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="Wlst.Cr.Coreb, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="Wlst.Cr.CoreOne, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Rr\Binaries\WPF\Wlst.Cr.CoreOne.dll</HintPath>
+    </Reference>
+    <Reference Include="Wlst.Cr.MessageBoxOverride, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Rr\Binaries\WPF\Wlst.Cr.MessageBoxOverride.dll</HintPath>
+    </Reference>
+    <Reference Include="Wlst.Sr.ProtocolPhone, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="Wlst.Ux.Statistics, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="WPFToolkit.Extended, Version=1.8.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Rr\Binaries\WPF\WPFToolkit.Extended.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ModuleExport.cs" />
+    <Compile Include="ModulelExport2.cs" />
+    <Compile Include="ModulelExport3.cs" />
+    <Compile Include="NewData\Services\IINewData.cs" />
+    <Compile Include="NewData\ViewModel\LeakLineViewModel.cs" />
+    <Compile Include="NewData\ViewModel\NewDataViewModel.cs" />
+    <Compile Include="NewData\View\NewData.xaml.cs">
+      <DependentUpon>NewData.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NewData\ViewModel\Resources\ImageResources.cs" />
+    <Compile Include="Wj9001DataQueryViewModel\Converters\BoolToVisibleConverter.cs" />
+    <Compile Include="Wj9001DataQueryViewModel\Converters\RadioButtonBooleanConverter.cs" />
+    <Compile Include="Wj9001DataQueryViewModel\NavToWj9001LeakDataQueryViewModel.cs" />
+    <Compile Include="Wj9001DataQueryViewModel\NavToWj9001LeakDataQueryViewModelMainMenu.cs" />
+    <Compile Include="Wj9001DataQueryViewModel\Services\IIWj9001DataQueryView.cs" />
+    <Compile Include="Wj9001DataQueryViewModel\ViewModel\Wj9001LeakDataQueryViewModel.cs" />
+    <Compile Include="Wj9001DataQueryViewModel\ViewModel\Wj9001DataQueryoneItemViewModel.cs" />
+    <Compile Include="Wj9001DataQueryViewModel\View\Wj9001DataQueryView.xaml.cs">
+      <DependentUpon>Wj9001DataQueryView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Wj9001ParaInfoSet\Converters\BoolToVisibleConverter.cs" />
+    <Compile Include="Wj9001ParaInfoSet\NavToWj9001ParaInfoSet.cs" />
+    <Compile Include="Wj9001ParaInfoSet\Services\IIWj9001ParaInfoSet.cs" />
+    <Compile Include="Wj9001ParaInfoSet\ViewModel\Wj9001Model.cs" />
+    <Compile Include="Wj9001ParaInfoSet\ViewModel\ReadLightRateModel.cs" />
+    <Compile Include="Wj9001ParaInfoSet\ViewModel\SelectDataModel.cs" />
+    <Compile Include="Wj9001ParaInfoSet\ViewModel\Wj9001ParaInfoSetViewModel.cs" />
+    <Compile Include="Wj9001ParaInfoSet\Views\Wj9001ParaInfoSet.xaml.cs">
+      <DependentUpon>Wj9001ParaInfoSet.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Wj9001TreeView\NavToWj1050ManageView.cs" />
+    <Compile Include="Wj9001TreeView\Sercives\IIWj9001TreeView.cs" />
+    <Compile Include="Wj9001TreeView\ViewModel\TreeNodeAreaViewModel.cs" />
+    <Compile Include="Wj9001TreeView\ViewModel\TreeNodeBaseNode.cs" />
+    <Compile Include="Wj9001TreeView\ViewModel\TreeNodeTmlViewModel.cs" />
+    <Compile Include="Wj9001TreeView\ViewModel\TreeNodeWj9001ViewModel.cs" />
+    <Compile Include="Wj9001TreeView\ViewModel\Wj9001TreeViewModel.cs" />
+    <Compile Include="Wj9001ManageSetting\NavLineWj9001ManageSettingView.cs" />
+    <Compile Include="Wj9001ManageSetting\Services\IIWj90011ManageSettingViewModel.cs" />
+    <Compile Include="Wj9001ManageSetting\ViewModel\Wj9001ManageSettingViewModel.cs" />
+    <Compile Include="Services\EventIdAssign.cs" />
+    <Compile Include="Services\MenuIdAssgin.cs" />
+    <Compile Include="Services\ViewIdAssign.cs" />
+    <Compile Include="UxWj9001Module.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Wj9001ManageSetting\Views\Wj9001ManageSettingView.xaml.cs">
+      <DependentUpon>Wj9001ManageSettingView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Wj9001TreeView\Views\Wj9001TreeView.xaml.cs">
+      <DependentUpon>Wj9001TreeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ZOrder\CloseForLeakRightMenu.cs" />
+    <Compile Include="ZOrder\OpenForLeakRightMenu.cs" />
+    <Compile Include="ZOrder\OperateLineControllerForLeakRightMenuBase.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="NewData\View\NewData.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Wj9001DataQueryViewModel\View\Wj9001DataQueryView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Wj9001ParaInfoSet\Views\Wj9001ParaInfoSet.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Wj9001ManageSetting\Views\Wj9001ManageSettingView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Wj9001TreeView\Views\Wj9001TreeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Cr\Wlst.Cr.CoreMims\Wlst.Cr.CoreMims.csproj">
+      <Project>{7326E79B-65A6-4E0D-B90D-E1F4D1F10DF3}</Project>
+      <Name>Wlst.Cr.CoreMims</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Cr\Wlst.Cr.Setting\Wlst.Cr.Setting.csproj">
+      <Project>{A330DF6B-20F7-4FD0-BCA8-2FD5095395FF}</Project>
+      <Name>Wlst.Cr.Setting</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Sr\Wlst.Sr.Menu\Wlst.Sr.Menu.csproj">
+      <Project>{F0851CF0-EAF8-4C30-A6A2-3237B74CD2B4}</Project>
+      <Name>Wlst.Sr.Menu</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Wlst.Sr.EquipmentInfoHolding\Wlst.Sr.EquipmentInfoHolding.csproj">
+      <Project>{B66A046F-2F0A-429F-9C51-63452D3F6A92}</Project>
+      <Name>Wlst.Sr.EquipmentInfoHolding</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

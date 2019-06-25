@@ -1,0 +1,95 @@
+﻿
+<WindowForWlst:CustomChromeWindow x:Class="Wlst.Ux.WJ3005Module.ControlCenterManagDemo2.Views.FastControlSelect"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                                  xmlns:WindowForWlst="clr-namespace:WindowForWlst;assembly=WindowForWlst"
+                                  xmlns:RadioButtonConverter="clr-namespace:Wlst.Cr.CoreOne.RadioButtonConverter;assembly=Wlst.Cr.CoreOne"
+                                  xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+                                  xmlns:AppleWindowSet="clr-namespace:Elysium.ThemesSet.AppleWindowSet;assembly=Elysium"
+                                  mc:Ignorable="d"     Height="500"  Title="快速选择"  TitleCetc="快速选择"
+        Width="700">
+    <Grid>
+        <Grid>
+            <Grid.Resources>
+                <!--<Style x:Key="itemstyle" TargetType="{x:Type telerik:GridViewRowItem}">
+                    <EventSetter Event='MouseDoubleClick' Handler='ListViewItem_MouseDoubleClick'/>
+                </Style>-->
+            </Grid.Resources>
+            
+            <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="420">
+                    </ColumnDefinition>
+                <ColumnDefinition Width="*">
+                    </ColumnDefinition>
+            </Grid.ColumnDefinitions>
+                <Grid >                    
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="30"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                        </Grid.RowDefinitions>
+                    <Button Content="全选/全清"   Width="100" Height="25"  Margin=" 10,0,0,0" HorizontalAlignment="Left" Click="Button_Click_4"></Button>
+                        <telerik:RadGridView  Grid.Row="1"  AutoGenerateColumns="False" RowIndicatorVisibility="Collapsed" ShowGroupPanel="False" Margin="5,0,0,5"
+            AllowDrop="True"    Name="group" Width="410" HorizontalAlignment="Left" >
+                <!--ItemsSource="{Binding Path=TimeTables}"-->
+                <telerik:RadGridView.Columns>
+                    <telerik:GridViewDataColumn Header="选择" IsFilterable="False"  Width="50" >
+                        <telerik:GridViewDataColumn.CellTemplate>
+                            <DataTemplate>
+                                <DockPanel>
+                                    <CheckBox Margin="10,-2,5,0" IsChecked="{Binding IsChecked }" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                                </DockPanel>
+                            </DataTemplate>
+                        </telerik:GridViewDataColumn.CellTemplate>
+                    </telerik:GridViewDataColumn>
+                    <telerik:GridViewDataColumn Header="分组序号" IsFilterable="False"    Width="80" DataMemberBinding="{Binding Path=Id,Mode=TwoWay}"/>
+                    <telerik:GridViewDataColumn Header="分组名称" IsFilterable="False"   DataMemberBinding="{Binding  Path=Name,Mode=TwoWay}" Width="150" />
+                            <telerik:GridViewDataColumn Header="所属区域" IsFilterable="False"   DataMemberBinding="{Binding  Path=AreaName,Mode=TwoWay}" 
+                                                        IsVisible="{Binding IsEnabled,ElementName=textb}" Width="120"  />
+
+                    </telerik:RadGridView.Columns>
+            </telerik:RadGridView>
+</Grid >
+                <Grid Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="40"></RowDefinition>
+                </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <TextBox Width="100" HorizontalAlignment="Left"  Margin="20,3,0,3" Name="txt"/>
+                        <Button Content="增加"   Width="60" Height="25"  Margin=" 10,0,75,0"  Click="Button_Click"   HorizontalAlignment="Right"></Button>
+                        <Button Content="删除"   Width="60" Height="25"  Margin=" 10,0,5,0" HorizontalAlignment="Right" Click="Button_Click_1"></Button>
+                    </Grid>
+                    <Grid Grid.Row="1">
+                        <ListBox  HorizontalAlignment="Left"  Grid.Row="1"  Margin="20,10,0,0"  MinWidth="100" MaxWidth="960" VerticalAlignment="Top" Name="lstbox" >
+                            <ListBox.Template>
+                                <ControlTemplate TargetType="{x:Type ListBox}">
+                                    <WrapPanel Orientation="Horizontal" IsItemsHost="True" ScrollViewer.CanContentScroll="True"/>
+                                </ControlTemplate>
+                            </ListBox.Template>
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <CheckBox Width="140" Margin="10,2,0,0" IsChecked="{Binding IsSelected}" IsEnabled="{Binding IsEnable}" HorizontalAlignment="Left" VerticalAlignment="Top" Content="{Binding Name}"></CheckBox>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                            <ListBox.ItemContainerStyle>
+                                <Style TargetType="ListBoxItem">
+                                    <Setter Property="Background" Value="Transparent"/>
+                                </Style>
+                            </ListBox.ItemContainerStyle>
+                        </ListBox>
+                    </Grid>
+                        <Grid Grid.Row="2">
+                <Button Content="确定"   Width="80" Height="25"  Margin=" 10,0,100,0"  Click="Button_Click_2"   HorizontalAlignment="Right"></Button>
+                <Button Content="取消"   Width="80" Height="25"  Margin=" 10,0,10,0"  Click="Button_Click_3" HorizontalAlignment="Right"></Button>
+                        <TextBlock Name="textb" IsEnabled="{Binding AreaView[0].IsShow}"   Width="0" Height="0" Visibility="Hidden"/>
+
+                    </Grid>
+                </Grid>
+            </Grid>
+        </Grid>
+    </Grid>
+</WindowForWlst:CustomChromeWindow>

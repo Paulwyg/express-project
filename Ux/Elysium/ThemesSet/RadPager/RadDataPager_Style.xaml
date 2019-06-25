@@ -1,0 +1,401 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+					xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		            xmlns:controls="http://schemas.telerik.com/2008/xaml/presentation"
+		           xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+                    xmlns:dataPager="clr-namespace:Telerik.Windows.Controls.Data.DataPager;assembly=Telerik.Windows.Controls.Data"
+                    xmlns:c="http://schemas.telerik.com/2008/xaml/compile"
+		            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		            xmlns:FontSet="clr-namespace:Elysium.ThemesSet.FontSet"
+		            mc:Ignorable="c">
+
+
+    <!--无用-->
+    <SolidColorBrush x:Key="RadPager_Background"
+                     Color="Transparent"
+                      />
+
+    <!--中间选中-->
+    <SolidColorBrush x:Key="RadPager_Selected"
+                     Color="Red"
+                      />
+
+    <!-- Page  转到 50 的颜色-->
+    <SolidColorBrush x:Key="RadPager_Foreground"
+                     Color="Black"
+                     />
+
+    <!-- 整个控件 边框颜色 -->
+    <SolidColorBrush x:Key="RadPager_Border"
+                     Color="Transparent"
+                      />
+    <!--无用-->
+    <SolidColorBrush x:Key="RadPager_Page_Over"
+                     Color="Transparent"
+                      />
+
+    <!--无用-->
+    <SolidColorBrush x:Key="RadPager_Page_Checked"
+                     Color="Transparent"
+                     />
+    <!--  数字后面的背景色-->
+    <SolidColorBrush x:Key="RadPager_Page_Disabled"
+                     Color="Transparent"
+                     />
+
+    <!--背景色-->
+    <SolidColorBrush x:Key="RadPager_Page_TopShadow"
+                     Color="Transparent"
+                     />
+
+    <!--无用-->
+    <SolidColorBrush x:Key="RadPager_Page_Background"  
+                     Color="Transparent"
+                    />
+
+    <!--每个数字四周的边框颜色-->
+    <SolidColorBrush x:Key="RadPager_Page_Border"
+                     Color="Transparent"
+                     />
+
+    <!--中间所有数字的外边框颜色-->
+    <SolidColorBrush x:Key="RadPager_NumericPresenter_Border"
+                     Color="Transparent"
+                    />
+
+    <!--每个数字四周的边框颜色-->
+    <SolidColorBrush x:Key="RadPager_NumericPresenter_Background"
+                     Color="Transparent"
+                     />
+
+    <!--  第一页 上一页  下一页 最后一页指示的 <>的颜色-->
+    <SolidColorBrush x:Key="RadPager_Indicator"
+                     Color="Red"
+                    />
+
+    <!--  前面最后一页  与后面的  转到中间的间隔符颜色  -->
+    <SolidColorBrush x:Key="RadPager_Separator1"
+                     Color="Transparent"
+                     />
+
+    <!--  前面最后一页  与后面的  转到中间的间隔符颜色  -->
+    <SolidColorBrush x:Key="RadPager_Separator2"
+                     Color="Transparent"
+                    />
+
+
+
+    <!--PageStyle-->
+    <ControlTemplate x:Key="RadPageTemplate" TargetType="telerik:RadRadioButton">
+        <Border x:Name="PageButton" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="0,0,6,1">
+            <c:If Condition="!WPF35">
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="MouseOver">
+                            <Storyboard>
+                                <ObjectAnimationUsingKeyFrames BeginTime="0" Storyboard.TargetName="PageButton" Storyboard.TargetProperty="Background">
+                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource RadPager_Page_Over}" />
+                                </ObjectAnimationUsingKeyFrames>
+                            </Storyboard>
+                        </VisualState>
+                        <VisualState x:Name="Pressed">
+                            <Storyboard>
+                                <ObjectAnimationUsingKeyFrames BeginTime="0" Storyboard.TargetName="PageButton" Storyboard.TargetProperty="Background">
+                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource RadPager_Page_Checked}" />
+                                </ObjectAnimationUsingKeyFrames>
+                            </Storyboard>
+                        </VisualState>
+                        <VisualState x:Name="Disabled">
+                            <Storyboard>
+                                <ObjectAnimationUsingKeyFrames BeginTime="0" Storyboard.TargetName="PageButton" Storyboard.TargetProperty="Background">
+                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource RadPager_Page_Disabled}" />
+                                </ObjectAnimationUsingKeyFrames>
+                            </Storyboard>
+                        </VisualState>
+                        <VisualState x:Name="Checked">
+                            <Storyboard>
+                                <ObjectAnimationUsingKeyFrames BeginTime="0" Storyboard.TargetName="PageButton" Storyboard.TargetProperty="Background">
+                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource RadPager_Page_Checked}" />
+                                </ObjectAnimationUsingKeyFrames>
+                            </Storyboard>
+                        </VisualState>
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="FocuseStatesGroup">
+                        <VisualState x:Name="Unfocused" />
+                        <VisualState x:Name="Focused">
+                            <Storyboard>
+                                <ObjectAnimationUsingKeyFrames BeginTime="0" Storyboard.TargetName="PageButton" Storyboard.TargetProperty="Background">
+                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource RadPager_Page_Over}" />
+                                </ObjectAnimationUsingKeyFrames>
+                            </Storyboard>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+            </c:If>
+
+            <Border Background="{StaticResource RadPager_Page_TopShadow}">
+                <ContentControl HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Margin="{TemplateBinding Padding}" Content="{TemplateBinding Content}" IsTabStop="False" />
+            </Border>
+        </Border>
+        <c:If Condition="WPF35">
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" TargetName="PageButton" Value="{StaticResource RadPager_Page_Over}" />
+                </Trigger>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Background" TargetName="PageButton" Value="{StaticResource RadPager_Page_Disabled}" />
+                </Trigger>
+                <Trigger Property="IsChecked" Value="True">
+                    <Setter Property="Background" TargetName="PageButton" Value="{StaticResource RadPager_Page_Checked}" />
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Background" TargetName="PageButton" Value="{StaticResource RadPager_Page_Checked}" />
+                </Trigger>
+                <Trigger Property="IsFocused" Value="True">
+                    <Setter Property="Background" TargetName="PageButton" Value="{StaticResource RadPager_Page_Over}" />
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </c:If>
+    </ControlTemplate>
+    <Style x:Key="RadPageStyle" TargetType="telerik:RadRadioButton">
+        <Setter Property="Template" Value="{StaticResource RadPageTemplate}" />
+        <Setter Property="Background" Value="{StaticResource RadPager_Page_Background}" />
+        <Setter Property="BorderBrush" Value="{StaticResource RadPager_Page_Border}" />
+        <Setter Property="BorderThickness" Value="0,0,1,1" />
+        <Setter Property="MinWidth" Value="21" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="Padding" Value="0" />
+    </Style>
+
+
+
+
+    <Style x:Key="ButtonsBaseStyle" TargetType="{x:Type telerik:RadButton}">
+        <Setter Property="Foreground" Value="Black" />
+        <Setter Property="BorderBrush" Value="Black"/>
+        <Setter Property="Background" Value="Transparent"/>
+
+        <Style.Triggers>
+
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="Blue" />
+                <Setter Property="BorderBrush" Value="Black" />
+                <Setter Property="Foreground" Value="Black" />
+            </Trigger>
+
+            <Trigger Property="IsPressed" Value="True">
+                <Setter Property="Background" Value="Blue" />
+                <Setter Property="BorderBrush" Value="Black" />
+                <Setter Property="Foreground" Value="Black" />
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Background" Value="Gray" />
+                <Setter Property="BorderBrush" Value="Gray" />
+                <Setter Property="Foreground" Value="Gray" />
+            </Trigger>
+
+        </Style.Triggers>
+    </Style>
+
+    <!--Pages Style="{Binding NumericButtonStyle}" -->
+    <ControlTemplate x:Key="NumericElementsPresenterTemplate" TargetType="dataPager:NumericElementsPresenter">
+        <ItemsControl ItemsSource="{Binding Pages}" >
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <VirtualizingStackPanel Orientation="Horizontal" />
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <telerik:RadRadioButton  x:Name="fx" IsChecked="{Binding IsCurrent, Mode=OneWay}"  GroupName="{Binding GroupName}" 	
+					CommandParameter="{Binding PageIndex}" Content="{Binding Content}"   
+                                            Command="{x:Static telerik:RadDataPagerCommands.MoveToPage}">
+                        <telerik:RadRadioButton.Style>
+                            <Style   TargetType="telerik:RadRadioButton">
+                                <Setter Property="Template" Value="{StaticResource RadPageTemplate}" />
+                                <Setter Property="Background" Value="{StaticResource RadPager_Page_Background}" />
+                                <Setter Property="BorderBrush" Value="{StaticResource RadPager_Page_Border}" />
+                                <Setter Property="BorderThickness" Value="0,0,1,1" />
+                                <Setter Property="MinWidth" Value="26" />
+                                <Setter Property="HorizontalContentAlignment" Value="Center" />
+                                <Setter Property="VerticalContentAlignment" Value="Center" />
+                                <Setter Property="Padding" Value="0" />
+                                <Style.Triggers>
+                                    <Trigger Property="IsChecked" Value="True">
+                                        <Setter Property="Foreground" Value="{StaticResource RadPager_Selected}"/>
+                                    </Trigger>
+                                </Style.Triggers>
+
+                            </Style>
+                        </telerik:RadRadioButton.Style>
+                        <!--<telerik:RadRadioButton.Triggers>
+               
+                                <DataTrigger Binding="{Binding IsCurrent}" Value="True" >
+                                <Setter Property="telerik:RadRadioButton.Foreground" Value="Red"/>
+                                </DataTrigger>
+                       
+                            
+                        </telerik:RadRadioButton.Triggers>-->
+                    </telerik:RadRadioButton>
+
+
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+    </ControlTemplate>
+    <Style x:Key="NumericElementsPresenterStyle" TargetType="dataPager:NumericElementsPresenter">
+        <Setter Property="Template" Value="{StaticResource NumericElementsPresenterTemplate}" />
+        <c:If Condition="WPF">
+            <Setter Property="SnapsToDevicePixels" Value="True" />
+        </c:If>
+    </Style>
+    <!--Pager Template-->
+    <ControlTemplate x:Key="DataPagerPresenterTemplate" TargetType="dataPager:DataPagerPresenter">
+        <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+            <Grid  VerticalAlignment="{TemplateBinding VerticalContentAlignment}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}">
+                <Grid.ColumnDefinitions >
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <StackPanel Orientation="Horizontal"  VerticalAlignment="{TemplateBinding VerticalContentAlignment}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}">
+                    <!--FirstPage Button-->
+                    <telerik:RadButton Name="MoveToFirstPageButton" Visibility="{Binding PagerControlsVisibility.MoveToFirstPageControlVisibility,RelativeSource={RelativeSource TemplatedParent}}" 
+						Width="38" Height="18" Margin="2" Command="{x:Static telerik:RadDataPagerCommands.MoveToFirstPage}" Background="Transparent"   Style="{StaticResource ButtonsBaseStyle}" >
+
+                        <!--<c:If Condition="Silverlight">
+                            <telerik:RadButton.Command>controls:RadDataPagerCommands.MoveToFirstPage</telerik:RadButton.Command>
+                        </c:If>
+                        <c:If Condition="WPF">
+                            <telerik:RadButton.Command>{x:Static controls:RadDataPagerCommands.MoveToFirstPage}</telerik:RadButton.Command>
+                        </c:If>-->
+                        <StackPanel Orientation="Horizontal">
+                            <Rectangle Fill="{Binding Foreground,ElementName=MoveToFirstPageButton}" VerticalAlignment="Center" HorizontalAlignment="Center" Width="1" Height="7" />
+                            <Path Fill="{Binding Foreground,ElementName=MoveToFirstPageButton}" VerticalAlignment="Center" HorizontalAlignment="Center" Data="M0,0 L3.5,3.5 0,7 Z" Width="4" Height="7" RenderTransformOrigin="0.5, 0.5">
+                                <Path.RenderTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform ScaleX="-1" ScaleY="1"/>
+                                        <SkewTransform AngleX="0" AngleY="0"/>
+                                        <RotateTransform Angle="0"/>
+                                        <TranslateTransform/>
+                                    </TransformGroup>
+                                </Path.RenderTransform>
+                            </Path>
+                        </StackPanel>
+                    </telerik:RadButton>
+
+                    <!--PreviousPage Button-->
+                    <telerik:RadButton Name="MoveToPreviousPageButton" Visibility="{Binding PagerControlsVisibility.MoveToPreviousPageControlVisibility,RelativeSource={RelativeSource TemplatedParent}}"
+						Width="18" Height="18" Margin="2" Command="{x:Static telerik:RadDataPagerCommands.MoveToPreviousPage}"  Background="Transparent"   Style="{StaticResource ButtonsBaseStyle}">
+                        <!--<c:If Condition="Silverlight">
+                            <telerik:RadButton.Command>controls:RadDataPagerCommands.MoveToPreviousPage</telerik:RadButton.Command>
+                        </c:If>
+                        <c:If Condition="WPF">
+                            <telerik:RadButton.Command>{x:Static controls:RadDataPagerCommands.MoveToPreviousPage}</telerik:RadButton.Command>
+                        </c:If>-->
+                        <Path  Fill="{Binding Foreground,ElementName=MoveToPreviousPageButton}"  VerticalAlignment="Center" HorizontalAlignment="Center" Data="M0,0 L3.5,3.5 0,7 Z" Width="4" Height="7" RenderTransformOrigin="0.5, 0.5">
+                            <Path.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform ScaleX="-1" ScaleY="1"/>
+                                    <SkewTransform AngleX="0" AngleY="0"/>
+                                    <RotateTransform Angle="0"/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Path.RenderTransform>
+                        </Path>
+                    </telerik:RadButton>
+
+                    <!--NumericPresenter-->
+                    <Border BorderThickness="1,0,0,0" Background="{StaticResource RadPager_NumericPresenter_Background}" BorderBrush="{StaticResource RadPager_NumericPresenter_Border}" Height="20" VerticalAlignment="Center" Visibility="{Binding PagerControlsVisibility.NumericElementsControlVisibility,RelativeSource={RelativeSource TemplatedParent}}">
+                        <dataPager:NumericElementsPresenter  NumericButtonStyle="{TemplateBinding NumericButtonStyle}" AutoEllipsisMode="{TemplateBinding AutoEllipsisMode}"   PageIndex="{TemplateBinding PageIndex}" PageCount="{TemplateBinding PageCount}" NumericButtonCount="{TemplateBinding NumericButtonCount}"  />
+                    </Border>
+                    <!--NextPage Button-->
+                    <telerik:RadButton Name="MoveToNextPageButton" Visibility="{Binding PagerControlsVisibility.MoveToNextPageControlVisibility,RelativeSource={RelativeSource TemplatedParent}}" 
+						Width="18" Height="18" Margin="2"   Command="{x:Static telerik:RadDataPagerCommands.MoveToNextPage}" IsEnabled="{Binding IsEnabled,ElementName=MoveToLastPageButton}"  Background="Transparent"   Style="{StaticResource ButtonsBaseStyle}">
+                        <!--<c:If Condition="Silverlight">
+                            <telerik:RadButton.Command>controls:RadDataPagerCommands.MoveToNextPage</telerik:RadButton.Command>
+                        </c:If>
+                        <c:If Condition="WPF">
+                            <telerik:RadButton.Command>{x:Static controls:RadDataPagerCommands.MoveToNextPage}</telerik:RadButton.Command>
+                        </c:If>-->
+                        <Path  Fill="{Binding Foreground,ElementName=MoveToNextPageButton}"  VerticalAlignment="Center" HorizontalAlignment="Center" Data="M0,0 L3.5,3.5 0,7 Z" Width="4" Height="7" />
+                    </telerik:RadButton>
+
+                    <!--LastPage Button-->
+                    <telerik:RadButton Name="MoveToLastPageButton" Visibility="{Binding PagerControlsVisibility.MoveToLastPageControlVisibility,RelativeSource={RelativeSource TemplatedParent}}" 			   
+						Width="38" Height="18" Margin="2"  Command="{x:Static telerik:RadDataPagerCommands.MoveToLastPage}"  Background="Transparent"   Style="{StaticResource ButtonsBaseStyle}">
+                        <!--<c:If Condition="Silverlight">
+                            <telerik:RadButton.Command>controls:RadDataPagerCommands.MoveToLastPage</telerik:RadButton.Command>
+                        </c:If>
+                        <c:If Condition="WPF">
+                            <telerik:RadButton.Command>{x:Static controls:RadDataPagerCommands.MoveToLastPage}</telerik:RadButton.Command>
+                        </c:If>-->
+                        <StackPanel Orientation="Horizontal">
+                            <Path  Fill="{Binding Foreground,ElementName=MoveToLastPageButton}"  VerticalAlignment="Center" HorizontalAlignment="Center" Data="M0,0 L3.5,3.5 0,7 Z" Width="4" Height="7" />
+                            <Rectangle  Fill="{Binding Foreground,ElementName=MoveToLastPageButton}"  VerticalAlignment="Center" HorizontalAlignment="Center" Width="1" Height="7" />
+                        </StackPanel>
+                    </telerik:RadButton>
+                </StackPanel>
+                <!--TextPager-->
+                <StackPanel Orientation="Horizontal"  Grid.Column="1" Visibility="{Binding PagerControlsVisibility.TextControlVisibility,RelativeSource={RelativeSource TemplatedParent}}" Margin="5,0" >
+                    <Border HorizontalAlignment="Left" Margin="5,0,0,0" Width="1" Background="{StaticResource RadPager_Separator1}" VerticalAlignment="Center" Height="18"/>
+                    <Border HorizontalAlignment="Left" Margin="0,0,10,0" Width="1" Background="{StaticResource RadPager_Separator2}" VerticalAlignment="Center" Height="18"/>
+
+                    <TextBlock   VerticalAlignment="Center" Margin="2,0" >前往</TextBlock>
+                    <dataPager:DataPagerTextBox  FontSize="{Binding FontSize,ElementName=FontSize}"
+                        Width="48" Height="20" Margin="2,0" VerticalContentAlignment="Center"  VerticalAlignment="Center"  
+											   PageIndex="{TemplateBinding PageIndex}"  Command="{x:Static telerik:RadDataPagerCommands.MoveToPage}">
+                        <!--<c:If Condition="Silverlight">
+                            <dataPager:DataPagerTextBox.Command>controls:RadDataPagerCommands.MoveToPage</dataPager:DataPagerTextBox.Command>
+                        </c:If>
+                        <c:If Condition="WPF">
+                            <dataPager:DataPagerTextBox.Command>{x:Static controls:RadDataPagerCommands.MoveToPage}</dataPager:DataPagerTextBox.Command>
+                        </c:If>-->
+                    </dataPager:DataPagerTextBox>
+                    <TextBlock x:Name="fxfff" Text=" 共" VerticalAlignment="Center" Margin="2,0" />
+                    <TextBlock Text="{Binding PageCount, RelativeSource={RelativeSource TemplatedParent}}" VerticalAlignment="Center" Margin="2,0" />
+                </StackPanel>
+            </Grid>
+        </Border>
+    </ControlTemplate>
+    <Style x:Key="DataPagerPresenterStyle"  TargetType="dataPager:DataPagerPresenter">
+        <Setter Property="Template" Value="{StaticResource DataPagerPresenterTemplate}" />
+        <c:If Condition="WPF">
+            <Setter Property="SnapsToDevicePixels" Value="True" />
+        </c:If>
+    </Style>
+    <ControlTemplate x:Key="RadDataPagerTemplate" TargetType="controls:RadDataPager">
+        <dataPager:DataPagerPresenter  NumericButtonStyle="{TemplateBinding NumericButtonStyle}"  AutoEllipsisMode="{TemplateBinding AutoEllipsisMode}" 
+									  DisplayMode="{TemplateBinding DisplayMode}" PageIndex="{TemplateBinding PageIndex}" PageCount="{TemplateBinding PageCount}" NumericButtonCount="{TemplateBinding NumericButtonCount}" 
+									  Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" 
+									  PageSize="{Binding PageSize, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
+									  ItemCount="{Binding ItemCount, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"  
+									  VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"/>
+    </ControlTemplate>
+    <Style x:Key="RadDataPagerStyle" TargetType="controls:RadDataPager">
+        <Setter Property="Template" Value="{StaticResource RadDataPagerTemplate}" />
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="Background" Value="{StaticResource RadPager_Background}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource RadPager_Border}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="Foreground" Value="{StaticResource RadPager_Foreground}" />
+        <Setter Property="NumericButtonStyle" Value="{StaticResource RadPageStyle}" />
+        <Setter Property="Height" Value="28" />
+        <Setter Property="FontSize" Value="{Binding RelativeSource={RelativeSource Self}, Path=(FontSet:FontAttriXaml.MyFontSize), Mode=OneWay}" />
+        <c:If Condition="WPF">
+            <Setter Property="SnapsToDevicePixels" Value="True" />
+        </c:If>
+    </Style>
+    <Style TargetType="controls:RadDataPager" BasedOn="{StaticResource RadDataPagerStyle}"/>
+    <Style TargetType="dataPager:DataPagerPresenter" BasedOn="{StaticResource DataPagerPresenterStyle}"/>
+    <Style TargetType="dataPager:NumericElementsPresenter" BasedOn="{StaticResource NumericElementsPresenterStyle}"/>
+    <!--<c:If Condition="WPF and !GenerateImplicitStyles">
+        <Style x:Key="{telerik:ThemeResourceKey ThemeType={StaticResource ThemeType}, ElementType={x:Type controls:RadDataPager}}"
+		   TargetType="controls:RadDataPager" BasedOn="{StaticResource RadDataPagerStyle}"/>
+        <Style x:Key="{telerik:ThemeResourceKey ThemeType={StaticResource ThemeType}, ElementType={x:Type dataPager:DataPagerPresenter}}"
+		   TargetType="dataPager:DataPagerPresenter" BasedOn="{StaticResource DataPagerPresenterStyle}"/>
+        <Style x:Key="{telerik:ThemeResourceKey ThemeType={StaticResource ThemeType}, ElementType={x:Type dataPager:NumericElementsPresenter}}"
+		   TargetType="dataPager:NumericElementsPresenter" BasedOn="{StaticResource NumericElementsPresenterStyle}"/>
+    </c:If>-->
+</ResourceDictionary>

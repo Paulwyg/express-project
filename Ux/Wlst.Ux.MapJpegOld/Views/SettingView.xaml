@@ -1,0 +1,25 @@
+﻿<UserControl x:Class="Wlst.Ux.RadMapJpeg.Views.SettingView" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+              mc:Ignorable="d" d:DesignHeight="300"
+             d:DesignWidth="600">
+
+
+  <Grid HorizontalAlignment="Center">
+    <Grid>
+      <Grid.RowDefinitions>
+        <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+            </Grid.RowDefinitions>
+            <CheckBox VerticalAlignment="Center" IsChecked="{Binding IsAllowZoom}" Content="允许使用滚轮来放大缩小地图 [禁用滚轮放大缩小可提高系统性能，建议关闭]"></CheckBox>
+            <CheckBox Grid.Row="1" VerticalAlignment="Center" IsChecked="{Binding IsAllowNavToEquImage}" Content="允许终端树与地图联动 [关闭联动可提高系统性能]"></CheckBox>
+
+
+
+            <Button Tag="11060007"  Content="应用" Command="{Binding CmdApply}"  HorizontalAlignment="Right" Margin="0,0,30,0" Width="120" Height="25" Grid.Row="2"></Button>
+    </Grid>
+  </Grid>
+</UserControl>

@@ -1,0 +1,131 @@
+﻿<UserControl x:Class="Elysium.ThemesSet.RadGridViewSet.RadGridViewAttri"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" 
+             MaxHeight="600" MinWidth="300" MaxWidth="1000" MinHeight="300">
+    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" MinHeight="30"/>
+            <RowDefinition Height="Auto"  MinHeight="30"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <GroupBox  Margin="5" Header="面板设置"  Name="groupBox1" VerticalAlignment="Top"  >
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" MinHeight="30"/>
+                    <RowDefinition Height="Auto" MinHeight="30"/>
+                    <RowDefinition Height="Auto" MinHeight="30"/>
+                    <RowDefinition Height="Auto" MinHeight="30"/>
+                    <RowDefinition Height="Auto" MinHeight="30"/>
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                
+                <Label Margin="5,2,5,2" Grid.Row="0" Content="面板背景色:"   Name="label1" VerticalAlignment="Center" />
+                <Label Margin="5,2,5,2" Grid.Row="1" Content="边框颜色:"  Name="label2" VerticalAlignment="Center" />
+                <Label Margin="5,2,5,2" Grid.Row="2" Content="边框厚度:" Name="label3" VerticalAlignment="Center" />
+                <Label Margin="5,2,5,2" Grid.Row="3" Content="字体颜色:" Name="label4" VerticalAlignment="Center" />
+                <Label Margin="5,2,5,2" Grid.Row="4" Content="选中字体色:"  VerticalAlignment="Center" />
+
+                <xctk:ColorPicker Margin="5,2,5,2"  Grid.Row="0"  Grid.Column="1" MinWidth="120"  VerticalAlignment="Center"  SelectedColor="{Binding RadGridViewBackground}" />
+                <xctk:ColorPicker Margin="5,2,5,2"  Grid.Row="1"  Grid.Column="1" SelectedColor="{Binding RadGridViewBorderBrush}" VerticalAlignment="Center" MinWidth="120" />
+                <TextBox Margin="5,2,5,2" Grid.Row="2"  Grid.Column="1" Text="{Binding RadGridViewBorderThickness}"  Name="textBox1" VerticalAlignment="Center" MinWidth="120" />
+                <xctk:ColorPicker Margin="5,2,5,2"  Grid.Row="3"  Grid.Column="1" SelectedColor="{Binding TitleNormalForeground}" VerticalAlignment="Center" MinWidth="120" />
+                <xctk:ColorPicker Margin="5,2,5,2" Grid.Row="4"  Grid.Column="1" SelectedColor="{Binding TitleNormalForegroundSelected}" VerticalAlignment="Center" MinWidth="120" />
+
+                <Button Margin="10,5,10,5" Grid.Row="5" Background="{Binding RadGridViewBackground}" BorderThickness="{Binding RadGridViewBorderThickness}" 
+                        Foreground="{Binding RadGridViewForeground}" Content="面板" BorderBrush="{Binding RadGridViewBorderBrush}"
+                        Name="button1" VerticalAlignment="Center" MinWidth="60" />
+                <Button Margin="10,5,10,5" Grid.Row="5" Grid.Column="1" Background="{Binding TitleNormalForeground }" BorderThickness="{Binding SortIndicatorAscBrush}" 
+                        Foreground="{Binding TitleNormalForegroundSelected}" Content="字体颜色" BorderBrush="{Binding RadGridViewBorderBrush}" 
+                         VerticalAlignment="Center" MinWidth="60" />
+            </Grid>
+        </GroupBox>
+        <GroupBox  Margin="5" Header="表头设置" Grid.Column="1"  VerticalAlignment="Top" >
+            <Grid >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" MinHeight="30"/>
+                    <RowDefinition Height="Auto" MinHeight="30"/>
+                    <RowDefinition Height="Auto" MinHeight="30"/>
+                    <RowDefinition Height="Auto" MinHeight="30"/>
+                    <RowDefinition Height="Auto" MinHeight="30"/>
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Label Margin="5,2,5,2" Content="降序颜色:"   VerticalAlignment="Center" />
+                <Label  Margin="5,2,5,2"  Grid.Row="1" Content="背景颜色:"  VerticalAlignment="Center"  />
+                <Label  Margin="5,2,5,2"  Grid.Row="2" Content="升序颜色:"  VerticalAlignment="Center"  />
+                <Label  Margin="5,2,5,2"  Grid.Row="3" Content="鼠标进入颜色:"  VerticalAlignment="Center" />
+                <Label  Margin="5,2,5,2"  Grid.Row="4" Content="鼠标选中颜色:"  VerticalAlignment="Center"  />
+
+                <xctk:ColorPicker  Margin="5,2,5,2"  MinWidth="120"   Grid.Column="1" VerticalAlignment="Center"  SelectedColor="{Binding SortIndicatorAscBrush}" />
+                <xctk:ColorPicker  Margin="5,2,5,2"  Grid.Row="1"  Grid.Column="1" SelectedColor="{Binding TitleNormalBackground}" VerticalAlignment="Center" MinWidth="120" />
+                <xctk:ColorPicker  Margin="5,2,5,2"   Grid.Row="2"  Grid.Column="1" SelectedColor="{Binding SortIndicatorDesBrush}" VerticalAlignment="Center" MinWidth="120" />
+                <xctk:ColorPicker  Margin="5,2,5,2"  Grid.Row="3"  Grid.Column="1" SelectedColor="{Binding TitleCellMouseOverBrush}" VerticalAlignment="Center" MinWidth="120" />
+                <xctk:ColorPicker  Margin="5,2,5,2"  Grid.Row="4" Grid.Column="1" SelectedColor="{Binding TitleCellSelectedBrush}" VerticalAlignment="Center" MinWidth="120" />
+
+
+                <Button  Margin="20,5,20,5"   Grid.ColumnSpan="2" Grid.Row="5" Background="{Binding TitleCellMouseOverBrush}" BorderBrush="{Binding TitleCellSelectedBrush}" 
+                        BorderThickness="3" Foreground="{Binding SortIndicatorDesBrush}"
+                        Content="表头单元格"   VerticalAlignment="Center" MinWidth="120" />
+            </Grid>
+        </GroupBox>
+
+        <GroupBox Header="条目项设置" Margin="5" Grid.Column="2" VerticalAlignment="Top"  >
+            <Grid >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" MinHeight="30"/>
+                    <RowDefinition Height="Auto" MinHeight="30"/>
+                    <RowDefinition Height="Auto" MinHeight="30"/>
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Label Margin="5,2,5,2"  Content="背景颜色:" VerticalAlignment="Center"  />
+                <Label Margin="5,2,5,2"  Grid.Row="1" Content="鼠标进入颜色:"  VerticalAlignment="Center"  />
+                <Label  Margin="5,2,5,2"  Grid.Row="2" Content="鼠标选中颜色:" VerticalAlignment="Center"  />
+
+                <xctk:ColorPicker Margin="5,2,5,2"   Grid.Column="1" SelectedColor="{Binding ItemBackground}" VerticalAlignment="Center" MinWidth="120" />
+                <xctk:ColorPicker Margin="5,2,5,2"  Grid.Row="1"  Grid.Column="1" SelectedColor="{Binding ItemBackgroundMouseOver}" VerticalAlignment="Center" MinWidth="120" />
+                <xctk:ColorPicker Margin="5,2,5,2"  Grid.Row="2" Grid.Column="1" SelectedColor="{Binding ItemBackgroundSelected}" VerticalAlignment="Center" MinWidth="120" />
+
+                <Button Margin="5,2,5,2"  Grid.Row="3" Background="{Binding ItemBackground}" BorderThickness="{Binding SortIndicatorAscBrush}" Foreground="{Binding RadGridViewForeground}"
+                        Content="指示器" BorderBrush="{Binding RadGridViewBorderBrush}"   VerticalAlignment="Center" MinWidth="60" />
+                <Button Margin="5,2,5,2"  Grid.Row="3" Grid.Column="1" Background="{Binding ItemBackgroundMouseOver}" BorderBrush="{Binding ItemBackgroundSelected}" BorderThickness="3"
+                        Content="表头单元格"  VerticalAlignment="Center" MinWidth="60" />
+            </Grid>
+        </GroupBox>
+
+        <Button Content="点击查看以上设置叠加效果" Grid.Row="1" Grid.Column="0"  Command="{Binding CmdLook}" HorizontalAlignment="Center"  Name="button2" VerticalAlignment="Center" MinWidth="120" />
+        <Button Content="保存设置"  Grid.Row="1" Grid.Column="1"  HorizontalAlignment="Center"  Command="{Binding CmdSave}" Name="button3" VerticalAlignment="Center" MinWidth="120" />
+        <telerik:RadGridView Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="3" x:Name="radgridview"  AutoGenerateColumns="False" ItemsSource="{Binding Items}" ShowColumnHeaders="True">
+            <telerik:RadGridView.Columns>
+                <telerik:GridViewDataColumn Header="序号" MinWidth="60" DataMemberBinding="{Binding RecordIndex}" IsReadOnly="True" />
+                <telerik:GridViewDataColumn Header="时间" DataMemberBinding="{Binding Time}"  IsReadOnly="True" MinWidth="120"/>
+                <telerik:GridViewDataColumn Header="用户" DataMemberBinding="{Binding UserName}"  IsReadOnly="True" MinWidth="120"/>
+                <telerik:GridViewDataColumn Header="内容" DataMemberBinding="{Binding Content}"  IsReadOnly="True" MinWidth="120"/>
+            </telerik:RadGridView.Columns>
+        </telerik:RadGridView>
+        
+    </Grid>
+    </ScrollViewer>
+</UserControl>

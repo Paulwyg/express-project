@@ -1,0 +1,57 @@
+﻿<WindowForWlst:CustomChromeWindow x:Class="Wlst.Ux.Nr6005Module.ControlCenterManagDemo2.Views.TimeTableSelectWindow"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                                  xmlns:WindowForWlst="clr-namespace:WindowForWlst;assembly=WindowForWlst"
+                                  xmlns:RadioButtonConverter="clr-namespace:Wlst.Cr.CoreOne.RadioButtonConverter;assembly=Wlst.Cr.CoreOne"
+                                  xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+                                  xmlns:AppleWindowSet="clr-namespace:Elysium.ThemesSet.AppleWindowSet;assembly=Elysium"
+                                  mc:Ignorable="d" 
+                                   
+                    Height="525"  Title="时间表快速选择"  TitleCetc="时间表快速选择"     Topmost="True" TopmostButtonVisibility="Collapsed"
+        Width="600">
+    <Grid>
+        <Grid>
+            <Grid.Resources>
+                <!--<Style x:Key="itemstyle" TargetType="{x:Type telerik:GridViewRowItem}">
+                    <EventSetter Event='MouseDoubleClick' Handler='ListViewItem_MouseDoubleClick'/>
+                </Style>-->
+            </Grid.Resources>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="40"></RowDefinition>
+            </Grid.RowDefinitions>
+            <telerik:RadGridView  Grid.Row="0" AutoGenerateColumns="False" RowIndicatorVisibility="Collapsed" ShowGroupPanel="False" 
+            AllowDrop="True"    Name="time" ><!--ItemsSource="{Binding Path=TimeTables}"-->
+                <telerik:RadGridView.Columns>
+                    <telerik:GridViewDataColumn Header="选择" IsFilterable="False"  Width="50" >
+                        <telerik:GridViewDataColumn.CellTemplate>
+                            <DataTemplate>
+                                <DockPanel>
+                                    <CheckBox Margin="10,-2,5,0" IsChecked="{Binding IsChecked }" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                                </DockPanel>
+                            </DataTemplate>
+                        </telerik:GridViewDataColumn.CellTemplate>
+                    </telerik:GridViewDataColumn>
+                    <telerik:GridViewDataColumn Header="序号" IsFilterable="False"    Width="50" DataMemberBinding="{Binding Path=Id,Mode=TwoWay}"/>
+                    <telerik:GridViewDataColumn Header="时间表名称" IsFilterable="False"   DataMemberBinding="{Binding  Path=Name,Mode=TwoWay}" Width="200" />
+                    <telerik:GridViewDataColumn Header="所属区域" IsFilterable="False"   DataMemberBinding="{Binding  Path=Area,Mode=TwoWay}"  IsVisible="{Binding AreaView}" Width="150"  />
+                    <telerik:GridViewDataColumn Header="时间表描述" IsFilterable="False"   DataMemberBinding="{Binding  Path=NameDesc,Mode=TwoWay}"  Width="250"/>
+
+
+                </telerik:RadGridView.Columns>
+            </telerik:RadGridView>
+
+            <Grid Grid.Row="1" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="295"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Button Content="确定"   Width="120" Height="25"  Margin=" 10,0,10,0"  Click="Button_Click"  Grid.Column="1" HorizontalAlignment="Right"></Button>
+                <Button Content="取消"   Width="120" Height="25"  Margin=" 10,0,10,0"  Click="Button_Click_1" Grid.Column="2"  HorizontalAlignment="Right"></Button>
+            </Grid>
+        </Grid>
+    </Grid>
+</WindowForWlst:CustomChromeWindow>

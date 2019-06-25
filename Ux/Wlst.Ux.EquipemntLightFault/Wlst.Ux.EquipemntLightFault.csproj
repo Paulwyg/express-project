@@ -1,0 +1,434 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{9F7A288D-286C-49F6-A61F-E6985BBD7E6A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Wlst.Ux.EquipemntLightFault</RootNamespace>
+    <AssemblyName>Wlst.Ux.EquipemntLightFault</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\ZDebug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\Rr\Binaries\WPF\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Elysium, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ZDebug\Elysium.dll</HintPath>
+    </Reference>
+    <Reference Include="HappyPrint, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Rr\Binaries\WPF\HappyPrint.dll</HintPath>
+    </Reference>
+    <Reference Include="Interop.SpeechLib, Version=5.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>..\..\ZDebug\Interop.SpeechLib.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Prism">
+      <HintPath>..\DLL\Microsoft.Practices.Prism.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Prism.MefExtensions">
+      <HintPath>..\DLL\Microsoft.Practices.Prism.MefExtensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Prism.MefExtensions.Event">
+      <HintPath>..\DLL\Microsoft.Practices.Prism.MefExtensions.Event.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="PropertyTools.Wpf">
+      <HintPath>..\DLL\PropertyTools.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
+    <Reference Include="System.Speech" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Telerik.Windows.Controls, Version=2012.3.1129.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DLL\Telerik.Windows.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.Data, Version=2015.3.2015.40, Culture=neutral, PublicKeyToken=d3625f8bf04286d7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Rr\Binaries\WPF\Telerik.Windows.Controls.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.Docking, Version=2012.3.1129.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DLL\Telerik.Windows.Controls.Docking.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.GridView">
+      <HintPath>..\DLL\Telerik.Windows.Controls.GridView.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.Input, Version=2015.3.2015.40, Culture=neutral, PublicKeyToken=d3625f8bf04286d7, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.Windows.Controls.Navigation, Version=2012.3.1129.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DLL\Telerik.Windows.Controls.Navigation.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.PrismAdapter">
+      <HintPath>..\DLL\Telerik.Windows.Controls.PrismAdapter.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Data">
+      <HintPath>..\DLL\Telerik.Windows.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="Wlst.Cr.Core">
+      <HintPath>..\DLL\Wlst.Cr.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Wlst.Cr.Coreb, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Rr\Binaries\WPF\Wlst.Cr.Coreb.dll</HintPath>
+    </Reference>
+    <Reference Include="Wlst.Cr.CoreMims, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ZDebug\Wlst.Cr.CoreMims.dll</HintPath>
+    </Reference>
+    <Reference Include="Wlst.Cr.CoreOne, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ZDebug\Wlst.Cr.CoreOne.dll</HintPath>
+    </Reference>
+    <Reference Include="Wlst.Cr.MessageBoxOverride, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ZDebug\Wlst.Cr.MessageBoxOverride.dll</HintPath>
+    </Reference>
+    <Reference Include="Wlst.Cr.PPProtocolSvrCnt, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ZDebug\Wlst.Cr.PPProtocolSvrCnt.dll</HintPath>
+    </Reference>
+    <Reference Include="Wlst.Sr.EquipmentInfoHolding">
+      <HintPath>..\DLL\Wlst.Sr.EquipmentInfoHolding.dll</HintPath>
+    </Reference>
+    <Reference Include="Wlst.Sr.PPPandSocketSvr, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ZDebug\Wlst.Sr.PPPandSocketSvr.dll</HintPath>
+    </Reference>
+    <Reference Include="Wlst.Sr.ProtocolPhone, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Rr\Binaries\WPF\Wlst.Sr.ProtocolPhone.dll</HintPath>
+    </Reference>
+    <Reference Include="Wlst.Sr.SlusglInfoHold, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Rr\Binaries\WPF\Wlst.Sr.SlusglInfoHold.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CurrentEquipmentFaultViewModel\NavToCurrentEquipmentFaultView.cs" />
+    <Compile Include="CurrentEquipmentFaultViewModel\Services\CurrentEquipmentFaultInfoHold.cs" />
+    <Compile Include="CurrentEquipmentFaultViewModel\Services\IICurrentEquipmentFaultView.cs" />
+    <Compile Include="CurrentEquipmentFaultViewModel\Services\TimeConverterIntToString.cs" />
+    <Compile Include="CurrentEquipmentFaultViewModel\Services\TrueFalse.cs" />
+    <Compile Include="CurrentEquipmentFaultViewModel\ViewModel\CurrentEquipmentFaultViewModel.cs" />
+    <Compile Include="CurrentEquipmentFaultViewModel\ViewModel\CurrentItemViewModel.cs" />
+    <Compile Include="CurrentEquipmentFaultViewModel\Views\CurrentEquipmentFaultView.xaml.cs">
+      <DependentUpon>CurrentEquipmentFaultView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CurrentEquipmentFaultViewModel\Views\CurrentEquipmentFaultViewForWin.xaml.cs">
+      <DependentUpon>CurrentEquipmentFaultViewForWin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CurrentEquipmentFaultViewModel\Views\FaultSelectFm.xaml.cs">
+      <DependentUpon>FaultSelectFm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EquipmentFaultManageSettingLnViewModel\EquipmentFaultManageSettingView.cs" />
+    <Compile Include="EquipmentFaultManageSettingLnViewModel\Services\IIEquipmentFaultManageSettingLnViewModel.cs" />
+    <Compile Include="EquipmentFaultManageSettingLnViewModel\ViewModel\EquipmentFaultManageSettingViewModel.cs" />
+    <Compile Include="EquipmentFaultManageSettingLnViewModel\Views\EquipmentFaultManageSettingLnView.xaml.cs">
+      <DependentUpon>EquipmentFaultManageSettingLnView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EquipmentFaultManageSettingViewModel\EquipmentFaultManageSettingView.cs" />
+    <Compile Include="EquipmentFaultManageSettingViewModel\Services\IIEquipmentFaultManageSettingViewModel.cs" />
+    <Compile Include="EquipmentFaultManageSettingViewModel\ViewModel\EquipmentFaultManageSettingViewModel.cs" />
+    <Compile Include="EquipmentFaultManageSettingViewModel\Views\EquipmentFaultManageSettingView.xaml.cs">
+      <DependentUpon>EquipmentFaultManageSettingView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EquipmentFaultRecordQueryLevelLowViewModel\Converters\BoolToVisibleConverter.cs" />
+    <Compile Include="EquipmentFaultRecordQueryLevelLowViewModel\NavToEquipmentFaultRecordQueryViewHigh.cs" />
+    <Compile Include="EquipmentFaultRecordQueryLevelLowViewModel\NavToEquipmentFaultRecordQueryViewLow.cs" />
+    <Compile Include="EquipmentFaultRecordQueryLevelLowViewModel\NavToEquipmentFaultRecordQueryViewNormal.cs" />
+    <Compile Include="EquipmentFaultRecordQueryLevelLowViewModel\NavToEquipmentFaultRecordQueryViewTmlRightMenuHigh.cs" />
+    <Compile Include="EquipmentFaultRecordQueryLevelLowViewModel\NavToEquipmentFaultRecordQueryViewTmlRightMenuLow.cs" />
+    <Compile Include="EquipmentFaultRecordQueryLevelLowViewModel\NavToEquipmentFaultRecordQueryViewTmlRightMenuNormal.cs" />
+    <Compile Include="EquipmentFaultRecordQueryLevelLowViewModel\Services\IIEquipmentFaultRecordQueryViewModel.cs" />
+    <Compile Include="EquipmentFaultRecordQueryLevelLowViewModel\Services\RadioButtonBooleanConverter.cs" />
+    <Compile Include="EquipmentFaultRecordQueryLevelLowViewModel\ViewModel\EquipmentFaultRecordQueryEditXml.cs" />
+    <Compile Include="EquipmentFaultRecordQueryLevelLowViewModel\ViewModel\EquipmentFaultRecordQueryViewModel.cs" />
+    <Compile Include="EquipmentFaultRecordQueryLevelLowViewModel\ViewModel\EquipmentFaultViewModel.cs" />
+    <Compile Include="EquipmentFaultRecordQueryLevelLowViewModel\Views\EquipmentFaultRecordQueryView.xaml.cs">
+      <DependentUpon>EquipmentFaultRecordQueryView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EquipmentFaultRecordQueryLnViewModel\Converters\BoolToVisibleConverter.cs" />
+    <Compile Include="EquipmentFaultRecordQueryLnViewModel\NavToEquipmentFaultRecordQueryLnView.cs" />
+    <Compile Include="EquipmentFaultRecordQueryLnViewModel\NavToEquipmentFaultRecordQueryLnViewTmlRightMenu.cs" />
+    <Compile Include="EquipmentFaultRecordQueryLnViewModel\Services\IIEquipmentFaultRecordQueryLnViewModel.cs.cs" />
+    <Compile Include="EquipmentFaultRecordQueryLnViewModel\Services\RadioButtonBooleanConverter.cs" />
+    <Compile Include="EquipmentFaultRecordQueryLnViewModel\ViewModel\EquipmentFaultRecordQueryViewModel.cs" />
+    <Compile Include="EquipmentFaultRecordQueryLnViewModel\ViewModel\EquipmentFaultViewModel.cs" />
+    <Compile Include="EquipmentFaultRecordQueryLnViewModel\Views\EquipmentFaultRecordQueryLnView.xaml.cs">
+      <DependentUpon>EquipmentFaultRecordQueryLnView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EquipmentFaultWithTmlPriorityLevelSettingViewModel\NavToEquipmentFaultWithTmlPriorityLevelSettingViewforMainMenu.cs" />
+    <Compile Include="EquipmentFaultWithTmlPriorityLevelSettingViewModel\Services\IIEquipmentFaultWithTmlPriorityLevelSettingViewModel.cs" />
+    <Compile Include="EquipmentFaultWithTmlPriorityLevelSettingViewModel\Services\IsCheckedToNoValue.cs" />
+    <Compile Include="EquipmentFaultWithTmlPriorityLevelSettingViewModel\Services\IsCheckedToValue.cs" />
+    <Compile Include="EquipmentFaultWithTmlPriorityLevelSettingViewModel\Services\ListTreeNodeBase.cs" />
+    <Compile Include="EquipmentFaultWithTmlPriorityLevelSettingViewModel\ViewModel\EquipmentFaultWithTmlPriorityLevelSettingViewModel.cs" />
+    <Compile Include="EquipmentFaultWithTmlPriorityLevelSettingViewModel\ViewModel\FauleCodeNameSelectViewModel.cs" />
+    <Compile Include="EquipmentFaultWithTmlPriorityLevelSettingViewModel\ViewModel\ListTreeGroupNode.cs" />
+    <Compile Include="EquipmentFaultWithTmlPriorityLevelSettingViewModel\ViewModel\ListTreeTmlNode.cs" />
+    <Compile Include="EquipmentFaultWithTmlPriorityLevelSettingViewModel\ViewModel\TmlIdNameSelectViewModel.cs" />
+    <Compile Include="EquipmentFaultWithTmlPriorityLevelSettingViewModel\Views\EquipmentFaultWithTmlPriorityLevelSettingView.xaml.cs">
+      <DependentUpon>EquipmentFaultWithTmlPriorityLevelSettingView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="RtuAmpSxxNewOne\IIRtuAmpSxx.cs" />
+    <Compile Include="RtuAmpSxxNewOne\NavToRtuAmpSxx.cs" />
+    <Compile Include="RtuAmpSxxNewOne\RtuAmpSxxView.xaml.cs">
+      <DependentUpon>RtuAmpSxxView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="RtuAmpSxxNewOne\RtuAmpSxxViewModel.cs" />
+    <Compile Include="RtuAmpSxxNewRuleSection\IINewRuleSectionvm.cs" />
+    <Compile Include="RtuAmpSxxNewRuleSection\NavToRtuAmpSxxRuleSection.cs" />
+    <Compile Include="RtuAmpSxxNewRuleSection\NewRuleSection.xaml.cs">
+      <DependentUpon>NewRuleSection.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="RtuAmpSxxNewRuleSection\NewRuleSectionVm.cs" />
+    <Compile Include="RtuAmpSxxNewRuleSection\OneRuleItem.cs" />
+    <Compile Include="EquipmentFaultDefineSettingViewModel\Services\BoolToStringConverter.cs" />
+    <Compile Include="EquipmentFaultDefineSettingViewModel\Services\IsCheckedMore.cs" />
+    <Compile Include="EquipmentFaultDefineSettingViewModel\Services\TimeConverterIntToString.cs" />
+    <Compile Include="EquipmentFaultDefineSettingViewModel\ViewModel\FaultRuleItem.cs" />
+    <Compile Include="EquipmentFaultOnTabViewModel\Services\IIEquipmentAllFaultOnTabViewModel.cs" />
+    <Compile Include="EquipmentFaultOnTabViewModel\ViewModel\EquipmentAllFaultOnTabViewModel.cs" />
+    <Compile Include="EquipmentFaultOnTabViewModel\ViewModel\OneTmlExistFaultViewModel.cs" />
+    <Compile Include="EquipmentFaultOnTabViewModel\Views\EquipmentAllFaultOnTabView.xaml.cs">
+      <DependentUpon>EquipmentAllFaultOnTabView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EquipmentFaultRecordQuerySZViewModel\Converters\BoolToVisibleConverter.cs" />
+    <Compile Include="EquipmentFaultRecordQuerySZViewModel\NavToEquipmentFaultRecordQueryViewTmlRightMenu.cs" />
+    <Compile Include="EquipmentFaultRecordQueryViewModel\Converters\BoolToVisibleConverter.cs" />
+    <Compile Include="EquipmentFaultRecordQueryViewModel\NavToEquipmentFaultRecordQueryView.cs" />
+    <Compile Include="EquipmentFaultRecordQueryViewModel\NavToEquipmentFaultRecordQueryViewTmlRightMenu.cs" />
+    <Compile Include="EquipmentFaultRecordQueryViewModel\Services\IIEquipmentFaultRecordQueryViewModel.cs" />
+    <Compile Include="EquipmentFaultRecordQueryViewModel\Services\RadioButtonBooleanConverter.cs" />
+    <Compile Include="EquipmentFaultRecordQueryViewModel\ViewModel\EquipmentFaultRecordQueryEditXml.cs" />
+    <Compile Include="EquipmentFaultRecordQueryViewModel\ViewModel\EquipmentFaultRecordQueryViewModel.cs" />
+    <Compile Include="EquipmentFaultRecordQueryViewModel\ViewModel\EquipmentFaultViewModel.cs" />
+    <Compile Include="EquipmentFaultRecordQueryViewModel\Views\EquipmentFaultRecordQueryView.xaml.cs">
+      <DependentUpon>EquipmentFaultRecordQueryView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EquipmentFaultWithTmlSettingViewModel\Services\IsCheckedToNoValue.cs" />
+    <Compile Include="EquipmentFaultWithTmlSettingViewModel\Services\IsCheckedToValue.cs" />
+    <Compile Include="Models\UserInfoViewModel.cs" />
+    <Compile Include="Models\Exchange\PreErrorRequest.cs" />
+    <Compile Include="RecordMsg\IIRecordMsg.cs" />
+    <Compile Include="RecordMsg\NavToRecordMsgView.cs" />
+    <Compile Include="RecordMsg\RecordMsgView.xaml.cs">
+      <DependentUpon>RecordMsgView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="RecordMsg\RecordMsgViewModel.cs" />
+    <Compile Include="SendOrderViewModel\NavToSendOrderView.cs" />
+    <Compile Include="SendOrderViewModel\Services\IISendOrderView.cs" />
+    <Compile Include="SendOrderViewModel\ViewModel\InputFaultRecord.cs" />
+    <Compile Include="SendOrderViewModel\ViewModel\SendOrderItems.cs" />
+    <Compile Include="SendOrderViewModel\ViewModel\SendOrderViewModel.cs" />
+    <Compile Include="SendOrderViewModel\Views\SendOrderView.xaml.cs">
+      <DependentUpon>SendOrderView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Services\EventIdAssign.cs" />
+    <Compile Include="Services\fileread.cs" />
+    <Compile Include="Services\MenuIdAssgin.cs" />
+    <Compile Include="Services\ViewIdAssign.cs" />
+    <Compile Include="UserFaultSettingByAdmin\NavToUserIndividuationFaultSettingView.cs" />
+    <Compile Include="UserFaultSettingByAdmin\Services\IIUserFaultSettingByAdminVm.cs" />
+    <Compile Include="UserFaultSettingByAdmin\ViewModel\OneFaultTypeInfo.cs" />
+    <Compile Include="UserFaultSettingByAdmin\ViewModel\TreeNodeBaseVm.cs" />
+    <Compile Include="UserFaultSettingByAdmin\ViewModel\UserFaultSettingByAdminVm.cs" />
+    <Compile Include="UserFaultSettingByAdmin\ViewModel\UserInfoItem.cs" />
+    <Compile Include="UserFaultSettingByAdmin\View\UserFaultSettingByAdminView.xaml.cs">
+      <DependentUpon>UserFaultSettingByAdminView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserIndividuationFaultSettingViewModel\NavToUserIndividuationFaultSettingView.cs" />
+    <Compile Include="UserIndividuationFaultSettingViewModel\Services\IIUserIndividuationFaultSettingViewModel.cs" />
+    <Compile Include="UserIndividuationFaultSettingViewModel\ViewModel\TreeNodeBaseViewModelE.cs" />
+    <Compile Include="UserIndividuationFaultSettingViewModel\ViewModel\UserIndividuationFaultSettingViewModel.cs" />
+    <Compile Include="UserIndividuationFaultSettingViewModel\ViewModel\UserIndividuationFaultViewModel.cs" />
+    <Compile Include="UserIndividuationFaultSettingViewModel\View\UserIndividuationFaultSettingView.xaml.cs">
+      <DependentUpon>UserIndividuationFaultSettingView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UxEquipemntLightFault.cs" />
+    <Compile Include="EquipmentFaultDefineSettingViewModel\NavLineEquipmentFaultDefineSettingView.cs" />
+    <Compile Include="EquipmentFaultDefineSettingViewModel\NavToEquipmentFaultDefineSettingView.cs" />
+    <Compile Include="EquipmentFaultDefineSettingViewModel\Services\IIEquipmentFaultDefineSettingViewModel.cs" />
+    <Compile Include="EquipmentFaultDefineSettingViewModel\ViewModel\EquipmentFaultDefineSettingViewModel.cs" />
+    <Compile Include="EquipmentFaultDefineSettingViewModel\ViewModel\TmlFaultTypeViewModel.cs" />
+    <Compile Include="EquipmentFaultDefineSettingViewModel\Views\EquipmentFaultDefineSettingView.xaml.cs">
+      <DependentUpon>EquipmentFaultDefineSettingView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EquipmentFaultOnTabViewModel\Services\IIEquipmentFaultOnTabViewModel.cs" />
+    <Compile Include="EquipmentFaultOnTabViewModel\ViewModel\EquipmentFaultOnTabViewModel.cs" />
+    <Compile Include="EquipmentFaultOnTabViewModel\Views\EquipmentFaultOnTabView.xaml.cs">
+      <DependentUpon>EquipmentFaultOnTabView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EquipmentFaultRecordQuerySZViewModel\NavToEquipmentFaultRecordQueryView.cs" />
+    <Compile Include="EquipmentFaultRecordQuerySZViewModel\Services\IIEquipmentFaultRecordQueryViewModel.cs" />
+    <Compile Include="EquipmentFaultRecordQuerySZViewModel\Services\RadioButtonBooleanConverter.cs" />
+    <Compile Include="EquipmentFaultRecordQuerySZViewModel\ViewModel\EquipmentFaultRecordQueryViewModel.cs" />
+    <Compile Include="EquipmentFaultRecordQuerySZViewModel\ViewModel\EquipmentFaultViewModel.cs" />
+    <Compile Include="EquipmentFaultRecordQuerySZViewModel\Views\EquipmentFaultRecordQueryView.xaml.cs">
+      <DependentUpon>EquipmentFaultRecordQueryView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EquipmentFaultWithTmlSettingViewModel\NavToEquipmentFaultWithTmlSettingViewforMainMenu.cs" />
+    <Compile Include="EquipmentFaultWithTmlSettingViewModel\Services\IIEquipmentFaultWithTmlSettingViewModel.cs" />
+    <Compile Include="EquipmentFaultWithTmlSettingViewModel\Services\ListTreeNodeBase.cs" />
+    <Compile Include="EquipmentFaultWithTmlSettingViewModel\ViewModel\EquipmentFaultWithTmlSettingViewModel.cs" />
+    <Compile Include="EquipmentFaultWithTmlSettingViewModel\ViewModel\FauleCodeNameSelectViewModel.cs" />
+    <Compile Include="EquipmentFaultWithTmlSettingViewModel\ViewModel\ListTreeGroupNode.cs" />
+    <Compile Include="EquipmentFaultWithTmlSettingViewModel\ViewModel\ListTreeTmlNode.cs" />
+    <Compile Include="EquipmentFaultWithTmlSettingViewModel\ViewModel\TmlIdNameSelectViewModel.cs" />
+    <Compile Include="EquipmentFaultWithTmlSettingViewModel\Views\EquipmentFaultWithTmlSettingView.xaml.cs">
+      <DependentUpon>EquipmentFaultWithTmlSettingView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Cr\Wlst.Cr.Setting\Wlst.Cr.Setting.csproj">
+      <Project>{A330DF6B-20F7-4FD0-BCA8-2FD5095395FF}</Project>
+      <Name>Wlst.Cr.Setting</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Sr\Wlst.Sr.AssetManageInfoHold\Wlst.Sr.AssetManageInfoHold.csproj">
+      <Project>{A673EE5B-4088-4592-8973-96596D65F938}</Project>
+      <Name>Wlst.Sr.AssetManageInfoHold</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Sr\Wlst.Sr.EquipemntLightFault\Wlst.Sr.EquipemntLightFault.csproj">
+      <Project>{F1AD5DCB-3CFD-4E3A-9130-69047E45F214}</Project>
+      <Name>Wlst.Sr.EquipemntLightFault</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Ux1\Wlst.print\Wlst.print.csproj">
+      <Project>{955BE1EC-F265-41A5-B73B-BE8D6A44CACE}</Project>
+      <Name>Wlst.print</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WindowForWlst\WindowForWlst.csproj">
+      <Project>{295CF817-8A13-4B9E-B1E8-34464DFC9481}</Project>
+      <Name>WindowForWlst</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="CurrentEquipmentFaultViewModel\Views\CurrentEquipmentFaultView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CurrentEquipmentFaultViewModel\Views\CurrentEquipmentFaultViewForWin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CurrentEquipmentFaultViewModel\Views\FaultSelectFm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EquipmentFaultManageSettingLnViewModel\Views\EquipmentFaultManageSettingLnView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="EquipmentFaultManageSettingViewModel\Views\EquipmentFaultManageSettingView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EquipmentFaultRecordQueryLevelLowViewModel\Views\EquipmentFaultRecordQueryView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="EquipmentFaultRecordQueryLnViewModel\Views\EquipmentFaultRecordQueryLnView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EquipmentFaultWithTmlPriorityLevelSettingViewModel\Views\EquipmentFaultWithTmlPriorityLevelSettingView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="RtuAmpSxxNewOne\RtuAmpSxxView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="RtuAmpSxxNewRuleSection\NewRuleSection.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="EquipmentFaultDefineSettingViewModel\Views\EquipmentFaultDefineSettingView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EquipmentFaultOnTabViewModel\Views\EquipmentAllFaultOnTabView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EquipmentFaultOnTabViewModel\Views\EquipmentFaultOnTabView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EquipmentFaultRecordQuerySZViewModel\Views\EquipmentFaultRecordQueryView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="EquipmentFaultRecordQueryViewModel\Views\EquipmentFaultRecordQueryView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="EquipmentFaultWithTmlSettingViewModel\Views\EquipmentFaultWithTmlSettingView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="RecordMsg\RecordMsgView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SendOrderViewModel\Views\SendOrderView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserFaultSettingByAdmin\View\UserFaultSettingByAdminView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserIndividuationFaultSettingViewModel\View\UserIndividuationFaultSettingView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

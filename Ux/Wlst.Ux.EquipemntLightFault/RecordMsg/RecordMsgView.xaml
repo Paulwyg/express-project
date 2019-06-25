@@ -1,0 +1,95 @@
+﻿<UserControl x:Class="Wlst.Ux.EquipemntLightFault.RecordMsg.RecordMsgView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                          
+             xmlns:AppleWindowSet="clr-namespace:Elysium.ThemesSet.AppleWindowSet;assembly=Elysium"
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" mc:Ignorable="d" 
+             d:DesignHeight="400" d:DesignWidth="1024">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" MinHeight="30"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto" MinHeight="30"/>
+        </Grid.RowDefinitions>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" MinWidth="240"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"  MinWidth="240"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"  MinWidth="240"></ColumnDefinition>
+                <ColumnDefinition ></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <DockPanel  >
+                <Label Margin="0,5,0,5"  Content="起始时间:" VerticalAlignment="Center"/>
+                <DatePicker  Margin="0,5,0,5"  HorizontalAlignment="Center" VerticalAlignment="Center" SelectedDateFormat="Short" Width="150"  SelectedDate="{Binding DtStartTime}"></DatePicker>
+            </DockPanel>
+
+            <DockPanel  Grid.Column="1">
+                <Label Margin="0,5,0,5"  Content="结束时间:" VerticalAlignment="Center"/>
+                <DatePicker Margin="0,5,0,5"  HorizontalAlignment="Center"   VerticalAlignment="Center" SelectedDateFormat="Short" Width="150"  SelectedDate="{Binding DtEndTime}"></DatePicker>
+            </DockPanel>
+
+            <DockPanel  Grid.Column="2">
+                <Label Margin="0,5,0,5"  Content="选择用户:" VerticalAlignment="Center"/>
+                <ComboBox Grid.Column="1" Margin="0,5,0,5"  IsEnabled="{Binding IsComboUserEnable}" ItemsSource="{Binding UserItems}" Width="180" MinHeight="25" HorizontalAlignment="Left" SelectedItem="{Binding CurrentSelectUser}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <DockPanel>
+                                <TextBlock Text="{Binding Name}"></TextBlock>
+                                <TextBlock Text=" - "></TextBlock>
+                                <TextBlock Text="{Binding Value}"></TextBlock>
+                                <TextBlock ></TextBlock>
+                            </DockPanel>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+            </DockPanel>
+
+            <Button MinHeight="25" MinWidth="120" Grid.Column="3" Margin="0,5,20,5" HorizontalAlignment="Right" Content="查询" Command="{Binding CmdQuery}"></Button>
+        </Grid>
+
+        <!--<ListView ItemsSource="{Binding RecordItems}" Grid.Row="1">
+            <ListView.View>
+                <GridView  AllowsColumnReorder="true" ColumnHeaderToolTip="All Record Here">
+                    <GridViewColumn Header="记录序号"    DisplayMemberBinding="{Binding Path=RecordId,Mode=TwoWay}" />
+                    <GridViewColumn Header="发生时间"   DisplayMemberBinding="{Binding  Path=CreateTime,Mode=TwoWay, StringFormat={}\{0:yyyy-MM-dd HH:mm:ss\}}" Width="140" />
+                    <GridViewColumn Header="用户"   DisplayMemberBinding="{Binding  Path=UserName,Mode=TwoWay}" Width="120" />
+                    <GridViewColumn Header="电话号码"   DisplayMemberBinding="{Binding  Path=UserPhoneNumber,Mode=TwoWay}" Width="120" />
+
+                    <GridViewColumn Header="内容"   DisplayMemberBinding="{Binding  Path=Msg,Mode=TwoWay}" Width="240" />
+                    <GridViewColumn Header="状态"   DisplayMemberBinding="{Binding  Path=MsgState,Mode=TwoWay}" Width="80" />
+                    <GridViewColumn Header="发送时间"   DisplayMemberBinding="{Binding  Path=SndTime,Mode=TwoWay}" Width="150" />
+                    <GridViewColumn Header="发送次数"   DisplayMemberBinding="{Binding  Path=SndTimes,Mode=TwoWay}" Width="60" />
+
+                    <GridViewColumn Header="基站应答"   DisplayMemberBinding="{Binding  Path=StationResponseID,Mode=TwoWay}" Width="60" />
+                    <GridViewColumn Header="备注"   DisplayMemberBinding="{Binding  Path=Remark,Mode=TwoWay}" Width="100" />
+
+                </GridView>
+            </ListView.View>
+        </ListView>-->
+        <telerik:RadGridView x:Name="exportgridview" Grid.Row="1"  AutoGenerateColumns="False" RowIndicatorVisibility="Collapsed"
+              ShowGroupPanel="False"    AllowDrop="True" ItemsSource="{Binding Path=RecordItems}">
+            <telerik:RadGridView.Columns>
+                <telerik:GridViewDataColumn Header="记录序号" IsFilterable="False" Width="80" DataMemberBinding="{Binding Path=RecordId,Mode=TwoWay }" IsReadOnly="True" />
+                <telerik:GridViewDataColumn Header="发生时间" IsFilterable="False" Width="180" DataMemberBinding="{Binding Path=CreateTime,Mode=TwoWay, StringFormat={}\{0:yyyy-MM-dd HH:mm:ss\}}" IsReadOnly="True" />
+                <telerik:GridViewDataColumn Header="用户" IsFilterable="False" Width="160" DataMemberBinding="{Binding Path=UserName,Mode=TwoWay}" IsReadOnly="True" />
+                <telerik:GridViewDataColumn Header="电话号码" IsFilterable="False" Width="160" DataMemberBinding="{Binding Path=UserPhoneNumber,Mode=TwoWay}" IsReadOnly="True" />
+                <telerik:GridViewDataColumn Header="内容" IsFilterable="False" Width="300" DataMemberBinding="{Binding Path=Msg,Mode=TwoWay}" IsReadOnly="True" />
+                <!--<telerik:GridViewDataColumn Header="状态" MinWidth="80" DataMemberBinding="{Binding Path=MsgState,Mode=TwoWay}" IsReadOnly="True" />
+                <telerik:GridViewDataColumn Header="发送时间" MinWidth="150" DataMemberBinding="{Binding Path=SndTime,Mode=TwoWay}" IsReadOnly="True" />
+                <telerik:GridViewDataColumn Header="发送次数" MinWidth="50" DataMemberBinding="{Binding Path=SndTimes,Mode=TwoWay}" IsReadOnly="True" />
+                <telerik:GridViewDataColumn Header="基站应答" MinWidth="60" DataMemberBinding="{Binding Path=StationResponseID,Mode=TwoWay}" IsReadOnly="True" />
+                <telerik:GridViewDataColumn Header="备注" MinWidth="100" DataMemberBinding="{Binding Path=Remark,Mode=TwoWay}" IsReadOnly="True" />-->
+            </telerik:RadGridView.Columns>
+        </telerik:RadGridView>
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Label  Content="{Binding ShowDetailMsg}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0"/>
+            <Button Content="导出" Click="BtnExportClick" Visibility="{Binding ExportVisi}" Grid.Column="1" HorizontalAlignment="Right" Margin="20,2,20,2" MinWidth="120"  MinHeight="25"/>
+        </Grid>
+    </Grid>
+</UserControl>

@@ -1,0 +1,255 @@
+﻿<UserControl x:Class="Wlst.Ux.Wj2096Module.ZcInfo.ZcConArgs.Views.XcConnArgs"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" mc:Ignorable="d"
+             xmlns:Converters="clr-namespace:Wlst.Ux.Wj2096Module.ZcInfo.Converters"
+             d:DesignHeight="350" d:DesignWidth="900">
+    <UserControl.Resources>
+        <Converters:BoolToVisibleConverter x:Key="BoolToVisibleConvert"></Converters:BoolToVisibleConverter>
+    </UserControl.Resources>
+    <Grid VerticalAlignment="Top">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" MinHeight="30"/>
+            <RowDefinition Height="Auto" MinHeight="30"/>
+            <RowDefinition Height="35" MinHeight="30"/>
+            <RowDefinition Height="35" MinHeight="30"/>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto" />
+        </Grid.ColumnDefinitions>
+        <GroupBox Header="基本参数" Name="groupBox1" VerticalAlignment="Top" HorizontalAlignment="Left" Width="900" Grid.ColumnSpan="2">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" MinHeight="20"/>
+                    <RowDefinition Height="Auto" MinHeight="20"/>
+                    <RowDefinition Height="Auto" MinHeight="20"/>
+                    <RowDefinition Height="Auto" MinHeight="20"/>
+                    <RowDefinition Height="Auto" MinHeight="20"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto" MinWidth="80"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto" MinWidth="80"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto" MinWidth="80"/>
+                </Grid.ColumnDefinitions>
+                <DockPanel Grid.ColumnSpan="2">
+                    <Label  Content="控制器地址:" VerticalAlignment="Center" Width="100" HorizontalContentAlignment="Right"></Label>
+                    <Label Width="140"  Content="{Binding CtrlPhyId}" VerticalAlignment="Center"></Label>
+                </DockPanel>
+                <DockPanel Grid.Column="2" Grid.ColumnSpan="2">
+                    <Label  Content="控制器名称:" VerticalAlignment="Center" Width="100" HorizontalContentAlignment="Right"></Label>
+                    <Label Width="140"  Content="{Binding CtrlName}" VerticalAlignment="Center"></Label>
+                </DockPanel>
+                <DockPanel Grid.Column="4" Grid.ColumnSpan="2">
+                    <Label   Content="灯头数量:" VerticalAlignment="Center" Width="100" HorizontalContentAlignment="Right"></Label>
+                    <Label Width="140"  Content="{Binding LoopCount}" VerticalAlignment="Center" HorizontalAlignment="Left"></Label>
+                </DockPanel>
+                <DockPanel Grid.Row="1" Grid.ColumnSpan="2">
+                    <Label  Content="集中器地址:" VerticalAlignment="Center" Width="100" HorizontalContentAlignment="Right"></Label>
+                    <Label Width="140"  Content="{Binding SluPhyId}" VerticalAlignment="Center" ></Label>
+                </DockPanel>
+                <DockPanel  Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2">
+                    <Label  Content="集中器名称:" VerticalAlignment="Center" Width="100" HorizontalContentAlignment="Right"></Label>
+                    <Label Width="140"  Content="{Binding SluName}" VerticalAlignment="Center"></Label>
+                </DockPanel>
+                <!--<DockPanel Grid.Row="3" Grid.ColumnSpan="2">
+                    <Label   Content="回路数量:" VerticalAlignment="Center"></Label>
+                    <Label  Width="160"  Content="{Binding LoopCount}" VerticalAlignment="Center"></Label>
+                </DockPanel>-->
+               
+                <DockPanel Grid.Row="3" Grid.ColumnSpan="2">
+                    <Label  Content="节能方式:" VerticalAlignment="Center" Width="100" HorizontalContentAlignment="Right"></Label>
+                    <Label Width="140"  Content="{Binding PowerSavingMode}" VerticalAlignment="Center"></Label>
+                </DockPanel>
+                <DockPanel Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="2">
+                    <Label  Content="型号:" VerticalAlignment="Center"  Width="100" HorizontalContentAlignment="Right"></Label>
+                    <Label Width="140"  Content="{Binding CtrlModel}" VerticalAlignment="Center"></Label>
+                    <!--<Label  Content="软件版本:" VerticalAlignment="Center"></Label>
+                    <Label Width="140"  Content="{Binding SfwVer}" VerticalAlignment="Center"></Label>-->
+                </DockPanel>
+                <DockPanel Grid.Row="3" Grid.Column="4"  Grid.ColumnSpan="2">
+                    <Label  Content="软件版本:" VerticalAlignment="Center" Width="100" HorizontalContentAlignment="Right"></Label>
+                    <Label Width="200"  Content="{Binding SfwVer}" VerticalAlignment="Center" HorizontalAlignment="Left"></Label>
+                </DockPanel>
+                <DockPanel Grid.Row="2" Grid.ColumnSpan="2">
+                    <Label  Content="漏电模块:" VerticalAlignment="Center" Width="100" HorizontalContentAlignment="Right"></Label>
+                    <Label Width="140"  Content="{Binding LeakModule}" VerticalAlignment="Center" ></Label>
+                </DockPanel>
+                <DockPanel Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2">
+                    <Label  Content="温度检测:" VerticalAlignment="Center"  Width="100" HorizontalContentAlignment="Right"></Label>
+                    <Label Width="140"  Content="{Binding TemperatureModule}" VerticalAlignment="Center"></Label>
+                </DockPanel>
+                <DockPanel Grid.Row="2" Grid.Column="4" Grid.ColumnSpan="2">
+                    <Label  Content="时钟模块:" VerticalAlignment="Center"  Width="100" HorizontalContentAlignment="Right"></Label>
+                    <Label Width="140"  Content="{Binding TimerModule}" VerticalAlignment="Center" HorizontalAlignment="Left"></Label>
+                </DockPanel>
+                <DockPanel Grid.Row="1" Grid.Column="4" Grid.ColumnSpan="2">
+                    <Label   Content="控制器时钟:" VerticalAlignment="Center"  Width="100" HorizontalContentAlignment="Right"></Label>
+                    <Label  Width="180"  Content="{Binding DateTimeRecevie,StringFormat={}\{0:yyyy-MM-dd HH:mm:ss\}}" VerticalAlignment="Center" HorizontalAlignment="Left"></Label>
+                </DockPanel>
+                <!--<DockPanel Grid.Row="4" Grid.ColumnSpan="8">
+                    <Label   Content="所属分组:" VerticalAlignment="Center"  Width="100"></Label>
+                    <Label  Width="160"  Content="{Binding GrpName}" VerticalAlignment="Center"></Label>
+                    <Label></Label>
+                </DockPanel>-->
+                <!--<Label Grid.Row="3" Content="所属分组:" VerticalAlignment="Center"></Label>
+                <Label Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="7" Content="{Binding GrpName}" VerticalAlignment="Center"></Label>-->
+            </Grid>
+        </GroupBox>
+
+        <GroupBox Header="设置运行参数" Grid.Row="1" Name="groupBox21" VerticalAlignment="Top" HorizontalAlignment="Left" Width="900" Grid.ColumnSpan="2">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" MinHeight="20"/>
+                    <RowDefinition Height="Auto" MinHeight="20"/>
+                    <RowDefinition Height="Auto" MinHeight="20"/>
+                    <RowDefinition Height="Auto" MinHeight="20"/>
+                    <RowDefinition Height="Auto" MinHeight="30"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto" MinWidth="80"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto" MinWidth="80"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto" MinWidth="80"/>
+                </Grid.ColumnDefinitions>
+                <DockPanel Grid.ColumnSpan="2">
+                    <Label  Content="控制器状态:" VerticalAlignment="Center" Width="100" HorizontalContentAlignment="Right"></Label>
+                    <Label Width="140"  Content="{Binding CtrlStatus}" VerticalAlignment="Center"></Label>
+                </DockPanel>
+                <DockPanel Grid.Column="2" Grid.ColumnSpan="2">
+                    <Label  Content="灯头矢量:" VerticalAlignment="Center" Width="100" HorizontalContentAlignment="Right"></Label>
+                    <Label Width="140"  Content="{Binding CtrlVector}" VerticalAlignment="Center"></Label>
+                </DockPanel>
+                <DockPanel Grid.Column="4" Grid.ColumnSpan="2">
+                    <Label   Content="是否主报:" VerticalAlignment="Center" Width="100" HorizontalContentAlignment="Right"></Label>
+                    <Label Width="140"  Content="{Binding CtrlEnableAlarm}" VerticalAlignment="Center"></Label>
+                </DockPanel>
+                <DockPanel Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2">
+                    <Label  Content="上电开灯:" VerticalAlignment="Center" Width="100" HorizontalContentAlignment="Right"></Label>
+                    <Label Width="140"  Content="{Binding CtrlPowerTurnon}" VerticalAlignment="Center"></Label>
+                </DockPanel>
+                <DockPanel  Grid.Row="1" Grid.Column="4" Grid.ColumnSpan="2">
+                    <Label  Content="域名:" VerticalAlignment="Center" Width="100" HorizontalContentAlignment="Right"></Label>
+                    <Label Width="140"  Content="{Binding DomainName}" VerticalAlignment="Center"></Label>
+                </DockPanel>
+           
+
+                <DockPanel Grid.Row="1" Grid.ColumnSpan="2">
+                    <Label  Content="经度:" VerticalAlignment="Center" Width="100" HorizontalContentAlignment="Right"></Label>
+                    <Label Width="140"  Content="{Binding Longitude}" VerticalAlignment="Center"></Label>
+                </DockPanel>
+                <DockPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
+                    <Label  Content="纬度:" VerticalAlignment="Center" Width="100" HorizontalContentAlignment="Right"></Label>
+                    <Label Width="140"  Content="{Binding Latitude}" VerticalAlignment="Center"></Label>
+                </DockPanel>
+                <DockPanel Grid.Row="2" Grid.Column="2"  Grid.ColumnSpan="2">
+                    <Label  Content="额定功率:" VerticalAlignment="Center" Width="100" HorizontalContentAlignment="Right"></Label>
+                    <Label Width="140"  Content="{Binding RatedPower}" VerticalAlignment="Center"></Label>
+                </DockPanel>
+                <DockPanel Grid.Row="2" Grid.Column="4"  Grid.ColumnSpan="2">
+                    <Label  Content="主报周期:" VerticalAlignment="Center" Width="100" HorizontalContentAlignment="Right"></Label>
+                    <Label Width="140"  Content="{Binding UplinkTimer}" VerticalAlignment="Center"></Label>
+                </DockPanel>
+                <DockPanel Grid.Row="3" Grid.Column="0"  Grid.ColumnSpan="2">
+                    <Label  Content="是否应答:" VerticalAlignment="Center" Width="100" HorizontalContentAlignment="Right"></Label>
+                    <Label Width="140"  Content="{Binding UplinkReply}" VerticalAlignment="Center"></Label>
+                </DockPanel>
+                <DockPanel Grid.Row="4"  Grid.ColumnSpan="6" Visibility="Hidden">
+                    <Label  Content="额定功率对照:" VerticalAlignment="Center" HorizontalContentAlignment="Right"></Label>
+                    <TextBlock   Text="{Binding Ef}" VerticalAlignment="Center"></TextBlock>
+                </DockPanel>
+            </Grid>
+        </GroupBox>
+
+        <TextBlock Foreground="Black"  Grid.Row="2" Text="{Binding Remind}" FontSize="15" Width="270" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,10,0,0"/>
+
+        
+        <DockPanel Grid.Row="2" Grid.Column="1">
+
+            <Button Width="160" Content="对时" Margin="10,5,0,5" Command="{Binding CmdSetTime}"></Button>
+            <Button  Width="160" Content="发送经纬度" Margin="10,5,0,5" Command="{Binding CmdSetXY}" Visibility="Collapsed"></Button>
+            
+            <Button  Width="160" Content="读取运行参数" Margin="10,5,0,5" Command="{Binding CmdReadArgs}"></Button>
+
+
+
+        </DockPanel>
+
+        <TextBlock  Grid.ColumnSpan="2" Grid.Row="3" Text="经纬度设置在 “ 选项→系统常规 ” 中设置（需要管理员权限）" FontSize="15" Width="500"  VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,10,0,0"/>
+        <!--<Label Visibility="Collapsed" Grid.Row="2"  Content="运行参数:" VerticalAlignment="Center"></Label>
+        <telerik:RadGridView ShowGroupPanel="False" Visibility="Collapsed" HorizontalAlignment="Left" AutoGenerateColumns="False" RowIndicatorVisibility="Collapsed"  Grid.Row="3" Margin="5,0,0,0"   ItemsSource="{Binding RunInfo}">
+            <telerik:RadGridView.Columns>
+                <telerik:GridViewDataColumn  IsFilterable="False"    DataMemberBinding="{Binding Path=Domain,Mode=TwoWay}" Header="域名" Width="50"/>
+                <telerik:GridViewDataColumn  IsFilterable="False"    DataMemberBinding="{Binding Path=Latitude_longitude,Mode=TwoWay}" Header="经纬度" Width="80"/>
+                <telerik:GridViewDataColumn  IsFilterable="False"    DataMemberBinding="{Binding Path=Sunrise_sunset,Mode=TwoWay}" Header="日出日落" Width="80"/>
+                <telerik:GridViewDataColumn Header="投运" IsFilterable="False" IsSortable="False" MinWidth="60">
+                    <telerik:GridViewDataColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel VerticalAlignment="Center">
+                                <CheckBox Margin="1,1,1,5" IsChecked="{Binding IsRun}" IsEnabled="False" VerticalAlignment="Center" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </telerik:GridViewDataColumn.CellTemplate>
+                </telerik:GridViewDataColumn>
+                
+                <telerik:GridViewDataColumn Header="主报" IsFilterable="False" IsSortable="False" MinWidth="60">
+                    <telerik:GridViewDataColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel VerticalAlignment="Center">
+                                <CheckBox Margin="1,1,1,5" IsChecked="{Binding IsActiveAlarm}" IsEnabled="False" VerticalAlignment="Center" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </telerik:GridViewDataColumn.CellTemplate>
+                </telerik:GridViewDataColumn>
+                <telerik:GridViewDataColumn  IsFilterable="False"  DataMemberBinding="{Binding Path=LoopCount,Mode=TwoWay}" Header="回路数量" Width="80"/>
+                <telerik:GridViewDataColumn Header="上电开灯1-4" IsFilterable="False" IsSortable="False" MinWidth="100" MaxWidth="160">
+                    <telerik:GridViewDataColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                <CheckBox Margin="1,1,1,5" IsEnabled="False" IsChecked="{Binding IsPowerOnLight[0].IsSelected}" Visibility="{Binding IsVisiByLoop[0].IsSelected,Converter={StaticResource BoolToVisibleConvert}}" VerticalAlignment="Center" />
+                                <CheckBox Margin="1,1,1,5" IsEnabled="False" IsChecked="{Binding IsPowerOnLight[1].IsSelected}" Visibility="{Binding IsVisiByLoop[1].IsSelected,Converter={StaticResource BoolToVisibleConvert}}" VerticalAlignment="Center" />
+                                <CheckBox Margin="1,1,1,5" IsEnabled="False" IsChecked="{Binding IsPowerOnLight[2].IsSelected}" Visibility="{Binding IsVisiByLoop[2].IsSelected,Converter={StaticResource BoolToVisibleConvert}}" VerticalAlignment="Center" />
+                                <CheckBox Margin="1,1,1,5" IsEnabled="False" IsChecked="{Binding IsPowerOnLight[3].IsSelected}" Visibility="{Binding IsVisiByLoop[3].IsSelected,Converter={StaticResource BoolToVisibleConvert}}" VerticalAlignment="Center" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </telerik:GridViewDataColumn.CellTemplate>
+                </telerik:GridViewDataColumn>
+
+                <telerik:GridViewDataColumn Header="回路1-4矢量" IsFilterable="False" IsSortable="False" MinWidth="100" MaxWidth="160">
+                    <telerik:GridViewDataColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                <Label Margin="1,1,1,5" IsEnabled="False" Content="{Binding LoopVector[0].Value}" Visibility="{Binding IsVisiByLoop[0].IsSelected,Converter={StaticResource BoolToVisibleConvert}}" VerticalAlignment="Center" />
+                                <Label Margin="1,1,1,5" IsEnabled="False" Content="{Binding LoopVector[1].Value}" Visibility="{Binding IsVisiByLoop[1].IsSelected,Converter={StaticResource BoolToVisibleConvert}}" VerticalAlignment="Center" />
+                                <Label Margin="1,1,1,5" IsEnabled="False" Content="{Binding LoopVector[2].Value}" Visibility="{Binding IsVisiByLoop[2].IsSelected,Converter={StaticResource BoolToVisibleConvert}}" VerticalAlignment="Center" />
+                                <Label Margin="1,1,1,5" IsEnabled="False" Content="{Binding LoopVector[3].Value}" Visibility="{Binding IsVisiByLoop[3].IsSelected,Converter={StaticResource BoolToVisibleConvert}}" VerticalAlignment="Center" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </telerik:GridViewDataColumn.CellTemplate>
+                </telerik:GridViewDataColumn>
+
+                <telerik:GridViewDataColumn Header="回路1-4额定功率" IsFilterable="False" IsSortable="False" MinWidth="100" MaxWidth="160">
+                    <telerik:GridViewDataColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                <Label Margin="1,1,1,5" IsEnabled="False" Content="{Binding LoopRatePower[0].Name}" Visibility="{Binding IsVisiByLoop[0].IsSelected,Converter={StaticResource BoolToVisibleConvert}}" VerticalAlignment="Center" />
+                                <Label Margin="1,1,1,5" IsEnabled="False" Content="{Binding LoopRatePower[1].Name}" Visibility="{Binding IsVisiByLoop[1].IsSelected,Converter={StaticResource BoolToVisibleConvert}}" VerticalAlignment="Center" />
+                                <Label Margin="1,1,1,5" IsEnabled="False" Content="{Binding LoopRatePower[2].Name}" Visibility="{Binding IsVisiByLoop[2].IsSelected,Converter={StaticResource BoolToVisibleConvert}}" VerticalAlignment="Center" />
+                                <Label Margin="1,1,1,5" IsEnabled="False" Content="{Binding LoopRatePower[3].Name}" Visibility="{Binding IsVisiByLoop[3].IsSelected,Converter={StaticResource BoolToVisibleConvert}}" VerticalAlignment="Center" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </telerik:GridViewDataColumn.CellTemplate>
+                </telerik:GridViewDataColumn>
+
+            </telerik:RadGridView.Columns>
+        </telerik:RadGridView>-->
+    </Grid>
+</UserControl>

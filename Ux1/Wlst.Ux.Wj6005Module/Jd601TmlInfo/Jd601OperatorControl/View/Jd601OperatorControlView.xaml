@@ -1,0 +1,128 @@
+﻿<UserControl x:Class="Wlst.Ux.Wj6005Module.Jd601TmlInfo.Jd601OperatorControl.View.Jd601OperatorControlView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+             xmlns:TestBoxWaterMarked="clr-namespace:Wlst.Cr.CoreOne.ControlsOverride.TestBoxWaterMarked;assembly=Wlst.Cr.CoreOne"
+             mc:Ignorable="d" 
+             d:DesignHeight="500" d:DesignWidth="1000" >
+    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+            <Label x:Name="fg"/>
+            <GroupBox Header="控制"  Name="groupBox1">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" MinHeight="30"/>
+                    <RowDefinition Height="Auto" MinHeight="30"/>
+                    <RowDefinition Height="Auto" MinHeight="30"/>
+                    <RowDefinition Height="*"  MinHeight="200"/>
+                </Grid.RowDefinitions>
+                <GroupBox Header="对时"  Name="groupBox2">
+                    <Grid>
+                            <Button Margin="10,2,10,2" Command="{Binding CmdUpdateEsuTime}" Content="节电器对时"  Name="button5" MinWidth="120" />
+                    </Grid>
+                </GroupBox>
+                <GroupBox Header="开关机" Grid.Row="1">
+                    <Grid >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Button Margin="10,2,10,2" Command="{Binding CmdOpenEsu}"  Content="手动开机"  VerticalAlignment="Center" MinWidth="90" />
+                        <Button Margin="10,2,10,2" Grid.Column="1" Command="{Binding CmdCloseEsu}"  Content="手动关机" VerticalAlignment="Center" MinWidth="90" />
+                    </Grid>
+                </GroupBox>
+                <GroupBox Header="调压" Grid.Row="2">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Button Margin="10,2,5,2" Grid.Column="2" Command="{Binding CmdManuAdjustVol}"  Content="手动调压"  Name="button4" VerticalAlignment="Center" MinWidth="90" />
+                            <TestBoxWaterMarked:WaterMarkedTextBox Grid.Column="1" Text="{Binding Volvalue}" WaterMark="单位:伏"  VerticalAlignment="Center" Width="60" />
+                            <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}"  Text="调压目标值[V]:" VerticalAlignment="Center" />
+                    </Grid>
+                </GroupBox>
+                <GroupBox Grid.Row="3" Header="反馈数据">
+                    <Grid>
+                            <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}"  TextWrapping="Wrap" MaxHeight="400" Text="{Binding ControlText}" MinWidth="200" />
+                    </Grid>
+                </GroupBox>
+            </Grid>
+        </GroupBox>
+        <GroupBox Header="历史数据查询" Grid.Column="1">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" MinHeight="30"/>
+                    <RowDefinition Height="*" MinHeight="30"/>
+                        <RowDefinition Height="Auto" MinHeight="30"/>
+                    </Grid.RowDefinitions>
+                <Grid >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                        <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}"  Margin="5,2,5,2" Text="起始时间:" VerticalAlignment="Center" />
+                    <DatePicker Margin="5,2,5,2" Grid.Column="1" SelectedDateFormat="Short" SelectedDate="{Binding DtStartTime}" Name="datePicker1" VerticalAlignment="Center" MinWidth="120" />
+                        <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}"  Margin="5,2,5,2" Grid.Column="2"  Text="结束时间:" VerticalAlignment="Center" />
+                    <DatePicker Margin="5,2,5,2" Grid.Column="3" SelectedDateFormat="Short" SelectedDate="{Binding DtEndTime}"  Name="datePicker2" VerticalAlignment="Center" MinWidth="120" />
+                    <Button Margin="5,2,5,2" Grid.Column="4" Command="{Binding CmdRequestOneData}" Content="查询"  Name="button7" VerticalAlignment="Center" MinWidth="60" />
+                        <Button Margin="5,2,5,2" Grid.Column="5" Command="{Binding CmdRequestAllData}" Content="查询全部"  Name="button9" VerticalAlignment="Center" MinWidth="60" />
+                        <Button Margin="5,2,5,2" Grid.Column="6"  Content="导出"  Name="button8"  VerticalAlignment="Center" MinWidth="60" Click="button8_Click" />
+                    </Grid>
+              
+
+                <telerik:RadGridView Name="listView1" Grid.Row="1" ShowGroupPanel="False" AutoGenerateColumns="False"  RowIndicatorVisibility="Collapsed" 
+                           ItemsSource="{Binding Items}" SelectedItem="{Binding OneData}">
+                    <telerik:RadGridView.Columns>
+                        <!--<telerik:GridViewDataColumn   IsFilterable="False"   DataMemberBinding="{Binding Path=LoopId,Mode=TwoWay}" Header="回路序号" MinWidth="60"/>-->
+                            <telerik:GridViewDataColumn Header="序号" IsFilterable="False" IsSortable="False" DataMemberBinding="{Binding Index}"  IsReadOnly="True" IsVisible="{Binding  IsCheckedAllRtu}"  />
+
+                            <telerik:GridViewDataColumn Header="终端地址" IsFilterable="False" IsSortable="False" DataMemberBinding="{Binding RtuId}"  IsReadOnly="True" IsVisible="{Binding  IsCheckedAllRtu}"  />
+                            <telerik:GridViewDataColumn Header="终端名称" IsFilterable="False" IsSortable="False" DataMemberBinding="{Binding RtuName}"  IsReadOnly="True" IsVisible="{Binding IsCheckedAllRtu}" />
+                            <telerik:GridViewDataColumn Header="节电器地址" IsFilterable="False" IsSortable="False" DataMemberBinding="{Binding AttachId}"  IsReadOnly="True" IsVisible="{Binding  IsCheckedAllRtu}"  />
+                            <telerik:GridViewDataColumn Header="节电器名称" IsFilterable="False" IsSortable="False" DataMemberBinding="{Binding AttachName}"  IsReadOnly="True" IsVisible="{Binding IsCheckedAllRtu}" />
+
+                            <telerik:GridViewDataColumn  IsFilterable="False"   Header="采集时间"  DataMemberBinding="{Binding Path=Id}" MinWidth="160" />
+                            <telerik:GridViewDataColumn  IsFilterable="False"   Header="温度"  DataMemberBinding="{Binding Path=EsuTemperature}" MinWidth="40" />
+                            <telerik:GridViewDataColumn   IsFilterable="False"  Header="目标调压值"  DataMemberBinding="{Binding Path=EsuTargetValue}" MinWidth="70" />
+                            <telerik:GridViewDataColumn  IsFilterable="False"   Header="节电运行时间"  DataMemberBinding="{Binding Path=EsuRunTime}" MinWidth="120" />
+                            <telerik:GridViewDataColumn   IsFilterable="False"  Header="A相输出功率"  DataMemberBinding="{Binding Path=EsuOutputCurrentpA}" MinWidth="80" />
+                            <telerik:GridViewDataColumn   IsFilterable="False"  Header="B相输出功率"  DataMemberBinding="{Binding Path=EsuOutputCurrentpB}" MinWidth="80" />
+                            <telerik:GridViewDataColumn  IsFilterable="False"   Header="C相输出功率"  DataMemberBinding="{Binding Path=EsuOutputCurrentpC}" MinWidth="80" />
+                    </telerik:RadGridView.Columns>
+                </telerik:RadGridView>
+                
+                <!--<ListView  Height="353" HorizontalAlignment="Left" Margin="6,45,0,0" Name="listView1" VerticalAlignment="Top" Width="697"   
+                           ItemsSource="{Binding Items}" SelectedItem="{Binding OneData}"
+                           >
+                    <ListView.View>
+
+                        <GridView AllowsColumnReorder="True">
+                            <GridViewColumn  Header="记录序号"  DisplayMemberBinding="{Binding Path=Id}" Width="60" />
+                            <GridViewColumn  Header="温度"  DisplayMemberBinding="{Binding Path=EsuTemperature}" Width="70" />
+                            <GridViewColumn  Header="目标调压值"  DisplayMemberBinding="{Binding Path=EsuTargetValue}" Width="70" />
+                            <GridViewColumn  Header="节电运行时间"  DisplayMemberBinding="{Binding Path=EsuRunTime}" Width="100" />
+                            <GridViewColumn  Header="A相输出功率"  DisplayMemberBinding="{Binding Path=EsuOutputCurrentpA}" Width="100" />
+                            <GridViewColumn  Header="B相输出功率"  DisplayMemberBinding="{Binding Path=EsuOutputCurrentpB}" Width="100" />
+                            <GridViewColumn  Header="C相输出功率"  DisplayMemberBinding="{Binding Path=EsuOutputCurrentpC}" Width="100" />
+                        </GridView>
+                    </ListView.View>
+                </ListView>-->
+                    <TextBlock Text="{Binding Msg}" Grid.Row="2" VerticalAlignment="Center" Margin="10,0,0,0" HorizontalAlignment="Left"></TextBlock>
+            </Grid>
+        </GroupBox>
+    </Grid>
+    </ScrollViewer>
+</UserControl>

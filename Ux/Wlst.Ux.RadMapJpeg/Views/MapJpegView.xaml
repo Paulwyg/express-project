@@ -1,0 +1,14 @@
+﻿<UserControl x:Class="Wlst.Ux.RadMapJpeg.Views.MapJpegView"
+                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                 xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+             xmlns:WindowsPresentation="clr-namespace:GMap.NET.WindowsPresentation;assembly=GMap.NET.WindowsPresentation"
+             xmlns:Views="clr-namespace:Wlst.Ux.RadMapJpeg.Views">
+    <Grid>
+        <WindowsPresentation:GMapControl  x:Name="MainMap"></WindowsPresentation:GMapControl>
+         <!--<TextBlock Height="25" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="15,5,0,0" Text="{Binding RtuInfo}"></TextBlock>-->
+       
+        <!--<Button Content="DownLoad" Visibility="Collapsed" Height="25" Width="120" HorizontalAlignment="Right" VerticalAlignment="Bottom"  Click="download_Click" Margin="15" x:Name="download"></Button>-->
+    </Grid>
+
+</UserControl>

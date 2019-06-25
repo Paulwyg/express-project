@@ -1,0 +1,78 @@
+﻿<UserControl x:Class="Wlst.Ux.EquipemntLightFault.EquipmentFaultManageSettingViewModel.Views.EquipmentFaultManageSettingView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="400" d:DesignWidth="300">
+    <Grid  MinWidth="200">
+        <Grid >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="70"></RowDefinition>
+            </Grid.RowDefinitions>
+
+
+            <DockPanel Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center">
+
+                <CheckBox IsChecked ="{Binding IsShowCQJandDGGH}" Content="最新故障界面显示城区局及杆号" VerticalAlignment="Center" ></CheckBox>
+
+            </DockPanel>
+
+            <DockPanel Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center">
+
+                <CheckBox IsChecked ="{Binding IsShowVAPHL}"  Content="最新故障界面显示电压、电流、功率、上限、下限" VerticalAlignment="Center" ></CheckBox>
+            </DockPanel>
+
+            
+            <DockPanel Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Center">
+
+                <CheckBox IsChecked ="{Binding IsShowBlackground}"  Content="最新故障界面显示背景色" VerticalAlignment="Center" ></CheckBox>
+            </DockPanel>
+
+            <DockPanel Grid.Row="3" HorizontalAlignment="Left" VerticalAlignment="Center">
+
+                <CheckBox IsChecked ="{Binding EnablePaidan}"  Content="是否启用故障派单功能（需重启程序）" VerticalAlignment="Center" ></CheckBox>
+            </DockPanel>
+
+            <DockPanel Grid.Row="4" HorizontalAlignment="Left" VerticalAlignment="Center">
+
+                <CheckBox IsChecked ="{Binding IsShowDelFault}"  Content="是否可以删除故障" VerticalAlignment="Center" IsEnabled="{Binding IsD}"></CheckBox>
+            </DockPanel>
+
+            <DockPanel Grid.Row="5" HorizontalAlignment="Left" VerticalAlignment="Center">
+
+                <CheckBox IsChecked ="{Binding IsCalcFault}"  Content="历史故障开启统计功能" VerticalAlignment="Center" x:Name="chkCalc"></CheckBox>
+                <CheckBox IsChecked ="{Binding IsShowCalcFaultDetail}"  Content="统计时下方显示详细信息" VerticalAlignment="Center" IsEnabled="{Binding ElementName=chkCalc,Path=IsChecked}" Margin="10,0,0,0"></CheckBox>
+            </DockPanel>
+
+
+            <DockPanel Grid.Row="6" HorizontalAlignment="Left" VerticalAlignment="Center">
+
+                <CheckBox IsChecked ="{Binding IsCopyFault}"  Content="双击复制故障信息至剪贴板" VerticalAlignment="Center"></CheckBox>
+             </DockPanel>
+
+
+            <Button  Tag="11060007" Content="应用" Command="{Binding CmdApply}" 
+                     Width="120" Height="25" Grid.Row="7"  HorizontalAlignment="Right" Margin="0,0,30,0"></Button>
+        </Grid>
+    </Grid>
+</UserControl>
+

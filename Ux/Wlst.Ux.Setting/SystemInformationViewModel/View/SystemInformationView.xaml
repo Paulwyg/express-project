@@ -1,0 +1,111 @@
+﻿<UserControl x:Class="Wlst.Ux.Setting.SystemInformationViewModel.View.SystemInformationView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             
+             xmlns:AppleWindowSet="clr-namespace:Elysium.ThemesSet.AppleWindowSet;assembly=Elysium"
+             
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"  
+             
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="950">
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <GroupBox Header="项目信息" Margin="2" HorizontalAlignment="Left"  Name="groupBox1" VerticalAlignment="Top" Grid.Row="1">
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="120"/>
+                    <ColumnDefinition Width="200"/>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="200"/>
+                    <ColumnDefinition Width="170"/>
+                    <ColumnDefinition Width="10"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" MinHeight="35"/>
+                    <RowDefinition Height="Auto" MinHeight="35"/>
+                    <RowDefinition Height="Auto" MinHeight="35"/>
+                    <RowDefinition Height="Auto" MinHeight="35"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Margin="2" Text="项目名称:" VerticalAlignment="Center" />
+                <TextBox Foreground="{Binding ElementName=fg, Path=Foreground}" Margin="2" Grid.Column="1" Text="{Binding ProjectName}"  VerticalAlignment="Center" />
+
+                <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Margin="2" Text="联系电话:" VerticalAlignment="Center" Grid.Column="0" Grid.Row="1"/>
+                <TextBox Foreground="{Binding ElementName=fg, Path=Foreground}" Margin="2" Grid.Column="1" Grid.Row="1" Text="{Binding PhoneThatProjectCat}"  VerticalAlignment="Center"  />
+
+                <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Margin="2" Text="详细地址:" VerticalAlignment="Center" Grid.Column="0" Grid.Row="2"/>
+                <TextBox Foreground="{Binding ElementName=fg, Path=Foreground}" Margin="2" Grid.Column="1" Grid.Row="2" Text="{Binding ProjectDeAddr}"  VerticalAlignment="Center"   />
+
+                <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Margin="2" Text="前台机Teamview地址:" VerticalAlignment="Center" Grid.Column="3" Grid.Row="1"  />
+                <TextBox Foreground="{Binding ElementName=fg, Path=Foreground}" Margin="2" Grid.Column="4" Grid.Row="1" Text="{Binding TvCnt1}"  VerticalAlignment="Center"   />
+
+                <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Margin="2" Text="服务器Teamview地址:" VerticalAlignment="Center" Grid.Column="3" Grid.Row="2"  />
+                <TextBox Foreground="{Binding ElementName=fg, Path=Foreground}" Margin="2" Grid.Column="4" Grid.Row="2" Text="{Binding TvSvr}"  VerticalAlignment="Center"   />
+
+                <Button Content="保 存"  Command="{Binding CmdSave}" Height="25" MinWidth="85"  Grid.Column="4" Grid.Row="3" Width="50"></Button>
+
+            </Grid>
+        </GroupBox>
+
+        <GroupBox Header="系统信息" Margin="2" HorizontalAlignment="Left"  Name="groupBox2" VerticalAlignment="Top" Grid.Row="3">
+            <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="150"/>
+                <ColumnDefinition Width="210"/>
+                <ColumnDefinition Width="60"/>
+                <ColumnDefinition Width="150"/>
+                <ColumnDefinition Width="220"/>
+                    <ColumnDefinition Width="10"/>
+                </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" MinHeight="35"/>
+                <RowDefinition Height="Auto" MinHeight="35"/>
+                <RowDefinition Height="Auto" MinHeight="35"/>
+                <RowDefinition Height="Auto" MinHeight="35"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Margin="2" Text="项目识别码:" VerticalAlignment="Center" Grid.Column="0" Grid.Row="0"/>
+                <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Margin="2" Grid.Column="1" Grid.Row="0" Text="{Binding Idf}"  VerticalAlignment="Center"   />
+
+                <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Margin="2" Text="系统安装日期:" VerticalAlignment="Center" Grid.Column="3" Grid.Row="0"/>
+                <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Margin="2" Grid.Column="4" Grid.Row="0" Text="{Binding DtSystemInstal}"  VerticalAlignment="Center"   />
+
+                <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Margin="2" Text="通讯协议版本:" VerticalAlignment="Center" Grid.Column="0" Grid.Row="1"/>
+                <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Margin="2" Grid.Column="1" Grid.Row="1" Text="{Binding VerProCom4}"  VerticalAlignment="Center"   />
+
+                <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Margin="2" Text="交互协议版本:" VerticalAlignment="Center" Grid.Column="3" Grid.Row="1"/>
+                <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Margin="2" Grid.Column="4" Grid.Row="1" Text="{Binding VerProCnt5}"  VerticalAlignment="Center"   />
+
+                <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Margin="2" Text="客户端运行时间:" VerticalAlignment="Center" Grid.Column="0" Grid.Row="2"/>
+                <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Margin="1" Grid.Column="1" Grid.Row="2" Text="{Binding DtClientStart}"  VerticalAlignment="Center"   />
+
+                <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Margin="2" Text="中间层运行时间:" VerticalAlignment="Center" Grid.Column="3" Grid.Row="2"/>
+                <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Margin="2" Grid.Column="4" Grid.Row="2" Text="{Binding DtMiddleStart}"  VerticalAlignment="Center"   />
+
+                <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Margin="2" Text="服务器地址:" VerticalAlignment="Center" Grid.Column="0" Grid.Row="3"/>
+                <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Margin="1" Grid.Column="1" Grid.Row="3" Text="{Binding ServerIpAddr}"  VerticalAlignment="Center"   />
+
+                <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Margin="2" Text="客户端版本:" VerticalAlignment="Center" Grid.Column="3" Grid.Row="3"/>
+                <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Margin="2" Grid.Column="4" Grid.Row="3" Text="{Binding ClientVer}"  VerticalAlignment="Center"   />
+
+
+            </Grid>
+        </GroupBox>
+    </Grid>
+</UserControl>

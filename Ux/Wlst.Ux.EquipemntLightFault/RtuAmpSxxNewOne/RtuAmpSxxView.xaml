@@ -1,0 +1,200 @@
+﻿<UserControl x:Class="Wlst.Ux.EquipemntLightFault.EquipmentFaultDefineSettingViewModel.RtuAmpSxxNewOne.RtuAmpSxxView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+             xmlns:Service="clr-namespace:Wlst.Ux.EquipemntLightFault.EquipmentFaultDefineSettingViewModel.Services"
+             mc:Ignorable="d" 
+             d:DesignHeight="900" d:DesignWidth="950">
+
+    <UserControl.Resources>
+        <Service:TimeConverterIntToString x:Key="TimeConverterIntToString"/>
+    </UserControl.Resources>
+
+    <Grid Margin="15" ScrollViewer.HorizontalScrollBarVisibility="Auto" >
+        <Grid Visibility="Visible" Name="grid1">
+            <!--<Grid.ColumnDefinitions>
+            <ColumnDefinition Width="490"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>-->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="10"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="10"></RowDefinition>
+            <RowDefinition Height="150"></RowDefinition>
+            <RowDefinition Height="30"></RowDefinition>
+        </Grid.RowDefinitions>
+            
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="15"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            
+            <DockPanel Grid.Row="0" >
+            <TextBlock Grid.Row="1" Text=" 当前区域为：" VerticalAlignment="Center" Width="90" HorizontalAlignment="Left" Visibility="{Binding Visi}"></TextBlock>
+            <ComboBox x:Name="AreaComboBox"  Width="150" Height="25" HorizontalAlignment="Left" Margin="6,0,0,0" Visibility="{Binding Visi}"
+                      ItemsSource="{Binding AreaName}" DisplayMemberPath="Value" SelectedItem="{Binding AreaComboBoxSelected}" ></ComboBox>
+                <Button Content="设备全选或全清" Width="120" Height="25" HorizontalAlignment="Left" Margin="40,0,0,0" Command="{Binding CmdAllSelected}"></Button>
+         </DockPanel>
+
+        <telerik:RadTreeListView   AllowDrop="True" AutoGenerateColumns="False" ShowGroupPanel="False" RowIndicatorVisibility="Collapsed" HorizontalAlignment="Left"
+                                 ItemsSource="{Binding Path=TmlItem}" Width="400" Name="twosix" Grid.Row="1"    Margin="5,5,5,0" Grid.RowSpan="4">
+            <!--Width="{Binding TwoVisiInt2}"-->
+            <telerik:RadTreeListView.ChildTableDefinitions>
+                <telerik:TreeListViewTableDefinition  ItemsSource="{Binding Child}" />
+            </telerik:RadTreeListView.ChildTableDefinitions>
+            <telerik:RadTreeListView.Columns>
+                <telerik:GridViewDataColumn  Header="选择" HeaderTextAlignment="Center" Width="80" IsReadOnly="True">
+                    <telerik:GridViewDataColumn.CellTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                    <CheckBox VerticalAlignment="Center" HorizontalAlignment="Center"  IsChecked="{Binding IsSelect}"/>
+                            </Grid>
+                        </DataTemplate>
+                    </telerik:GridViewDataColumn.CellTemplate>
+                </telerik:GridViewDataColumn>
+                <telerik:GridViewDataColumn Header="地址"  IsResizable="False"  IsFilterable="False"    Width="100" IsReadOnly="True" >
+                    <telerik:GridViewDataColumn.CellTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                    <TextBlock Text="{Binding Path=Id,Mode=TwoWay}"></TextBlock>
+                            </Grid>
+                        </DataTemplate>
+                    </telerik:GridViewDataColumn.CellTemplate>
+                </telerik:GridViewDataColumn>
+
+                <telerik:GridViewDataColumn Header="组、终端名称"  IsResizable="False"  IsFilterable="False"    Width="210"  IsReadOnly="True" >
+                    <telerik:GridViewDataColumn.CellTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                    <TextBlock Text="{Binding Path=Name,Mode=TwoWay}"></TextBlock>
+                            </Grid>
+                        </DataTemplate>
+                    </telerik:GridViewDataColumn.CellTemplate>
+                </telerik:GridViewDataColumn>
+              
+            </telerik:RadTreeListView.Columns>
+        </telerik:RadTreeListView>
+
+
+            <Grid Grid.Column="2" Grid.RowSpan="5">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="30"></RowDefinition>
+                    <RowDefinition Height="10"></RowDefinition>
+                    <RowDefinition Height="30"></RowDefinition>
+                    <RowDefinition Height="30"></RowDefinition>
+                    <RowDefinition Height="30"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+                
+                <Grid  Name="grid2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"></RowDefinition>
+                        <RowDefinition Height="Auto" MinHeight="150"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="10"></RowDefinition>
+
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Text="设置电流上下限计算规则，序号地址越低优先级越高" HorizontalAlignment="Left" VerticalAlignment="Center"></TextBlock>
+                    <telerik:RadGridView Grid.Row="1"  AllowDrop="True" AutoGenerateColumns="False" ShowGroupPanel="False" RowIndicatorVisibility="Collapsed" Grid.ColumnSpan="10"
+                                 ItemsSource="{Binding Path=ItemsRules}" SelectedItem="{Binding CurrentSelectRule}" HorizontalAlignment="Left" Width="420" MaxHeight="150" Margin="0,0,0,0">
+                        <telerik:RadGridView.Columns>
+                            <telerik:GridViewDataColumn Header="起始电流"  IsResizable="False" IsFilterable="False"  Width="100"  DataMemberBinding="{Binding Path=Alow,Mode=TwoWay}" IsReadOnly="True" />
+                            <telerik:GridViewDataColumn Header="结束电流"  IsResizable="False"  IsFilterable="False"    Width="100"  DataMemberBinding="{Binding Path=Amax,Mode=TwoWay}" IsReadOnly="True" />
+                            <telerik:GridViewDataColumn Header="下限系数"  IsResizable="False"  IsFilterable="False"    Width="100"  DataMemberBinding="{Binding Path=LowTimes,Mode=TwoWay}" IsReadOnly="True" />
+                            <telerik:GridViewDataColumn Header="上限系数"  IsResizable="False"  IsFilterable="False"    Width="100"  DataMemberBinding="{Binding Path=MaxTimes,Mode=TwoWay}" IsReadOnly="True" />
+                        </telerik:RadGridView.Columns>
+                    </telerik:RadGridView>
+
+                    <Grid Grid.Row="2" Margin="0,5,0,5">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="10"></RowDefinition>
+                            <RowDefinition Height="30"></RowDefinition>
+                            <RowDefinition Height="10"></RowDefinition>
+                            <RowDefinition Height="30"></RowDefinition>
+                            <RowDefinition Height="30"></RowDefinition>
+                            <RowDefinition Height="30"></RowDefinition>
+                            <RowDefinition Height="30"></RowDefinition>
+                            <RowDefinition Height="30"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="110" ></ColumnDefinition>
+                            <ColumnDefinition Width="75" ></ColumnDefinition>
+                            <ColumnDefinition Width="10" ></ColumnDefinition>
+                            <ColumnDefinition Width="110" ></ColumnDefinition>
+                            <ColumnDefinition Width="75" ></ColumnDefinition>
+
+                            <ColumnDefinition ></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <DockPanel  Grid.Row="1" Grid.ColumnSpan="5">
+                            <Button Content="增加规则" Width="120" Height="25" Command="{Binding CmdAddRule}" HorizontalAlignment="Left" Margin="60,0,0,0" ></Button>
+                            <Button Content="删除当前规则" Width="120" Height="25" Command="{Binding CmdDeleteRule}" HorizontalAlignment="Left" Margin="60,0,0,0" Grid.Column="3"></Button>
+                        </DockPanel>
+
+
+
+                        <!--<TextBlock Text="序号:" Grid.Row="0" VerticalAlignment="Center"></TextBlock>-->
+                        <TextBlock Text="有效电流最小值:" Margin="0,0,5,0" Grid.Row="3" VerticalAlignment="Center"></TextBlock>
+                        <TextBlock Text="有效电流最大值:" Grid.Row="4"  VerticalAlignment="Center"></TextBlock>
+                        <TextBlock Text="下限值计算系数:" Grid.Row="3" Grid.Column="3" VerticalAlignment="Center"></TextBlock>
+                        <TextBlock Text="上限值计算系数:" Grid.Row="4" Grid.Column="3" VerticalAlignment="Center"></TextBlock>
+                        <!--<TextBlock Text="计算方法：根据优先级序号，第一条符合的规则将被该回路采用。" Grid.ColumnSpan="6" Grid.Row="5" VerticalAlignment="Center" ></TextBlock>-->
+
+                        <!--<TextBox Width="80" Height="28" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center" Text="{Binding CurrentSelectRule.Index}" ></TextBox>-->
+                        <TextBox Width="70" Height="28" Grid.Column="1" Grid.Row="3" HorizontalAlignment="Left" VerticalAlignment="Center" IsEnabled="{Binding IndexEnable}" Text="{Binding AlowBak}"></TextBox>
+                        <!--Text="{Binding CurrentSelectRule.Alow}"-->
+                        <TextBlock Width="70" Height="28" Grid.Column="1" Grid.Row="4" HorizontalAlignment="Left" VerticalAlignment="Center" IsEnabled="{Binding IndexEnable}" Text="{Binding AmaxBak}"></TextBlock>
+                        <!--Text="{Binding CurrentSelectRule.Amax}"-->
+                        <TextBox Width="70" Height="28" Grid.Column="4" Grid.Row="3" HorizontalAlignment="Left" VerticalAlignment="Center" IsEnabled="{Binding IndexEnable2}" Text="{Binding LowTimesBak}"></TextBox>
+                        <!--Text="{Binding CurrentSelectRule.LowTimes}"-->
+                        <TextBox Width="70" Height="28" Grid.Column="4" Grid.Row="4" HorizontalAlignment="Left" VerticalAlignment="Center" IsEnabled="{Binding IndexEnable2}" Text="{Binding MaxTimesBak}"></TextBox>
+                        <!--Text="{Binding CurrentSelectRule.MaxTimes}"-->
+
+                        <Button Content="确定" Width="100" Height="25" Command="{Binding CmdCurrentRule}" HorizontalAlignment="Left" Margin="60,0,0,0" Grid.ColumnSpan="4" Grid.Column="3" Grid.Row="5" ></Button>
+                        <Label Grid.Row="5" Grid.Column="0" VerticalAlignment="Center" Grid.ColumnSpan="3" Height="30" Width="240"></Label>
+                        <TextBlock Text="计算方法：当回路的平均电流在有效电流最小值与最大值之间时；" Grid.ColumnSpan="6" Grid.Row="6" VerticalAlignment="Center"></TextBlock>
+                        <TextBlock Text="计算方法：下限=平均电流*下限系数，上限=平均电流*上限系数。" Grid.ColumnSpan="6" Grid.Row="7" VerticalAlignment="Center"></TextBlock>
+                    </Grid>
+
+                </Grid>
+
+                <DockPanel  Grid.Row="1" >
+                    <Button Content="请求当前平均电流" Command="{Binding CmdReqSxx}" Width="130" Height="25" HorizontalAlignment="Left" Margin="290,0,0,0" ></Button>
+                </DockPanel>
+
+                <DockPanel Grid.Row="3" >
+                    <TextBlock Grid.Row="1" Text=" 选中终端总数:" VerticalAlignment="Center" Width="130" HorizontalAlignment="Left"></TextBlock>
+                    <TextBlock Grid.Row="1" Text="{Binding SelectTmlSum}" VerticalAlignment="Center" Width="90" HorizontalAlignment="Left"></TextBlock>
+                </DockPanel>
+
+                <DockPanel Grid.Row="4" >
+                    <TextBlock Grid.Row="1" Text=" 有效回路数:" VerticalAlignment="Center" Width="130" HorizontalAlignment="Left"></TextBlock>
+                    <TextBlock Grid.Row="1" Text="{Binding SelectTmlUsed}" VerticalAlignment="Center" Width="90" HorizontalAlignment="Left"></TextBlock>
+                </DockPanel>
+
+                <DockPanel Grid.Row="5" >
+                    <TextBlock Grid.Row="1" Text=" 屏蔽回路数:" VerticalAlignment="Center" Width="130" HorizontalAlignment="Left"></TextBlock>
+                    <TextBlock Grid.Row="1" Text="{Binding SelectTmlNoUsed}" VerticalAlignment="Center" Width="90" HorizontalAlignment="Left"></TextBlock>
+                </DockPanel>
+
+            </Grid>
+
+
+        
+        <TextBlock Grid.ColumnSpan="3" Grid.Row="5" Text="{Binding Remark}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0" ></TextBlock>
+
+            <Button Grid.Row="5" Grid.Column="2"  Content="计算并保存" Width="130" Height="25" Command="{Binding CmdUpdate}"  HorizontalAlignment="left"  Margin="290,0,0,0" ></Button>
+
+    </Grid>
+
+
+
+    </Grid>
+</UserControl>

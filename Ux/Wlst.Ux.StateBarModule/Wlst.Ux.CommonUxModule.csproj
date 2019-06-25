@@ -1,0 +1,319 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{EFC3A509-A226-4EF8-A5EB-3828EFE532E7}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Wlst.Ux.StateBarModule</RootNamespace>
+    <AssemblyName>Wlst.Ux.StateBarModule</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\ZDebug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>Wlst.Ux.StateBarModule.XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\Rr\Binaries\WPF\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>1</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AxInterop.ShockwaveFlashObjects, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ZDebug\AxInterop.ShockwaveFlashObjects.dll</HintPath>
+    </Reference>
+    <Reference Include="Elysium, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ZDebug\Elysium.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Prism, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DLL\Microsoft.Practices.Prism.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Prism.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DLL\Microsoft.Practices.Prism.Interactivity.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Prism.MefExtensions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DLL\Microsoft.Practices.Prism.MefExtensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Prism.MefExtensions.Event, Version=4.1.0.1, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DLL\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="PresentationFramework.Aero" />
+    <Reference Include="PropertyTools.Wpf, Version=2011.3.4528.23988, Culture=neutral, PublicKeyToken=ea0c9f2b460934d0, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Presentation" />
+    <Reference Include="System.Workflow.ComponentModel" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Telerik.Windows.Controls, Version=2013.1.720.40, Culture=neutral, PublicKeyToken=d3625f8bf04286d7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ZDebug\Telerik.Windows.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.Data, Version=2015.3.2015.40, Culture=neutral, PublicKeyToken=d3625f8bf04286d7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Rr\Binaries\WPF\Telerik.Windows.Controls.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.Docking, Version=2013.1.1802.40, Culture=neutral, PublicKeyToken=d3625f8bf04286d7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Rr\Binaries\WPF\Telerik.Windows.Controls.Docking.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.GridView, Version=2013.1.1704.40, Culture=neutral, PublicKeyToken=d3625f8bf04286d7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ZDebug\Telerik.Windows.Controls.GridView.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.Input, Version=2015.3.2015.40, Culture=neutral, PublicKeyToken=d3625f8bf04286d7, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.Windows.Controls.Navigation, Version=2013.1.1704.40, Culture=neutral, PublicKeyToken=d3625f8bf04286d7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ZDebug\Telerik.Windows.Controls.Navigation.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Data, Version=2013.1.720.40, Culture=neutral, PublicKeyToken=d3625f8bf04286d7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ZDebug\Telerik.Windows.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="WindowForWlst, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Rr\Binaries\WPF\WindowForWlst.dll</HintPath>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="WindowsFormsIntegration" />
+    <Reference Include="Wlst.Cr.Core">
+      <HintPath>..\DLL\Wlst.Cr.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Wlst.Cr.Coreb, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Rr\Binaries\WPF\Wlst.Cr.Coreb.dll</HintPath>
+    </Reference>
+    <Reference Include="Wlst.Cr.CoreOne, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ZDebug\Wlst.Cr.CoreOne.dll</HintPath>
+    </Reference>
+    <Reference Include="Wlst.Cr.MessageBoxOverride, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ZDebug\Wlst.Cr.MessageBoxOverride.dll</HintPath>
+    </Reference>
+    <Reference Include="Wlst.Cr.PPProtocolSvrCnt, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="Wlst.Cr.SuperSocketSvrCnt, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Rr\Binaries\WPF\Wlst.Cr.SuperSocketSvrCnt.dll</HintPath>
+    </Reference>
+    <Reference Include="Wlst.Sr.EquipmentInfoHolding, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ZDebug\Wlst.Sr.EquipmentInfoHolding.dll</HintPath>
+    </Reference>
+    <Reference Include="Wlst.Sr.ProtocolPhone, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Rr\Binaries\WPF\Wlst.Sr.ProtocolPhone.dll</HintPath>
+    </Reference>
+    <Reference Include="Wlst.Sr.SlusglInfoHold, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Rr\Binaries\WPF\Wlst.Sr.SlusglInfoHold.dll</HintPath>
+    </Reference>
+    <Reference Include="WPFSpark, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Rr\Binaries\WPF\WPFSpark.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AreaSet\AreaSetView.xaml.cs">
+      <DependentUpon>AreaSetView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AreaSet\AreaSetVm.cs" />
+    <Compile Include="AreaSet\NavLineAreaSet.cs" />
+    <Compile Include="CommonSet\BaseView\SetSystemRegion.xaml.cs">
+      <DependentUpon>SetSystemRegion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CommonSet\CommonSettingView.xaml.cs">
+      <DependentUpon>CommonSettingView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CommonSet\IINewDataSetting.cs" />
+    <Compile Include="CommonSet\CommonSettingViewModel.cs" />
+    <Compile Include="CommonSet\NavLineCommonSettingView.cs" />
+    <Compile Include="DataAreaController\Services\IIDataAreaController.cs" />
+    <Compile Include="DataAreaController\ViewModel\DataAreaControllerViewModel.cs" />
+    <Compile Include="DataAreaController\ViewModel\UserControlObject.cs" />
+    <Compile Include="DataAreaController\View\DataAreaController.xaml.cs">
+      <DependentUpon>DataAreaController.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NewMsgViewBottom\NewMsgViewBottomView.xaml.cs">
+      <DependentUpon>NewMsgViewBottomView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NewMsgViewBottom\NewMsgViewBottomVm.cs" />
+    <Compile Include="NewSvrMsgView\OperatorOnTimeRecord.cs" />
+    <Compile Include="NewSvrMsgView\Services\IIOperatorOnTimeRecords.cs" />
+    <Compile Include="NewSvrMsgView\Services\OperatrType.cs" />
+    <Compile Include="NewSvrMsgView\ViewModel\NewSvrMsgViewModel.cs" />
+    <Compile Include="NewSvrMsgView\ViewModel\OperatorRecordItem.cs" />
+    <Compile Include="NewSvrMsgView\View\NewSvrMsgView.xaml.cs">
+      <DependentUpon>NewSvrMsgView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="OperatorDataQueryViewModel\Animations\Animation.cs" />
+    <Compile Include="OperatorDataQueryViewModel\Converters\BoolToVisibleConverter.cs" />
+    <Compile Include="OperatorDataQueryViewModel\NavToOperatorDataQueryViewModel.cs" />
+    <Compile Include="OperatorDataQueryViewModel\Service\IIOperatorDataQueryViewModel.cs" />
+    <Compile Include="OperatorDataQueryViewModel\ViewModel\OperatorDataQueryViewModel.cs" />
+    <Compile Include="OperatorDataQueryViewModel\ViewModel\OperatorOneRecordViewModel.cs" />
+    <Compile Include="OperatorDataQueryViewModel\View\OperatorDataQueryView.xaml.cs">
+      <DependentUpon>OperatorDataQueryView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SendFailOperation\Converters\BoolToVisibleConverter.cs" />
+    <Compile Include="SendFailOperation\NavToSendFailOperationViewModel.cs" />
+    <Compile Include="SendFailOperation\Service\IISendFailOperationViewModel.cs" />
+    <Compile Include="SendFailOperation\ViewModel\SendFailOneRecordViewModel.cs" />
+    <Compile Include="SendFailOperation\ViewModel\SendFailOperationViewModel.cs" />
+    <Compile Include="SendFailOperation\View\SendFailOperationView.xaml.cs">
+      <DependentUpon>SendFailOperationView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Services\EventIdAssign.cs" />
+    <Compile Include="Services\MenuIdAssgin.cs" />
+    <Compile Include="StateBarInBottom\Services\IIStateBarViewModule.cs" />
+    <Compile Include="Services\ViewIdAssign.cs" />
+    <Compile Include="StateBarInBottom\Services\IIStateTimeViewModule.cs" />
+    <Compile Include="StateBarInBottom\ViewModel\StateTimeViewModel.cs" />
+    <Compile Include="StateBarInBottom\Views\StateTimeView.xaml.cs">
+      <DependentUpon>StateTimeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TopData\Services\IITopDataViewModel.cs" />
+    <Compile Include="UserOperateMsgView\Services\IIUserOperatorRecords.cs" />
+    <Compile Include="UserOperateMsgView\Services\OperateType.cs" />
+    <Compile Include="UserOperateMsgView\ViewModel\OperateItem.cs" />
+    <Compile Include="UserOperateMsgView\ViewModel\UserOperateMsgViewModel.cs" />
+    <Compile Include="UserOperateMsgView\View\UserOperateMsgView.xaml.cs">
+      <DependentUpon>UserOperateMsgView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UxTopDataModule.cs" />
+    <Compile Include="TopData\ViewModel\TopDataViewModel.cs" />
+    <Compile Include="TopData\Views\MessageShowInfo.xaml.cs">
+      <DependentUpon>MessageShowInfo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TopData\Views\TopDataView.xaml.cs">
+      <DependentUpon>TopDataView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="StateBarInBottom\UxStateBarModule.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StateBarInBottom\ViewModel\StateBarViewModule.cs" />
+    <Compile Include="StateBarInBottom\Views\StateBarView.xaml.cs">
+      <DependentUpon>StateBarView.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="AreaSet\AreaSetView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CommonSet\BaseView\SetSystemRegion.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CommonSet\CommonSettingView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DataAreaController\View\DataAreaController.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="NewMsgViewBottom\NewMsgViewBottomView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="NewSvrMsgView\View\NewSvrMsgView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="OperatorDataQueryViewModel\View\OperatorDataQueryView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SendFailOperation\View\SendFailOperationView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="StateBarInBottom\Views\StateBarView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="StateBarInBottom\Views\StateTimeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TopData\Views\MessageShowInfo.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="TopData\Views\TopDataView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserOperateMsgView\View\UserOperateMsgView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Cr\Wlst.Cr.CoreMims\Wlst.Cr.CoreMims.csproj">
+      <Project>{7326E79B-65A6-4E0D-B90D-E1F4D1F10DF3}</Project>
+      <Name>Wlst.Cr.CoreMims</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Cr\Wlst.Cr.Setting\Wlst.Cr.Setting.csproj">
+      <Project>{A330DF6B-20F7-4FD0-BCA8-2FD5095395FF}</Project>
+      <Name>Wlst.Cr.Setting</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Sr\wlst.sr.iif\wlst.sr.iif.csproj">
+      <Project>{35f048e2-6abe-4721-97d3-42ab0a19cc19}</Project>
+      <Name>wlst.sr.iif</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Sr\Wlst.Sr.TimeTableSystem\Wlst.Sr.TimeTableSystem.csproj">
+      <Project>{C8EE907E-B8CC-49CF-A3CF-FA06C08F2042}</Project>
+      <Name>Wlst.Sr.TimeTableSystem</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Wlst.Ux.EquipemntLightFault\Wlst.Ux.EquipemntLightFault.csproj">
+      <Project>{9F7A288D-286C-49F6-A61F-E6985BBD7E6A}</Project>
+      <Name>Wlst.Ux.EquipemntLightFault</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Wlst.Ux.TimeTableSystem\Wlst.Ux.TimeTableSystem.csproj">
+      <Project>{5B49A617-42C2-45E9-8ED0-79380379F816}</Project>
+      <Name>Wlst.Ux.TimeTableSystem</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

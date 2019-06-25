@@ -1,0 +1,249 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{A809DBD4-F23A-4278-BBF6-00BE6E3511AC}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Wlst.Ux.Wj4005Module</RootNamespace>
+    <AssemblyName>Wlst.Ux.Wj4005Module</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\Rr\Binaries\WPF\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DragDropExtend">
+      <HintPath>..\..\Rr\Binaries\WPF\DragDropExtend.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Prism, Version=4.1.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Rr\Binaries\WPF\Microsoft.Practices.Prism.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Prism.MefExtensions">
+      <HintPath>..\..\Rr\Binaries\WPF\Microsoft.Practices.Prism.MefExtensions.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Telerik.Windows.Controls">
+      <HintPath>..\..\Rr\Binaries\WPF\Telerik.Windows.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.Chart">
+      <HintPath>..\..\Rr\Binaries\WPF\Telerik.Windows.Controls.Chart.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.Data">
+      <HintPath>..\..\Rr\Binaries\WPF\Telerik.Windows.Controls.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.DataVisualization">
+      <HintPath>..\..\Rr\Binaries\WPF\Telerik.Windows.Controls.DataVisualization.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.Docking">
+      <HintPath>..\..\Rr\Binaries\WPF\Telerik.Windows.Controls.Docking.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.GridView">
+      <HintPath>..\..\Rr\Binaries\WPF\Telerik.Windows.Controls.GridView.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.ImageEditor">
+      <HintPath>..\..\Rr\Binaries\WPF\Telerik.Windows.Controls.ImageEditor.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.Input">
+      <HintPath>..\..\Rr\Binaries\WPF\Telerik.Windows.Controls.Input.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.Navigation">
+      <HintPath>..\..\Rr\Binaries\WPF\Telerik.Windows.Controls.Navigation.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.Override">
+      <HintPath>..\..\Rr\Binaries\WPF\Telerik.Windows.Controls.Override.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.PrismAdapter">
+      <HintPath>..\..\Rr\Binaries\WPF\Telerik.Windows.Controls.PrismAdapter.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.RibbonView">
+      <HintPath>..\..\Rr\Binaries\WPF\Telerik.Windows.Controls.RibbonView.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.ScheduleView">
+      <HintPath>..\..\Rr\Binaries\WPF\Telerik.Windows.Controls.ScheduleView.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Data">
+      <HintPath>..\..\Rr\Binaries\WPF\Telerik.Windows.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Documents">
+      <HintPath>..\..\Rr\Binaries\WPF\Telerik.Windows.Documents.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Documents.Core">
+      <HintPath>..\..\Rr\Binaries\WPF\Telerik.Windows.Documents.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Documents.Fixed">
+      <HintPath>..\..\Rr\Binaries\WPF\Telerik.Windows.Documents.Fixed.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Documents.Flow">
+      <HintPath>..\..\Rr\Binaries\WPF\Telerik.Windows.Documents.Flow.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Scheduling.Core">
+      <HintPath>..\..\Rr\Binaries\WPF\Telerik.Windows.Scheduling.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Zip">
+      <HintPath>..\..\Rr\Binaries\WPF\Telerik.Windows.Zip.dll</HintPath>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="Wlst.Cr.Core">
+      <HintPath>..\..\Rr\Binaries\WPF\Wlst.Cr.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Wlst.Cr.Coreb">
+      <HintPath>..\..\Rr\Binaries\WPF\Wlst.Cr.Coreb.dll</HintPath>
+    </Reference>
+    <Reference Include="Wlst.Sr.ProtocolPhone">
+      <HintPath>..\..\Rr\Binaries\WPF\Wlst.Sr.ProtocolPhone.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ModuleWj4005Export.cs" />
+    <Compile Include="Services\EventIdAssign.cs" />
+    <Compile Include="Services\MenuIdAssgin.cs" />
+    <Compile Include="Services\ViewIdAssign.cs" />
+    <Compile Include="UxWj4005Module.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Wj4005TmlInfoSetViewModel\Services\BoolToComboBox.cs" />
+    <Compile Include="Wj4005TmlInfoSetViewModel\NavToWj4005TmlInfoSet.cs" />
+    <Compile Include="Wj4005TmlInfoSetViewModel\Services\BoolToVisibleConverter.cs" />
+    <Compile Include="Wj4005TmlInfoSetViewModel\Services\Comm.cs" />
+    <Compile Include="Wj4005TmlInfoSetViewModel\Services\IITmlInformationViewModel.cs" />
+    <Compile Include="Wj4005TmlInfoSetViewModel\Services\LittleAConverter.cs" />
+    <Compile Include="Wj4005TmlInfoSetViewModel\ViewModel\AttachEquipmentModuleViewModel.cs" />
+    <Compile Include="Wj4005TmlInfoSetViewModel\ViewModel\AttachEquipmentViewModel.cs" />
+    <Compile Include="Wj4005TmlInfoSetViewModel\ViewModel\LineViewModel.cs" />
+    <Compile Include="Wj4005TmlInfoSetViewModel\ViewModel\RtuLoopInfoVm.cs" />
+    <Compile Include="Wj4005TmlInfoSetViewModel\ViewModel\RtuParaAnalogueAmpViewModel.cs" />
+    <Compile Include="Wj4005TmlInfoSetViewModel\ViewModel\RtuParaSwitchInViewModel.cs" />
+    <Compile Include="Wj4005TmlInfoSetViewModel\ViewModel\RtuParaSwitchOutViewModel.cs" />
+    <Compile Include="Wj4005TmlInfoSetViewModel\ViewModel\RtuSwitchInputSetViewModel.cs" />
+    <Compile Include="Wj4005TmlInfoSetViewModel\ViewModel\TmlInformationViewModel.cs" />
+    <Compile Include="Wj4005TmlInfoSetViewModel\ViewModel\VectorSampleViewModel.cs" />
+    <Compile Include="Wj4005TmlInfoSetViewModel\Views\LoopInfoManage.xaml.cs">
+      <SubType>Code</SubType>
+      <DependentUpon>LoopInfoManage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Wj4005TmlInfoSetViewModel\Views\SndArgsView.xaml.cs">
+      <DependentUpon>SndArgsView.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Wj4005TmlInfoSetViewModel\Views\TerminalInfoBaseViewMsl.xaml.cs">
+      <SubType>Code</SubType>
+      <DependentUpon>TerminalInfoBaseViewMsl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Wj4005TmlInfoSetViewModel\Views\Wj4005TmlInfoSetView.xaml.cs">
+      <SubType>Code</SubType>
+      <DependentUpon>Wj4005TmlInfoSetView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ZZhaoCe\ZhaoCeRtuInfoViewModel\Services\IIZhaoCeRtuInfoViewModel.cs" />
+    <Compile Include="ZZhaoCe\ZhaoCeRtuInfoViewModel\ViewModel\RtuZhaoCeParsViewModel.cs" />
+    <Compile Include="ZZhaoCe\ZhaoCeRtuInfoViewModel\ViewModel\SwitchInInfoViewModel.cs" />
+    <Compile Include="ZZhaoCe\ZhaoCeRtuInfoViewModel\ViewModel\SwitchInLimitViewModel.cs" />
+    <Compile Include="ZZhaoCe\ZhaoCeRtuInfoViewModel\ViewModel\SwitchOutInfoViewModel.cs" />
+    <Compile Include="ZZhaoCe\ZhaoCeRtuInfoViewModel\ViewModel\ZhaoCeRtuInfoViewModel.cs" />
+    <Compile Include="ZZhaoCe\ZhaoCeRtuInfoViewModel\Views\RtuZhaoCePars.xaml.cs">
+      <DependentUpon>RtuZhaoCePars.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ZZhaoCe\ZhaoCeRtuInfoViewModel\Views\ZhaoCeRtuInfoView.xaml.cs">
+      <DependentUpon>ZhaoCeRtuInfoView.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Cr\Wlst.Cr.CoreMims\Wlst.Cr.CoreMims.csproj">
+      <Project>{7326E79B-65A6-4E0D-B90D-E1F4D1F10DF3}</Project>
+      <Name>Wlst.Cr.CoreMims</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Cr\Wlst.Cr.CoreOne\Wlst.Cr.CoreOne.csproj">
+      <Project>{0165D704-6A80-43ED-9001-5C14220D6EC2}</Project>
+      <Name>Wlst.Cr.CoreOne</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Cr\Wlst.Cr.MessageBoxOverride\Wlst.Cr.MessageBoxOverride.csproj">
+      <Project>{72A08659-526B-49BE-A3ED-D032300AAC58}</Project>
+      <Name>Wlst.Cr.MessageBoxOverride</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Sr\Wlst.Sr.Menu\Wlst.Sr.Menu.csproj">
+      <Project>{F0851CF0-EAF8-4C30-A6A2-3237B74CD2B4}</Project>
+      <Name>Wlst.Sr.Menu</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Sr\Wlst.Sr.TimeTableSystem\Wlst.Sr.TimeTableSystem.csproj">
+      <Project>{C8EE907E-B8CC-49CF-A3CF-FA06C08F2042}</Project>
+      <Name>Wlst.Sr.TimeTableSystem</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Ux\Elysium\Elysium.csproj">
+      <Project>{467011FC-64F2-4FB6-8F59-942248260FFB}</Project>
+      <Name>Elysium</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Wlst.Sr.EquipmentInfoHolding\Wlst.Sr.EquipmentInfoHolding.csproj">
+      <Project>{B66A046F-2F0A-429F-9C51-63452D3F6A92}</Project>
+      <Name>Wlst.Sr.EquipmentInfoHolding</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Wj4005TmlInfoSetViewModel\Views\LoopInfoManage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Wj4005TmlInfoSetViewModel\Views\SndArgsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Wj4005TmlInfoSetViewModel\Views\TerminalInfoBaseViewMsl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Wj4005TmlInfoSetViewModel\Views\Wj4005TmlInfoSetView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ZZhaoCe\ZhaoCeRtuInfoViewModel\Views\RtuZhaoCePars.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ZZhaoCe\ZhaoCeRtuInfoViewModel\Views\ZhaoCeRtuInfoView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

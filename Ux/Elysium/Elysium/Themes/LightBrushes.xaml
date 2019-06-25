@@ -1,0 +1,33 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:PresentationOptions="http://schemas.microsoft.com/winfx/2006/xaml/presentation/options">
+    
+    <SolidColorBrush x:Key="TransparentBrush"
+                     Color="#00FFFFFF"
+                     PresentationOptions:Freeze="True"/>
+    <SolidColorBrush x:Key="SemitransparentBrush"
+                     Color="#20171717"
+                     PresentationOptions:Freeze="True"/>
+    <Color x:Key="BorderBrushColor">#FFDEDEDE</Color>
+    <SolidColorBrush x:Key="BackgroundBrush"
+                     Color="#FFFFFFFF"
+                     PresentationOptions:Freeze="True"/>
+    <SolidColorBrush x:Key="ForegroundBrush"
+                     Color="#FF000000"
+                     PresentationOptions:Freeze="True"/>
+    <Color x:Key="ForegroundColor">#FF000000</Color>
+    <SolidColorBrush x:Key="HighlightBrush"
+                     Color="#FFDEDEDE"
+                     PresentationOptions:Freeze="True"/>
+    <Color x:Key="HighlightColor">#FF017BCD</Color>
+    <SolidColorBrush x:Key="MiddleLightBrush"
+                     Color="#FF777777"
+                     PresentationOptions:Freeze="True"/>
+    <SolidColorBrush x:Key="LowlightBrush"
+                     Color="#FF4D4D4D"
+                     PresentationOptions:Freeze="True"/>
+    <SolidColorBrush x:Key="DisabledBrush"
+                     Color="#FFB8B5B2"
+                     PresentationOptions:Freeze="True"/>
+    
+</ResourceDictionary>

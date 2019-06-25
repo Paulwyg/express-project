@@ -1,0 +1,99 @@
+﻿<WindowForWlst:CustomChromeWindow x:Class="Wlst.Ux.SinglePlan.SinglePlan.View.AddOrModifyInstruction"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                                  xmlns:WindowForWlst="clr-namespace:WindowForWlst;assembly=WindowForWlst"
+                                  xmlns:RadioButtonConverter="clr-namespace:Wlst.Cr.CoreOne.RadioButtonConverter;assembly=Wlst.Cr.CoreOne"
+                                  mc:Ignorable="d" 
+             Height="650" Width="900"  Title="新增或修改指令" TitleCetc="新增或修改指令">
+    <WindowForWlst:CustomChromeWindow.Resources >
+        <RadioButtonConverter:BooleanConverToVisial x:Key="BooleanConverToVisial"></RadioButtonConverter:BooleanConverToVisial>
+        <RadioButtonConverter:RadioButtonBooleanConverter x:Key="RadioButtonBooleanConverter"></RadioButtonConverter:RadioButtonBooleanConverter>
+        <RadioButtonConverter:RadioButtonIntConverter x:Key="RadioMultiIntConverter">
+        </RadioButtonConverter:RadioButtonIntConverter>
+    </WindowForWlst:CustomChromeWindow.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <TextBlock HorizontalAlignment="Right" Text="单灯指令名称：" Margin="20,20,5,20"></TextBlock>
+        <TextBox Grid.Column="1" Width="220" Text="{Binding InstructionName}" HorizontalAlignment="left" Margin="0,20,5,20"></TextBox>
+        <TextBlock Grid.Row="1" HorizontalAlignment="Right" Text="描述：" Margin="20,20,5,20"></TextBlock>
+        <TextBox Grid.Row="1" Grid.Column="1" Width="220" Text="{Binding InstructionDesc}" HorizontalAlignment="left" Margin="0,20,5,20"></TextBox>
+        <TextBlock Grid.Row="2" HorizontalAlignment="Right" Text="状态：" Margin="20,20,5,20"></TextBlock>
+        <DockPanel Grid.Column="1" Grid.Row="2">
+            <RadioButton Content="启用" IsChecked="{Binding Path=IsUsed, Converter={StaticResource RadioButtonBooleanConverter},ConverterParameter=true}"  Name="radiotp1" VerticalAlignment="Center" />
+            <RadioButton Margin="15,0,0,0" Content="停用" IsChecked="{Binding Path=IsUsed,Converter={StaticResource RadioButtonBooleanConverter},ConverterParameter=false}"  Name="radiotp2" VerticalAlignment="Center"/>
+        </DockPanel>
+        <TextBlock Grid.Row="3" HorizontalAlignment="Right" Text="执行周期：" Margin="20,20,5,20"></TextBlock>
+        <DockPanel Grid.Column="1" Grid.Row="3" Margin="0,20,0,20">
+            <CheckBox  Margin="0,0,0,0" IsChecked="{Binding OperationWeekSet[6].IsSelected}" Content="周日"  VerticalAlignment="Center"></CheckBox>
+            <CheckBox  Margin="15,0,0,0" IsChecked="{Binding OperationWeekSet[0].IsSelected}" Content="周一"  VerticalAlignment="Center"></CheckBox>
+            <CheckBox  Margin="15,0,0,0" IsChecked="{Binding OperationWeekSet[1].IsSelected}" Content="周二"  VerticalAlignment="Center"></CheckBox>
+            <CheckBox  Margin="15,0,0,0" IsChecked="{Binding OperationWeekSet[2].IsSelected}" Content="周三"  VerticalAlignment="Center"></CheckBox>
+            <CheckBox  Margin="15,0,0,0" IsChecked="{Binding OperationWeekSet[3].IsSelected}" Content="周四"  VerticalAlignment="Center"></CheckBox>
+            <CheckBox  Margin="15,0,0,0" IsChecked="{Binding OperationWeekSet[4].IsSelected}" Content="周五"  VerticalAlignment="Center"></CheckBox>
+            <CheckBox  Margin="15,0,0,0" IsChecked="{Binding OperationWeekSet[5].IsSelected}" Content="周六"  VerticalAlignment="Center"></CheckBox>
+        </DockPanel>
+        <TextBlock Grid.Row="4" HorizontalAlignment="Right" Text="指令类型：" Margin="20,20,5,20"></TextBlock>
+        <DockPanel Grid.Column="1" Grid.Row="4" VerticalAlignment="Center">
+            <RadioButton GroupName="x1"  Content="时控" IsChecked="{Binding Path=OperationMethod, Converter={StaticResource RadioMultiIntConverter}, ConverterParameter=1}"  Name="orderty1" VerticalAlignment="Center" />
+            <TextBlock  VerticalAlignment="Center" Text="操作时间：" Margin="10,10,5,10"></TextBlock>
+            <TextBox IsEnabled="{Binding ElementName=orderty1,Path=IsChecked}" Text="{Binding OperationArguHour}" Margin="0,20,2,20" Width="45"></TextBox>
+            <TextBlock Text=":" Margin="0,20,0,20"></TextBlock>
+            <TextBox IsEnabled="{Binding ElementName=orderty1,Path=IsChecked}" Text="{Binding OperationArguMinute}" Margin="2,20,2,20" Width="45"></TextBox>
+            <RadioButton GroupName="x1" Margin="20,0,0,0" Content="日出" IsChecked="{Binding Path=OperationMethod, Converter={StaticResource RadioMultiIntConverter}, ConverterParameter=12}"  Name="orderty12" VerticalAlignment="Center" />
+            <TextBlock  VerticalAlignment="Center" Text="操作偏移：" Margin="10,20,5,20"></TextBlock>
+            <TextBox IsEnabled="{Binding ElementName=orderty12,Path=IsChecked}" Text="{Binding OperationArguOffset}" Margin="0,20,2,20" Width="45"></TextBox>
+            <TextBlock Text="  分钟" VerticalAlignment="Center"></TextBlock>
+            <RadioButton GroupName="x1" Margin="20,0,0,0" Content="日落" IsChecked="{Binding Path=OperationMethod, Converter={StaticResource RadioMultiIntConverter}, ConverterParameter=2}"  Name="orderty2" VerticalAlignment="Center" />
+            <TextBlock  VerticalAlignment="Center" Text="操作偏移：" Margin="10,20,5,20"></TextBlock>
+            <TextBox IsEnabled="{Binding ElementName=orderty2,Path=IsChecked}" Text="{Binding OperationArguOffset}" Margin="0,20,2,20" Width="45"></TextBox>
+            <TextBlock Text="  分钟" VerticalAlignment="Center"></TextBlock>
+            <TextBlock></TextBlock>
+        </DockPanel>
+        <DockPanel Grid.Column="1" Grid.Row="5">
+            <RadioButton  GroupName="x1"  Margin="0,20,0,20" Content="光控" IsChecked="{Binding Path=OperationMethod, Converter={StaticResource RadioMultiIntConverter}, ConverterParameter=11}"  Name="orderty3" VerticalAlignment="Center" />
+            <TextBlock  VerticalAlignment="Center" Text="光控设备：" Margin="10,20,5,20"></TextBlock>
+            <ComboBox ItemsSource="{Binding LightUsedRtuIdColl}" DisplayMemberPath="Name" 
+                                                      SelectedItem="{Binding CurrentSelectLightUsedRtuId}" IsEnabled="{Binding ElementName=orderty3,Path=IsChecked}" 
+                                                      Margin="0,20,5,20" Width="90" ></ComboBox>
+            <TextBlock Text="  操作光控段:  " VerticalAlignment="Center"></TextBlock>
+            <TextBox IsEnabled="{Binding ElementName=orderty3,Path=IsChecked}" Text="{Binding OperationArguLightStart}" Margin="2,20,2,20" Width="35"></TextBox>
+            <TextBlock Text="-" VerticalAlignment="Center"></TextBlock>
+            <TextBox IsEnabled="{Binding ElementName=orderty3,Path=IsChecked}" Text="{Binding OperationArguLightEnd}" Margin="2,20,2,20" Width="35"></TextBox>
+            <TextBlock Text="(Lux)" VerticalAlignment="Center"></TextBlock>
+            <TextBlock></TextBlock>
+        </DockPanel>
+        <TextBlock Grid.Row="6" HorizontalAlignment="Right" Text="操作类型：" Margin="20,20,5,20"></TextBlock>
+        <DockPanel Grid.Column="1" Grid.Row="6">
+            <RadioButton IsEnabled="{Binding Mix2Enabl}" Content="开灯" Margin="0,10,0,10" IsChecked="{Binding Path=CmdType, Converter={StaticResource RadioMultiIntConverter}, ConverterParameter=1}"  VerticalAlignment="Center" />
+            <RadioButton IsEnabled="{Binding Mix5Enabl}" Content="关灯" Margin="10,10,10,10" IsChecked="{Binding Path=CmdType, Converter={StaticResource RadioMultiIntConverter}, ConverterParameter=2}"   VerticalAlignment="Center" />
+            <RadioButton IsEnabled="{Binding Mix4Enabl}" Content="调光" Margin="10,10,10,10" IsChecked="{Binding Path=CmdType, Converter={StaticResource RadioMultiIntConverter}, ConverterParameter=3}" Name="dimmer"  VerticalAlignment="Center" />
+            <Slider Value="{Binding CmdPwmValue}" IsEnabled="{Binding ElementName=dimmer,Path=IsChecked}" Maximum="100" Minimum="0" Margin="10,20,15,20" VerticalAlignment="Center" HorizontalAlignment="Left" Width="200"></Slider>
+            <TextBlock Text="{Binding CmdPwmValueStrs}" VerticalAlignment="Center" Margin="5,20,0,20"></TextBlock>
+            <TextBlock></TextBlock>
+        </DockPanel>
+        <TextBlock Grid.Row="7" HorizontalAlignment="Right" Text="灯头选择：" Margin="20,20,5,20"></TextBlock>
+        <DockPanel Grid.Column="1" Grid.Row="7">
+            <CheckBox Grid.Row="3" Grid.Column="1" Margin="0,0,0,0"  IsEnabled="{Binding ElementName=radioop2,Path=IsChecked}"  IsChecked="{Binding CmdPwmSel[0].IsSelected}" Content="灯头1" VerticalAlignment="Center" ></CheckBox>
+            <CheckBox Grid.Row="3" Grid.Column="2" Margin="25,0,0,0"  IsEnabled="{Binding ElementName=radioop2,Path=IsChecked}"  IsChecked="{Binding CmdPwmSel[1].IsSelected}" Content="灯头2" VerticalAlignment="Center" ></CheckBox>
+            <CheckBox Grid.Row="3" Grid.Column="3" Margin="25,0,0,0"  IsEnabled="{Binding ElementName=radioop2,Path=IsChecked}"  IsChecked="{Binding CmdPwmSel[2].IsSelected}" Content="灯头3" VerticalAlignment="Center" ></CheckBox>
+            <CheckBox Grid.Row="3" Grid.Column="4" Margin="25,0,0,0"  IsEnabled="{Binding ElementName=radioop2,Path=IsChecked}"  IsChecked="{Binding CmdPwmSel[3].IsSelected}" Content="灯头4" VerticalAlignment="Center" ></CheckBox>
+        </DockPanel>
+        <Button Grid.Row="8" Grid.Column="1" Content="保 存" Width="100"  Command="{Binding CmdSaveInstruction}" Height="25" HorizontalAlignment="Right"  Margin="20,10,20,10" />
+    </Grid>
+</WindowForWlst:CustomChromeWindow>

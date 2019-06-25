@@ -1,0 +1,111 @@
+﻿<WindowForWlst:CustomChromeWindow x:Class="Wlst.Ux.Statistics.UxStatistics.Views.PointSeries"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+              xmlns:WindowForWlst="clr-namespace:WindowForWlst;assembly=WindowForWlst"
+            xmlns:example="clr-namespace:Wlst.Ux.Statistics.UxStatistics.Views"
+                                  xmlns:Services="clr-namespace:Wlst.Ux.Statistics.UxStatistics.Services"
+                                  mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <WindowForWlst:CustomChromeWindow.Resources>
+        <Services:AxisLabelConverter x:Key="axisLabelConverter"/>
+
+        <DataTemplate x:Key="axisLabelTemplate">
+            <TextBlock Text="{Binding Converter={StaticResource axisLabelConverter}}" 
+                           TextAlignment="Center"
+                           Margin="0,-2,0,0"/>
+        </DataTemplate>
+
+        <Style TargetType="TextBlock">
+            <Setter Property="Foreground" Value="#FF1B9DDE"/>
+            <Setter Property="FontSize" Value="11"/>
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="TextAlignment" Value="Right"/>
+            <Setter Property="Margin" Value="-210,0,10,0"/>
+        </Style>
+        <telerik:ChartPalette x:Key="AccentPalette">
+            <telerik:ChartPalette.GlobalEntries>
+                <telerik:PaletteEntry Fill="#FF1B9DDE" />
+            </telerik:ChartPalette.GlobalEntries>
+        </telerik:ChartPalette>
+    </WindowForWlst:CustomChromeWindow.Resources>
+    <Grid>
+        <telerik:RadCartesianChart Margin="0,10,10,10" Palette="{StaticResource AccentPalette}">
+            <telerik:RadCartesianChart.Annotations>
+                <telerik:CartesianMarkedZoneAnnotation VerticalFrom="0.3" VerticalTo="3"
+                                                       HorizontalFrom="{Binding MarkedZone1HorizontalFrom}"
+                                                       HorizontalTo="{Binding MarkedZone1HorizontalTo}">
+                </telerik:CartesianMarkedZoneAnnotation>
+                <telerik:CartesianCustomAnnotation VerticalAxis="{Binding ElementName=verticalAxis}"
+                                    HorizontalAxis="{Binding ElementName=horizontalAxis}"
+                                    VerticalValue="3"
+                                    HorizontalValue="{Binding MarkedZone1HorizontalValue}">
+                    <telerik:CartesianCustomAnnotation.Content>
+                        <StackPanel>
+                            <TextBlock Text="Cluster of smaller" />
+                            <TextBlock Text="earthquakes in" />
+                            <TextBlock Text="Q1, 2009" />
+                        </StackPanel>
+                    </telerik:CartesianCustomAnnotation.Content>
+                </telerik:CartesianCustomAnnotation>
+
+                <telerik:CartesianMarkedZoneAnnotation VerticalFrom="4" VerticalTo="4.2"
+                                                       HorizontalFrom="{Binding MarkedZone2HorizontalFrom}"
+                                                       HorizontalTo="{Binding MarkedZone2HorizontalTo}">
+                </telerik:CartesianMarkedZoneAnnotation>
+                <telerik:CartesianCustomAnnotation VerticalAxis="{Binding ElementName=verticalAxis}"
+                                    HorizontalAxis="{Binding ElementName=horizontalAxis}"
+                                    VerticalValue="4.2"
+                                    HorizontalValue="{Binding MarkedZone2HorizontalValue}">
+                    <telerik:CartesianCustomAnnotation.Content>
+                        <StackPanel>
+                            <TextBlock Text="4.1 earthquake" />
+                            <TextBlock Text="march, 30th 2009" />
+                        </StackPanel>
+                    </telerik:CartesianCustomAnnotation.Content>
+                </telerik:CartesianCustomAnnotation>
+
+                <telerik:CartesianMarkedZoneAnnotation VerticalFrom="5.8" VerticalTo="6"
+                                                       HorizontalFrom="{Binding MarkedZone3HorizontalFrom}"
+                                                       HorizontalTo="{Binding MarkedZone3HorizontalTo}">
+                </telerik:CartesianMarkedZoneAnnotation>
+                <telerik:CartesianCustomAnnotation  VerticalAxis="{Binding ElementName=verticalAxis}"
+                                    HorizontalAxis="{Binding ElementName=horizontalAxis}"
+                                    VerticalValue="6"
+                                    HorizontalValue="{Binding MarkedZone3HorizontalValue}">
+                    <telerik:CartesianCustomAnnotation.Content>
+                        <StackPanel>
+                            <TextBlock Text="5.9 fatal earthquake" />
+                            <TextBlock Text="April, 6th 2009" />
+                        </StackPanel>
+                    </telerik:CartesianCustomAnnotation.Content>
+                </telerik:CartesianCustomAnnotation>
+
+            </telerik:RadCartesianChart.Annotations>
+            <telerik:RadCartesianChart.HorizontalAxis>
+                <telerik:DateTimeContinuousAxis x:Name="horizontalAxis" LabelTemplate="{StaticResource axisLabelTemplate}"
+                                                MajorStepUnit="Month"
+                                                MajorStep="1">
+                </telerik:DateTimeContinuousAxis>
+            </telerik:RadCartesianChart.HorizontalAxis>
+            <telerik:RadCartesianChart.VerticalAxis>
+                <telerik:LinearAxis x:Name="verticalAxis" Title="magnitude" Minimum="0" Maximum="6" MajorStep="1" />
+            </telerik:RadCartesianChart.VerticalAxis>
+            <telerik:RadCartesianChart.Grid>
+                <telerik:CartesianChartGrid StripLinesVisibility="Y" MajorLinesVisibility="Y" />
+            </telerik:RadCartesianChart.Grid>
+            <telerik:PointSeries CategoryBinding="Date" 
+                                 ValueBinding="Magnitude" 
+                                 ItemsSource="{Binding PointData}"
+                                 PointSize="5 5">
+                <telerik:PointSeries.RenderOptions>
+                    <telerik:BitmapRenderOptions />
+                </telerik:PointSeries.RenderOptions>
+            </telerik:PointSeries>
+        </telerik:RadCartesianChart>
+
+    </Grid>
+</WindowForWlst:CustomChromeWindow>
+

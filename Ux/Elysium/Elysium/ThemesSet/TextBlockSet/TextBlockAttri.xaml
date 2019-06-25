@@ -1,0 +1,71 @@
+﻿<UserControl x:Class="Elysium.ThemesSet.TextBlockSet.TextBlockAttri"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             MaxHeight="600" MinWidth="200" MaxWidth="1000" MinHeight="200">
+    <Grid >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" MinHeight="30"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        
+        <GroupBox Header="正常状态设置" Margin="5" Name="groupBox1" VerticalAlignment="Top">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" MinHeight="30"/>
+                    <RowDefinition Height="Auto" MinHeight="30"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Label Margin="5,2,5,2" Content="背景色:" Name="label1" VerticalAlignment="Center"  />
+                <Label Grid.Row="1" Margin="5,2,5,2" Content="字体色:" Name="label5" VerticalAlignment="Center" />
+
+                <xctk:ColorPicker Grid.Column="1" Margin="5,2,5,2" MinWidth="120" VerticalAlignment="Center"  SelectedColor="{Binding NormalBackground}" />
+                <xctk:ColorPicker Grid.Column="1" Grid.Row="1" Margin="5,2,5,2" MinWidth="120" VerticalAlignment="Center"  SelectedColor="{Binding NormalForeground}" />
+                <TextBox Grid.Row="2" Grid.ColumnSpan="2" Margin="20,5,20,5" Text="正常显示的状态效果"  Background="{Binding NormalBackground}" Foreground="{Binding NormalForeground}" 
+                        Name="button1" VerticalAlignment="Center" MinWidth="120" />
+            </Grid>
+        </GroupBox>
+
+        <GroupBox Header="鼠标进入时状态设置" Grid.Column="1" Margin="5" Name="groupBox2" VerticalAlignment="Top" >
+            <Grid >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" MinHeight="30"/>
+                    <RowDefinition Height="Auto" MinHeight="30"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Label Margin="5,2,5,2"  Content="背景色:"  Name="label11" VerticalAlignment="Center"  />
+                <Label Grid.Row="1" Margin="5,2,5,2"  Content="字体色:"  Name="label15" VerticalAlignment="Center" />
+                <xctk:ColorPicker  Grid.Column="1" Margin="5,2,5,2"  MinWidth="120"  VerticalAlignment="Center"  SelectedColor="{Binding MouseOverBackground}" />
+                <xctk:ColorPicker Grid.Row="1" Grid.Column="1" Margin="5,2,5,2"  MinWidth="120" VerticalAlignment="Center"  SelectedColor="{Binding MouseOverForeground}" />
+                <TextBox Grid.Row="2" Grid.ColumnSpan="2" Margin="20,5,20,5" Text ="鼠标移入输入框的显示状态效果"  Background="{Binding MouseOverBackground}" 
+                        Foreground="{Binding MouseOverForeground}" 
+                         Name="button11" VerticalAlignment="Center" MinWidth="120" />
+            </Grid>
+        </GroupBox>
+        <Grid Grid.Row="1" Grid.ColumnSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Button Margin="20,5,20,5" Content="点击查看以上设置叠加效果"  Command="{Binding CmdLook}" Name="button2" VerticalAlignment="Top" MinWidth="120" />
+            <Button Grid.Column="2" Margin="20,5,20,5" Content="保存设置"  Command="{Binding CmdSave}" Name="button3" VerticalAlignment="Top" MinWidth="120" />
+            <TextBlock Grid.Column="1" Margin="20,5,20,5" Text="综合效果显示"   Name="textboxshow" VerticalAlignment="Top" MinWidth="120" />
+        </Grid>
+
+    </Grid>
+</UserControl>

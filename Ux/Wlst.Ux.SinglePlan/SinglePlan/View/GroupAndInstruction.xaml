@@ -1,0 +1,63 @@
+﻿<WindowForWlst:CustomChromeWindow x:Class="Wlst.Ux.SinglePlan.SinglePlan.View.GroupAndInstruction"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                                  xmlns:WindowForWlst="clr-namespace:WindowForWlst;assembly=WindowForWlst"
+                                  xmlns:RadioButtonConverter="clr-namespace:Wlst.Cr.CoreOne.RadioButtonConverter;assembly=Wlst.Cr.CoreOne"
+                                  mc:Ignorable="d" 
+             Height="500" Width="600"  Title="绑定分组和指令" TitleCetc="绑定分组和指令">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <TextBlock HorizontalAlignment="Right" Text="选择集中器分组：" Margin="20,20,5,20"></TextBlock>
+        <ListBox Grid.Column="1"  Margin="10,20,0,20"  ItemsSource="{Binding GroupItem}">
+            <ListBox.Template>
+                <ControlTemplate TargetType="{x:Type ListBox}">
+                        <ScrollViewer Background="Transparent" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+                            <WrapPanel Orientation="Vertical"  IsItemsHost="True" ScrollViewer.CanContentScroll="True"/>
+                        </ScrollViewer>   
+                </ControlTemplate>
+            </ListBox.Template>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <RadioButton  Margin="10,2,0,0" GroupName="SluGroup" IsChecked="{Binding IsSelected}" HorizontalAlignment="Left" VerticalAlignment="Top" Content="{Binding Name}"/>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="ListBoxItem">
+                    <Setter Property="Background" Value="Transparent"/>
+                </Style>
+            </ListBox.ItemContainerStyle>
+        </ListBox>
+
+        <TextBlock HorizontalAlignment="Right" Grid.Row="1" Text="选择单灯指令：" Margin="20,20,5,20"></TextBlock>
+        <ListBox  HorizontalAlignment="Left" Grid.Row="1" Grid.Column="1"  Margin="10,20,0,20"  ItemsSource="{Binding InstructionItem}">
+            <ListBox.Template>
+                <ControlTemplate TargetType="{x:Type ListBox}">
+                    <ScrollViewer Background="Transparent" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+                        <WrapPanel Orientation="Vertical"  IsItemsHost="True" ScrollViewer.CanContentScroll="True"/>
+                    </ScrollViewer>
+                </ControlTemplate>
+            </ListBox.Template>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <RadioButton  Margin="10,2,0,0"  GroupName="SluInstruction" IsChecked="{Binding IsSelected}" HorizontalAlignment="Left" VerticalAlignment="Top" Content="{Binding Name}"></RadioButton>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="ListBoxItem">
+                    <Setter Property="Background" Value="Transparent"/>
+                </Style>
+            </ListBox.ItemContainerStyle>
+        </ListBox>
+        <Button Grid.Row="2" Grid.Column="1" Content="确 定" Width="100"    Height="25" HorizontalAlignment="Right"  Margin="20,10,20,10" Click="Button_Click" />
+    </Grid>
+</WindowForWlst:CustomChromeWindow>

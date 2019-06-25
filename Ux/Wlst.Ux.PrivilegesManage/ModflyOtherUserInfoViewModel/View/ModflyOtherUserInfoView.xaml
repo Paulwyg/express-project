@@ -1,0 +1,307 @@
+﻿<UserControl x:Class="Wlst.Ux.PrivilegesManage.ModflyOtherUserInfoViewModel.View.ModflyOtherUserInfoView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+   
+             xmlns:converters="clr-namespace:Wlst.Ux.PrivilegesManage.ModflyOtherUserInfoViewModel.Services"
+             xmlns:OtherHelper="clr-namespace:Wlst.Cr.CoreOne.OtherHelper;assembly=Wlst.Cr.CoreOne"
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" mc:Ignorable="d" 
+             d:DesignHeight="500" d:DesignWidth="1200">
+    <UserControl.Resources >
+        <converters:TheOppVisiConverter x:Key="TheOppVisiConverter" />
+    </UserControl.Resources>
+    <Grid>
+        <TabControl   Margin="10,10,10,10">
+            <TabItem Header="用户信息管理">
+                <Grid >
+                    <Grid.ColumnDefinitions >
+                        <ColumnDefinition Width="4*"></ColumnDefinition>
+                        <ColumnDefinition Width="6*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition Height="40"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <telerik:RadGridView   Margin="0"  AllowDrop="True" RowIndicatorVisibility="Collapsed" ShowGroupPanel="False" 
+                                           ItemsSource="{Binding Path=UserItems}"  
+                   SelectedItem="{Binding Path=CurrentSelectUser, Mode=TwoWay}" >
+                        <telerik:RadGridView.Columns>
+                            <telerik:GridViewDataColumn Header="用户名"    DataMemberBinding="{Binding Path=UserName,Mode=TwoWay}"  Width="100" />
+                            <telerik:GridViewDataColumn Header="真实姓名"   DataMemberBinding="{Binding  Path=UserRealName,Mode=TwoWay}" Width="200" />
+                        </telerik:RadGridView.Columns>
+                    </telerik:RadGridView>
+                    <!--<ListView  Margin="20,30,30,30"  AllowDrop="True"   ItemsSource="{Binding Path=UserItems}"  
+                   SelectedItem="{Binding Path=CurrentSelectUser, Mode=TwoWay}" >
+                        <ListView.View>
+                            <GridView  AllowsColumnReorder="true" ColumnHeaderToolTip="All MenuInatance Here">
+                                <GridViewColumn Header="用户名"    DisplayMemberBinding="{Binding Path=UserName,Mode=TwoWay}"  Width="100" />
+                                <GridViewColumn Header="真实姓名"   DisplayMemberBinding="{Binding  Path=UserRealName,Mode=TwoWay}" Width="200" />
+                            </GridView>
+                        </ListView.View>
+                    </ListView>-->
+
+                    <Grid Grid.Row="1" Margin="20,0,20,0">
+                        <Grid.ColumnDefinitions >
+                            <ColumnDefinition ></ColumnDefinition>
+                            <ColumnDefinition ></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Button Height="25" Width="120" Content="删除" Command="{Binding CmdDeleteCurrentUser}"></Button>
+                        <Button Grid.Column="1" Height="25" Width="120" Content="增加" Command="{Binding CmdAdd}"></Button>
+                    </Grid>
+                    <Grid VerticalAlignment="Center" Grid.Column="1" HorizontalAlignment="Center" 
+                          Visibility="{Binding AddVisi, Converter={StaticResource TheOppVisiConverter}}">
+                        <Grid.ColumnDefinitions >
+                            <ColumnDefinition Width="80"></ColumnDefinition>
+                            <ColumnDefinition Width="180"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions >
+                            <RowDefinition Height="30"></RowDefinition>
+                            <RowDefinition  Height="30"></RowDefinition>
+                            <RowDefinition  Height="30"></RowDefinition>
+                            <RowDefinition  Height="30"></RowDefinition>
+                            <RowDefinition  Height="30"></RowDefinition>
+                            <RowDefinition  Height="30"></RowDefinition>
+                            <RowDefinition  Height="30"></RowDefinition>
+                            <RowDefinition  Height="30"></RowDefinition>
+                            <RowDefinition  Height="30"></RowDefinition>
+                        </Grid.RowDefinitions>
+
+                        <TextBlock VerticalAlignment="Center" Text="登陆账号:"></TextBlock>
+                        <TextBlock  VerticalAlignment="Center" Grid.Column="1" Grid.ColumnSpan="3" Text="{Binding CurrentSelectUser.UserName}"></TextBlock>
+
+                        <TextBlock  VerticalAlignment="Center" Visibility="{Binding NormalVisi}"  Grid.Row="1" Text="登陆密码:"></TextBlock>
+                        <TextBlock  VerticalAlignment="Center" Visibility="{Binding NormalVisi}"  Grid.Row="1" Grid.Column="1"  Text="******" ></TextBlock>
+
+                        <TextBlock  VerticalAlignment="Center" Visibility="{Binding NormalVisi}"  Grid.Row="2" Text="真实姓名:"></TextBlock>
+                        <TextBlock  VerticalAlignment="Center" Visibility="{Binding NormalVisi}"  Grid.Row="2" Grid.Column="1"  Text="{Binding CurrentSelectUser.UserRealName}" ></TextBlock>
+
+                        <TextBlock  VerticalAlignment="Center" Visibility="{Binding NormalVisi}"  Grid.Row="3" Text="联系电话:"></TextBlock>
+                        <TextBlock  VerticalAlignment="Center" Visibility="{Binding NormalVisi}"  Grid.Row="3" Grid.Column="1"  Text="{Binding CurrentSelectUser.UserPhoneNumber}" ></TextBlock>
+
+                        <TextBlock  VerticalAlignment="Center" Visibility="{Binding NormalVisi}"  Grid.Row="4" Text="工作部门:"></TextBlock>
+                        <TextBlock  VerticalAlignment="Center" Visibility="{Binding NormalVisi}"  Grid.Row="4" Grid.Column="1"  Text="{Binding CurrentSelectUser.UserDepartment}" ></TextBlock>
+
+                        <TextBlock  VerticalAlignment="Center" Visibility="{Binding NormalVisi}"  Grid.Row="5" Text="工作职位:"></TextBlock>
+                        <TextBlock  VerticalAlignment="Center" Visibility="{Binding NormalVisi}"  Grid.Row="5" Grid.Column="1"  Text="{Binding CurrentSelectUser.UserPositon}" ></TextBlock>
+                        <TextBlock  VerticalAlignment="Center" Visibility="{Binding NormalVisi}"  Grid.Row="6" Text="控制权限:"></TextBlock>
+                        <TextBlock  VerticalAlignment="Center" Visibility="{Binding NormalVisi}"  Grid.Row="6" Grid.Column="1"  Text="{Binding UserPrivilegeInfo}" ></TextBlock>
+
+
+                        <TextBlock  VerticalAlignment="Center" Visibility="{Binding ModifyVisi}" Grid.Row="1" Grid.Column="0" Text="修改密码:"></TextBlock>
+                        <PasswordBox   Visibility="{Binding ModifyVisi}"  Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" 
+                 Background="Transparent"
+                 OtherHelper:PasswordHelper.Attach="True"
+                 OtherHelper:PasswordHelper.Password="{Binding  Path=ModifyUserPasswrodOne,Mode=TwoWay}" />
+
+                        <TextBlock  VerticalAlignment="Center" Visibility="{Binding ModifyVisi}"  Grid.Row="2" Grid.Column="0" Text="确认密码:"></TextBlock>
+                        <PasswordBox Visibility="{Binding ModifyVisi}"  Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" 
+                 Background="Transparent"
+                 OtherHelper:PasswordHelper.Attach="True"
+                 OtherHelper:PasswordHelper.Password="{Binding  Path=ModifyUserPasswrodTwo,Mode=TwoWay}" />
+
+                        <TextBlock  VerticalAlignment="Center" Visibility="{Binding ModifyVisi}"  Grid.Row="3" Grid.Column="0" Text="真实姓名:"></TextBlock>
+                        <TextBox  VerticalAlignment="Center" Visibility="{Binding ModifyVisi}"  Grid.Row="3" Grid.Column="1"  Text="{Binding ModifyUserRealName}" ></TextBox>
+
+                        <TextBlock  VerticalAlignment="Center" Visibility="{Binding ModifyVisi}"  Grid.Row="4" Grid.Column="0" Text="联系电话:"></TextBlock>
+                        <TextBox  VerticalAlignment="Center" Visibility="{Binding ModifyVisi}"  Grid.Row="4" Grid.Column="1"  Text="{Binding ModifyUserPhoneNumber}" ></TextBox>
+
+                        <TextBlock  VerticalAlignment="Center" Visibility="{Binding ModifyVisi}"  Grid.Row="5" Grid.Column="0" Text="工作部门:"></TextBlock>
+                        <TextBox  VerticalAlignment="Center" Visibility="{Binding ModifyVisi}"  Grid.Row="5" Grid.Column="1"  Text="{Binding ModifyUserDepartment}" ></TextBox>
+
+                        <TextBlock  VerticalAlignment="Center" Visibility="{Binding ModifyVisi}"  Grid.Row="6" Grid.Column="0" Text="工作职位:"></TextBlock>
+                        <TextBox  VerticalAlignment="Center" Visibility="{Binding ModifyVisi}"  Grid.Row="6" Grid.Column="1"  Text="{Binding ModifyUserPositon}" ></TextBox>
+
+
+                        <TextBlock  VerticalAlignment="Center" Visibility="{Binding ModifyVisi}"  Grid.Row="7" Grid.Column="0" Text="控制权限:"></TextBlock>
+                        <ComboBox   VerticalAlignment="Center" ItemsSource="{Binding PrivilegeInfo}" Width="140" HorizontalAlignment="Left" Height="28" Visibility="{Binding ModifyVisi}"  Grid.Row="7" Grid.Column="1">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <DockPanel>
+                                        <CheckBox IsChecked="{Binding IsSelected}" VerticalAlignment="Center" Content="{Binding Name}"></CheckBox>
+                                    </DockPanel>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                        
+                        
+                        <Button Content="{Binding CmdName}" Grid.ColumnSpan="2" Grid.Row="8" Command="{Binding CmdButton}" Width="120" Height="25"></Button>
+                    </Grid>
+
+                    <Grid VerticalAlignment="Center" Grid.Column="1" HorizontalAlignment="Center"   Visibility="{Binding AddVisi}">
+                        <Grid.ColumnDefinitions >
+                            <ColumnDefinition Width="80"></ColumnDefinition>
+                            <ColumnDefinition Width="180"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions >
+                            <RowDefinition Height="30"></RowDefinition>
+                            <RowDefinition  Height="30"></RowDefinition>
+                            <RowDefinition  Height="30"></RowDefinition>
+                            <RowDefinition  Height="30"></RowDefinition>
+                            <RowDefinition  Height="30"></RowDefinition>
+                            <RowDefinition  Height="30"></RowDefinition>
+                            <RowDefinition  Height="30"></RowDefinition>
+                            <RowDefinition  Height="30"></RowDefinition>
+                            <RowDefinition  Height="30"></RowDefinition>
+                        </Grid.RowDefinitions>
+
+                        <TextBlock VerticalAlignment="Center" Text="登陆账号:"></TextBlock>
+                        <TextBox  VerticalAlignment="Center" Grid.Column="1" Grid.ColumnSpan="3" Text="{Binding UserName}"></TextBox>
+
+                        <TextBlock  VerticalAlignment="Center" Grid.Row="1" Grid.Column="0" Text="密码:"></TextBlock>
+                        <PasswordBox   Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" 
+                 Background="Transparent"
+                 OtherHelper:PasswordHelper.Attach="True"
+                 OtherHelper:PasswordHelper.Password="{Binding  Path=ModifyUserPasswrodOne,Mode=TwoWay}" />
+
+                        <TextBlock  VerticalAlignment="Center"   Grid.Row="2" Grid.Column="0" Text="确认密码:"></TextBlock>
+                        <PasswordBox  Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" 
+                 Background="Transparent"
+                 OtherHelper:PasswordHelper.Attach="True"
+                 OtherHelper:PasswordHelper.Password="{Binding  Path=ModifyUserPasswrodTwo,Mode=TwoWay}" />
+
+                        <TextBlock  VerticalAlignment="Center"   Grid.Row="3" Grid.Column="0" Text="真实姓名:"></TextBlock>
+                        <TextBox  VerticalAlignment="Center"  Grid.Row="3" Grid.Column="1"  Text="{Binding ModifyUserRealName}" ></TextBox>
+
+                        <TextBlock  VerticalAlignment="Center"   Grid.Row="4" Grid.Column="0" Text="联系电话:"></TextBlock>
+                        <TextBox  VerticalAlignment="Center"  Grid.Row="4" Grid.Column="1"  Text="{Binding ModifyUserPhoneNumber}" ></TextBox>
+
+                        <TextBlock  VerticalAlignment="Center"  Grid.Row="5" Grid.Column="0" Text="工作部门:"></TextBlock>
+                        <TextBox  VerticalAlignment="Center"  Grid.Row="5" Grid.Column="1"  Text="{Binding ModifyUserDepartment}" ></TextBox>
+
+                        <TextBlock  VerticalAlignment="Center"   Grid.Row="6" Grid.Column="0" Text="工作职位:"></TextBlock>
+                        <TextBox  VerticalAlignment="Center"  Grid.Row="6" Grid.Column="1"  Text="{Binding ModifyUserPositon}" ></TextBox>
+
+                        <TextBlock  VerticalAlignment="Center"   Grid.Row="7" Grid.Column="0" Text="控制权限:"></TextBlock>
+                        <ComboBox   VerticalAlignment="Center" ItemsSource="{Binding PrivilegeInfo}"  Width="140" HorizontalAlignment="Left" Height="28"  Grid.Row="7" Grid.Column="1">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <DockPanel>
+                                        <CheckBox IsChecked="{Binding IsSelected}" VerticalAlignment="Center" Content="{Binding Name}"></CheckBox>
+                                    </DockPanel>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                        
+                        <Button Content="增加" Grid.ColumnSpan="2" Grid.Row="8" Command="{Binding CmdAddUser}" Width="120" Height="25"></Button>
+                    </Grid>
+                </Grid>
+            </TabItem>
+
+            <TabItem  Header="权限管理">
+                <Grid >
+                    <Grid.ColumnDefinitions >
+                        <ColumnDefinition Width="4*"></ColumnDefinition>
+                        <ColumnDefinition Width="6*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid  Margin="20,30,30,30" >
+                        <Grid.RowDefinitions >
+                            <RowDefinition ></RowDefinition>
+                            <RowDefinition Height="40"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <telerik:RadGridView   AllowDrop="True"   ItemsSource="{Binding Path=PrivilegeInfoNames}"  HorizontalAlignment="Left"
+                   SelectedItem="{Binding Path=CurrSelectPrivilegeInfoName, Mode=TwoWay}" >
+                            <telerik:RadGridView.Columns>
+                                <telerik:GridViewDataColumn Header="全局地址"    DataMemberBinding="{Binding Path=Value,Mode=TwoWay}"  Width="80" />
+                                <telerik:GridViewDataColumn Header="权限名称"   DataMemberBinding="{Binding  Path=Name,Mode=TwoWay}" Width="260" />
+                            </telerik:RadGridView.Columns>
+                        </telerik:RadGridView>
+                        <!--<ListView  AllowDrop="True"   ItemsSource="{Binding Path=PrivilegeInfoNames}"  
+                   SelectedItem="{Binding Path=CurrSelectPrivilegeInfoName, Mode=TwoWay}" >
+                            <ListView.View>
+                                <GridView  AllowsColumnReorder="true" ColumnHeaderToolTip="All Items Here">
+                                    <GridViewColumn Header="全局地址"    DisplayMemberBinding="{Binding Path=Value,Mode=TwoWay}"  Width="80" />
+                                    <GridViewColumn Header="权限名称"   DisplayMemberBinding="{Binding  Path=Name,Mode=TwoWay}" Width="260" />
+                                </GridView>
+                            </ListView.View>
+                        </ListView>-->
+                        <Grid Grid.Row="1">
+                            <Grid.ColumnDefinitions >
+                                <ColumnDefinition ></ColumnDefinition>
+                                <ColumnDefinition ></ColumnDefinition>
+                                <ColumnDefinition ></ColumnDefinition>
+                            </Grid.ColumnDefinitions> 
+                            <Button Content="增 加" Height="25" Width="120" Command="{Binding CmdAddPriGorup}" Grid.Row="1"></Button>
+                            <Button Content="更 改" Grid.Column="1" Height="25" Width="120" Command="{Binding CmdUpdatePriGroup}" Grid.Row="1"></Button>
+                            <Button Content="删 除" Grid.Column="2" Height="25" Width="120" Command="{Binding CmdDeletePriGroup}" Grid.Row="1"></Button>
+                        </Grid>
+                    </Grid>
+                    <Grid Grid.Column="1"  Margin="20,30,30,30" >
+                        <Grid.RowDefinitions >
+                            <RowDefinition ></RowDefinition>
+                            <RowDefinition Height="40"></RowDefinition>
+                            <RowDefinition Height="40"></RowDefinition>
+                        </Grid.RowDefinitions>
+
+                        <telerik:RadGridView  Grid.Column="1" AllowDrop="True"   HorizontalAlignment="Left"
+                                              ItemsSource="{Binding Path=PrivilegeItems}"   >
+                            <telerik:RadGridView.Columns>
+                                <telerik:GridViewDataColumn Header="识别码"    DataMemberBinding="{Binding Path=Id,Mode=TwoWay}"  Width="100" />
+                                <telerik:GridViewDataColumn Header="描述"   DataMemberBinding="{Binding  Path=Description,Mode=TwoWay}" Width="280" />
+                                <telerik:GridViewDataColumn Header="可显示或可读"  Width="100" >
+                                    <telerik:GridViewDataColumn.CellTemplate >
+                                        <DataTemplate >
+                                            <DockPanel >
+                                                <CheckBox Content="显示" IsChecked="{Binding IsCanReadOrShow}"></CheckBox>
+                                            </DockPanel>
+                                        </DataTemplate>
+                                    </telerik:GridViewDataColumn.CellTemplate>
+                                </telerik:GridViewDataColumn>
+                                <telerik:GridViewDataColumn Header="可操作或可执行"  Width="100" >
+                                    <telerik:GridViewDataColumn.CellTemplate >
+                                        <DataTemplate >
+                                            <DockPanel >
+                                                <CheckBox Content="操作" IsChecked="{Binding IsCanWriteOrOperator}"></CheckBox>
+                                            </DockPanel>
+                                        </DataTemplate>
+                                    </telerik:GridViewDataColumn.CellTemplate>
+                                </telerik:GridViewDataColumn>
+                            </telerik:RadGridView.Columns>
+                        </telerik:RadGridView>
+                        
+                        <!--<ListView Grid.Column="1" AllowDrop="True"   ItemsSource="{Binding Path=PrivilegeItems}"   >
+                            <ListView.View>
+                                <GridView  AllowsColumnReorder="true" ColumnHeaderToolTip="All Items Here">
+                                    <GridViewColumn Header="识别码"    DisplayMemberBinding="{Binding Path=Id,Mode=TwoWay}"  Width="100" />
+                                    <GridViewColumn Header="描述"   DisplayMemberBinding="{Binding  Path=Description,Mode=TwoWay}" Width="280" />
+                                    <GridViewColumn Header="可显示或可读"  Width="100" >
+                                        <GridViewColumn.CellTemplate >
+                                            <DataTemplate >
+                                                <DockPanel >
+                                                    <CheckBox Content="显示" IsChecked="{Binding IsCanReadOrShow}"></CheckBox>
+                                                </DockPanel>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn Header="可操作或可执行"  Width="100" >
+                                        <GridViewColumn.CellTemplate >
+                                            <DataTemplate >
+                                                <DockPanel >
+                                                    <CheckBox Content="操作" IsChecked="{Binding IsCanWriteOrOperator}"></CheckBox>
+                                                </DockPanel>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>-->
+
+                        <DockPanel Grid.Row="1">
+                            <TextBlock Text="当前操作权限组为："></TextBlock>
+                            <TextBlock Text="{Binding CurrSelectPrivilegeInfoName.Name}"></TextBlock>
+                        </DockPanel>
+                        <DockPanel Grid.Row="2" >
+                            <Button Content="全选显示" Margin="5,0,5,0" Height="25" Width="80" Command="{Binding CmdCmdSelectAllEnableSelect}"></Button>
+                            <Button Content="全清显示"  Margin="5,0,5,0" Height="25" Width="80" Command="{Binding CmdCleanAllEnableSelect}"></Button>
+                            <Button Content="全选操作"  Margin="5,0,5,0" Height="25" Width="80" Command="{Binding CmdSelectAllOperatorSelect}"></Button>
+                            <Button Content="全清操作"  Margin="5,0,5,0" Height="25" Width="80" Command="{Binding CmdCleanAllOperatorSelect}"></Button>
+                             <Button Content="保存" Height="25" Width="120" Command="{Binding CmdSavePrivilegeButton}"></Button>
+                        </DockPanel>
+                       
+                    </Grid>
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</UserControl>

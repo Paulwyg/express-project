@@ -1,0 +1,62 @@
+﻿<UserControl x:Class="Wlst.Ux.StateBarModule.TopData.Views.TopDataView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:AppleWindowSet="clr-namespace:Elysium.ThemesSet.AppleWindowSet;assembly=Elysium"
+              
+             mc:Ignorable="d"  
+             d:DesignHeight="40" d:DesignWidth="600">
+    <Grid  Background="{x:Null }"  VerticalAlignment="Center">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" MinHeight="30"/>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="Auto" MinHeight="30"/>
+        </Grid.RowDefinitions>
+        <DockPanel  Background="{x:Null }"  VerticalAlignment="Center" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left">
+            <Label></Label>
+            <!--<Label Margin="{Binding margin}" Content="{Binding Items[14].Name}"  MouseDoubleClick="TextBlock_MouseRightButtonDown" ToolTip="{Binding Items[14].Value}"/>
+            <Label Margin="{Binding margin}"  Content="{Binding Items[13].Name}" MouseDoubleClick="TextBlock_MouseRightButtonDown"  ToolTip="{Binding Items[13].Value}"/>
+            <Label Margin="{Binding margin}"  Content="{Binding Items[12].Name}" MouseDoubleClick="TextBlock_MouseRightButtonDown"  ToolTip="{Binding Items[12].Value}"/>
+            <Label Margin="{Binding margin}"  Content="{Binding Items[11].Name}" MouseDoubleClick="TextBlock_MouseRightButtonDown"  ToolTip="{Binding Items[11].Value}"/>
+            <Label Margin="{Binding margin}"  Content="{Binding Items[10].Name}" MouseDoubleClick="TextBlock_MouseRightButtonDown"  ToolTip="{Binding Items[10].Value}"/>
+            <Label Margin="{Binding margin}"  Content="{Binding Items[9].Name}" MouseDoubleClick="TextBlock_MouseRightButtonDown"  ToolTip="{Binding Items[19].Value}"/>
+            <Label Margin="{Binding margin}"  Content="{Binding Items[8].Name}" MouseDoubleClick="TextBlock_MouseRightButtonDown"  ToolTip="{Binding Items[8].Value}"/>
+            <Label Margin="{Binding margin}"  Content="{Binding Items[7].Name}" MouseDoubleClick="TextBlock_MouseRightButtonDown"  ToolTip="{Binding Items[7].Value}"/>
+            <Label Margin="{Binding margin}"  Content="{Binding Items[6].Name}" MouseDoubleClick="TextBlock_MouseRightButtonDown"  ToolTip="{Binding Items[6].Value}"/>
+            <Label Margin="{Binding margin}"  Content="{Binding Items[5].Name}" MouseDoubleClick="TextBlock_MouseRightButtonDown"  ToolTip="{Binding Items[5].Value}"/>
+            <Label Margin="{Binding margin}"  Content="{Binding Items[4].Name}" MouseDoubleClick="TextBlock_MouseRightButtonDown"  ToolTip="{Binding Items[4].Value}"/>
+            <Label Margin="{Binding margin}"  Content="{Binding Items[3].Name}" MouseDoubleClick="TextBlock_MouseRightButtonDown"  ToolTip="{Binding Items[3].Value}"/>
+            <Label Margin="{Binding margin}"  Content="{Binding Items[2].Name}" MouseDoubleClick="TextBlock_MouseRightButtonDown"  ToolTip="{Binding Items[2].Value}"/>
+            <Label Margin="{Binding margin}"  Content="{Binding Items[1].Name}" MouseDoubleClick="TextBlock_MouseRightButtonDown"  ToolTip="{Binding Items[1].Value}"/>-->
+            <Label Margin="{Binding margin}"  Content="{Binding Items[0].Name}" MouseDoubleClick="TextBlock_MouseRightButtonDown"  ToolTip="{Binding Items[0].Value}"/>
+        </DockPanel>
+
+        <StackPanel  Margin="0,5,70,5"  Grid.Row="2" Grid.Column="1"   Visibility="{Binding ShowWarning}" HorizontalAlignment="Right" >
+
+            <TextBlock Text="{Binding LuxWarning}"  Margin="10,0,0,0" 
+                                   HorizontalAlignment="Left"  VerticalAlignment="Center"  FontSize="14" Foreground="Red" ></TextBlock>
+        </StackPanel>
+
+
+
+        <StackPanel   Grid.Row="2"  Grid.Column="1"  HorizontalAlignment="Right" Visibility="{Binding IsLuxVisi}">
+            <Image Height="24" Width="24" x:Name="sunvalue" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" Margin="18,0,0,7" Grid.RowSpan="2"></Image>
+
+            <DockPanel  Background="{x:Null }"  VerticalAlignment="Center"  Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left">
+
+                <Border CornerRadius="10"  Grid.Row="2" VerticalAlignment="Center" Height="20" Width="60"  HorizontalAlignment="Center"  Background="#495A80"  BorderThickness="0"  ToolTip="{Binding LuxTooltips}" >
+                <TextBlock Text="{Binding LuxValuex}" ToolTip="{Binding LuxTooltips}"  Margin="0,0,0,0" 
+                                   HorizontalAlignment="Center"  VerticalAlignment="Center"  FontSize="14" Foreground="White"></TextBlock>
+                     <!--<Label Margin="{Binding margin}"  Content="{Binding Items[1].Name}" MouseDoubleClick="TextBlock_MouseRightButtonDown"  ToolTip="{Binding Items[1].Value}"/>-->
+                </Border>
+
+            </DockPanel>
+       </StackPanel>
+    </Grid>
+</UserControl>

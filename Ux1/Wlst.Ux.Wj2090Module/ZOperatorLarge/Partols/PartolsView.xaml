@@ -1,0 +1,187 @@
+﻿<UserControl x:Class="Wlst.Ux.Wj2090Module.ZOperatorLarge.Partols.PartolsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+             xmlns:Converters1="clr-namespace:Wlst.Ux.Wj2090Module.Wj2090InfoSet.Converters"
+             xmlns:RadioButtonConverter="clr-namespace:Wlst.Cr.CoreOne.RadioButtonConverter;assembly=Wlst.Cr.CoreOne"
+             mc:Ignorable="d" 
+             d:DesignHeight="400" d:DesignWidth="950">
+    <UserControl.Resources>
+        <Converters1:GridEnumVisibleConverter x:Key="GridEnumVisibleConvert"></Converters1:GridEnumVisibleConverter>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" MinHeight="30"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto" MinHeight="30"/>
+        </Grid.RowDefinitions>
+        <Grid>
+            <DockPanel VerticalAlignment="Center">
+                <TextBlock Text="巡测总数：" VerticalAlignment="Center" Margin="5,0,0,0"/>
+                <TextBlock Text="{Binding CountAll}"  VerticalAlignment="Center" Margin="10,0,0,0"/>
+
+                <TextBlock Text="应答数：" VerticalAlignment="Center" Margin="5,0,0,0"/>
+                <TextBlock Text="{Binding CountReturn}"  VerticalAlignment="Center" Margin="10,0,0,0"/>
+
+                <CheckBox Content="巡测集中器 [否控制器]" IsChecked="{Binding IsLastPartolIsConces}"  VerticalAlignment="Center"  Margin="15,0,0,0" IsEnabled="{Binding CanAnyButton}"></CheckBox>
+
+                <CheckBox Content="指定集中器" IsChecked="{Binding IsSelectedRuts}" VerticalAlignment="Center"  Margin="15,0,0,0" IsEnabled="{Binding CanAnyButton}" ></CheckBox>
+                <TextBlock Text="{Binding NameSelected}"  VerticalAlignment="Center" Width="120"  Margin="3,-1,0,0"></TextBlock>
+
+                <Grid HorizontalAlignment="Right">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Button  Command="{Binding CmdQuery}" Width="75" Height="25" Content="巡测"  Margin="5,0,5,0"  HorizontalAlignment="Right" Grid.Column="1" IsEnabled="{Binding CanAnyButton}"></Button>
+
+                    <Button  Command="{Binding CmdCmdQueryBc}" Width="75" Height="25" Content="补测"  Margin="5,0,5,0"  HorizontalAlignment="Right" Grid.Column="2" IsEnabled="{Binding CanAnyButton}"></Button>
+
+                    <Button  Command="{Binding CmdShowData}" Width="75" Height="25" Content="{Binding CmdText}"  Margin="5,0,5,0"  HorizontalAlignment="Right" Grid.Column="3" IsEnabled="{Binding CanAnyButton}"></Button>
+
+                    <Button  Command="{Binding CmdShowAlreadyData}" Width="75" Height="25" Content="最新数据"  Margin="5,0,5,0" HorizontalAlignment="Right" Grid.Column="4" IsEnabled="{Binding IsSelectedRuts}"></Button>
+                </Grid>
+                <TextBlock></TextBlock>
+            </DockPanel>
+           
+        </Grid>
+
+        <Grid HorizontalAlignment="Left" x:Name="xg1" Grid.Row="1" Visibility="{Binding FlagDataType,Converter={StaticResource GridEnumVisibleConvert},ConverterParameter=1}">
+            <telerik:RadGridView x:Name="gridview1"  VirtualizingStackPanel.IsVirtualizing="True" AutoGenerateColumns="False" ItemsSource="{Binding ItemsSlu}"  Margin="5,3,3,3"
+								 ScrollMode="Deferred" IsReadOnly="True"  ShowGroupPanel="False"  FrozenColumnCount="4" Width="930"
+                                  SnapsToDevicePixels="False" ShowColumnFooters="False" UseLayoutRounding="False" RowIndicatorVisibility="Collapsed">
+
+                <telerik:RadGridView.Columns>
+                    <telerik:GridViewDataColumn Header="序号" HeaderTextAlignment="Center" IsFilterable="False" MinWidth="65" MaxWidth="80" DataMemberBinding="{Binding Index}" IsReadOnly="True" />
+                    <telerik:GridViewDataColumn Header="集中器" HeaderTextAlignment="Center" IsFilterable="False" MinWidth="65" MaxWidth="120" DataMemberBinding="{Binding SluShowId}" IsReadOnly="True" />
+                    <telerik:GridViewDataColumn Header="采样时间" HeaderTextAlignment="Center" IsFilterable="False" DataMemberBinding="{Binding SampleTime,StringFormat={}\{0:yyyy-MM-dd HH:mm:ss\}}"  IsReadOnly="True" MinWidth="160"  />
+                    <telerik:GridViewDataColumn Header="运行状态" HeaderTextAlignment="Center" IsFilterable="False" DataMemberBinding="{Binding RunState}"  IsReadOnly="True" MinWidth="80" />
+                    <telerik:GridViewDataColumn Header="主报状态" HeaderTextAlignment="Center" IsFilterable="False" DataMemberBinding="{Binding AlarmState}"  IsReadOnly="True" MinWidth="80" />
+                    <telerik:GridViewDataColumn Header="开机状态" HeaderTextAlignment="Center" IsFilterable="False" DataMemberBinding="{Binding PowerOnState}"  IsReadOnly="True" MinWidth="80" />
+                    <telerik:GridViewDataColumn Header="通信方式" HeaderTextAlignment="Center" IsFilterable="False" DataMemberBinding="{Binding CommunicationState}"  IsReadOnly="True" MinWidth="80" />
+                    <telerik:GridViewDataColumn Header="参数状态" HeaderTextAlignment="Center" IsFilterable="False" DataMemberBinding="{Binding ParameterState}"  IsReadOnly="True" MinWidth="80" />
+                    <telerik:GridViewDataColumn Header="硬件状态" HeaderTextAlignment="Center" IsFilterable="False" DataMemberBinding="{Binding HardwareState}"  IsReadOnly="True" MinWidth="80" />
+                    <telerik:GridViewDataColumn Header="未知控制器数量" HeaderTextAlignment="Center" IsFilterable="False" DataMemberBinding="{Binding UnkownControlNum}"  IsReadOnly="True" MinWidth="80" />
+                    <telerik:GridViewDataColumn Header="复位次数"  HeaderTextAlignment="Center" IsFilterable="False" DataMemberBinding="{Binding ResetNum}"  IsReadOnly="True" MinWidth="160" />
+                    <telerik:GridViewDataColumn Header="Zigbee通信信道"  HeaderTextAlignment="Center" IsFilterable="False" DataMemberBinding="{Binding ZgbCommunication}"  IsReadOnly="True" MinWidth="80" />
+                </telerik:RadGridView.Columns>
+            </telerik:RadGridView>
+        </Grid>
+        <Grid HorizontalAlignment="Left" x:Name="xg2"  Grid.Row="1" Visibility="{Binding FlagDataType,Converter={StaticResource GridEnumVisibleConvert},ConverterParameter=2}">
+            <telerik:RadGridView x:Name="gridview2"  VirtualizingStackPanel.IsVirtualizing="True" AutoGenerateColumns="False" ItemsSource="{Binding ItemsCtrl}"  Margin="5,3,3,3"
+								 ScrollMode="Deferred" IsReadOnly="True"  ShowGroupPanel="False"  Width="930"
+                             FrozenColumnCount="4"
+                                  SnapsToDevicePixels="False" ShowColumnFooters="False" UseLayoutRounding="False" RowIndicatorVisibility="Collapsed">
+
+                <telerik:RadGridView.Columns>
+                    <!--<telerik:GridViewDataColumn Header="序号" HeaderTextAlignment="Center" IsFilterable="False" MinWidth="65" MaxWidth="80" DataMemberBinding="{Binding Index}" IsReadOnly="True" />-->
+                    <telerik:GridViewDataColumn Header="集中器" HeaderTextAlignment="Center"  Width="75"  DataMemberBinding="{Binding SluId}" IsReadOnly="True" />
+                    <telerik:GridViewDataColumn Header="控制器" HeaderTextAlignment="Center" IsFilterable="False" Width="65"  DataMemberBinding="{Binding ControlId}" IsReadOnly="True" />
+                    <telerik:GridViewDataColumn Header="采样时间" HeaderTextAlignment="Center" IsFilterable="False" DataMemberBinding="{Binding SampleTime}"  IsReadOnly="True" Width="15"  />
+                    <telerik:GridViewDataColumn Header="生成时间" HeaderTextAlignment="Center" IsFilterable="False" DataMemberBinding="{Binding DateTimeCtrl}"  IsReadOnly="True" Width="160"  />
+
+                    <telerik:GridViewDataColumn Header="温度" HeaderTextAlignment="Center" IsFilterable="False" DataMemberBinding="{Binding Temperature}"  IsReadOnly="True" Width="70" />
+                    <telerik:GridViewDataColumn Header="故障状态" HeaderTextAlignment="Center"  DataMemberBinding="{Binding Status}"  IsReadOnly="True" Width="70" />
+                    <telerik:GridViewDataColumn Header="是否校准" HeaderTextAlignment="Center"  DataMemberBinding="{Binding IsAdjust}"  IsReadOnly="True" Width="70" />
+                    <telerik:GridViewDataColumn Header="参数状态" HeaderTextAlignment="Center"  DataMemberBinding="{Binding IsWorkingArgsSet}"  IsReadOnly="True" Width="70" />
+                    <telerik:GridViewDataColumn Header="报警" HeaderTextAlignment="Center"  DataMemberBinding="{Binding IsNoAlarm}"  IsReadOnly="True" Width="70" />
+                    <telerik:GridViewDataColumn Header="状态" HeaderTextAlignment="Center"  DataMemberBinding="{Binding IsCtrlStop}"  IsReadOnly="True" Width="70" />
+                    <telerik:GridViewDataColumn Header="EEPROM" HeaderTextAlignment="Center"  DataMemberBinding="{Binding IsEepromError}"  IsReadOnly="True" Width="70" />
+                    <telerik:GridViewDataColumn Header="温度传感器"  HeaderTextAlignment="Center"  DataMemberBinding="{Binding IsTemperatureSensor}"  IsReadOnly="True" Width="80" />
+
+                </telerik:RadGridView.Columns>
+            </telerik:RadGridView>
+        </Grid>
+        <Grid HorizontalAlignment="Left"  x:Name="xg3"  Grid.Row="1" Visibility="{Binding FlagDataType,Converter={StaticResource GridEnumVisibleConvert},ConverterParameter=3}">
+            <!--<Grid.ColumnDefinitions>
+                <ColumnDefinition Width="935" />
+            </Grid.ColumnDefinitions>-->
+            <telerik:RadGridView x:Name="gridview3"  VirtualizingStackPanel.IsVirtualizing="True" AutoGenerateColumns="False" ItemsSource="{Binding ItemsLamp}"   Margin="5,3,3,3"
+								             ScrollMode="Deferred" IsReadOnly="True"  ShowGroupPanel="False" Width="930"
+                                 FrozenColumnCount="4"
+                     
+                                              SnapsToDevicePixels="False" ShowColumnFooters="False" UseLayoutRounding="False" RowIndicatorVisibility="Collapsed" Grid.ColumnSpan="2">
+                <telerik:RadGridView.Columns>
+                    <!--<telerik:GridViewDataColumn Header="序号" HeaderTextAlignment="Center" IsFilterable="False" MinWidth="65" MaxWidth="120" DataMemberBinding="{Binding Index}" IsReadOnly="True" />-->
+                    <telerik:GridViewDataColumn Header="集中器" HeaderTextAlignment="Center"  Width="75" MaxWidth="120" DataMemberBinding="{Binding SluShowId}" IsReadOnly="True" />
+                    <!--<telerik:GridViewDataColumn Header="地址" HeaderTextAlignment="Center" IsFilterable="False" MinWidth="65" MaxWidth="120" DataMemberBinding="{Binding ControlId}" IsReadOnly="True" />-->
+                    <telerik:GridViewDataColumn Header="控制器" HeaderTextAlignment="Center" IsFilterable="False" Width="60"  DataMemberBinding="{Binding ControlId}" IsReadOnly="True" />
+                    <telerik:GridViewDataColumn Header="灯号" HeaderTextAlignment="Center" IsFilterable="False" Width="50"  DataMemberBinding="{Binding LightNum}" IsReadOnly="True" />
+                    <telerik:GridViewDataColumn Header="采样时间" HeaderTextAlignment="Center" IsFilterable="False" Width="160"  DataMemberBinding="{Binding SampleTime,StringFormat={}\{0:yyyy-MM-dd HH:mm:ss\}}" IsReadOnly="True" />
+                    <telerik:GridViewDataColumn Header="电压" HeaderTextAlignment="Center" IsFilterable="False"   DataMemberBinding="{Binding V}"   IsReadOnly="True" Width="60"  />
+                    <telerik:GridViewDataColumn Header="电流" HeaderTextAlignment="Center" IsFilterable="False"   DataMemberBinding="{Binding A}"   IsReadOnly="True" Width="60"  />
+                    <telerik:GridViewDataColumn Header="功率" HeaderTextAlignment="Center" IsFilterable="False"   DataMemberBinding="{Binding ActivePower}"   IsReadOnly="True" Width="60" />
+                    <telerik:GridViewDataColumn Header="运行时间" HeaderTextAlignment="Center" IsFilterable="False" DataMemberBinding="{Binding ActiveTime}"  IsReadOnly="True" Width="15" />
+                    <telerik:GridViewDataColumn Header="电量" HeaderTextAlignment="Center" IsFilterable="False" DataMemberBinding="{Binding Electricity}"  IsReadOnly="True" Width="15" />
+
+                    <telerik:GridViewDataColumn Header="累计时间" HeaderTextAlignment="Center" IsFilterable="False" DataMemberBinding="{Binding ActiveTimeTotal}"  IsReadOnly="True" Width="65" />
+                    <telerik:GridViewDataColumn Header="累计电量" HeaderTextAlignment="Center" IsFilterable="False" DataMemberBinding="{Binding ElectricityTotal}"  IsReadOnly="True" Width="65" />
+                    <telerik:GridViewDataColumn Header="运行状态"  HeaderTextAlignment="Center"  DataMemberBinding="{Binding States}"  IsReadOnly="True" Width="60" />
+                    <telerik:GridViewDataColumn Header="应有状态"  HeaderTextAlignment="Center"  DataMemberBinding="{Binding ControlStatus}"  IsReadOnly="True" Width="60" />
+                    <telerik:GridViewDataColumn Header="故障"  HeaderTextAlignment="Center"  DataMemberBinding="{Binding LightStatus}"  IsReadOnly="True" Width="60" />
+                    <telerik:GridViewDataColumn Header="漏电状态"  HeaderTextAlignment="Center"  DataMemberBinding="{Binding LeakageStatus}"  IsReadOnly="True" Width="60" />
+                    <telerik:GridViewDataColumn Header="功率状态"  HeaderTextAlignment="Center"  DataMemberBinding="{Binding PowerStatus}"  IsReadOnly="True" Width="60" />
+                </telerik:RadGridView.Columns>
+            </telerik:RadGridView>
+        </Grid>
+        <Grid HorizontalAlignment="Left"  x:Name="xg4"  Grid.Row="1" Visibility="{Binding FlagDataType,Converter={StaticResource GridEnumVisibleConvert},ConverterParameter=4}">
+            <!--<Grid.ColumnDefinitions>
+                <ColumnDefinition Width="935" />
+            </Grid.ColumnDefinitions>-->
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" MinHeight="30"/>
+                <RowDefinition Height="30"/>
+            </Grid.RowDefinitions>
+            <telerik:RadGridView x:Name="gridview4"  VirtualizingStackPanel.IsVirtualizing="True" AutoGenerateColumns="False" ItemsSource="{Binding ItemsLampCalc}"   Margin="5,3,3,3"
+								             ScrollMode="Deferred" IsReadOnly="True"  ShowGroupPanel="False" Width="930"
+                                 FrozenColumnCount="4"
+                     
+                                              SnapsToDevicePixels="False" ShowColumnFooters="False" UseLayoutRounding="False" RowIndicatorVisibility="Collapsed" Grid.ColumnSpan="2">
+                <telerik:RadGridView.Columns>
+                    <!--<telerik:GridViewDataColumn Header="序号" HeaderTextAlignment="Center" IsFilterable="False" MinWidth="65" MaxWidth="120" DataMemberBinding="{Binding Index}" IsReadOnly="True" />-->
+                    <telerik:GridViewDataColumn Header="集中器" HeaderTextAlignment="Center"  Width="75" MaxWidth="120" DataMemberBinding="{Binding SluShowId}" IsReadOnly="True" />
+                    <!--<telerik:GridViewDataColumn Header="地址" HeaderTextAlignment="Center" IsFilterable="False" MinWidth="65" MaxWidth="120" DataMemberBinding="{Binding ControlId}" IsReadOnly="True" />-->
+                    <telerik:GridViewDataColumn Header="控制器" HeaderTextAlignment="Center" IsFilterable="False" Width="60"  DataMemberBinding="{Binding ControlId}" IsReadOnly="True" />
+                    <telerik:GridViewDataColumn Header="灯号" HeaderTextAlignment="Center" IsFilterable="False" Width="50"  DataMemberBinding="{Binding LightNum}" IsReadOnly="True" />
+                    <telerik:GridViewDataColumn Header="采样时间" HeaderTextAlignment="Center" IsFilterable="False" Width="160"  DataMemberBinding="{Binding SampleTime,StringFormat={}\{0:yyyy-MM-dd HH:mm:ss\}}" IsReadOnly="True" />
+                    <telerik:GridViewDataColumn Header="电压" HeaderTextAlignment="Center" IsFilterable="False"   DataMemberBinding="{Binding V}"   IsReadOnly="True" Width="60"  />
+                    <telerik:GridViewDataColumn Header="电流" HeaderTextAlignment="Center" IsFilterable="False"   DataMemberBinding="{Binding A}"   IsReadOnly="True" Width="60"  />
+                    <telerik:GridViewDataColumn Header="功率" HeaderTextAlignment="Center" IsFilterable="False"   DataMemberBinding="{Binding ActivePower}"   IsReadOnly="True" Width="60" />
+                    <telerik:GridViewDataColumn Header="运行时间" HeaderTextAlignment="Center" IsFilterable="False" DataMemberBinding="{Binding ActiveTime}"  IsReadOnly="True" Width="15" />
+                    <telerik:GridViewDataColumn Header="电量" HeaderTextAlignment="Center" IsFilterable="False" DataMemberBinding="{Binding Electricity}"  IsReadOnly="True" Width="15" />
+
+                    <telerik:GridViewDataColumn Header="累计时间" HeaderTextAlignment="Center" IsFilterable="False" DataMemberBinding="{Binding ActiveTimeTotal}"  IsReadOnly="True" Width="65" />
+                    <telerik:GridViewDataColumn Header="累计电量" HeaderTextAlignment="Center" IsFilterable="False" DataMemberBinding="{Binding ElectricityTotal}"  IsReadOnly="True" Width="65" />
+                    <telerik:GridViewDataColumn Header="运行状态"  HeaderTextAlignment="Center"  DataMemberBinding="{Binding States}"  IsReadOnly="True" Width="60" />
+                    <telerik:GridViewDataColumn Header="应有状态"  HeaderTextAlignment="Center"  DataMemberBinding="{Binding ControlStatus}"  IsReadOnly="True" Width="60" />
+                    <telerik:GridViewDataColumn Header="故障"  HeaderTextAlignment="Center"  DataMemberBinding="{Binding LightStatus}"  IsReadOnly="True" Width="60" />
+                    <telerik:GridViewDataColumn Header="漏电状态"  HeaderTextAlignment="Center"  DataMemberBinding="{Binding LeakageStatus}"  IsReadOnly="True" Width="60" />
+                    <telerik:GridViewDataColumn Header="功率状态"  HeaderTextAlignment="Center"  DataMemberBinding="{Binding PowerStatus}"  IsReadOnly="True" Width="60" />
+                </telerik:RadGridView.Columns>
+            </telerik:RadGridView>
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom"  Grid.Row="1">
+                <CheckBox Content="有故障" IsChecked="{Binding HaveErrs }" VerticalAlignment="Center" Margin="50,0,0,0"></CheckBox>
+                <CheckBox Content="无故障" IsChecked="{Binding HaveNoErrs }" VerticalAlignment="Center" Margin="10,0,0,0"></CheckBox>
+                <Button Content="开灯查询"   Command="{Binding CmdQueryOpenClose}" CommandParameter="0"  Margin="50,3,30,3" MinWidth="100"/>
+                <Button Content="灭灯查询"   Command="{Binding CmdQueryOpenClose}" CommandParameter="3"  Margin="10,3,30,3" MinWidth="100"/>
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="120"/>
+                <ColumnDefinition Width="Auto" MinWidth="120"/>
+                <!--<ColumnDefinition Width="Auto" MinWidth="120"/>-->
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="{Binding Remind}" VerticalAlignment="Center" Margin="20,3,3,3"/>
+            <CheckBox Content="统计数据" IsChecked="{Binding IsCalcData }" x:Name="chkCalcData" VerticalAlignment="Center" Grid.Column="1"  Margin="15,0,0,0"></CheckBox>
+            <Button Content="数据导出"  Click="BtnExport" Grid.Column="2" Margin="15,3,30,3" MinWidth="120"/>
+            <!--IsEnabled="{Binding IsHasData}"-->
+        </Grid>
+    </Grid>
+</UserControl>

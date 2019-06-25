@@ -1,0 +1,19 @@
+﻿<WindowForWlst:CustomChromeWindow x:Class="Xboot.PopupWindow.DocumentWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+          xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+        xmlns:RadPaneGroupWithRadSplitContainer="clr-namespace:Telerik.Windows.Controls.Override.RadPaneGroupWithRadSplitContainer;assembly=Telerik.Windows.Controls.Override"
+
+                                  xmlns:WindowForWlst="clr-namespace:WindowForWlst;assembly=WindowForWlst"
+                                  Height="900" Width="1500">
+    <Grid>
+       
+        <telerik:RadDocking x:Name="docking"   Background="{x:Null}"   Visibility="Visible" >
+            <telerik:RadDocking.DocumentHost>
+                <RadPaneGroupWithRadSplitContainer:RadSplitContainerOverride Background="{x:Null}" x:Name="Panes">
+                </RadPaneGroupWithRadSplitContainer:RadSplitContainerOverride>
+            </telerik:RadDocking.DocumentHost>
+        </telerik:RadDocking>
+        <CheckBox IsChecked="{Binding IsTopMost}" Content="置顶" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,8,60,0"></CheckBox>
+    </Grid>
+</WindowForWlst:CustomChromeWindow>

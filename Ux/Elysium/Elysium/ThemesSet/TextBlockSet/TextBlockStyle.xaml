@@ -1,0 +1,9 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:FontSet="clr-namespace:Elysium.ThemesSet.FontSet"
+                    xmlns:TextBlockSet="clr-namespace:Elysium.ThemesSet.TextBlockSet">
+    <Style TargetType="{x:Type TextBlock}">
+        <Setter Property="FontSize" Value="{Binding RelativeSource={RelativeSource Self}, Path=(FontSet:FontAttriXaml.MyFontSize), Mode=OneWay}" />
+    </Style>
+
+</ResourceDictionary>

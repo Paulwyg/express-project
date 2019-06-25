@@ -1,0 +1,508 @@
+﻿<UserControl x:Class="Wlst.Ux.Wj2090Module.TimeInfo.TimeInfoQuery.TimeInfoQueryView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+             xmlns:RadioButtonConverter="clr-namespace:Wlst.Ux.Wj2090Module.HisDataQuery.ConcentratorDataQuery.Converter"
+             xmlns:RadioButtonConverter1="clr-namespace:Wlst.Cr.CoreOne.RadioButtonConverter;assembly=Wlst.Cr.CoreOne"
+             mc:Ignorable="d" 
+             d:DesignHeight="900" d:DesignWidth="950">
+    <UserControl.Resources >
+        <RadioButtonConverter1:BooleanConverToVisial x:Key="BooleanConverToVisial"></RadioButtonConverter1:BooleanConverToVisial>
+        <RadioButtonConverter:RadioButtonBooleanConverter x:Key="RadioButtonBooleanConverter"></RadioButtonConverter:RadioButtonBooleanConverter>
+        <RadioButtonConverter1:RadioButtonIntConverter x:Key="RadioMultiIntConverter">
+        </RadioButtonConverter1:RadioButtonIntConverter>
+    </UserControl.Resources>
+    <Grid>
+        <Grid x:Name="One" HorizontalAlignment="Left"  Margin="10,0,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="35"></RowDefinition>
+                <RowDefinition Height="*" MinHeight="45"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <DockPanel VerticalAlignment="Center" Margin="8,0,0,0">
+                <TextBlock Text="集中器地址:"></TextBlock>
+                <TextBlock Margin="10,0,0,0" Text="{Binding PhyId}"></TextBlock>
+
+                <!--<TextBlock Margin="35,0,0,0" Text="物理地址:"></TextBlock>
+                <TextBlock Text="{Binding PhyId}"></TextBlock>-->
+
+                <TextBlock Margin="35,0,0,0" Text="集中器名称:"></TextBlock>
+                <TextBlock  Margin="10,0,0,0" Text="{Binding SluName}"></TextBlock>
+
+                <Button Content="重发集中器方案" Command="{Binding CmdClearSluTime}" Height="25" Width=" 120" Margin="200,0,0,0"></Button>
+                <!--<TextBlock  Margin="35,0,0,0" Text="通信方式:"></TextBlock>
+                <TextBlock  Margin="10,0,0,0" Text="{Binding Is485}"></TextBlock>-->
+                
+            </DockPanel>
+            
+            <telerik:RadGridView  IsFilteringAllowed="False" AutoGenerateColumns="False"    AllowDrop="True"   HorizontalAlignment="Left" BorderThickness="0"
+                              ItemsSource="{Binding Path=Items}" ShowGroupPanel="False"  SelectedItem="{Binding CurrentSelectedTimeItem}"  Grid.Row="1"
+                             x:Name="gridview" ShowColumnHeaders="True"   RowIndicatorVisibility="Collapsed" Margin="0,7,0,7">
+                <telerik:RadGridView.Columns>
+                    <telerik:GridViewDataColumn  Header="编号"    DataMemberBinding="{Binding Path=SchemeId,Mode=TwoWay}"  Width="60" />
+                    <telerik:GridViewDataColumn  Header="方案名称"   DataMemberBinding="{Binding  Path=SchemeName,Mode=TwoWay}" Width="140" />
+                    <telerik:GridViewDataColumn  Header="状态"   DataMemberBinding="{Binding  Path=Status,Mode=TwoWay}" Width="75" />
+                    <telerik:GridViewDataColumn  Header="方案描述"   DataMemberBinding="{Binding  Path=SchemeDesc,Mode=TwoWay}" Width="140" />
+                    <!--<telerik:GridViewDataColumn  Header="方案类型"    DataMemberBinding="{Binding Path=IsSluOrCtrlSchemeStr}" Width="90"/>-->
+                    <!--<telerik:GridViewDataColumn  Header="数量"    DataMemberBinding="{Binding Path=UsedSluCount}" Width="45"/>-->
+                    <telerik:GridViewDataColumn  Header="指令类型"    DataMemberBinding="{Binding Path=OperationMethodStr,Mode=TwoWay}"  Width="90" />
+                    <telerik:GridViewDataColumn  Header="操作类型"   DataMemberBinding="{Binding  Path=CmdTypeStr,Mode=TwoWay}" Width="90" />
+                    <!--<telerik:GridViewDataColumn  Header="操作"   DataMemberBinding="{Binding  Path=CmdMixStr,Mode=TwoWay}" Width="90" />-->
+                    <telerik:GridViewDataColumn  Header="周期"   DataMemberBinding="{Binding  Path=OperationWeekSetStr,Mode=TwoWay}" Width="220" />
+                    <telerik:GridViewDataColumn  Header="操作时间"   DataMemberBinding="{Binding  Path=OperatorAboutTime,Mode=TwoWay}" Width="120" />
+                    <telerik:GridViewDataColumn  Header="备注"   DataMemberBinding="{Binding  Path=Marked,Mode=TwoWay}" Width="15" />
+                </telerik:RadGridView.Columns>
+            </telerik:RadGridView>
+
+            <Grid Grid.Row="2" >
+
+
+
+                <Grid Margin="0,7,0,7" Grid.Row="0">
+                    <GroupBox VerticalAlignment="Top" Header="召测方案详细信息" >
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                            </Grid.RowDefinitions>
+
+                            <!--0-->
+                            <Grid >
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+
+                                <GroupBox VerticalAlignment="Top" Header="方案基本信息" >
+                                    <Grid Margin="5">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition MinHeight="24"></RowDefinition>
+                                        </Grid.RowDefinitions>
+
+                                        <DockPanel HorizontalAlignment="Left">
+                                            <TextBlock VerticalAlignment="Center" Text="方案名称："></TextBlock>
+                                            <TextBlock Width="220" Text="{Binding CurrentSelectedTimeItem.SchemeName}"  ></TextBlock>
+                                            <TextBlock  VerticalAlignment="Center"  Margin="45,0,15,0" Text="方案描述："></TextBlock>
+                                            <TextBlock Text="{Binding CurrentSelectedTimeItem.SchemeDesc}" Width="230"></TextBlock>
+                                        </DockPanel>
+                                    </Grid>
+                                </GroupBox>
+
+                                <GroupBox Grid.Column="1" Visibility="Collapsed" VerticalAlignment="Top" Header="执行顺序" >
+                                    <Grid Margin="5">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition MinHeight="24"></RowDefinition>
+                                        </Grid.RowDefinitions>
+                                        <DockPanel VerticalAlignment="Center" HorizontalAlignment="Left" >
+                                            <RadioButton  IsEnabled="False"  Margin="15,0,0,0" Content="广播执行" IsChecked="{Binding Path=CurrentSelectedTimeItem.OperationOrder, Converter={StaticResource RadioMultiIntConverter}, ConverterParameter=1}"  Name="radiosx1" VerticalAlignment="Center" />
+                                            <RadioButton  IsEnabled="False"  Margin="10,0,0,0" Content="顺序执行" IsChecked="{Binding Path=CurrentSelectedTimeItem.OperationOrder, Converter={StaticResource RadioMultiIntConverter}, ConverterParameter=2}"  Name="radiosx2" VerticalAlignment="Center" />
+                                        </DockPanel>
+
+                                    </Grid>
+                                </GroupBox>
+
+                            </Grid>
+
+                            <!--1-->
+                            <Grid Grid.Row="1">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+
+                                <GroupBox VerticalAlignment="Top" Visibility="Collapsed"  Header="方案类型" >
+                                    <Grid Margin="5">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition MinHeight="24"></RowDefinition>
+                                        </Grid.RowDefinitions>
+
+                                        <DockPanel  >
+                                            <RadioButton IsEnabled="False"   Content="集中器方案" IsChecked="{Binding Path=CurrentSelectedTimeItem.IsSluOrCtrlScheme, Converter={StaticResource RadioMultiIntConverter}, ConverterParameter=1}"  Name="radiotp1" VerticalAlignment="Center" />
+                                            <RadioButton  IsEnabled="False"   Margin="15,0,0,0" Content="控制器方案" IsChecked="{Binding Path=CurrentSelectedTimeItem.IsSluOrCtrlScheme, Converter={StaticResource RadioMultiIntConverter}, ConverterParameter=2}"  Name="radiotp2" VerticalAlignment="Center" />
+                                            <RadioButton  IsEnabled="False"   Margin="15,0,0,0" Content="集中器、控制器方案" Grid.ColumnSpan="2" IsChecked="{Binding Path=CurrentSelectedTimeItem.IsSluOrCtrlScheme, Converter={StaticResource RadioMultiIntConverter}, ConverterParameter=3}"  Name="radiotp3" VerticalAlignment="Center" />
+                                        </DockPanel>
+                                    </Grid>
+                                </GroupBox>
+
+                                <GroupBox Grid.Column="1" VerticalAlignment="Top" Header="执行周期" >
+                                    <Grid Margin="5">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition MinHeight="24"></RowDefinition>
+                                        </Grid.RowDefinitions>
+                                        <DockPanel  >
+                                            <CheckBox IsEnabled="False"  Margin="0,0,0,0" IsChecked="{Binding CurrentSelectedTimeItem.OperationWeekSet[6].IsSelected}" Content="周日" VerticalAlignment="Center" ></CheckBox>
+                                            <CheckBox IsEnabled="False"  Margin="15,0,0,0" IsChecked="{Binding CurrentSelectedTimeItem.OperationWeekSet[0].IsSelected}" Content="周一" VerticalAlignment="Center" ></CheckBox>
+                                            <CheckBox IsEnabled="False"  Margin="15,0,0,0" IsChecked="{Binding CurrentSelectedTimeItem.OperationWeekSet[1].IsSelected}" Content="周二" VerticalAlignment="Center" ></CheckBox>
+                                            <CheckBox IsEnabled="False"  Margin="15,0,0,0" IsChecked="{Binding CurrentSelectedTimeItem.OperationWeekSet[2].IsSelected}" Content="周三" VerticalAlignment="Center" ></CheckBox>
+                                            <CheckBox IsEnabled="False"  Margin="15,0,0,0" IsChecked="{Binding CurrentSelectedTimeItem.OperationWeekSet[3].IsSelected}" Content="周四" VerticalAlignment="Center" ></CheckBox>
+                                            <CheckBox IsEnabled="False"  Margin="15,0,0,0" IsChecked="{Binding CurrentSelectedTimeItem.OperationWeekSet[4].IsSelected}" Content="周五" VerticalAlignment="Center" ></CheckBox>
+                                            <CheckBox IsEnabled="False"  Margin="15,0,0,0" IsChecked="{Binding CurrentSelectedTimeItem.OperationWeekSet[5].IsSelected}" Content="周六" VerticalAlignment="Center" ></CheckBox>
+                                            
+                                        </DockPanel>
+
+                                    </Grid>
+                                </GroupBox>
+
+                            </Grid>
+
+                            <!--2-->
+                            <Grid Grid.Row="2">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+
+                                <GroupBox VerticalAlignment="Top" Header="指令类型" >
+                                    <Grid Margin="5">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition MinHeight="24"></RowDefinition>
+                                        </Grid.RowDefinitions>
+
+                                        <DockPanel  >
+                                            <RadioButton IsEnabled="False" GroupName="x1"  Content="时控" IsChecked="{Binding Path=CurrentSelectedTimeItem.OperationMethod, Converter={StaticResource RadioMultiIntConverter}, ConverterParameter=1}"  Name="orderty1" VerticalAlignment="Center" />
+                                            <!--<RadioButton  IsEnabled="False" GroupName="x1" Margin="15,0,0,0" Content="日出日落时间" IsChecked="{Binding Path=CurrentSelectedTimeItem.OperationMethod, Converter={StaticResource RadioMultiIntConverter}, ConverterParameter=2}"  Name="orderty2" VerticalAlignment="Center" />-->
+                                            <RadioButton  IsEnabled="False"  GroupName="x1" Margin="15,0,0,0" Content="日出" IsChecked="{Binding Path=CurrentSelectedTimeItem.OperationMethod, Converter={StaticResource RadioMultiIntConverter}, ConverterParameter=12}"  Name="orderty12" VerticalAlignment="Center" />
+
+                                            <RadioButton  IsEnabled="False"  GroupName="x1" Margin="15,0,0,0" Content="日落" IsChecked="{Binding Path=CurrentSelectedTimeItem.OperationMethod, Converter={StaticResource RadioMultiIntConverter}, ConverterParameter=2}"  Name="orderty2" VerticalAlignment="Center" />
+
+                                            <RadioButton   IsEnabled="False"   GroupName="x1"  Margin="15,0,0,0" Content="光控" IsChecked="{Binding Path=CurrentSelectedTimeItem.OperationMethod, Converter={StaticResource RadioMultiIntConverter}, ConverterParameter=11}"  Name="orderty3" VerticalAlignment="Center" />
+
+                                            <DockPanel Visibility="{Binding ElementName=orderty1,Path=IsChecked, Converter={StaticResource BooleanConverToVisial}, ConverterParameter=true}" Margin="25,0,0,0" VerticalAlignment="Center">
+                                                <TextBlock  VerticalAlignment="Center" Text="时控操作时间："></TextBlock>
+                                                <TextBox  IsEnabled="False"  Text="{Binding CurrentSelectedTimeItem.OperationArguHour}" Margin="12,0,2,0" Width="45"></TextBox>
+                                                <TextBlock Text=":"></TextBlock>
+                                                <TextBox IsEnabled="False"  Text="{Binding CurrentSelectedTimeItem.OperationArguMinute}" Margin="2,0,2,0" Width="45"></TextBox>
+                                                <TextBlock></TextBlock>
+                                            </DockPanel>
+
+                                            <DockPanel  Visibility="{Binding ElementName=orderty2,Path=IsChecked, Converter={StaticResource BooleanConverToVisial}, ConverterParameter=true}" Margin="25,0,0,0" VerticalAlignment="Center">
+                                                <TextBlock  VerticalAlignment="Center" Text="时控操作时间操作偏移："></TextBlock>
+                                                <TextBox IsEnabled="False"  Text="{Binding CurrentSelectedTimeItem.OperationArguOffset}" Margin="12,0,2,0" Width="45"></TextBox>
+                                                <TextBlock Text="  分钟" VerticalAlignment="Center"></TextBlock>
+                                                <TextBlock></TextBlock>
+                                            </DockPanel>
+
+
+                                            <!--<DockPanel  Visibility="{Binding ElementName=orderty3,Path=IsChecked, Converter={StaticResource BooleanConverToVisial}, ConverterParameter=true}" Margin="25,0,0,0" VerticalAlignment="Center">
+                                                <TextBlock  VerticalAlignment="Center" Text="光控设备："></TextBlock>
+                                                <ComboBox   ItemsSource="{Binding CurrentSelectedTimeItem.LightUsedRtuIdColl}" DisplayMemberPath="Name" SelectedItem="{Binding CurrentSelectedTimeItem.CurrentSelectLightUsedRtuId}" IsEnabled="False"  Margin="12,0,2,0" Width="130" ></ComboBox>
+                                                <TextBlock Text="  操作光控值:  " VerticalAlignment="Center"></TextBlock>
+                                                <TextBox IsEnabled="False"  Text="{Binding CurrentSelectedTimeItem.OperationArguLight}" Margin="12,0,2,0" Width="45"></TextBox>
+                                                <TextBlock Text="(Lux)" VerticalAlignment="Center"></TextBlock>
+                                                <TextBlock></TextBlock>
+                                            </DockPanel>-->
+
+                                            <DockPanel  Visibility="{Binding ElementName=orderty3,Path=IsChecked, Converter={StaticResource BooleanConverToVisial}, ConverterParameter=true}" Margin="25,0,0,0" VerticalAlignment="Center">
+                                                <TextBlock  VerticalAlignment="Center" Text="光控设备："></TextBlock>
+                                                <ComboBox ItemsSource="{Binding CurrentSelectedTimeItem.LightUsedRtuIdColl}" DisplayMemberPath="Name" 
+                                                      SelectedItem="{Binding CurrentSelectedTimeItem.CurrentSelectLightUsedRtuId}" IsEnabled="False"  
+                                                      Margin="5,0,2,0" Width="90" ></ComboBox>
+                                                <TextBlock Text="  操作光控段:  " VerticalAlignment="Center"></TextBlock>
+                                                <TextBox IsEnabled="False"  Text="{Binding CurrentSelectedTimeItem.OperationArguLightStart}" Margin="2,0,2,0" Width="35"></TextBox>
+                                                <TextBlock Text="-" VerticalAlignment="Center"></TextBlock>
+                                                <TextBox IsEnabled="False" Text="{Binding CurrentSelectedTimeItem.OperationArguLightEnd}" Margin="2,0,2,0" Width="35"></TextBox>
+                                                <TextBlock Text="(Lux)" VerticalAlignment="Center"></TextBlock>
+                                                <TextBlock></TextBlock>
+                                            </DockPanel>
+
+
+                                            <DockPanel  Visibility="{Binding ElementName=orderty3,Path=IsChecked, Converter={StaticResource BooleanConverToVisial}, ConverterParameter=true}" Margin="15,0,0,0" VerticalAlignment="Center">
+                                                <TextBlock Text="光控有效时间段:" VerticalAlignment="Center"></TextBlock>
+                                                <TextBox  IsEnabled="False"  VerticalAlignment="Center" Text="{Binding CurrentSelectedTimeItem.LightStartEffectHour}" Margin="12,0,2,0" Width="35"></TextBox>
+                                                <TextBlock VerticalAlignment="Center" Text=":"></TextBlock>
+                                                <TextBox  IsEnabled="False"  VerticalAlignment="Center" Text="{Binding CurrentSelectedTimeItem.LightStartEffectMinute}" Margin="2,0,2,0" Width="35"></TextBox>
+                                                <TextBlock  VerticalAlignment="Center" Text=" 至 "></TextBlock>
+                                                <TextBox  IsEnabled="False"  VerticalAlignment="Center" Text="{Binding CurrentSelectedTimeItem.LightEndEffectHour}" Margin="12,0,2,0" Width="35"></TextBox>
+                                                <TextBlock VerticalAlignment="Center" Text=":"></TextBlock>
+                                                <TextBox  IsEnabled="False"  VerticalAlignment="Center" Text="{Binding CurrentSelectedTimeItem.LightEndEffectMinute}" Margin="2,0,2,0" Width="35"></TextBox>
+                                                <TextBlock></TextBlock>
+                                            </DockPanel>
+
+                                        </DockPanel>
+                                    </Grid>
+                                </GroupBox>
+
+                            </Grid>
+
+
+                            <!--3-->
+                            <Grid Grid.Row="3">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+
+                                <GroupBox VerticalAlignment="Top" Header="操作类型与集中器选择" >
+                                    <Grid Margin="5">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                            <ColumnDefinition Width="*"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+
+                                        <StackPanel MinHeight="24" HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" >
+                                            <RadioButton GroupName="x2" IsEnabled="False"  Grid.Row="8" Grid.Column="1"  Content="开关灯控制" IsChecked="{Binding Path=CurrentSelectedTimeItem.CmdType, Converter={StaticResource RadioMultiIntConverter}, ConverterParameter=4}"  Name="radioop1" VerticalAlignment="Center" />
+
+                                            <RadioButton GroupName="x2" Margin="0,10,0,0"  Content="调光控制"  
+                              IsEnabled="False"  
+                              IsChecked="{Binding Path=CurrentSelectedTimeItem.CmdType, Converter={StaticResource RadioMultiIntConverter}, ConverterParameter=5}"  Name="radioop2" VerticalAlignment="Center" />
+
+
+                                        </StackPanel>
+
+                                        <GroupBox  Visibility="{Binding ElementName=radioop1,Path=IsChecked, Converter={StaticResource BooleanConverToVisial}, ConverterParameter=true}"  Margin="5,0,0,0" MinHeight="90" Header="开关灯控制" Grid.Column="1">
+                                            <Grid>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition></RowDefinition>
+                                                    <RowDefinition></RowDefinition>
+                                                </Grid.RowDefinitions>
+
+                                                <DockPanel>
+                                                    <TextBlock Text="灯头1:"  VerticalAlignment="Center"></TextBlock>
+                                                    <RadioButton  GroupName="x4" IsEnabled="False"   Content="不操作" Margin="10,0,0,0" IsChecked="{Binding Path=CurrentSelectedTimeItem.CmdMix1, Converter={StaticResource RadioMultiIntConverter}, ConverterParameter=1}"   VerticalAlignment="Center" />
+                                                    <RadioButton   GroupName="x4"   IsEnabled="False"  Content="开灯" Margin="10,0,0,0" IsChecked="{Binding Path=CurrentSelectedTimeItem.CmdMix1, Converter={StaticResource RadioMultiIntConverter}, ConverterParameter=2}"   VerticalAlignment="Center" />
+                                                    <RadioButton   GroupName="x4"   IsEnabled="False"  Content="节能" Margin="10,0,0,0" IsChecked="{Binding Path=CurrentSelectedTimeItem.CmdMix1, Converter={StaticResource RadioMultiIntConverter}, ConverterParameter=3}"   VerticalAlignment="Center" />
+                                                    <!--<RadioButton   GroupName="x4"   IsEnabled="False"  Content="2档节接" Margin="10,0,0,0" IsChecked="{Binding Path=CurrentSelectedTimeItem.CmdMix1, Converter={StaticResource RadioMultiIntConverter}, ConverterParameter=4}"   VerticalAlignment="Center" />-->
+                                                    <RadioButton   GroupName="x4"   IsEnabled="False"  Content="关灯" Margin="10,0,0,0" IsChecked="{Binding Path=CurrentSelectedTimeItem.CmdMix1, Converter={StaticResource RadioMultiIntConverter}, ConverterParameter=5}"   VerticalAlignment="Center" />
+
+
+                                                    <TextBlock Text="灯头2:"  Margin="35,0,0,0" VerticalAlignment="Center"></TextBlock>
+                                                    <RadioButton   GroupName="x5"   IsEnabled="False"  Content="不操作" Margin="10,0,0,0" IsChecked="{Binding Path=CurrentSelectedTimeItem.CmdMix2, Converter={StaticResource RadioMultiIntConverter}, ConverterParameter=1}"   VerticalAlignment="Center" />
+                                                    <RadioButton   GroupName="x5"  IsEnabled="False"  Content="开灯" Margin="10,0,0,0" IsChecked="{Binding Path=CurrentSelectedTimeItem.CmdMix2, Converter={StaticResource RadioMultiIntConverter}, ConverterParameter=2}"   VerticalAlignment="Center" />
+                                                    <RadioButton   GroupName="x5"  IsEnabled="False"  Content="节能" Margin="10,0,0,0" IsChecked="{Binding Path=CurrentSelectedTimeItem.CmdMix2, Converter={StaticResource RadioMultiIntConverter}, ConverterParameter=3}"   VerticalAlignment="Center" />
+                                                    <!--<RadioButton   GroupName="x5"  IsEnabled="False"  Content="2档节接" Margin="10,0,0,0" IsChecked="{Binding Path=CurrentSelectedTimeItem.CmdMix2, Converter={StaticResource RadioMultiIntConverter}, ConverterParameter=4}"   VerticalAlignment="Center" />-->
+                                                    <RadioButton   GroupName="x5"  IsEnabled="False"  Content="关灯" Margin="10,0,0,0" IsChecked="{Binding Path=CurrentSelectedTimeItem.CmdMix2, Converter={StaticResource RadioMultiIntConverter}, ConverterParameter=5}"   VerticalAlignment="Center" />
+
+                                                </DockPanel>
+
+                                                <DockPanel Grid.Row="1">
+                                                    <TextBlock Text="灯头3:"  VerticalAlignment="Center"></TextBlock>
+                                                    <RadioButton  GroupName="x6" IsEnabled="False"   Content="不操作" Margin="10,0,0,0" IsChecked="{Binding Path=CurrentSelectedTimeItem.CmdMix3, Converter={StaticResource RadioMultiIntConverter}, ConverterParameter=1}"   VerticalAlignment="Center" />
+                                                    <RadioButton  GroupName="x6"  IsEnabled="False"  Content="开灯" Margin="10,0,0,0" IsChecked="{Binding Path=CurrentSelectedTimeItem.CmdMix3, Converter={StaticResource RadioMultiIntConverter}, ConverterParameter=2}"   VerticalAlignment="Center" />
+                                                    <RadioButton  GroupName="x6"  IsEnabled="False"  Content="节能" Margin="10,0,0,0" IsChecked="{Binding Path=CurrentSelectedTimeItem.CmdMix3, Converter={StaticResource RadioMultiIntConverter}, ConverterParameter=3}"   VerticalAlignment="Center" />
+                                                    <!--<RadioButton  GroupName="x6"  IsEnabled="False"  Content="2档节接" Margin="10,0,0,0" IsChecked="{Binding Path=CurrentSelectedTimeItem.CmdMix3, Converter={StaticResource RadioMultiIntConverter}, ConverterParameter=4}"   VerticalAlignment="Center" />-->
+                                                    <RadioButton  GroupName="x6"  IsEnabled="False"  Content="关灯" Margin="10,0,0,0" IsChecked="{Binding Path=CurrentSelectedTimeItem.CmdMix3, Converter={StaticResource RadioMultiIntConverter}, ConverterParameter=5}"   VerticalAlignment="Center" />
+
+
+                                                    <TextBlock Text="灯头4:"  Margin="35,0,0,0" VerticalAlignment="Center"></TextBlock>
+                                                    <RadioButton  GroupName="x7" IsEnabled="False"  Content="不操作" Margin="10,0,0,0" IsChecked="{Binding Path=CurrentSelectedTimeItem.CmdMix4, Converter={StaticResource RadioMultiIntConverter}, ConverterParameter=1}"   VerticalAlignment="Center" />
+                                                    <RadioButton  GroupName="x7"  IsEnabled="False"  Content="开灯" Margin="10,0,0,0" IsChecked="{Binding Path=CurrentSelectedTimeItem.CmdMix4, Converter={StaticResource RadioMultiIntConverter}, ConverterParameter=2}"   VerticalAlignment="Center" />
+                                                    <RadioButton  GroupName="x7"  IsEnabled="False"  Content="节能" Margin="10,0,0,0" IsChecked="{Binding Path=CurrentSelectedTimeItem.CmdMix4, Converter={StaticResource RadioMultiIntConverter}, ConverterParameter=3}"   VerticalAlignment="Center" />
+                                                    <!--<RadioButton  GroupName="x7"  IsEnabled="False"  Content="2档节接" Margin="10,0,0,0" IsChecked="{Binding Path=CurrentSelectedTimeItem.CmdMix4, Converter={StaticResource RadioMultiIntConverter}, ConverterParameter=4}"   VerticalAlignment="Center" />-->
+                                                    <RadioButton  GroupName="x7"  IsEnabled="False"  Content="关灯" Margin="10,0,0,0" IsChecked="{Binding Path=CurrentSelectedTimeItem.CmdMix4, Converter={StaticResource RadioMultiIntConverter}, ConverterParameter=5}"   VerticalAlignment="Center" />
+
+                                                </DockPanel>
+                                            </Grid>
+
+                                        </GroupBox>
+
+
+                                        <GroupBox  Visibility="{Binding ElementName=radioop2,Path=IsChecked, Converter={StaticResource BooleanConverToVisial}, ConverterParameter=true}"  Margin="5,0,0,0" MinHeight="80" Header="调光控制" Grid.Column="1">
+                                            <Grid>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition></RowDefinition>
+                                                    <RowDefinition></RowDefinition>
+                                                </Grid.RowDefinitions>
+
+                                                <DockPanel  >
+                                                    <TextBlock Text="操作灯头:"  VerticalAlignment="Center"></TextBlock>
+                                                    <CheckBox Grid.Row="3" Grid.Column="1" Margin="10,0,0,0"  IsEnabled="False"   IsChecked="{Binding CurrentSelectedTimeItem.CmdPwmSel[0].IsSelected}" Content="灯头1" VerticalAlignment="Center" ></CheckBox>
+                                                    <CheckBox Grid.Row="3" Grid.Column="2" Margin="25,0,0,0"  IsEnabled="False"   IsChecked="{Binding CurrentSelectedTimeItem.CmdPwmSel[1].IsSelected}" Content="灯头2" VerticalAlignment="Center" ></CheckBox>
+                                                    <CheckBox Grid.Row="3" Grid.Column="3" Margin="25,0,0,0"  IsEnabled="False"   IsChecked="{Binding CurrentSelectedTimeItem.CmdPwmSel[2].IsSelected}" Content="灯头3" VerticalAlignment="Center" ></CheckBox>
+                                                    <CheckBox Grid.Row="3" Grid.Column="4" Margin="25,0,0,0"  IsEnabled="False"   IsChecked="{Binding CurrentSelectedTimeItem.CmdPwmSel[3].IsSelected}" Content="灯头4" VerticalAlignment="Center" ></CheckBox>
+                                                </DockPanel>
+                                                <DockPanel Grid.Row="1">
+                                                    <TextBlock Text="节能调光:"  VerticalAlignment="Center"></TextBlock>
+                                                    <Slider IsEnabled="False"  Value="{Binding CurrentSelectedTimeItem.CmdPwmValue}"  Maximum="100" Minimum="0" Margin="10,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" Width="200"></Slider>
+                                                    <TextBlock Margin="10,0,0,0" Text="{Binding CurrentSelectedTimeItem.CmdPwmValueStrs}" VerticalAlignment="Center" HorizontalAlignment="Left"></TextBlock>
+                                                    <!--<RadioButton   Content="不操作" IsChecked="{Binding Path=OperationMethod, Converter={StaticResource RadioMultiIntConverter}, ConverterParameter=1}"  Name="rbg1" VerticalAlignment="Center" />-->
+                                                    <!--<RadioButton GroupName="x8"  IsEnabled="False"  Content="0%" Margin="10,0,0,0" IsChecked="{Binding Path=CurrentSelectedTimeItem.CmdPwmValue, Converter={StaticResource RadioMultiIntConverter}, ConverterParameter=1}"  Name="rbg2" VerticalAlignment="Center" />
+                                                    <RadioButton GroupName="x8"   IsEnabled="False"  Content="10%" Margin="10,0,0,0" IsChecked="{Binding Path=CurrentSelectedTimeItem.CmdPwmValue, Converter={StaticResource RadioMultiIntConverter}, ConverterParameter=2}"  Name="rbg3" VerticalAlignment="Center" />
+                                                    <RadioButton GroupName="x8"   IsEnabled="False"  Content="20%" Margin="10,0,0,0" IsChecked="{Binding Path=CurrentSelectedTimeItem.CmdPwmValue, Converter={StaticResource RadioMultiIntConverter}, ConverterParameter=3}"  Name="rbg4" VerticalAlignment="Center" />
+                                                    <RadioButton GroupName="x8"   IsEnabled="False"  Content="30%" Margin="10,0,0,0" IsChecked="{Binding Path=CurrentSelectedTimeItem.CmdPwmValue, Converter={StaticResource RadioMultiIntConverter}, ConverterParameter=4}"  Name="rbg5" VerticalAlignment="Center" />
+                                                    <RadioButton GroupName="x8"   IsEnabled="False"  Content="40%" Margin="10,0,0,0" IsChecked="{Binding Path=CurrentSelectedTimeItem.CmdPwmValue, Converter={StaticResource RadioMultiIntConverter}, ConverterParameter=5}"  Name="rbg6" VerticalAlignment="Center" />
+                                                    <RadioButton GroupName="x8"   IsEnabled="False"  Content="50%" Margin="10,0,0,0" IsChecked="{Binding Path=CurrentSelectedTimeItem.CmdPwmValue, Converter={StaticResource RadioMultiIntConverter}, ConverterParameter=6}"  Name="rbg7" VerticalAlignment="Center" />
+                                                    <RadioButton GroupName="x8"   IsEnabled="False"  Content="60%" Margin="10,0,0,0" IsChecked="{Binding Path=CurrentSelectedTimeItem.CmdPwmValue, Converter={StaticResource RadioMultiIntConverter}, ConverterParameter=7}"  Name="rbg8" VerticalAlignment="Center" />
+                                                    <RadioButton GroupName="x8"   IsEnabled="False"  Content="70%" Margin="10,0,0,0" IsChecked="{Binding Path=CurrentSelectedTimeItem.CmdPwmValue, Converter={StaticResource RadioMultiIntConverter}, ConverterParameter=8}"  Name="rbg9" VerticalAlignment="Center" />
+                                                    <RadioButton GroupName="x8"   IsEnabled="False"  Content="80%" Margin="10,0,0,0" IsChecked="{Binding Path=CurrentSelectedTimeItem.CmdPwmValue, Converter={StaticResource RadioMultiIntConverter}, ConverterParameter=9}"  Name="rbg10" VerticalAlignment="Center" />
+                                                    <RadioButton GroupName="x8"   IsEnabled="False"  Content="90%" Margin="10,0,0,0" IsChecked="{Binding Path=CurrentSelectedTimeItem.CmdPwmValue, Converter={StaticResource RadioMultiIntConverter}, ConverterParameter=10}"  Name="rbg11" VerticalAlignment="Center" />
+                                                    <RadioButton GroupName="x8"   IsEnabled="False"  Content="100%" Margin="10,0,0,0" IsChecked="{Binding Path=CurrentSelectedTimeItem.CmdPwmValue, Converter={StaticResource RadioMultiIntConverter}, ConverterParameter=11}"  Name="rbg13" VerticalAlignment="Center" />-->
+
+                                                </DockPanel>
+
+
+                                            </Grid>
+
+                                        </GroupBox>
+
+
+                                    </Grid>
+                                </GroupBox>
+
+
+                            </Grid>
+
+                            <!--4-->
+                            <Grid Grid.Row="4">
+
+                                <GroupBox VerticalAlignment="Top" Header="操作控制器" >
+                                    <TextBox Grid.Row="2"  MinHeight="45"  VerticalAlignment="Top" IsReadOnly="True" Text="{Binding CurrentSelectedTimeItem.CtrlInfos}" TextWrapping="Wrap"></TextBox>
+                                </GroupBox>
+                            </Grid>
+                        </Grid>
+                    </GroupBox>
+                </Grid>
+
+
+                <!--<TextBlock VerticalAlignment="Center" Text="方案名称："></TextBlock>
+                <TextBlock Text="{Binding CurrentSelectedTimeItem.SchemeName}"  Height="27" Grid.Column="1" Grid.ColumnSpan="5"></TextBlock>
+
+                <TextBlock Grid.Row="1" VerticalAlignment="Center" Text="方案描述："></TextBlock>
+                <TextBlock Text="{Binding CurrentSelectedTimeItem.SchemeDesc}" Grid.Row="1" Height="27" Grid.Column="1" Grid.ColumnSpan="5">
+                    </TextBlock>
+
+                <TextBlock Grid.Row="2" VerticalAlignment="Center" Text="方案类型："></TextBlock>
+                <DockPanel  Grid.Row="2" Grid.Column="1"  Grid.ColumnSpan="3">
+                    <RadioButton  IsEnabled="False"  Grid.Row="2" Grid.Column="1" Content="集中器方案" IsChecked="{Binding Path=CurrentSelectedTimeItem.IsSluOrCtrlScheme, Converter={StaticResource RadioMultiIntConverter}, ConverterParameter=1}"  Name="radiotp1" VerticalAlignment="Center" />
+                    <RadioButton  IsEnabled="False" Grid.Row="2" Grid.Column="2"  Margin="15,0,0,0" Content="控制器方案" IsChecked="{Binding Path=CurrentSelectedTimeItem.IsSluOrCtrlScheme, Converter={StaticResource RadioMultiIntConverter}, ConverterParameter=2}"  Name="radiotp2" VerticalAlignment="Center" />
+                    <RadioButton IsEnabled="False"  Grid.Row="2" Grid.Column="3"  Margin="15,0,0,0" Content="集中器、控制器方案" Grid.ColumnSpan="2" IsChecked="{Binding Path=CurrentSelectedTimeItem.IsSluOrCtrlScheme, Converter={StaticResource RadioMultiIntConverter}, ConverterParameter=3}"  Name="radiotp3" VerticalAlignment="Center" />
+                </DockPanel>
+
+
+                <DockPanel  Grid.Row="2" Grid.Column="5"  Grid.ColumnSpan="3">
+                    <TextBlock Grid.Row="2" Grid.Column="5" VerticalAlignment="Center" Text="执行顺序："></TextBlock>
+                    <RadioButton IsEnabled="False"  Grid.Row="2" Grid.Column="6" Margin="15,0,0,0" Content="广播执行" IsChecked="{Binding Path=CurrentSelectedTimeItem.OperationOrder, Converter={StaticResource RadioMultiIntConverter}, ConverterParameter=1}"  Name="radiosx1" VerticalAlignment="Center" />
+                    <RadioButton IsEnabled="False"  Grid.Row="2" Grid.Column="7" Margin="10,0,0,0" Content="顺序执行" IsChecked="{Binding Path=CurrentSelectedTimeItem.OperationOrder, Converter={StaticResource RadioMultiIntConverter}, ConverterParameter=2}"  Name="radiosx2" VerticalAlignment="Center" />
+                </DockPanel>
+
+                <TextBlock Grid.Row="3" VerticalAlignment="Center" Text="执行周期："></TextBlock>
+                <DockPanel  Grid.Row="3" Grid.Column="1"  Grid.ColumnSpan="5">
+                    <CheckBox IsEnabled="False" Grid.Row="3" Grid.Column="1" Margin="0,0,0,0" IsChecked="{Binding CurrentSelectedTimeItem.OperationWeekSet[0].IsSelected}" Content="周一" VerticalAlignment="Center" ></CheckBox>
+                    <CheckBox IsEnabled="False" Grid.Row="3" Grid.Column="2" Margin="25,0,0,0" IsChecked="{Binding CurrentSelectedTimeItem.OperationWeekSet[1].IsSelected}" Content="周二" VerticalAlignment="Center" ></CheckBox>
+                    <CheckBox IsEnabled="False" Grid.Row="3" Grid.Column="3" Margin="25,0,0,0" IsChecked="{Binding CurrentSelectedTimeItem.OperationWeekSet[2].IsSelected}" Content="周三" VerticalAlignment="Center" ></CheckBox>
+                    <CheckBox IsEnabled="False" Grid.Row="3" Grid.Column="4" Margin="25,0,0,0" IsChecked="{Binding CurrentSelectedTimeItem.OperationWeekSet[3].IsSelected}" Content="周四" VerticalAlignment="Center" ></CheckBox>
+                    <CheckBox IsEnabled="False" Grid.Row="3" Grid.Column="5" Margin="25,0,0,0" IsChecked="{Binding CurrentSelectedTimeItem.OperationWeekSet[4].IsSelected}" Content="周五" VerticalAlignment="Center" ></CheckBox>
+                    <CheckBox IsEnabled="False" Grid.Row="3" Grid.Column="6" Margin="25,0,0,0" IsChecked="{Binding CurrentSelectedTimeItem.OperationWeekSet[5].IsSelected}" Content="周六" VerticalAlignment="Center" ></CheckBox>
+                    <CheckBox IsEnabled="False" Grid.Row="3" Grid.Column="7" Margin="25,0,0,0" IsChecked="{Binding CurrentSelectedTimeItem.OperationWeekSet[6].IsSelected}" Content="周日" VerticalAlignment="Center" ></CheckBox>
+                </DockPanel>
+
+
+                <TextBlock Grid.Row="4" VerticalAlignment="Center" Text="指令类型："></TextBlock>
+                <RadioButton IsEnabled="False" GroupName="x1" Grid.Row="4" Grid.Column="1" Content="时控" IsChecked="{Binding Path=CurrentSelectedTimeItem.OperationMethod, Converter={StaticResource RadioMultiIntConverter}, ConverterParameter=1}"  Name="orderty1" VerticalAlignment="Center" />
+                <RadioButton IsEnabled="False" GroupName="x1" Grid.Row="5" Grid.Column="1" Content="经纬度" IsChecked="{Binding Path=CurrentSelectedTimeItem.OperationMethod, Converter={StaticResource RadioMultiIntConverter}, ConverterParameter=2}"  Name="orderty2" VerticalAlignment="Center" />
+                <RadioButton  IsEnabled="False"  GroupName="x1"  Grid.Row="6" Grid.Column="1" Content="光控" IsChecked="{Binding Path=CurrentSelectedTimeItem.OperationMethod, Converter={StaticResource RadioMultiIntConverter}, ConverterParameter=11}"  Name="orderty3" VerticalAlignment="Center" />
+
+                <DockPanel Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="3" VerticalAlignment="Center">
+                    <TextBlock  VerticalAlignment="Center" Text="操作时间："></TextBlock>
+                    <TextBlock IsEnabled="{Binding ElementName=orderty1,Path=IsChecked}" Text="{Binding CurrentSelectedTimeItem.OperationArguHour}" Margin="12,0,2,0" Width="45"></TextBlock>
+                    <TextBlock Text=":"></TextBlock>
+                    <TextBlock IsEnabled="{Binding ElementName=orderty1,Path=IsChecked}" Text="{Binding CurrentSelectedTimeItem.OperationArguMinute}" Margin="2,0,2,0" Width="45"></TextBlock>
+                    <TextBlock></TextBlock>
+                </DockPanel>
+
+                <DockPanel Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="3" VerticalAlignment="Center">
+                    <TextBlock  VerticalAlignment="Center" Text="操作偏移："></TextBlock>
+                    <TextBlock IsEnabled="{Binding ElementName=orderty2,Path=IsChecked}" Text="{Binding CurrentSelectedTimeItem.OperationArguOffset}" Margin="12,0,2,0" Width="45">
+                        </TextBlock>
+                    <TextBlock Text="  分钟" VerticalAlignment="Center"></TextBlock>
+                    <TextBlock></TextBlock>
+                </DockPanel>
+
+
+                <DockPanel Grid.Row="6" Grid.Column="2" Grid.ColumnSpan="6" VerticalAlignment="Center">
+                    <TextBlock  VerticalAlignment="Center" Text="光控设备："></TextBlock>
+                    <ComboBox  IsEnabled="False"  ItemsSource="{Binding CurrentSelectedTimeItem.LightUsedRtuIdColl}" DisplayMemberPath="Name" SelectedItem="{Binding CurrentSelectedTimeItem.CurrentSelectLightUsedRtuId}"  Margin="12,0,2,0" Width="150" ></ComboBox>
+                    <TextBlock Text="  操作光控值:  " VerticalAlignment="Center"></TextBlock>
+                    <TextBlock IsEnabled="{Binding ElementName=orderty3,Path=IsChecked}" Text="{Binding CurrentSelectedTimeItem.OperationArguLight}" Margin="12,0,2,0" Width="45"></TextBlock>
+                    <TextBlock Text="  Lux" VerticalAlignment="Center"></TextBlock>
+                    <TextBlock></TextBlock>
+                </DockPanel>
+                <DockPanel Grid.Row="7" Grid.Column="2" Grid.ColumnSpan="6" VerticalAlignment="Center">
+                    <TextBlock Text="光控有效时间段:" VerticalAlignment="Center"></TextBlock>
+                    <TextBlock  IsEnabled="{Binding ElementName=orderty3,Path=IsChecked}" VerticalAlignment="Center" Text="{Binding CurrentSelectedTimeItem.LightStartEffectHour}" Margin="12,0,2,0" Width="45"></TextBlock>
+                    <TextBlock VerticalAlignment="Center" Text=":"></TextBlock>
+                    <TextBlock  IsEnabled="{Binding ElementName=orderty3,Path=IsChecked}" VerticalAlignment="Center" Text="{Binding CurrentSelectedTimeItem.LightStartEffectMinute}" Margin="2,0,2,0" Width="45"></TextBlock>
+                    <TextBlock  VerticalAlignment="Center" Text=" 至 "></TextBlock>
+                    <TextBlock  IsEnabled="{Binding ElementName=orderty3,Path=IsChecked}" VerticalAlignment="Center" Text="{Binding CurrentSelectedTimeItem.LightEndEffectHour}" Margin="12,0,2,0" Width="45"></TextBlock>
+                    <TextBlock VerticalAlignment="Center" Text=":"></TextBlock>
+                    <TextBlock  IsEnabled="{Binding ElementName=orderty3,Path=IsChecked}" VerticalAlignment="Center" Text="{Binding CurrentSelectedTimeItem.LightEndEffectMinute}" Margin="2,0,2,0" Width="45"></TextBlock>
+                    <TextBlock></TextBlock>
+                </DockPanel>
+
+
+
+                <TextBlock Text="操作类型:" Grid.Row="8" VerticalAlignment="Center"></TextBlock>
+                <RadioButton IsEnabled="False" GroupName="x2" Grid.Row="8" Grid.Column="1"  Content="混合控制" IsChecked="{Binding Path=CurrentSelectedTimeItem.CmdType, Converter={StaticResource RadioMultiIntConverter}, ConverterParameter=4}"  Name="radioop1" VerticalAlignment="Center" />
+                <DockPanel Grid.Row="8" Grid.Column="2"  Grid.ColumnSpan="7">
+                    <TextBlock Text="灯头1:"  VerticalAlignment="Center"></TextBlock>
+                    <RadioButton IsEnabled="False"  GroupName="x4"   Content="无" Margin="10,0,0,0" IsChecked="{Binding Path=CurrentSelectedTimeItem.CmdMix1, Converter={StaticResource RadioMultiIntConverter}, ConverterParameter=1}"   VerticalAlignment="Center" />
+                    <RadioButton   GroupName="x4"   IsEnabled="False"  Content="开灯" Margin="10,0,0,0" IsChecked="{Binding Path=CurrentSelectedTimeItem.CmdMix1, Converter={StaticResource RadioMultiIntConverter}, ConverterParameter=2}"   VerticalAlignment="Center" />
+                    <RadioButton   GroupName="x4"   IsEnabled="False"  Content="1档节能" Margin="10,0,0,0" IsChecked="{Binding Path=CurrentSelectedTimeItem.CmdMix1, Converter={StaticResource RadioMultiIntConverter}, ConverterParameter=3}"   VerticalAlignment="Center" />
+                    <RadioButton   GroupName="x4"   IsEnabled="False"  Content="2档节接" Margin="10,0,0,0" IsChecked="{Binding Path=CurrentSelectedTimeItem.CmdMix1, Converter={StaticResource RadioMultiIntConverter}, ConverterParameter=4}"   VerticalAlignment="Center" />
+                    <RadioButton   GroupName="x4"   IsEnabled="False"  Content="关灯" Margin="10,0,0,0" IsChecked="{Binding Path=CurrentSelectedTimeItem.CmdMix1, Converter={StaticResource RadioMultiIntConverter}, ConverterParameter=5}"   VerticalAlignment="Center" />
+
+
+                    <TextBlock Text="灯头2:"  Margin="25,0,0,0" VerticalAlignment="Center"></TextBlock>
+                    <RadioButton   GroupName="x5"   IsEnabled="False"  Content="无" Margin="10,0,0,0" IsChecked="{Binding Path=CurrentSelectedTimeItem.CmdMix2, Converter={StaticResource RadioMultiIntConverter}, ConverterParameter=1}"   VerticalAlignment="Center" />
+                    <RadioButton   GroupName="x5"  IsEnabled="False"  Content="开灯" Margin="10,0,0,0" IsChecked="{Binding Path=CurrentSelectedTimeItem.CmdMix2, Converter={StaticResource RadioMultiIntConverter}, ConverterParameter=2}"   VerticalAlignment="Center" />
+                    <RadioButton   GroupName="x5"  IsEnabled="False"  Content="1档节能" Margin="10,0,0,0" IsChecked="{Binding Path=CurrentSelectedTimeItem.CmdMix2, Converter={StaticResource RadioMultiIntConverter}, ConverterParameter=3}"   VerticalAlignment="Center" />
+                    <RadioButton   GroupName="x5"  IsEnabled="False"  Content="2档节接" Margin="10,0,0,0" IsChecked="{Binding Path=CurrentSelectedTimeItem.CmdMix2, Converter={StaticResource RadioMultiIntConverter}, ConverterParameter=4}"   VerticalAlignment="Center" />
+                    <RadioButton   GroupName="x5"  IsEnabled="False"  Content="关灯" Margin="10,0,0,0" IsChecked="{Binding Path=CurrentSelectedTimeItem.CmdMix2, Converter={StaticResource RadioMultiIntConverter}, ConverterParameter=5}"   VerticalAlignment="Center" />
+
+                </DockPanel>
+
+                <DockPanel Grid.Row="9" Grid.Column="2"  Grid.ColumnSpan="7">
+                    <TextBlock Text="灯头3:"  VerticalAlignment="Center"></TextBlock>
+                    <RadioButton  GroupName="x6" IsEnabled="False"   Content="无" Margin="10,0,0,0" IsChecked="{Binding Path=CurrentSelectedTimeItem.CmdMix3, Converter={StaticResource RadioMultiIntConverter}, ConverterParameter=1}"   VerticalAlignment="Center" />
+                    <RadioButton  GroupName="x6"  IsEnabled="False"  Content="开灯" Margin="10,0,0,0" IsChecked="{Binding Path=CurrentSelectedTimeItem.CmdMix3, Converter={StaticResource RadioMultiIntConverter}, ConverterParameter=2}"   VerticalAlignment="Center" />
+                    <RadioButton  GroupName="x6"  IsEnabled="False"  Content="1档节能" Margin="10,0,0,0" IsChecked="{Binding Path=CurrentSelectedTimeItem.CmdMix3, Converter={StaticResource RadioMultiIntConverter}, ConverterParameter=3}"   VerticalAlignment="Center" />
+                    <RadioButton  GroupName="x6"  IsEnabled="False"  Content="2档节接" Margin="10,0,0,0" IsChecked="{Binding Path=CurrentSelectedTimeItem.CmdMix3, Converter={StaticResource RadioMultiIntConverter}, ConverterParameter=4}"   VerticalAlignment="Center" />
+                    <RadioButton  GroupName="x6"  IsEnabled="False"  Content="关灯" Margin="10,0,0,0" IsChecked="{Binding Path=CurrentSelectedTimeItem.CmdMix3, Converter={StaticResource RadioMultiIntConverter}, ConverterParameter=5}"   VerticalAlignment="Center" />
+
+
+                    <TextBlock Text="灯头4:"  Margin="25,0,0,0" VerticalAlignment="Center"></TextBlock>
+                    <RadioButton  GroupName="x7" IsEnabled="False"  Content="无" Margin="10,0,0,0" IsChecked="{Binding Path=CurrentSelectedTimeItem.CmdMix4, Converter={StaticResource RadioMultiIntConverter}, ConverterParameter=1}"   VerticalAlignment="Center" />
+                    <RadioButton  GroupName="x7"  IsEnabled="False"  Content="开灯" Margin="10,0,0,0" IsChecked="{Binding Path=CurrentSelectedTimeItem.CmdMix4, Converter={StaticResource RadioMultiIntConverter}, ConverterParameter=2}"   VerticalAlignment="Center" />
+                    <RadioButton  GroupName="x7"  IsEnabled="False"  Content="1档节能" Margin="10,0,0,0" IsChecked="{Binding Path=CurrentSelectedTimeItem.CmdMix4, Converter={StaticResource RadioMultiIntConverter}, ConverterParameter=3}"   VerticalAlignment="Center" />
+                    <RadioButton  GroupName="x7"  IsEnabled="False"  Content="2档节接" Margin="10,0,0,0" IsChecked="{Binding Path=CurrentSelectedTimeItem.CmdMix4, Converter={StaticResource RadioMultiIntConverter}, ConverterParameter=4}"   VerticalAlignment="Center" />
+                    <RadioButton  GroupName="x7"  IsEnabled="False"  Content="关灯" Margin="10,0,0,0" IsChecked="{Binding Path=CurrentSelectedTimeItem.CmdMix4, Converter={StaticResource RadioMultiIntConverter}, ConverterParameter=5}"   VerticalAlignment="Center" />
+
+                </DockPanel>
+
+                <RadioButton GroupName="x2" Grid.Row="10" Grid.Column="1"  Content="PWM调节"  
+                               IsEnabled="False" 
+                              IsChecked="{Binding Path=CurrentSelectedTimeItem.CmdType, Converter={StaticResource RadioMultiIntConverter}, ConverterParameter=5}"  Name="radioop2" VerticalAlignment="Center" />
+
+                <DockPanel  Grid.Row="10" Grid.Column="2"  Grid.ColumnSpan="5">
+                    <TextBlock Text="操作灯头:"  VerticalAlignment="Center"></TextBlock>
+                    <CheckBox Grid.Row="3" Grid.Column="1" Margin="10,0,0,0"  IsEnabled="False"   IsChecked="{Binding CurrentSelectedTimeItem.CmdPwmSel[0].IsSelected}" Content="灯头1" VerticalAlignment="Center" ></CheckBox>
+                    <CheckBox Grid.Row="3" Grid.Column="2" Margin="25,0,0,0"  IsEnabled="False"   IsChecked="{Binding CurrentSelectedTimeItem.CmdPwmSel[1].IsSelected}" Content="灯头2" VerticalAlignment="Center" ></CheckBox>
+                    <CheckBox Grid.Row="3" Grid.Column="3" Margin="25,0,0,0"  IsEnabled="False"   IsChecked="{Binding CurrentSelectedTimeItem.CmdPwmSel[2].IsSelected}" Content="灯头3" VerticalAlignment="Center" ></CheckBox>
+                    <CheckBox Grid.Row="3" Grid.Column="4" Margin="25,0,0,0"  IsEnabled="False"   IsChecked="{Binding CurrentSelectedTimeItem.CmdPwmSel[3].IsSelected}" Content="灯头4" VerticalAlignment="Center" ></CheckBox>
+                </DockPanel>
+                <DockPanel Grid.Row="11" Grid.Column="2"  Grid.ColumnSpan="6">
+                   <RadioButton GroupName="x8"  IsEnabled="False"  Content="0%" Margin="0,0,0,0" IsChecked="{Binding Path=CurrentSelectedTimeItem.CmdPwmValue, Converter={StaticResource RadioMultiIntConverter}, ConverterParameter=1}"  Name="rbg2" VerticalAlignment="Center" />
+                    <RadioButton GroupName="x8"   IsEnabled="False"  Content="10%" Margin="10,0,0,0" IsChecked="{Binding Path=CurrentSelectedTimeItem.CmdPwmValue, Converter={StaticResource RadioMultiIntConverter}, ConverterParameter=2}"  Name="rbg3" VerticalAlignment="Center" />
+                    <RadioButton GroupName="x8"   IsEnabled="False"  Content="20%" Margin="10,0,0,0" IsChecked="{Binding Path=CurrentSelectedTimeItem.CmdPwmValue, Converter={StaticResource RadioMultiIntConverter}, ConverterParameter=3}"  Name="rbg4" VerticalAlignment="Center" />
+                    <RadioButton GroupName="x8"   IsEnabled="False"  Content="30%" Margin="10,0,0,0" IsChecked="{Binding Path=CurrentSelectedTimeItem.CmdPwmValue, Converter={StaticResource RadioMultiIntConverter}, ConverterParameter=4}"  Name="rbg5" VerticalAlignment="Center" />
+                    <RadioButton GroupName="x8"   IsEnabled="False"  Content="40%" Margin="10,0,0,0" IsChecked="{Binding Path=CurrentSelectedTimeItem.CmdPwmValue, Converter={StaticResource RadioMultiIntConverter}, ConverterParameter=5}"  Name="rbg6" VerticalAlignment="Center" />
+                    <RadioButton GroupName="x8"   IsEnabled="False"  Content="50%" Margin="10,0,0,0" IsChecked="{Binding Path=CurrentSelectedTimeItem.CmdPwmValue, Converter={StaticResource RadioMultiIntConverter}, ConverterParameter=6}"  Name="rbg7" VerticalAlignment="Center" />
+                    <RadioButton GroupName="x8"   IsEnabled="False"  Content="60%" Margin="10,0,0,0" IsChecked="{Binding Path=CurrentSelectedTimeItem.CmdPwmValue, Converter={StaticResource RadioMultiIntConverter}, ConverterParameter=7}"  Name="rbg8" VerticalAlignment="Center" />
+                    <RadioButton GroupName="x8"   IsEnabled="False"  Content="70%" Margin="10,0,0,0" IsChecked="{Binding Path=CurrentSelectedTimeItem.CmdPwmValue, Converter={StaticResource RadioMultiIntConverter}, ConverterParameter=8}"  Name="rbg9" VerticalAlignment="Center" />
+                    <RadioButton GroupName="x8"   IsEnabled="False"  Content="80%" Margin="10,0,0,0" IsChecked="{Binding Path=CurrentSelectedTimeItem.CmdPwmValue, Converter={StaticResource RadioMultiIntConverter}, ConverterParameter=9}"  Name="rbg10" VerticalAlignment="Center" />
+                    <RadioButton GroupName="x8"   IsEnabled="False"  Content="90%" Margin="10,0,0,0" IsChecked="{Binding Path=CurrentSelectedTimeItem.CmdPwmValue, Converter={StaticResource RadioMultiIntConverter}, ConverterParameter=10}"  Name="rbg11" VerticalAlignment="Center" />
+                    <RadioButton GroupName="x8"   IsEnabled="False"  Content="100%" Margin="10,0,0,0" IsChecked="{Binding Path=CurrentSelectedTimeItem.CmdPwmValue, Converter={StaticResource RadioMultiIntConverter}, ConverterParameter=11}"  Name="rbg13" VerticalAlignment="Center" />
+
+                </DockPanel>-->
+
+              
+            </Grid>
+        </Grid>
+
+    </Grid>
+</UserControl>

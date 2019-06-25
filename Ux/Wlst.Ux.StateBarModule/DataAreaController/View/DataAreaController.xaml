@@ -1,0 +1,35 @@
+﻿<UserControl x:Class="Wlst.Ux.StateBarModule.DataAreaController.View.DataAreaController"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"   
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <ScrollViewer HorizontalScrollBarVisibility="Auto"  Background="{x:Null}"
+                            VerticalScrollBarVisibility="Auto">
+        <Grid>
+            <TextBlock HorizontalAlignment="Left" Text="{Binding  txt}"></TextBlock>
+            <UserControl Content="{Binding  Items[0].Uc}"  Visibility="{Binding Items[0].Vuc}"></UserControl>
+            <UserControl Content="{Binding  Items[1].Uc}"  Visibility="{Binding Items[1].Vuc}"></UserControl>
+            <UserControl Content="{Binding  Items[2].Uc}"  Visibility="{Binding Items[2].Vuc}"></UserControl>
+            <UserControl Content="{Binding  Items[3].Uc}"  Visibility="{Binding Items[3].Vuc}"></UserControl>
+            <UserControl Content="{Binding  Items[4].Uc}"  Visibility="{Binding Items[4].Vuc}"></UserControl>
+            <UserControl Content="{Binding  Items[5].Uc}"  Visibility="{Binding Items[5].Vuc}"></UserControl>
+            <UserControl Content="{Binding  Items[6].Uc}"  Visibility="{Binding Items[6].Vuc}"></UserControl>
+            <UserControl Content="{Binding  Items[7].Uc}"  Visibility="{Binding Items[7].Vuc}"></UserControl>
+            <UserControl Content="{Binding  Items[8].Uc}"  Visibility="{Binding Items[8].Vuc}"></UserControl>
+            <UserControl Content="{Binding  Items[9].Uc}"  Visibility="{Binding Items[9].Vuc}"></UserControl>
+            <UserControl Content="{Binding  Items[10].Uc}"  Visibility="{Binding Items[10].Vuc}"></UserControl>
+            <UserControl Content="{Binding  Items[11].Uc}"  Visibility="{Binding Items[11].Vuc}"></UserControl>
+            <UserControl Content="{Binding  Items[12].Uc}"  Visibility="{Binding Items[12].Vuc}"></UserControl>
+            <UserControl Content="{Binding  Items[13].Uc}"  Visibility="{Binding Items[13].Vuc}"></UserControl>
+            <UserControl Content="{Binding  Items[14].Uc}"  Visibility="{Binding Items[14].Vuc}"></UserControl>
+            <UserControl Content="{Binding  Items[15].Uc}"  Visibility="{Binding Items[15].Vuc}"></UserControl>
+            <UserControl Content="{Binding  Items[16].Uc}"  Visibility="{Binding Items[16].Vuc}"></UserControl>
+            <UserControl Content="{Binding  Items[17].Uc}"  Visibility="{Binding Items[17].Vuc}"></UserControl>
+            <UserControl Content="{Binding  Items[18].Uc}"  Visibility="{Binding Items[18].Vuc}"></UserControl>
+            <UserControl Content="{Binding  Items[19].Uc}"  Visibility="{Binding Items[19].Vuc}"></UserControl>
+          
+        </Grid>
+    </ScrollViewer>
+</UserControl>

@@ -1,0 +1,169 @@
+﻿<UserControl x:Class="Elysium.ThemesSet.MenuSet.MenuAttri"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns:Custom="clr-namespace:Microsoft.Windows.Controls.Ribbon;assembly=RibbonControlsLibrary"
+             MaxHeight="600" MinWidth="300" MaxWidth="1000" MinHeight="300">
+    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+    <Grid >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" MinHeight="30"/>
+            <RowDefinition Height="Auto" MinHeight="30"/>
+            <RowDefinition Height="Auto" MinHeight="30"/>
+            <RowDefinition Height="Auto" MinHeight="30"/>
+            <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+               
+            </Grid.ColumnDefinitions>
+        <GroupBox Header="正常背景色" Margin="2" MinHeight="240" Grid.RowSpan="2" Name="groupBox1" VerticalAlignment="Top">
+            <Grid >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" MinHeight="30"/>
+                    <RowDefinition Height="Auto" MinHeight="30"/>
+                    <RowDefinition Height="Auto" MinHeight="30"/>
+                    <RowDefinition Height="Auto" MinHeight="30"/>
+                    <RowDefinition Height="Auto" MinHeight="30"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                
+                <Label Margin="5,2,5,2" Grid.Row="0" Content="背景颜色:" Name="label1" VerticalAlignment="Center" />
+                <Label Margin="5,2,5,2" Grid.Row="1" Content="边框颜色:"  Name="label2" VerticalAlignment="Center"/>
+                <Label Margin="5,2,5,2" Grid.Row="2" Content="边框宽度:"  Name="label3" VerticalAlignment="Center"  />
+                <Label Margin="5,2,5,2" Grid.Row="3" Content="字体颜色:"  Name="label4" VerticalAlignment="Center" />
+                <Label Margin="5,2,5,2" Grid.Row="4" Content="Item背景色:" Name="label5" VerticalAlignment="Center"  />
+
+                <xctk:ColorPicker Margin="5,2,5,2" Grid.Row="0" Grid.Column="1" MinWidth="120" VerticalAlignment="Center"  SelectedColor="{Binding NormalBackground}" />
+                <xctk:ColorPicker Margin="5,2,5,2" Grid.Row="1" Grid.Column="1" SelectedColor="{Binding NormalBorderBrush}" VerticalAlignment="Center" MinWidth="120" />
+                <TextBox Margin="5,2,5,2"  Grid.Row="2" Grid.Column="1" Text="{Binding BorderThickness}"  Name="textBox1" VerticalAlignment="Center" MinWidth="120" />
+                <xctk:ColorPicker Margin="5,2,5,2" Grid.Row="3" Grid.Column="1" SelectedColor="{Binding NormalForeground}" VerticalAlignment="Center" MinWidth="120" />
+                <xctk:ColorPicker Margin="5,2,5,2" Grid.Row="4" Grid.Column="1" SelectedColor="{Binding NormalItemBackground}" VerticalAlignment="Center" MinWidth="120" />
+
+                <Button  Grid.Row="5" Background="{Binding NormalBackground}" BorderThickness="{Binding BorderThickness}" Foreground="{Binding NormalForeground}"
+                        Content="菜单" BorderBrush="{Binding NormalBorderBrush}"  Name="button1" VerticalAlignment="Center" MinWidth="60" />
+
+                <Button Margin="20,5,20,5" Grid.Row="5" Grid.Column="1" Content="试验" Background="{Binding NormalItemBackground}"   Name="button4" VerticalAlignment="Center" MinWidth="120" />
+            </Grid>
+        </GroupBox>
+        <GroupBox Header="鼠标进入时的状态" Margin="2" Grid.Column="1" Name="groupBox2" VerticalAlignment="Top" >
+            <Grid >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" MinHeight="30"/>
+                    <RowDefinition Height="Auto" MinHeight="30"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                
+                <Label Margin="5,2,5,2" Content="Item背景色:" Name="label6" VerticalAlignment="Center" />
+                <Label Margin="5,2,5,2" Grid.Row="1" Content="字体颜色:" Name="label7" VerticalAlignment="Center" />
+
+                <xctk:ColorPicker Margin="5,2,5,2" Grid.Column="1" SelectedColor="{Binding MouseOverItemBackground}" VerticalAlignment="Center" MinWidth="120" />
+                <xctk:ColorPicker Margin="5,2,5,2" Grid.Row="1" Grid.Column="1" SelectedColor="{Binding MouseOverForeground}" VerticalAlignment="Center" MinWidth="120" />
+
+                <Button Margin="20,5,20,5" Grid.Row="2" Grid.ColumnSpan="2" Background="{Binding MouseOverItemBackground }" Foreground="{Binding MouseOverForeground}" 
+                        Content="菜单" Name="button5" VerticalAlignment="Center" MinWidth="120" />
+            </Grid>
+        </GroupBox>
+        <GroupBox Header="不可用时的状态" Margin="2" Grid.Row="1" Grid.Column="1" Name="groupBox3" VerticalAlignment="Top" >
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" MinHeight="30"/>
+                    <RowDefinition Height="Auto" MinHeight="30"/>
+                    <RowDefinition Height="*"/>
+                    
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Label Margin="5,2,5,2" Content="Item背景色:"  Name="label8" VerticalAlignment="Center"  />
+                <Label Margin="5,2,5,2" Grid.Row="1" Content="字体颜色:" Name="label9" VerticalAlignment="Center"/>
+
+                <xctk:ColorPicker Margin="5,2,5,2" Grid.Column="1"  SelectedColor="{Binding DisableItemBackground}" VerticalAlignment="Center" MinWidth="120" />
+                <xctk:ColorPicker Margin="5,2,5,2" Grid.Row="1" Grid.Column="1" SelectedColor="{Binding DisableForeground}" VerticalAlignment="Center" MinWidth="120" />
+
+                <Button Margin="20,5,20,5" Grid.Row="2" Grid.ColumnSpan="2" Background="{Binding DisableItemBackground}" Content="菜单" Foreground="{Binding DisableForeground}" 
+                         Name="button6" VerticalAlignment="Center" MinWidth="120" />
+            </Grid>
+        </GroupBox>
+        <Menu Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Center" Name="menu1" Margin="20,5,20,5" VerticalAlignment="Top" >
+            <MenuItem Header="上海市">
+                <MenuItem Header="普陀区"  />
+                <MenuItem Header="闸北区">
+                    <MenuItem Header="武宁路"  />
+                    <MenuItem Header="曹阳路"  />
+                </MenuItem>
+                <MenuItem Header="长宁区" />
+            </MenuItem>
+            <MenuItem Header="北京市" >
+                <MenuItem Header="海淀区"  />
+                <MenuItem Header="中关村"  />
+            </MenuItem>
+            <MenuItem Header="天津市" IsEnabled="False" />
+        </Menu>
+        
+        <Button Grid.Row="3" Margin="20,5,20,5" Content="点击查看以上设置叠加效果"  Command="{Binding CmdLook}"  Name="button2" VerticalAlignment="Center" MinWidth="120" />
+        <Button Grid.Row="3" Margin="20,5,20,5" Grid.Column="1" Content="保存设置"   Command="{Binding CmdSave}" Name="button3" VerticalAlignment="Center" MinWidth="120" />
+            <!--<Custom:Ribbon Grid.Row="4" x:Name="Ribbon" Background="Transparent" BorderBrush="Transparent" >
+
+                <Custom:RibbonTab x:Name="HomeTab"  
+                              Header="Home">
+                    <Custom:RibbonGroup x:Name="Group1"
+                                    Header="Group1">
+                        <Custom:RibbonButton x:Name="Button1"
+                                         LargeImageSource="Images\LargeIcon.png" 
+                                         Label="单灯时间表发送记录查询"  />
+
+                        <Custom:RibbonButton x:Name="Button2"
+                                         LargeImageSource="Images\LargeIcon.png"
+                                         Label="Button2" />
+                        <Custom:RibbonButton x:Name="Button3"
+                                         LargeImageSource="Images\LargeIcon.png"
+                                         Label="Button3" />
+                        <Custom:RibbonButton x:Name="Button4"
+                                         LargeImageSource="Images\LargeIcon.png"
+                                         Label="Button4" />
+
+
+                    </Custom:RibbonGroup>
+
+                </Custom:RibbonTab>
+
+                <Custom:RibbonTab x:Name="HomeTab1" 
+                              Header="HomeX">
+                    <Custom:RibbonGroup x:Name="Group121"  
+                                    Header="Group1">
+                        <Custom:RibbonButton x:Name="Button112"
+                                         LargeImageSource="Images\LargeIcon.png"
+                                     
+                                         Label="Button11" />
+
+                        <Custom:RibbonButton x:Name="Button221"
+                                         SmallImageSource="Images\SmallIcon.png"
+                                         Label="Button12" />
+                        <Custom:RibbonButton x:Name="Button321"
+                                         SmallImageSource="Images\SmallIcon.png"
+                                         Label="Button31" />
+                        <Custom:RibbonButton x:Name="Button4211"
+                                         SmallImageSource="Images\SmallIcon.png"
+                                         Label="Button4" />
+
+                    </Custom:RibbonGroup>
+                </Custom:RibbonTab>
+            </Custom:Ribbon>-->
+        </Grid>
+    </ScrollViewer>
+</UserControl>

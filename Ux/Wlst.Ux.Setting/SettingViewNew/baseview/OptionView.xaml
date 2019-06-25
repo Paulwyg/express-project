@@ -1,0 +1,53 @@
+﻿<UserControl x:Class="Wlst.Ux.Setting.SettingViewNew.baseview.OptionView"
+                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" x:Name="OptView"
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+        <Grid.ColumnDefinitions  >
+            <ColumnDefinition Width="200"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <ScrollViewer Width="250" BorderThickness="0" Background="{Binding BackGroundOfList.BackGround}">
+            <ItemsControl x:Name="itemsControl"  ItemsSource="{Binding Items}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel   Orientation="Vertical"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+
+                        <StackPanel  Height="30"  Background="{Binding BackGround}">
+                            <Button  Foreground="Black"  Height="31" Background="{Binding BackGround}" Click="ButtonBase_OnClick"  Content="{Binding Name}"></Button>
+                        </StackPanel>
+
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+        <ScrollViewer x:Name="s1" BorderThickness="0" Grid.Column="1" Background="{Binding BackGroundOfList.BackGroundView}">
+            <StackPanel>
+                <ItemsControl x:Name="itemsControl1"   Background="Transparent" ItemsSource="{Binding Items}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Vertical"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border>
+                                <DockPanel>
+                                    <ContentControl Background="Beige" Content="{Binding Content}"></ContentControl>
+                                </DockPanel>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

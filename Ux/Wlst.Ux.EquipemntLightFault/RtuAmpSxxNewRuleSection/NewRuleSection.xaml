@@ -1,0 +1,254 @@
+﻿<UserControl x:Class="Wlst.Ux.EquipemntLightFault.RtuAmpSxxNewRuleSection.NewRuleSection"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+             xmlns:RadioButtonConverter="clr-namespace:Wlst.Cr.CoreOne.RadioButtonConverter;assembly=Wlst.Cr.CoreOne"
+             mc:Ignorable="d" VerticalAlignment="Center" HorizontalAlignment="Center"
+             d:DesignHeight="750" d:DesignWidth="900">
+    <UserControl.Resources>
+      
+        <RadioButtonConverter:RadioButtonIntConverter x:Key="RadioMultiIntConverter">
+        </RadioButtonConverter:RadioButtonIntConverter>
+    </UserControl.Resources>
+        <Grid Margin="15" ScrollViewer.HorizontalScrollBarVisibility="Auto" >
+            <Grid Visibility="Visible" Name="grid1">
+             
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="28"></RowDefinition>
+                    <RowDefinition Height="300"></RowDefinition>
+                    <RowDefinition Height="325"></RowDefinition>
+                    <RowDefinition Height="30"></RowDefinition>
+                    <RowDefinition Height="25"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="500"></ColumnDefinition>
+                <ColumnDefinition Width="400"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <DockPanel Grid.Row="0" Grid.ColumnSpan="2">
+                <TextBlock Grid.Row="1" Text=" 当前区域为：" VerticalAlignment="Center" Width="90" HorizontalAlignment="Left" Visibility="{Binding Visi}"></TextBlock>
+                <ComboBox x:Name="AreaComboBox"  Width="150" Height="25" HorizontalAlignment="Left" Margin="6,0,0,0" Visibility="{Binding Visi}"
+                      ItemsSource="{Binding AreaName}" DisplayMemberPath="Value" SelectedItem="{Binding AreaComboBoxSelected}" ></ComboBox>
+                <!--<Button Content="设备全选或全清" Width="120" Height="25" HorizontalAlignment="Left" Margin="40,0,0,0" Command="{Binding CmdAllSelected}"></Button>-->
+            </DockPanel>
+
+
+            <!--1 0-->
+            <telerik:RadGridView  IsFilteringAllowed="False" AutoGenerateColumns="False"    AllowDrop="True"   HorizontalAlignment="Left" BorderThickness="0" Width="490" 
+                              ItemsSource="{Binding Path=RuleItems}" ShowGroupPanel="False"  SelectedItem="{Binding CurRuleItem}"  Grid.Row="1"  
+                             x:Name="gridview" ShowColumnHeaders="True"   RowIndicatorVisibility="Collapsed" Margin="0,7,0,7">
+                <telerik:RadGridView.Columns>
+         
+                    <telerik:GridViewDataColumn  Header="编号"    DataMemberBinding="{Binding Path=Id,Mode=TwoWay}"  Width="60" />
+                    <telerik:GridViewDataColumn  Header="名称"   DataMemberBinding="{Binding  Path=Name,Mode=TwoWay}" Width="110" />
+                    <telerik:GridViewDataColumn  Header="起始时间"   DataMemberBinding="{Binding  Path=StrStarttime,Mode=TwoWay}" Width="110" />
+                    <telerik:GridViewDataColumn  Header="结束时间"    DataMemberBinding="{Binding Path=StrEndtime}" Width="110"/>
+                    <telerik:GridViewDataColumn  Header="终端数"    DataMemberBinding="{Binding Path=RtuCount,Mode=TwoWay}"  Width="85" />
+                    <!--<telerik:GridViewDataColumn  Header="操作类型"   DataMemberBinding="{Binding  Path=AttachInfo,Mode=TwoWay}" Width="90" />-->
+ 
+                </telerik:RadGridView.Columns>
+            </telerik:RadGridView>
+
+            <!--1 1-->
+            <GroupBox Grid.Row="1"  Grid.Column="1"  Header="规则设置 只用不存" >
+
+                <Grid  Name="grid2">
+                    <Grid.RowDefinitions>
+
+                        <RowDefinition  Height="130"></RowDefinition>
+                        <RowDefinition Height="125"></RowDefinition>
+
+                    </Grid.RowDefinitions>
+
+                    <telerik:RadGridView  AllowDrop="True" AutoGenerateColumns="False" ShowGroupPanel="False" RowIndicatorVisibility="Collapsed" 
+                                 ItemsSource="{Binding Path=ItemsRules}" SelectedItem="{Binding CurrentSelectRule}" HorizontalAlignment="Left" Width="360" Height="130">
+                        <telerik:RadGridView.Columns>
+                            <telerik:GridViewDataColumn Header="起始电流"  IsResizable="False" IsFilterable="False"  Width="80"  DataMemberBinding="{Binding Path=Alow,Mode=TwoWay}" IsReadOnly="True" />
+                            <telerik:GridViewDataColumn Header="结束电流"  IsResizable="False"  IsFilterable="False"    Width="80"  DataMemberBinding="{Binding Path=Amax,Mode=TwoWay}" IsReadOnly="True" />
+                            <telerik:GridViewDataColumn Header="下限系数"  IsResizable="False"  IsFilterable="False"    Width="80"  DataMemberBinding="{Binding Path=LowTimes,Mode=TwoWay}" IsReadOnly="True" />
+                            <telerik:GridViewDataColumn Header="上限系数"  IsResizable="False"  IsFilterable="False"    Width="80"  DataMemberBinding="{Binding Path=MaxTimes,Mode=TwoWay}" IsReadOnly="True" />
+                        </telerik:RadGridView.Columns>
+                    </telerik:RadGridView>
+
+                    <Grid Grid.Row="1" Margin="0,3,0,3">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="3"></RowDefinition>
+                            <RowDefinition Height="28"></RowDefinition>
+                            <RowDefinition Height="3"></RowDefinition>
+                            <RowDefinition Height="28"></RowDefinition>
+                            <RowDefinition Height="28"></RowDefinition>
+                            <RowDefinition Height="28"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100" ></ColumnDefinition>
+                            <ColumnDefinition Width="75" ></ColumnDefinition>
+                            <ColumnDefinition Width="10" ></ColumnDefinition>
+                            <ColumnDefinition Width="100" ></ColumnDefinition>
+                            <ColumnDefinition Width="75" ></ColumnDefinition>
+
+                            <ColumnDefinition ></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <DockPanel  Grid.Row="1" Grid.ColumnSpan="5">
+                            <Button Content="增加规则" Width="120" Height="25" Command="{Binding CmdAddRule1}" HorizontalAlignment="Left" Margin="45,0,0,0" ></Button>
+                            <Button Content="删除当前规则" Width="120" Height="25" Command="{Binding CmdDeleteRule1}" HorizontalAlignment="Left" Margin="45,0,0,0" Grid.Column="3"></Button>
+                        </DockPanel>
+
+
+
+                        <!--<TextBlock Text="序号:" Grid.Row="0" VerticalAlignment="Center"></TextBlock>-->
+                        <TextBlock Text="电流最小值:" Margin="0,0,5,0" Grid.Row="3" VerticalAlignment="Center"></TextBlock>
+                        <TextBlock Text="电流最大值:" Grid.Row="4"  VerticalAlignment="Center"></TextBlock>
+                        <TextBlock Text="下限计算系数:" Grid.Row="3" Grid.Column="3" VerticalAlignment="Center"></TextBlock>
+                        <TextBlock Text="上限计算系数:" Grid.Row="4" Grid.Column="3" VerticalAlignment="Center"></TextBlock>
+                        <!--<TextBlock Text="计算方法：根据优先级序号，第一条符合的规则将被该回路采用。" Grid.ColumnSpan="6" Grid.Row="5" VerticalAlignment="Center" ></TextBlock>-->
+
+                        <!--<TextBox Width="80" Height="28" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center" Text="{Binding CurrentSelectRule.Index}" ></TextBox>-->
+                        <TextBox Width="70" Height="25" Grid.Column="1" Grid.Row="3" HorizontalAlignment="Left" VerticalAlignment="Center" IsEnabled="{Binding IndexEnable}" Text="{Binding AlowBak}"></TextBox>
+                        <!--Text="{Binding CurrentSelectRule.Alow}"-->
+                        <TextBlock Width="70" Height="25" Grid.Column="1" Grid.Row="4" HorizontalAlignment="Left" VerticalAlignment="Center" IsEnabled="{Binding IndexEnable}" Text="{Binding AmaxBak}"></TextBlock>
+                        <!--Text="{Binding CurrentSelectRule.Amax}"-->
+                        <TextBox Width="70" Height="25" Grid.Column="4" Grid.Row="3" HorizontalAlignment="Left" VerticalAlignment="Center" IsEnabled="{Binding IndexEnable2}" Text="{Binding LowTimesBak}"></TextBox>
+                        <!--Text="{Binding CurrentSelectRule.LowTimes}"-->
+                        <TextBox Width="70" Height="25" Grid.Column="4" Grid.Row="4" HorizontalAlignment="Left" VerticalAlignment="Center" IsEnabled="{Binding IndexEnable2}" Text="{Binding MaxTimesBak}"></TextBox>
+                        <!--Text="{Binding CurrentSelectRule.MaxTimes}"-->
+
+                        <Button Content="确定" Width="120" Height="25" Command="{Binding CmdCurrentRule}" HorizontalAlignment="Left" Margin="25,0,0,0" Grid.ColumnSpan="4" Grid.Column="3" Grid.Row="5" ></Button>
+                        <TextBlock Grid.Row="5" Grid.Column="0" VerticalAlignment="Center"  Grid.ColumnSpan="3" Height="28" Width="210"></TextBlock>
+
+                    </Grid>
+
+                </Grid>
+            </GroupBox>
+
+
+            <Grid   Grid.Row="2" Grid.ColumnSpan="2">
+                <GroupBox VerticalAlignment="Top" Header="当前方案详细信息" >
+                    <Grid Margin="2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="160"></RowDefinition>
+                            <RowDefinition Height="130"></RowDefinition>
+              
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="500"></ColumnDefinition>
+                            <ColumnDefinition Width="400"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                            <!--0-->
+
+
+                        <GroupBox   VerticalAlignment="Top" HorizontalAlignment="Left" Width="350" Grid.Column="1" Header="基本信息" >
+                                <Grid Margin="2">
+                                    <StackPanel HorizontalAlignment="Left">
+                                    <DockPanel Height="30">
+                                              <TextBlock VerticalAlignment="Center" Width="65" Text="名称:"></TextBlock>
+                                        <TextBox Width="255" Height="23" IsEnabled="{Binding IsEnableFirst}" Text="{Binding CurRuleItem.Name,UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True, ValidatesOnDataErrors=True, 
+                                            NotifyOnValidationError=True}"  ></TextBox>
+                                    </DockPanel>
+                                    <DockPanel Height="30">
+                                        <TextBlock  VerticalAlignment="Center" Width="100"  Text="报警起始时间:"></TextBlock>
+                                        <RadioButton Content="开灯后"  IsEnabled="{Binding IsEnableFirst}" Width="75" IsChecked="{Binding CurRuleItem.OpStart, Converter={StaticResource RadioMultiIntConverter}, ConverterParameter=1}" VerticalAlignment="Center"></RadioButton>
+                                        <RadioButton Content="定时" IsEnabled="{Binding IsEnableFirst}"  Width="65" IsChecked="{Binding CurRuleItem.OpStart, Converter={StaticResource RadioMultiIntConverter}, ConverterParameter=2}" Margin="5,0,0,0" VerticalAlignment="Center"></RadioButton>
+                                        <TextBox Height="25" IsEnabled="{Binding IsEnableFirst}" Text="{Binding CurRuleItem.DtStart}" Width="75"></TextBox>
+                                    </DockPanel>
+                                    <DockPanel Height="30">
+
+                                        <TextBlock  VerticalAlignment="Center"  Width="100"  Text="报警结束时间:"></TextBlock>
+                                        <RadioButton Content="开灯后"  IsEnabled="{Binding IsEnableFirst}" Width="75" IsChecked="{Binding CurRuleItem.OpEnd, Converter={StaticResource RadioMultiIntConverter}, ConverterParameter=1}" VerticalAlignment="Center"></RadioButton>
+                                        <RadioButton Content="定时" x:Name="dsg" IsEnabled="{Binding IsEnableFirst}"  Width="65" IsChecked="{Binding CurRuleItem.OpEnd, Converter={StaticResource RadioMultiIntConverter}, ConverterParameter=2}" Margin="5,0,0,0" VerticalAlignment="Center"></RadioButton>
+                                        <TextBox  Height="25" IsEnabled="{Binding IsEnableFirst}" Text="{Binding CurRuleItem.DtEnd}" Width="75"></TextBox>
+                                    </DockPanel>
+
+                                    <DockPanel Height="30">
+
+                                        <TextBlock  VerticalAlignment="Center" Text="{Binding CurRuleItem.ShowInfo}" Width="180" ></TextBlock>
+                                        <RadioButton Content="当天"  IsEnabled="{Binding CurRuleItem.IsEnableOpEndDt}" Width="65" IsChecked="{Binding CurRuleItem.OpEndDt, Converter={StaticResource RadioMultiIntConverter}, ConverterParameter=1}" VerticalAlignment="Center"></RadioButton>
+                                        <RadioButton Content="第二天" IsEnabled="{Binding CurRuleItem.IsEnableOpEndDt}"  Width="65" IsChecked="{Binding CurRuleItem.OpEndDt, Converter={StaticResource RadioMultiIntConverter}, ConverterParameter=2}"   VerticalAlignment="Center"></RadioButton>
+                                        <!--<TextBlock  Height="25"  Width="75"></TextBlock>-->
+                                    </DockPanel>
+                                </StackPanel>
+                                </Grid>
+                            </GroupBox>
+
+
+
+                        <!--1-->
+                        <GroupBox Grid.Row="0" Grid.RowSpan="2"  HorizontalAlignment="Left"  Header="终端选择" >
+                            <Grid >
+
+                                <telerik:RadTreeListView   AllowDrop="True" AutoGenerateColumns="False" ShowGroupPanel="False" RowIndicatorVisibility="Collapsed"  
+                                 ItemsSource="{Binding Path=TmlItem}" Width="440" Name="twosix" Grid.Row="1"     Margin="2" HorizontalAlignment="Left" >
+                                    <!--Width="{Binding TwoVisiInt2}"-->
+                                    <telerik:RadTreeListView.ChildTableDefinitions>
+                                        <telerik:TreeListViewTableDefinition  ItemsSource="{Binding Child}" />
+                                    </telerik:RadTreeListView.ChildTableDefinitions>
+                                    <telerik:RadTreeListView.Columns>
+                                        <telerik:GridViewDataColumn  Header="选择" HeaderTextAlignment="Center" Width="80" IsReadOnly="True">
+                                            <telerik:GridViewDataColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <Grid>
+                                                        <CheckBox VerticalAlignment="Center" HorizontalAlignment="Center"  IsChecked="{Binding IsSelect}"/>
+                                                    </Grid>
+                                                </DataTemplate>
+                                            </telerik:GridViewDataColumn.CellTemplate>
+                                        </telerik:GridViewDataColumn>
+                                        <telerik:GridViewDataColumn Header="地址"  IsResizable="False"  IsFilterable="False"  DataMemberBinding="{Binding Id}"     Width="90" IsReadOnly="True" />
+                                        <telerik:GridViewDataColumn Header="组、终端名称"  IsResizable="False"  IsFilterable="False"  DataMemberBinding="{Binding Name}"    Width="180"  IsReadOnly="True" />
+                                        <telerik:GridViewDataColumn Header="终端数"  IsResizable="False"  IsFilterable="False" DataMemberBinding="{Binding AttachInfo}"   Width="85"  IsReadOnly="True" />
+
+
+                                    </telerik:RadTreeListView.Columns>
+                                </telerik:RadTreeListView>
+
+                            </Grid>
+                        </GroupBox>
+
+
+                      
+ 
+                        <!--2-->
+
+                        <GroupBox  HorizontalAlignment="Left" Grid.Row="1" Margin="0,5,0,5"  Width="350"  Grid.Column="1" Header="数据请求 时间跨度不大于6小时" >
+                            <StackPanel>
+                                <DockPanel Height="28" VerticalAlignment="Center">
+                                    <TextBlock  VerticalAlignment="Center" Text="起始时间："></TextBlock>
+                                    <DatePicker Margin="5,0,2,0" IsEnabled="{Binding IsEnableFirst}" SelectedDateFormat="Long" SelectedDate="{Binding CurRuleItem.DtReq1}" Height="25" Width="200"></DatePicker>
+                                    <TextBlock></TextBlock>
+                                </DockPanel>
+
+                                <DockPanel  Height="28"  VerticalAlignment="Center">
+                                    <TextBlock Text="结束时间："></TextBlock>
+                                    <DatePicker Margin="5,0,2,0" IsEnabled="{Binding IsEnableFirst}" SelectedDateFormat="Long" Height="25" SelectedDate="{Binding  CurRuleItem.DtReq2}"  Width="200"></DatePicker>
+
+                                    <TextBlock></TextBlock>
+                                </DockPanel>
+                                <DockPanel >
+                                    <TextBlock  VerticalAlignment="Center" Text="{Binding StrQingqiu}"  Height="28" Width="170"></TextBlock>
+
+                                <Button Content="请求并计算上下限" Margin="10,0,0,0"  Width="150" Command="{Binding CmdReqAvga}" HorizontalAlignment="Left" Height="25" ></Button>  
+                                </DockPanel>
+                              
+                            </StackPanel>
+                        </GroupBox>
+
+                    </Grid>
+                </GroupBox>
+                
+                  
+
+            </Grid>
+
+            <DockPanel HorizontalAlignment="Left" Grid.Row="3">
+                <Button Content="增加方案" Margin="60,0,0,0" Command="{Binding CmdAddRule}" Width="120" Height="25"></Button>
+                <Button Content="删除当前方案"  Margin="60,0,0,0" Command="{Binding CmdDeleteRule}" Width="120" Height="25"></Button>
+            </DockPanel>
+            <Button Content="保存全部" Grid.Row="3" Command="{Binding CmdSave}" HorizontalAlignment="Left" Margin="200,0,0,0" Grid.Column="1" Width="120" Height="25"></Button>
+
+            <TextBlock Grid.Row="4" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Center"   Text="{Binding Remark}"></TextBlock>
+            
+
+        </Grid>
+        </Grid>
+</UserControl>

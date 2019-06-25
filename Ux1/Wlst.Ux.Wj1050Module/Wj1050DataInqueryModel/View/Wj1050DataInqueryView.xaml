@@ -1,0 +1,143 @@
+﻿<UserControl x:Class="Wlst.Ux.Wj1050Module.Wj1050DataInqueryModel.View.Wj1050DataInqueryView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="950">
+
+    <Grid HorizontalAlignment="Left">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" MinHeight="60"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto" MinHeight="30"/>
+            <RowDefinition Height="Auto" MinHeight="30"/>
+        </Grid.RowDefinitions>
+        <Grid >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <!--<ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>-->
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" MinHeight="30"/>
+                <RowDefinition Height="Auto" MinHeight="30"/>
+            </Grid.RowDefinitions>
+            <DockPanel >
+                <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Margin="5,2,5,2" Name="textBlock1" Text="起始时间: " VerticalAlignment="Center"  />
+                <DatePicker  HorizontalAlignment="Center" Margin="10,2,10,2"  SelectedDateFormat="Short"  SelectedDate="{Binding BegTime}"  Name="datePicker1" VerticalAlignment="Center" Width="150" />
+
+                <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Margin="5,2,5,2"  Grid.Column="2" Name="textBlock2" Text="结束时间:" VerticalAlignment="Center"  />
+                <DatePicker  HorizontalAlignment="Center" Margin="10,2,10,2"  SelectedDateFormat="Short" SelectedDate="{Binding EndTime}"  Name="datePicker2" VerticalAlignment="Center" Width="150"/>
+
+                <ComboBox  HorizontalAlignment="Right"  VerticalAlignment="Center" Width="60" Height="25" ItemsSource="{Binding IsItem}" DisplayMemberPath="Name" SelectedIndex="{Binding IsSelectIndex}" />
+            </DockPanel>
+
+
+            <Button Margin="20,2,5,2" Grid.Column="1" Content="查询" Command="{Binding CmdQueryHistoryData}" MinHeight="25" Name="button3" VerticalAlignment="Center" Width="120"  />
+            <Button Margin="10,2,5,2" Grid.Column="2"  Content="立即抄表"  MinHeight="25" HorizontalAlignment="Left" VerticalAlignment="Center" Width="120"  Command="{Binding CmdCb}" />
+
+
+
+
+            <Button Margin="20,2,5,2" Grid.Column="1" Grid.Row="1" Content="最新数据" Command="{Binding CmdQueryNewData}" MinHeight="25" Name="button4" VerticalAlignment="Center" Width="120"  />
+
+            <Button Margin="10,2,5,2" Grid.Column="2" Grid.Row="1"  Content="查询抄表失败"  MinHeight="25" Name="button5" HorizontalAlignment="Left" VerticalAlignment="Center" Width="120" Command="{Binding CmdQueryFailureData}" />
+            <!--Click="Button_Click"-->
+
+            <DockPanel Grid.Row="1">
+                <DockPanel Grid.Row="1" Grid.ColumnSpan="2">
+                    <CheckBox IsChecked="{Binding IsRtuSelected}" Margin="5,2,5,2"  HorizontalAlignment="Left" VerticalAlignment="Center" Content="主设备名称："></CheckBox>
+                    <TextBlock  Margin="0,2,2,2"  Text="{Binding AttachRtuName}" Width="220" VerticalAlignment="Center"/>
+                </DockPanel>
+                <DockPanel Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2">
+                    <TextBlock  Margin="5,2,5,2"  Text="电表名称："  VerticalAlignment="Center"/>
+                    <TextBlock  Margin="0,2,2,2" Text="{Binding RtuName}" Width="180" VerticalAlignment="Center"/>
+                </DockPanel>
+            </DockPanel>
+        </Grid>
+        <telerik:RadGridView Grid.Row="1" x:Name="rgdgridview" IsFilteringAllowed="False" HorizontalAlignment="Left"
+                                  AutoGenerateColumns="False"   AllowDrop="True" RowIndicatorVisibility="Collapsed" ItemsSource="{Binding Items}" 
+                                 SelectedItem="{Binding OneData}" ShowGroupPanel="False" MaxWidth="930" Margin="5,0,0,0">
+            <telerik:RadGridView.Columns>
+                <telerik:GridViewDataColumn Header="序号" DataMemberBinding="{Binding Path=Id}" Width="45"/>
+                <telerik:GridViewDataColumn Header="主设备地址" DataMemberBinding="{Binding Path=AttachRtuId}" Width="85"/>
+                <telerik:GridViewDataColumn Header="主设备名称" DataMemberBinding="{Binding Path=AttachRtuName}" Width="120"/>
+                <telerik:GridViewDataColumn Header="电表名称" DataMemberBinding="{Binding Path=RtuName}" Width="80"/>
+                <telerik:GridViewDataColumn Header="备注" DataMemberBinding="{Binding Path=Remarks}" Width="60" />
+                <telerik:GridViewDataColumn Header="设备地址" DataMemberBinding="{Binding Path=RtuId}" Width="80"/>
+
+                <!--<telerik:GridViewDataColumn Header="时间类型" DataMemberBinding="{Binding Path=DateTypeCode}" MinWidth="80" MaxWidth="190"/>
+                    <telerik:GridViewDataColumn Header="抄表类型" DataMemberBinding="{Binding Path=MruTypeCode}" MinWidth="90" MaxWidth="190"/>-->
+
+                <telerik:GridViewDataColumn Header="抄表类型"    IsResizable="False"  Width="135" IsVisible="{Binding ArgsInfoVisi2}">
+                    <telerik:GridViewDataColumn.CellTemplate>
+                        <DataTemplate>
+                            <DockPanel>
+                                <TextBox   Text="{Binding DateTypeCode}" HorizontalAlignment="Left" VerticalAlignment="Center"></TextBox>
+                                <TextBox   Text="{Binding MruTypeCode}"  HorizontalAlignment="Left" VerticalAlignment="Center"></TextBox>
+                                <Label ></Label>
+                            </DockPanel>
+                        </DataTemplate>
+                    </telerik:GridViewDataColumn.CellTemplate>
+                </telerik:GridViewDataColumn>
+
+                <telerik:GridViewDataColumn Header="抄表时间" DataMemberBinding="{Binding Path=DateCreate}" IsVisible="{Binding ArgsInfoVisi}" Width="100" />
+
+                <telerik:GridViewDataColumn Header="抄表值" DataMemberBinding="{Binding Path=MruData,StringFormat={}{0:F2}}" IsVisible="{Binding ArgsInfoVisi}" Width="100"/>
+
+                <telerik:GridViewDataColumn Header="电量" DataMemberBinding="{Binding Path=MruTotal,StringFormat={}{0:F2}}" IsVisible="{Binding ArgsInfoVisi}" Width="80"/>
+
+                <telerik:GridViewDataColumn Header="起始时间" DataMemberBinding="{Binding Path=BegTime1}" IsVisible="{Binding ArgsInfoVisi1}" Width="100" />
+
+                <telerik:GridViewDataColumn Header="起始抄表值" DataMemberBinding="{Binding Path=BMruData,StringFormat={}{0:F2}}" IsVisible="{Binding ArgsInfoVisi1}" Width="100"/>
+
+                <telerik:GridViewDataColumn Header="起始电量" DataMemberBinding="{Binding Path=BMruTotal,StringFormat={}{0:F2}}" IsVisible="{Binding ArgsInfoVisi1}" Width="80"/>
+
+                <telerik:GridViewDataColumn Header="截止时间" DataMemberBinding="{Binding Path=EndTime1}" IsVisible="{Binding ArgsInfoVisi1}" Width="100" />
+
+                <telerik:GridViewDataColumn Header="截止抄表值" DataMemberBinding="{Binding Path=EMruData,StringFormat={}{0:F2}}" IsVisible="{Binding ArgsInfoVisi1}" Width="100"/>
+
+                <telerik:GridViewDataColumn Header="截止电量" DataMemberBinding="{Binding Path=EMruTotal,StringFormat={}{0:F2}}" IsVisible="{Binding ArgsInfoVisi1}" Width="80"/>
+
+                <telerik:GridViewDataColumn Header="总抄表差额" DataMemberBinding="{Binding Path=DifferData, StringFormat={}{0:F2}}" IsVisible="{Binding ArgsInfoVisi1}" Width="100" />
+
+                <telerik:GridViewDataColumn Header="总电量差额" DataMemberBinding="{Binding Path=DifferTotal,StringFormat={}{0:F2}}" IsVisible="{Binding ArgsInfoVisi1}" Width="100" />
+
+                <telerik:GridViewDataColumn Header="差 值" DataMemberBinding="{Binding Path=Differ,StringFormat={}{0:F2}}" IsVisible="{Binding ArgsInfoVisi}" Width="60" />
+
+                <telerik:GridViewDataColumn Header="累计差值" DataMemberBinding="{Binding Path=Count,StringFormat={}{0:F2}}" IsVisible="{Binding ArgsInfoVisi}" Width="75"/>
+
+                <telerik:GridViewDataColumn Header="电表表号"    IsResizable="False"  Width="135">
+                    <telerik:GridViewDataColumn.CellTemplate>
+                        <DataTemplate>
+                            <DockPanel>
+                                <TextBlock   Text="{Binding MruAddr1, StringFormat={}{0:F2}}" HorizontalAlignment="Left" VerticalAlignment="Center" ></TextBlock>
+                                <TextBlock   Text=" " HorizontalAlignment="Left" VerticalAlignment="Center"></TextBlock>
+                                <TextBlock   Text="{Binding MruAddr2, StringFormat={}{0:F2}}"  HorizontalAlignment="Left" VerticalAlignment="Center"></TextBlock>
+                                <TextBlock   Text=" " HorizontalAlignment="Left" VerticalAlignment="Center"></TextBlock>
+                                <TextBlock   Text="{Binding MruAddr3, StringFormat={}{0:F2}}"  HorizontalAlignment="Left" VerticalAlignment="Center"></TextBlock>
+                                <TextBlock   Text=" " HorizontalAlignment="Left" VerticalAlignment="Center"></TextBlock>
+                                <TextBlock   Text="{Binding MruAddr4, StringFormat={}{0:F2}}"  HorizontalAlignment="Left" VerticalAlignment="Center"></TextBlock>
+                                <TextBlock   Text=" " HorizontalAlignment="Left" VerticalAlignment="Center"></TextBlock>
+                                <TextBlock   Text="{Binding MruAddr5, StringFormat={}{0:F2}}"  HorizontalAlignment="Left" VerticalAlignment="Center"></TextBlock>
+                                <TextBlock   Text=" " HorizontalAlignment="Left" VerticalAlignment="Center"></TextBlock>
+                                <TextBlock   Text="{Binding MruAddr6, StringFormat={}{0:F2}}"  HorizontalAlignment="Left" VerticalAlignment="Center"></TextBlock>
+                                <Label ></Label>
+                            </DockPanel>
+                        </DataTemplate>
+                    </telerik:GridViewDataColumn.CellTemplate>
+                </telerik:GridViewDataColumn>
+
+            </telerik:RadGridView.Columns>
+        </telerik:RadGridView>
+        <Button Margin="10,2,5,2"  Grid.Row="2"  Content="导出"  MinHeight="25" HorizontalAlignment="Right" VerticalAlignment="Center" Width="120" Command="{Binding CmdDaoChu}" />
+        <!--Click="Button_Click"-->
+        <Label x:Name="fg" Width="0" Grid.Row="3" HorizontalAlignment="Left"/>
+        <TextBlock  Text="{Binding Remind}" Foreground="{Binding ElementName=fg, Path=Foreground}" Margin="20,5,10,5" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="3" />
+    </Grid>
+</UserControl>

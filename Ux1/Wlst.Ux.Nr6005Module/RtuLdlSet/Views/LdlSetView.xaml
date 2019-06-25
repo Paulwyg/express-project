@@ -1,0 +1,206 @@
+﻿<UserControl x:Class="Wlst.Ux.Nr6005Module.RtuLdlSet.Views.LdlSetView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+             xmlns:Converters="clr-namespace:Wlst.Ux.Nr6005Module.ControlCenterManagDemo2.Converters" mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="900">
+    <UserControl.Resources>
+        <Converters:BoolToVisibleConverter x:Key="BoolToVisible"/>
+        <Converters:OppositeBoolToVisibleConverter x:Key="OppositeBoolToVisibleConverter"/>
+        <Converters:StateConverter x:Key="imageconverter"/>
+
+    </UserControl.Resources>
+    <Grid>
+        <Grid >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="35"></RowDefinition>
+            </Grid.RowDefinitions>
+           
+            <Grid    Visibility="{Binding page1visi}"  >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="700"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <telerik:RadTreeListView RowIndicatorVisibility="Collapsed" FilteringMode="Popup" AutoGenerateColumns="False"
+							Grid.Column="0"  ItemsSource="{Binding ItemsTree}" Width="700" HorizontalAlignment="Left">
+                <telerik:RadTreeListView.ChildTableDefinitions>
+                    <telerik:TreeListViewTableDefinition  ItemsSource="{Binding ChildTreeItems}" />
+                </telerik:RadTreeListView.ChildTableDefinitions>
+                <telerik:RadTreeListView.Columns>
+                    <telerik:GridViewDataColumn  Header="选择" HeaderTextAlignment="Center" Width="100" IsReadOnly="True">
+                        <telerik:GridViewDataColumn.CellTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <CheckBox VerticalAlignment="Center" HorizontalAlignment="Center"  IsChecked="{Binding IsChecked}"/>
+                                </Grid>
+                            </DataTemplate>
+                        </telerik:GridViewDataColumn.CellTemplate>
+                    </telerik:GridViewDataColumn>
+                    <telerik:GridViewDataColumn  Header="地址" IsFilterable="False" MinWidth="100" MaxWidth="200"  DataMemberBinding="{Binding PhysicalId, StringFormat={}{0:D2}}" IsReadOnly="True" />
+                        <telerik:GridViewDataColumn Header="区域名称" IsReadOnly="True" MinWidth="0" MaxWidth="{Binding AreaCount}" >
+                        <telerik:GridViewDataColumn.CellTemplate>
+                            <DataTemplate >
+                                <TextBlock Text="{Binding AreaName}"></TextBlock>
+                            </DataTemplate>
+                        </telerik:GridViewDataColumn.CellTemplate>
+                    </telerik:GridViewDataColumn>
+                    <telerik:GridViewDataColumn Header="组、终端名称" IsReadOnly="True" Width="250">
+                        <telerik:GridViewDataColumn.CellTemplate>
+                            <DataTemplate >
+                                <TextBlock Text="{Binding NodeName}"></TextBlock>
+                            </DataTemplate>
+                        </telerik:GridViewDataColumn.CellTemplate>
+                    </telerik:GridViewDataColumn>
+
+                    <telerik:GridViewDataColumn IsFilterable="True" IsFilteringDeferred="True"  HeaderTextAlignment="Center" Header="终端状态" IsReadOnly="True" Width="100" >
+                        <telerik:GridViewDataColumn.CellTemplate>
+                            <DataTemplate >
+                                <Grid >
+                                    <Image Visibility="{Binding IsGroup, Converter={StaticResource OppositeBoolToVisibleConverter}}" HorizontalAlignment="Center" VerticalAlignment="Center"  Source="{Binding Path=State, Converter={StaticResource imageconverter}}" Width="25" Height="25"></Image>
+                                </Grid>
+                            </DataTemplate>
+                        </telerik:GridViewDataColumn.CellTemplate>
+                    </telerik:GridViewDataColumn>
+                    
+                </telerik:RadTreeListView.Columns>
+            </telerik:RadTreeListView>
+            <Grid Grid.Column="1" >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+
+                    <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Margin="10,0,0,0" VerticalAlignment="Top"  FontWeight="Bold" Text="亮灯率设置须知:"/>
+                <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Grid.Row="1" Margin="10,0,0,0" Width="180" TextWrapping="Wrap" VerticalAlignment="Top"  HorizontalAlignment="Left" 
+                   >
+                <Run>1. 亮灯率设置只能在开灯情况下进行。</Run>
+                    <LineBreak/>
+                <Run>2. 选择好终端后，点击“下一步”按钮，选测或巡测四次。</Run>
+                                        <LineBreak/>
+                <Run>3. 待数据都返回后，若数据无异常即可点击“保存”按钮进行保存。</Run>
+                                        <LineBreak/>
+                <Run>4. 若存在数据异常，则需要手动再次选测，直到四次选测数据都正常后才能保存。</Run>
+                    </TextBlock>
+
+            </Grid>
+
+                </Grid>
+
+            <Grid Visibility="{Binding page2visi}" HorizontalAlignment="Left">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" MinHeight="200"/>
+                    <RowDefinition Height="Auto" MinHeight="30" />
+                    <RowDefinition Height="Auto" MinHeight="30" />
+                </Grid.RowDefinitions>
+
+                <telerik:RadGridView x:Name="ControlParaGridView" AutoGenerateColumns="False" ItemsSource="{Binding Items}" 
+                                 SelectedItem="{Binding CurrentSelectItem}"
+								 Background="Transparent" Margin="5,5,0,0"
+								 HorizontalAlignment="Stretch" 
+								 VerticalAlignment="Stretch" 
+                                 CanUserFreezeColumns="False" 
+								 CanUserReorderColumns="False" 
+								 RowIndicatorVisibility="Collapsed"   ShowGroupPanel="False" ShowColumnHeaders="True" SnapsToDevicePixels="True">
+                    <telerik:RadGridView.Columns>
+                        <telerik:GridViewDataColumn Header="序号" IsFilterable="False" IsSortable="False" Width="60" DataMemberBinding="{Binding Index}" IsReadOnly="True" />
+                        <telerik:GridViewDataColumn Header="终端地址" IsFilterable="False"  MinWidth="75"  DataMemberBinding="{Binding ShowId}" IsReadOnly="True" />
+                        <telerik:GridViewDataColumn Header="终端名称" IsFilterable="False" IsSortable="False" Width="160"  DataMemberBinding="{Binding Name}" IsReadOnly="True" />
+                        <telerik:GridViewDataColumn Header="归属分组" IsFilterable="False"  Width="160"  DataMemberBinding="{Binding GrpName}" IsReadOnly="True" />
+                        <telerik:GridViewDataColumn Header="选测数据1" IsFilterable="False"  Width="75"  DataMemberBinding="{Binding X1}" IsReadOnly="True" />
+                        <telerik:GridViewDataColumn Header="选测数据2" IsFilterable="False"  Width="75"  DataMemberBinding="{Binding X2}" IsReadOnly="True" />
+                        <telerik:GridViewDataColumn Header="选测数据3" IsFilterable="False"  Width="75"  DataMemberBinding="{Binding X3}" IsReadOnly="True" />
+                        <telerik:GridViewDataColumn Header="测试数据" IsFilterable="False"  Width="75"  DataMemberBinding="{Binding T}" IsReadOnly="True" />
+                        <telerik:GridViewDataColumn Header="提示" IsFilterable="False"  Width="160"  DataMemberBinding="{Binding Remark}" IsReadOnly="True" />
+                    </telerik:RadGridView.Columns>
+                </telerik:RadGridView>
+
+                <Grid Grid.Row="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" MinHeight="30"/>
+                        <RowDefinition Height="Auto" MinHeight="30" />
+                        <RowDefinition Height="Auto" MinHeight="30" />
+
+                    </Grid.RowDefinitions>
+                    <DockPanel HorizontalAlignment="Left" Margin="20,5">
+                        <TextBlock Text="当前选中终端:"></TextBlock>
+                        <TextBlock Text="{Binding CurrentSelectItem.ShowId}"></TextBlock>
+                        <TextBlock Text=" - "></TextBlock>
+                        <TextBlock Text="{Binding CurrentSelectItem.Name}"></TextBlock>
+                    </DockPanel>
+                    <DockPanel HorizontalAlignment="Right" Grid.Row="1" >
+                        <Button Content="选测" Margin="0,0,15,0" Width="120" Height="30" Command="{Binding CmdZcOrSnd}" CommandParameter="1" ></Button>
+                        <Button Content="删除数据1"  Margin="0,0,15,0" Width="120" Height="30"  Command="{Binding CmdZcOrSnd}" CommandParameter="2" ></Button>
+                        <Button Content="删除数据2"  Margin="0,0,15,0" Width="120" Height="30"   Command="{Binding CmdZcOrSnd}" CommandParameter="3"  ></Button>
+                        <Button Content="删除数据3"  Margin="0,0,15,0" Width="120" Height="30"  Command="{Binding CmdZcOrSnd}" CommandParameter="4"  ></Button>
+                        <Button Content="删除测试数据" Margin="0,0,25,0"   Width="120" Height="30"  Command="{Binding CmdZcOrSnd}" CommandParameter="5"  ></Button>
+                    </DockPanel>
+                    <Grid Visibility="{Binding Visi}" Grid.Row="2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Text="回路亮灯率： " Margin="20,10,0,0" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top" />
+                        <ListBox   Grid.Column="1" Grid.Row="1"   Margin="0,10,0,0" Grid.RowSpan="2"  MinWidth="400" MaxWidth="960" VerticalAlignment="Top" ItemsSource="{Binding CurrentSelectItem.Loops}">
+                            <ListBox.Template>
+                                <ControlTemplate TargetType="{x:Type ListBox}">
+                                    <!--<ScrollViewer Background="Transparent" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">-->
+                                    <WrapPanel Orientation="Horizontal" IsItemsHost="True" ScrollViewer.CanContentScroll="True"/>
+                                    <!--</ScrollViewer>-->
+                                </ControlTemplate>
+                            </ListBox.Template>
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <DockPanel HorizontalAlignment="Left" VerticalAlignment="Center">
+                                        <TextBlock Text="回路" ToolTip="回路测试数据的亮灯率-回路矫正因子"></TextBlock>
+                                        <TextBlock Text="{Binding LoopId}"></TextBlock>
+                                        <TextBlock Text=" - "></TextBlock>
+                                        <TextBlock Text="{Binding TargetTestX}"></TextBlock>
+                                        <TextBlock Text="%"></TextBlock>
+                                        <TextBlock Text=" - "></TextBlock>
+                                        <TextBox Text="{Binding LdlValue}" Width="35"></TextBox>
+                                    </DockPanel>
+
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                            <ListBox.ItemContainerStyle>
+                                <Style TargetType="ListBoxItem">
+                                    <Setter Property="Background" Value="Transparent"/>
+                                </Style>
+                            </ListBox.ItemContainerStyle>
+                        </ListBox>
+
+
+                    </Grid>
+                </Grid>
+
+                <Grid Grid.Row="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" MinHeight="30"/>
+                        <RowDefinition Height="Auto" MinHeight="30" />
+                    </Grid.RowDefinitions>
+
+                    <DockPanel HorizontalAlignment="Right" >
+                        <CheckBox IsChecked="{Binding IsJumpCan}" Content="不清除异常数据" VerticalAlignment="Center"  Margin="0,0,15,0"></CheckBox>
+                        <Button Content="删除选中终端"  Margin="0,0,15,0" Width="120" Height="30"   Command="{Binding CmdZcOrSnd}" CommandParameter="6"  ></Button>
+                        <Button Content="巡测"  Margin="0,0,15,0" Width="120" Height="30"  Command="{Binding CmdZcOrSnd}" CommandParameter="7" ></Button>
+                        <Button Content="保存" Margin="0,0,25,0" Width="120" Height="30" Command="{Binding CmdZcOrSnd}" CommandParameter="8" ></Button>
+
+
+                    </DockPanel>
+                    <TextBlock Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center" Text="{Binding Remark}"></TextBlock>
+                </Grid>
+
+
+            </Grid>
+
+            <Button Grid.Row="1" Margin="0,0,45,0" Content="{Binding CmdText}" Command="{Binding CmdSetLdl}" HorizontalAlignment="Right" Width="120" Height="30" ></Button>
+        </Grid>
+      
+    </Grid>
+</UserControl>

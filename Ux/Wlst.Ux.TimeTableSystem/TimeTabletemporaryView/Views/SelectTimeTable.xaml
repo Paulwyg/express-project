@@ -1,0 +1,36 @@
+﻿<WindowForWlst:CustomChromeWindow x:Class="Wlst.Ux.TimeTableSystem.TimeTabletemporaryView.Views.SelectTimeTable"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+                                  xmlns:WindowForWlst="clr-namespace:WindowForWlst;assembly=WindowForWlst"
+                                  mc:Ignorable="d"  Topmost="True" TopmostButtonVisibility ="Collapsed"
+             Title="选择时间表" TitleCetc="选择时间表" Height="500" Width="700">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" MinHeight="30"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <telerik:RadGridView x:Name="selecttimetable"  HorizontalAlignment="Left" ShowGroupPanel="False" RowIndicatorVisibility="Collapsed" Margin="10,7,0,7"
+                              ItemsSource="{Binding SelectedItems}" 
+                             IsFilteringAllowed="False" AutoGenerateColumns="False">
+            <telerik:RadGridView.Columns>
+                <telerik:GridViewDataColumn  Header="选择"  Width="50" >
+                    <telerik:GridViewDataColumn.CellTemplate>
+                        <DataTemplate >
+                            <CheckBox x:Name="checkBox1"  IsChecked="{Binding IsSelected}" IsEnabled="{Binding IsEnableUsed}" Margin="10,0,0,0" ></CheckBox>
+                        </DataTemplate>
+                    </telerik:GridViewDataColumn.CellTemplate>
+                </telerik:GridViewDataColumn>
+                <telerik:GridViewDataColumn  Header="序号"   DataMemberBinding="{Binding  Path=TimeId,Mode=TwoWay}" Width="50" />
+                <telerik:GridViewDataColumn  Header="时间表名称"   DataMemberBinding="{Binding  Path=TimeName,Mode=TwoWay}" Width="150" />
+                <telerik:GridViewDataColumn  Header="时间表描述"   DataMemberBinding="{Binding  Path=TimeDesc,Mode=TwoWay}" Width="150" />
+                <telerik:GridViewDataColumn  Header="临时方案"   DataMemberBinding="{Binding  Path=OwnerScheme,Mode=TwoWay}" Width="150" />
+                <telerik:GridViewDataColumn  Header="时间表段数"   DataMemberBinding="{Binding  Path=SectionNumber,Mode=TwoWay}" Width="100" />
+            </telerik:RadGridView.Columns>
+        </telerik:RadGridView>
+        <Button Grid.Row="1" Content="确定"  Width="120" Height="28"  Margin="10,5,150,10"  HorizontalAlignment="Right" Click="Button_Click_1" />
+        <Button Grid.Row="1" Content="取消"  Width="120" Height="28"   Margin="10,5,10,10"  HorizontalAlignment="Right" Click="Button_Click_2" />
+    </Grid>
+</WindowForWlst:CustomChromeWindow>

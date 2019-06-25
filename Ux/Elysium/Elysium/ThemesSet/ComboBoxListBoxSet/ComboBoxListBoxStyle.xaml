@@ -1,0 +1,391 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:ed="http://schemas.microsoft.com/expression/2010/drawing" xmlns:shell="http://schemas.microsoft.com/winfx/2006/xaml/presentation/shell" xmlns:system="clr-namespace:System;assembly=mscorlib" xmlns:params="clr-namespace:Elysium.Parameters" xmlns:primitives="clr-namespace:Elysium.Controls.Primitives" xmlns:controls="clr-namespace:Elysium.Controls" xmlns:converters="clr-namespace:Elysium.Converters"
+                    xmlns:ComboBoxListBoxSet="clr-namespace:Elysium.ThemesSet.ComboBoxListBoxSet"
+                    xmlns:FontSet="clr-namespace:Elysium.ThemesSet.FontSet">
+  <ResourceDictionary.MergedDictionaries>
+    <ResourceDictionary Source="/Elysium;component/Themes/Brushes.xaml" />
+    <ResourceDictionary Source="/Elysium;component/Themes/LightBrushes.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+  <converters:DoubleToGridLengthConverter x:Key="DoubleToGridLengthConverter" />
+  <converters:DoubleToThicknessConverter x:Key="DoubleToThicknessConverter" />
+  <converters:GridLengthToDoubleConverter x:Key="GridLengthToDoubleConverter" />
+  <converters:ThicknessToDoubleConverter x:Key="ThicknessToDoubleConverter" />
+  <converters:PercentToAngleConverter x:Key="PercentToAngleConverter" />
+  <converters:AngleToCoordinateConverter x:Key="AngleToCoordinateConverter" />
+  <converters:NumberPositiveToNegativeConverter x:Key="NumberPositiveToNegativeConverter" />
+  <converters:ThicknessPositiveToNegativeConverter x:Key="ThicknessPositiveToNegativeConverter" />
+  <converters:ThicknessConverter x:Key="ThicknessConverter" />
+    <converters:TabItemNameConverter x:Key="myTabItemNameConverter" />
+  <converters:IsGreaterThanConverter x:Key="IsGreaterThanConverter" />
+  <Style x:Key="FocusVisualStyle">
+    <Setter Property="Control.Template">
+      <Setter.Value>
+        <ControlTemplate>
+          <Rectangle Margin="{TemplateBinding params:General.DefaultPadding}" Stroke="{StaticResource ForegroundBrush}" StrokeThickness="{TemplateBinding params:General.DefaultThicknessValue}" StrokeDashArray="2 1" RenderOptions.EdgeMode="Aliased" />
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+ 
+  <Style x:Key="SelectorsItemsBaseStyle" TargetType="{x:Type ListBoxItem}">
+        <Setter Property="Background" Value="{Binding RelativeSource={RelativeSource Self}, Path=(ComboBoxListBoxSet:ComboBoxListBoxAttriXaml.NormalBackgrounBrush), Mode=OneWay}" />
+        <Setter Property="BorderBrush" Value="{Binding RelativeSource={RelativeSource Self}, Path=(ComboBoxListBoxSet:ComboBoxListBoxAttriXaml.NormalBorderBrush), Mode=OneWay}" />
+        <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource Self}, Path=(ComboBoxListBoxSet:ComboBoxListBoxAttriXaml.NormalForegroundBrush), Mode=OneWay}" />
+        <Setter Property="BorderThickness" Value="{Binding RelativeSource={RelativeSource Self}, Path=(ComboBoxListBoxSet:ComboBoxListBoxAttriXaml.InnerBorderThickness), Mode=OneWay}" />
+    <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type Selector}}, Path=Foreground, Mode=OneWay}" />
+        <Setter Property="FontStretch" Value="{Binding RelativeSource={RelativeSource Self}, Path=(FontSet:FontAttriXaml.MyFontStretch), Mode=OneWay}" />
+        <Setter Property="FontFamily" Value="{Binding RelativeSource={RelativeSource Self}, Path=(FontSet:FontAttriXaml.MyFontFamily), Mode=OneWay}" />
+        <Setter Property="FontSize" Value="{Binding RelativeSource={RelativeSource Self}, Path=(FontSet:FontAttriXaml.MyFontSize), Mode=OneWay}" />
+       
+        <Setter Property="FontStyle" Value="{Binding RelativeSource={RelativeSource Self}, Path=(FontSet:FontAttriXaml.MyFontStyle), Mode=OneWay}" />
+        <Setter Property="FontWeight" Value="{Binding RelativeSource={RelativeSource Self}, Path=(FontSet:FontAttriXaml.MyFontWeight), Mode=OneWay}" />
+        <Setter Property="TextOptions.TextFormattingMode" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type Selector}}, Path=(TextOptions.TextFormattingMode), Mode=OneWay}" />
+    <Setter Property="TextOptions.TextRenderingMode" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type Selector}}, Path=(TextOptions.TextRenderingMode), Mode=OneWay}" />
+    <Setter Property="RenderOptions.ClearTypeHint" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type Selector}}, Path=(RenderOptions.ClearTypeHint), Mode=OneWay}" />
+    <Setter Property="Focusable" Value="True" />
+    <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisualStyle}" />
+    <Setter Property="HorizontalContentAlignment" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type Selector}}, Path=HorizontalContentAlignment, Mode=OneWay}" />
+    <Setter Property="VerticalContentAlignment" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type Selector}}, Path=VerticalContentAlignment, Mode=OneWay}" />
+    <Setter Property="Padding" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type Selector}}, Path=Padding, Mode=OneWay}" />
+    <Setter Property="SnapsToDevicePixels" Value="True" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="{x:Type ListBoxItem}">
+          <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" TextBlock.Foreground="{TemplateBinding Foreground}" TextBlock.FontSize="{TemplateBinding FontSize}" TextBlock.FontStretch="{TemplateBinding FontStretch}" TextBlock.FontStyle="{TemplateBinding FontStyle}" TextBlock.FontWeight="{TemplateBinding FontWeight}" TextOptions.TextFormattingMode="{TemplateBinding TextOptions.TextFormattingMode}" TextOptions.TextRenderingMode="{TemplateBinding TextOptions.TextRenderingMode}" RenderOptions.ClearTypeHint="{TemplateBinding RenderOptions.ClearTypeHint}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
+            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Margin="{TemplateBinding Padding}" />
+          </Border>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+    <Style.Triggers>
+      <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource Self}, Path=(ComboBoxListBoxSet:ComboBoxListBoxAttriXaml.DisableForegroundBrush), Mode=OneWay}" />
+                <Setter Property="Background" Value="{Binding RelativeSource={RelativeSource Self}, Path=(ComboBoxListBoxSet:ComboBoxListBoxAttriXaml.DisableBackgroundBrush), Mode=OneWay}" />
+                <Setter Property="BorderBrush" Value="{Binding RelativeSource={RelativeSource Self}, Path=(ComboBoxListBoxSet:ComboBoxListBoxAttriXaml.DisableBorderBrush), Mode=OneWay}" />
+            </Trigger>
+    </Style.Triggers>
+  </Style>
+  <Style TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource SelectorsItemsBaseStyle}">
+    <Setter Property="OverridesDefaultStyle" Value="True" />
+    <Style.Triggers>
+      <MultiTrigger>
+        <MultiTrigger.Conditions>
+          <Condition Property="IsEnabled" Value="True" />
+          <Condition Property="IsSelected" Value="True" />
+        </MultiTrigger.Conditions>
+        <MultiTrigger.Setters>
+                    <Setter Property="Background" Value="{Binding RelativeSource={RelativeSource Self}, Path=(ComboBoxListBoxSet:ComboBoxListBoxAttriXaml.PressedBackgroundBrush), Mode=OneWay}" />
+                    <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource Self}, Path=(ComboBoxListBoxSet:ComboBoxListBoxAttriXaml.PressedForegroundBrush), Mode=OneWay}" />
+                    <Setter Property="BorderBrush" Value="{Binding RelativeSource={RelativeSource Self}, Path=(ComboBoxListBoxSet:ComboBoxListBoxAttriXaml.PressedBorderBrush), Mode=OneWay}" />
+                </MultiTrigger.Setters>
+      </MultiTrigger>
+      <MultiTrigger>
+        <MultiTrigger.Conditions>
+          <Condition Property="IsEnabled" Value="False" />
+          <Condition Property="IsSelected" Value="True" />
+        </MultiTrigger.Conditions>
+        <MultiTrigger.Setters>
+                    <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource Self}, Path=(ComboBoxListBoxSet:ComboBoxListBoxAttriXaml.PressedForegroundBrush), Mode=OneWay}" />
+                    <Setter Property="Background" Value="{Binding RelativeSource={RelativeSource Self}, Path=(ComboBoxListBoxSet:ComboBoxListBoxAttriXaml.DisableBackgroundBrush), Mode=OneWay}" />
+                    <Setter Property="BorderBrush" Value="{Binding RelativeSource={RelativeSource Self}, Path=(ComboBoxListBoxSet:ComboBoxListBoxAttriXaml.DisableBorderBrush), Mode=OneWay}" />
+                </MultiTrigger.Setters>
+      </MultiTrigger>
+    </Style.Triggers>
+  </Style>
+    
+  <Style TargetType="{x:Type ComboBoxItem}" BasedOn="{StaticResource SelectorsItemsBaseStyle}">
+        <Setter Property="Background" Value="{Binding RelativeSource={RelativeSource Self}, Path=(ComboBoxListBoxSet:ComboBoxListBoxAttriXaml.NormalBackgrounBrush), Mode=OneWay}" />
+        <!--<Setter Property="Background" Value="{StaticResource BackgroundBrush}" />-->
+    <Setter Property="OverridesDefaultStyle" Value="True" />
+    <Style.Triggers>
+      <MultiTrigger>
+        <MultiTrigger.Conditions>
+          <Condition Property="IsEnabled" Value="True" />
+          <Condition Property="IsHighlighted" Value="True" />
+        </MultiTrigger.Conditions>
+                <Setter Property="Background" Value="{Binding RelativeSource={RelativeSource Self}, Path=(ComboBoxListBoxSet:ComboBoxListBoxAttriXaml.PressedBackgroundBrush), Mode=OneWay}" />
+                <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource Self}, Path=(ComboBoxListBoxSet:ComboBoxListBoxAttriXaml.PressedForegroundBrush), Mode=OneWay}" />
+                <Setter Property="BorderBrush" Value="{Binding RelativeSource={RelativeSource Self}, Path=(ComboBoxListBoxSet:ComboBoxListBoxAttriXaml.PressedBorderBrush), Mode=OneWay}" />
+            </MultiTrigger>
+      <MultiTrigger>
+        <MultiTrigger.Conditions>
+          <Condition Property="IsEnabled" Value="False" />
+          <Condition Property="IsHighlighted" Value="True" />
+        </MultiTrigger.Conditions>
+                <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource Self}, Path=(ComboBoxListBoxSet:ComboBoxListBoxAttriXaml.PressedForegroundBrush), Mode=OneWay}" />
+                <Setter Property="Background" Value="{Binding RelativeSource={RelativeSource Self}, Path=(ComboBoxListBoxSet:ComboBoxListBoxAttriXaml.DisableBackgroundBrush), Mode=OneWay}" />
+                <Setter Property="BorderBrush" Value="{Binding RelativeSource={RelativeSource Self}, Path=(ComboBoxListBoxSet:ComboBoxListBoxAttriXaml.DisableBorderBrush), Mode=OneWay}" />
+            </MultiTrigger>
+    </Style.Triggers>
+  </Style>
+  <Style TargetType="{x:Type ListBox}">
+        <Setter Property="Background" Value="{Binding RelativeSource={RelativeSource Self}, Path=(ComboBoxListBoxSet:ComboBoxListBoxAttriXaml.NormalBackgrounBrush), Mode=OneWay}" />
+        <Setter Property="BorderBrush" Value="{Binding RelativeSource={RelativeSource Self}, Path=(ComboBoxListBoxSet:ComboBoxListBoxAttriXaml.NormalBorderBrush), Mode=OneWay}" />
+        <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource Self}, Path=(ComboBoxListBoxSet:ComboBoxListBoxAttriXaml.NormalForegroundBrush), Mode=OneWay}" />
+        <Setter Property="BorderThickness" Value="{Binding RelativeSource={RelativeSource Self}, Path=(ComboBoxListBoxSet:ComboBoxListBoxAttriXaml.BorderThickness), Mode=OneWay}" />
+        <Setter Property="FontSize" Value="{Binding RelativeSource={RelativeSource Self}, Path=(FontSet:FontAttriXaml.MyFontSize), Mode=OneWay}" />
+        <Setter Property="FontStretch" Value="{Binding RelativeSource={RelativeSource Self}, Path=(FontSet:FontAttriXaml.MyFontStretch), Mode=OneWay}" />
+        <Setter Property="FontFamily" Value="{Binding RelativeSource={RelativeSource Self}, Path=(FontSet:FontAttriXaml.MyFontFamily), Mode=OneWay}" />
+        <Setter Property="FontStyle" Value="{Binding RelativeSource={RelativeSource Self}, Path=(FontSet:FontAttriXaml.MyFontStyle), Mode=OneWay}" />
+        <Setter Property="FontWeight" Value="{Binding RelativeSource={RelativeSource Self}, Path=(FontSet:FontAttriXaml.MyFontWeight), Mode=OneWay}" />
+        <Setter Property="TextOptions.TextFormattingMode" Value="Display" />
+    <Setter Property="TextOptions.TextRenderingMode" Value="ClearType" />
+    <Setter Property="RenderOptions.ClearTypeHint" Value="Enabled" />
+    <Setter Property="Focusable" Value="True" />
+    <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+    <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto" />
+    <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
+    <Setter Property="ScrollViewer.CanContentScroll" Value="true" />
+    <Setter Property="ScrollViewer.PanningMode" Value="Both" />
+    <Setter Property="Stylus.IsFlicksEnabled" Value="False" />
+    <Setter Property="HorizontalContentAlignment" Value="Left" />
+    <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="Padding" Value="0"></Setter>
+    <!--<Setter Property="Padding" Value="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}" />-->
+    <Setter Property="OverridesDefaultStyle" Value="True" />
+    <Setter Property="SnapsToDevicePixels" Value="True" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="{x:Type ListBox}">
+          <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
+            <ScrollViewer Background="{x:Null}" Foreground="{TemplateBinding Foreground}" FontSize="{TemplateBinding FontSize}" FontStretch="{TemplateBinding FontStretch}" FontStyle="{TemplateBinding FontStyle}" FontWeight="{TemplateBinding FontWeight}" TextOptions.TextFormattingMode="{TemplateBinding TextOptions.TextFormattingMode}" TextOptions.TextRenderingMode="{TemplateBinding TextOptions.TextRenderingMode}" RenderOptions.ClearTypeHint="{TemplateBinding RenderOptions.ClearTypeHint}" Focusable="False">
+              <ItemsPresenter />
+            </ScrollViewer>
+          </Border>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+    <Style.Triggers>
+      <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=FontSize, Mode=OneWay, Converter={StaticResource IsGreaterThanConverter}, ConverterParameter=18}">
+        <Setter Property="TextOptions.TextFormattingMode" Value="Ideal" />
+      </DataTrigger>
+      <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource Self}, Path=(ComboBoxListBoxSet:ComboBoxListBoxAttriXaml.DisableForegroundBrush), Mode=OneWay}" />
+                <Setter Property="Background" Value="{Binding RelativeSource={RelativeSource Self}, Path=(ComboBoxListBoxSet:ComboBoxListBoxAttriXaml.DisableBackgroundBrush), Mode=OneWay}" />
+                <Setter Property="BorderBrush" Value="{Binding RelativeSource={RelativeSource Self}, Path=(ComboBoxListBoxSet:ComboBoxListBoxAttriXaml.DisableBorderBrush), Mode=OneWay}" />
+            </Trigger>
+      <Trigger Property="IsGrouping" Value="True">
+        <Setter Property="ScrollViewer.CanContentScroll" Value="False" />
+      </Trigger>
+    </Style.Triggers>
+  </Style>
+  <Style x:Key="ComboBoxToggleButton" TargetType="{x:Type ToggleButton}">
+        <Setter Property="FontSize" Value="{Binding RelativeSource={RelativeSource Self}, Path=(FontSet:FontAttriXaml.MyFontSize), Mode=OneWay}" />
+        <Setter Property="FontStyle" Value="{Binding RelativeSource={RelativeSource Self}, Path=(FontSet:FontAttriXaml.MyFontStyle), Mode=OneWay}" />
+        <Setter Property="FontWeight" Value="{Binding RelativeSource={RelativeSource Self}, Path=(FontSet:FontAttriXaml.MyFontWeight), Mode=OneWay}" />
+        <Setter Property="FontStretch" Value="{Binding RelativeSource={RelativeSource Self}, Path=(FontSet:FontAttriXaml.MyFontStretch), Mode=OneWay}" />
+        <Setter Property="FontFamily" Value="{Binding RelativeSource={RelativeSource Self}, Path=(FontSet:FontAttriXaml.MyFontFamily), Mode=OneWay}" />
+        <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="{x:Type ToggleButton}">
+          <Border Background="{StaticResource TransparentBrush}" BorderBrush="{StaticResource TransparentBrush}" BorderThickness="0" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
+            <Polygon x:Name="ArrowGlyph" Fill="{StaticResource MiddleLightBrush}" StrokeThickness="0" Stretch="Uniform" Margin="{Binding RelativeSource={RelativeSource AncestorType={x:Type ComboBox}}, Path=(params:ComboBox.ArrowMargin), Mode=OneWay}" HorizontalAlignment="Right" VerticalAlignment="Center" Width="{Binding RelativeSource={RelativeSource AncestorType={x:Type ComboBox}}, Path=(params:ComboBox.ArrowSize), Mode=OneWay}" Height="{Binding RelativeSource={RelativeSource AncestorType={x:Type ComboBox}}, Path=(params:ComboBox.ArrowSize), Mode=OneWay}">
+              <Polygon.Points>
+                <PointCollection>
+                  <Point X="0" Y="0" />
+                  <Point X="3" Y="4" />
+                  <Point X="6" Y="0" />
+                </PointCollection>
+              </Polygon.Points>
+            </Polygon>
+          </Border>
+          <ControlTemplate.Triggers>
+            <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType={x:Type ComboBox}}, Path=IsDropDownOpen, Mode=OneWay}">
+              <Setter TargetName="ArrowGlyph" Property="Fill" Value="{StaticResource AccentBrush}" />
+            </DataTrigger>
+          </ControlTemplate.Triggers>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+  <Style x:Key="ComboBoxTextBox" TargetType="{x:Type TextBox}">
+        <Setter Property="Background" Value="{Binding RelativeSource={RelativeSource Self}, Path=(ComboBoxListBoxSet:ComboBoxListBoxAttriXaml.NormalBackgrounBrush), Mode=OneWay}" />
+        <Setter Property="FontStyle" Value="{Binding RelativeSource={RelativeSource Self}, Path=(FontSet:FontAttriXaml.MyFontStyle), Mode=OneWay}" />
+        <Setter Property="FontWeight" Value="{Binding RelativeSource={RelativeSource Self}, Path=(FontSet:FontAttriXaml.MyFontWeight), Mode=OneWay}" />
+        <Setter Property="FontSize" Value="{Binding RelativeSource={RelativeSource Self}, Path=(FontSet:FontAttriXaml.MyFontSize), Mode=OneWay}" />
+        <Setter Property="FontStretch" Value="{Binding RelativeSource={RelativeSource Self}, Path=(FontSet:FontAttriXaml.MyFontStretch), Mode=OneWay}" />
+        <Setter Property="FontFamily" Value="{Binding RelativeSource={RelativeSource Self}, Path=(FontSet:FontAttriXaml.MyFontFamily), Mode=OneWay}" />
+        <Setter Property="TextOptions.TextFormattingMode" Value="Display" />
+    <Setter Property="TextOptions.TextRenderingMode" Value="ClearType" />
+    <Setter Property="RenderOptions.ClearTypeHint" Value="Enabled" />
+        <Setter Property="CaretBrush" Value="{Binding RelativeSource={RelativeSource Self}, Path=(ComboBoxListBoxSet:ComboBoxListBoxAttriXaml.CaretBrush), Mode=OneWay}" />
+        <Setter Property="SelectionBrush" Value="{Binding RelativeSource={RelativeSource Self}, Path=(ComboBoxListBoxSet:ComboBoxListBoxAttriXaml.SelectionBrush), Mode=OneWay}" />
+    <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+    <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst" />
+    <Setter Property="Stylus.IsFlicksEnabled" Value="False" />
+    <Setter Property="OverridesDefaultStyle" Value="True" />
+    <Setter Property="SnapsToDevicePixels" Value="True" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="{x:Type TextBox}">
+                    <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="0" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
+            <ScrollViewer x:Name="PART_ContentHost" Background="{x:Null}" Foreground="{TemplateBinding Foreground}" FontFamily="{TemplateBinding FontFamily}" 
+                          FontSize="{TemplateBinding FontSize}" FontStretch="{TemplateBinding FontStretch}" FontStyle="{TemplateBinding FontStyle}"
+                          FontWeight="{TemplateBinding FontWeight}" TextOptions.TextFormattingMode="{TemplateBinding TextOptions.TextFormattingMode}"
+                          TextOptions.TextRenderingMode="{TemplateBinding TextOptions.TextRenderingMode}" RenderOptions.ClearTypeHint="{TemplateBinding RenderOptions.ClearTypeHint}" 
+                          Margin="{TemplateBinding Padding}" />
+          </Border>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+    <Style.Triggers>
+      <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=FontSize, Mode=OneWay, Converter={StaticResource IsGreaterThanConverter}, ConverterParameter=18}">
+        <Setter Property="TextOptions.TextFormattingMode" Value="Ideal" />
+      </DataTrigger>
+    </Style.Triggers>
+  </Style>
+  <Style TargetType="{x:Type ComboBox}">
+        <Setter Property="Background" Value="{Binding RelativeSource={RelativeSource Self}, Path=(ComboBoxListBoxSet:ComboBoxListBoxAttriXaml.NormalBackgrounBrush), Mode=OneWay}" />
+        <Setter Property="BorderBrush" Value="{Binding RelativeSource={RelativeSource Self}, Path=(ComboBoxListBoxSet:ComboBoxListBoxAttriXaml.NormalBorderBrush), Mode=OneWay}" />
+        <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource Self}, Path=(ComboBoxListBoxSet:ComboBoxListBoxAttriXaml.NormalForegroundBrush), Mode=OneWay}" />
+        <Setter Property="BorderThickness" Value="{Binding RelativeSource={RelativeSource Self}, Path=(ComboBoxListBoxSet:ComboBoxListBoxAttriXaml.BorderThickness), Mode=OneWay}" />
+        <Setter Property="FontSize" Value="{Binding RelativeSource={RelativeSource Self}, Path=(FontSet:FontAttriXaml.MyFontSize), Mode=OneWay}" />
+        <Setter Property="FontStretch" Value="{Binding RelativeSource={RelativeSource Self}, Path=(FontSet:FontAttriXaml.MyFontStretch), Mode=OneWay}" />
+        <Setter Property="FontFamily" Value="{Binding RelativeSource={RelativeSource Self}, Path=(FontSet:FontAttriXaml.MyFontFamily), Mode=OneWay}" />
+        <Setter Property="FontStyle" Value="{Binding RelativeSource={RelativeSource Self}, Path=(FontSet:FontAttriXaml.MyFontStyle), Mode=OneWay}" />
+        <Setter Property="FontWeight" Value="{Binding RelativeSource={RelativeSource Self}, Path=(FontSet:FontAttriXaml.MyFontWeight), Mode=OneWay}" />
+    <Setter Property="TextOptions.TextFormattingMode" Value="Display" />
+    <Setter Property="TextOptions.TextRenderingMode" Value="ClearType" />
+    <Setter Property="RenderOptions.ClearTypeHint" Value="Enabled" />
+    <Setter Property="params:General.ShadowBrush" Value="{StaticResource ForegroundBrush}" />
+    <Setter Property="Focusable" Value="True" />
+    <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisualStyle}" />
+    <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto" />
+    <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
+    <Setter Property="ScrollViewer.CanContentScroll" Value="True" />
+    <Setter Property="ScrollViewer.PanningMode" Value="Both" />
+    <Setter Property="Stylus.IsFlicksEnabled" Value="False" />
+    <Setter Property="HorizontalContentAlignment" Value="Left" />
+    <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="Padding" Value="0" />
+        <!--<Setter Property="Padding" Value="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}" />-->
+    <Setter Property="OverridesDefaultStyle" Value="True" />
+    <Setter Property="SnapsToDevicePixels" Value="True" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="{x:Type ComboBox}">
+          <Decorator x:Name="LayoutRoot">
+            <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
+              <Grid>
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition Width="*" />
+                  <ColumnDefinition Width="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(params:ComboBox.ButtonSize), Converter={StaticResource DoubleToGridLengthConverter}}" />
+                </Grid.ColumnDefinitions>
+                <Popup x:Name="PART_Popup" Grid.Column="0" Grid.ColumnSpan="2" AllowsTransparency="True" IsOpen="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=IsDropDownOpen, Mode=TwoWay}" PlacementTarget="{Binding ElementName=LayoutRoot}" Placement="Custom" VerticalOffset="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=BorderThickness, Converter={StaticResource ThicknessToDoubleConverter}, ConverterParameter='Bottom'}" CustomPopupPlacementCallback="{x:Static params:DropDown.PopupPlacementCallback}" PopupAnimation="{DynamicResource {x:Static SystemParameters.ComboBoxPopupAnimationKey}}" Tag="{DynamicResource {x:Static SystemParameters.ComboBoxAnimationKey}}">
+                  <Popup.Resources>
+                    <Style TargetType="{x:Type ScrollBar}" BasedOn="{StaticResource {x:Type ScrollBar}}">
+                      <Style.Triggers>
+                        <Trigger Property="Orientation" Value="Vertical">
+                          <Setter Property="BorderThickness" Value="0" />
+                        </Trigger>
+                      </Style.Triggers>
+                    </Style>
+                  </Popup.Resources>
+                  <Border x:Name="PopupRoot" Tag="{DynamicResource {x:Static SystemParameters.DropShadowKey}}">
+                    <ScrollViewer x:Name="DropDownScrollViewer" Background="{StaticResource BackgroundBrush}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Foreground="{TemplateBinding Foreground}" FontSize="{TemplateBinding FontSize}" FontStretch="{TemplateBinding FontStretch}" FontStyle="{TemplateBinding FontStyle}" FontWeight="{TemplateBinding FontWeight}" TextOptions.TextFormattingMode="{TemplateBinding TextOptions.TextFormattingMode}" TextOptions.TextRenderingMode="{TemplateBinding TextOptions.TextRenderingMode}" RenderOptions.ClearTypeHint="{TemplateBinding RenderOptions.ClearTypeHint}" MinWidth="{Binding ElementName=LayoutRoot, Path=ActualWidth}" MaxHeight="{TemplateBinding MaxDropDownHeight}">
+                      <ItemsPresenter KeyboardNavigation.DirectionalNavigation="Contained" />
+                    </ScrollViewer>
+                  </Border>
+                </Popup>
+                <ToggleButton x:Name="Button" Grid.Column="0" Grid.ColumnSpan="2" IsChecked="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=IsDropDownOpen, Mode=TwoWay}" Style="{StaticResource ComboBoxToggleButton}" />
+                <ContentPresenter x:Name="ContentPresenter" Grid.Column="0" Content="{TemplateBinding SelectionBoxItem}" ContentStringFormat="{TemplateBinding SelectionBoxItemStringFormat}" ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}" ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}" TextBlock.Foreground="{TemplateBinding Foreground}" TextBlock.FontSize="{TemplateBinding FontSize}" TextBlock.FontStretch="{TemplateBinding FontStretch}" TextBlock.FontStyle="{TemplateBinding FontStyle}" TextBlock.FontWeight="{TemplateBinding FontWeight}" TextOptions.TextFormattingMode="{TemplateBinding TextOptions.TextFormattingMode}" TextOptions.TextRenderingMode="{TemplateBinding TextOptions.TextRenderingMode}" RenderOptions.ClearTypeHint="{TemplateBinding RenderOptions.ClearTypeHint}" IsHitTestVisible="False" Margin="{TemplateBinding Padding}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Visibility="Visible" />
+                <Grid x:Name="TextBoxLayout" Grid.Column="0" Background="{StaticResource BackgroundBrush}" Visibility="Collapsed">
+                  <TextBox x:Name="PART_EditableTextBox" Foreground="{TemplateBinding Foreground}" FontFamily="{TemplateBinding FontFamily}" 
+                           FontSize="{TemplateBinding FontSize}" FontStretch="{TemplateBinding FontStretch}" FontStyle="{TemplateBinding FontStyle}"
+                           FontWeight="{TemplateBinding FontWeight}" IsReadOnly="{TemplateBinding IsReadOnly}"
+                           Margin="{TemplateBinding Padding}" Style="{StaticResource ComboBoxTextBox}" />
+                </Grid>
+              </Grid>
+            </Border>
+          </Decorator>
+          <ControlTemplate.Triggers>
+            <Trigger Property="IsEditable" Value="True">
+              <Setter TargetName="Button" Property="Grid.Column" Value="1" />
+              <Setter TargetName="Button" Property="Grid.ColumnSpan" Value="1" />
+              <Setter TargetName="ContentPresenter" Property="Visibility" Value="Collapsed" />
+              <Setter TargetName="TextBoxLayout" Property="Visibility" Value="Visible" />
+            </Trigger>
+            <Trigger SourceName="PART_Popup" Property="Tag" Value="False">
+              <Setter TargetName="PART_Popup" Property="PopupAnimation" Value="None" />
+            </Trigger>
+            <Trigger Property="IsDropDownOpen" Value="True">
+              <Setter TargetName="PART_Popup" Property="params:DropDown.IsOpen" Value="True" />
+            </Trigger>
+            <MultiTrigger>
+              <MultiTrigger.Conditions>
+                <Condition SourceName="PART_Popup" Property="params:DropDown.IsDefaultHorizontalPosition" Value="True" />
+                <Condition SourceName="PART_Popup" Property="params:DropDown.IsDefaultVerticalPosition" Value="True" />
+              </MultiTrigger.Conditions>
+              <MultiTrigger.Setters>
+                <Setter TargetName="DropDownScrollViewer" Property="BorderThickness" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=BorderThickness, Mode=OneWay, Converter={StaticResource ThicknessConverter}, ConverterParameter='Left, Right, Bottom'}" />
+              </MultiTrigger.Setters>
+            </MultiTrigger>
+            <MultiTrigger>
+              <MultiTrigger.Conditions>
+                <Condition SourceName="PART_Popup" Property="params:DropDown.IsDefaultHorizontalPosition" Value="True" />
+                <Condition SourceName="PART_Popup" Property="params:DropDown.IsDefaultVerticalPosition" Value="False" />
+              </MultiTrigger.Conditions>
+              <MultiTrigger.Setters>
+                <Setter TargetName="DropDownScrollViewer" Property="BorderThickness" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=BorderThickness, Mode=OneWay, Converter={StaticResource ThicknessConverter}, ConverterParameter='Left, Top, Right'}" />
+              </MultiTrigger.Setters>
+            </MultiTrigger>
+            <MultiDataTrigger>
+              <MultiDataTrigger.Conditions>
+                <Condition Binding="{Binding ElementName=PopupRoot, Path=Tag}" Value="True" />
+                <Condition Binding="{Binding ElementName=PART_Popup, Path=(params:DropDown.IsDefaultVerticalPosition)}" Value="True" />
+              </MultiDataTrigger.Conditions>
+              <MultiDataTrigger.Setters>
+                <Setter TargetName="PopupRoot" Property="Effect">
+                  <Setter.Value>
+                    <DropShadowEffect Color="{Binding RelativeSource={RelativeSource AncestorType={x:Type ComboBox}}, Path=(params:General.ShadowBrush).(SolidColorBrush.Color)}" BlurRadius="4" ShadowDepth="2" Direction="315" Opacity="0.3" />
+                  </Setter.Value>
+                </Setter>
+                <Setter TargetName="PopupRoot" Property="Background" Value="{StaticResource TransparentBrush}" />
+                <Setter TargetName="PopupRoot" Property="Padding" Value="0,0,6,6" />
+              </MultiDataTrigger.Setters>
+            </MultiDataTrigger>
+            <MultiDataTrigger>
+              <MultiDataTrigger.Conditions>
+                <Condition Binding="{Binding ElementName=PopupRoot, Path=Tag}" Value="True" />
+                <Condition Binding="{Binding ElementName=PART_Popup, Path=(params:DropDown.IsDefaultVerticalPosition)}" Value="False" />
+              </MultiDataTrigger.Conditions>
+              <MultiDataTrigger.Setters>
+                <Setter TargetName="PopupRoot" Property="Effect">
+                  <Setter.Value>
+                    <DropShadowEffect Color="{Binding RelativeSource={RelativeSource AncestorType={x:Type ComboBox}}, Path=(params:General.ShadowBrush).(SolidColorBrush.Color)}" BlurRadius="4" ShadowDepth="0" Direction="45" Opacity="0.3" />
+                  </Setter.Value>
+                </Setter>
+                <Setter TargetName="PopupRoot" Property="Background" Value="{StaticResource TransparentBrush}" />
+                <Setter TargetName="PopupRoot" Property="Padding" Value="0,4,4,0" />
+              </MultiDataTrigger.Setters>
+            </MultiDataTrigger>
+          </ControlTemplate.Triggers>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+    <Style.Triggers>
+      <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=FontSize, Mode=OneWay, Converter={StaticResource IsGreaterThanConverter}, ConverterParameter=18}">
+        <Setter Property="TextOptions.TextFormattingMode" Value="Ideal" />
+      </DataTrigger>
+      <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource Self}, Path=(ComboBoxListBoxSet:ComboBoxListBoxAttriXaml.DisableForegroundBrush), Mode=OneWay}" />
+                <Setter Property="Background" Value="{Binding RelativeSource={RelativeSource Self}, Path=(ComboBoxListBoxSet:ComboBoxListBoxAttriXaml.DisableBackgroundBrush), Mode=OneWay}" />
+                <Setter Property="BorderBrush" Value="{Binding RelativeSource={RelativeSource Self}, Path=(ComboBoxListBoxSet:ComboBoxListBoxAttriXaml.DisableBorderBrush), Mode=OneWay}" />
+            </Trigger>
+      <Trigger Property="IsGrouping" Value="True">
+        <Setter Property="ScrollViewer.CanContentScroll" Value="False" />
+      </Trigger>
+      <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="{Binding RelativeSource={RelativeSource Self}, Path=(ComboBoxListBoxSet:ComboBoxListBoxAttriXaml.MouseOverBackgroundBrush), Mode=OneWay}" />
+                <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource Self}, Path=(ComboBoxListBoxSet:ComboBoxListBoxAttriXaml.MouseOverForegroundBrush), Mode=OneWay}" />
+                <Setter Property="BorderBrush" Value="{Binding RelativeSource={RelativeSource Self}, Path=(ComboBoxListBoxSet:ComboBoxListBoxAttriXaml.MouseOverBorderBrush), Mode=OneWay}" />
+            </Trigger>
+      <Trigger Property="IsDropDownOpen" Value="True">
+                <Setter Property="Background" Value="{Binding RelativeSource={RelativeSource Self}, Path=(ComboBoxListBoxSet:ComboBoxListBoxAttriXaml.NormalBackgrounBrush), Mode=OneWay}" />
+                <Setter Property="BorderBrush" Value="{Binding RelativeSource={RelativeSource Self}, Path=(ComboBoxListBoxSet:ComboBoxListBoxAttriXaml.NormalBorderBrush), Mode=OneWay}" />
+                <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource Self}, Path=(ComboBoxListBoxSet:ComboBoxListBoxAttriXaml.NormalForegroundBrush), Mode=OneWay}" />
+            </Trigger>
+    </Style.Triggers>
+  </Style>
+  
+   
+</ResourceDictionary>

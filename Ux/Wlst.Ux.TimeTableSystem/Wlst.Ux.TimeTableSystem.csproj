@@ -1,0 +1,383 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{5B49A617-42C2-45E9-8ED0-79380379F816}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Wlst.Ux.TimeTableSystem</RootNamespace>
+    <AssemblyName>Wlst.Ux.TimeTableSystem</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\ZDebug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\Rr\Binaries\WPF\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DragDropExtend">
+      <HintPath>..\DLL\DragDropExtend.dll</HintPath>
+    </Reference>
+    <Reference Include="Elysium, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ZDebug\Elysium.dll</HintPath>
+    </Reference>
+    <Reference Include="I36N">
+      <HintPath>..\DLL\I36N.dll</HintPath>
+    </Reference>
+    <Reference Include="Infrastructure">
+      <HintPath>..\DLL\Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Prism">
+      <HintPath>..\DLL\Microsoft.Practices.Prism.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Prism.MefExtensions">
+      <HintPath>..\DLL\Microsoft.Practices.Prism.MefExtensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Prism.MefExtensions.Event">
+      <HintPath>..\DLL\Microsoft.Practices.Prism.MefExtensions.Event.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Telerik.Windows.Controls, Version=2012.2.607.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DLL\Telerik.Windows.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.Data">
+      <HintPath>..\DLL\Telerik.Windows.Controls.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.Docking, Version=2012.3.1129.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\Telerik.Windows.Controls.Docking.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.GridView">
+      <HintPath>..\DLL\Telerik.Windows.Controls.GridView.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.Input, Version=2012.2.607.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DLL\Telerik.Windows.Controls.Input.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.PrismAdapter">
+      <HintPath>..\DLL\Telerik.Windows.Controls.PrismAdapter.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Data">
+      <HintPath>..\DLL\Telerik.Windows.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="UIAutomationProvider" />
+    <Reference Include="UIAutomationTypes" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="Wlst.Cr.Core">
+      <HintPath>..\DLL\Wlst.Cr.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Wlst.Cr.Coreb, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="Wlst.Cr.CoreOne, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ZDebug\Wlst.Cr.CoreOne.dll</HintPath>
+    </Reference>
+    <Reference Include="Wlst.Cr.MessageBoxOverride, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ZDebug\Wlst.Cr.MessageBoxOverride.dll</HintPath>
+    </Reference>
+    <Reference Include="Wlst.Cr.PPProtocolSvrCnt, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="Wlst.Cr.WjEquipmentBaseModels">
+      <HintPath>..\DLL\Wlst.Cr.WjEquipmentBaseModels.dll</HintPath>
+    </Reference>
+    <Reference Include="Wlst.Sr.EquipmentGroupInfoHolding">
+      <HintPath>..\DLL\Wlst.Sr.EquipmentGroupInfoHolding.dll</HintPath>
+    </Reference>
+    <Reference Include="Wlst.Sr.EquipmentInfoHolding">
+      <HintPath>..\DLL\Wlst.Sr.EquipmentInfoHolding.dll</HintPath>
+    </Reference>
+    <Reference Include="Wlst.Sr.ProtocolCnt, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ZDebug\Wlst.Sr.ProtocolCnt.dll</HintPath>
+    </Reference>
+    <Reference Include="Wlst.Sr.ProtocolPhone, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Rr\Binaries\WPF\Wlst.Sr.ProtocolPhone.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="HolidayTimeSet\NavToHolidayTimeSetView.cs" />
+    <Compile Include="HolidayTimeSet\Services\IIHolidayTimeSet.cs" />
+    <Compile Include="HolidayTimeSet\Services\TimeIs25.cs" />
+    <Compile Include="HolidayTimeSet\ViewModel\HolidayTimeSetViewModel.cs" />
+    <Compile Include="HolidayTimeSet\ViewModel\ListTreeNodeBase.cs" />
+    <Compile Include="HolidayTimeSet\ViewModel\TimeSchduleItem.cs" />
+    <Compile Include="HolidayTimeSet\ViewModel\TreeNodeGroup.cs" />
+    <Compile Include="HolidayTimeSet\ViewModel\TreeNodeRtu.cs" />
+    <Compile Include="HolidayTimeSet\Views\HolidayTimeSetView.xaml.cs">
+      <DependentUpon>HolidayTimeSetView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="OpenCloseReportQuery\NavToOpenCloseReportQueryView.cs" />
+    <Compile Include="OpenCloseReportQuery\Services\IIOpenCloseReportQuery.cs" />
+    <Compile Include="OpenCloseReportQuery\ViewModel\OpenCloseReportItem.cs" />
+    <Compile Include="OpenCloseReportQuery\ViewModel\OpenCloseReportQueryViewModel.cs" />
+    <Compile Include="OpenCloseReportQuery\ViewModel\OpenCloseReportRtuItem.cs" />
+    <Compile Include="OpenCloseReportQuery\View\OpenCloseReportQuery.xaml.cs">
+      <DependentUpon>OpenCloseReportQuery.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="OpenCloseReportQuery\View\OpenCloseReportQueryForWin.xaml.cs">
+      <DependentUpon>OpenCloseReportQueryForWin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="OpenCloseReportTabVm\Services\IIOperatorOnTimeRecords.cs" />
+    <Compile Include="OpenCloseReportTabVm\ViewModel\OpenCloseReportTabViewModel.cs" />
+    <Compile Include="OpenCloseReportTabVm\ViewModel\OperatorRecordItem.cs" />
+    <Compile Include="OpenCloseReportTabVm\View\OpenCloseReportTab.xaml.cs">
+      <DependentUpon>OpenCloseReportTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Services\EventIdAssign.cs" />
+    <Compile Include="Services\MenuIdAssgin.cs" />
+    <Compile Include="TimeInfoMn\NavToTimeInfoMn.cs" />
+    <Compile Include="TimeInfoMn\Services\IITimeInfoMn.cs" />
+    <Compile Include="TimeInfoMn\Services\LuxGetServer.cs" />
+    <Compile Include="TimeInfoMn\Services\TimeConverterIntToString.cs" />
+    <Compile Include="TimeInfoMn\Services\TimeDateConverter.cs" />
+    <Compile Include="TimeInfoMn\Services\TimeIsNoOverTwo.cs" />
+    <Compile Include="TimeInfoMn\Services\TimeIsOverTwo.cs" />
+    <Compile Include="TimeInfoMn\ViewModel\FrmSelectTimeTableViewModel.cs" />
+    <Compile Include="TimeInfoMn\ViewModel\IdNameDesc.cs" />
+    <Compile Include="TimeInfoMn\ViewModel\OneDayTimeTableViewModel.cs" />
+    <Compile Include="TimeInfoMn\ViewModel\OneGrpOrRtuLoopsSet.cs" />
+    <Compile Include="TimeInfoMn\ViewModel\OneItemTimeTable.cs" />
+    <Compile Include="TimeInfoMn\ViewModel\TimeInfoMnVm.cs" />
+    <Compile Include="TimeInfoMn\ViewModel\TimeTableInformation.cs" />
+    <Compile Include="TimeInfoMn\Views\BaseView\AddTimeTable.xaml.cs">
+      <DependentUpon>AddTimeTable.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TimeInfoMn\Views\BaseView\AddTimeTableHelp.xaml.cs">
+      <DependentUpon>AddTimeTableHelp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TimeInfoMn\Views\BaseView\DetailInfo.xaml.cs">
+      <DependentUpon>DetailInfo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TimeInfoMn\Views\BaseView\DetailInfoFor2.xaml.cs">
+      <DependentUpon>DetailInfoFor2.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TimeInfoMn\Views\BaseView\FrmGroupSelectTimeTableView.xaml.cs">
+      <DependentUpon>FrmGroupSelectTimeTableView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TimeInfoMn\Views\BaseView\GroupWatchDetailFor2.xaml.cs">
+      <DependentUpon>GroupWatchDetailFor2.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TimeInfoMn\Views\BaseView\GroupWatchDetailFor4.xaml.cs">
+      <DependentUpon>GroupWatchDetailFor4.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TimeInfoMn\Views\BaseView\GroupWatchTimeTableView.xaml.cs">
+      <DependentUpon>GroupWatchTimeTableView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TimeInfoMn\Views\BaseView\RecordSunView.xaml.cs">
+      <DependentUpon>RecordSunView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TimeInfoMn\Views\BaseView\SetupPara.xaml.cs">
+      <DependentUpon>SetupPara.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TimeInfoMn\Views\BaseView\SetWeekAck.xaml.cs">
+      <DependentUpon>SetWeekAck.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TimeInfoMn\Views\TimeInfoMnView.xaml.cs">
+      <DependentUpon>TimeInfoMnView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Services\ViewIdAssign.cs" />
+    <Compile Include="TimeInfoMn\NavToTimeInfoMnGrpView.cs" />
+    <Compile Include="TimeInfoNew\NavToTimeInfoNewGrpView.cs" />
+    <Compile Include="TimeInfoNew\Services\IITimeInfoNew.cs" />
+    <Compile Include="TimeInfoNew\Views\TimeInfoNew.xaml.cs">
+      <DependentUpon>TimeInfoNew.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TimeInfoNew\ViewModel\TimeInfoNewViewModel.cs" />
+    <Compile Include="TimeInfoNew\ViewModel\TreeGrpNodes.cs" />
+    <Compile Include="TimeInfoNew\Views\TimeInfoSetNew.xaml.cs">
+      <DependentUpon>TimeInfoSetNew.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TimeTabletemporaryView\NavToTimeTabletemporaryView.cs" />
+    <Compile Include="TimeTabletemporaryView\Services\IITimeTabletemporaryViewModel.cs" />
+    <Compile Include="TimeTabletemporaryView\ViewModels\OneItemTemporary.cs" />
+    <Compile Include="TimeTabletemporaryView\ViewModels\OneItemTimeTable.cs" />
+    <Compile Include="TimeTabletemporaryView\ViewModels\TimeTabletemporaryViewModel.cs" />
+    <Compile Include="TimeTabletemporaryView\Views\SelectTimeTable.xaml.cs">
+      <DependentUpon>SelectTimeTable.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TimeTabletemporaryView\Views\TimeTabletemporaryView.xaml.cs">
+      <DependentUpon>TimeTabletemporaryView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TunnelInfo\TunnelInfoSet\NavToTunnelInfoSetView.cs" />
+    <Compile Include="TunnelInfo\TunnelInfoSet\Services\IITunnelInfoSet.cs" />
+    <Compile Include="TunnelInfo\TunnelInfoSet\ViewModel\OneItemOperation.cs" />
+    <Compile Include="TunnelInfo\TunnelInfoSet\ViewModel\OneItemTerminal.cs" />
+    <Compile Include="TunnelInfo\TunnelInfoSet\ViewModel\TunnelInformation.cs" />
+    <Compile Include="TunnelInfo\TunnelInfoSet\ViewModel\TunnelInfoSetVm.cs" />
+    <Compile Include="TunnelInfo\TunnelInfoSet\Views\AddOrModifyTunnelInfo.xaml.cs">
+      <DependentUpon>AddOrModifyTunnelInfo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TunnelInfo\TunnelInfoSet\Views\SelectTerminal.xaml.cs">
+      <DependentUpon>SelectTerminal.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TunnelInfo\TunnelInfoSet\Views\TunnelInfoSetView.xaml.cs">
+      <DependentUpon>TunnelInfoSetView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UxTimeTableSystemModule.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="HolidayTimeSet\Views\HolidayTimeSetView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="OpenCloseReportQuery\View\OpenCloseReportQuery.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="OpenCloseReportQuery\View\OpenCloseReportQueryForWin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="OpenCloseReportTabVm\View\OpenCloseReportTab.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="TimeInfoMn\Views\BaseView\AddTimeTable.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TimeInfoMn\Views\BaseView\AddTimeTableHelp.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TimeInfoMn\Views\BaseView\DetailInfo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TimeInfoMn\Views\BaseView\DetailInfoFor2.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TimeInfoMn\Views\BaseView\FrmGroupSelectTimeTableView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TimeInfoMn\Views\BaseView\GroupWatchDetailFor2.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TimeInfoMn\Views\BaseView\GroupWatchDetailFor4.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TimeInfoMn\Views\BaseView\GroupWatchTimeTableView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TimeInfoMn\Views\BaseView\RecordSunView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TimeInfoMn\Views\BaseView\SetupPara.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TimeInfoMn\Views\BaseView\SetWeekAck.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="TimeInfoMn\Views\TimeInfoMnView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TimeInfoNew\Views\TimeInfoNew.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TimeInfoNew\Views\TimeInfoSetNew.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TimeTabletemporaryView\Views\SelectTimeTable.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TimeTabletemporaryView\Views\TimeTabletemporaryView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TunnelInfo\TunnelInfoSet\Views\AddOrModifyTunnelInfo.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="TunnelInfo\TunnelInfoSet\Views\SelectTerminal.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="TunnelInfo\TunnelInfoSet\Views\TunnelInfoSetView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Cr\Wlst.Cr.CoreMims\Wlst.Cr.CoreMims.csproj">
+      <Project>{7326E79B-65A6-4E0D-B90D-E1F4D1F10DF3}</Project>
+      <Name>Wlst.Cr.CoreMims</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Sr\Wlst.Sr.TimeTableSystem\Wlst.Sr.TimeTableSystem.csproj">
+      <Project>{C8EE907E-B8CC-49CF-A3CF-FA06C08F2042}</Project>
+      <Name>Wlst.Sr.TimeTableSystem</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WindowForWlst\WindowForWlst.csproj">
+      <Project>{295CF817-8A13-4B9E-B1E8-34464DFC9481}</Project>
+      <Name>WindowForWlst</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="TimeInfoMn\Views\BaseView\ImageHelp\LightHelpOff+.jpg" />
+    <Resource Include="TimeInfoMn\Views\BaseView\ImageHelp\LightHelpOff-.jpg" />
+    <Resource Include="TimeInfoMn\Views\BaseView\ImageHelp\LightHelpOff0.jpg" />
+    <Resource Include="TimeInfoMn\Views\BaseView\ImageHelp\LightHelpOn+.jpg" />
+    <Resource Include="TimeInfoMn\Views\BaseView\ImageHelp\LightHelpOn-.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="TimeInfoMn\Views\BaseView\ImageHelp\LightHelpOn0.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

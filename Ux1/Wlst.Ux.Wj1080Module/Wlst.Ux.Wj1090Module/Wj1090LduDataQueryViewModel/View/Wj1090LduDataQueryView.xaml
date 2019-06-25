@@ -1,0 +1,111 @@
+﻿<UserControl x:Class="Wlst.Ux.Wj1090Module.Wj1090LduDataQueryViewModel.View.Wj1090LduDataQueryView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+              xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+                          Background="{Binding RelativeSource={RelativeSource Self}, Path=(AppleWindowSet:AppleWindowAttriXaml.Background), Mode=OneWay}"
+             xmlns:AppleWindowSet="clr-namespace:Elysium.ThemesSet.AppleWindowSet;assembly=Elysium"
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+             xmlns:converters="clr-namespace:Wlst.Ux.Wj1090Module.Wj1090LduDataQueryViewModel.Converters"
+             mc:Ignorable="d" 
+             d:DesignHeight="500" d:DesignWidth="1200">
+    <UserControl.Resources>
+        <converters:BoolToVisibleConverter x:Key="BoolToVisible"/>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition  Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+        <Label x:Name="fg"/>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}" Text="起始时间：" Margin="10,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            <DatePicker SelectedDateFormat="Long"  Grid.Column="1" MinWidth="160" SelectedDate="{Binding DtStart, Mode=TwoWay}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0"/>
+            <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}" Text="结束时间：" Grid.Column="2" Margin="10,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            <DatePicker SelectedDateFormat="Long" Grid.Column="3" MinWidth="160" SelectedDate="{Binding DtEnd, Mode=TwoWay}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0"/>
+            <CheckBox x:Name="AdvancedQuery" IsChecked="{Binding IsAdvacnceChecked}" Grid.Column="4" Margin="20,0,10,0" HorizontalAlignment="Center" VerticalAlignment="Center" Content="高级显示"/>
+            <Button Content="查 询" Margin="100,0,0,0" MinWidth="120" Command="{Binding CmdBtnQuery}" VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Column="5"/>
+            <Button Content="导 出" Margin="30,0,0,0" MinWidth="120"  VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Column="6" Click="Button_Click" />
+        </Grid>
+        <Grid Grid.Row="1" Visibility="{Binding ElementName=AdvancedQuery,Path=IsChecked, Converter={StaticResource BoolToVisible}}" >
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                <CheckBox Margin="10,5,10,5" VerticalAlignment="Center" IsChecked="{Binding BrightRateVisi}" Content="亮灯率"/>
+                <CheckBox  Margin="10,5,10,5" VerticalAlignment="Center" IsChecked="{Binding SingleVisi}" Content="信号强度"/>
+                <CheckBox  Margin="10,5,10,5" VerticalAlignment="Center" IsChecked="{Binding ImpedanceVisi}" Content="线路阻抗"/>
+                <CheckBox  Margin="10,5,10,5" VerticalAlignment="Center" IsChecked="{Binding NumOfUseFullSingleIn12SecVisi}" Content="12秒信号数"/>
+                <CheckBox  Margin="10,5,10,5" VerticalAlignment="Center" IsChecked="{Binding NumOfSingleIn12SecVisi}" Content="12秒跳变数"/>
+                <CheckBox  Margin="10,5,10,5" VerticalAlignment="Center" IsChecked="{Binding FlagDetectionVisi}" Content="检测标识"/>
+                <CheckBox  Margin="10,5,10,5" VerticalAlignment="Center" IsChecked="{Binding FlagAlarmVisi}" Content="报警状态"/>
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition MinHeight="25"></RowDefinition>
+                <RowDefinition MinHeight="25"></RowDefinition>
+            </Grid.RowDefinitions>
+            <StackPanel Orientation="Horizontal" Grid.Column="1">
+                <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}" Visibility="{Binding AttachVisi}" Text="主设备名称：" Margin="10,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}" Visibility="{Binding AttachVisi}" Text="{Binding AttachName}" Margin="10,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}" Visibility="{Binding AttachVisi}" Text=" - " HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="7"/>
+                <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}" Visibility="{Binding AttachVisi}" Text="{Binding AttachPhyId}" Margin="10,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            </StackPanel>
+            <CheckBox Grid.Row="1" IsChecked="{Binding IsLockTml}" Content="单个集中器" Margin="10,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            <StackPanel VerticalAlignment="Center" Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
+                <TextBlock  Grid.Row="1"  Foreground="{Binding ElementName=fg, Path=Foreground}" Visibility="{Binding RtuVisi}" Text="集中器名称：" Margin="10,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <TextBlock  Grid.Row="1"  Foreground="{Binding ElementName=fg, Path=Foreground}" Visibility="{Binding RtuVisi}" Text="{Binding RtuName}" Margin="10,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                <TextBlock  Grid.Row="1"  Foreground="{Binding ElementName=fg, Path=Foreground}" Visibility="{Binding RtuVisi}" Text=" - " HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="7"/>
+                <TextBlock  Grid.Row="1"  Foreground="{Binding ElementName=fg, Path=Foreground}" Visibility="{Binding RtuVisi}" Text="{Binding RtuId}" Margin="10,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" />
+
+                <TextBlock  Grid.Row="1"  Foreground="{Binding ElementName=fg, Path=Foreground}" Visibility="{Binding LduLineVisi}" Text="线路名称:" Grid.Column="9"  Margin="10,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <TextBlock  Grid.Row="1"  Foreground="{Binding ElementName=fg, Path=Foreground}" Visibility="{Binding LduLineVisi}" Text="{Binding LduLineName}" Margin="10,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <TextBlock  Grid.Row="1"  Foreground="{Binding ElementName=fg, Path=Foreground}" Visibility="{Binding LduLineVisi}" Text=" - " HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="11"/>
+                <TextBlock  Grid.Row="1"  Foreground="{Binding ElementName=fg, Path=Foreground}" Visibility="{Binding LduLineVisi}" Text="{Binding LduLineId}" Margin="10,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" />
+            </StackPanel>
+
+            <!--<TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}" Grid.Column="12" HorizontalAlignment="Right" VerticalAlignment="Center" 
+                        Margin="0,0,10,0" Text="注意：请在右侧线检树中选择具体的终端、集中器或者线路进行查询！" />-->
+        </Grid>
+        <telerik:RadGridView  IsFilteringAllowed="False" AutoGenerateColumns="False"  Grid.Row="3"  AllowDrop="True"   HorizontalAlignment="Left" BorderThickness="0"
+                              ItemsSource="{Binding Path=Items}" ShowGroupPanel="False" 
+                             x:Name="gridview" ShowColumnHeaders="True" ShowInsertRow="False" RowIndicatorVisibility="Collapsed" Margin="0,7,0,-7">
+            <telerik:RadGridView.Columns>
+                <telerik:GridViewDataColumn  Header="序号"    DataMemberBinding="{Binding Path=RecordIndex,Mode=TwoWay}"  Width="60" />
+                <telerik:GridViewDataColumn  Header="终端名称"   DataMemberBinding="{Binding  Path=AttachRtuName,Mode=TwoWay}" Width="140" />
+                <telerik:GridViewDataColumn  Header="集中器名称"   DataMemberBinding="{Binding  Path=RtuName,Mode=TwoWay}" Width="120" />
+                <telerik:GridViewDataColumn  Header="采样时间"    DataMemberBinding="{Binding Path=DateCreate,StringFormat={}\{0:yyyy-MM-dd HH:mm:ss\}}"/>
+                <telerik:GridViewDataColumn  Header="线路名称"    DataMemberBinding="{Binding Path=LineLoopName,Mode=TwoWay}"  Width="120" />
+                <telerik:GridViewDataColumn  Header="电压"   DataMemberBinding="{Binding  Path=V,Mode=TwoWay}" MinWidth="60" />
+                <telerik:GridViewDataColumn  Header="电流"   DataMemberBinding="{Binding  Path=A,Mode=TwoWay}" MinWidth="60" />
+                <telerik:GridViewDataColumn  Header="有功功率"   DataMemberBinding="{Binding  Path=PowerActive,Mode=TwoWay}" MinWidth="60" />
+                <telerik:GridViewDataColumn  Header="无功功率"   DataMemberBinding="{Binding  Path=PowerReActive,Mode=TwoWay}" MinWidth="60" />
+                <telerik:GridViewDataColumn  Header="功率因素"   DataMemberBinding="{Binding  Path=PowerFactor,Mode=TwoWay}" MinWidth="60" />
+                <telerik:GridViewDataColumn  Header="亮灯率"  IsVisible="{Binding BrightRateVisi}"  DataMemberBinding="{Binding  Path=BrightRate,Mode=TwoWay}" MinWidth="60" />
+                <telerik:GridViewDataColumn  Header="信号强度" IsVisible="{Binding SingleVisi}"  DataMemberBinding="{Binding  Path=Single,Mode=TwoWay}" MinWidth="60" />
+                <telerik:GridViewDataColumn  Header="线路阻抗"  IsVisible="{Binding ImpedanceVisi}" DataMemberBinding="{Binding  Path=Impedance,Mode=TwoWay}" MinWidth="60" />
+                <telerik:GridViewDataColumn  Header="12秒信号数"  IsVisible="{Binding NumOfUseFullSingleIn12SecVisi}"  DataMemberBinding="{Binding  Path=NumOfUseFullSingleIn12Sec,Mode=TwoWay}" MinWidth="60" />
+                <telerik:GridViewDataColumn  Header="12秒跳变数" IsVisible="{Binding NumOfSingleIn12SecVisi}"  DataMemberBinding="{Binding  Path=NumOfSingleIn12Sec,Mode=TwoWay}" MinWidth="60" />
+                <telerik:GridViewDataColumn  Header="报警设置" IsVisible="{Binding FlagDetectionVisi}"  DataMemberBinding="{Binding  Path=FlagDetection,Mode=TwoWay}" MinWidth="60" />
+                <telerik:GridViewDataColumn  Header="检测状态"  IsVisible="{Binding FlagAlarmVisi}" DataMemberBinding="{Binding  Path=FlagAlarm,Mode=TwoWay}" MinWidth="60" />
+            </telerik:RadGridView.Columns>
+        </telerik:RadGridView>
+        <TextBlock Grid.Row="4" Foreground="{Binding ElementName=fg, Path=Foreground}" Text="{Binding Remind}" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+    </Grid>
+</UserControl>

@@ -1,0 +1,235 @@
+﻿<UserControl x:Class="Wlst.Ux.EquipemntLightFault.EquipmentFaultWithTmlSettingViewModel.Views.EquipmentFaultWithTmlSettingView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                          
+             xmlns:AppleWindowSet="clr-namespace:Elysium.ThemesSet.AppleWindowSet;assembly=Elysium"
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+             xmlns:Service="clr-namespace:Wlst.Ux.EquipemntLightFault.EquipmentFaultWithTmlSettingViewModel.Services"
+             mc:Ignorable="d" d:DesignHeight="400" d:DesignWidth="950">
+    <UserControl.Resources>
+        <Service:IsCheckedToValue x:Key="IsCheckedToValue"/>
+        <Service:IsCheckedToNoValue x:Key="IsCheckedToNoValue"/>
+
+    </UserControl.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto" MinHeight="30" />
+        </Grid.RowDefinitions>
+        <Label x:Name="fg" HorizontalAlignment="Left"/>
+        <Grid >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40" ></RowDefinition>
+                <RowDefinition Height="*" ></RowDefinition>
+            </Grid.RowDefinitions>
+            <!--<Grid.ColumnDefinitions>
+                <ColumnDefinition  Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>-->
+
+            <!--<DockPanel Margin="10,0,0,0">
+                   <CheckBox VerticalAlignment="Center"  IsChecked="{Binding IsOneKeySet}" Content="设置通用故障类型"> </CheckBox>
+                  <Button Grid.Column="1" Content="重置所有终端故障为通用故障" Command="{Binding CmdReSetAllRtuFault}" Height="25" MinWidth="190" Margin="90,3,10,3" VerticalAlignment="Top" ></Button>
+       
+                <TextBlock></TextBlock>
+            </DockPanel>-->
+            <DockPanel HorizontalAlignment="Left" VerticalAlignment="Center" Visibility="{Binding Visi}" Margin="0,10,0,0">
+                <TextBlock Text="区域选择:" VerticalAlignment="Center"   Margin="15,0,10,0" ></TextBlock>
+                <ComboBox Width="160" ItemsSource="{Binding ItemsArea}" DisplayMemberPath="Name" SelectedItem="{Binding CurrentSlecteArea}" ></ComboBox>
+            </DockPanel> 
+              <telerik:RadTreeListView   Width="542" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="1"
+								  
+								  ItemsSource="{Binding ChildTreeItems}"  
+                                  SelectedItem="{Binding CurrentSelectItem}"
+								  AutoGenerateColumns="False" 
+								  VerticalAlignment="Stretch" 
+                                  IsEnabled="{Binding IsTreeEnable}"
+								 
+ 
+								  RowIndicatorVisibility="Collapsed" >
+                <telerik:RadTreeListView.Style>
+                    <Style  TargetType="telerik:RadTreeListView">
+                        <Style.Triggers>
+                            <Trigger Property="IsEnabled" Value="False">
+
+                                <Trigger.Setters>
+                                    <Setter Property="Background" Value="Transparent" />
+                                </Trigger.Setters>
+
+                            </Trigger>
+
+                        </Style.Triggers>
+                    </Style>
+                </telerik:RadTreeListView.Style>
+                <telerik:RadTreeListView.ChildTableDefinitions>
+                <telerik:TreeListViewTableDefinition  ItemsSource="{Binding ChildTreeItems}" />
+            </telerik:RadTreeListView.ChildTableDefinitions>
+            <telerik:RadTreeListView.Columns>
+                    <telerik:GridViewDataColumn Header="地址" IsFilterable="False" Width="90" DataMemberBinding="{Binding PhyId}" IsReadOnly="True" />
+                <telerik:GridViewDataColumn Header="组、终端名称"  IsReadOnly="True" Width="250" >
+                    <telerik:GridViewDataColumn.CellTemplate>
+                        <DataTemplate >
+                            <TextBlock Text="{Binding NodeName}"></TextBlock>
+                        </DataTemplate>
+                    </telerik:GridViewDataColumn.CellTemplate>
+                </telerik:GridViewDataColumn>
+                    <telerik:GridViewDataColumn Header="特殊控制" IsReadOnly="True" Width="100">
+                    <telerik:GridViewDataColumn.CellTemplate>
+                        <DataTemplate >
+                            <DockPanel >
+                                    <CheckBox IsEnabled="False" IsChecked="{Binding IsSelected}" Content="特殊"/>
+                                </DockPanel>
+                        </DataTemplate>
+                    </telerik:GridViewDataColumn.CellTemplate>
+                </telerik:GridViewDataColumn>
+
+                    <telerik:GridViewDataColumn Header="是否报警" IsReadOnly="True" Width="100" >
+                    <telerik:GridViewDataColumn.CellTemplate>
+                        <DataTemplate >
+                            <DockPanel >
+                                <CheckBox IsEnabled="False" IsChecked="{Binding IsNoAlarm}" Content="不报"/>
+                            </DockPanel>
+                        </DataTemplate>
+                    </telerik:GridViewDataColumn.CellTemplate>
+                </telerik:GridViewDataColumn>
+                </telerik:RadTreeListView.Columns>
+        </telerik:RadTreeListView>
+            <!--<TextBlock x:Name="grid1" Grid.Row="3" Width="{Binding IsShowNoAlarm}" ></TextBlock>
+            <TextBlock x:Name="grid2" Grid.Row="3" Width="{Binding IsShowSelected}" ></TextBlock>-->
+
+        </Grid>
+        <Grid Margin="10,0,0,0" Grid.Column="1" >
+            <Grid.RowDefinitions >
+                <RowDefinition Height="40"></RowDefinition>
+                <!--<RowDefinition Height="50"></RowDefinition>-->
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <!--<DockPanel Margin="5,0,0,0" VerticalAlignment="Center">
+                <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Text="操作："></TextBlock>
+                <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Text="{Binding ShowMsg}"></TextBlock>
+            </DockPanel>-->
+            <StackPanel HorizontalAlignment="Left"  Margin="5,0,0,0" VerticalAlignment="Center">
+                <!--<TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Text="设置方法为：左侧选择终端,右侧勾选报警;"></TextBlock>
+                <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Margin="0,5,0,0" Text="请全部设置完成后再保存。"></TextBlock>-->
+
+                <CheckBox IsChecked="{Binding IsChecked}" Content="显示不报警终端设置" Margin="0,0,20,0" VerticalAlignment="Center" ></CheckBox>
+            </StackPanel>
+            <!--<telerik:RadGridView  MinWidth="390" Grid.Row="2" RowIndicatorVisibility="Collapsed"  ShowGroupPanel="False" AutoGenerateColumns="False"
+                  AllowDrop="True" ItemsSource="{Binding Path=FaultCollection}">
+                <telerik:RadGridView.Columns>
+                    <telerik:GridViewDataColumn Header="选择应用" MinWidth="85" >
+                        <telerik:GridViewDataColumn.CellTemplate>
+                            <DataTemplate>
+                                <DockPanel>
+                                    <CheckBox IsChecked="{Binding IsSelected}" HorizontalAlignment="Center" IsEnabled="{Binding IsEnabel}" Content="选择"></CheckBox>
+                                </DockPanel>
+                            </DataTemplate>
+                        </telerik:GridViewDataColumn.CellTemplate>
+                    </telerik:GridViewDataColumn>
+                    <telerik:GridViewDataColumn Header="故障编码" IsFilterable="False" MinWidth="75" DataMemberBinding="{Binding Path=FaultCode,Mode=TwoWay}" IsReadOnly="True" />
+                    <telerik:GridViewDataColumn Header="故障名称" IsFilterable="False" IsSortable="False" MinWidth="180" DataMemberBinding="{Binding Path=FaultName,Mode=TwoWay}" IsReadOnly="True" />
+                </telerik:RadGridView.Columns>
+            </telerik:RadGridView>-->
+
+            <Grid Grid.Row="1" >
+
+                <Grid.RowDefinitions >
+                    <RowDefinition Height="*"></RowDefinition>
+                    <!--<RowDefinition Height="50"></RowDefinition>-->
+                    <RowDefinition Height="30"></RowDefinition>
+
+                </Grid.RowDefinitions>
+                
+                <telerik:RadTreeListView   IsDragDropEnabled="False"   HorizontalAlignment="Left" Margin="0,0,0,0" Grid.Row="0" Visibility="{Binding IsChecked,Converter={StaticResource IsCheckedToNoValue}}"
+								  IsDragTooltipEnabled="False" 
+								 Background="Transparent"
+								  ItemsSource="{Binding FaultCollection}"  
+								  AutoGenerateColumns="False" 
+								  VerticalAlignment="Stretch" 
+                                  CanUserFreezeColumns="False" 
+								  CanUserReorderColumns="False" 
+								  RowIndicatorVisibility="Collapsed" >
+                <!--<telerik:RadTreeListView.Columns>
+               
+                    <telerik:GridViewDataColumn Header="特殊控制" IsReadOnly="True" MinWidth="100" MaxWidth="160">
+                        <telerik:GridViewDataColumn.CellTemplate>
+                            <DataTemplate >
+                                <DockPanel >
+                                    <CheckBox IsEnabled="False" IsChecked="{Binding IsSelected}" Content="特殊"/>
+                                </DockPanel>
+                            </DataTemplate>
+                        </telerik:GridViewDataColumn.CellTemplate>
+                    </telerik:GridViewDataColumn>
+                </telerik:RadTreeListView.Columns>-->
+                <telerik:RadTreeListView.Columns>
+                    <telerik:GridViewDataColumn Header="需要报警 " Width="75" >
+                        <telerik:GridViewDataColumn.CellTemplate>
+                            <DataTemplate>
+                                <DockPanel>
+                                    <CheckBox IsChecked="{Binding IsSelected}" HorizontalContentAlignment="Center" IsEnabled="{Binding IsEnabel}" Content=""></CheckBox>
+                                </DockPanel>
+                            </DataTemplate>
+                        </telerik:GridViewDataColumn.CellTemplate>
+                    </telerik:GridViewDataColumn>
+                    <telerik:GridViewDataColumn Header="故障编码" IsFilterable="False" Width="75" DataMemberBinding="{Binding Path=FaultCode,Mode=TwoWay}" IsReadOnly="True" />
+                    <telerik:GridViewDataColumn Header="故障名称" IsFilterable="False" IsSortable="False" Width="180" DataMemberBinding="{Binding Path=FaultName,Mode=TwoWay}" IsReadOnly="True" />
+                </telerik:RadTreeListView.Columns>
+            </telerik:RadTreeListView>
+
+
+            <DockPanel Grid.Row="1" HorizontalAlignment="Left" Grid.ColumnSpan="2">
+                    <Button   Content="全 选" HorizontalAlignment="Right"  Width="120" Margin="50,0,0,0" Height="25" Command="{Binding CmdSelectAll}" ></Button>
+                    <Button   Content="反 选" HorizontalAlignment="Right"  Width="120" Margin="25,0,0,0" Height="25" Command="{Binding CmdInvertSelect}" ></Button>
+            </DockPanel>
+
+
+            </Grid>
+            
+            <Grid Grid.Row="1" Visibility="{Binding IsChecked,Converter={StaticResource IsCheckedToValue}}">
+
+                <Grid.RowDefinitions >
+                    <RowDefinition Height="*"></RowDefinition>
+                    <!--<RowDefinition Height="50"></RowDefinition>-->
+                    <RowDefinition Height="30"></RowDefinition>
+
+                </Grid.RowDefinitions>
+                
+                <telerik:RadTreeListView   IsDragDropEnabled="False"   HorizontalAlignment="Left" Margin="0,0,0,0" Grid.Row="0"
+								  IsDragTooltipEnabled="False" 
+								 Background="Transparent"
+								  ItemsSource="{Binding NoAlarmCollection}"  SelectedItem="{Binding CurrentSelectNoAlarm}"
+								  AutoGenerateColumns="False" 
+								  VerticalAlignment="Stretch" 
+                                  CanUserFreezeColumns="False" 
+								  CanUserReorderColumns="False" 
+								  RowIndicatorVisibility="Collapsed" >
+                               <telerik:RadTreeListView.Columns>
+                   
+                    <telerik:GridViewDataColumn Header="终端地址" IsFilterable="False" Width="100" DataMemberBinding="{Binding Path=PhyId,Mode=TwoWay}" IsReadOnly="True" />
+                    <telerik:GridViewDataColumn Header="终端名称" IsFilterable="False" IsSortable="False" Width="240" DataMemberBinding="{Binding Path=RtuName,Mode=TwoWay}" IsReadOnly="True" />
+                </telerik:RadTreeListView.Columns>
+            </telerik:RadTreeListView>
+
+                <DockPanel Grid.Row="1" HorizontalAlignment="Left" Grid.ColumnSpan="2">
+                    <Button   Content="{Binding ShowAdd}" HorizontalAlignment="Right"  Width="120" Margin="50,0,0,0" Height="25" Command="{Binding CmdAdd}" ></Button>
+                    <Button   Content="{Binding ShowDelete}" HorizontalAlignment="Right"  Width="120" Margin="25,0,0,0" Height="25" Command="{Binding CmdDelete}" ></Button>
+                </DockPanel>
+
+            </Grid>
+            
+        </Grid>
+        <DockPanel Grid.Row="1" HorizontalAlignment="Left" Grid.ColumnSpan="2">
+            <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Text="{Binding Msg}" Width="550"   VerticalAlignment="Center" HorizontalAlignment="Left" Margin="20,0,0,0"></TextBlock>
+        <Button   Content="保 存" HorizontalAlignment="Right"  Width="120" Margin="41,0,0,0" Height="25" Command="{Binding CmdSave}"></Button>
+            <Button   Content="导 出" HorizontalAlignment="Right"  Width="120" Margin="25,0,0,0" Height="25" Command="{Binding Cmdexport}" ></Button>
+        </DockPanel>
+        <!--<Button Content="暂时保存" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Right" Margin="0,5,180,5" Command="{Binding CmdSaveThisSet}" Height="25" Width="100"></Button>-->
+
+    </Grid>
+</UserControl>

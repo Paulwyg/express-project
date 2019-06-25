@@ -1,0 +1,207 @@
+﻿<WindowForWlst:CustomChromeWindow  x:Class="Wlst.Ux.TimeTableSystem.TimeInfoMn.Views.BaseView.AddTimeTableHelp"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:WindowForWlst="clr-namespace:WindowForWlst;assembly=WindowForWlst"
+                                   xmlns:Service="clr-namespace:Wlst.Ux.TimeTableSystem.TimeInfoMn.Services"
+                                   mc:Ignorable="d" 
+             Title="时间表修改说明" TitleCetc="时间表修改说明" Height="700" Width="1000" Loaded="CustomChromeWindow_Loaded"  Topmost="True" TopmostButtonVisibility ="Collapsed">
+    <WindowForWlst:CustomChromeWindow.Resources>
+        <Service:TimeConverterIntToString x:Key="myTimeConverter"/>
+    </WindowForWlst:CustomChromeWindow.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="200"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="200"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <TextBlock Text="  时间表开关灯设置帮助："/>
+        </Grid>
+        <Grid Grid.Row="1" Name="DockPanel">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="25"/>
+            </Grid.RowDefinitions>
+            <DockPanel Grid.Row="0" >             
+                <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Margin="10,0,0,0" VerticalAlignment="Center" Text="开灯日落偏移值：" Grid.Row="1" Grid.Column="4"/>
+                <DockPanel Grid.Column="5" Grid.Row="1">
+                    <TextBox x:Name="Lightonset"  Width="30" HorizontalAlignment="Left" VerticalAlignment="Center"  Text="{Binding LightOnSet}"></TextBox>
+                    <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Text="(分)" VerticalAlignment="Center"/>
+                </DockPanel>
+                <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Margin="10,0,0,0" Text="[范围为-60～60]" Grid.Column="0" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Center"></TextBlock>
+
+
+                <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Margin="10,0,0,0"  HorizontalAlignment="Left" VerticalAlignment="Center" Text="               开灯光控值："/>
+                <DockPanel Margin="1">
+                    <TextBox  x:Name="Luxon" Width="30"  HorizontalAlignment="Left" VerticalAlignment="Center"   Text="{Binding LuxOn}"/>
+                    <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Text="(Lux)"  VerticalAlignment="Center"/>
+                </DockPanel >
+                
+                <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Margin="10,0,0,0" Text="                光控有效时间:" Grid.Column="0" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Center"></TextBlock>
+                <DockPanel Grid.Column="1" Grid.Row="2" >
+                    <TextBox x:Name="Luxtime"  Width="30"  HorizontalAlignment="Left" VerticalAlignment="Center" Text="{Binding LuxTime}"></TextBox>
+                    <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Text="(分)"  VerticalAlignment="Center"/>
+                </DockPanel>
+                <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Margin="10,0,0,0" Text="[范围为0～60]" HorizontalAlignment="Left" VerticalAlignment="Center"></TextBlock>
+                
+            </DockPanel>
+            <DockPanel Grid.Row="1" >
+                               
+
+                <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Text="关灯日出偏移值：" Margin="10,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                <DockPanel Margin="2" Grid.Column="7" Grid.Row="1" >
+                    <TextBox x:Name="Lightoffset" Width="30" VerticalAlignment="Center" HorizontalAlignment="Left" Text="{Binding LightOffSet}"></TextBox >
+                    <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Text="(分)"  VerticalAlignment="Center"/>
+                </DockPanel>
+                <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Margin="10,0,0,0" Text="[范围为-60～60]" Grid.Column="0" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Center"></TextBlock>
+
+                <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Margin="10,0,0,0" Grid.Column="2" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center" Text="              关灯光控值："/>
+                <DockPanel Margin="1"  Grid.Column="3" Grid.Row="1">
+                    <TextBox x:Name="Luxoff"  Width="30"  HorizontalAlignment="Left" VerticalAlignment="Center"  Text="{Binding LuxOff}"></TextBox>
+                    <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Text="(Lux)"   VerticalAlignment="Center"/>
+                </DockPanel>
+
+                <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Margin="10,0,0,0" Width="140" Grid.Column="0" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Center"></TextBlock>
+
+                <Button Content="确定"            Width="50" Margin="10,0,10,0"  HorizontalAlignment="Left" Click="Button_Click_1" />
+
+            </DockPanel>
+        </Grid>
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="380"/>
+                <ColumnDefinition Width="600"/>
+            </Grid.ColumnDefinitions>
+            <Image  Source="{Binding ImageOn}" Margin="0,0,0,0" Height="400" />
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                </Grid.RowDefinitions>
+                <DockPanel Grid.Row="1">
+                    <TextBlock Text="    若日落时间为： " VerticalAlignment="Center"></TextBlock>
+                    <TextBlock Text="{Binding SunSet,Converter={StaticResource myTimeConverter}}"  VerticalAlignment="Center"></TextBlock>
+                    <TextBlock Text=" ，开灯日落偏移为： " VerticalAlignment="Center"></TextBlock>
+                    <TextBlock Text="{Binding LightOnSet}"  VerticalAlignment="Center"></TextBlock>
+                    <TextBlock Text=" 分钟，则开灯最后时间为： " VerticalAlignment="Center"></TextBlock>
+                    <TextBlock Text="{Binding TimeOn,Converter={StaticResource myTimeConverter}}" VerticalAlignment="Center"></TextBlock>
+                    <TextBlock Text=" 。" VerticalAlignment="Center"></TextBlock>
+                    <TextBlock></TextBlock>
+                </DockPanel>
+                <DockPanel Grid.Row="2">
+                    <TextBlock Text="    即在 " VerticalAlignment="Center"></TextBlock>
+                    <TextBlock Text="{Binding TimeOn,Converter={StaticResource myTimeConverter}}" VerticalAlignment="Center"></TextBlock>
+                    <TextBlock Text=" 软件会下发开灯命令。 " VerticalAlignment="Center"></TextBlock>
+                    <TextBlock></TextBlock>
+                </DockPanel>
+                <DockPanel Grid.Row="3">
+                    <TextBlock Text="    若光控有效值为： " VerticalAlignment="Center"></TextBlock>
+                    <TextBlock Text="{Binding LuxTime}"  VerticalAlignment="Center"></TextBlock>
+                    <TextBlock Text=" 分钟，则光控起作用时间为： " VerticalAlignment="Center"></TextBlock>
+                    <TextBlock Text="{Binding TimeOnLight,Converter={StaticResource myTimeConverter}}"  VerticalAlignment="Center"></TextBlock>
+                    <TextBlock Text="-" VerticalAlignment="Center"></TextBlock>
+                    <TextBlock Text="{Binding TimeOn,Converter={StaticResource myTimeConverter}}" VerticalAlignment="Center"></TextBlock>
+                    <TextBlock Text=" ，" VerticalAlignment="Center"></TextBlock>                    
+                    <TextBlock></TextBlock>
+                </DockPanel>
+                <DockPanel Grid.Row="4">
+                    <TextBlock Text="    在这个时间段内，光控 " VerticalAlignment="Center"></TextBlock>
+                    <TextBlock Text="{Binding LuxEquipment}"  VerticalAlignment="Center"></TextBlock>
+                    <TextBlock Text=" 的值低于设定的开灯光控值： "  VerticalAlignment="Center"></TextBlock>
+                    <TextBlock Text="{Binding LuxOn}"  VerticalAlignment="Center"></TextBlock>
+                    <TextBlock Text=" 时，" VerticalAlignment="Center"></TextBlock>
+                    
+                    <TextBlock></TextBlock>
+                </DockPanel>
+                <DockPanel Grid.Row="5">
+                    <TextBlock Text="    软件也会下发开灯指令。" VerticalAlignment="Center"></TextBlock>
+                    <TextBlock></TextBlock>
+                </DockPanel>
+
+            </Grid>
+        </Grid>
+        
+        <Grid Grid.Row="4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="380"/>
+                <ColumnDefinition Width="600"/>
+            </Grid.ColumnDefinitions>
+            <Image  Source="{Binding ImageOff}" Margin="0,0,0,0" Height="400" />
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                </Grid.RowDefinitions>
+                <DockPanel Grid.Row="1">
+                    <TextBlock Text="    若日出时间为： " VerticalAlignment="Center"></TextBlock>
+                    <TextBlock Text="{Binding SunRise,Converter={StaticResource myTimeConverter}}"  VerticalAlignment="Center"></TextBlock>
+                    <TextBlock Text=" ，关灯日出偏移为： " VerticalAlignment="Center"></TextBlock>
+                    <TextBlock Text="{Binding LightOffSet}"  VerticalAlignment="Center"></TextBlock>
+                    <TextBlock Text=" 分钟，则关灯最后时间为： " VerticalAlignment="Center"></TextBlock>
+                    <TextBlock Text="{Binding TimeOff,Converter={StaticResource myTimeConverter}}" VerticalAlignment="Center"></TextBlock>
+                    <TextBlock Text=" 。" VerticalAlignment="Center"></TextBlock>
+                    <TextBlock></TextBlock>
+                </DockPanel>
+                <DockPanel Grid.Row="2">
+                    <TextBlock Text="    即在 " VerticalAlignment="Center"></TextBlock>
+                    <TextBlock Text="{Binding TimeOff,Converter={StaticResource myTimeConverter}}" VerticalAlignment="Center"></TextBlock>
+                    <TextBlock Text=" 软件会下发开灯命令。 " VerticalAlignment="Center"></TextBlock>
+                    <TextBlock></TextBlock>
+                </DockPanel>                
+                <DockPanel Grid.Row="3">
+                    <TextBlock Text="    若光控有效值为： " VerticalAlignment="Center"></TextBlock>
+                    <TextBlock Text="{Binding LuxTime}"  VerticalAlignment="Center"></TextBlock>
+                    <TextBlock Text=" 分钟，则光控起作用时间为： " VerticalAlignment="Center"></TextBlock>
+                    <TextBlock Text="{Binding TimeOffLight,Converter={StaticResource myTimeConverter}}"  VerticalAlignment="Center"></TextBlock>
+                    <TextBlock Text="-" VerticalAlignment="Center"></TextBlock>
+                    <TextBlock Text="{Binding TimeOff,Converter={StaticResource myTimeConverter}}" VerticalAlignment="Center"></TextBlock>
+                    <TextBlock Text=" ，" VerticalAlignment="Center"></TextBlock>
+                    <TextBlock></TextBlock>
+                </DockPanel>
+                <DockPanel Grid.Row="4">
+                    <TextBlock Text="    在这个时间段内，光控 " VerticalAlignment="Center"></TextBlock>
+                    <TextBlock Text="{Binding LuxEquipment}"  VerticalAlignment="Center"></TextBlock>
+                    <TextBlock Text=" 的值低于设定的关灯光控值： "  VerticalAlignment="Center"></TextBlock>
+                    <TextBlock Text="{Binding LuxOff}"  VerticalAlignment="Center"></TextBlock>
+                    <TextBlock Text=" 时，" VerticalAlignment="Center"></TextBlock>
+
+                    <TextBlock></TextBlock>
+                </DockPanel>
+                <DockPanel Grid.Row="5">
+                    <TextBlock Text="    软件也会下发关灯指令。" VerticalAlignment="Center"></TextBlock>
+                    <TextBlock></TextBlock>
+                </DockPanel>
+            </Grid>
+        </Grid>
+        <Grid Grid.Row="6">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="25"/>
+            </Grid.RowDefinitions>
+            <TextBlock Text="  多段时间设置规则说明：" Grid.Row="0"/>
+            <TextBlock Text="    1. 设置多段时间时，每天的开关灯时间请按顺序设置。例：段一 03：00-05：00，段二 17：00-20：00，段三 22：00-01：00。" Grid.Row="1"/>
+            <TextBlock Text="    2. 在设置多段时间时，不允许不同时间段时间交叉、重复（包含光控、偏移）。例：段一 19：00-21：00，段二 20：00-22：00。不允许！" Grid.Row="2"/>
+            <TextBlock Text="    3. 有些设备不支持多段开关灯功能，请注意。" Grid.Row="3"/>
+            <TextBlock Text="  " Grid.Row="4"/>
+        </Grid>
+        <Button Content="确定" Width="120" Margin="0,5,20,5"  Grid.Row="7" HorizontalAlignment="Right" Click="Button_Click" />
+    </Grid>
+</WindowForWlst:CustomChromeWindow>

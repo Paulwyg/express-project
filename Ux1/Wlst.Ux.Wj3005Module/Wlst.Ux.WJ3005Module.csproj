@@ -1,0 +1,612 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{BB4FFFFF-63A6-4C39-AF3C-E8908B166D72}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Wlst.Ux.WJ3005Module</RootNamespace>
+    <AssemblyName>Wlst.Ux.WJ3005Module</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\ZDebug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\Rr\Binaries\WPF\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DragDropExtend">
+      <HintPath>..\DLL\DragDropExtend.dll</HintPath>
+    </Reference>
+    <Reference Include="Elysium, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ZDebug\Elysium.dll</HintPath>
+    </Reference>
+    <Reference Include="Lurx.Controls, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ZDebug\Lurx.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Prism">
+      <HintPath>..\DLL\Microsoft.Practices.Prism.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Prism.Interactivity, Version=4.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DLL\Microsoft.Practices.Prism.Interactivity.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Prism.MefExtensions">
+      <HintPath>..\DLL\Microsoft.Practices.Prism.MefExtensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Prism.MefExtensions.Event">
+      <HintPath>..\DLL\Microsoft.Practices.Prism.MefExtensions.Event.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DLL\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="PropertyTools.Wpf">
+      <HintPath>..\DLL\PropertyTools.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DLL\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Telerik.Windows.Controls, Version=2012.2.607.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DLL\Telerik.Windows.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.Chart, Version=2015.3.2015.40, Culture=neutral, PublicKeyToken=d3625f8bf04286d7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Rr\Binaries\WPF\Telerik.Windows.Controls.Chart.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.Data, Version=2012.2.607.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DLL\Telerik.Windows.Controls.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.Docking, Version=2012.2.607.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DLL\Telerik.Windows.Controls.Docking.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.GridView, Version=2013.1.720.40, Culture=neutral, PublicKeyToken=d3625f8bf04286d7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ZDebug\Telerik.Windows.Controls.GridView.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.Input, Version=2012.2.607.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DLL\Telerik.Windows.Controls.Input.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.Navigation, Version=2012.2.607.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DLL\Telerik.Windows.Controls.Navigation.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.PrismAdapter">
+      <HintPath>..\DLL\Telerik.Windows.Controls.PrismAdapter.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Data, Version=2013.1.720.40, Culture=neutral, PublicKeyToken=d3625f8bf04286d7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ZDebug\Telerik.Windows.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="WindowForWlst, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ZDebug\WindowForWlst.dll</HintPath>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="Wlst.Cr.Core">
+      <HintPath>..\DLL\Wlst.Cr.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Wlst.Cr.Coreb, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="Wlst.Cr.CoreMims, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ZDebug\Wlst.Cr.CoreMims.dll</HintPath>
+    </Reference>
+    <Reference Include="Wlst.Cr.CoreOne, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ZDebug\Wlst.Cr.CoreOne.dll</HintPath>
+    </Reference>
+    <Reference Include="Wlst.Cr.MessageBoxOverride, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ZDebug\Wlst.Cr.MessageBoxOverride.dll</HintPath>
+    </Reference>
+    <Reference Include="Wlst.Cr.PPProtocolSvrCnt, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ZDebug\Wlst.Cr.PPProtocolSvrCnt.dll</HintPath>
+    </Reference>
+    <Reference Include="Wlst.Cr.Setting, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ZDebug\Wlst.Cr.Setting.dll</HintPath>
+    </Reference>
+    <Reference Include="Wlst.print, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Rr\Binaries\WPF\Wlst.print.dll</HintPath>
+    </Reference>
+    <Reference Include="Wlst.Sr.EquipemntLightFault, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Rr\Binaries\WPF\Wlst.Sr.EquipemntLightFault.dll</HintPath>
+    </Reference>
+    <Reference Include="Wlst.Sr.EquipmentInfoHolding">
+      <HintPath>..\DLL\Wlst.Sr.EquipmentInfoHolding.dll</HintPath>
+    </Reference>
+    <Reference Include="Wlst.Sr.Menu">
+      <HintPath>..\DLL\Wlst.Sr.Menu.dll</HintPath>
+    </Reference>
+    <Reference Include="Wlst.Sr.ProtocolPhone, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Rr\Binaries\WPF\Wlst.Sr.ProtocolPhone.dll</HintPath>
+    </Reference>
+    <Reference Include="Wlst.Sr.TimeTableSystem, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ZDebug\Wlst.Sr.TimeTableSystem.dll</HintPath>
+    </Reference>
+    <Reference Include="Wlst.Ux.TimeTableSystem, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Rr\Binaries\WPF\Wlst.Ux.TimeTableSystem.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BatchStopRunning\Converters\BoolToVisibleConverter.cs" />
+    <Compile Include="BatchStopRunning\Converters\EnumTypes.cs" />
+    <Compile Include="BatchStopRunning\Converters\OppositeBoolToVisibleConverter.cs" />
+    <Compile Include="BatchStopRunning\Converters\RtuStateConverter.cs" />
+    <Compile Include="BatchStopRunning\Services\IIBatchStopRunning.cs" />
+    <Compile Include="BatchStopRunning\ViewModels\BatchStopRunning.cs" />
+    <Compile Include="BatchStopRunning\ViewModels\BatchStopRunningRecords.cs" />
+    <Compile Include="BatchStopRunning\Views\BatchStopRunning.xaml.cs">
+      <DependentUpon>BatchStopRunning.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ControlCenterManagDemo2\Converters\BoolToVisibleConverter.cs" />
+    <Compile Include="ControlCenterManagDemo2\Converters\EnumFilterTypeConverter.cs" />
+    <Compile Include="ControlCenterManagDemo2\Converters\EnumToBoolConverter.cs" />
+    <Compile Include="ControlCenterManagDemo2\Converters\GridEnumToBoolConverter.cs" />
+    <Compile Include="ControlCenterManagDemo2\Converters\OpenCloseAnsConverter.cs" />
+    <Compile Include="ControlCenterManagDemo2\Converters\OppositeBoolToVisibleConverter.cs" />
+    <Compile Include="ControlCenterManagDemo2\Converters\OppositeEnumToBoolConverter.cs" />
+    <Compile Include="ControlCenterManagDemo2\Converters\OpposittBoolConverter.cs" />
+    <Compile Include="ControlCenterManagDemo2\Converters\RtuStateConverter.cs" />
+    <Compile Include="ControlCenterManagDemo2\Converters\SelectionAnsConverter.cs" />
+    <Compile Include="ControlCenterManagDemo2\Converters\StateConverter.cs" />
+    <Compile Include="ControlCenterManagDemo2\Converters\SyncTimeAnsConverter.cs" />
+    <Compile Include="ControlCenterManagDemo2\Converters\WeekSndAnsConverter.cs" />
+    <Compile Include="ControlCenterManagDemo2\NavToControlCenterManag.cs" />
+    <Compile Include="ControlCenterManagDemo2\Services\EnumTypes.cs" />
+    <Compile Include="ControlCenterManagDemo2\Services\IIControlCenterManag.cs" />
+    <Compile Include="ControlCenterManagDemo2\Services\IIShutDownOrReRun.cs" />
+    <Compile Include="ControlCenterManagDemo2\Services\TreeNodeBase.cs" />
+    <Compile Include="ControlCenterManagDemo2\ViewModel\ControlCenterViewModel2.cs" />
+    <Compile Include="ControlCenterManagDemo2\ViewModel\TreeGroupNode.cs" />
+    <Compile Include="ControlCenterManagDemo2\ViewModel\TreeGroupNodeLoacl.cs" />
+    <Compile Include="ControlCenterManagDemo2\ViewModel\TreeGroupNodeTemp.cs" />
+    <Compile Include="ControlCenterManagDemo2\ViewModel\TreeTmlNode.cs" />
+    <Compile Include="ControlCenterManagDemo2\Views\ControlCenterViewDemo2.xaml.cs">
+      <DependentUpon>ControlCenterViewDemo2.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ControlCenterManagDemo2\Views\FastControlSelect.xaml.cs">
+      <DependentUpon>FastControlSelect.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ControlCenterManagDemo2\Views\ShutDownOrReRunWindow.xaml.cs">
+      <DependentUpon>ShutDownOrReRunWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ControlCenterManagDemo2\Views\TimeTableSelectWindow.xaml.cs">
+      <DependentUpon>TimeTableSelectWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EmergencyEquipment\NavToEmergencyEquipment.cs" />
+    <Compile Include="EmergencyEquipment\Services\IIEmergencyEquipment.cs" />
+    <Compile Include="EmergencyEquipment\ViewModel\EmergencyEquipmentViewModel.cs" />
+    <Compile Include="EmergencyEquipment\Views\EmergencyEquipmentView.xaml.cs">
+      <DependentUpon>EmergencyEquipmentView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EmergencyOperationQuery\NavToOperationQuery.cs" />
+    <Compile Include="EmergencyOperationQuery\Services\IIEmergencyOperationQuery.cs" />
+    <Compile Include="EmergencyOperationQuery\ViewModel\EmergencyOperationQueryViewModel.cs" />
+    <Compile Include="EmergencyOperationQuery\Views\EmergencyOperationQueryView.xaml.cs">
+      <DependentUpon>EmergencyOperationQueryView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LnEmergencyOperationCenter\Converters\BoolToVisibleConverter.cs" />
+    <Compile Include="LnEmergencyOperationCenter\Converters\EnumFilterTypeConverter.cs" />
+    <Compile Include="LnEmergencyOperationCenter\Converters\EnumToBoolConverter.cs" />
+    <Compile Include="LnEmergencyOperationCenter\Converters\GridEnumToBoolConverter.cs" />
+    <Compile Include="LnEmergencyOperationCenter\Converters\OpenCloseAnsConverter.cs" />
+    <Compile Include="LnEmergencyOperationCenter\Converters\OppositeBoolToVisibleConverter.cs" />
+    <Compile Include="LnEmergencyOperationCenter\Converters\OppositeEnumToBoolConverter.cs" />
+    <Compile Include="LnEmergencyOperationCenter\Converters\OpposittBoolConverter.cs" />
+    <Compile Include="LnEmergencyOperationCenter\Converters\RtuStateConverter.cs" />
+    <Compile Include="LnEmergencyOperationCenter\Converters\SelectionAnsConverter.cs" />
+    <Compile Include="LnEmergencyOperationCenter\Converters\StateConverter.cs" />
+    <Compile Include="LnEmergencyOperationCenter\Converters\SyncTimeAnsConverter.cs" />
+    <Compile Include="LnEmergencyOperationCenter\Converters\WeekSndAnsConverter.cs" />
+    <Compile Include="LnEmergencyOperationCenter\NavToControlCenterManag.cs" />
+    <Compile Include="LnEmergencyOperationCenter\Services\EnumTypes.cs" />
+    <Compile Include="LnEmergencyOperationCenter\Services\IIEmergencyOperationNewData.cs" />
+    <Compile Include="LnEmergencyOperationCenter\Services\IILnEmergencyOperationCenter.cs" />
+    <Compile Include="LnEmergencyOperationCenter\Services\TreeNodeBase.cs" />
+    <Compile Include="LnEmergencyOperationCenter\ViewModel\EmergencyOperationNewDataViewModel.cs" />
+    <Compile Include="LnEmergencyOperationCenter\ViewModel\LnEmergencyOperationCenterViewModel.cs" />
+    <Compile Include="LnEmergencyOperationCenter\ViewModel\TreeGroupNode.cs" />
+    <Compile Include="LnEmergencyOperationCenter\ViewModel\TreeGroupNodeLoacl.cs" />
+    <Compile Include="LnEmergencyOperationCenter\ViewModel\TreeGroupNodeTemp.cs" />
+    <Compile Include="LnEmergencyOperationCenter\ViewModel\TreeTmlNode.cs" />
+    <Compile Include="LnEmergencyOperationCenter\Views\EmergencyOperationNewDataView.xaml.cs">
+      <DependentUpon>EmergencyOperationNewDataView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LnEmergencyOperationCenter\Views\LnEmergencyOperationCenterView.xaml.cs">
+      <DependentUpon>LnEmergencyOperationCenterView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ModuleWj3005Export.cs" />
+    <Compile Include="ModuleWj3006Export.cs" />
+    <Compile Include="ModuleWj3090Export.cs" />
+    <Compile Include="RtuLdlSet\NavTo.cs" />
+    <Compile Include="RtuLdlSet\Services\IILdlSetView.cs" />
+    <Compile Include="RtuLdlSet\ViewModels\ItemOne.cs" />
+    <Compile Include="RtuLdlSet\ViewModels\LdlSetViewModel.cs" />
+    <Compile Include="RtuLdlSet\Views\LdlSetView.xaml.cs">
+      <DependentUpon>LdlSetView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TmlInfoValidQuery\NavToTmlInfoValidQuery.cs" />
+    <Compile Include="TmlInfoValidQuery\Services\IITmlInfoValidQuery.cs" />
+    <Compile Include="TmlInfoValidQuery\ViewModel\InvalidTmlModel.cs" />
+    <Compile Include="TmlInfoValidQuery\ViewModel\TmlInfoValidQueryViewModel.cs" />
+    <Compile Include="TmlInfoValidQuery\Views\TmlInfoValidQueryView.xaml.cs">
+      <DependentUpon>TmlInfoValidQueryView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserOpenCloseInfo\Services\IIUserOcInfo.cs" />
+    <Compile Include="UserOpenCloseInfo\ViewModel\UserOcInfoViewModel.cs" />
+    <Compile Include="UserOpenCloseInfo\View\UserOcInfoView.xaml.cs">
+      <DependentUpon>UserOcInfoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Wj3005TmlInfoSetViewModel\Services\BoolToComboBox.cs" />
+    <Compile Include="Wj3005TmlInfoSetViewModel\Services\BoolToVisibleConverter.cs" />
+    <Compile Include="Wj3005TmlInfoSetViewModel\Services\LittleAConverter.cs" />
+    <Compile Include="Wj3005TmlInfoSetViewModel\ViewModel\RtuLoopInfoVm.cs" />
+    <Compile Include="Wj3005TmlInfoSetViewModel\Views\LoopInfoManage.xaml.cs">
+      <DependentUpon>LoopInfoManage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ZDataQuery\DailyDataQuery\Models\ExchangeReplyRecordData.cs" />
+    <Compile Include="ZDataQuery\DailyDataQuery\Models\ExchangeRequestData.cs" />
+    <Compile Include="ZDataQuery\DailyDataQuery\Models\TmlNewData.cs" />
+    <Compile Include="ZDataQuery\DailyDataQuery\NavToEquipmentDailyDataQueryView.cs" />
+    <Compile Include="ZDataQuery\DailyDataQuery\NavToEquipmentDailyDataQueryViewTmlRightMenu.cs" />
+    <Compile Include="ZDataQuery\DailyDataQuery\Services\CartesianAnimation.cs" />
+    <Compile Include="ZDataQuery\DailyDataQuery\Services\ChartAnimationUtilities.cs" />
+    <Compile Include="ZDataQuery\DailyDataQuery\Services\IIEquipmentDailyDataQueryViewModel.cs" />
+    <Compile Include="ZDataQuery\DailyDataQuery\Services\TimeConverterIntToString.cs" />
+    <Compile Include="ZDataQuery\DailyDataQuery\ViewModel\EquipmentDailyDataQueryViewModel.cs" />
+    <Compile Include="ZDataQuery\DailyDataQuery\ViewModel\TmlNewDataViewModelExtend.cs" />
+    <Compile Include="ZDataQuery\DailyDataQuery\Views\EquipmentDailyDataQueryView.xaml.cs">
+      <DependentUpon>EquipmentDailyDataQueryView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ZDataQuery\DailyDataQuery\Views\TmlNewDataItemControl.xaml.cs">
+      <DependentUpon>TmlNewDataItemControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ZDataQuery\ElectricityQuery\NavToElectricityQuery.cs" />
+    <Compile Include="ZDataQuery\ElectricityQuery\Services\IIElectricityQueryViewModel.cs" />
+    <Compile Include="ZDataQuery\ElectricityQuery\ViewModel\ElectricityQueryViewModel.cs" />
+    <Compile Include="ZDataQuery\ElectricityQuery\Views\ElectricityQueryView.xaml.cs">
+      <DependentUpon>ElectricityQueryView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ZDataQuery\ElectricityStatistics\NavToElectricityStatistics.cs" />
+    <Compile Include="ZDataQuery\ElectricityStatistics\Services\IIElectricityStatisticsViewModel.cs" />
+    <Compile Include="ZDataQuery\ElectricityStatistics\ViewModel\ElectricityStatisticsViewModel.cs" />
+    <Compile Include="ZDataQuery\ElectricityStatistics\Views\ElectricityStatisticsView.xaml.cs">
+      <DependentUpon>ElectricityStatisticsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ZDataQuery\RtuOpenCloseLightOneDayReportQuery\NavToRtuOpenCloseLightOneDayReportQuery.cs" />
+    <Compile Include="ZDataQuery\RtuOpenCloseLightOneDayReportQuery\Service\IIRtuOpenCloseLightOneDayReportQuery.cs" />
+    <Compile Include="ZDataQuery\RtuOpenCloseLightOneDayReportQuery\ViewModel\RtuOneDayOneOperatorItem.cs" />
+    <Compile Include="ZDataQuery\RtuOpenCloseLightOneDayReportQuery\ViewModel\RtuOpenCloseLightSuccViewModel.cs" />
+    <Compile Include="ZDataQuery\RtuOpenCloseLightOneDayReportQuery\View\RtuOpenCloseLightSuccQueryView.xaml.cs">
+      <DependentUpon>RtuOpenCloseLightSuccQueryView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ZDataQuery\RtuOpenCloseLightQuery\Converters\BoolToVisibleConverter.cs" />
+    <Compile Include="ZDataQuery\RtuOpenCloseLightQuery\Model\IIRtuOpenCloseLightQuery.cs" />
+    <Compile Include="ZDataQuery\RtuOpenCloseLightQuery\NavToRtuOpenCloseLightQueryView.cs" />
+    <Compile Include="ZDataQuery\RtuOpenCloseLightQuery\Services\ExecuteItem.cs" />
+    <Compile Include="ZDataQuery\RtuOpenCloseLightQuery\Services\RtuOpenCloseItem.cs" />
+    <Compile Include="ZDataQuery\RtuOpenCloseLightQuery\Services\RtuOpenCloseItemThree.cs" />
+    <Compile Include="ZDataQuery\RtuOpenCloseLightQuery\Services\RtuOpenCloseItemTwo.cs" />
+    <Compile Include="ZDataQuery\RtuOpenCloseLightQuery\Services\RtuOpenCloseLightQueryVm.cs" />
+    <Compile Include="ZDataQuery\RtuOpenCloseLightQuery\Views\RtuOpenCloseLightQueryView.xaml.cs">
+      <DependentUpon>RtuOpenCloseLightQueryView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ZDataQuery\SndWeekTimeQuery\Model\ExchangeReplyRecordWeekTime.cs" />
+    <Compile Include="ZDataQuery\SndWeekTimeQuery\Model\ExchangeRequestWeekTime.cs" />
+    <Compile Include="ZDataQuery\SndWeekTimeQuery\NavToSndWeekTimeQueryView.cs" />
+    <Compile Include="ZDataQuery\SndWeekTimeQuery\NavToSndWeekTimeQueryViewTmlRightMenu.cs" />
+    <Compile Include="ZDataQuery\SndWeekTimeQuery\Services\IISndWeekTimeQueryViewModel.cs" />
+    <Compile Include="ZDataQuery\SndWeekTimeQuery\ViewModel\SndWeekTimeOneRecordViewModel.cs" />
+    <Compile Include="ZDataQuery\SndWeekTimeQuery\ViewModel\SndWeekTimeQueryViewModel.cs" />
+    <Compile Include="ZDataQuery\SndWeekTimeQuery\Views\SndWeekTimeQueryView.xaml.cs">
+      <DependentUpon>SndWeekTimeQueryView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ZDataQuery\TmlLoopsQuery\NavToTmlLoopsQuery.cs" />
+    <Compile Include="ZDataQuery\TmlLoopsQuery\Services\IITmlLoopsQueryViewModel.cs" />
+    <Compile Include="ZDataQuery\TmlLoopsQuery\ViewModel\TmlLoopsQueryViewModel.cs" />
+    <Compile Include="ZDataQuery\TmlLoopsQuery\Views\TmlLoopsQueryView.xaml.cs">
+      <DependentUpon>TmlLoopsQueryView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ZOrders\AsynTime\RtuAsynTime.cs" />
+    <Compile Include="ZOrders\FaultCollection\FaultColl.cs" />
+    <Compile Include="ZOrders\Measure\MeasureControllerForMainMenu.cs" />
+    <Compile Include="ZOrders\Measure\MeasureControllerForMenu.cs" />
+    <Compile Include="ZOrders\OpenCloseLight\ForMulitTreeGrpMenu\CloseLightForMulitGrpRightMenu.cs" />
+    <Compile Include="ZOrders\OpenCloseLight\ForMulitTreeGrpMenu\CloseLightLoopControllerForMulitGrpRightMenuBase.cs" />
+    <Compile Include="ZOrders\OpenCloseLight\ForMulitTreeGrpMenu\OpenLightForMulitGrpRightMenu.cs" />
+    <Compile Include="ZOrders\OpenCloseLight\ForMulitTreeGrpMenu\OpenLightLoopControllerForMulitGrpRightMenuBase.cs" />
+    <Compile Include="ZOrders\OpenCloseLight\ForSingleTreeGrpMenu\CloseLightForSingleTreeGrpRightMenu.cs" />
+    <Compile Include="ZOrders\OpenCloseLight\ForSingleTreeGrpMenu\CloseLightLoopControllerForSingleTreeGrpRightMenuBase.cs" />
+    <Compile Include="ZOrders\OpenCloseLight\ForSingleTreeGrpMenu\OpenLightForSingleTreeGrpRightMenu.cs" />
+    <Compile Include="ZOrders\OpenCloseLight\ForSingleTreeGrpMenu\OpenLightLoopControllerForSingleTreeGrpRightMenuBase.cs" />
+    <Compile Include="ZOrders\OpenCloseLight\ForTmlRightMenu\CloseLightForTmlRightMenu.cs" />
+    <Compile Include="ZOrders\OpenCloseLight\ForTmlRightMenu\CloseLightLoopControllerForTmlRightMenuBase.cs" />
+    <Compile Include="ZOrders\OpenCloseLight\ForTmlRightMenu\OpenLightForTmlRightMenu.cs" />
+    <Compile Include="ZOrders\OpenCloseLight\ForTmlRightMenu\OpenLightLoopControllerForTmlRightMenuBase.cs" />
+    <Compile Include="ZOrders\OpenCloseLight\OpenCloseLightDataDispatch.cs" />
+    <Compile Include="Services\EventIdAssign.cs" />
+    <Compile Include="ZOrders\OpenCloseLight\OrderServer.cs" />
+    <Compile Include="Services\MenuIdAssgin.cs" />
+    <Compile Include="Services\ViewIdAssign.cs" />
+    <Compile Include="Wj3005TmlInfoSetViewModel\Views\SndArgsView.xaml.cs">
+      <DependentUpon>SndArgsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Wj3005TmlInfoSetViewModel\Views\Wj3005TmlInfoSetView.xaml.cs">
+      <DependentUpon>Wj3005TmlInfoSetView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UxWj3005Module.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Wj3005TmlInfoSetViewModel\Views\TerminalInfoBaseViewMsl.xaml.cs">
+      <DependentUpon>TerminalInfoBaseViewMsl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Wj3005TmlInfoSetViewModel\NavToWj3005TmlInfoSet.cs" />
+    <Compile Include="Wj3005TmlInfoSetViewModel\ViewModel\AttachEquipmentModuleViewModel.cs" />
+    <Compile Include="Wj3005TmlInfoSetViewModel\ViewModel\AttachEquipmentViewModel.cs" />
+    <Compile Include="Wj3005TmlInfoSetViewModel\Services\Comm.cs" />
+    <Compile Include="Wj3005TmlInfoSetViewModel\Services\IITmlInformationViewModel.cs" />
+    <Compile Include="Wj3005TmlInfoSetViewModel\ViewModel\LineViewModel.cs" />
+    <Compile Include="Wj3005TmlInfoSetViewModel\ViewModel\RtuParaAnalogueAmpViewModel.cs" />
+    <Compile Include="Wj3005TmlInfoSetViewModel\ViewModel\RtuParaSwitchInViewModel.cs" />
+    <Compile Include="Wj3005TmlInfoSetViewModel\ViewModel\RtuParaSwitchOutViewModel.cs" />
+    <Compile Include="Wj3005TmlInfoSetViewModel\ViewModel\RtuSwitchInputSetViewModel.cs" />
+    <Compile Include="Wj3005TmlInfoSetViewModel\ViewModel\TmlInformationViewModel.cs" />
+    <Compile Include="Wj3005TmlInfoSetViewModel\ViewModel\VectorSampleViewModel.cs" />
+    <Compile Include="ZOrders\OpenLightHunhe\OpenLightHunHeOrder.cs" />
+    <Compile Include="ZOrders\SndHolidaySetForMenu\SndHolidaySetForMenu.cs" />
+    <Compile Include="ZOrders\SndWeekSet\SndWeekSetForMenu.cs" />
+    <Compile Include="ZPartol\PartolViewMoel\NavToPartolView.cs" />
+    <Compile Include="ZPartol\PartolViewMoel\Services\IIPartolViewModel.cs" />
+    <Compile Include="ZPartol\PartolViewMoel\Services\ImageConverter.cs" />
+    <Compile Include="ZPartol\PartolViewMoel\ViewModels\PartolItemViewModel.cs" />
+    <Compile Include="ZPartol\PartolViewMoel\ViewModels\PartolOneTmlDataViewModel.cs" />
+    <Compile Include="ZPartol\PartolViewMoel\ViewModels\PartolViewModel.cs" />
+    <Compile Include="ZPartol\PartolViewMoel\Views\PartolView.xaml.cs">
+      <DependentUpon>PartolView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ZZhaoCe\ZhaoCeRtuHolidaySetViewModel\NavToZhaoCeRtuHolidaySetViewModel.cs" />
+    <Compile Include="ZZhaoCe\ZhaoCeRtuHolidaySetViewModel\Services\IIZhaoCeRtuHolidaySetViewModell.cs" />
+    <Compile Include="ZZhaoCe\ZhaoCeRtuHolidaySetViewModel\ViewModel\OneRtuZhaoCeHolidayTime.cs" />
+    <Compile Include="ZZhaoCe\ZhaoCeRtuHolidaySetViewModel\ViewModel\TimeSchduleItemItme.cs" />
+    <Compile Include="ZZhaoCe\ZhaoCeRtuHolidaySetViewModel\ViewModel\ZhaoCeRtuHolidaySetViewModel.cs" />
+    <Compile Include="ZZhaoCe\ZhaoCeRtuHolidaySetViewModel\Views\OneRtuHolidaySetView.xaml.cs">
+      <DependentUpon>OneRtuHolidaySetView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ZZhaoCe\ZhaoCeRtuHolidaySetViewModel\Views\ZhaoCeRtuHolidaySetView.xaml.cs">
+      <DependentUpon>ZhaoCeRtuHolidaySetView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ZZhaoCe\ZhaoCeRtuInfoViewModel\NavToZhaoCeRtuInfoViewModel.cs" />
+    <Compile Include="ZZhaoCe\ZhaoCeRtuInfoViewModel\Services\IIZhaoCeRtuInfoViewModel.cs" />
+    <Compile Include="ZZhaoCe\ZhaoCeRtuInfoViewModel\ViewModel\LoopInfoViewModel.cs" />
+    <Compile Include="ZZhaoCe\ZhaoCeRtuInfoViewModel\ViewModel\RtuZhaoCeParsViewModel.cs" />
+    <Compile Include="ZZhaoCe\ZhaoCeRtuInfoViewModel\ViewModel\SwitchOutInfoViewModel.cs" />
+    <Compile Include="ZZhaoCe\ZhaoCeRtuInfoViewModel\ViewModel\ZhaoCeRtuInfoViewModel.cs" />
+    <Compile Include="ZZhaoCe\ZhaoCeRtuInfoViewModel\Views\RtuZhaoCePars.xaml.cs">
+      <DependentUpon>RtuZhaoCePars.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ZZhaoCe\ZhaoCeRtuInfoViewModel\Views\ZhaoCeRtuInfoView.xaml.cs">
+      <DependentUpon>ZhaoCeRtuInfoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ZZhaoCe\ZhaoCeRtuWeekSetViewModel\NavToZhaoCeRtuWeekSetViewModel.cs" />
+    <Compile Include="ZZhaoCe\ZhaoCeRtuWeekSetViewModel\Services\IIZhaoCeRtuWeekSetViewModel.cs" />
+    <Compile Include="ZZhaoCe\ZhaoCeRtuWeekSetViewModel\Services\TimeDateConverter.cs" />
+    <Compile Include="ZZhaoCe\ZhaoCeRtuWeekSetViewModel\Services\TimeIs2500.cs" />
+    <Compile Include="ZZhaoCe\ZhaoCeRtuWeekSetViewModel\ViewModel\OneLoopOneWeekTimeViewModel.cs" />
+    <Compile Include="ZZhaoCe\ZhaoCeRtuWeekSetViewModel\ViewModel\OneRtuZhaoCeTime.cs" />
+    <Compile Include="ZZhaoCe\ZhaoCeRtuWeekSetViewModel\ViewModel\ZhaoCeRtuWeekSetViewModel.cs" />
+    <Compile Include="ZZhaoCe\ZhaoCeRtuWeekSetViewModel\Views\OneRtuWeekSetView.xaml.cs">
+      <DependentUpon>OneRtuWeekSetView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ZZhaoCe\ZhaoCeRtuWeekSetViewModel\Views\ZhaoCeRtuWeekSetView.xaml.cs">
+      <DependentUpon>ZhaoCeRtuWeekSetView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ZZhaoCe\ZhaoCeRtuWeekSetViewModel\Views\ZhaoCeRtuWeekSetViewFor4.xaml.cs">
+      <DependentUpon>ZhaoCeRtuWeekSetViewFor4.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Cr\TestWin\TestWin.csproj">
+      <Project>{E5A9D98C-7719-4B55-8D66-80F7AFD7A3CD}</Project>
+      <Name>TestWin</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Sr\Wlst.Sr.AssetManageInfoHold\Wlst.Sr.AssetManageInfoHold.csproj">
+      <Project>{A673EE5B-4088-4592-8973-96596D65F938}</Project>
+      <Name>Wlst.Sr.AssetManageInfoHold</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Sr\wlst.sr.iif\wlst.sr.iif.csproj">
+      <Project>{35F048E2-6ABE-4721-97D3-42AB0A19CC19}</Project>
+      <Name>wlst.sr.iif</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Ux\Wlst.Ux.Setting\Wlst.Ux.Setting.csproj">
+      <Project>{71F7B8B4-1E4E-4CA9-88B3-2DA44E3E8333}</Project>
+      <Name>Wlst.Ux.Setting</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="BatchStopRunning\Views\BatchStopRunning.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ControlCenterManagDemo2\Views\ControlCenterViewDemo2.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ControlCenterManagDemo2\Views\FastControlSelect.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ControlCenterManagDemo2\Views\ShutDownOrReRunWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ControlCenterManagDemo2\Views\TimeTableSelectWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="EmergencyEquipment\Views\EmergencyEquipmentView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="EmergencyOperationQuery\Views\EmergencyOperationQueryView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LnEmergencyOperationCenter\Views\EmergencyOperationNewDataView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LnEmergencyOperationCenter\Views\LnEmergencyOperationCenterView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="RtuLdlSet\Views\LdlSetView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="TmlInfoValidQuery\Views\TmlInfoValidQueryView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserOpenCloseInfo\View\UserOcInfoView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Wj3005TmlInfoSetViewModel\Views\LoopInfoManage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Wj3005TmlInfoSetViewModel\Views\SndArgsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Wj3005TmlInfoSetViewModel\Views\Wj3005TmlInfoSetView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Wj3005TmlInfoSetViewModel\Views\TerminalInfoBaseViewMsl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ZDataQuery\DailyDataQuery\Views\EquipmentDailyDataQueryView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ZDataQuery\DailyDataQuery\Views\TmlNewDataItemControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ZDataQuery\ElectricityQuery\Views\ElectricityQueryView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ZDataQuery\ElectricityStatistics\Views\ElectricityStatisticsView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ZDataQuery\RtuOpenCloseLightOneDayReportQuery\View\RtuOpenCloseLightSuccQueryView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ZDataQuery\RtuOpenCloseLightQuery\Views\RtuOpenCloseLightQueryView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ZDataQuery\SndWeekTimeQuery\Views\SndWeekTimeQueryView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ZDataQuery\TmlLoopsQuery\Views\TmlLoopsQueryView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ZPartol\PartolViewMoel\Views\PartolView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ZZhaoCe\ZhaoCeRtuHolidaySetViewModel\Views\OneRtuHolidaySetView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ZZhaoCe\ZhaoCeRtuHolidaySetViewModel\Views\ZhaoCeRtuHolidaySetView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ZZhaoCe\ZhaoCeRtuInfoViewModel\Views\RtuZhaoCePars.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ZZhaoCe\ZhaoCeRtuInfoViewModel\Views\ZhaoCeRtuInfoView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ZZhaoCe\ZhaoCeRtuWeekSetViewModel\Views\OneRtuWeekSetView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ZZhaoCe\ZhaoCeRtuWeekSetViewModel\Views\ZhaoCeRtuWeekSetView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ZZhaoCe\ZhaoCeRtuWeekSetViewModel\Views\ZhaoCeRtuWeekSetViewFor4.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

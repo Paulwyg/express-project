@@ -1,0 +1,58 @@
+﻿<UserControl x:Class="Wlst.Ux.LdEquipemntTree.Views.SettingView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+           
+             xmlns:RadioButtonConverter="clr-namespace:Wlst.Cr.CoreOne.RadioButtonConverter;assembly=Wlst.Cr.CoreOne"
+             mc:Ignorable="d" 
+             d:DesignHeight="400" d:DesignWidth="300">
+
+    <UserControl.Resources >
+      
+        <RadioButtonConverter:RadioButtonIntConverter x:Key="RadioMultiIntConverter">
+        </RadioButtonConverter:RadioButtonIntConverter>
+    </UserControl.Resources>
+    <Grid  MinWidth="200">
+        <Grid >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition> 
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="70"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <DockPanel Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center">
+                <CheckBox IsChecked="{Binding IsShowSingleTreeOnTab}" Content="在主界面显示路灯分组" VerticalAlignment="Center" ></CheckBox>
+
+            </DockPanel>
+            
+            <DockPanel Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center">
+                <!--<CheckBox IsChecked="{Binding IsRutsNotShowNullK}" Content="终端树快速操作屏蔽无效开关量[输出下无回路]" VerticalAlignment="Center" ></CheckBox>-->
+                <ComboBox ItemsSource="{Binding RutsNotShowNullK}"  SelectedIndex="{Binding IsRutsNotShowNullK}" Width="80" VerticalAlignment="Center"  DisplayMemberPath="Name"></ComboBox>
+                <TextBlock Text=" 快速操作模式[下次重启有效]" />
+            </DockPanel>
+            <DockPanel Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Center">
+                <TextBlock Text="快速查询上限数量：" VerticalAlignment="Center"/>
+                <TextBox   MinWidth="50" Text="{Binding SearchLimit}" Margin="1,1,1,1"></TextBox>
+            </DockPanel>
+
+            <Button  Tag="11060007" Content="应用" Command="{Binding CmdApply}" 
+                     Width="120" Height="25" Grid.Row="3"  HorizontalAlignment="Right" Margin="0,0,30,0"></Button>
+        </Grid>
+    </Grid>
+</UserControl>

@@ -1,0 +1,124 @@
+﻿<UserControl x:Class="Wlst.Ux.EquipemntLightFault.EquipmentFaultManageSettingLnViewModel.Views.EquipmentFaultManageSettingLnView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="400" d:DesignWidth="300">
+    <Grid  MinWidth="200">
+        <Grid >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="70"></RowDefinition>
+            </Grid.RowDefinitions>
+
+
+
+
+            <DockPanel Grid.Row="0" HorizontalAlignment="Left" Grid.ColumnSpan="2" VerticalAlignment="Center" Visibility="{Binding IsShowHLbph}">
+                <TextBlock Margin=" 0,0,0,0" Width="250" HorizontalAlignment="Left" VerticalAlignment="Center">终端火零不平衡消警电流差值</TextBlock>
+                <TextBox MinWidth="50" Text="{Binding HLbphLower}" Margin="1,1,5,1" IsEnabled="{Binding IsD}" ></TextBox>
+                <Label >A</Label>
+            </DockPanel>
+
+            <DockPanel Grid.Row="1" HorizontalAlignment="Left" Grid.ColumnSpan="2" VerticalAlignment="Center" Visibility="{Binding IsShowHLbph}">
+                <TextBlock Margin=" 0,0,0,0" Width="250"  HorizontalAlignment="Left" VerticalAlignment="Center" IsEnabled="{Binding IsD}">终端火零不平衡同档内报警差值></TextBlock>
+                <TextBox MinWidth="50" Text="{Binding HlbphUpdateAlarm}" Margin="1,1,5,1"  ></TextBox>
+                <Label >A</Label>
+            </DockPanel>
+
+            <DockPanel Grid.Row="2" HorizontalAlignment="Left" Grid.ColumnSpan="2" VerticalAlignment="Center" Visibility="{Binding IsShowHLbph}">
+                <TextBlock Margin=" 0,0,0,0" Width="250"  HorizontalAlignment="Left" VerticalAlignment="Center" IsEnabled="{Binding IsD}">终端火零不平衡报警检测次数</TextBlock>
+                <TextBox MinWidth="50" Text="{Binding HLbphTimer}" Margin="1,1,5,1" MaxLength="2"  ></TextBox>
+            </DockPanel>
+
+            <DockPanel Grid.Row="3" HorizontalAlignment="Left" Grid.ColumnSpan="2" VerticalAlignment="Center" Visibility="{Binding IsShowHLbph}">
+                <TextBlock Margin=" 0,0,0,0" Width="250"  HorizontalAlignment="Left" VerticalAlignment="Center" IsEnabled="{Binding IsD}">火零不平衡应急关灯屏蔽周设置时间</TextBlock>
+                <TextBox MinWidth="50" Text="{Binding HLbphShieldTimer}" Margin="1,1,5,1" MaxLength="2" IsEnabled="{Binding IsD}" ></TextBox>
+                <Label >小时（当天中午12点起多少小时，应急关灯屏蔽周设置)</Label>
+            </DockPanel>
+            <!--<DockPanel Grid.Row="4" HorizontalAlignment="Left" Grid.ColumnSpan="2" VerticalAlignment="Center" Visibility="{Binding IsShowHLbph}">
+                <TextBlock Margin=" 0,0,0,0" Width="250"  HorizontalAlignment="Left" VerticalAlignment="Center">自动更新报警信息的最小差值</TextBlock>
+                <TextBox MinWidth="50" Text="{Binding HLbphAlarmDValue}" Margin="1,1,5,1" MaxLength="2" IsEnabled="{Binding IsD}" ></TextBox>
+                <Label >（两次报警差值不超过设定值，不更新报警信息）</Label>
+            </DockPanel>-->
+
+            
+            
+            <DockPanel Grid.Row="5" HorizontalAlignment="Left" Grid.ColumnSpan="2" VerticalAlignment="Center" Visibility="{Binding IsShowHLbph}">
+                <TextBlock Width="250" HorizontalAlignment="Left" VerticalAlignment="Center" IsEnabled="{Binding IsD}">终端火零不平衡报警电流1档差值</TextBlock>
+                <TextBox MinWidth="50" Text="{Binding HLbphUpper[0].Value2}" Margin="1,1,5,1"  ></TextBox>
+                <Label >A</Label>
+            </DockPanel>
+            <DockPanel Grid.Row="6" HorizontalAlignment="Left" Grid.ColumnSpan="2" VerticalAlignment="Center" Visibility="{Binding IsShowHLbph}">
+                <TextBlock Width="250" HorizontalAlignment="Left" VerticalAlignment="Center" IsEnabled="{Binding IsD}">终端火零不平衡报警电流2档差值</TextBlock>
+                <TextBox MinWidth="50" Text="{Binding HLbphUpper[1].Value2}" Margin="1,1,5,1"  ></TextBox>
+                <Label >A</Label>
+            </DockPanel>
+            <DockPanel Grid.Row="7" HorizontalAlignment="Left" Grid.ColumnSpan="2" VerticalAlignment="Center" Visibility="{Binding IsShowHLbph}">
+                <TextBlock Width="250" HorizontalAlignment="Left" VerticalAlignment="Center" IsEnabled="{Binding IsD}">终端火零不平衡报警电流3档差值</TextBlock>
+                <TextBox MinWidth="50" Text="{Binding HLbphUpper[2].Value2}" Margin="1,1,5,1"  ></TextBox>
+                <Label >A</Label>
+            </DockPanel>
+            <DockPanel Grid.Row="8" HorizontalAlignment="Left" Grid.ColumnSpan="2" VerticalAlignment="Center" Visibility="{Binding IsShowHLbph}">
+                <TextBlock Width="250" HorizontalAlignment="Left" VerticalAlignment="Center" IsEnabled="{Binding IsD}">终端火零不平衡报警电流4档差值</TextBlock>
+                <TextBox MinWidth="50" Text="{Binding HLbphUpper[3].Value2}" Margin="1,1,5,1"  ></TextBox>
+                <Label >A</Label>
+            </DockPanel>
+            <DockPanel Grid.Row="9" HorizontalAlignment="Left" Grid.ColumnSpan="2" VerticalAlignment="Center" Visibility="{Binding IsShowHLbph}">
+                <TextBlock Width="250" HorizontalAlignment="Left" VerticalAlignment="Center" IsEnabled="{Binding IsD}">终端火零不平衡报警电流5档差值</TextBlock>
+                <TextBox MinWidth="50" Text="{Binding HLbphUpper[4].Value2}" Margin="1,1,5,1"  ></TextBox>
+                <Label >A</Label>
+            </DockPanel>
+            <DockPanel Grid.Row="10" HorizontalAlignment="Left" Grid.ColumnSpan="2" VerticalAlignment="Center" Visibility="{Binding IsShowHLbph}">
+                <TextBlock Width="250" HorizontalAlignment="Left" VerticalAlignment="Center">终端火零不平衡报警电流6档差值</TextBlock>
+                <TextBox MinWidth="50" Text="{Binding HLbphUpper[5].Value2}" Margin="1,1,5,1"  ></TextBox>
+                <Label >A</Label>
+            </DockPanel>
+            <DockPanel Grid.Row="11" HorizontalAlignment="Left" Grid.ColumnSpan="2" VerticalAlignment="Center" Visibility="{Binding IsShowHLbph}">
+                <TextBlock Width="250" HorizontalAlignment="Left" VerticalAlignment="Center">终端火零不平衡报警电流7档差值</TextBlock>
+                <TextBox MinWidth="50" Text="{Binding HLbphUpper[6].Value2}" Margin="1,1,5,1"  ></TextBox>
+                <Label >A</Label>
+            </DockPanel>
+            <DockPanel Grid.Row="12" HorizontalAlignment="Left" Grid.ColumnSpan="2" VerticalAlignment="Center" Visibility="{Binding IsShowHLbph}">
+                <TextBlock Width="250" HorizontalAlignment="Left" VerticalAlignment="Center" IsEnabled="{Binding IsD}">终端火零不平衡报警电流8档差值</TextBlock>
+                <TextBox MinWidth="50" Text="{Binding HLbphUpper[7].Value2}" Margin="1,1,5,1"  ></TextBox>
+                <Label >A</Label>
+            </DockPanel>
+            <DockPanel Grid.Row="13" HorizontalAlignment="Left" Grid.ColumnSpan="2" VerticalAlignment="Center" Visibility="{Binding IsShowHLbph}">
+                <TextBlock Width="250" HorizontalAlignment="Left" VerticalAlignment="Center" IsEnabled="{Binding IsD}">终端火零不平衡报警电流9档差值</TextBlock>
+                <TextBox MinWidth="50" Text="{Binding HLbphUpper[8].Value2}" Margin="1,1,5,1"  ></TextBox>
+                <Label >A</Label>
+            </DockPanel>
+            <DockPanel Grid.Row="14" HorizontalAlignment="Left" Grid.ColumnSpan="2" VerticalAlignment="Center" Visibility="{Binding IsShowHLbph}">
+                <TextBlock Width="250" HorizontalAlignment="Left" VerticalAlignment="Center" IsEnabled="{Binding IsD}">终端火零不平衡报警电流10档差值</TextBlock>
+                <TextBox MinWidth="50" Text="{Binding HLbphUpper[9].Value2}" Margin="1,1,5,1"  ></TextBox>
+                <Label >A</Label>
+            </DockPanel>
+
+
+            <Button  Tag="11060007" Content="应用" Command="{Binding CmdApply}" 
+                     Width="120" Height="25" Grid.Row="15"  HorizontalAlignment="Right" Margin="0,0,30,0"></Button>
+        </Grid>
+    </Grid>
+</UserControl>
+

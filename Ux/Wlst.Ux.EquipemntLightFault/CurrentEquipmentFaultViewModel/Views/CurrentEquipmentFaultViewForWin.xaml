@@ -1,0 +1,636 @@
+﻿<WindowForWlst:CustomChromeWindow x:Class="Wlst.Ux.EquipemntLightFault.CurrentEquipmentFaultViewModel.Views.CurrentEquipmentFaultViewForWin"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:Service="clr-namespace:Wlst.Ux.EquipemntLightFault.CurrentEquipmentFaultViewModel.Services"
+        xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+        xmlns:Services="clr-namespace:Wlst.Sr.EquipmentInfoHolding.Services;assembly=Wlst.Sr.EquipmentInfoHolding"      TopmostButtonVisibility ="Collapsed"
+                                  xmlns:WindowForWlst="clr-namespace:WindowForWlst;assembly=WindowForWlst"              
+                                  mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="1150"
+          Name="all">
+    <WindowForWlst:CustomChromeWindow.Resources>
+        <Service:TimeConverterIntToString x:Key="TimeConverterIntToString"/>
+        <Service:TrueFalse x:Key="TrueFalse"/>
+
+
+
+        <Style x:Key="TextBlockHeaderCellStyle" TargetType="telerik:GridViewHeaderCell">
+                <Setter Property="Background" Value="#EAEFF0" />
+                <Setter Property="BorderBrush" Value="#D8E5EC" />
+                <Setter Property="BorderThickness" Value="1" />
+                <Setter Property="VerticalContentAlignment" Value="Center" />
+                <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                <Setter Property="Padding" Value="5,0,3,0" />
+                <Setter Property="Foreground" Value="Black" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="telerik:GridViewHeaderCell">
+                            <Grid x:Name="PART_HeaderCellGrid">
+
+                                <Border x:Name="GridViewHeaderCell" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                                    <Border BorderBrush="Transparent" Background="{TemplateBinding Background}" BorderThickness="0" />
+                                </Border>
+
+                                <ContentControl x:Name="ContentPresenter" Foreground="{TemplateBinding Foreground}"
+                                            Margin="{TemplateBinding Padding}" IsTabStop="{TemplateBinding IsTabStop}"
+                                            Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}"
+                                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                            VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch"/>
+                            </Grid>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+        <Style 
+     
+        TargetType="telerik:GridViewHeaderCell">
+
+            <!--<Setter Property="Template" Value="{StaticResource GridViewHeaderCellTemplate}" />-->
+
+            <Setter Property="Background" Value="Skyblue" />
+            <Setter Property="BorderBrush" Value="Skyblue" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+            <Setter Property="Padding" Value="5 0 3 0" />
+            <!--<Setter Property="DropIndicatorBrush" Value="{StaticResource GridViewHeaderCellDropMarkerPenBrush}"/>-->
+            <Setter Property="DropIndicatorThickness" Value="0"/>
+
+            <!--<Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource Self}, Path=(RadGridViewSet:RadGridViewAttriXaml.TitleNormalForeground),Mode=OneWay}" />-->
+            <Setter Property="SnapsToDevicePixels" Value="True" />
+
+        </Style>
+
+        <Style   TargetType="telerik:GridViewHeaderRow">
+            <!--<Setter Property="Template" Value="{StaticResource GridViewHeaderRowTemplate}" />-->
+            <Setter Property="Background" Value="Skyblue" />
+            <Setter Property="MinHeight" Value="27" />
+            <!--<Setter Property="BorderBrush" Value="{StaticResource GridView_HeaderRowOuterBorder}" />-->
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="VerticalContentAlignment" Value="Stretch" />
+            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+            <!--<Setter Property="FontSize" Value="{Binding RelativeSource={RelativeSource Self}, Path=(FontSet:FontAttriXaml.MyFontSize), Mode=OneWay}" />-->
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="SnapsToDevicePixels" Value="True" />
+        </Style>
+
+    </WindowForWlst:CustomChromeWindow.Resources>
+    <Grid>
+        <Grid.RowDefinitions >
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="40"/>
+
+        </Grid.RowDefinitions>
+        <DockPanel Grid.Row="0">
+            <Grid>
+                <Grid.ColumnDefinitions >
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <DockPanel Grid.ColumnSpan="6">
+                    <TextBlock  Margin="15,0,0,0" Text="当前查看故障时间:  " VerticalAlignment="Center" HorizontalAlignment="Left" />
+                    <TextBlock   Name="txttime" VerticalAlignment="Center" HorizontalAlignment="Left" Text="{Binding FaultTypeText}"/>
+                </DockPanel>
+
+                <CheckBox  Content="显示在最前方       " Grid.Column="5" Grid.ColumnSpan="2"  HorizontalAlignment="Right" VerticalAlignment="Center" Click="CheckBox_Click"  Margin="10,0,0,0" />
+                <CheckBox  Content="设置显示规则   "     Grid.Column="3" Grid.ColumnSpan="2"  HorizontalAlignment="Right" VerticalAlignment="Center" IsChecked="{Binding IsSettingChecked}"  Margin="0,0,10,0"/>
+            </Grid>
+        </DockPanel>
+        <DockPanel Grid.Row="1" Visibility="{Binding ShowSetting}">
+            <Grid>
+                <Grid.RowDefinitions >
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="15"/>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions >
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+
+                <DockPanel Grid.Column="1" Grid.Row="0" >
+                    <TextBlock Grid.Column="0" Text="    查看故障时间:  " VerticalAlignment="Center" HorizontalAlignment="Left" />
+                    <RadioButton Content="所有故障  " Grid.Column=" 1" VerticalAlignment="Center" HorizontalAlignment="Left" Name="faulttype1" IsChecked="{Binding IsCheckedFaultType1}" />
+                    <RadioButton Content="当天故障  " Grid.Column=" 2" VerticalAlignment="Center" HorizontalAlignment="Left" Name="faulttype2" IsChecked="{Binding IsCheckedFaultType2}" />
+                    <RadioButton Content="两天内故障  " Grid.Column=" 3" VerticalAlignment="Center" HorizontalAlignment="Left" Name="faulttype3" IsChecked="{Binding IsCheckedFaultType3}"/>
+                    <RadioButton Content="三天内故障  " Grid.Column=" 4" VerticalAlignment="Center" HorizontalAlignment="Left" Name="faulttype4" IsChecked="{Binding IsCheckedFaultType4}"/>
+                    <RadioButton Content="6小时内故障  " Grid.Column=" 5" VerticalAlignment="Center" HorizontalAlignment="Left" Name="faulttype5" IsChecked="{Binding IsCheckedFaultType5}"/>
+                </DockPanel>
+                <Grid Grid.Column="2" Grid.Row="0"  Height="{Binding VisiManageInfoExist}" >
+                    <CheckBox Content="显示城区局及杆号"  Margin="20,10,0,0" IsChecked="{Binding IsManageInfoExist}" Visibility="Hidden" />
+                </Grid>
+                <telerik:RadGridView Grid.Column="1" Grid.Row="1"  AutoGenerateColumns="False" 
+                                     MouseDoubleClick="treeListView_MouseDoubleClick"
+                                     HorizontalAlignment="Left" Margin="10" BorderBrush="Transparent" ItemsSource="{Binding Path=FaultRules}"  >
+                    <!--SelectedItem="{Binding CurrentFaultRules}"-->
+                    <telerik:RadGridView.RowStyle >
+                        <Style  TargetType="telerik:GridViewRow">
+                            <Setter Property="Height" Value="25"/>
+                        </Style>
+                    </telerik:RadGridView.RowStyle>
+                    <telerik:RadGridView.Columns>
+                        <telerik:GridViewDataColumn   Header="序号" DataMemberBinding="{Binding Path=Id, StringFormat={}{0:D1}}"  IsFilterable="False" Width="40"/>
+                        <telerik:GridViewDataColumn Header="使用"    IsResizable="False"   Width="40" >
+                            <telerik:GridViewDataColumn.CellTemplate>
+                                <DataTemplate>
+                                    <DockPanel  HorizontalAlignment="Left" VerticalAlignment="Center">
+                                        <CheckBox x:Name="cb" Margin="2,1,5,1"  IsChecked="{Binding IsEnable}" IsEnabled="{Binding ShowMoRen}" VerticalAlignment="Center" HorizontalAlignment="Center"></CheckBox>
+                                    </DockPanel>
+                                </DataTemplate>
+                            </telerik:GridViewDataColumn.CellTemplate>
+                        </telerik:GridViewDataColumn>
+                        <telerik:GridViewDataColumn Header="时间段"  Width="150">
+                            <telerik:GridViewDataColumn.CellTemplate>
+                                <DataTemplate>
+                                    <DockPanel  VerticalAlignment="Center" IsEnabled="{Binding IsEnable}">
+                                        <TextBox  IsEnabled="{Binding IsEnable}" MinWidth="50" Text="{Binding StTime,Converter={StaticResource TimeConverterIntToString}}" Margin="1,1,5,1"></TextBox>
+                                        <TextBlock Text=" -- " />
+                                        <TextBox  IsEnabled="{Binding IsEnable}" MinWidth="50" Text="{Binding EndTime,Converter={StaticResource TimeConverterIntToString}}" Margin="1,1,5,1"></TextBox>
+                                    </DockPanel>
+                                </DataTemplate>
+                            </telerik:GridViewDataColumn.CellTemplate>
+                        </telerik:GridViewDataColumn>
+
+                        <telerik:GridViewDataColumn Header="故障一" Width="120">
+                            <telerik:GridViewDataColumn.CellTemplate>
+                                <DataTemplate>
+                                    <!--<DockPanel IsEnabled="{Binding IsEnable}" VerticalAlignment="Center" >
+                                        <ComboBox  IsEnabled="{Binding IsEnable}" Width="100" Height="25" VerticalAlignment="Center"  HorizontalAlignment="Center" ItemsSource="{Binding FaultComboBox}" DisplayMemberPath="FaultName" SelectedItem="{Binding SelectedFault1}" >
+                                        </ComboBox>
+                                    </DockPanel>-->
+                                    <TextBlock Text="{Binding Names[0].Name}"></TextBlock>
+                                </DataTemplate>
+                            </telerik:GridViewDataColumn.CellTemplate>
+                        </telerik:GridViewDataColumn>
+
+                        <telerik:GridViewDataColumn Header="故障二" Width="120">
+                            <telerik:GridViewDataColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Names[1].Name}"></TextBlock>
+                                    <!--<DockPanel IsEnabled="{Binding IsEnable}" VerticalAlignment="Center" >
+                                        <ComboBox  Width="100" Height="25" VerticalAlignment="Center"  HorizontalAlignment="Center" ItemsSource="{Binding FaultComboBox}" DisplayMemberPath="FaultName" SelectedItem="{Binding SelectedFault2}" >
+                                        </ComboBox>
+                                    </DockPanel>-->
+                                </DataTemplate>
+                            </telerik:GridViewDataColumn.CellTemplate>
+                        </telerik:GridViewDataColumn>
+
+                        <telerik:GridViewDataColumn Header="故障三" Width="120">
+                            <telerik:GridViewDataColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Names[2].Name}"></TextBlock>
+                                    <!--<DockPanel IsEnabled="{Binding IsEnable}" VerticalAlignment="Center" >
+                                        <ComboBox  Width="100" Height="25" VerticalAlignment="Center"  HorizontalAlignment="Center" ItemsSource="{Binding FaultComboBox}" DisplayMemberPath="FaultName" SelectedItem="{Binding SelectedFault3}" >
+                                        </ComboBox>
+                                    </DockPanel>-->
+                                </DataTemplate>
+                            </telerik:GridViewDataColumn.CellTemplate>
+                        </telerik:GridViewDataColumn>
+
+                        <telerik:GridViewDataColumn Header="故障四" Width="120">
+                            <telerik:GridViewDataColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Names[3].Name}"></TextBlock>
+                                    <!--<DockPanel IsEnabled="{Binding IsEnable}" VerticalAlignment="Center" >
+                                        <ComboBox  Width="100" Height="25" VerticalAlignment="Center"  HorizontalAlignment="Center" ItemsSource="{Binding FaultComboBox}" DisplayMemberPath="FaultName" SelectedItem="{Binding SelectedFault4}" >
+                                        </ComboBox>
+                                    </DockPanel>-->
+                                </DataTemplate>
+                            </telerik:GridViewDataColumn.CellTemplate>
+                        </telerik:GridViewDataColumn>
+
+                        <telerik:GridViewDataColumn Header="故障五" Width="120">
+                            <telerik:GridViewDataColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Names[4].Name}"></TextBlock>
+                                    <!--<DockPanel IsEnabled="{Binding IsEnable}" VerticalAlignment="Center" >
+                                        <ComboBox  Width="100" Height="25" VerticalAlignment="Center"  HorizontalAlignment="Center" ItemsSource="{Binding FaultComboBox}" DisplayMemberPath="FaultName" SelectedItem="{Binding SelectedFault5}" >
+                                        </ComboBox>
+                                    </DockPanel>-->
+                                </DataTemplate>
+                            </telerik:GridViewDataColumn.CellTemplate>
+                        </telerik:GridViewDataColumn>
+                        <!--<telerik:GridViewDataColumn Header="故障选择" MinWidth="180" MaxWidth="250">
+                        <telerik:GridViewDataColumn.CellTemplate>
+                            <DataTemplate>
+                                <DockPanel VerticalAlignment="Center" >
+                                <ComboBox  Width="100" Height="25" VerticalAlignment="Center"  HorizontalAlignment="Center" ItemsSource="{Binding FaultComboBox}">
+                                    <ComboBox.ItemTemplate >
+                                        <DataTemplate>                                            
+                                                <CheckBox IsChecked="{Binding IsChecked}" Content="{Binding FaultName}" VerticalAlignment="Center" HorizontalAlignment="Center" />                                                                                       
+                                        </DataTemplate>
+                                    </ComboBox.ItemTemplate>
+                                </ComboBox>
+                                </DockPanel>
+                            </DataTemplate>
+                        </telerik:GridViewDataColumn.CellTemplate>
+                    </telerik:GridViewDataColumn>
+
+                    <telerik:GridViewDataColumn   Header="已选故障" DataMemberBinding="{Binding Path=SelectedFault, StringFormat={}{0:D4}}"  IsFilterable="False" MinWidth="300" MaxWidth="350"/>-->
+                    </telerik:RadGridView.Columns>
+                </telerik:RadGridView>
+                <DockPanel Grid.Column=" 2" HorizontalAlignment="Left"  Margin="15,0,0,10" Grid.Row="1">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <!--<ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>-->
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <!--<Button Content="增加规则" Height="28" Width="70" Grid.Column="0" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="10" Command="{Binding CmdAddRule}"/>
+                    <Button Content="删除规则" Height="28" Width="70" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="10" Command="{Binding CmdDelRule}"/>-->
+                        <Button Content="保存修改" Height="28" Width="70" Grid.Column="2" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="10" Command="{Binding CmdSaveRule}"/>
+                    </Grid>
+                </DockPanel>
+
+
+            </Grid>
+        </DockPanel>
+        <DockPanel Grid.Row="2">
+            <Grid x:Name="fa">
+                <Grid.RowDefinitions >
+   
+                    <RowDefinition Height="*"/>
+ 
+                    <RowDefinition Height="*"/>
+ 
+                    <RowDefinition Height="*"/>
+
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions >
+                    <ColumnDefinition Width="700"/>
+                    <ColumnDefinition Width="*"/>
+
+
+                </Grid.ColumnDefinitions>
+                <Grid x:Name="g1"  Margin="2" Grid.Row="0" Grid.Column="0"> 
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <DockPanel>
+                        <TextBlock Text="{Binding Records[0].FaultName}" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="15,2,2,0"  />
+                        <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Left" Text="        当前报警总数: "></TextBlock>
+                        <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Left" Text="{Binding  Records[0].FaultCountOld}"></TextBlock>
+
+                        <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Left" Visibility="{Binding  Records[0].FaultCountNewShow}" Text="   最新报警: "></TextBlock>
+                        <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Left"  Visibility="{Binding  Records[0].FaultCountNewShow}"  Foreground="Red" FontSize="18" Text="{Binding  Records[0].FaultCountNew}"></TextBlock>
+
+                    </DockPanel>
+                   
+                <telerik:RadGridView Grid.Row="1" Margin="5" Grid.Column="0" AutoGenerateColumns="False" x:Name="gv1"
+                                       MouseDoubleClick="RadGridView_MouseDoubleClick" Mouse.PreviewMouseUp="RadGridView_MouseLeftButtonUp"      AlternationCount="0"
+                                     ItemsSource="{Binding Records[0].RecordItems}" ColumnReordered="gv1_ColumnReordered"> 
+                    <telerik:RadGridView.RowStyle>
+                        <Style TargetType="telerik:GridViewRow">
+                            <Setter Property="Foreground"    Value="{Binding Path=Color, Mode=TwoWay}" />
+                                <Setter Property="Background" Value="{Binding Path=BkColor, Mode=TwoWay}"/>
+                            </Style>
+                    </telerik:RadGridView.RowStyle>
+                    <telerik:RadGridView.Columns>
+                            <telerik:GridViewDataColumn DataMemberBinding="{Binding Path=RtuId}"  IsFilterable="False"  Header="地址" Width="50"/>
+                            <telerik:GridViewDataColumn DataMemberBinding="{Binding Path=RtuName}"  IsFilterable="False"  Header="设备名称" Width="185"/>
+                            <telerik:GridViewDataColumn DataMemberBinding="{Binding Path=LoopName}"  IsFilterable="False"  Header="故障回路" Width="105"/>
+                            <telerik:GridViewDataColumn DataMemberBinding="{Binding Path=FaultName}" IsFilterable="True"  Header="故障名称" Width="120"/>
+                            <telerik:GridViewDataColumn DataMemberBinding="{Binding Path=AlarmCount}"  IsFilterable="False"  Header="次数" Width="50" /> <!--IsVisible="{Binding ManageInfoExist,Converter ={StaticResource TrueFalse}}"-->
+                            <telerik:GridViewDataColumn DataMemberBinding="{Binding Path=DataCreateTime,StringFormat={}\{0:yyyy-MM-dd HH:mm:ss\}}"  IsFilterable="False"  Header="最后发生时间" />
+                            <telerik:GridViewDataColumn DataMemberBinding="{Binding Path=DataFirstTime,StringFormat={}\{0:yyyy-MM-dd HH:mm:ss\}}"  IsFilterable="False"  Header="第一次发生时间" IsVisible="{Binding IsEnabled,ElementName=grid1}"/>
+                            <telerik:GridViewDataColumn DataMemberBinding="{Binding Path=Voltage,StringFormat={}{0:F2}}"  IsFilterable="False"  Header="电压" IsVisible="{Binding IsShowVAPHL}"/>
+                            <telerik:GridViewDataColumn DataMemberBinding="{Binding Path=Current,StringFormat={}{0:F2}}"  IsFilterable="False"  Header="电流" IsVisible="{Binding IsShowVAPHL}"/>
+                            <telerik:GridViewDataColumn DataMemberBinding="{Binding Path=Power,StringFormat={}{0:F2}}"  IsFilterable="False"  Header="额定" IsVisible="{Binding IsShowVAPHL}"/>
+                            <telerik:GridViewDataColumn DataMemberBinding="{Binding Path=HighLimit,StringFormat={}{0:F2}}"  IsFilterable="False"  Header="上限" IsVisible="{Binding IsShowVAPHL}"/>
+                            <telerik:GridViewDataColumn DataMemberBinding="{Binding Path=LowLimit,StringFormat={}{0:F2}}"  IsFilterable="False"  Header="下限" IsVisible="{Binding IsShowVAPHL}"/>
+                            <telerik:GridViewDataColumn DataMemberBinding="{Binding Path=CQJ}"  IsFilterable="False"  Header="城区局" Width="80" IsVisible="{Binding ManageInfoExist}"/>
+                            <telerik:GridViewDataColumn DataMemberBinding="{Binding Path=DYGH}"  IsFilterable="False"  Header="电源杆号" Width="80" IsVisible="{Binding ManageInfoExist}"/>
+
+                            <telerik:GridViewDataColumn Header="操作" Width="60" IsVisible ="{Binding EnablePaiDan}">
+                                <telerik:GridViewDataColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <CheckBox IsChecked="{Binding IsSelected}" Content=""  />
+                                    </DataTemplate>
+                                </telerik:GridViewDataColumn.CellTemplate>
+                            </telerik:GridViewDataColumn>
+                            <telerik:GridViewDataColumn DataMemberBinding="{Binding Path=Paidan}"  IsFilterable="True"  Header="是否派单" IsVisible ="{Binding EnablePaiDan}" />
+
+                        </telerik:RadGridView.Columns>
+                </telerik:RadGridView>
+                </Grid>
+                
+                <Grid x:Name="g2"  Margin="2" Grid.Row="0" Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <DockPanel>
+                        <TextBlock Text="{Binding Records[1].FaultName}" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="15,2,2,0"  />
+                        <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Left" Text="        当前报警总数: "></TextBlock>
+                        <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Left" Text="{Binding  Records[1].FaultCountOld}"></TextBlock>
+
+                        <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Left" Visibility="{Binding  Records[1].FaultCountNewShow}" Text="   最新报警: "></TextBlock>
+                        <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Left"  Visibility="{Binding  Records[1].FaultCountNewShow}"  Foreground="Red" FontSize="18" Text="{Binding  Records[1].FaultCountNew}"></TextBlock>
+
+                    </DockPanel>
+
+                    <telerik:RadGridView Grid.Row="1"   MouseDoubleClick="RadGridView_MouseDoubleClick"  PreviewMouseUp="RadGridView_MouseLeftButtonUp"  x:Name="gv2"   AlternationCount="0"
+                                         Margin="5,5,5,6" AutoGenerateColumns="False" ItemsSource="{Binding Records[1].RecordItems}" ColumnReordered="gv2_ColumnReordered">
+                    <telerik:RadGridView.RowStyle>
+                        <Style TargetType="telerik:GridViewRow">
+                                <Setter Property="Foreground"    Value="{Binding Path=Color, Mode=TwoWay}" />
+                                <Setter Property="Background" Value="{Binding Path=BkColor, Mode=TwoWay}"/>
+                            </Style>
+                    </telerik:RadGridView.RowStyle>
+                    <telerik:RadGridView.Columns>
+                            <telerik:GridViewDataColumn DataMemberBinding="{Binding Path=RtuId}"  IsFilterable="False"  Header="地址" Width="50"/>
+                            <telerik:GridViewDataColumn DataMemberBinding="{Binding Path=RtuName}"  IsFilterable="False"  Header="设备名称" Width="185"/>
+                            <telerik:GridViewDataColumn DataMemberBinding="{Binding Path=LoopName}"  IsFilterable="False"  Header="故障回路" Width="105"/>
+                            <telerik:GridViewDataColumn DataMemberBinding="{Binding Path=FaultName}" IsFilterable="True"  Header="故障名称" Width="120"/>
+                            <telerik:GridViewDataColumn DataMemberBinding="{Binding Path=AlarmCount}"  IsFilterable="False"  Header="次数" Width="50"/>
+                            <telerik:GridViewDataColumn DataMemberBinding="{Binding Path=DataCreateTime,StringFormat={}\{0:yyyy-MM-dd HH:mm:ss\}}"  IsFilterable="False"  Header="最后发生时间" />
+                            <telerik:GridViewDataColumn DataMemberBinding="{Binding Path=DataFirstTime,StringFormat={}\{0:yyyy-MM-dd HH:mm:ss\}}"  IsFilterable="False"  Header="第一次发生时间" IsVisible="{Binding IsEnabled,ElementName=grid1}"/>
+                            <telerik:GridViewDataColumn DataMemberBinding="{Binding Path=Voltage,StringFormat={}{0:F2}}"  IsFilterable="False"  Header="电压" IsVisible="{Binding IsShowVAPHL}"/>
+                            <telerik:GridViewDataColumn DataMemberBinding="{Binding Path=Current,StringFormat={}{0:F2}}"  IsFilterable="False"  Header="电流" IsVisible="{Binding IsShowVAPHL}"/>
+                            <telerik:GridViewDataColumn DataMemberBinding="{Binding Path=Power,StringFormat={}{0:F2}}"  IsFilterable="False"  Header="额定" IsVisible="{Binding IsShowVAPHL}"/>
+                            <telerik:GridViewDataColumn DataMemberBinding="{Binding Path=HighLimit,StringFormat={}{0:F2}}"  IsFilterable="False"  Header="上限" IsVisible="{Binding IsShowVAPHL}"/>
+                            <telerik:GridViewDataColumn DataMemberBinding="{Binding Path=LowLimit,StringFormat={}{0:F2}}"  IsFilterable="False"  Header="下限" IsVisible="{Binding IsShowVAPHL}"/>
+                            <telerik:GridViewDataColumn DataMemberBinding="{Binding Path=CQJ}"  IsFilterable="False"  Header="城区局" Width="80" IsVisible="{Binding ManageInfoExist}"/>
+                            <telerik:GridViewDataColumn DataMemberBinding="{Binding Path=DYGH}"  IsFilterable="False"  Header="电源杆号" Width="80" IsVisible="{Binding ManageInfoExist}"/>
+
+                            <telerik:GridViewDataColumn Header="操作" Width="60" IsVisible ="{Binding EnablePaiDan}">
+                                <telerik:GridViewDataColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <CheckBox IsChecked="{Binding IsSelected}" Content=""  />
+                                    </DataTemplate>
+                                </telerik:GridViewDataColumn.CellTemplate>
+                            </telerik:GridViewDataColumn>
+                            <telerik:GridViewDataColumn DataMemberBinding="{Binding Path=Paidan}"  IsFilterable="True"  Header="是否派单" IsVisible ="{Binding EnablePaiDan}" />
+                        </telerik:RadGridView.Columns>
+                    </telerik:RadGridView>
+                </Grid>
+
+                <Grid x:Name="g3"  Margin="2" Grid.Row="1" Grid.Column="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="30"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <DockPanel>
+                        <TextBlock Text="{Binding Records[2].FaultName}" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="15,2,2,0"  />
+                        <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Left" Text="        当前报警总数: "></TextBlock>
+                        <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Left" Text="{Binding  Records[2].FaultCountOld}"></TextBlock>
+
+                        <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Left" Visibility="{Binding  Records[2].FaultCountNewShow}" Text="   最新报警: "></TextBlock>
+                        <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Left"  Visibility="{Binding  Records[2].FaultCountNewShow}"  Foreground="Red" FontSize="18" Text="{Binding  Records[2].FaultCountNew}"></TextBlock>
+
+                    </DockPanel>
+
+                    <telerik:RadGridView Grid.Row="1" Margin="5"   MouseDoubleClick="RadGridView_MouseDoubleClick"  PreviewMouseUp="RadGridView_MouseLeftButtonUp"  x:Name="gv3"   AlternationCount="0"
+                                         AutoGenerateColumns="False" ItemsSource="{Binding Records[2].RecordItems}" ColumnReordered="gv3_ColumnReordered">
+                    <telerik:RadGridView.RowStyle>
+                        <Style TargetType="telerik:GridViewRow">
+                                <Setter Property="Foreground"    Value="{Binding Path=Color, Mode=TwoWay}" />
+                                <Setter Property="Background" Value="{Binding Path=BkColor, Mode=TwoWay}"/>
+                            </Style>
+                    </telerik:RadGridView.RowStyle>
+                    <telerik:RadGridView.Columns>
+                            <telerik:GridViewDataColumn DataMemberBinding="{Binding Path=RtuId}"  IsFilterable="False"  Header="地址" Width="50"/>
+                            <telerik:GridViewDataColumn DataMemberBinding="{Binding Path=RtuName}"  IsFilterable="False"  Header="设备名称" Width="185"/>
+                            <telerik:GridViewDataColumn DataMemberBinding="{Binding Path=LoopName}"  IsFilterable="False"  Header="故障回路" Width="105"/>
+                            <telerik:GridViewDataColumn DataMemberBinding="{Binding Path=FaultName}" IsFilterable="True"  Header="故障名称" Width="120"/>
+                            <telerik:GridViewDataColumn DataMemberBinding="{Binding Path=AlarmCount}"  IsFilterable="False"  Header="次数" Width="50"/>
+                            <telerik:GridViewDataColumn DataMemberBinding="{Binding Path=DataCreateTime,StringFormat={}\{0:yyyy-MM-dd HH:mm:ss\}}"  IsFilterable="False"  Header="最后发生时间" />
+                            <telerik:GridViewDataColumn DataMemberBinding="{Binding Path=DataFirstTime,StringFormat={}\{0:yyyy-MM-dd HH:mm:ss\}}"  IsFilterable="False"  Header="第一次发生时间" IsVisible="{Binding IsEnabled,ElementName=grid1}"/>
+                            <telerik:GridViewDataColumn DataMemberBinding="{Binding Path=Voltage,StringFormat={}{0:F2}}"  IsFilterable="False"  Header="电压" IsVisible="{Binding IsShowVAPHL}"/>
+                            <telerik:GridViewDataColumn DataMemberBinding="{Binding Path=Current,StringFormat={}{0:F2}}"  IsFilterable="False"  Header="电流" IsVisible="{Binding IsShowVAPHL}"/>
+                            <telerik:GridViewDataColumn DataMemberBinding="{Binding Path=Power,StringFormat={}{0:F2}}"  IsFilterable="False"  Header="额定" IsVisible="{Binding IsShowVAPHL}"/>
+                            <telerik:GridViewDataColumn DataMemberBinding="{Binding Path=HighLimit,StringFormat={}{0:F2}}"  IsFilterable="False"  Header="上限" IsVisible="{Binding IsShowVAPHL}"/>
+                            <telerik:GridViewDataColumn DataMemberBinding="{Binding Path=LowLimit,StringFormat={}{0:F2}}"  IsFilterable="False"  Header="下限" IsVisible="{Binding IsShowVAPHL}"/>
+                            <telerik:GridViewDataColumn DataMemberBinding="{Binding Path=CQJ}"  IsFilterable="False"  Header="城区局" Width="80" IsVisible="{Binding ManageInfoExist}"/>
+                            <telerik:GridViewDataColumn DataMemberBinding="{Binding Path=DYGH}"  IsFilterable="False"  Header="电源杆号" Width="80" IsVisible="{Binding ManageInfoExist}"/>
+
+                            <telerik:GridViewDataColumn Header="操作" Width="60" IsVisible ="{Binding EnablePaiDan}">
+                                <telerik:GridViewDataColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <CheckBox IsChecked="{Binding IsSelected}" Content=""  />
+                                    </DataTemplate>
+                                </telerik:GridViewDataColumn.CellTemplate>
+                            </telerik:GridViewDataColumn>
+
+                            <telerik:GridViewDataColumn DataMemberBinding="{Binding Path=Paidan}"  IsFilterable="True"  Header="是否派单" IsVisible ="{Binding EnablePaiDan}" />
+
+                        </telerik:RadGridView.Columns>
+                    </telerik:RadGridView>
+                </Grid>
+
+                <Grid x:Name="g4"  Margin="2" Grid.Row="1" Grid.Column="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="30"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <DockPanel>
+                        <TextBlock Text="{Binding Records[3].FaultName}" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="15,2,2,0"  />
+                        <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Left" Text="        当前报警总数: "></TextBlock>
+                        <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Left" Text="{Binding  Records[3].FaultCountOld}"></TextBlock>
+
+                        <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Left" Visibility="{Binding  Records[3].FaultCountNewShow}" Text="   最新报警: "></TextBlock>
+                        <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Left"  Visibility="{Binding  Records[3].FaultCountNewShow}"  Foreground="Red" FontSize="18" Text="{Binding  Records[3].FaultCountNew}"></TextBlock>
+
+                    </DockPanel>
+
+                    <telerik:RadGridView Grid.Row="1"   Margin="5"  MouseDoubleClick="RadGridView_MouseDoubleClick"  PreviewMouseUp="RadGridView_MouseLeftButtonUp"  x:Name="gv4" AlternationCount="0"
+                                         AutoGenerateColumns="False" ItemsSource="{Binding Records[3].RecordItems}" ColumnReordered="gv4_ColumnReordered">
+                    <telerik:RadGridView.RowStyle>
+                        <Style TargetType="telerik:GridViewRow">
+                                <Setter Property="Foreground"    Value="{Binding Path=Color, Mode=TwoWay}" />
+                                <Setter Property="Background" Value="{Binding Path=BkColor, Mode=TwoWay}"/>
+                            </Style>
+                    </telerik:RadGridView.RowStyle>
+                    <telerik:RadGridView.Columns>
+                            <telerik:GridViewDataColumn DataMemberBinding="{Binding Path=RtuId}"  IsFilterable="False"  Header="地址" Width="50"/>
+                            <telerik:GridViewDataColumn DataMemberBinding="{Binding Path=RtuName}"  IsFilterable="False"  Header="设备名称" Width="185"/>
+                            <telerik:GridViewDataColumn DataMemberBinding="{Binding Path=LoopName}"  IsFilterable="False"  Header="故障回路" Width="105"/>
+                            <telerik:GridViewDataColumn DataMemberBinding="{Binding Path=FaultName}" IsFilterable="True"  Header="故障名称" Width="120"/>
+                            <telerik:GridViewDataColumn DataMemberBinding="{Binding Path=AlarmCount}"  IsFilterable="False"  Header="次数" Width="50" />
+                            <telerik:GridViewDataColumn DataMemberBinding="{Binding Path=DataCreateTime,StringFormat={}\{0:yyyy-MM-dd HH:mm:ss\}}"  IsFilterable="False"  Header="最后发生时间" />
+                            <telerik:GridViewDataColumn DataMemberBinding="{Binding Path=DataFirstTime,StringFormat={}\{0:yyyy-MM-dd HH:mm:ss\}}"  IsFilterable="False"  Header="第一次发生时间" IsVisible="{Binding IsEnabled,ElementName=grid1}"/>
+                            <telerik:GridViewDataColumn DataMemberBinding="{Binding Path=Voltage,StringFormat={}{0:F2}}"  IsFilterable="False"  Header="电压" IsVisible="{Binding IsShowVAPHL}"/>
+                            <telerik:GridViewDataColumn DataMemberBinding="{Binding Path=Current,StringFormat={}{0:F2}}"  IsFilterable="False"  Header="电流" IsVisible="{Binding IsShowVAPHL}"/>
+                            <telerik:GridViewDataColumn DataMemberBinding="{Binding Path=Power,StringFormat={}{0:F2}}"  IsFilterable="False"  Header="额定" IsVisible="{Binding IsShowVAPHL}"/>
+                            <telerik:GridViewDataColumn DataMemberBinding="{Binding Path=HighLimit,StringFormat={}{0:F2}}"  IsFilterable="False"  Header="上限" IsVisible="{Binding IsShowVAPHL}"/>
+                            <telerik:GridViewDataColumn DataMemberBinding="{Binding Path=LowLimit,StringFormat={}{0:F2}}"  IsFilterable="False"  Header="下限" IsVisible="{Binding IsShowVAPHL}"/>
+                            <telerik:GridViewDataColumn DataMemberBinding="{Binding Path=CQJ}"  IsFilterable="False"  Header="城区局" Width="80" IsVisible="{Binding ManageInfoExist}"/>
+                            <telerik:GridViewDataColumn DataMemberBinding="{Binding Path=DYGH}"  IsFilterable="False"  Header="电源杆号" Width="80" IsVisible="{Binding ManageInfoExist}"/>
+
+                            <telerik:GridViewDataColumn Header="操作" Width="60" IsVisible ="{Binding EnablePaiDan}">
+                                <telerik:GridViewDataColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <CheckBox IsChecked="{Binding IsSelected}" Content=""  />
+                                    </DataTemplate>
+                                </telerik:GridViewDataColumn.CellTemplate>
+                            </telerik:GridViewDataColumn>
+
+                            <telerik:GridViewDataColumn DataMemberBinding="{Binding Path=Paidan}"  IsFilterable="True"  Header="是否派单" IsVisible ="{Binding EnablePaiDan}" />
+
+                        </telerik:RadGridView.Columns>
+                    </telerik:RadGridView>
+                </Grid>
+
+                <Grid x:Name="g5"  Margin="2" Grid.Row="2" Grid.Column="0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="30"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <DockPanel>
+                        <TextBlock Text="{Binding Records[4].FaultName}" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="15,2,2,0"  />
+                        <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Left" Text="        当前报警总数: "></TextBlock>
+                        <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Left" Text="{Binding  Records[4].FaultCountOld}"></TextBlock>
+
+                        <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Left" Visibility="{Binding  Records[4].FaultCountNewShow}" Text="   最新报警: "></TextBlock>
+                        <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Left"  Visibility="{Binding  Records[4].FaultCountNewShow}"  Foreground="Red" FontSize="18" Text="{Binding  Records[4].FaultCountNew}"></TextBlock>
+
+                    </DockPanel>
+
+                    <telerik:RadGridView Grid.Row="1"   MouseDoubleClick="RadGridView_MouseDoubleClick"  PreviewMouseUp="RadGridView_MouseLeftButtonUp"  x:Name="gv5"  AlternationCount="0"
+                                         Grid.Column="0" AutoGenerateColumns="False" ItemsSource="{Binding Records[4].RecordItems}" ColumnReordered="gv5_ColumnReordered">
+                    <telerik:RadGridView.RowStyle>
+                        <Style TargetType="telerik:GridViewRow">
+                                <Setter Property="Foreground"    Value="{Binding Path=Color, Mode=TwoWay}" />
+                                <Setter Property="Background" Value="{Binding Path=BkColor, Mode=TwoWay}"/>
+                            </Style>
+                    </telerik:RadGridView.RowStyle>
+                    <telerik:RadGridView.Columns>
+                            <telerik:GridViewDataColumn DataMemberBinding="{Binding Path=RtuId}"  IsFilterable="False"  Header="地址" Width="50"/>
+                            <telerik:GridViewDataColumn DataMemberBinding="{Binding Path=RtuName}"  IsFilterable="False"  Header="设备名称" Width="185"/>
+                            <telerik:GridViewDataColumn DataMemberBinding="{Binding Path=LoopName}"  IsFilterable="False"  Header="故障回路" Width="105"/>
+                            <telerik:GridViewDataColumn DataMemberBinding="{Binding Path=FaultName}" IsFilterable="True"  Header="故障名称" Width="120"/>
+                            <telerik:GridViewDataColumn DataMemberBinding="{Binding Path=AlarmCount}"  IsFilterable="False"  Header="次数" Width="50" />
+                            <telerik:GridViewDataColumn DataMemberBinding="{Binding Path=DataCreateTime,StringFormat={}\{0:yyyy-MM-dd HH:mm:ss\}}"  IsFilterable="False"  Header="最后发生时间" />
+                            <telerik:GridViewDataColumn DataMemberBinding="{Binding Path=DataFirstTime,StringFormat={}\{0:yyyy-MM-dd HH:mm:ss\}}"  IsFilterable="False"  Header="第一次发生时间" IsVisible="{Binding IsEnabled,ElementName=grid1}"/>
+                            <telerik:GridViewDataColumn DataMemberBinding="{Binding Path=Voltage,StringFormat={}{0:F2}}"  IsFilterable="False"  Header="电压" IsVisible="{Binding IsShowVAPHL}"/>
+                            <telerik:GridViewDataColumn DataMemberBinding="{Binding Path=Current,StringFormat={}{0:F2}}"  IsFilterable="False"  Header="电流" IsVisible="{Binding IsShowVAPHL}"/>
+                            <telerik:GridViewDataColumn DataMemberBinding="{Binding Path=Power,StringFormat={}{0:F2}}"  IsFilterable="False"  Header="额定" IsVisible="{Binding IsShowVAPHL}"/>
+                            <telerik:GridViewDataColumn DataMemberBinding="{Binding Path=HighLimit,StringFormat={}{0:F2}}"  IsFilterable="False"  Header="上限" IsVisible="{Binding IsShowVAPHL}"/>
+                            <telerik:GridViewDataColumn DataMemberBinding="{Binding Path=LowLimit,StringFormat={}{0:F2}}"  IsFilterable="False"  Header="下限" IsVisible="{Binding IsShowVAPHL}"/>
+                            <telerik:GridViewDataColumn DataMemberBinding="{Binding Path=CQJ}"  IsFilterable="False"  Header="城区局" Width="80" IsVisible="{Binding ManageInfoExist}"/>
+                            <telerik:GridViewDataColumn DataMemberBinding="{Binding Path=DYGH}"  IsFilterable="False"  Header="电源杆号" Width="80" IsVisible="{Binding ManageInfoExist}"/>
+
+
+                            <telerik:GridViewDataColumn Header="操作" Width="60" IsVisible ="{Binding EnablePaiDan}">
+                                <telerik:GridViewDataColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <CheckBox IsChecked="{Binding IsSelected}" Content=""  />
+                                    </DataTemplate>
+                                </telerik:GridViewDataColumn.CellTemplate>
+                            </telerik:GridViewDataColumn>
+
+                            <telerik:GridViewDataColumn DataMemberBinding="{Binding Path=Paidan}"  IsFilterable="True"  Header="是否派单" IsVisible ="{Binding EnablePaiDan}" />
+                        </telerik:RadGridView.Columns>
+                    </telerik:RadGridView>
+                </Grid>
+
+                <Grid x:Name="g6"  Margin="2" Grid.Row="2" Grid.Column="1">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="30"></RowDefinition>
+                                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <DockPanel>
+                        <TextBlock Text="{Binding Records[5].FaultName}" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="15,2,2,0"  />
+                        <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Left" Text="        当前报警总数: "></TextBlock>
+                        <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Left" Text="{Binding  Records[5].FaultCountOld}"></TextBlock>
+
+                        <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Left" Visibility="{Binding  Records[5].FaultCountNewShow}" Text="   最新报警: "></TextBlock>
+                        <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Left"  Visibility="{Binding  Records[5].FaultCountNewShow}"  Foreground="Red" FontSize="18" Text="{Binding  Records[5].FaultCountNew}"></TextBlock>
+                    </DockPanel>
+
+                    <telerik:RadGridView Grid.Row="5" Grid.Column="1" Margin="5"  MouseDoubleClick="RadGridView_MouseDoubleClick"  PreviewMouseUp="RadGridView_MouseLeftButtonUp"  x:Name="gv6"  AlternationCount="0"
+                                         AutoGenerateColumns="False" ItemsSource="{Binding Records[5].RecordItems}" ColumnReordered="gv6_ColumnReordered">
+                    <telerik:RadGridView.RowStyle>
+                        <Style TargetType="telerik:GridViewRow">
+                                <Setter Property="Foreground"    Value="{Binding Path=Color, Mode=TwoWay}" />
+                                <Setter Property="Background" Value="{Binding Path=BkColor, Mode=TwoWay}"/>
+                            </Style>
+                    </telerik:RadGridView.RowStyle>
+                    <telerik:RadGridView.Columns>
+                            <telerik:GridViewDataColumn DataMemberBinding="{Binding Path=RtuId}"  IsFilterable="False"  Header="地址" Width="50"/>
+                            <telerik:GridViewDataColumn DataMemberBinding="{Binding Path=RtuName}"  IsFilterable="False"  Header="设备名称" Width="185"/>
+                            <telerik:GridViewDataColumn DataMemberBinding="{Binding Path=LoopName}"  IsFilterable="False"  Header="故障回路" Width="105"/>
+                            <telerik:GridViewDataColumn DataMemberBinding="{Binding Path=FaultName}" IsFilterable="True"  Header="故障名称" Width="120"/>
+                            <telerik:GridViewDataColumn DataMemberBinding="{Binding Path=AlarmCount}"  IsFilterable="False"  Header="次数" Width="50" />
+                            <telerik:GridViewDataColumn DataMemberBinding="{Binding Path=DataCreateTime,StringFormat={}\{0:yyyy-MM-dd HH:mm:ss\}}"  IsFilterable="False"  Header="最后发生时间" />
+                            <telerik:GridViewDataColumn DataMemberBinding="{Binding Path=DataFirstTime,StringFormat={}\{0:yyyy-MM-dd HH:mm:ss\}}"  IsFilterable="False"  Header="第一次发生时间" IsVisible="{Binding IsEnabled,ElementName=grid1}"/>
+                            <telerik:GridViewDataColumn DataMemberBinding="{Binding Path=Voltage,StringFormat={}{0:F2}}"  IsFilterable="False"  Header="电压" IsVisible="{Binding IsShowVAPHL}"/>
+                            <telerik:GridViewDataColumn DataMemberBinding="{Binding Path=Current,StringFormat={}{0:F2}}"  IsFilterable="False"  Header="电流" IsVisible="{Binding IsShowVAPHL}"/>
+                            <telerik:GridViewDataColumn DataMemberBinding="{Binding Path=Power,StringFormat={}{0:F2}}"  IsFilterable="False"  Header="额定" IsVisible="{Binding IsShowVAPHL}"/>
+                            <telerik:GridViewDataColumn DataMemberBinding="{Binding Path=HighLimit,StringFormat={}{0:F2}}"  IsFilterable="False"  Header="上限" IsVisible="{Binding IsShowVAPHL}"/>
+                            <telerik:GridViewDataColumn DataMemberBinding="{Binding Path=LowLimit,StringFormat={}{0:F2}}"  IsFilterable="False"  Header="下限" IsVisible="{Binding IsShowVAPHL}"/>
+                            <telerik:GridViewDataColumn DataMemberBinding="{Binding Path=CQJ}"  IsFilterable="False"  Header="城区局" Width="80" IsVisible="{Binding ManageInfoExist}"/>
+                            <telerik:GridViewDataColumn DataMemberBinding="{Binding Path=DYGH}"  IsFilterable="False"  Header="电源杆号" Width="80" IsVisible="{Binding ManageInfoExist}"/>
+
+
+                            <telerik:GridViewDataColumn Header="操作" Width="60" IsVisible ="{Binding EnablePaiDan}">
+                                <telerik:GridViewDataColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <CheckBox IsChecked="{Binding IsSelected}" Content=""  />
+                                    </DataTemplate>
+                                </telerik:GridViewDataColumn.CellTemplate>
+                            </telerik:GridViewDataColumn>
+
+                            <telerik:GridViewDataColumn DataMemberBinding="{Binding Path=Paidan}"  IsFilterable="True"  Header="是否派单" IsVisible ="{Binding EnablePaiDan}" />
+
+                        </telerik:RadGridView.Columns>
+                    </telerik:RadGridView>
+                </Grid>
+            </Grid>
+        </DockPanel>
+        <DockPanel Grid.Row="3">
+            <!--<Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="5*"/>
+                    <ColumnDefinition Width="1.5*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column=" 1" Content="{Binding CmdStr}" Height="28" Width="140"  Command="{Binding CmdVoiceAlarmClosed}"/>
+                <Button Grid.Column=" 2" Content="已查看" Height="28" Width="90" Margin="2" Command="{Binding CmdRead}"/>
+            </Grid>-->
+            <Grid>
+                <Grid.ColumnDefinitions >
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="6" Grid.ColumnSpan="2" HorizontalAlignment="Right" Content="{Binding CmdStr}" Height="28" Width="140"   Margin="0,6" Command="{Binding CmdVoiceAlarmClosed}" Visibility="{Binding AllowVoice}"/>
+                <Button Grid.Column="8" HorizontalAlignment="Left" Content="已查看" Height="28" Width="90"  Margin="30,6,0,6" Command="{Binding CmdRead}" Grid.ColumnSpan="2"/>
+                <Button Command="{Binding CmdPriorityLevelOne}" Content="优先故障" Height="28" HorizontalAlignment="Left" Margin="30,6,0,6" Width="90" Grid.Column="4" Visibility="Hidden" />
+                <Button Command="{Binding CmdPriorityLevelTwo}" Content="普通故障" Height="28" HorizontalAlignment="Left" Margin="30,6,0,6" Width="90" Grid.Column="5" Visibility="Hidden" />
+                <Button Command="{Binding CmdSendOrder}" Content="派单" Height="28" HorizontalAlignment="Left" Margin="30,6,0,6" Width="90" Grid.Column="4" Visibility= "{Binding PaiDanVisibility}"  />
+                <Button Command="{Binding CmdPriorityLevelThree}" Content="忽略故障" Height="28" HorizontalAlignment="Left" Margin="30,6,0,6" Width="90" Grid.Column="6" Visibility= "{Binding PaiDanVisibility}" />
+                <Button Command="{Binding CmdInvertSelect}" Content="反选" Height="28" HorizontalAlignment="Left" Margin="30,6,0,6" Width="90" Grid.Column="3" Visibility= "{Binding PaiDanVisibility}" />
+                <Button Command="{Binding CmdSelectNone}" Content="全消" Height="28" HorizontalAlignment="Left" Margin="30,6,0,6" Width="90" Grid.Column="2" Visibility= "{Binding PaiDanVisibility}"  />
+                <Button Command="{Binding CmdSelectAll}" Content="全选" Height="28" HorizontalAlignment="Left" Margin="30,6,0,6" Width="90" Grid.Column="1" Visibility= "{Binding PaiDanVisibility}"/>
+
+            </Grid>
+        </DockPanel>
+
+        <TextBlock x:Name="grid1" Grid.Row="3" IsEnabled="{Binding FirstHappened}" Visibility="Hidden"></TextBlock>
+
+    </Grid>
+
+
+</WindowForWlst:CustomChromeWindow>

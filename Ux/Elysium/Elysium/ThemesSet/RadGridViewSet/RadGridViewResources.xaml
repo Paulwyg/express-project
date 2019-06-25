@@ -1,0 +1,274 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+					xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation">
+
+    <telerik:Office_BlackTheme x:Key="Theme" />
+    <telerik:BooleanToOpacityConverter x:Key="BooleanToOpacityConverter" />
+    <telerik:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    <telerik:GridLineWidthToThicknessConverter x:Key="GridLineWidthToThicknessConverter" />
+    <telerik:DistinctValueConverter x:Key="DistinctValueConverter" />
+    <telerik:FilterOperatorToFilterEditorIsEnabledConverter x:Key="FilterOperatorToFilterEditorIsEnabledConverter"/>
+    <SolidColorBrush x:Key="ItemOuterBorder_SelectedUnfocused" Color="#FFC8C8C8"/>
+    <SolidColorBrush x:Key="ItemInnerBorder_SelectedUnfocused" Color="White" />
+    <SolidColorBrush x:Key="ItemBackground_SelectedUnfocused" Color="#FFF0F0F0" />
+    <SolidColorBrush x:Key="GridViewHeaderCellDropMarkerPenBrush" Color="White" />
+    <SolidColorBrush x:Key="ControlOuterBorder" Color="#FF848484" />
+    <SolidColorBrush x:Key="ControlInnerBorder" Color="White" />
+    <SolidColorBrush x:Key="ControlBackground" Color="White" />
+    <SolidColorBrush x:Key="ControlForeground" Color="Black" />
+    <SolidColorBrush x:Key="ControlOuterBorder_Focused" Color="#FFFFC92B" />
+    <SolidColorBrush x:Key="ControlOuterBorder_Invalid" Color="#FFDB000C" />
+    <SolidColorBrush x:Key="ControlInnerBorder_Invalid" Color="White" />
+    <LinearGradientBrush x:Key="Control_InvalidToolTipBackground" EndPoint="0.5,1" StartPoint="0.5,0">
+        <GradientStop Color="#FFFF424C" Offset="1"/>
+        <GradientStop Color="#FFC92931"/>
+    </LinearGradientBrush>
+    <SolidColorBrush x:Key="ControlForeground_Invalid" Color="White" />
+    <SolidColorBrush x:Key="ControlForeground_Disabled" Color="#FF8D8D8D" />
+    <SolidColorBrush x:Key="Item_AlternateBackground" Color="#FFF4F4F4" />
+    <SolidColorBrush x:Key="ItemBackground" Color="White" />
+    <LinearGradientBrush x:Key="ItemBackground_Over" EndPoint="0.5,1" StartPoint="0.5,0">
+        <GradientStop Color="#FFFFFBA3" Offset="1"/>
+        <GradientStop Color="#FFFFFBDA" Offset="0"/>
+    </LinearGradientBrush>
+    <SolidColorBrush x:Key="ItemBackground_Selected" Color="Red" />
+    <!--<LinearGradientBrush x:Key="ItemBackground_Selected" EndPoint="0.5,1" StartPoint="0.5,0">
+        <GradientStop Color="#FFFCE79F" Offset="1"/>
+        <GradientStop Color="#FFFDD3A8"/>
+    </LinearGradientBrush>-->
+    <LinearGradientBrush x:Key="ItemBackground_Invalid" EndPoint="0.5,1" StartPoint="0.5,0">
+        <GradientStop Color="#FFFCDCDC"/>
+        <GradientStop Color="#FFFCC1C1" Offset="1"/>
+    </LinearGradientBrush>
+    <SolidColorBrush x:Key="ItemOuterBorder_Over" Color="#FFFFC92B" />
+    <SolidColorBrush x:Key="ItemOuterBorder_Selected" Color="#FFFFC92B" />
+    <SolidColorBrush x:Key="ItemOuterBorder_Invalid" Color="#FFCE7D7D" />
+    <SolidColorBrush x:Key="ItemInnerBorder_Over" Color="White" />
+    <SolidColorBrush x:Key="ItemInnerBorder_Selected" Color="White" />
+    <LinearGradientBrush x:Key="ItemInnerBorder_Invalid" EndPoint="0.5,1" StartPoint="0.5,0">
+        <GradientStop Color="#FFEBF4FD"/>
+        <GradientStop Color="#FFDBEAFD" Offset="1"/>
+    </LinearGradientBrush>
+    <SolidColorBrush x:Key="ItemInnerBorder_Disabled" Color="#FFF8F8F8" />
+    <SolidColorBrush x:Key="ItemBackground_Disabled" Color="#FFE0E0E0" />
+
+
+    <SolidColorBrush x:Key="GridView_HierarchyBackground" Color="#FFBBBBBB" />
+
+    <SolidColorBrush x:Key="GridView_FilteringControlBackground" Color="#FFE4E4E4" />
+    <SolidColorBrush x:Key="GridView_FilteringControlOuterBorder" Color="#FF848484" />
+
+    <LinearGradientBrush x:Key="GridView_FooterBackground" EndPoint="0.5,1" StartPoint="0.5,0">
+        <GradientStop Color="#FFB5B5B5"/>
+        <GradientStop Color="#FFF0F0F0" Offset="0.5"/>
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="GridView_ScrollIndicatorBackground" EndPoint="0.5,1" StartPoint="0.5,0">
+        <GradientStop Color="#FFFFFFFF" Offset="0"/>
+        <GradientStop Color="#FFDEDEDE" Offset="1"/>
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="GridView_RowDetailsBackground" EndPoint="0.5,1" StartPoint="0.5,0">
+        <GradientStop Color="#FFC2C2C2"/>
+        <GradientStop Color="#FFF0F0F0" Offset="0.3"/>
+    </LinearGradientBrush>
+
+    <SolidColorBrush x:Key="GridView_FilterIconOuterBorder" Color="Black" />
+    <SolidColorBrush x:Key="GridView_FilterIconInnerBorder" Color="#FF5B5B5B" />
+    <SolidColorBrush x:Key="GridView_FilterIconTopBorder" Color="White" />
+    <LinearGradientBrush x:Key="GridView_FilterIconBackground" EndPoint="0,0.5" StartPoint="1,0.5">
+        <GradientStop Color="#FF353535" Offset="0"/>
+        <GradientStop Color="White" Offset="0.8"/>
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="GridView_FilterIconBackground_Filtered" EndPoint="0,0.5" StartPoint="1,0.5">
+        <GradientStop Color="#FFFF7300" Offset="0"/>
+        <GradientStop Color="#FFFFF400" Offset="0.8"/>
+    </LinearGradientBrush>
+
+    <SolidColorBrush x:Key="GridView_IndicatorPrimaryColor" Color="Black" />
+    <SolidColorBrush x:Key="GridView_IndicatorSecondaryColor" Color="White" />
+    <SolidColorBrush x:Key="GridView_SortIndicatorColor" Color="Black" />
+    <SolidColorBrush x:Key="GridView_SortIndicatorColor_Sorted" Color="White" />
+
+    <SolidColorBrush x:Key="GridView_CellBackground_Current" Color="#54FFFFFF" />
+    <SolidColorBrush x:Key="GridView_CellBackground_Disabled" Color="#FFE4E4E4" />
+    <SolidColorBrush x:Key="GridView_CellBackground_Edited" Color="#FFFFFFFF" />
+    <SolidColorBrush x:Key="GridView_IndentCellBackground" Color="#FFE4E4E4" />
+    <SolidColorBrush x:Key="GridView_RowIndicatorCellBackground" Color="#FFE4E4E4"/>
+    <LinearGradientBrush x:Key="GridView_RowIndicatorCellBackground_Current" EndPoint="0.5,1" StartPoint="0.5,0">
+        <GradientStop Color="#FF848484" Offset="0"/>
+        <GradientStop Color="#FFE4E4E4" Offset="1"/>
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="GridView_RowIndicatorCellBackground_Selected" EndPoint="0.5,1" StartPoint="0.5,0">
+        <GradientStop Color="White" Offset="0"/>
+        <GradientStop Color="#FFE4E4E4" Offset="1"/>
+    </LinearGradientBrush>
+
+
+    <SolidColorBrush x:Key="GridView_GridLinesItemBorder" Color="#FFCBCBCB" />
+
+    <LinearGradientBrush x:Key="GridView_GroupPanelBackground" EndPoint="0.5,1" StartPoint="0.5,0">
+        <GradientStop Color="#FFDFDFDF" Offset="1"/>
+        <GradientStop Color="#FFBABABA"/>
+    </LinearGradientBrush>
+    <SolidColorBrush x:Key="GridView_GroupPanelOuterBorder" Color="#FF848484" />
+    <SolidColorBrush x:Key="GridView_GroupPanelForeground" Color="Black" />
+    <SolidColorBrush x:Key="GridView_GroupPanelInnerBorder" Color="#FFEFF6FF" />
+
+    <SolidColorBrush x:Key="GridView_GroupRowBackground" Color="#FFE4E4E4" />
+
+    <!--<LinearGradientBrush x:Key="GridView_HeaderRowBackground" EndPoint="0.5,1" StartPoint="0.5,0">
+        <GradientStop Color="#FF5B5B5B" Offset="1"/>
+        <GradientStop Color="#FF868686"/>
+        <GradientStop Color="#FF4F4F4F" Offset="0.42"/>
+        <GradientStop Color="#FF0E0E0E" Offset="0.43"/>
+    </LinearGradientBrush>-->
+    <SolidColorBrush x:Key="GridView_HeaderRowBackground" Color="Transparent" />
+
+
+
+    <SolidColorBrush x:Key="GridView_HeaderRowOuterBorder" Color="#FF848484" />
+    <SolidColorBrush x:Key="GridView_HeaderRowInnerBorder" Color="#FF4B4B4B" />
+    <SolidColorBrush x:Key="GridView_HeaderBackground" Color="White" />
+    <!--<LinearGradientBrush x:Key="GridView_HeaderBackground" EndPoint="0.5,1" StartPoint="0.5,0">
+        <GradientStop Color="#FF5B5B5B" Offset="1"/>
+        <GradientStop Color="#FF868686"/>
+        <GradientStop Color="#FF4F4F4F" Offset="0.42"/>
+        <GradientStop Color="#FF0E0E0E" Offset="0.43"/>
+    </LinearGradientBrush>-->
+    <SolidColorBrush x:Key="GridView_HeaderOuterBorder" Color="#FF848484" />
+    <SolidColorBrush x:Key="GridView_HeaderInnerBorder" Color="#FF4B4B4B" />
+    <SolidColorBrush x:Key="GridView_HeaderForeground" Color="Black" />
+    <SolidColorBrush x:Key="GridView_HeaderBackground_Over" Color="Blue" />
+    <!--<LinearGradientBrush x:Key="GridView_HeaderBackground_Over" EndPoint="0.5,1" StartPoint="0.5,0">
+        <GradientStop Color="#FFFFFBA3" Offset="1"/>
+        <GradientStop Color="#FFFFFBDA" Offset="0"/>
+        <GradientStop Color="#FFFFD25A" Offset="0.43"/>
+        <GradientStop Color="#FFFEEBAE" Offset="0.42"/>
+    </LinearGradientBrush>-->
+    <SolidColorBrush x:Key="GridView_HeaderOuterBorder_Over" Color="#FFFFC92B" />
+    <SolidColorBrush x:Key="GridView_HeaderInnerBorder_Over" Color="White" />
+    <SolidColorBrush x:Key="GridView_HeaderForeground_Over" Color="Black" />
+
+    <SolidColorBrush x:Key="GridView_HeaderBackground_Selected" Color="Red" />
+    <!--<LinearGradientBrush x:Key="GridView_HeaderBackground_Selected" EndPoint="0.5,1" StartPoint="0.5,0">
+        <GradientStop Color="#FFFFD74E" Offset="0.996"/>
+        <GradientStop Color="#FFFFDCAB" Offset="0.17"/>
+        <GradientStop Color="#FFFFB062" Offset="0.57"/>
+        <GradientStop Color="#FFFFD18F" Offset="0.56"/>
+        <GradientStop Color="#FFFFBA74"/>
+    </LinearGradientBrush>-->
+    <LinearGradientBrush x:Key="GridView_HeaderOuterBorder_Selected" EndPoint="0.5,1" StartPoint="0.5,0">
+        <GradientStop Color="#FF616161" Offset="0"/>
+        <GradientStop Color="#FF989898" Offset="1"/>
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="GridView_HeaderInnerBorder_Selected" EndPoint="0.5,1" StartPoint="0.5,0">
+        <GradientStop Color="#FFB69A78"/>
+        <GradientStop Color="#FFFFE17A" Offset="0.126"/>
+    </LinearGradientBrush>
+    <SolidColorBrush x:Key="GridView_HeaderForeground_Selected" Color="Black" />
+
+    <LinearGradientBrush x:Key="GridView_LoadingBackground" EndPoint="0.5,1" StartPoint="0.5,0">
+        <GradientStop Color="#E5000000"/>
+        <GradientStop Color="#E5000000" Offset="1"/>
+        <GradientStop Color="#4C000000" Offset="0.5"/>
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="GridView_LoadingIndicatorBackground" EndPoint="0.5,1" StartPoint="0.5,0">
+        <GradientStop Color="#FFFFBE00"/>
+        <GradientStop Color="#FFFFFBA3" Offset="0.5"/>
+        <GradientStop Offset="1" Color="#99FFFFFF"/>
+    </LinearGradientBrush>
+    <SolidColorBrush x:Key="GridView_LoadingIndicatorBorder" Color="#4C000000" />
+    <RadialGradientBrush x:Key="GridView_ScrollViewerIntersectionRectangleBackground" GradientOrigin="0 0" Center="0 0" RadiusX="1" RadiusY="1">
+        <GradientStop Color="#FF848484" Offset="0.066"/>
+        <GradientStop Color="#FFBFBFBF" Offset="0.066"/>
+        <GradientStop Color="#FFF0F0F0" Offset="0.29"/>
+    </RadialGradientBrush>
+
+    <LinearGradientBrush x:Key="GridView_NewRowBackground" EndPoint="0.5,1" StartPoint="0.5,0">
+        <GradientStop Color="#FF888888"/>
+        <GradientStop Color="White" Offset="0.33"/>
+        <GradientStop Color="#FFD0D0D0" Offset="0.66"/>
+        <GradientStop Color="White" Offset="1"/>
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="GridView_ToggleButtonBorder" EndPoint="0.854,0.854" StartPoint="0.146,0.146">
+        <GradientStop Color="#FF282828" Offset="1"/>
+        <GradientStop Color="#FFBFBFBF"/>
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="GridView_ToggleButtonBackground" EndPoint="0.854,0.854" StartPoint="0.146,0.146">
+        <GradientStop Color="#FFD1D1D1" Offset="1"/>
+        <GradientStop Color="White"/>
+    </LinearGradientBrush>
+    <SolidColorBrush x:Key="GridView_ToggleButtonForeground" Color="#FF9D9D9D" />
+    <SolidColorBrush x:Key="GridView_ToggleButtonStroke" Color="Black" />
+    <SolidColorBrush x:Key="GridView_ToggleButtonForeground_Arrow" Color="White" />
+    <SolidColorBrush x:Key="GridView_ToggleButtonStroke_Arrow" Color="#FF9D9D9D" />
+    <SolidColorBrush x:Key="GridView_ToggleButtonForeground_Checked" Color="#FF595959" />
+    <SolidColorBrush x:Key="GridView_ToggleButtonStroke_Checked" Color="Black" />
+
+    <SolidColorBrush x:Key="GridView_FrozenColumnBorder" Color="White" />
+    <LinearGradientBrush x:Key="GridView_FrozenColumnBackground" EndPoint="1,0.5" StartPoint="0,0.5">
+        <GradientStop Color="#99000000"/>
+        <GradientStop Offset="1" Color="#00000000"/>
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="GridView_ErrorIndicatorBackground1" EndPoint="0.5,1" StartPoint="0.5,0">
+        <GradientStop Color="#FFFC9999" Offset="0"/>
+        <GradientStop Color="#FFC26666" Offset="1"/>
+    </LinearGradientBrush>
+    <SolidColorBrush x:Key="GridView_ErrorIndicatorBackground2" Color="White" />
+    <LinearGradientBrush x:Key="GridView_ErrorIndicatorBackground3" EndPoint="0.5,1" StartPoint="0.5,0">
+        <GradientStop Color="Red" Offset="0"/>
+        <GradientStop Color="#FF990000" Offset="1"/>
+    </LinearGradientBrush>
+
+    <SolidColorBrush x:Key="GridView_NavigatorIndicatorBackground" Color="#FF848484"/>
+    <LinearGradientBrush x:Key="GridView_NavigatorIndicatorBorder" EndPoint="0.5,1" StartPoint="0.5,0">
+        <GradientStop Color="#FF12A500" Offset="1"/>
+        <GradientStop Color="#FF5AAA50"/>
+    </LinearGradientBrush>
+
+    <SolidColorBrush x:Key="GridView_EditIndicatorBackground1" Color="#7F848484" />
+    <SolidColorBrush x:Key="GridView_EditIndicatorBackground2" Color="#FFCBCBCB" />
+    <SolidColorBrush x:Key="GridView_EditIndicatorBackground3" Color="#FF848484" />
+    <SolidColorBrush x:Key="GridView_EditIndicatorBackground4" Color="White" />
+
+    <SolidColorBrush x:Key="GridView_NewRowIndicatorBackground1" Color="White" />
+    <SolidColorBrush x:Key="GridView_NewRowIndicatorBackground2" Color="#FF848484" />
+    <LinearGradientBrush x:Key="GridView_NewRowIndicatorBackground3" EndPoint="1,1" StartPoint="0,0">
+        <GradientStop Color="#FF92CC89" Offset="0"/>
+        <GradientStop Color="#FF288A1C" Offset="1"/>
+    </LinearGradientBrush>
+
+    <SolidColorBrush x:Key="GridView_GroupRowIndicator" Color="Black" />
+
+    <SolidColorBrush x:Key="TreeView_ExpandElement_Background_MouseOver" Color="#FFFFC92B" />
+
+
+
+    <SolidColorBrush x:Key="TreeListView_DragCue_EllipseStroke" Color="#FFFFC92B"/>
+    <SolidColorBrush x:Key="TreeListView_DragCue_RectangleFill" Color="#FFFFC92B"/>
+    <SolidColorBrush x:Key="TreeListView_DragCue_OuterBorder" Color="#FFFFC92B"/>
+    <LinearGradientBrush x:Key="TreeListView_DragCue_Background" EndPoint="0.5,1" StartPoint="0.5,0">
+        <GradientStop Color="#FFFCE79F" Offset="1"/>
+        <GradientStop Color="#FFFDD3A8"/>
+    </LinearGradientBrush>
+    <SolidColorBrush x:Key="TreeListView_DragCue_InnerBorder" Color="White"/>
+    <SolidColorBrush x:Key="TreeListView_DragCue_Foreground" Color="Black"/>
+    <LinearGradientBrush x:Key="TreeListView_DragCue_DraggedItemsCount_Background" EndPoint="0.5,1" StartPoint="0.5,0">
+        <GradientStop Color="White" Offset="0"/>
+        <GradientStop Color="#FFDEDEDE" Offset="1"/>
+    </LinearGradientBrush>
+    <SolidColorBrush x:Key="TreeListView_DragCue_DraggedItemsCount_Border" Color="#FF848484"/>
+    <SolidColorBrush x:Key="TreeListView_DragCue_PossibleIconFill" Color="#FF848484"/>
+    <SolidColorBrush x:Key="TreeListView_DragCue_ImpossibleIconFill" Color="#FFFF2B2B"/>
+    <LinearGradientBrush x:Key="Background_Disabled" EndPoint="0.5,1" StartPoint="0.5,0">
+        <GradientStop Color="#E5000000"/>
+        <GradientStop Color="#E5000000" Offset="1"/>
+        <GradientStop Color="#4C000000" Offset="0.5"/>
+    </LinearGradientBrush>
+    <SolidColorBrush x:Key="GridViewCommonHeader_Background" Color="#FF3B3B3B"/>
+    <SolidColorBrush x:Key="GridViewCommonHeader_Foreground" Color="White"/>
+    <SolidColorBrush x:Key="GridViewCommonHeader_BorderBrush" Color="#FF848484"/>
+</ResourceDictionary>

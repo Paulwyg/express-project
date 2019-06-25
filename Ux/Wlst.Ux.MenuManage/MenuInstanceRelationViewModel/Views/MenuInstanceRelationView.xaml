@@ -1,0 +1,176 @@
+﻿<UserControl x:Class="Wlst.Ux.MenuManage.MenuInstanceRelationViewModel.Views.MenuInstanceRelationView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:vmd="clr-namespace:DragDropExtend.DragAndDrop;assembly=DragDropExtend"
+             xmlns:ViewModel="clr-namespace:Wlst.Ux.MenuManage.MenuInstanceRelationViewModel.ViewModel"
+              xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+                         
+             xmlns:AppleWindowSet="clr-namespace:Elysium.ThemesSet.AppleWindowSet;assembly=Elysium"
+             xmlns:RadTreeViewSet="clr-namespace:Elysium.ThemesSet.RadTreeViewSet;assembly=Elysium" mc:Ignorable="d" d:DesignWidth="950" d:DesignHeight="500" >
+    <!--<UserControl.Triggers>
+        <EventTrigger RoutedEvent="Window.Loaded">
+            <BeginStoryboard>
+                <Storyboard>
+                    <PointAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransformOrigin)" Storyboard.TargetName="element">
+                        <EasingPointKeyFrame KeyTime="0" Value="0.5,0.5"/>
+                    </PointAnimationUsingKeyFrames>
+                    <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)" Storyboard.TargetName="element">
+                        <EasingDoubleKeyFrame KeyTime="0" Value="-1">
+                            <EasingDoubleKeyFrame.EasingFunction>
+                                <CubicEase EasingMode="EaseOut"/>
+                            </EasingDoubleKeyFrame.EasingFunction>
+                        </EasingDoubleKeyFrame>
+                        <EasingDoubleKeyFrame KeyTime="0:0:1" Value="1">
+                            <EasingDoubleKeyFrame.EasingFunction>
+                                <CubicEase EasingMode="EaseOut"/>
+                            </EasingDoubleKeyFrame.EasingFunction>
+                        </EasingDoubleKeyFrame>
+                    </DoubleAnimationUsingKeyFrames>
+                </Storyboard>
+            </BeginStoryboard>
+        </EventTrigger>
+    </UserControl.Triggers>-->
+    <Grid    x:Name="element">
+        <Grid.RenderTransform>
+            <ScaleTransform/>
+        </Grid.RenderTransform>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" ></ColumnDefinition>
+            <ColumnDefinition Width="330"></ColumnDefinition>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition MinHeight="300" MaxHeight="600"></RowDefinition>
+            <RowDefinition Height="10"></RowDefinition>
+        </Grid.RowDefinitions>
+            <Grid MinWidth="20"  HorizontalAlignment="Center" Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="10"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <telerik:RadGridView AutoGenerateColumns="False" ShowGroupPanel="False" RowIndicatorVisibility="Collapsed" Grid.ColumnSpan="3"  AllowDrop="True" 
+                                  ItemsSource="{Binding Path=InstancesItems}"  SelectedItem="{Binding Path=CurrentSelectInstancesItem}" >
+                <telerik:RadGridView.Columns>
+                    <telerik:GridViewDataColumn IsFilterable="False" Header="名称" Width="150"  DataMemberBinding="{Binding Path=Name}" IsReadOnly="True" />
+                    <telerik:GridViewDataColumn IsFilterable="False"  Header="关键字" Width="90" DataMemberBinding="{Binding  Path=Key}"  IsReadOnly="True"/>
+                    <telerik:GridViewDataColumn IsFilterable="False"  Header="类型"  Width="90" DataMemberBinding="{Binding  Path=IdClassicName}"  IsReadOnly="True"/>
+                </telerik:RadGridView.Columns>
+            </telerik:RadGridView>
+            <!--<ListView  Grid.ColumnSpan="3" 
+            AllowDrop="True"   ItemsSource="{Binding Path=InstancesItems}"  SelectedItem="{Binding Path=CurrentSelectInstancesItem, Mode=TwoWay}" >
+                <ListView.View>
+                    <GridView  AllowsColumnReorder="true" ColumnHeaderToolTip="All MenuInatance Here">
+                        <GridViewColumn Header="名称"    DisplayMemberBinding="{Binding Path=Name,Mode=TwoWay}"  Width="120" />
+                        <GridViewColumn Header="关键字"   DisplayMemberBinding="{Binding  Path=Key,Mode=TwoWay}" Width="100" />
+                        <GridViewColumn Header="类型"   DisplayMemberBinding="{Binding  Path=IdClassicName,Mode=TwoWay}" Width="150" />
+                    </GridView>
+                </ListView.View>
+            </ListView>-->
+         
+                <DockPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" >
+                <TextBlock Margin="5,0,0,0" Text="菜单的名称: " VerticalAlignment="Center"></TextBlock>
+                <TextBox Margin="20,0,0,0" Height="23" Width="120" Text="{Binding Path=CurrentSelectInstancesItem.Name}"></TextBox>
+                <Button  Margin="20,0,0,0" Width="90" Height="23" Content="新增" Command="{Binding Path=CmdAdd}"></Button>
+                <Label ></Label>
+            </DockPanel>
+            <DockPanel  Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3">
+                <TextBlock Margin="5,0,0,0"  Text="菜单关键字: " VerticalAlignment="Center"></TextBlock>
+                <TextBox Margin="20,0,0,0" Height="23" Width="120" Text="{Binding Path=CurrentSelectInstancesItem.Key}" ></TextBox>
+                <Button  Margin="20,0,0,0"  Width="90" Height="23" Content="更新" Command="{Binding Path=CmdUpdage}"></Button>
+                <Label ></Label>
+            </DockPanel>
+            <DockPanel Grid.Row="4"   Grid.Column="0" Grid.ColumnSpan="3" >
+                <TextBlock  Margin="5,0,0,0"  Text="菜单的类型: " VerticalAlignment="Center"></TextBlock>
+                <ComboBox Margin="20,0,0,0" Grid.Row="1"  Height="23"
+                          ItemsSource="{Binding ClassicItems}" 
+                          SelectedItem="{Binding CurrenSelectClassicItem}" Width="120">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <TextBlock Text="{Binding Name}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+
+                <Button  Margin="20,0,0,0"  Width="90" Height="23" Content="删除" Command="{Binding Path=CmdDelete}"></Button>
+                <Label ></Label>
+            </DockPanel> 
+        </Grid>
+        <Grid  Grid.Column="2">
+            <Grid.RowDefinitions >
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+            </Grid.RowDefinitions>
+
+
+            <telerik:RadGridView AutoGenerateColumns="False" ShowGroupPanel="False" AllowDrop="True" RowIndicatorVisibility="Collapsed"   
+                                 Grid.ColumnSpan="3" ItemsSource="{Binding Path=MenuItems}" HorizontalAlignment="Left"
+            vmd:DragDrop.IsDragSource="True" vmd:DragDrop.DragHandler="{Binding DragSourceList}" 
+                  SelectedItem="{Binding Path=CurrentSelectMenuItem, Mode=TwoWay}"  >
+                <telerik:RadGridView.Columns>
+                    <telerik:GridViewDataColumn IsFilterable="False"  Header="识别地址" Width="80" DataMemberBinding="{Binding Path=Id}" />
+                    <telerik:GridViewDataColumn IsFilterable="False"  Header="名称" DataMemberBinding="{Binding Path=Text}" Width="120"/>
+                    <telerik:GridViewDataColumn IsFilterable="False"  Header="描述" DataMemberBinding="{Binding  Path=Description}"  Width="15"/>
+                    <telerik:GridViewDataColumn IsFilterable="False"  Header="提示信息" DataMemberBinding="{Binding  Path=Tooltips}"   Width="15"/>
+                </telerik:RadGridView.Columns>
+            </telerik:RadGridView>
+            <Button Command="{Binding CmdSave}" Grid.Row="1" Content="保存" Width="120" Height="25" ></Button>
+        </Grid>
+
+
+        
+        <Grid Grid.Row="0" Margin="5,0,5,0" Background="Transparent" MaxWidth="400" Grid.Column="1">
+            <Grid.RowDefinitions >
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+            </Grid.RowDefinitions>
+        <telerik:RadTreeView 
+                      ItemsSource="{Binding ChildTreeItems}"  
+                  vmd:DragDrop.IsDropTarget="True" vmd:DragDrop.DropHandler="{Binding DropTargetTree}"
+                  vmd:DragDrop.IsDragSource="True" vmd:DragDrop.DragHandler="{Binding DragSourceTree}"
+                  PreviewMouseRightButtonDown= "TreeViewItem_PreviewMouseRightButtonDown">
+            <telerik:RadTreeView.ItemContainerStyle>
+                <Style TargetType="{x:Type telerik:RadTreeViewItem}">
+                    <Setter Property="IsExpanded" Value="{Binding IsExpanded, Mode=TwoWay}" />
+                    <Setter Property="IsSelected" Value="{Binding IsSelected, Mode=TwoWay}" />
+                    <Setter Property="FontWeight" Value="Normal" />
+                    <Setter Property="ContextMenu" Value="{Binding Cm}"/>
+                        <Setter Property="BorderThickness" Value="0"/>
+                        <Setter Property="Template" Value="{DynamicResource TreeViewItemDefaultTemplate}" />
+                    <Style.Triggers>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter Property="FontWeight" Value="Bold" />
+                            <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource Self}, Path=(RadTreeViewSet:RadTreeViewAttriXaml.ItemRadTreeViewForegroundMouseOver), Mode=OneWay}" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </telerik:RadTreeView.ItemContainerStyle>
+            <telerik:RadTreeView.ItemTemplate>
+                <HierarchicalDataTemplate DataType="{x:Type ViewModel:MenuTreeItemViewModel}" ItemsSource="{Binding Path=ChildTreeItems}">
+                    <DockPanel HorizontalAlignment="Left">
+                        <Label Foreground="{Binding RelativeSource={RelativeSource AncestorType={x:Type telerik:RadTreeViewItem}}, Path=Foreground}" VerticalAlignment="Center"  Content="{Binding MenuId}"/>
+                        <Label Foreground="{Binding RelativeSource={RelativeSource AncestorType={x:Type telerik:RadTreeViewItem}}, Path=Foreground}" VerticalAlignment="Center" Content="-"/>
+
+                        <Label Foreground="{Binding RelativeSource={RelativeSource AncestorType={x:Type telerik:RadTreeViewItem}}, Path=Foreground}" Name="lblName" VerticalAlignment="Center"   Visibility="{Binding LabNameVisi}" Content="{Binding Name}"  MouseDoubleClick="Label_MouseDoubleClick"></Label>
+                        <TextBox Name="txtName" VerticalAlignment="Center" LostFocus="TextBox_LostFocus" Text="{Binding Name}"  Visibility="{Binding TxbNameVisi}"></TextBox>
+                    </DockPanel>
+
+                </HierarchicalDataTemplate>
+            </telerik:RadTreeView.ItemTemplate>
+        </telerik:RadTreeView>
+            <Button Command="{Binding CmdUpDown}" Grid.Row="1" Content="下移" Width="120" Height="25" ></Button>
+
+        </Grid>  
+</Grid>
+</UserControl>

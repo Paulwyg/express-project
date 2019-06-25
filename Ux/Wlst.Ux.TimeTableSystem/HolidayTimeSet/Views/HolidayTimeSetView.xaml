@@ -1,0 +1,375 @@
+﻿<UserControl x:Class="Wlst.Ux.TimeTableSystem.HolidayTimeSet.Views.HolidayTimeSetView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                          
+             xmlns:AppleWindowSet="clr-namespace:Elysium.ThemesSet.AppleWindowSet;assembly=Elysium"
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+             xmlns:Services="clr-namespace:Wlst.Ux.TimeTableSystem.HolidayTimeSet.Services" mc:Ignorable="d" 
+             d:DesignHeight="700" d:DesignWidth="950">
+    <UserControl.Resources>
+        <Services:TimeIs25 x:Key="TimeIs25"/>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="530" ></ColumnDefinition>
+            <ColumnDefinition  Width="Auto"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <telerik:RadTreeListView   IsDragDropEnabled="False" MinWidth="150" HorizontalAlignment="Left" Margin="0,1,0,0"
+								  IsDragTooltipEnabled="False" Grid.Column="1" 
+								 Background="Transparent"
+								  ItemsSource="{Binding ChildTreeItems}"  
+								  AutoGenerateColumns="False" 
+								  VerticalAlignment="Stretch" 
+                                 
+                                  CanUserFreezeColumns="False" 
+								  CanUserReorderColumns="False" 
+								 
+								  RowIndicatorVisibility="Collapsed" >
+            <telerik:RadTreeListView.ChildTableDefinitions>
+                <telerik:TreeListViewTableDefinition  ItemsSource="{Binding ChildTreeItems}" />
+            </telerik:RadTreeListView.ChildTableDefinitions>
+            <telerik:RadTreeListView.Columns>
+                <telerik:GridViewDataColumn Header="地址" IsFilterable="False" Width="90" DataMemberBinding="{Binding WuLiId}" IsReadOnly="True" />
+                <telerik:GridViewDataColumn Header="名称" IsFilterable="False" Width="125"  DataMemberBinding="{Binding NodeName}" IsReadOnly="True" />
+               
+
+                <telerik:GridViewDataColumn Header="设置" IsReadOnly="True"  Width="85">
+                    <telerik:GridViewDataColumn.CellTemplate>
+                        <DataTemplate >
+                            <DockPanel >
+                                <CheckBox  IsChecked="{Binding IsSelected}" Content="设置"/>
+                            </DockPanel>
+                        </DataTemplate>
+                    </telerik:GridViewDataColumn.CellTemplate>
+                </telerik:GridViewDataColumn> 
+                <telerik:GridViewDataColumn Header="调度方案"  IsReadOnly="True" Width="90" DataMemberBinding="{Binding SchemeName}"  />
+            </telerik:RadTreeListView.Columns>
+        </telerik:RadTreeListView>
+
+        <ScrollViewer Grid.Column="0" HorizontalScrollBarVisibility="Auto"  HorizontalAlignment="Left" 
+                              VerticalScrollBarVisibility="Auto">
+            <Grid >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="180"></RowDefinition>
+                    <RowDefinition Height="200"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                 
+
+                </Grid.RowDefinitions>
+                <DockPanel Grid.Row="0" Visibility="{Binding Visi}">
+                    <TextBlock Grid.Row="1" Text=" 当前区域为：" VerticalAlignment="Center" Width="90" HorizontalAlignment="Left"></TextBlock>
+                    <ComboBox x:Name="AreaComboBox"  Width="150" Height="18" HorizontalAlignment="Left" Margin="6,0,0,0"
+                      ItemsSource="{Binding AreaName}" DisplayMemberPath="Value" SelectedItem="{Binding AreaComboBoxSelected}" ></ComboBox>
+                </DockPanel>
+                
+                <telerik:RadTreeListView   IsDragDropEnabled="False" HorizontalAlignment="Left" Margin="2"
+								  IsDragTooltipEnabled="False" 
+								 Background="Transparent"
+								  ItemsSource="{Binding TimeSchdules}"  
+								  AutoGenerateColumns="False" 
+								  VerticalAlignment="Stretch" 
+                                  SelectedItem="{Binding CurrentSelectTimeSchduleItem}"
+                                  CanUserFreezeColumns="False" 
+								  CanUserReorderColumns="False" 
+								 Grid.Row="1"
+								  RowIndicatorVisibility="Collapsed" >
+                    <telerik:RadTreeListView.ChildTableDefinitions>
+                        <telerik:TreeListViewTableDefinition  ItemsSource="{Binding TimeSchdules}" />
+                    </telerik:RadTreeListView.ChildTableDefinitions>
+                    <telerik:RadTreeListView.Columns>
+                        <telerik:GridViewDataColumn Header="识别地址" IsFilterable="False" Width="75"  DataMemberBinding="{Binding Id}" IsReadOnly="True" />
+                        <telerik:GridViewDataColumn Header="方案名称" IsFilterable="False" IsReadOnly="True" Width="120" DataMemberBinding="{Binding Name}"  />
+                        <telerik:GridViewDataColumn Header="统计终端" IsFilterable="False" IsReadOnly="True" Width="90" DataMemberBinding="{Binding Count}"  />
+
+                    </telerik:RadTreeListView.Columns>
+                </telerik:RadTreeListView>
+
+                <Grid Grid.Column="1" Margin="2" HorizontalAlignment="Center" Grid.Row="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40"></RowDefinition>
+                        <RowDefinition Height="32"></RowDefinition>
+                        <RowDefinition Height="12"></RowDefinition>
+                        <RowDefinition Height="40"></RowDefinition>
+                        <RowDefinition Height="40"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock VerticalAlignment="Bottom"  Text="节假日方案名称:"></TextBlock>
+                    <TextBox  VerticalAlignment="Center" IsEnabled="{Binding IsTreeEnable}" Height="26" Width="200" Text="{Binding CurrentSelectTimeSchduleItem.Name,UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True, ValidatesOnDataErrors=True, NotifyOnValidationError=True}" Grid.Row="1"></TextBox>
+
+                    <Button Content="增加方案" Command="{Binding CmdExAddSchdule}" Grid.Row="3" Height="26" Width="120"></Button>
+                    <Button Content="删除方案" Command="{Binding CmdExDeleteSchdule}" Grid.Row="4" Height="26" Width="120"></Button>
+                </Grid>
+
+                <Grid Grid.Row="2" Grid.ColumnSpan="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+                    <telerik:RadTreeListView  Grid.Row="1"  IsDragDropEnabled="False" MinWidth="220" HorizontalAlignment="Left" Margin="2"
+								  IsDragTooltipEnabled="False" 
+								 Background="Transparent"
+								  ItemsSource="{Binding CurrentSelectTimeSchduleItem.Schdules}"  
+								  AutoGenerateColumns="False" 
+								  VerticalAlignment="Stretch" 
+                                  SelectedItem="{Binding CurrentSelectTimeSchduleItemItem}"
+                                  CanUserFreezeColumns="False" 
+								  CanUserReorderColumns="False" 
+								 
+								  RowIndicatorVisibility="Collapsed" >
+                        <telerik:RadTreeListView.ChildTableDefinitions>
+                            <telerik:TreeListViewTableDefinition  ItemsSource="{Binding TimeSchdules}" />
+                        </telerik:RadTreeListView.ChildTableDefinitions>
+                        <telerik:RadTreeListView.Columns>
+                            <telerik:GridViewDataColumn Header="序号" IsFilterable="False" MinWidth="30" HeaderTextAlignment="Left" MaxWidth="150" DataMemberBinding="{Binding Id}" IsReadOnly="True" />
+                            <telerik:GridViewDataColumn Header="起始月"  IsFilterable="False" Width="55">
+                                <telerik:GridViewDataColumn.CellTemplate>
+                                    <DataTemplate >
+                                        <DockPanel VerticalAlignment="Center">
+                                            <TextBlock  VerticalAlignment="Center"  HorizontalAlignment="Center" Height="22" Text="{Binding MonthStart}" Width="45"></TextBlock>
+                                        </DockPanel>
+                                    </DataTemplate>
+                                </telerik:GridViewDataColumn.CellTemplate>
+                            </telerik:GridViewDataColumn>
+                            <telerik:GridViewDataColumn Header="起始日" IsFilterable="False" Width="55" MaxWidth="150">
+                                <telerik:GridViewDataColumn.CellTemplate>
+                                    <DataTemplate >
+                                        <DockPanel VerticalAlignment="Center">
+                                            <TextBlock  VerticalAlignment="Center" HorizontalAlignment="Center" Height="22" Text="{Binding DayStart}" Width="45"></TextBlock>
+                                        </DockPanel>
+                                    </DataTemplate>
+                                </telerik:GridViewDataColumn.CellTemplate>
+                            </telerik:GridViewDataColumn>
+                            <telerik:GridViewDataColumn Header="结束月"  IsFilterable="False" MinWidth="55">
+                                <telerik:GridViewDataColumn.CellTemplate>
+                                    <DataTemplate >
+                                        <DockPanel VerticalAlignment="Center">
+                                            <TextBlock  VerticalAlignment="Center"  HorizontalAlignment="Center" Height="22" Text="{Binding MonthEnd}" Width="45">
+                                            </TextBlock>
+                                        </DockPanel>
+                                    </DataTemplate>
+                                </telerik:GridViewDataColumn.CellTemplate>
+                            </telerik:GridViewDataColumn>
+                            <telerik:GridViewDataColumn Header="结束日" IsFilterable="False" MinWidth="55" MaxWidth="150">
+                                <telerik:GridViewDataColumn.CellTemplate>
+                                    <DataTemplate >
+                                        <DockPanel VerticalAlignment="Center">
+                                            <TextBlock  VerticalAlignment="Center"  HorizontalAlignment="Center"  Height="22" Text="{Binding DayEnd}" Width="45"></TextBlock>
+                                        </DockPanel>
+                                    </DataTemplate>
+                                </telerik:GridViewDataColumn.CellTemplate>
+                            </telerik:GridViewDataColumn>
+                        </telerik:RadTreeListView.Columns>
+
+                    </telerik:RadTreeListView>
+
+                    <Grid Grid.Column="1" Width="250" Grid.Row="1"  Margin="2,5,2,2" HorizontalAlignment="Center">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="29"></RowDefinition>
+                            <RowDefinition Height="29"></RowDefinition>
+                            <RowDefinition Height="29"></RowDefinition>
+                            <RowDefinition Height="29"></RowDefinition>
+                            <RowDefinition Height="29"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition ></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <DockPanel Grid.ColumnSpan="2">
+                            <TextBlock  Margin="35,0,0,0"  VerticalAlignment="Center"  Text="当前选中日期序号: "></TextBlock>
+                            <TextBlock  VerticalAlignment="Center" Height="24"  Text="{Binding CurrentSelectTimeSchduleItemItem.Id}" Grid.Row="1"></TextBlock>
+                            <TextBlock></TextBlock>
+                        </DockPanel>
+
+                        <DockPanel Grid.Row="1"  Grid.ColumnSpan="2">
+                            <TextBlock Margin="35,0,0,0" VerticalAlignment="Center"  Text="起始月份: "></TextBlock>
+                            <TextBox IsEnabled="{Binding IsTextEnable}"  VerticalAlignment="Center" Height="22"  Width="55"  Text="{Binding CurrentSelectTimeSchduleItemItem.MonthStart}" Grid.Row="1"></TextBox>
+                            <TextBlock></TextBlock>
+                        </DockPanel>
+
+                        <DockPanel  Grid.Row="2"  Grid.ColumnSpan="2">
+                            <TextBlock  Margin="35,0,0,0" VerticalAlignment="Center"  Text="起始日期: "></TextBlock>
+                            <TextBox   IsEnabled="{Binding IsTextEnable}"  VerticalAlignment="Center" Height="22" Width="55" Text="{Binding CurrentSelectTimeSchduleItemItem.DayStart}" Grid.Row="1"></TextBox>
+                            <TextBlock></TextBlock>
+                        </DockPanel>
+
+                        <DockPanel  Grid.Row="3"  Grid.ColumnSpan="2">
+                            <TextBlock  Margin="35,0,0,0" VerticalAlignment="Center"  Text="结束月份: "></TextBlock>
+                            <TextBox   IsEnabled="{Binding IsTextEnable}"  VerticalAlignment="Center" Height="22"  Width="55"  Text="{Binding CurrentSelectTimeSchduleItemItem.MonthEnd}" Grid.Row="1"></TextBox>
+                            <TextBlock></TextBlock>
+                        </DockPanel>
+
+                        <DockPanel  Grid.Row="4"  Grid.ColumnSpan="2">
+                            <TextBlock  Margin="35,0,0,0" VerticalAlignment="Center"  Text="结束日期: "></TextBlock>
+                            <TextBox   IsEnabled="{Binding IsTextEnable}"  VerticalAlignment="Center" Height="22"  Width="55"  Text="{Binding CurrentSelectTimeSchduleItemItem.DayEnd}" Grid.Row="1"></TextBox>
+                            <TextBlock></TextBlock>
+                        </DockPanel>
+
+
+                        <Button Grid.Column="0" Grid.Row="5"  Height="25" Width="110" Content="增加时间段" Command="{Binding CmdExAddSchduleItem}"></Button>
+                        <Button Grid.Column="1"  Grid.Row="5"   Height="25" Width="110" Content="删除时间段" Command="{Binding CmdExDeleteSchduleItem}"></Button>
+
+                    </Grid>
+
+                </Grid>
+
+
+                <Grid Grid.Row="3"  Grid.ColumnSpan="2" DataContext="{Binding CurrentSelectTimeSchduleItemItem}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="60"></ColumnDefinition>
+                        <ColumnDefinition  Width="99"></ColumnDefinition>
+                        <ColumnDefinition  Width="99"></ColumnDefinition>
+
+                        <ColumnDefinition Width="60"></ColumnDefinition>
+                        <ColumnDefinition  Width="99"></ColumnDefinition>
+                        <ColumnDefinition  Width="99"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions >
+                        <RowDefinition Height="24"></RowDefinition>
+                        <RowDefinition Height="24"></RowDefinition>
+                        <RowDefinition Height="24"></RowDefinition>
+                        <RowDefinition Height="24"></RowDefinition>
+                        <RowDefinition Height="24"></RowDefinition>
+                    </Grid.RowDefinitions>
+                       <TextBlock Text="输出回路" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+                    <TextBlock Text="开灯时间" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+                    <TextBlock Text="关灯时间" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+
+                    <TextBlock Text="输出回路" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+                    <TextBlock Text="开灯时间" Grid.Column="4" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+                    <TextBlock Text="关灯时间" Grid.Column="5" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+
+                    <TextBlock Text="K1" Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+                    <DockPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="1" Grid.Row="1">
+                        <TextBox IsEnabled="{Binding IsTextEnable}"  Width="35" Height="20" Text="{Binding K1HourStart}"></TextBox> <!--,Converter={StaticResource TimeIs25}-->
+                        <TextBlock Text=":"></TextBlock>
+                        <TextBox IsEnabled="{Binding IsTextEnable}"   Width="35" Height="20"  Text="{Binding K1MinutStart}"></TextBox>
+                    </DockPanel>
+                    <DockPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="2" Grid.Row="1">
+                        <TextBox IsEnabled="{Binding IsTextEnable}"  Width="35" Height="20" Text="{Binding K1HourEnd}"></TextBox>
+                        <!--,Converter={StaticResource TimeIs25}-->
+                        <TextBlock Text=":"></TextBlock>
+                        <TextBox IsEnabled="{Binding IsTextEnable}"   Width="35" Height="20"  Text="{Binding K1MinutEnd}"></TextBox>
+                    </DockPanel>
+
+
+                    <TextBlock Text="K2" Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+                    <DockPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="1" Grid.Row="2">
+                        <TextBox IsEnabled="{Binding IsTextEnable}"  Width="35" Height="20" Text="{Binding K2HourStart}"></TextBox>
+                        <TextBlock Text=":"></TextBlock>
+                        <TextBox IsEnabled="{Binding IsTextEnable}"   Width="35" Height="20"  Text="{Binding K2MinutStart}"></TextBox>
+                    </DockPanel>
+                    <DockPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="2" Grid.Row="2">
+                        <TextBox IsEnabled="{Binding IsTextEnable}"  Width="35" Height="20" Text="{Binding K2HourEnd}"></TextBox>
+                        <TextBlock Text=":"></TextBlock>
+                        <TextBox IsEnabled="{Binding IsTextEnable}"   Width="35" Height="20"  Text="{Binding K2MinutEnd}"></TextBox>
+                    </DockPanel>
+
+                    <TextBlock Text="K3" Grid.Column="0" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+                    <DockPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="1" Grid.Row="3">
+                        <TextBox IsEnabled="{Binding IsTextEnable}"  Width="35" Height="20" Text="{Binding K3HourStart}"></TextBox>
+                        <TextBlock Text=":"></TextBlock>
+                        <TextBox  IsEnabled="{Binding IsTextEnable}"  Width="35" Height="20"  Text="{Binding K3MinutStart}"></TextBox>
+                    </DockPanel>
+                    <DockPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="2" Grid.Row="3">
+                        <TextBox IsEnabled="{Binding IsTextEnable}"  Width="35" Height="20" Text="{Binding K3HourEnd}"></TextBox>
+                        <TextBlock Text=":"></TextBlock>
+                        <TextBox  IsEnabled="{Binding IsTextEnable}"  Width="35" Height="20"  Text="{Binding K3MinutEnd}"></TextBox>
+                    </DockPanel>
+
+                    <TextBlock Text="K5" Grid.Column="3" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+                    <DockPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="4" Grid.Row="1">
+                        <TextBox Width="35" Height="20" Text="{Binding K5HourStart}"></TextBox>
+                        <TextBlock Text=":"></TextBlock>
+                        <TextBox  Width="35" Height="20"  Text="{Binding K5MinutStart}"></TextBox>
+                    </DockPanel>
+                    <DockPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="5" Grid.Row="1">
+                        <TextBox IsEnabled="{Binding IsTextEnable}"  Width="35" Height="20" Text="{Binding K5HourEnd}"></TextBox>
+                        <TextBlock Text=":"></TextBlock>
+                        <TextBox  IsEnabled="{Binding IsTextEnable}"  Width="35" Height="20"  Text="{Binding K5MinutEnd}"></TextBox>
+                    </DockPanel>
+
+                    <TextBlock Text="K6" Grid.Column="3" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+                    <DockPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="4" Grid.Row="2">
+                        <TextBox IsEnabled="{Binding IsTextEnable}"  Width="35" Height="20" Text="{Binding K6HourStart}"></TextBox>
+                        <TextBlock Text=":"></TextBlock>
+                        <TextBox IsEnabled="{Binding IsTextEnable}"   Width="35" Height="20"  Text="{Binding K6MinutStart}"></TextBox>
+                    </DockPanel>
+                    <DockPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="5" Grid.Row="2">
+                        <TextBox Width="35" Height="20" Text="{Binding K6HourEnd}"></TextBox>
+                        <TextBlock Text=":"></TextBlock>
+                        <TextBox  Width="35" Height="20"  Text="{Binding K6MinutEnd}"></TextBox>
+                    </DockPanel>
+
+                    <TextBlock Text="K7" Grid.Column="3" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+                    <DockPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="4" Grid.Row="3">
+                        <TextBox IsEnabled="{Binding IsTextEnable}"  Width="35" Height="20" Text="{Binding K7HourStart}"></TextBox>
+                        <TextBlock Text=":"></TextBlock>
+                        <TextBox  IsEnabled="{Binding IsTextEnable}"  Width="35" Height="20"  Text="{Binding K7MinutStart}"></TextBox>
+                    </DockPanel>
+                    <DockPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="5" Grid.Row="3">
+                        <TextBox IsEnabled="{Binding IsTextEnable}"  Width="35" Height="20" Text="{Binding K7HourEnd}"></TextBox>
+                        <TextBlock Text=":"></TextBlock>
+                        <TextBox  IsEnabled="{Binding IsTextEnable}"  Width="35" Height="20"  Text="{Binding K7MinutEnd}"></TextBox>
+                    </DockPanel>
+
+                    <TextBlock Text="K4" Grid.Column="0" Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+                    <DockPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="1" Grid.Row="4">
+                        <TextBox IsEnabled="{Binding IsTextEnable}"  Width="35" Height="20" Text="{Binding K4HourStart}"></TextBox>
+                        <TextBlock Text=":"></TextBlock>
+                        <TextBox  IsEnabled="{Binding IsTextEnable}"  Width="35" Height="20"  Text="{Binding K4MinutStart}"></TextBox>
+                    </DockPanel>
+                    <DockPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="2" Grid.Row="4">
+                        <TextBox IsEnabled="{Binding IsTextEnable}"  Width="35" Height="20" Text="{Binding K4HourEnd}"></TextBox>
+                        <TextBlock Text=":"></TextBlock>
+                        <TextBox  IsEnabled="{Binding IsTextEnable}"  Width="35" Height="20"  Text="{Binding K4MinutEnd}"></TextBox>
+                    </DockPanel>
+
+                    <TextBlock Text="K8" Grid.Column="3" Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+                    <DockPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="4" Grid.Row="4">
+                        <TextBox IsEnabled="{Binding IsTextEnable}"  Width="35" Height="20" Text="{Binding K8HourStart}"></TextBox>
+                        <TextBlock Text=":"></TextBlock>
+                        <TextBox  IsEnabled="{Binding IsTextEnable}"  Width="35" Height="20"  Text="{Binding K8MinutStart}"></TextBox>
+                    </DockPanel>
+                    <DockPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="5" Grid.Row="4">
+                        <TextBox IsEnabled="{Binding IsTextEnable}"  Width="35" Height="20" Text="{Binding K8HourEnd}"></TextBox>
+                        <TextBlock Text=":"></TextBlock>
+                        <TextBox  IsEnabled="{Binding IsTextEnable}"  Width="35" Height="20"  Text="{Binding K8MinutEnd}"></TextBox>
+                    </DockPanel>
+                </Grid>
+
+
+                <Grid Grid.Row="4" Grid.ColumnSpan="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="40"></RowDefinition>
+                    </Grid.RowDefinitions>
+
+                    <Button Grid.Column="2" HorizontalAlignment="Center" Grid.ColumnSpan="2"  Height="25" Width="120" Content="保 存" Command="{Binding CmdSave}"></Button>
+                    <TextBlock  HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="1" Text="{Binding Remind}" Grid.ColumnSpan="4"></TextBlock>
+                </Grid>
+            </Grid>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

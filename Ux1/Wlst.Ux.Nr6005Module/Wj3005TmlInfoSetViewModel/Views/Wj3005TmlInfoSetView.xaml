@@ -1,0 +1,228 @@
+﻿<UserControl x:Class="Wlst.Ux.Nr6005Module.Wj3005TmlInfoSetViewModel.Views.Wj3005TmlInfoSetView"
+                        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+                        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                        xmlns:vm="clr-namespace:DragDropExtend.DragAndDrop;assembly=DragDropExtend"
+                          
+             xmlns:AppleWindowSet="clr-namespace:Elysium.ThemesSet.AppleWindowSet;assembly=Elysium"
+                        xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+             xmlns:Views="clr-namespace:Wlst.Ux.Nr6005Module.Wj3005TmlInfoSetViewModel.Views" mc:Ignorable="d" 
+                        d:DesignHeight="719" d:DesignWidth="1016" >
+
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="25"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Label x:Name="fg"/>
+        <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Grid.Row="0" Text="{Binding TabOneTitle}" VerticalAlignment="Center" ></TextBlock>
+        <TabControl Background="Transparent"  Grid.Row="1">
+        <TabItem Header="参数设置">
+            <!--<Grid MaxWidth="800" MinWidth="500" HorizontalAlignment="Center">
+            <pt:PropertyEditor Margin="5" SelectedObject="{Binding SelectedObject}"
+            ShowCategoriesAs="Expander" ShowTabs="False" LabelAlignment="Left" 
+            ShowReadOnlyProperties="True" DeclaredOnly="False" EnumAsRadioButtonsLimit="0"/>
+            </Grid>-->
+            <!--<telerik:RadPropertyGrid x:Name="propertyGrid1" 
+                                     SearchInNestedProperties="True"
+                                     Width="620" Height="400" Item="{Binding SelectedObject}"
+                                 
+                                     NestedPropertiesVisibility="Visible" 
+                                     DescriptionPanelVisibility="Collapsed"/>-->
+                <Views:TerminalInfoBaseViewMsl VerticalAlignment="Top" HorizontalAlignment="Left" />
+
+        </TabItem>
+        <TabItem Header="回路参数设置">
+                        <Views:LoopInfoManage HorizontalAlignment="Left" VerticalAlignment="Top" ></Views:LoopInfoManage>
+
+        </TabItem>
+            <TabItem Header="下发参数">
+       
+                <Views:SndArgsView HorizontalAlignment="Left" VerticalAlignment="Top" ></Views:SndArgsView>
+
+            </TabItem>
+            <TabItem Header="附加设备控制">
+                <Grid HorizontalAlignment="Left">
+                    <Grid>
+                <Grid.RowDefinitions >
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="45"></RowDefinition>
+                            <RowDefinition Height="23"></RowDefinition>
+                        </Grid.RowDefinitions>
+                <ScrollViewer HorizontalScrollBarVisibility="Auto"
+                              VerticalScrollBarVisibility="Auto">
+                    <Border Width="900" Height="590" CornerRadius="3">
+                        <Canvas  Focusable="true" Margin="10,10,10,0" 
+                                 >
+
+                            <ItemsControl ItemsSource="{Binding AttachEquipmentModuleList}"
+                                          
+                                          ><!--MouseLeftButtonDown="AttachEquipmentModule_MouseLeftButtonDown" MouseUp="CanvasTabAttach_MouseUp" 
+                                          vm:DragDrop.IsDragSource="True" vm:DragDrop.DragHandler="{Binding DragSourceAttachEquimentModule}"-->
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <Canvas />
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                                <ItemsControl.ItemContainerStyle>
+                                    <Style TargetType="{x:Type ContentPresenter}">
+                                        <!-- Here would the binding to some properties that take care of placement -->
+                                        <Setter Property="Canvas.Top" Value="{Binding Y1onMap}" />
+                                        <Setter Property="Canvas.Left" Value="{Binding X1onMap}" />
+                                    </Style>
+                                </ItemsControl.ItemContainerStyle>
+                                <ItemsControl.ItemTemplate>
+                                    <!-- Some template for the individual items -->
+                                    <DataTemplate>
+                                        
+                                            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" >
+                                                <DockPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                                                        <Border CornerRadius="5" BorderThickness="1" Width="150" Height="30" HorizontalAlignment="Center" VerticalAlignment="Center"  Background="Transparent" BorderBrush="#FF6B6B38">
+                                                            <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" HorizontalAlignment="Center" VerticalAlignment="Center" Width="150" Text="{Binding MouduleName}"></TextBlock>
+                                                        </Border>
+
+                                                        <Button VerticalAlignment="Center" HorizontalAlignment="Left" ToolTip="{Binding ModuleKey}" Click="Button_Click" Margin="10,0,0,0"  Width="55" Content="增加"
+                                                               ></Button>
+
+                                                    </DockPanel>
+
+                                            </StackPanel>
+                                      
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+
+                            <ItemsControl ItemsSource="{Binding AttachEquipmentList}" Name="attach"
+                                        
+                                          >  <!--MouseLeftButtonDown="AttachEquipment_MouseLeftButtonDown"
+                                          vm:DragDrop.IsDragSource="True" vm:DragDrop.DragHandler="{Binding DragSourceAttachEquiment}"-->
+                                <!--vm:DragDrop.IsDragSource="True" vm:DragDrop.DragHandler="{Binding DragSource}"
+                                vm:DragDrop.IsDropTarget="True" vm:DragDrop.DropHandler="{Binding DropTarget}"-->
+
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <Canvas />
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                                <ItemsControl.ItemContainerStyle>
+                                    <Style TargetType="{x:Type ContentPresenter}">
+                                        <!-- Here would the binding to some properties that take care of placement -->
+                                        <Setter Property="Canvas.Top" Value="{Binding Y1onMap}" />
+                                        <Setter Property="Canvas.Left" Value="{Binding X1onMap}" />
+                                        <Setter Property="ContextMenu" Value="{Binding Cm}"></Setter>
+                                    </Style>
+                                </ItemsControl.ItemContainerStyle>
+                                <ItemsControl.ItemTemplate>
+                                    <!-- Some template for the individual items -->
+                                    <DataTemplate>
+                                    
+                                            <StackPanel >
+                                                <DockPanel >
+                                                    <DockPanel HorizontalAlignment="Left" VerticalAlignment="Center" Width="245">
+
+                                                            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Left" Mouse.PreviewMouseDown="TextBlock_PreviewMouseDown" ToolTip="{Binding AttachEquipmentId}" Text="{Binding AttachEquipmentId}" Foreground="Red"   />
+                                                            <TextBlock  VerticalAlignment="Center" HorizontalAlignment="Left" Mouse.PreviewMouseDown="TextBlock_PreviewMouseDown" ToolTip="{Binding AttachEquipmentId}" Foreground="{Binding ElementName=fg, Path=Foreground}" Text=":"  />
+                                                            <TextBlock  VerticalAlignment="Center" HorizontalAlignment="Left" Mouse.PreviewMouseDown="TextBlock_PreviewMouseDown" ToolTip="{Binding AttachEquipmentId}" Foreground="{Binding ElementName=fg, Path=Foreground}" Text="{Binding AttachEquipmentName}"  />
+                                                         
+                                                        </DockPanel>
+                                                        <Button  VerticalAlignment="Center" IsEnabled="{Binding CanBeDelete}" Click="Button_Click_1"
+                                                                 ToolTip="{Binding AttachEquipmentId}" HorizontalAlignment="Left" Width="55" Margin="0,0,0,0" Content="删除" />
+                                                 
+                                                    </DockPanel>
+                                            </StackPanel>
+                                       
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+
+                            <!--<ItemsControl ItemsSource="{Binding AddDeletePool}" 
+                            vm:DragDrop.IsDropTarget="True" vm:DragDrop.DropHandler="{Binding DropTargetAttachEquimentModule}"
+                            >
+                            <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                            <Canvas />
+                            </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemContainerStyle>
+                            <Style TargetType="{x:Type ContentPresenter}">
+                                       
+                            <Setter Property="Canvas.Top" Value="{Binding Y1onMap}" />
+                            <Setter Property="Canvas.Left" Value="{Binding X1onMap}" />
+                            </Style>
+                            </ItemsControl.ItemContainerStyle>
+                            <ItemsControl.ItemTemplate>
+                                    
+                            <DataTemplate>
+                            <Border 
+                            Background="DarkCyan" BorderBrush="Red"
+                            CornerRadius="1" Height="30" Width="280" HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <DockPanel HorizontalAlignment="Center" VerticalAlignment="Center" Width="280">
+                            <TextBlock Text="{Binding Name}" VerticalAlignment="Center" HorizontalAlignment="Center"  />
+                            </DockPanel>
+                            </Border>
+                            </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                            </ItemsControl>-->
+                        </Canvas>
+                    </Border>
+                </ScrollViewer>
+
+                <!--<Grid Grid.Row="1">
+                    <Canvas  Focusable="true" Margin="10,0,10,10" MouseUp="CanvasTabAttach_MouseUp" 
+                             >
+                        <ItemsControl ItemsSource="{Binding AddDeletePool}" 
+                                      vm:DragDrop.IsDropTarget="True" vm:DragDrop.DropHandler="{Binding DropTargetAttachEquimentModule}"
+                                      >
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <Canvas />
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemContainerStyle>
+                                <Style TargetType="{x:Type ContentPresenter}">
+                               
+                                    <Setter Property="Canvas.Top" Value="{Binding Y1onMap}" />
+                                    <Setter Property="Canvas.Left" Value="{Binding X1onMap}" />
+                                </Style>
+                            </ItemsControl.ItemContainerStyle>
+                            <ItemsControl.ItemTemplate>
+                              
+                                <DataTemplate>
+                                    <Border 
+                                        Background="DarkCyan" BorderBrush="Red"
+                                        CornerRadius="1" Height="30" Width="280" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                        <DockPanel HorizontalAlignment="Center" VerticalAlignment="Center" Width="280">
+                                                    <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Text="{Binding Name}" VerticalAlignment="Center" HorizontalAlignment="Center"  />
+                                        </DockPanel>
+                                    </Border>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </Canvas>
+                </Grid>-->
+                        <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Grid.Row="2"  Text="如果对终端参数进行了设置请保存后再进行此设置，附属设备增删数据为即时更新..."></TextBlock>
+            </Grid>
+                </Grid>
+        </TabItem>
+           
+    </TabControl>
+        <Grid Grid.Row="2" >
+            <Grid.ColumnDefinitions >
+                <ColumnDefinition Width="340"></ColumnDefinition>
+                <ColumnDefinition Width="140"></ColumnDefinition>
+                <ColumnDefinition Width="140"></ColumnDefinition>
+                <ColumnDefinition Width="140"></ColumnDefinition>
+                <ColumnDefinition Width="140"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Text="{Binding Msg}" Width="407" Grid.ColumnSpan="3" HorizontalAlignment="Left"></TextBlock>
+            <Button Grid.Column="2" Height="25" Width="120" Command="{Binding ReadParaFromXml}" Content="导入预存参数"></Button>
+            <Button Grid.Column="3" Height="25" Width="120" Command="{Binding SaveParatoXml}" Content="保存为预存参数"></Button>
+            <Button Grid.Column="4" Height="25" Width="120" Command="{Binding SaveAllCommand}" Content="保存到服务器"></Button>
+        </Grid>
+
+    </Grid>
+    
+</UserControl>

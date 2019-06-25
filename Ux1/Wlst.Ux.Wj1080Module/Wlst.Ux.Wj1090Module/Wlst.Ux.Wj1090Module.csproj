@@ -1,0 +1,236 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{F8DE5951-8FB7-413A-86E6-BA6C14CC0588}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Wlst.Ux.Wj1090Module</RootNamespace>
+    <AssemblyName>Wlst.Ux.Wj1090Module</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\ZDebug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\ZRelease\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AppleWindow, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ZDebug\AppleWindow.dll</HintPath>
+    </Reference>
+    <Reference Include="Elysium, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ZDebug\Elysium.dll</HintPath>
+    </Reference>
+    <Reference Include="Infrastructure, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ZDebug\Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Lurx.Controls, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ZDebug\Lurx.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Prism">
+      <HintPath>..\DLL\Microsoft.Practices.Prism.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Prism.MefExtensions">
+      <HintPath>..\DLL\Microsoft.Practices.Prism.MefExtensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Prism.MefExtensions.Event, Version=4.1.0.1, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Telerik.Windows.Controls, Version=2013.1.720.40, Culture=neutral, PublicKeyToken=d3625f8bf04286d7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ZDebug\Telerik.Windows.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.GridView, Version=2013.1.720.40, Culture=neutral, PublicKeyToken=d3625f8bf04286d7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ZDebug\Telerik.Windows.Controls.GridView.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.Navigation, Version=2010.3.1110.35, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ZDebug\Telerik.Windows.Controls.Navigation.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Data, Version=2013.1.720.40, Culture=neutral, PublicKeyToken=d3625f8bf04286d7" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="Wlst.Cr.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\Cetc50Debug\Wlst.Cr.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Wlst.Cr.CoreMims, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ZDebug\Wlst.Cr.CoreMims.dll</HintPath>
+    </Reference>
+    <Reference Include="Wlst.Cr.CoreOne, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ZDebug\Wlst.Cr.CoreOne.dll</HintPath>
+    </Reference>
+    <Reference Include="Wlst.Cr.PPProtocolSvrCnt, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ZDebug\Wlst.Cr.PPProtocolSvrCnt.dll</HintPath>
+    </Reference>
+    <Reference Include="Wlst.Cr.Setting, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ZDebug\Wlst.Cr.Setting.dll</HintPath>
+    </Reference>
+    <Reference Include="Wlst.Sr.EquipemntLightFault, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ZDebug\Wlst.Sr.EquipemntLightFault.dll</HintPath>
+    </Reference>
+    <Reference Include="Wlst.Sr.EquipmentGroupInfoHolding, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ZDebug\Wlst.Sr.EquipmentGroupInfoHolding.dll</HintPath>
+    </Reference>
+    <Reference Include="Wlst.Sr.EquipmentInfoHolding, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ZDebug\Wlst.Sr.EquipmentInfoHolding.dll</HintPath>
+    </Reference>
+    <Reference Include="Wlst.Sr.Menu, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ZDebug\Wlst.Sr.Menu.dll</HintPath>
+    </Reference>
+    <Reference Include="Wlst.Sr.ProtocolCnt, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ZDebug\Wlst.Sr.ProtocolCnt.dll</HintPath>
+    </Reference>
+    <Reference Include="WPFToolkit.Extended, Version=1.8.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ZDebug\WPFToolkit.Extended.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="LduTreeSettingViewModel\Views\LduTreeSettingView.xaml.cs">
+      <DependentUpon>LduTreeSettingView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ModuleWj1090Export.cs" />
+    <Compile Include="ModuleWj30920Export.cs" />
+    <Compile Include="Resources\ImageResources.cs" />
+    <Compile Include="Services\EventIdAssign.cs" />
+    <Compile Include="Services\MenuIdAssgin.cs" />
+    <Compile Include="Services\ViewIdAssign.cs" />
+    <Compile Include="UxWj1090Module.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="LduTreeSettingViewModel\NavLineLduTreeSettingView.cs" />
+    <Compile Include="LduTreeSettingViewModel\Services\IILduTreeSettingViewModel.cs" />
+    <Compile Include="LduTreeSettingViewModel\ViewModel\LduTreeSettingViewModel.cs" />
+    <Compile Include="Wj1090DataSelection\Converters\BoolToVisibleConverter.cs" />
+    <Compile Include="Wj1090DataSelection\NavToWj1090DataSelection.cs" />
+    <Compile Include="Wj1090DataSelection\Services\IIWj1090DataSelection.cs" />
+    <Compile Include="Wj1090DataSelection\ViewModel\ReadLightRateModel.cs" />
+    <Compile Include="Wj1090DataSelection\ViewModel\SelectDataModel.cs" />
+    <Compile Include="Wj1090DataSelection\ViewModel\Wj1090DataSelectionViewModel.cs" />
+    <Compile Include="Wj1090DataSelection\View\Wj1090DataSelectionView.xaml.cs">
+      <DependentUpon>Wj1090DataSelectionView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Wj1090LduDataQueryViewModel\Converters\BoolToVisibleConverter.cs" />
+    <Compile Include="Wj1090LduDataQueryViewModel\NavToWj1090LduDataQueryViewModel.cs" />
+    <Compile Include="Wj1090LduDataQueryViewModel\Services\IIWj1090LduDataQueryView.cs" />
+    <Compile Include="Wj1090LduDataQueryViewModel\ViewModel\LduDataQueryoneItemViewModel.cs" />
+    <Compile Include="Wj1090LduDataQueryViewModel\ViewModel\Wj1090LduDataQueryViewModel.cs" />
+    <Compile Include="Wj1090LduDataQueryViewModel\View\Wj1090LduDataQueryView.xaml.cs">
+      <DependentUpon>Wj1090LduDataQueryView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Wj1090LduEventScheduleViewModel\NavTaskWj1090LduEventScheduleView.cs" />
+    <Compile Include="Wj1090LduEventScheduleViewModel\Services\IIWj1090LduEventScheduleViewModel.cs" />
+    <Compile Include="Wj1090LduEventScheduleViewModel\ViewModel\LduEventTaskInstanceInfoViewModel.cs" />
+    <Compile Include="Wj1090LduEventScheduleViewModel\ViewModel\Wj1090LduEventScheduleViewModel.cs" />
+    <Compile Include="Wj1090LduEventScheduleViewModel\View\Wj1090LduEventScheduleView.xaml.cs">
+      <DependentUpon>Wj1090LduEventScheduleView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Wj1090ParaInfoSet\Converters\BoolToVisibleConverter.cs" />
+    <Compile Include="Wj1090ParaInfoSet\NavToWj1090ParaInfoSet.cs" />
+    <Compile Include="Wj1090ParaInfoSet\Services\IIWj1090ParaInfoSet.cs" />
+    <Compile Include="Wj1090ParaInfoSet\ViewModel\LduLineModel.cs" />
+    <Compile Include="Wj1090ParaInfoSet\ViewModel\ReadLightRateModel.cs" />
+    <Compile Include="Wj1090ParaInfoSet\ViewModel\SelectDataModel.cs" />
+    <Compile Include="Wj1090ParaInfoSet\ViewModel\Wj1090ParaInfoSetViewModel.cs" />
+    <Compile Include="Wj1090ParaInfoSet\Views\Wj1090paraInfoSet.xaml.cs">
+      <DependentUpon>Wj1090paraInfoSet.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Wj1090TreeManageViewModel\Services\IIWj1090ManageViewModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Wj1090TreeManageViewModel\ViewModel\TreeNodeLineViewModel.cs" />
+    <Compile Include="Wj1090TreeManageViewModel\ViewModel\TreeNodeTmlViewModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Wj1090TreeManageViewModel\ViewModel\TreeNodeWj1090ViewModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Wj1090TreeManageViewModel\ViewModel\Wj1090TreeManageViewModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Wj1090TreeManageViewModel\Views\Wj1090ManageView.xaml.cs">
+      <DependentUpon>Wj1090ManageView.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ZOrders\MeasureControllerForMenu.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\..\Cr\Wlst.Cr.WjEquipmentBaseModels\Wlst.Cr.WjEquipmentBaseModels.csproj">
+      <Project>{80EEB43F-1310-4A95-8C3A-636E09280080}</Project>
+      <Name>Wlst.Cr.WjEquipmentBaseModels</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="LduTreeSettingViewModel\Views\LduTreeSettingView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Wj1090DataSelection\View\Wj1090DataSelectionView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Wj1090LduDataQueryViewModel\View\Wj1090LduDataQueryView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Wj1090LduEventScheduleViewModel\View\Wj1090LduEventScheduleView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Wj1090ParaInfoSet\Views\Wj1090paraInfoSet.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Wj1090TreeManageViewModel\Views\Wj1090ManageView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

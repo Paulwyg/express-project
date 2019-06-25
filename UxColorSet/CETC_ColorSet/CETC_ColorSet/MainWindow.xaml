@@ -1,0 +1,110 @@
+﻿<Window x:Class="CETC_ColorSet.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                                  
+             xmlns:AppleWindowSet="clr-namespace:Elysium.ThemesSet.AppleWindowSet;assembly=Elysium"
+          xmlns:CheckBoxRadioButtonSet="clr-namespace:Elysium.ThemesSet.CheckBoxRadioButtonSet;assembly=Elysium"
+        xmlns:TextBoxsSet="clr-namespace:Elysium.ThemesSet.TextBoxsSet;assembly=Elysium"
+        xmlns:TabSet="clr-namespace:Elysium.ThemesSet.TabSet;assembly=Elysium"
+        xmlns:ComboBoxListBoxSet="clr-namespace:Elysium.ThemesSet.ComboBoxListBoxSet;assembly=Elysium"
+        xmlns:ScrollSet="clr-namespace:Elysium.ThemesSet.ScrollSet;assembly=Elysium"
+        xmlns:ScrollViewSet="clr-namespace:Elysium.ThemesSet.ScrollViewSet;assembly=Elysium"
+        xmlns:MenuSet="clr-namespace:Elysium.ThemesSet.MenuSet;assembly=Elysium"
+        xmlns:ListViewSet="clr-namespace:Elysium.ThemesSet.ListViewSet;assembly=Elysium"
+        xmlns:FontSet="clr-namespace:Elysium.ThemesSet.FontSet;assembly=Elysium"
+        xmlns:TreeViewSet="clr-namespace:Elysium.ThemesSet.TreeViewSet;assembly=Elysium"
+        xmlns:DatePickerSet="clr-namespace:Elysium.ThemesSet.DatePickerSet;assembly=Elysium"
+        xmlns:ButtonSet="clr-namespace:Elysium.ThemesSet.ButtonSet;assembly=Elysium"
+        xmlns:RadGridViewSet="clr-namespace:Elysium.ThemesSet.RadGridViewSet;assembly=Elysium"
+        xmlns:RadTreeViewSet="clr-namespace:Elysium.ThemesSet.RadTreeViewSet;assembly=Elysium"
+             xmlns:GroupBoxSet="clr-namespace:Elysium.ThemesSet.GroupBoxSet;assembly=Elysium"
+             xmlns:LabelSet="clr-namespace:Elysium.ThemesSet.LabelSet;assembly=Elysium"
+             xmlns:MessageBoxOverrideSet="clr-namespace:Elysium.ThemesSet.MessageBoxOverrideSet;assembly=Elysium"
+>
+    <Grid>
+        <TabControl>
+            <TabItem Header="字体">
+                <FontSet:FontAttri  HorizontalAlignment="Left" VerticalAlignment="Top"  x:Name="font">
+                </FontSet:FontAttri>
+            </TabItem>
+            <TabItem Header="按钮">
+                <ButtonSet:ButtonAttri  HorizontalAlignment="Left" VerticalAlignment="Top"  x:Name="butts"></ButtonSet:ButtonAttri>
+            </TabItem>
+            <TabItem Header="选择框">
+                <CheckBoxRadioButtonSet:CheckBoxRadioButtonAttri HorizontalAlignment="Left" VerticalAlignment="Top"  x:Name="radion"></CheckBoxRadioButtonSet:CheckBoxRadioButtonAttri>
+            </TabItem>
+
+            <TabItem Header="输入框">
+                <TextBoxsSet:TextBoxsAttri HorizontalAlignment="Left" VerticalAlignment="Top"  x:Name="textbox">
+                </TextBoxsSet:TextBoxsAttri>
+            </TabItem>
+
+            <TabItem Header="面板">
+                <TabSet:TabAttri HorizontalAlignment="Left" VerticalAlignment="Top"  x:Name="tab">
+                </TabSet:TabAttri>
+            </TabItem>
+
+            <TabItem Header="下拉选择框">
+                <ComboBoxListBoxSet:ComboBoxListBoxAttri HorizontalAlignment="Left" VerticalAlignment="Top"  x:Name="ComboxListBoxtab">
+                </ComboBoxListBoxSet:ComboBoxListBoxAttri>
+            </TabItem>
+            <TabItem Header="滚动条">
+                <ScrollSet:ScrollBarAttri HorizontalAlignment="Left" VerticalAlignment="Top"  x:Name="Scroll">
+                </ScrollSet:ScrollBarAttri>
+            </TabItem>
+            <TabItem Header="滚动面板">
+                <ScrollViewSet:ScrollVeiwAttri HorizontalAlignment="Left" VerticalAlignment="Top"  x:Name="ScrollView">
+                </ScrollViewSet:ScrollVeiwAttri>
+            </TabItem>
+
+            <TabItem Header="菜单">
+                <MenuSet:MenuAttri HorizontalAlignment="Left" VerticalAlignment="Top"  x:Name="menu">
+                </MenuSet:MenuAttri>
+            </TabItem>
+
+            <TabItem Header="列表视图">
+                <ListViewSet:ListViewAttri HorizontalAlignment="Left" VerticalAlignment="Top"  x:Name="listview">
+                </ListViewSet:ListViewAttri>
+            </TabItem>
+
+
+            <TabItem Header="树视图">
+                <TreeViewSet:TreeViewAttri HorizontalAlignment="Left" VerticalAlignment="Top"  x:Name="treeview">
+                </TreeViewSet:TreeViewAttri>
+            </TabItem>
+
+            <TabItem Header="时间控件">
+                <DatePickerSet:DatePickerAttri HorizontalAlignment="Left" VerticalAlignment="Top"  x:Name="datePickerView">
+                </DatePickerSet:DatePickerAttri>
+            </TabItem>
+
+
+            <TabItem Header="第三方列表显示视图">
+                <RadGridViewSet:RadGridViewAttri HorizontalAlignment="Left" VerticalAlignment="Top"  x:Name="radGridView">
+                </RadGridViewSet:RadGridViewAttri>
+            </TabItem>
+
+            <TabItem Header="第三方树视图">
+                <RadTreeViewSet:RadTreeViewAttri HorizontalAlignment="Left" VerticalAlignment="Top"  x:Name="RadTreeView">
+                </RadTreeViewSet:RadTreeViewAttri>
+            </TabItem>
+            <TabItem Header="组合框">
+                <GroupBoxSet:GroupBoxAttri HorizontalAlignment="Left" VerticalAlignment="Top"  x:Name="GroupBox">
+                </GroupBoxSet:GroupBoxAttri>
+            </TabItem>
+            <TabItem Header="自定义窗体">
+                <AppleWindowSet:AppleWindowAttri HorizontalAlignment="Left" VerticalAlignment="Top"  x:Name="AppleWindow">
+                </AppleWindowSet:AppleWindowAttri>
+            </TabItem>
+            <TabItem Header="标签">
+                <LabelSet:LabelAttri HorizontalAlignment="Left" VerticalAlignment="Top"  x:Name="MyLabel">
+                </LabelSet:LabelAttri>
+            </TabItem>
+            <TabItem Header="提示对话框">
+                <MessageBoxOverrideSet:MessageBoxOverrideAttri HorizontalAlignment="Left" VerticalAlignment="Top"  x:Name="MessageBoxOverride">
+                </MessageBoxOverrideSet:MessageBoxOverrideAttri>
+            </TabItem>
+        </TabControl>
+
+    </Grid>
+</Window>

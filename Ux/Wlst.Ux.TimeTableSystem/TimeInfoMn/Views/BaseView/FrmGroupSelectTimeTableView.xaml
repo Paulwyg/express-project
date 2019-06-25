@@ -1,0 +1,84 @@
+﻿<WindowForWlst:CustomChromeWindow x:Class="Wlst.Ux.TimeTableSystem.TimeInfoMn.Views.BaseView.FrmGroupSelectTimeTableView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                                  xmlns:WindowForWlst="clr-namespace:WindowForWlst;assembly=WindowForWlst"
+                                  xmlns:RadioButtonConverter="clr-namespace:Wlst.Cr.CoreOne.RadioButtonConverter;assembly=Wlst.Cr.CoreOne"
+                                  xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+                                  xmlns:AppleWindowSet="clr-namespace:Elysium.ThemesSet.AppleWindowSet;assembly=Elysium"
+                                  mc:Ignorable="d" 
+                                   
+                    Height="525"  Title="终端与分组时间表选择"  TitleCetc="终端与分组时间表选择"
+        Width="550" Topmost="True" TopmostButtonVisibility ="Collapsed">
+    <WindowForWlst:CustomChromeWindow.Resources>
+        <RadioButtonConverter:RadioButtonIntConverter x:Key="RadioButtonIntConvert"></RadioButtonConverter:RadioButtonIntConverter>
+    </WindowForWlst:CustomChromeWindow.Resources>
+    <Grid>
+        <Grid>
+            <Grid.Resources>
+                <Style x:Key="itemstyle" TargetType="{x:Type telerik:GridViewRowItem}">
+                    <EventSetter Event='MouseDoubleClick' Handler='ListViewItem_MouseDoubleClick'/>
+                </Style>
+
+            </Grid.Resources>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="28"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="28"></RowDefinition>
+                <RowDefinition Height="28"></RowDefinition>
+                <RowDefinition Height="40"></RowDefinition>
+            </Grid.RowDefinitions>
+            <telerik:RadGridView  Grid.Row="1" AutoGenerateColumns="False" RowIndicatorVisibility="Collapsed" ShowGroupPanel="False" 
+            AllowDrop="True"   ItemsSource="{Binding Path=TimeTables}"  MouseDoubleClick="ListViewItem_MouseDoubleClick" 
+                   SelectedItem="{Binding CurrentSelectItem}" >
+                <telerik:RadGridView.Columns>
+                    <telerik:GridViewDataColumn Header="地址" IsFilterable="False"   DataMemberBinding="{Binding Path=Id,Mode=TwoWay}"  Width="80" />
+                    <telerik:GridViewDataColumn Header="时间表名称" IsFilterable="False"   DataMemberBinding="{Binding  Path=Name,Mode=TwoWay}" Width="180" />
+                    <telerik:GridViewDataColumn Header="时间表描述" IsFilterable="False"   DataMemberBinding="{Binding  Path=NameDesc,Mode=TwoWay}"  Width="270"/>
+                </telerik:RadGridView.Columns>
+            </telerik:RadGridView>
+            <!--<ListView  Grid.Row="1"
+            AllowDrop="True"  ItemContainerStyle="{StaticResource itemstyle}" ItemsSource="{Binding Path=TimeTables}"
+                   SelectedItem="{Binding CurrentSelectItem}" >
+            <ListView.View>
+                <GridView  AllowsColumnReorder="true" ColumnHeaderToolTip="All Time Table Here">
+                    <GridViewColumn Header="地址"    DisplayMemberBinding="{Binding Path=TimeTableId,Mode=TwoWay}"  Width="80" />
+                    <GridViewColumn Header="时间表名称"   DisplayMemberBinding="{Binding  Path=TimeTableName,Mode=TwoWay}" Width="180" />
+                    <GridViewColumn Header="时间表描述"   DisplayMemberBinding="{Binding  Path=TimeDesc,Mode=TwoWay}" Width="290" />
+                </GridView>
+            </ListView.View>
+        </ListView>-->
+
+            <DockPanel Grid.Row="0" VerticalAlignment="Center">
+                <TextBlock Text="当前选择为:"/>
+                <TextBlock Text="{Binding ShowRtuOrGroupId}"></TextBlock>
+                <TextBlock Text="     名称为:"/>
+                <TextBlock Text="{Binding SelectRtuOrGroupName}"/>
+                <TextBlock Text="     输出回路为: K"></TextBlock>
+                <TextBlock Text="{Binding SelectKloop}"/>
+                <TextBlock></TextBlock>
+            </DockPanel>
+
+            <DockPanel Grid.Row="2" VerticalAlignment="Center">
+                <Label Content="当前设置的时间表为:"/>
+                <Label Content="{Binding OldSelectTimeTableId}"/>
+                <Label Content=","/>
+                <Label Content="{Binding OldSelectTimeTableName}"/>
+            </DockPanel>
+
+            <DockPanel Grid.Row="3" VerticalAlignment="Center">
+                <Label Content="新选择替换时间表为:"/>
+                <Label Content="{Binding CurrentSelectItem.Id}"/>
+                <Label Content=","/>
+                <Label Content="{Binding CurrentSelectItem.Name}"/>
+            </DockPanel>
+
+            <DockPanel Grid.Row="4" VerticalAlignment="Center">
+                <TextBlock Text="双击时间表可快速选择" HorizontalAlignment="Left" Margin="5,0,0,0" VerticalAlignment="Center"></TextBlock>
+                <Button Content="确定"   Width="100" Height="25" Command="{Binding CmdSave}" Margin="100,0,0,0" HorizontalAlignment="Left" Click="Button_Click"></Button>
+                <Button Content="取消"   Width="100" Height="25" Command="{Binding CmdSave}" Margin="45,0,0,0" HorizontalAlignment="Left" Click="Button_Click_1"></Button>
+            </DockPanel>
+        </Grid>
+    </Grid>
+</WindowForWlst:CustomChromeWindow>

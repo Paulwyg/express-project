@@ -1,0 +1,28 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:PresentationOptions="http://schemas.microsoft.com/winfx/2006/xaml/presentation/options">
+
+    <SolidColorBrush x:Key="AccentBrush"
+                     Color="#FF017BCD"
+                     PresentationOptions:Freeze="True"/>
+    <SolidColorBrush x:Key="ContrastBrush"
+                     Color="#FFFFFFFF"
+                     PresentationOptions:Freeze="True"/>
+    <SolidColorBrush x:Key="SemitransparentContrastBrush"
+                     Color="#1FFFFFFF"
+                     PresentationOptions:Freeze="True"/>
+
+
+
+
+    <SolidColorBrush x:Key="ListViewItemBackground" >white</SolidColorBrush>
+    <SolidColorBrush x:Key="ListViewItemSelected" >#017bcd</SolidColorBrush>
+    <SolidColorBrush x:Key="ListViewItemBackgroundMouseOver" >#a2d2f2</SolidColorBrush>
+    <SolidColorBrush x:Key="ListViewItemBackgroundFocused" >#feecd7</SolidColorBrush>
+    <SolidColorBrush x:Key="GridViewColumnHeaderBackground" Color="#b8b5b2"/>
+    <SolidColorBrush x:Key="GridViewColumnHeaderBorderBrush" Color="#b8b5b2"/>
+    <SolidColorBrush x:Key="GridViewColumnHeaderForeground" Color="Black"/>
+    <SolidColorBrush x:Key="ListViewBackground" Color="White"/>
+    <SolidColorBrush x:Key="ListViewBorderBrush" Color="Transparent"/>
+    <SolidColorBrush x:Key="GridViewColumnHeaderGripperBackground" Color="#4d4d4d"/>
+</ResourceDictionary>

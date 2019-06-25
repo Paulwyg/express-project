@@ -1,0 +1,17 @@
+﻿<Application x:Class="CETC50_Demo.App" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <Application.Resources>
+    <ResourceDictionary>
+      <ResourceDictionary.MergedDictionaries>
+        <!--<ResourceDictionary Source="/CETC50_Demo;component/Themes/Theme.xaml" />-->
+        <!-- <ResourceDictionary Source="/CETC50_Demo;component/Themes/WpfButton.xaml" />
+        <ResourceDictionary Source="/CETC50_Demo;component/Themes/WpfTextBox.xaml" />
+        <ResourceDictionary Source="/CETC50_Demo;component/Themes/WpfComboBox.xaml" />
+        <ResourceDictionary Source="/CETC50_Demo;component/Themes/WpfContextMenu.xaml" />
+        <ResourceDictionary Source="/CETC50_Demo;component/Themes/WpfTextBox.xaml" />
+                <ResourceDictionary Source="/CETC50_Demo;component/Themes/ScrollViewerControlTemplate.xaml" />-->
+               
+            </ResourceDictionary.MergedDictionaries>
+    </ResourceDictionary>
+  </Application.Resources>
+</Application>

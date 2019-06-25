@@ -1,0 +1,137 @@
+﻿<UserControl x:Class="Wlst.Ux.Wj2090Module.HisDataQuery.WeekSetQuery.Views.WeekSetQueryView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="950">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid  >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="25"></RowDefinition>
+                <RowDefinition Height="0"></RowDefinition>
+                <RowDefinition Height="*" ></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="30"/>
+            </Grid.RowDefinitions>
+            <Label x:Name="fg"/>
+            <DockPanel HorizontalAlignment="Stretch" >
+                <TextBlock Margin="10,0,0,0" Foreground="{Binding ElementName=fg, Path=Foreground}"  Text="起始时间:" VerticalAlignment="Center"></TextBlock>
+                <DatePicker  HorizontalAlignment="Center"  VerticalAlignment="Center" SelectedDateFormat="Short" Width="180"   Margin="10,0,0,0" SelectedDate="{Binding DtStartTime}"></DatePicker>
+
+                <TextBlock Margin="50,0,0,0" Foreground="{Binding ElementName=fg, Path=Foreground}" Text=" 结束时间:" VerticalAlignment="Center"></TextBlock>
+                <DatePicker  HorizontalAlignment="Center"  VerticalAlignment="Center" SelectedDateFormat="Short" Width="180"   Margin="10,0,10,0" SelectedDate="{Binding DtEndTime}"></DatePicker>
+                <Button Content="查询" Width="120" ToolTip="点击左侧终端树中的终端来改变选择的终端，查询完成后请关闭本页面，避免不必要的数据流量。" Margin="0,0,50,0" Command="{Binding CmdQuery}" Height="23" HorizontalAlignment="Right" ></Button>
+            </DockPanel>
+            <DockPanel  Grid.Row="1"  VerticalAlignment="Center">
+
+                <CheckBox Foreground="{Binding ElementName=fg, Path=Foreground}" Margin="10,0,0,0" Content="" IsChecked="{Binding IsRtuSelected}"></CheckBox>
+                <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Text="集中器地址:"></TextBlock>
+                <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Text="{Binding SluShowId}" Width="100"></TextBlock>
+                <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Text="      集中器名称:"></TextBlock>
+                <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Text="{Binding SluName}"></TextBlock>
+                <!--<TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Text="      控制器地址:"></TextBlock>
+                <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Text="{Binding CtrlIdShow}"></TextBlock>-->
+            </DockPanel>
+            <!--<StackPanel  Grid.Row="2"  VerticalAlignment="Center">
+                <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Margin="10,0,0,0" Text="点击左侧终端树中的终端来改变选择的终端，查询完成后请关闭本页面，避免不必要的数据流量。"></TextBlock>
+            </StackPanel>-->
+            <Grid  Grid.Row="3">
+                <Grid.ColumnDefinitions >
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="10"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+
+                <telerik:RadGridView x:Name="exportgridview" AutoGenerateColumns="False" ItemsSource="{Binding Items}" 
+                                 SelectedItem="{Binding CurrentSelectRecord}"
+                                 Grid.Row="1" 
+								 Background="Transparent" Margin="0,5,0,0"
+								  HorizontalAlignment="Stretch" 
+								  VerticalAlignment="Stretch" 
+                                  CanUserFreezeColumns="False" 
+								  CanUserReorderColumns="False" 
+								  RowIndicatorVisibility="Collapsed"   ShowGroupPanel="False" ShowColumnHeaders="True" SnapsToDevicePixels="True">
+                    <telerik:RadGridView.Columns>
+                        <telerik:GridViewDataColumn Header="序号" IsFilterable="False"  Width="60"  DataMemberBinding="{Binding Index}" IsReadOnly="True" />
+                        <telerik:GridViewDataColumn Header="设备地址" IsFilterable="False" DataMemberBinding="{Binding SluShowId}"  IsReadOnly="True" Width="90" />
+                        <telerik:GridViewDataColumn Header="设备名称" IsFilterable="False"  DataMemberBinding="{Binding SluName}"  IsReadOnly="True" Width="150"/>
+                        <telerik:GridViewDataColumn Header="控制器地址" IsFilterable="False"  DataMemberBinding="{Binding CtrlId}"  IsReadOnly="True"  Width="80" />
+                        <!--<telerik:GridViewDataColumn Header="发送序号" IsFilterable="False" IsSortable="False" DataMemberBinding="{Binding NIndex}"  IsReadOnly="True" Width="80" />-->
+                        <telerik:GridViewDataColumn Header="发送时间" IsFilterable="False"  DataMemberBinding="{Binding DateCreate}"  IsReadOnly="True"  Width="160" />
+                        <telerik:GridViewDataColumn Header="应答时间" IsFilterable="False"  DataMemberBinding="{Binding DateReply}"  IsReadOnly="True"  Width="160"/>
+                        <telerik:GridViewDataColumn Header="操作用户" IsFilterable="False"  DataMemberBinding="{Binding UserName}"  IsReadOnly="True"  Width="150" />
+                        <telerik:GridViewDataColumn Header="备注" IsFilterable="False" IsSortable="False" DataMemberBinding="{Binding Remark}"  IsReadOnly="True"  Width="140"/>
+                       
+                    </telerik:RadGridView.Columns>
+                </telerik:RadGridView>
+
+
+            </Grid>
+            <Grid Visibility="{Binding PagerVisi}" Margin="0,5,0,5" Grid.Row="4" HorizontalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <telerik:RadDataPager x:Name="radDataPager"
+                             FontSize="12"  Background="Transparent" Opacity="1"  NumericButtonCount="7"
+                            BorderThickness="0" Width="550" PageIndex="{Binding PageIndex,Mode=TwoWay}"
+                            VerticalContentAlignment="Center" HorizontalContentAlignment="Right" HorizontalAlignment="Right"
+                            DisplayMode="All" PageSize="100" ItemCount="{Binding ItemCount,Mode=TwoWay}" />
+                <TextBlock Grid.Column="1" Text="{Binding PageTotal,Mode=TwoWay}" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            </Grid>
+            <Grid Grid.Row="5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}"  Text="{Binding Remind}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0"/>
+                <Button Content="导出"   Grid.Column="1"  Margin="20,2,50,2" MinWidth="120"  MinHeight="25" Click="Button_Click" />
+            </Grid>
+
+
+        </Grid>
+   
+        <!--<Grid Grid.Row="1" Height="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="35"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="35"></RowDefinition>
+            </Grid.RowDefinitions>
+            <DockPanel VerticalAlignment="Center" HorizontalAlignment="Left">
+                <Label Margin="35,0,15,0" Content="未知控制器查询:"></Label>
+                <Button Content="查询" Height="25" Width="120"></Button>
+            </DockPanel>
+
+            <telerik:RadGridView x:Name="exportgridvgiew" AutoGenerateColumns="False"
+                                 SelectedItem="{Binding CurrentSelectRecord}"
+                                 Grid.Row="1" 
+								 Background="Transparent" Margin="0,5,0,0"
+								  HorizontalAlignment="Stretch" 
+								  VerticalAlignment="Stretch" 
+                                  CanUserFreezeColumns="False" 
+								  CanUserReorderColumns="False" 
+								  RowIndicatorVisibility="Collapsed"   ShowGroupPanel="False" ShowColumnHeaders="True" SnapsToDevicePixels="True">
+                <telerik:RadGridView.Columns>
+                    <telerik:GridViewDataColumn Header="序号" IsFilterable="False"  Width="60" MaxWidth="95" DataMemberBinding="{Binding Index}" IsReadOnly="True" />
+                    <telerik:GridViewDataColumn Header="条码地址" IsFilterable="False" DataMemberBinding="{Binding SluId}"  IsReadOnly="True" Width="120" />
+                    <telerik:GridViewDataColumn Header="当前所属集中器" IsFilterable="False"  DataMemberBinding="{Binding SluName}"  IsReadOnly="True" MinWidth="150"/>
+                    <telerik:GridViewDataColumn Header="应属集中器名称" IsFilterable="False"  DataMemberBinding="{Binding CtrlId}"  IsReadOnly="True"  Width="150" />
+                    <telerik:GridViewDataColumn Header="应属集中器域名" IsFilterable="False" IsSortable="False" DataMemberBinding="{Binding NIndex}"  IsReadOnly="True" Width="120" />
+                    <telerik:GridViewDataColumn Header="命令发送" IsFilterable="False"  DataMemberBinding="{Binding DateCreate}"  IsReadOnly="True"  Width="120" />
+
+                </telerik:RadGridView.Columns>
+            </telerik:RadGridView>
+
+            <Button Margin="120,0,0,0" Grid.Row="2" HorizontalAlignment="Left" Content="重置当前列表控制器域名" Height="25" Width="180"></Button>
+        </Grid>-->
+    </Grid>
+</UserControl>

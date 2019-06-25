@@ -1,0 +1,38 @@
+﻿<UserControl x:Class="Wlst.Ux.Wj2096Module.TreeTab.Set.Wj2096TreeSetView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid HorizontalAlignment="Center">
+        <Grid >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <!--<CheckBox Grid.Row="2" IsChecked="{Binding IsShowGrpInTreeModelShowId}" Content="分组显示组地址" VerticalAlignment="Center" ></CheckBox>-->
+
+            <CheckBox IsChecked="{Binding IsShowTreeOnTab}" Content="在主界面树区域显示物联网单灯设备面板" VerticalAlignment="Center" ></CheckBox>
+
+
+            <!--<CheckBox IsChecked="{Binding IsNoRtu}" Content="系统是否只有独立单灯设备" VerticalAlignment="Center"  Grid.Row="1" ></CheckBox>-->
+
+            <!--<CheckBox Grid.Row="1" IsChecked="{Binding IsShowConOnNodeSelected}" Content="在选中控制器分组时显示控制器列表" VerticalAlignment="Center" ></CheckBox>
+
+            <CheckBox Grid.Row="2" IsChecked="{Binding IsShowConOnNodeSelected}" Content="最新数据显示参数信息" VerticalAlignment="Center" ></CheckBox>
+
+            <CheckBox Grid.Row="3" IsChecked="{Binding IsIconFollowTheRtu}" Content="单灯图标跟随绑定终端的状态" VerticalAlignment="Center" ></CheckBox>-->
+
+            <!--<CheckBox Grid.Row="3" IsChecked="{Binding IsShowConOnNodeSelected}" Content="显示参数信息" VerticalAlignment="Center" ></CheckBox>-->
+
+            <Button  Tag="11060007" Content="应用" Command="{Binding CmdApply}" 
+                     Width="120" Height="30" Grid.Row="5"></Button>
+        </Grid>
+    </Grid>
+</UserControl>

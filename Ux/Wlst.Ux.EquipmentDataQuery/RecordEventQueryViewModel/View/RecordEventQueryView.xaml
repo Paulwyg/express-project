@@ -1,0 +1,50 @@
+﻿<UserControl x:Class="Wlst.Ux.EquipmentDataQuery.RecordEventQueryViewModel.View.RecordEventQueryView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             mc:Ignorable="d" 
+             d:DesignHeight="500" d:DesignWidth="1200">
+
+    <Grid Margin="10" x:Name="element">
+        <Grid.RowDefinitions >
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions >
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Margin="10,0,0,0" Grid.Column="0" VerticalAlignment="Center" Text="起始时间:"></TextBlock>
+            <xctk:DateTimePicker Margin="10,0,0,0" MinWidth="150" Grid.Column="1" Text="{Binding DtStartTime}"/>
+            <TextBlock Margin="10,0,0,0" Grid.Column="2" VerticalAlignment="Center" Text="结束时间:"></TextBlock>
+            <xctk:DateTimePicker Margin="10,0,0,0" MinWidth="150"  Grid.Column="3" Text="{Binding DtEndTime}"/>
+            <Button Margin="30,0,0,0" Content="查询" Grid.Column="4" MinWidth="120" Height="25"  Command="{Binding CmdQuery}"></Button>
+        </Grid>
+        <ListView  Grid.Row="1" MaxHeight="450" AllowDrop="True"   ItemsSource="{Binding Path=Record}" >
+            <ListView.View>
+                <GridView  AllowsColumnReorder="true" ColumnHeaderToolTip="All Record Here">
+                    <GridViewColumn Header="序号"    DisplayMemberBinding="{Binding Path=RecordIndex,Mode=TwoWay}"  Width="80" />
+                    <GridViewColumn Header="发生时间"   DisplayMemberBinding="{Binding  Path=CreateTime,Mode=TwoWay}" Width="140" />
+                    <GridViewColumn Header="设备地址"   DisplayMemberBinding="{Binding  Path=RtuId,Mode=TwoWay}" Width="100" />
+                    <GridViewColumn Header="设备名称"    DisplayMemberBinding="{Binding Path=RtuName,Mode=TwoWay}"  Width="180" />
+                    <GridViewColumn Header="附加参数"    DisplayMemberBinding="{Binding Path=Loop,Mode=TwoWay}"  Width="80" />
+                    <GridViewColumn Header="操作"   DisplayMemberBinding="{Binding  Path=Operator,Mode=TwoWay}" Width="120" />
+                    <GridViewColumn Header="操作人员"   DisplayMemberBinding="{Binding  Path=Operatorer,Mode=TwoWay}" Width="120" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+    </Grid>
+</UserControl>
