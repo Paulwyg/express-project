@@ -34,10 +34,6 @@
     <Reference Include="DragDropExtend">
       <HintPath>..\DLL\DragDropExtend.dll</HintPath>
     </Reference>
-    <Reference Include="Elysium, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\ZDebug\Elysium.dll</HintPath>
-    </Reference>
     <Reference Include="Lurx.Controls, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\ZDebug\Lurx.Controls.dll</HintPath>
@@ -459,6 +455,10 @@
     <ProjectReference Include="..\..\Sr\wlst.sr.iif\wlst.sr.iif.csproj">
       <Project>{35F048E2-6ABE-4721-97D3-42AB0A19CC19}</Project>
       <Name>wlst.sr.iif</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Ux\Elysium\Elysium.csproj">
+      <Project>{467011fc-64f2-4fb6-8f59-942248260ffb}</Project>
+      <Name>Elysium</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Ux\Wlst.Ux.Setting\Wlst.Ux.Setting.csproj">
       <Project>{71F7B8B4-1E4E-4CA9-88B3-2DA44E3E8333}</Project>
