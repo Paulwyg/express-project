@@ -32,13 +32,13 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Practices.Prism">
-      <HintPath>..\..\ZDebug\Microsoft.Practices.Prism.dll</HintPath>
+      <HintPath>..\..\Rr\Binaries\WPF\Microsoft.Practices.Prism.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Practices.Prism.MefExtensions">
-      <HintPath>..\..\ZDebug\Microsoft.Practices.Prism.MefExtensions.dll</HintPath>
+      <HintPath>..\..\Rr\Binaries\WPF\Microsoft.Practices.Prism.MefExtensions.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Practices.Prism.MefExtensions.Event">
-      <HintPath>..\..\ZDebug\Microsoft.Practices.Prism.MefExtensions.Event.dll</HintPath>
+      <HintPath>..\..\Rr\Binaries\WPF\Microsoft.Practices.Prism.MefExtensions.Event.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -53,15 +53,15 @@
     <Reference Include="System.Xml" />
     <Reference Include="WindowsBase" />
     <Reference Include="Wlst.Cr.Core">
-      <HintPath>..\..\ZDebug\Wlst.Cr.Core.dll</HintPath>
+      <HintPath>..\..\Rr\Binaries\WPF\Wlst.Cr.Core.dll</HintPath>
     </Reference>
     <Reference Include="Wlst.Cr.Coreb, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="Wlst.Cr.CoreMims, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\ZDebug\Wlst.Cr.CoreMims.dll</HintPath>
+      <HintPath>..\..\Rr\Binaries\WPF\Wlst.Cr.CoreMims.dll</HintPath>
     </Reference>
     <Reference Include="Wlst.Cr.CoreOne">
-      <HintPath>..\..\ZDebug\Wlst.Cr.CoreOne.dll</HintPath>
+      <HintPath>..\..\Rr\Binaries\WPF\Wlst.Cr.CoreOne.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

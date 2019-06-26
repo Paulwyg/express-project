@@ -33,14 +33,14 @@
   <ItemGroup>
     <Reference Include="Microsoft.Practices.Prism, Version=4.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\DLL\Microsoft.Practices.Prism.dll</HintPath>
+      <HintPath>..\..\Rr\Binaries\WPF\Microsoft.Practices.Prism.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Practices.Prism.MefExtensions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\DLL\Microsoft.Practices.Prism.MefExtensions.dll</HintPath>
+      <HintPath>..\..\Rr\Binaries\WPF\Microsoft.Practices.Prism.MefExtensions.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Practices.Prism.MefExtensions.Event">
-      <HintPath>..\DLL\Microsoft.Practices.Prism.MefExtensions.Event.dll</HintPath>
+      <HintPath>..\..\Rr\Binaries\WPF\Microsoft.Practices.Prism.MefExtensions.Event.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -59,24 +59,24 @@
     <Reference Include="System.Xml" />
     <Reference Include="Telerik.Windows.Controls, Version=2013.1.619.40, Culture=neutral, PublicKeyToken=d3625f8bf04286d7, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>D:\Cetc50Debug\Telerik.Windows.Controls.dll</HintPath>
+      <HintPath>..\..\Rr\Binaries\WPF\Telerik.Windows.Controls.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.Windows.Controls.Docking, Version=2013.1.619.40, Culture=neutral, PublicKeyToken=d3625f8bf04286d7, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>D:\Cetc50Debug\Telerik.Windows.Controls.Docking.dll</HintPath>
+      <HintPath>..\..\Rr\Binaries\WPF\Telerik.Windows.Controls.Docking.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.Windows.Controls.Navigation, Version=2013.1.619.40, Culture=neutral, PublicKeyToken=d3625f8bf04286d7, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>D:\Cetc50Debug\Telerik.Windows.Controls.Navigation.dll</HintPath>
+      <HintPath>..\..\Rr\Binaries\WPF\Telerik.Windows.Controls.Navigation.dll</HintPath>
     </Reference>
     <Reference Include="WindowsBase" />
     <Reference Include="Wlst.Cr.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\ZDebug\Wlst.Cr.Core.dll</HintPath>
+      <HintPath>..\..\Rr\Binaries\WPF\Wlst.Cr.Core.dll</HintPath>
     </Reference>
     <Reference Include="Wlst.Cr.CoreOne, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\ZDebug\Wlst.Cr.CoreOne.dll</HintPath>
+      <HintPath>..\..\Rr\Binaries\WPF\Wlst.Cr.CoreOne.dll</HintPath>
     </Reference>
     <Reference Include="Wlst.Sr.PrivilegesCrl, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>

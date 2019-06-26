@@ -1,0 +1,632 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Wlst.Sr.EquipemntLightFault</name>
+    </assembly>
+    <members>
+        <member name="T:Wlst.Sr.EquipemntLightFault.Interfaces.IIEquipmentFault">
+            <summary>
+            现场设备故障接口
+            </summary>
+        </member>
+        <member name="P:Wlst.Sr.EquipemntLightFault.Interfaces.IIEquipmentFault.Id">
+            <summary>
+            序号 自增
+            </summary>
+        </member>
+        <member name="P:Wlst.Sr.EquipemntLightFault.Interfaces.IIEquipmentFault.DateCreate">
+            <summary>
+            发生时间
+            </summary>
+        </member>
+        <member name="P:Wlst.Sr.EquipemntLightFault.Interfaces.IIEquipmentFault.RtuId">
+            <summary>
+            终端序号
+            </summary>
+        </member>
+        <member name="P:Wlst.Sr.EquipemntLightFault.Interfaces.IIEquipmentFault.LoopId">
+            <summary>
+            回路序号 
+            </summary>
+        </member>
+        <member name="P:Wlst.Sr.EquipemntLightFault.Interfaces.IIEquipmentFault.FaultCodeId">
+            <summary>
+            故障序号
+            </summary>
+        </member>
+        <member name="P:Wlst.Sr.EquipemntLightFault.Interfaces.IIEquipmentFault.RecordId">
+            <summary>
+            记录编号
+            </summary>
+        </member>
+        <member name="P:Wlst.Sr.EquipemntLightFault.Interfaces.IIEquipmentFault.Remark">
+            <summary>
+            备注
+            </summary>
+        </member>
+        <member name="T:Wlst.Sr.EquipemntLightFault.InfoHold.TmlExistFaultsInfo">
+            <summary>
+            终端现场故障保存  结构为 终端地址 回路 故障编码
+            </summary>
+            <summary>
+            请求故障数据 向服务器
+            </summary>
+        </member>
+        <member name="M:Wlst.Sr.EquipemntLightFault.InfoHold.TmlExistFaultsInfo.GetFaultLstInfoByRtuId(System.Int32)">
+            <summary>
+            根据设备逻辑地址获取设备报警信息；不存在返回null
+            </summary>
+            <param name="rtuId">终端地址</param>
+            <returns></returns>
+        </member>
+        <member name="M:Wlst.Sr.EquipemntLightFault.InfoHold.TmlExistFaultsInfo.InitStartSerive">
+            <summary>
+            注册启动事件
+            </summary>
+        </member>
+        <member name="M:Wlst.Sr.EquipemntLightFault.InfoHold.TmlExistFaultsInfo.RequestTmlExistFaultsInfo">
+            <summary>
+            与服务器交互数据 触发点
+            </summary>
+        </member>
+        <member name="T:Wlst.Sr.EquipemntLightFault.InfoHold.TmlFaultBindingInfo">
+            <summary>
+            终端报警故障参数保存 终端地址 故障编码 是否报警
+            </summary>
+            <summary>
+            Event
+            </summary>
+            <summary>
+            通信
+            </summary>
+        </member>
+        <member name="M:Wlst.Sr.EquipemntLightFault.InfoHold.TmlFaultBindingInfo.GetIsAlarmByIdAndFaultId(System.Int32,System.Int32)">
+            <summary>
+            查询该终端对该故障是否报警
+            </summary>
+            <param name="rtuId">地址</param>
+            <param name="faultCodeId">故障编码地址</param>
+            <returns>不存在返回false</returns>
+        </member>
+        <member name="M:Wlst.Sr.EquipemntLightFault.InfoHold.TmlFaultBindingInfo.InitStartService">
+            <summary>
+            为外界提供服务
+            </summary>
+        </member>
+        <member name="M:Wlst.Sr.EquipemntLightFault.InfoHold.TmlFaultBindingInfo.RequestFaultBandTmlInfo">
+            <summary>
+            与服务器交互数据 触发点
+            </summary>
+        </member>
+        <member name="M:Wlst.Sr.EquipemntLightFault.InfoHold.TmlFaultBindingInfo.UpdateFaultBandTmlInfo(System.Collections.Generic.List{System.Tuple{System.Int32,System.Int32}},System.Int32)">
+            <summary>
+            更新信息到服务器
+            </summary>
+            <param name="infoss">需要更新的信息</param>
+        </member>
+        <member name="T:Wlst.Sr.EquipemntLightFault.InfoHold.FaultTypeInfo">
+            <summary>
+            故障类型信息 故障编码 故障类型信息；使用时 只全局发布 update事件  无参数
+            </summary>
+            <summary>
+            Event
+            </summary>
+            <summary>
+            通信
+            </summary>
+        </member>
+        <member name="P:Wlst.Sr.EquipemntLightFault.InfoHold.FaultTypeInfo.TimeLongAlarm">
+            <summary>
+            故障报警查询统计时间段
+            </summary>
+        </member>
+        <member name="F:Wlst.Sr.EquipemntLightFault.InfoHold.FaultTypeInfo.VolBelow">
+            <summary>
+            检测电压 认为电压为0的 最低条件
+            </summary>
+        </member>
+        <member name="F:Wlst.Sr.EquipemntLightFault.InfoHold.FaultTypeInfo.LdlBelow">
+            <summary>
+            亮灯率报警下限值
+            </summary>
+        </member>
+        <member name="M:Wlst.Sr.EquipemntLightFault.InfoHold.FaultTypeInfo.InitStartService">
+            <summary>
+            为外界提供故障类型信息服务
+            </summary>
+        </member>
+        <member name="M:Wlst.Sr.EquipemntLightFault.InfoHold.FaultTypeInfo.FundOrderFilter(Wlst.Cr.Coreb.EventHelper.PublishEventArgs)">
+            <summary>
+            事件过滤
+            </summary>
+            <param name="args"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Wlst.Sr.EquipemntLightFault.InfoHold.FaultTypeInfo.FundEventHandler(Wlst.Cr.Coreb.EventHelper.PublishEventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="args"></param>
+        </member>
+        <member name="M:Wlst.Sr.EquipemntLightFault.InfoHold.FaultTypeInfo.RequestFaultTypeInfo">
+            <summary>
+            请求所有故障类型信息
+            </summary>
+        </member>
+        <member name="M:Wlst.Sr.EquipemntLightFault.InfoHold.FaultTypeInfo.UpdateFauleTypeInfo(System.Collections.Generic.List{Wlst.client.FaultTypes.FaultTypeItem},System.Int32,System.Int32,System.Double,System.Collections.Generic.List{Wlst.client.FaultTypes.FaultSettingRuleOne})">
+            <summary>
+            更新故障类型 信息
+            </summary>
+            <param name="lst"></param>
+            <param name="hour">统计的时间 间隔 </param>
+            <param name="volbelow">缺相电压下限 </param>
+            <param name="ldlbelow">亮灯率报警下限 </param>
+        </member>
+        <member name="P:Wlst.Sr.EquipemntLightFault.Model.FaultInfoBase.Id">
+            <summary>
+            序号 程序内部识别唯一地址 程序收到一条报警数据后自增
+            </summary>
+        </member>
+        <member name="P:Wlst.Sr.EquipemntLightFault.Model.FaultInfoBase.IsShowAtTop">
+            <summary>
+            报警等级
+            </summary>
+        </member>
+        <member name="P:Wlst.Sr.EquipemntLightFault.Model.FaultInfoBase.DateCreate">
+            <summary>
+            发生时间
+            </summary>
+        </member>
+        <member name="P:Wlst.Sr.EquipemntLightFault.Model.FaultInfoBase.DateFirst">
+            <summary>
+            第一次发生时间
+            </summary>
+        </member>
+        <member name="P:Wlst.Sr.EquipemntLightFault.Model.FaultInfoBase.RtuId">
+            <summary>
+            故障终端序号 第一地址
+            </summary>
+        </member>
+        <member name="P:Wlst.Sr.EquipemntLightFault.Model.FaultInfoBase.LoopId">
+            <summary>
+            故障回路或控制器序号 第二地址
+            </summary>
+        </member>
+        <member name="P:Wlst.Sr.EquipemntLightFault.Model.FaultInfoBase.LampId">
+            <summary>
+            故障灯头序号 第三地址
+            </summary>
+        </member>
+        <member name="P:Wlst.Sr.EquipemntLightFault.Model.FaultInfoBase.RtuPhyId">
+            <summary>
+            终端物理地址
+            </summary>
+        </member>
+        <member name="P:Wlst.Sr.EquipemntLightFault.Model.FaultInfoBase.RtuName">
+            <summary>
+            报警终端名称
+            </summary>
+        </member>
+        <member name="P:Wlst.Sr.EquipemntLightFault.Model.FaultInfoBase.RtuLoopName">
+            <summary>
+            报警回路或控制器名称
+            </summary>
+        </member>
+        <member name="P:Wlst.Sr.EquipemntLightFault.Model.FaultInfoBase.RtuFid">
+            <summary>
+            报警终端父设备地址 为0则不存在父设备
+            </summary>
+        </member>
+        <member name="P:Wlst.Sr.EquipemntLightFault.Model.FaultInfoBase.RtuFname">
+            <summary>
+            报警终端父设备名称
+            </summary>
+        </member>
+        <member name="P:Wlst.Sr.EquipemntLightFault.Model.FaultInfoBase.FaultId">
+            <summary>
+            故障序号
+            </summary>
+        </member>
+        <member name="P:Wlst.Sr.EquipemntLightFault.Model.FaultInfoBase.FaultName">
+            <summary>
+            故障名称
+            </summary>
+        </member>
+        <member name="P:Wlst.Sr.EquipemntLightFault.Model.FaultInfoBase.RecordId">
+            <summary>
+            记录编号 数据库存在的记录标号
+            </summary>
+        </member>
+        <member name="P:Wlst.Sr.EquipemntLightFault.Model.FaultInfoBase.AlarmCount">
+            <summary>
+            在指定时间段内的报警次数统计
+            </summary>
+        </member>
+        <member name="P:Wlst.Sr.EquipemntLightFault.Model.FaultInfoBase.Remark">
+            <summary>
+            备注
+            </summary>
+        </member>
+        <member name="P:Wlst.Sr.EquipemntLightFault.Model.FaultInfoBase.IsThisUserShow">
+            <summary>
+            当前用户是否具有现实权限
+            </summary>
+        </member>
+        <member name="F:Wlst.Sr.EquipemntLightFault.Model.FaultInfoBase.AlarmTimes">
+            <summary>
+            故障报警次数
+            </summary>
+        </member>
+        <member name="F:Wlst.Sr.EquipemntLightFault.Model.FaultInfoBase.Color">
+            <summary>
+            故障报警显示颜色
+            </summary>
+        </member>
+        <member name="P:Wlst.Sr.EquipemntLightFault.Model.FaultInfoBase.A">
+            <summary>
+            当前电流
+            </summary>
+        </member>
+        <member name="P:Wlst.Sr.EquipemntLightFault.Model.FaultInfoBase.AUpper">
+            <summary>
+            上限值
+            </summary>
+        </member>
+        <member name="P:Wlst.Sr.EquipemntLightFault.Model.FaultInfoBase.ALower">
+            <summary>
+            下限值
+            </summary>
+        </member>
+        <member name="P:Wlst.Sr.EquipemntLightFault.Model.FaultInfoBase.Aeding">
+            <summary>
+            额定值
+            </summary>
+        </member>
+        <member name="P:Wlst.Sr.EquipemntLightFault.Model.FaultInfoBase.V">
+            <summary>
+            电压
+            </summary>
+        </member>
+        <member name="P:Wlst.Sr.EquipemntLightFault.Model.FaultInfoBase.PriorityLevel">
+            <summary>
+            优先级
+            </summary>
+        </member>
+        <member name="P:Wlst.Sr.EquipemntLightFault.Model.FaultInfoBase.Paidan">
+            <summary>
+            派单
+            </summary>
+        </member>
+        <member name="T:Wlst.Sr.EquipemntLightFault.Model.InfoDictionaryBase`1">
+            <summary>
+            数据持有
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="F:Wlst.Sr.EquipemntLightFault.Model.InfoDictionaryBase`1.Info">
+            <summary>
+            提供数据持有的数据结构
+            </summary>
+        </member>
+        <member name="M:Wlst.Sr.EquipemntLightFault.Model.InfoDictionaryBase`1.#ctor">
+            <summary>
+            构造函数；执行事件注册
+            </summary>
+        </member>
+        <member name="P:Wlst.Sr.EquipemntLightFault.Model.InfoDictionaryBase`1.InfoDictionary">
+            <summary>
+            <para>获取升序排列的列表 </para> 
+            </summary>
+        </member>
+        <member name="M:Wlst.Sr.EquipemntLightFault.Model.InfoDictionaryBase`1.GetInfoById(System.Int32)">
+            <summary>
+            根据关键字信息；不存在返回null
+            </summary>
+            <param name="id"></param>
+            <returns>不存在返回null</returns>
+        </member>
+        <member name="P:Wlst.Sr.EquipemntLightFault.Model.InfoDictionaryBase`1.GetInfoList">
+            <summary>
+            <para>获取升序排列的设备列表</para>
+            </summary>
+        </member>
+        <member name="T:Wlst.Sr.EquipemntLightFault.Services.PreErrorServices">
+            <summary>
+            请求历史故障
+            </summary>
+        </member>
+        <member name="M:Wlst.Sr.EquipemntLightFault.Services.PreErrorServices.ReqeustPreExistError(System.DateTime,System.DateTime,System.Int32)">
+            <summary>
+            请求历史故障
+            </summary>
+            <param name="dtStartTime">起始时间</param>
+            <param name="dtEndtime">结束时间</param>
+            <param name="level">故障等级   0-全部 10-推送显示  11-写数据库但不推送  13-推送并优先显示  </param>
+        </member>
+        <member name="M:Wlst.Sr.EquipemntLightFault.Services.PreErrorServices.ReqeustPreExistError(System.Collections.Generic.List{System.Int32},System.DateTime,System.DateTime,System.Int32)">
+            <summary>
+            请求历史故障
+            </summary>
+            <param name="rtuId">设备地址</param>
+            <param name="dtStartTime">起始时间</param>
+            <param name="dtEndtime">结束时间</param>
+            <param name="level">故障等级   0-全部 10-推送显示  11-写数据库但不推送  13-推送并优先显示  </param>
+        </member>
+        <member name="M:Wlst.Sr.EquipemntLightFault.Services.PreErrorServices.ReqeustPreExistError(System.DateTime,System.DateTime,System.Collections.Generic.List{System.Int32},System.Int32)">
+            <summary>
+            结束时间
+            </summary>
+            <param name="dtStartTime">起始时间</param>
+            <param name="dtEndtime">结束时间</param>
+            <param name="faultIds">故障代码</param>
+            <param name="level">故障等级   0-全部 10-推送显示  11-写数据库但不推送  13-推送并优先显示  </param>
+        </member>
+        <member name="M:Wlst.Sr.EquipemntLightFault.Services.PreErrorServices.ReqeustPreExistError(System.Collections.Generic.List{System.Int32},System.DateTime,System.DateTime,System.Collections.Generic.List{System.Int32},System.Int32)">
+            <summary>
+            结束时间
+            </summary>
+            <param name="rtuId"> 设备地址</param>
+            <param name="dtStartTime">起始时间</param>
+            <param name="dtEndtime">结束时间</param>
+            <param name="faultIds">故障代码</param>
+            <param name="level">故障等级   0-全部 10-推送显示  11-写数据库但不推送  13-推送并优先显示  </param>
+        </member>
+        <member name="M:Wlst.Sr.EquipemntLightFault.Services.PreErrorServices.RequestDataWhenErrorHappen(System.Int32,System.Int32,System.Int64)">
+            <summary>
+            请求故障发生时候的数据
+            </summary>
+            <param name="rtuId"></param>
+            <param name="loopId"></param>
+            <param name="dataCreateId"></param>
+        </member>
+        <member name="M:Wlst.Sr.EquipemntLightFault.Services.PreErrorServices.RequestErrAtSomeTime(System.Int32,System.DateTime,System.Collections.Generic.List{System.Int32},System.Boolean)">
+            <summary>
+            请求在时间时刻之前最近的一条故障 为苏州园区特殊定制
+            </summary>
+            <param name="rtuId"></param>
+            <param name="dtTime"></param>
+            <param name="faultIds"></param>
+        </member>
+        <member name="M:Wlst.Sr.EquipemntLightFault.Services.PreErrorServices.RequestErrCountBetweenSomeTime(System.Int32,System.Collections.Generic.List{Wlst.client.EquipmentFaultCurr.OneFaultItem})">
+            <summary>
+            根据自定义时间间隔   统计现存故障 为苏州园区特殊定制
+            </summary>
+            <param name="hourDiff"></param>
+        </member>
+        <member name="T:Wlst.Sr.EquipemntLightFault.Services.UserDisplayErrorSelfSetInfoHold">
+            <summary>
+            故障类型信息 故障编码 故障类型信息；使用时 只全局发布 update事件  无参数
+            </summary>
+        </member>
+        <member name="M:Wlst.Sr.EquipemntLightFault.Services.UserDisplayErrorSelfSetInfoHold.GetInfoByIdPri(System.Int32)">
+            <summary>
+            获取该故障是否对本用户设置显示
+            根据设备地址获取设备信息；不存在返回null；
+            </summary>
+            <param name="id"></param>
+            <returns>不存在返回null</returns>
+        </member>
+        <member name="M:Wlst.Sr.EquipemntLightFault.Services.UserDisplayErrorSelfSetInfoHold.GetInfoListPri">
+            <summary>
+            <para>获取对本用户设置显示的所有故障列表</para>
+            </summary>
+        </member>
+        <member name="M:Wlst.Sr.EquipemntLightFault.Services.UserDisplayErrorSelfSetInfoHold.InitStartService">
+            <summary>
+            为外界提供服务
+            </summary>
+        </member>
+        <member name="M:Wlst.Sr.EquipemntLightFault.Services.UserDisplayErrorSelfSetInfoHold.RequestUserIndividuationFaultTypeInfo">
+            <summary>
+            与服务器交互数据 触发点
+            </summary>
+        </member>
+        <member name="F:Wlst.Sr.EquipemntLightFault.Services.FaultClassisDef.FaultClass">
+            <summary>
+            故障分类  大于等于 小于等于
+            </summary>
+        </member>
+        <member name="T:Wlst.Sr.EquipemntLightFault.Services.TmlExistFaultsInfoServices">
+            <summary>
+            所有设备存在的故障信息
+            </summary>
+        </member>
+        <member name="P:Wlst.Sr.EquipemntLightFault.Services.TmlExistFaultsInfoServices.InfoDictionary">
+            <summary>
+            <para>任何使用此数据务必注意 此数据为原始数据，___只允许读不允许修改___ </para> 
+            <para>任何修改会使原始数据被修改形成脏数据 </para>
+            <para>修改请用SupperEquipmentInstanceContains 中具体数据的clone方法进行克隆副本使用</para>
+            </summary>
+        </member>
+        <member name="M:Wlst.Sr.EquipemntLightFault.Services.TmlExistFaultsInfoServices.GetFaultLstInfoByRtuId(System.Int32)">
+            <summary>
+            根据设备地址获取该设备包含的现存故障
+            </summary>
+            <param name="id">终端地址</param>
+            <returns></returns>
+        </member>
+        <member name="F:Wlst.Sr.EquipemntLightFault.Services.TmlExistFaultsInfoServices.ReqExistFaultsTime">
+            <summary>
+            请求最新故障的最新时间
+            </summary>
+        </member>
+        <member name="M:Wlst.Sr.EquipemntLightFault.Services.TmlExistFaultsInfoServices.GetFaultInfoById(System.Int32)">
+            <summary>
+            根据终端地址 故障编码获取故障信息
+            </summary>
+            <param name="id">终端地址</param>
+            <returns>不存或用户已经过滤 或无法解析在返回null</returns>
+        </member>
+        <member name="T:Wlst.Sr.EquipemntLightFault.Services.FaultBandtoTmlInfoSerices">
+            <summary>
+            终端与故障信息绑定服务;仅终端的绑定信息部包含单灯的
+            </summary>
+        </member>
+        <member name="P:Wlst.Sr.EquipemntLightFault.Services.FaultBandtoTmlInfoSerices.InfoDictionary">
+            <summary>
+            <para>任何使用此数据务必注意 此数据为原始数据，___只允许读不允许修改___ </para> 
+            <para>任何修改会使原始数据被修改形成脏数据 </para>
+            <para>地址 故障编码地址</para>
+            </summary>
+        </member>
+        <member name="M:Wlst.Sr.EquipemntLightFault.Services.FaultBandtoTmlInfoSerices.GetFaultBandtoTmlInfo(System.Int32,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="rtuId">地址</param>
+            <param name="faultCodeId">故障编码地址</param>
+            <returns>不存在返回false</returns>
+        </member>
+        <member name="M:Wlst.Sr.EquipemntLightFault.Services.FaultBandtoTmlInfoSerices.UpdateFaultBandTmlInfo(System.Collections.Generic.List{System.Tuple{System.Int32,System.Int32}},System.Int32)">
+            <summary>
+            更新信息到服务器
+            </summary>
+            <param name="info">需要更新的信息</param>
+        </member>
+        <member name="M:Wlst.Sr.EquipemntLightFault.Services.FaultBandtoTmlInfoSerices.RequestFaultBandTmlInfo">
+            <summary>
+            与服务器交互数据 触发点
+            </summary>
+        </member>
+        <member name="T:Wlst.Sr.EquipemntLightFault.Services.TmlFaultTypeInfoServices">
+            <summary>
+            所有设备的故障类别信息
+            </summary>
+        </member>
+        <member name="M:Wlst.Sr.EquipemntLightFault.Services.TmlFaultTypeInfoServices.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Wlst.Sr.EquipemntLightFault.Services.TmlFaultTypeInfoServices.InfoDictionary">
+            <summary>
+            <para>任何使用此数据务必注意 此数据为原始数据，___只允许读不允许修改___ </para> 
+            </summary>
+        </member>
+        <member name="P:Wlst.Sr.EquipemntLightFault.Services.TmlFaultTypeInfoServices.Ruls">
+            <summary>
+            获取 设定的自定义规则
+            </summary>
+        </member>
+        <member name="M:Wlst.Sr.EquipemntLightFault.Services.TmlFaultTypeInfoServices.GetInfoById(System.Int32)">
+            <summary>
+            根据设备逻辑地址获取设备信息；不存在返回null
+            </summary>
+            <param name="id"></param>
+            <returns>不存在返回null</returns>
+        </member>
+        <member name="P:Wlst.Sr.EquipemntLightFault.Services.TmlFaultTypeInfoServices.GetInfoList">
+            <summary>
+            <para>获取报警故障列表</para>
+            </summary>
+        </member>
+        <member name="P:Wlst.Sr.EquipemntLightFault.Services.TmlFaultTypeInfoServices.GetIsShieldAlarmsThatUserOcLightCause">
+            <summary>
+            <para>获取是否屏蔽手动报警</para>
+            </summary>
+        </member>
+        <member name="M:Wlst.Sr.EquipemntLightFault.Services.TmlFaultTypeInfoServices.ExUpdateFauleTypeInfoforServer(System.Collections.Generic.List{Wlst.client.FaultTypes.FaultTypeItem},System.Int32,System.Int32,System.Double,System.Collections.Generic.List{Wlst.client.FaultTypes.FaultSettingRuleOne})">
+            <summary>
+            更新系统报警
+            </summary>
+            <param name="lst">自定义报警内容</param>
+            <param name="hour">统计的报警时间段长度</param>
+            <param name="volbelow">电压缺相下限值</param>
+            <param name="ldlBelow"> 亮灯率报警下限值</param>
+        </member>
+        <member name="P:Wlst.Sr.EquipemntLightFault.Services.TmlFaultTypeInfoServices.GetTimeAlarmLong">
+            <summary>
+            获取故障报警统计时间段
+            </summary>
+        </member>
+        <member name="P:Wlst.Sr.EquipemntLightFault.Services.TmlFaultTypeInfoServices.GetVolBelow">
+            <summary>
+            检测电压 认为电压为0的 最低条件
+            </summary>
+        </member>
+        <member name="T:Wlst.Sr.EquipemntLightFault.Services.EventIdAssign">
+            <summary>
+            本模块的全局事件发布起始Id，3100000 +49*100, 每个模块均发放100个Id值。
+            </summary>
+        </member>
+        <member name="F:Wlst.Sr.EquipemntLightFault.Services.EventIdAssign.EventIdAssignBaseId">
+            <summary>
+            本模块的全局事件发布起始Id，3100000 +49*100, 每个模块均发放100个Id值。
+            </summary>
+        </member>
+        <member name="F:Wlst.Sr.EquipemntLightFault.Services.EventIdAssign.FaultTypeRequest">
+            <summary>
+            请求终端故障类型 
+            </summary>
+        </member>
+        <member name="F:Wlst.Sr.EquipemntLightFault.Services.EventIdAssign.EquipmentExistFaultRequest">
+            <summary>
+            请求终端所有故障 
+            </summary>
+        </member>
+        <member name="F:Wlst.Sr.EquipemntLightFault.Services.EventIdAssign.EquipmentExistFaultUpdateId">
+            <summary>
+            更新终端故障信息 同FaultRequest 相同
+            </summary>
+        </member>
+        <member name="F:Wlst.Sr.EquipemntLightFault.Services.EventIdAssign.EquipmentExistFaultAddId">
+            <summary>
+            终端已经存在故障 增加故障，发布为一个参数 list《int》  故障编号
+            </summary>
+        </member>
+        <member name="F:Wlst.Sr.EquipemntLightFault.Services.EventIdAssign.EquipementExistFaultDeleteId">
+            <summary>
+            终端已经存在故障 消除故障，发布为一个参数 list《int》  故障编号
+            </summary>
+        </member>
+        <member name="F:Wlst.Sr.EquipemntLightFault.Services.EventIdAssign.FaultBandtoEquipmentRequest">
+            <summary>
+            终端是否告警请求  无参数
+            </summary>
+        </member>
+        <member name="F:Wlst.Sr.EquipemntLightFault.Services.EventIdAssign.FaultBandtoEquipmentUpdate">
+            <summary> 
+            终端是否告警请求  全部信息更新 无参数，返回数据为Update事件 
+            </summary>
+        </member>
+        <member name="F:Wlst.Sr.EquipemntLightFault.Services.EventIdAssign.FaultTypeUpdateId">
+            <summary>
+            无参数
+            </summary>
+        </member>
+        <member name="F:Wlst.Sr.EquipemntLightFault.Services.EventIdAssign.UserIndividuationFaultRequestId">
+            <summary>
+            无参数
+            </summary>
+        </member>
+        <member name="F:Wlst.Sr.EquipemntLightFault.Services.EventIdAssign.UserDisplayErrorSelfSetInfoUpdated">
+            <summary>
+            无参数
+            </summary>
+        </member>
+        <member name="F:Wlst.Sr.EquipemntLightFault.Services.EventIdAssign.PreExistErrorRequestId">
+            <summary>
+            Svr事件 ，第二参数为 EquipmentPreFaultExChange 类型
+            </summary>
+        </member>
+        <member name="M:Wlst.Sr.EquipemntLightFault.ServicesHold.WebServiceHelper.InvokeWebService(System.String,System.String,System.Object[])">
+            <summary>  
+            动态调用WebService  
+            </summary>  
+            <param name="url">WebService地址</param>  
+            <param name="methodname">方法名(模块名)</param>  
+            <param name="args">参数列表,无参数为null</param>  
+            <returns>object</returns>  
+        </member>
+        <member name="M:Wlst.Sr.EquipemntLightFault.ServicesHold.WebServiceHelper.InvokeWebService(System.String,System.String,System.String,System.Object[])">
+            <summary>  
+            动态调用WebService  
+            </summary>  
+            <param name="url">WebService地址</param>  
+            <param name="classname">类名</param>  
+            <param name="methodname">方法名(模块名)</param>  
+            <param name="args">参数列表</param>  
+            <returns>object</returns>  
+        </member>
+    </members>
+</doc>

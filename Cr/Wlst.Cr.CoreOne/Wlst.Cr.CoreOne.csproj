@@ -36,15 +36,15 @@
       <HintPath>..\..\Rr\Binaries\WPF\Elysium.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Practices.Prism">
-      <HintPath>..\..\ZDebug\Microsoft.Practices.Prism.dll</HintPath>
+      <HintPath>..\..\Rr\Binaries\WPF\Microsoft.Practices.Prism.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Practices.Prism.MefExtensions, Version=4.1.0.1, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\ZDebug\Microsoft.Practices.Prism.MefExtensions.dll</HintPath>
+      <HintPath>..\..\Rr\Binaries\WPF\Microsoft.Practices.Prism.MefExtensions.dll</HintPath>
     </Reference>
     <Reference Include="MyXls.SL2, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\ZDebug\MyXls.SL2.dll</HintPath>
+      <HintPath>..\..\Rr\Binaries\WPF\MyXls.SL2.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -73,7 +73,7 @@
     </Reference>
     <Reference Include="WindowsBase" />
     <Reference Include="Wlst.Cr.Core">
-      <HintPath>..\..\ZDebug\Wlst.Cr.Core.dll</HintPath>
+      <HintPath>..\..\Rr\Binaries\WPF\Wlst.Cr.Core.dll</HintPath>
     </Reference>
     <Reference Include="Wlst.Cr.Coreb, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>

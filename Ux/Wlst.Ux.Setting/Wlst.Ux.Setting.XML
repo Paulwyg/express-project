@@ -1,0 +1,490 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Wlst.Ux.Setting</name>
+    </assembly>
+    <members>
+        <member name="T:Wlst.Ux.Setting.EventTaskViewModel.ViewModel.EventTaskViewModel">
+            <summary>
+            数据驱动 事件
+            </summary>
+        </member>
+        <member name="P:Wlst.Ux.Setting.EventTaskViewModel.ViewModel.EventTaskViewModel.Msg">
+            <summary>
+            提示
+            </summary>
+        </member>
+        <member name="P:Wlst.Ux.Setting.EventTaskViewModel.ViewModel.EventTaskViewModel.OneArea">
+            <summary>
+            区域选择框是否隐藏
+            </summary>
+        </member>
+        <member name="P:Wlst.Ux.Setting.EventTaskViewModel.ViewModel.EventTaskViewModel.ItemsArea">
+            <summary>
+            区域选择combobox
+            </summary>
+        </member>
+        <member name="P:Wlst.Ux.Setting.EventTaskViewModel.ViewModel.EventTaskViewModel.CurrentSelectArea">
+            <summary>
+            选中区域
+            </summary>
+        </member>
+        <member name="P:Wlst.Ux.Setting.EventTaskViewModel.ViewModel.EventTaskViewModel.TaskItems">
+            <summary>
+            计划任务列表
+            </summary>
+        </member>
+        <member name="P:Wlst.Ux.Setting.EventTaskViewModel.ViewModel.EventTaskViewModel.CurrentTaskItems">
+            <summary>
+            当前选中任务列表
+            </summary>
+        </member>
+        <member name="P:Wlst.Ux.Setting.EventTaskViewModel.ViewModel.EventTaskViewModel.CmdSave">
+            <summary>
+            保存按钮
+            </summary>
+        </member>
+        <member name="P:Wlst.Ux.Setting.EventTaskViewModel.ViewModel.EventTaskItemViewModel.TaskName">
+            <summary>
+            任务名称
+            </summary>
+        </member>
+        <member name="P:Wlst.Ux.Setting.EventTaskViewModel.ViewModel.EventTaskItemViewModel.TaskDes">
+            <summary>
+            任务简介
+            </summary>
+        </member>
+        <member name="P:Wlst.Ux.Setting.EventTaskViewModel.ViewModel.EventTaskItemViewModel.StartMinutes">
+            <summary>
+            任务起始时间 - Hour*60+minute
+            </summary>
+        </member>
+        <member name="P:Wlst.Ux.Setting.EventTaskViewModel.ViewModel.EventTaskItemViewModel.Interval">
+            <summary>
+            任务执行间隔
+            </summary>
+        </member>
+        <member name="P:Wlst.Ux.Setting.EventTaskViewModel.ViewModel.EventTaskItemViewModel.TimesRepartol">
+            <summary>
+            补测次数
+            </summary>
+        </member>
+        <member name="P:Wlst.Ux.Setting.EventTaskViewModel.ViewModel.EventTaskItemViewModel.MinutesIntervalsRePartol">
+            <summary>
+            补测间隔
+            </summary>
+        </member>
+        <member name="P:Wlst.Ux.Setting.EventTaskViewModel.ViewModel.EventTaskItemViewModel.AreaId">
+            <summary>
+            区域ID
+            </summary>
+        </member>
+        <member name="P:Wlst.Ux.Setting.EventTaskViewModel.ViewModel.EventTaskItemViewModel.EquType">
+            <summary>
+            设备类型
+            </summary>
+        </member>
+        <member name="P:Wlst.Ux.Setting.EventTaskViewModel.ViewModel.EventTaskItemViewModel.Is2090">
+            <summary>
+            设置抄表参数的可读性
+            </summary>
+        </member>
+        <member name="P:Wlst.Ux.Setting.EventTaskViewModel.ViewModel.EventTaskItemViewModel.IsLux">
+            <summary>
+            设置光控巡测参数的可读性
+            </summary>
+        </member>
+        <member name="T:Wlst.Ux.Setting.EventTaskViewModel.View.EventTaskView">
+            <summary>
+            EventTaskView.xaml 的交互逻辑
+            </summary>
+            <summary>
+            EventTaskView
+            </summary>
+        </member>
+        <member name="M:Wlst.Ux.Setting.EventTaskViewModel.View.EventTaskView.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="P:Wlst.Ux.Setting.RecordTaskQueryViewModel.ViewModel.OneRecordTaskViewModel.RecordIndex">
+            <summary>
+            记录编号  顺序
+            </summary>
+        </member>
+        <member name="P:Wlst.Ux.Setting.RecordTaskQueryViewModel.ViewModel.OneRecordTaskViewModel.DateCreate">
+            <summary>
+            任务执行时间
+            </summary>
+        </member>
+        <member name="P:Wlst.Ux.Setting.RecordTaskQueryViewModel.ViewModel.OneRecordTaskViewModel.OperatorName">
+            <summary>
+            操作名称
+            </summary>
+        </member>
+        <member name="P:Wlst.Ux.Setting.RecordTaskQueryViewModel.ViewModel.OneRecordTaskViewModel.TaskId">
+            <summary>
+            任务实例Id
+            </summary>
+        </member>
+        <member name="P:Wlst.Ux.Setting.RecordTaskQueryViewModel.ViewModel.OneRecordTaskViewModel.TaskName">
+            <summary>
+            任务实例名称
+            </summary>
+        </member>
+        <member name="P:Wlst.Ux.Setting.RecordTaskQueryViewModel.ViewModel.OneRecordTaskViewModel.TaskDescription">
+            <summary>
+            任务描述信息
+            </summary>
+        </member>
+        <member name="P:Wlst.Ux.Setting.RecordTaskQueryViewModel.ViewModel.OneRecordTaskViewModel.OperatorTarget">
+            <summary>
+            操作对象
+            </summary>
+        </member>
+        <member name="P:Wlst.Ux.Setting.RecordTaskQueryViewModel.ViewModel.OneRecordTaskViewModel.OperatorTargetArg">
+            <summary>
+            操作对象 附加识别参数
+            </summary>
+        </member>
+        <member name="P:Wlst.Ux.Setting.RecordTaskQueryViewModel.ViewModel.OneRecordTaskViewModel.AttachInfo">
+            <summary>
+            操作对象
+            </summary>
+        </member>
+        <member name="T:Wlst.Ux.Setting.RecordTaskQueryViewModel.ViewModel.RecordTaskQueryViewModel">
+            <summary>
+            Event
+            </summary>
+            <summary>
+            Socket
+            </summary>
+        </member>
+        <member name="P:Wlst.Ux.Setting.RecordTaskQueryViewModel.ViewModel.RecordTaskQueryViewModel.DtStartTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Wlst.Ux.Setting.RecordTaskQueryViewModel.ViewModel.RecordTaskQueryViewModel.DtEndTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Wlst.Ux.Setting.RecordTaskQueryViewModel.View.RecordTaskQueryView">
+            <summary>
+            RecordTaskQueryView.xaml 的交互逻辑
+            </summary>
+            <summary>
+            RecordTaskQueryView
+            </summary>
+        </member>
+        <member name="M:Wlst.Ux.Setting.RecordTaskQueryViewModel.View.RecordTaskQueryView.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:Wlst.Ux.Setting.Services.EventIdAssign">
+            <summary>
+            本模块的全局事件发布起始Id，3100000 + 53*100, 每个模块均发放100个Id值。
+            </summary>
+        </member>
+        <member name="F:Wlst.Ux.Setting.Services.EventIdAssign.EventIdAssignBaseId">
+            <summary>
+            本模块的全局事件发布起始Id，3100000 + 53*100, 每个模块均发放100个Id值。
+            </summary>
+        </member>
+        <member name="F:Wlst.Ux.Setting.Services.EventIdAssign.EventTaskInstanceInfoRequsetOrReply">
+            <summary>
+            请求的任务信息到达或请求 EvenTasktInstanceforExchange
+            </summary>
+        </member>
+        <member name="F:Wlst.Ux.Setting.Services.EventIdAssign.EventTaskInstanceInfoDelete">
+            <summary>
+            删除任务计划
+            <para> 事件携带一个参数  DeleteEventTaskInstanceforExchange</para>
+            </summary>
+        </member>
+        <member name="F:Wlst.Ux.Setting.Services.EventIdAssign.EventTaskInstanceInfoUpdate">
+            <summary>
+            中间层返回数据更新 EvenTasktInstanceforExchange 类
+            </summary>
+        </member>
+        <member name="F:Wlst.Ux.Setting.Services.EventIdAssign.EventTaskNextExcuteInfo">
+            <summary>
+            中间层返回数据更 EventTaskNextExcuteInfo
+            </summary>
+        </member>
+        <member name="F:Wlst.Ux.Setting.Services.EventIdAssign.RecordEventRequest">
+            <summary>
+            </summary>
+        </member>
+        <member name="F:Wlst.Ux.Setting.Services.MenuIdAssgin.MenuIdAssignBaseId">
+            <summary>
+            本模块的菜单起始Id，2100000 + 53*100, 每个模块均发放100个Id值。
+            </summary>
+        </member>
+        <member name="F:Wlst.Ux.Setting.Services.ViewIdAssign.ViewIdAssignBaseId">
+            <summary>
+            本模块的视图起始Id，1100000 + 53*100, 每个模块均发放100个Id值。
+            </summary>
+        </member>
+        <member name="P:Wlst.Ux.Setting.SettingViewModel.Services.IITreeNode.IsSelected">
+            <summary>
+            当前节点是否为系统当前选中节点
+            1、需要向外发布终端树当前选中的节点 
+            2、如果是则用户可能需要右击终端弹出菜单 
+               此时需要刷新菜单
+            </summary>
+        </member>
+        <member name="P:Wlst.Ux.Setting.SettingViewModel.Services.IITreeNode.IsExpanded">
+            <summary>
+            当前节点是否展开
+            </summary>
+        </member>
+        <member name="P:Wlst.Ux.Setting.SettingViewModel.Services.IITreeNode.ViewId">
+            <summary>
+            需要导航到的视图地址
+            </summary>
+        </member>
+        <member name="P:Wlst.Ux.Setting.SettingViewModel.Services.IITreeNode.NodeName">
+            <summary>
+            节点名称  终端名称或是分组名称
+            </summary>
+        </member>
+        <member name="T:Wlst.Ux.Setting.SettingViewModel.View.SettingView">
+            <summary>
+            SettingView.xaml 的交互逻辑    所有参数设置的框架
+            </summary>
+            <summary>
+            SettingView
+            </summary>
+        </member>
+        <member name="M:Wlst.Ux.Setting.SettingViewModel.View.SettingView.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="F:Wlst.Ux.Setting.SettingViewModel.ViewModel.SettingViewModel.EventId">
+            <summary>
+            选中设置节点变更时事件发布Id  模块内部事件使用
+            </summary>
+        </member>
+        <member name="M:Wlst.Ux.Setting.SettingViewModel.ViewModel.SettingViewModel.#ctor">
+            <summary>
+            注册事件
+            </summary>
+        </member>
+        <member name="P:Wlst.Ux.Setting.SettingViewModel.ViewModel.SettingViewModel.CanUserPin">
+            <summary>
+            <c>True</c> if this instance can pin; otherwise, <c>False</c>.
+            是否可锁定
+            </summary>
+        </member>
+        <member name="P:Wlst.Ux.Setting.SettingViewModel.ViewModel.SettingViewModel.CanFloat">
+            <summary>
+            <c>True</c> if this pane can float; otherwise, <c>false</c>.
+            是否可悬浮
+            </summary>
+        </member>
+        <member name="P:Wlst.Ux.Setting.SettingViewModel.ViewModel.SettingViewModel.CanDockInDocumentHost">
+            <summary>
+            <c>True</c> if this instance can dock in the document host; otherwise, <c>false</c>.
+            是否可移动至document host
+            </summary>
+        </member>
+        <member name="M:Wlst.Ux.Setting.SettingViewModel.ViewModel.TreeNodeViewModel.#ctor(System.Int32,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="viewId">如果为导航节点 必须赋值，如果为母节点 则赋值0</param>
+            <param name="name">显示名称</param>
+        </member>
+        <member name="F:Wlst.Ux.Setting.SettingViewModel.ViewModel.TreeNodeViewModel._isSelected">
+            <summary>
+            当前节点是否为系统当前选中节点
+            1、需要向外发布终端树当前选中的节点 
+            2、如果是则用户可能需要右击终端弹出菜单 
+               此时需要刷新菜单
+            </summary>
+        </member>
+        <member name="P:Wlst.Ux.Setting.SettingViewModel.ViewModel.TreeNodeViewModel.IsSelected">
+            <summary>
+            当前终端被选中
+            </summary>
+        </member>
+        <member name="M:Wlst.Ux.Setting.SettingViewModel.ViewModel.TreeNodeViewModel.OnNodeSelect">
+            <summary>
+            当节点被选中的时候调用，实现了刷新右键菜单；
+            是否需要发送事件需要在此实现;以及其他的需要处理的事件;
+            动态加载子节点
+            </summary>
+        </member>
+        <member name="P:Wlst.Ux.Setting.SettingViewModel.ViewModel.TreeNodeViewModel.IsExpanded">
+            <summary>
+            当前节点是否展开
+            </summary>
+        </member>
+        <member name="P:Wlst.Ux.Setting.SettingViewModel.ViewModel.TreeNodeViewModel.ViewId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Wlst.Ux.Setting.SettingViewModel.ViewModel.TreeNodeViewModel.NodeName">
+            <summary>
+            节点名称  终端名称或是分组名称
+            </summary>
+        </member>
+        <member name="T:Wlst.Ux.Setting.SettingViewNew.baseview.OptionView">
+            <summary>
+            OptionView.xaml 的交互逻辑
+            </summary>
+            <summary>
+            OptionView
+            </summary>
+        </member>
+        <member name="M:Wlst.Ux.Setting.SettingViewNew.baseview.OptionView.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:Wlst.Ux.Setting.SettingViewNew.SettingVewNew">
+            <summary>
+            SettingVewNew.xaml 的交互逻辑
+            </summary>
+            <summary>
+            SettingVewNew
+            </summary>
+        </member>
+        <member name="M:Wlst.Ux.Setting.SettingViewNew.SettingVewNew.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="P:Wlst.Ux.Setting.SettingViewNew.SettingViewNewModel.CanUserPin">
+            <summary>
+            <c>True</c> if this instance can pin; otherwise, <c>False</c>.
+            是否可锁定
+            </summary>
+        </member>
+        <member name="P:Wlst.Ux.Setting.SettingViewNew.SettingViewNewModel.CanFloat">
+            <summary>
+            <c>True</c> if this pane can float; otherwise, <c>false</c>.
+            是否可悬浮
+            </summary>
+        </member>
+        <member name="P:Wlst.Ux.Setting.SettingViewNew.SettingViewNewModel.CanDockInDocumentHost">
+            <summary>
+            <c>True</c> if this instance can dock in the document host; otherwise, <c>false</c>.
+            是否可移动至document host
+            </summary>
+        </member>
+        <member name="F:Wlst.Ux.Setting.SystemInformationViewModel.ViewModel.SystemInformationViewModel._projectname">
+            <summary>
+            项目名称
+            </summary>
+        </member>
+        <member name="F:Wlst.Ux.Setting.SystemInformationViewModel.ViewModel.SystemInformationViewModel._projectdeaddr">
+            <summary>
+            详细地址
+            </summary>
+        </member>
+        <member name="F:Wlst.Ux.Setting.SystemInformationViewModel.ViewModel.SystemInformationViewModel._phonethatprojectcat">
+            <summary>
+            联系电话
+            </summary>
+        </member>
+        <member name="F:Wlst.Ux.Setting.SystemInformationViewModel.ViewModel.SystemInformationViewModel._dtsysteminstal">
+            <summary>
+            系统安装日期
+            </summary>
+        </member>
+        <member name="F:Wlst.Ux.Setting.SystemInformationViewModel.ViewModel.SystemInformationViewModel._tvsvr">
+            <summary>
+            服务器tv
+            </summary>
+        </member>
+        <member name="F:Wlst.Ux.Setting.SystemInformationViewModel.ViewModel.SystemInformationViewModel._tvcnt1">
+            <summary>
+            前台机tv
+            </summary>
+        </member>
+        <member name="F:Wlst.Ux.Setting.SystemInformationViewModel.ViewModel.SystemInformationViewModel._verprocom4">
+            <summary>
+            通讯协议版本
+            </summary>
+        </member>
+        <member name="F:Wlst.Ux.Setting.SystemInformationViewModel.ViewModel.SystemInformationViewModel._verprocnt5">
+            <summary>
+            交互协议版本
+            </summary>
+        </member>
+        <member name="F:Wlst.Ux.Setting.SystemInformationViewModel.ViewModel.SystemInformationViewModel._dtmiddlestart">
+            <summary>
+            中间层运行时间
+            </summary>
+        </member>
+        <member name="F:Wlst.Ux.Setting.SystemInformationViewModel.ViewModel.SystemInformationViewModel._dtclientstart">
+            <summary>
+            客户端运行时间
+            </summary>
+        </member>
+        <member name="F:Wlst.Ux.Setting.SystemInformationViewModel.ViewModel.SystemInformationViewModel._clientVer">
+            <summary>
+            客户端版本   主版本号+打包日期
+            </summary>
+        </member>
+        <member name="F:Wlst.Ux.Setting.SystemInformationViewModel.ViewModel.SystemInformationViewModel._serverIpAddr">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Wlst.Ux.Setting.SystemInformationViewModel.ViewModel.SystemInformationViewModel._idf">
+            <summary>
+            客户端识别码
+            </summary>
+        </member>
+        <member name="T:Wlst.Ux.Setting.SystemInformationViewModel.View.SystemInformationView">
+            <summary>
+            SystemInformationView.xaml 的交互逻辑
+            </summary>
+            <summary>
+            SystemInformationView
+            </summary>
+        </member>
+        <member name="M:Wlst.Ux.Setting.SystemInformationViewModel.View.SystemInformationView.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:XamlGeneratedNamespace.GeneratedInternalTypeHelper">
+            <summary>
+            GeneratedInternalTypeHelper
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateInstance(System.Type,System.Globalization.CultureInfo)">
+            <summary>
+            CreateInstance
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.GetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            GetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.SetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            SetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateDelegate(System.Type,System.Object,System.String)">
+            <summary>
+            CreateDelegate
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.AddEventHandler(System.Reflection.EventInfo,System.Object,System.Delegate)">
+            <summary>
+            AddEventHandler
+            </summary>
+        </member>
+    </members>
+</doc>

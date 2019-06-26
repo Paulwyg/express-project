@@ -17,7 +17,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\ZDebug\</OutputPath>
+    <OutputPath>..\..\Rr\Binaries\WPF\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -33,13 +33,13 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Practices.Prism">
-      <HintPath>..\DLL\Microsoft.Practices.Prism.dll</HintPath>
+      <HintPath>..\..\Rr\Binaries\WPF\Microsoft.Practices.Prism.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Practices.Prism.MefExtensions">
-      <HintPath>..\DLL\Microsoft.Practices.Prism.MefExtensions.dll</HintPath>
+      <HintPath>..\..\Rr\Binaries\WPF\Microsoft.Practices.Prism.MefExtensions.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Practices.Prism.MefExtensions.Event">
-      <HintPath>..\DLL\Microsoft.Practices.Prism.MefExtensions.Event.dll</HintPath>
+      <HintPath>..\..\Rr\Binaries\WPF\Microsoft.Practices.Prism.MefExtensions.Event.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -54,7 +54,7 @@
     <Reference Include="System.Xml" />
     <Reference Include="WindowsBase" />
     <Reference Include="Wlst.Cr.Core">
-      <HintPath>..\DLL\Wlst.Cr.Core.dll</HintPath>
+      <HintPath>..\..\Rr\Binaries\WPF\Wlst.Cr.Core.dll</HintPath>
     </Reference>
     <Reference Include="Wlst.Cr.CoreMims, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -62,26 +62,26 @@
     </Reference>
     <Reference Include="Wlst.Cr.CoreOne, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\ZDebug\Wlst.Cr.CoreOne.dll</HintPath>
+      <HintPath>..\..\Rr\Binaries\WPF\Wlst.Cr.CoreOne.dll</HintPath>
     </Reference>
     <Reference Include="Wlst.Cr.PPProtocolSvrCnt, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="Wlst.Cr.WjEquipmentBaseModels">
-      <HintPath>..\DLL\Wlst.Cr.WjEquipmentBaseModels.dll</HintPath>
+      <HintPath>..\..\Rr\Binaries\WPF\Wlst.Cr.WjEquipmentBaseModels.dll</HintPath>
     </Reference>
     <Reference Include="Wlst.Sr.EquipemntLightFault, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\ZDebug\Wlst.Sr.EquipemntLightFault.dll</HintPath>
+      <HintPath>..\..\Rr\Binaries\WPF\Wlst.Sr.EquipemntLightFault.dll</HintPath>
     </Reference>
     <Reference Include="Wlst.Sr.EquipmentGroupInfoHolding">
-      <HintPath>..\DLL\Wlst.Sr.EquipmentGroupInfoHolding.dll</HintPath>
+      <HintPath>..\..\Rr\Binaries\WPF\Wlst.Sr.EquipmentGroupInfoHolding.dll</HintPath>
     </Reference>
     <Reference Include="Wlst.Sr.EquipmentInfoHolding, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\ZDebug\Wlst.Sr.EquipmentInfoHolding.dll</HintPath>
+      <HintPath>..\..\Rr\Binaries\WPF\Wlst.Sr.EquipmentInfoHolding.dll</HintPath>
     </Reference>
     <Reference Include="Wlst.Sr.PPPandSocketSvr, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\ZDebug\Wlst.Sr.PPPandSocketSvr.dll</HintPath>
+      <HintPath>..\..\Rr\Binaries\WPF\Wlst.Sr.PPPandSocketSvr.dll</HintPath>
     </Reference>
     <Reference Include="Wlst.Sr.ProtocolPhone, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>

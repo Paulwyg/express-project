@@ -1,0 +1,299 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Wlst.Cr.Setting</name>
+    </assembly>
+    <members>
+        <member name="T:Wlst.Cr.Setting.Interfaces.IIEventSchduleTask">
+            <summary>
+            任务泛型类定义  总体的
+            </summary>
+        </member>
+        <member name="P:Wlst.Cr.Setting.Interfaces.IIEventSchduleTask.MaxAllowEvent">
+            <summary>
+            最多允许新建的任务数
+            </summary>
+        </member>
+        <member name="P:Wlst.Cr.Setting.Interfaces.IIEventSchduleTask.EventSchduleClassId">
+            <summary>
+            任务唯一标示码
+            </summary>
+        </member>
+        <member name="P:Wlst.Cr.Setting.Interfaces.IIEventSchduleTask.EventSchduleName">
+            <summary>
+            任务类名称
+            </summary>
+        </member>
+        <member name="P:Wlst.Cr.Setting.Interfaces.IIEventSchduleTask.EventSchduleDescription">
+            <summary>
+            任务类描述
+            </summary>
+        </member>
+        <member name="P:Wlst.Cr.Setting.Interfaces.IIEventSchduleTask.EventSchduleViewId">
+            <summary>
+            当前描述的任务 所在的设置界面Id
+            </summary>
+        </member>
+        <member name="P:Wlst.Cr.Setting.Interfaces.IIEventSchduleTask.TitleShow">
+            <summary>
+            用于显示的页面标题
+            </summary>
+        </member>
+        <member name="P:Wlst.Cr.Setting.Interfaces.IISetting.Key">
+            <summary>
+            部件Key defaulte setting
+            </summary>
+        </member>
+        <member name="P:Wlst.Cr.Setting.Interfaces.IISetting.PathSetting">
+            <summary>
+            the path like  Setting#LightSet
+            </summary>
+        </member>
+        <member name="P:Wlst.Cr.Setting.Interfaces.IISetting.Value">
+            <summary>
+            部件值  
+            </summary>
+        </member>
+        <member name="P:Wlst.Cr.Setting.Interfaces.IISetting.Id">
+            <summary>
+            部件ID值  全局唯一  以用标示部件
+            </summary>
+        </member>
+        <member name="P:Wlst.Cr.Setting.Interfaces.IISetting.ViewId">
+            <summary>
+            此Id值为视图Id 混合使用以定位的
+            </summary>
+        </member>
+        <member name="P:Wlst.Cr.Setting.Interfaces.IISetting.Describle">
+            <summary>
+            菜单描述  
+            </summary>
+        </member>
+        <member name="P:Wlst.Cr.Setting.Interfaces.IISetting.Tooltips">
+            <summary>
+            用户界面提示信息
+            </summary>
+        </member>
+        <member name="P:Wlst.Cr.Setting.Interfaces.IISetting.Tag">
+            <summary>
+            标签 可有可无 
+            </summary>
+        </member>
+        <member name="P:Wlst.Cr.Setting.Models.EventSchduleTaskBase.MaxAllowEvent">
+            <summary>
+            最多允许新建的任务数
+            </summary>
+        </member>
+        <member name="P:Wlst.Cr.Setting.Models.EventSchduleTaskBase.EventSchduleClassId">
+            <summary>
+            任务唯一标示码
+            </summary>
+        </member>
+        <member name="P:Wlst.Cr.Setting.Models.EventSchduleTaskBase.EventSchduleName">
+            <summary>
+            任务类名称
+            </summary>
+        </member>
+        <member name="P:Wlst.Cr.Setting.Models.EventSchduleTaskBase.EventSchduleDescription">
+            <summary>
+            任务类描述
+            </summary>
+        </member>
+        <member name="P:Wlst.Cr.Setting.Models.EventSchduleTaskBase.EventSchduleViewId">
+            <summary>
+            当前描述的任务 所在的设置界面Id
+            </summary>
+        </member>
+        <member name="T:Wlst.Cr.Setting.Models.SettingBase">
+            <summary>
+            如果为setting 需要实现 Id Value以及path 参数赋值
+            </summary>
+        </member>
+        <member name="M:Wlst.Cr.Setting.Models.SettingBase.#ctor">
+            <summary>
+            如果为GlobalSetting 需要实现 Id 以及path 参数赋值
+            defaule Key =GlobalSetting
+            </summary>
+        </member>
+        <member name="P:Wlst.Cr.Setting.Models.SettingBase.PathSetting">
+            <summary>
+            Setting#SetName
+            </summary>
+        </member>
+        <member name="P:Wlst.Cr.Setting.Models.SettingBase.Id">
+            <summary>
+            Setting Id
+            </summary>
+        </member>
+        <member name="P:Wlst.Cr.Setting.Models.SettingBase.ViewId">
+            <summary>
+            View  Id
+            </summary>
+        </member>
+        <member name="F:Wlst.Cr.Setting.Services.EventIdAssign.EventIdAssignBaseId">
+            <summary>
+            本模块的全局事件发布起始Id，3100000 + 4*100, 每个模块均发放100个Id值。
+            </summary>
+        </member>
+        <member name="F:Wlst.Cr.Setting.Services.EventIdAssign.SettingModuleComponentUpdate">
+            <summary>
+            设置模块中的部件更新，携带参数：该设置中的部件Id值，可能是列表 args[0] args[1]  均为int
+            </summary>
+        </member>
+        <member name="F:Wlst.Cr.Setting.Services.EventIdAssign.SettingModuleComponentDelete">
+            <summary>
+            设置模块中的部件删除，携带参数：该设置中的部件Id值，可能是列表 args[0] args[1]  均为int
+            </summary>
+        </member>
+        <member name="F:Wlst.Cr.Setting.Services.EventIdAssign.SettingModuleComponentAdd">
+            <summary>
+            设置模块中的部件增加，携带参数：该设置中的部件Id值，可能是列表 args[0] args[1]  均为int
+            </summary>
+        </member>
+        <member name="F:Wlst.Cr.Setting.Services.EventIdAssign.EventSchduleTaskComponentUpdate">
+            <summary>
+            任务模块中的部件更新，携带参数：该设置中的部件Id值，可能是列表 args[0] args[1]  均为int
+            </summary>
+        </member>
+        <member name="F:Wlst.Cr.Setting.Services.EventIdAssign.EventSchduleTaskComponentDelete">
+            <summary>
+            任务模块中的部件删除，携带参数：该设置中的部件Id值，可能是列表 列表为 args[0] args[1]  均为int
+            </summary>
+        </member>
+        <member name="F:Wlst.Cr.Setting.Services.EventIdAssign.EventSchduleTaskComponentAdd">
+            <summary>
+            任务模块中的部件增加，携带参数：该设置中的部件Id值，可能是列表 args[0] args[1]  均为int
+            </summary>
+        </member>
+        <member name="P:Wlst.Cr.Setting.SettingHolding.EventSchduleTaskComponentHolding.Count">
+            <summary>
+            获取部件数量
+            </summary>
+        </member>
+        <member name="M:Wlst.Cr.Setting.SettingHolding.EventSchduleTaskComponentHolding.ContainsComponent(Wlst.Cr.Setting.Interfaces.IIEventSchduleTask)">
+            <summary>
+            获取是否已经包含该部件
+            </summary>
+            <param name="item">任务</param>
+            <returns></returns>
+        </member>
+        <member name="P:Wlst.Cr.Setting.SettingHolding.EventSchduleTaskComponentHolding.EventSchduleTaskItems">
+            <summary>
+            获取所有任务类 原始数据 勿修改
+            </summary>
+        </member>
+        <member name="P:Wlst.Cr.Setting.SettingHolding.EventSchduleTaskComponentHolding.GetAllEventSchduleTaskComponentIDs">
+            <summary>
+            获取所有部件ID
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Wlst.Cr.Setting.SettingHolding.EventSchduleTaskComponentHolding.GetEventSchduleTaskItemById(System.Int32)">
+            <summary>
+            获取指定id值的部件 不存在则返回null
+            </summary>
+            <param name="id"></param>
+            <returns>存在则返回部件 不存在则返回null</returns>
+        </member>
+        <member name="M:Wlst.Cr.Setting.SettingHolding.EventSchduleTaskComponentHolding.Clean">
+            <summary>
+            清除数据
+            </summary>
+        </member>
+        <member name="M:Wlst.Cr.Setting.SettingHolding.EventSchduleTaskComponentHolding.AdEventSchduleTaskItem(Wlst.Cr.Setting.Interfaces.IIEventSchduleTask)">
+            <summary>
+            有则更新无则增加
+            </summary>
+            <param name="item">基础部件</param>
+        </member>
+        <member name="M:Wlst.Cr.Setting.SettingHolding.EventSchduleTaskComponentHolding.UpdateEventSchduleTaskItem(Wlst.Cr.Setting.Interfaces.IIEventSchduleTask)">
+            <summary>
+            更新基础部件 有则更新无则增加
+            </summary>
+            <param name="item">基础部件</param>
+        </member>
+        <member name="M:Wlst.Cr.Setting.SettingHolding.EventSchduleTaskComponentHolding.DeleteEventSchduleTaskItem(Wlst.Cr.Setting.Interfaces.IIEventSchduleTask)">
+            <summary>
+            删除部件
+            </summary>
+            <param name="item">需要删除的部件</param>
+        </member>
+        <member name="M:Wlst.Cr.Setting.SettingHolding.EventSchduleTaskComponentHolding.UpdateEventSchduleTaskItem(System.Collections.Generic.List{Wlst.Cr.Setting.Interfaces.IIEventSchduleTask})">
+            <summary>
+            删除未出现在重组后的列表中的部件 删除不存在保留列表中的部件
+            </summary>
+            <param name="lstShouldKeepItemsId">需要保留的部件列表清单,函数处理后仅包含此列表数据</param>
+        </member>
+        <member name="M:Wlst.Cr.Setting.SettingHolding.EventSchduleTaskComponentHolding.DeleteEventSchduleTaskItem(System.Int32)">
+            <summary>
+            删除部件  
+            </summary>
+            <param name="id">需要删除的部件id</param>
+        </member>
+        <member name="T:Wlst.Cr.Setting.SettingHolding.SettingComponentHolding">
+            <summary>
+            菜单基础部件holding 
+            </summary>
+        </member>
+        <member name="P:Wlst.Cr.Setting.SettingHolding.SettingComponentHolding.Count">
+            <summary>
+            获取部件数量
+            </summary>
+        </member>
+        <member name="M:Wlst.Cr.Setting.SettingHolding.SettingComponentHolding.ContainsComponent(Wlst.Cr.Setting.Interfaces.IISetting)">
+            <summary>
+            获取是否已经包含该部件
+            </summary>
+            <param name="menuItem">菜单</param>
+            <returns></returns>
+        </member>
+        <member name="P:Wlst.Cr.Setting.SettingHolding.SettingComponentHolding.GetAllComponentIDs">
+            <summary>
+            获取所有菜单部件ID
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Wlst.Cr.Setting.SettingHolding.SettingComponentHolding.GetMenuItemById(System.Int32)">
+            <summary>
+            获取指定id值的部件 不存在则返回null
+            </summary>
+            <param name="id"></param>
+            <returns>存在则返回部件 不存在则返回null</returns>
+        </member>
+        <member name="M:Wlst.Cr.Setting.SettingHolding.SettingComponentHolding.Clean">
+            <summary>
+            清除数据
+            </summary>
+        </member>
+        <member name="M:Wlst.Cr.Setting.SettingHolding.SettingComponentHolding.AddMenuItem(Wlst.Cr.Setting.Interfaces.IISetting)">
+            <summary>
+            有则更新无则增加
+            </summary>
+            <param name="menuItem">基础部件</param>
+        </member>
+        <member name="M:Wlst.Cr.Setting.SettingHolding.SettingComponentHolding.UpdateMenuItem(Wlst.Cr.Setting.Interfaces.IISetting)">
+            <summary>
+            更新菜单基础部件 有则更新无则增加
+            </summary>
+            <param name="menuItem">基础部件</param>
+        </member>
+        <member name="M:Wlst.Cr.Setting.SettingHolding.SettingComponentHolding.DeleteMenuItem(Wlst.Cr.Setting.Interfaces.IISetting)">
+            <summary>
+            删除部件
+            </summary>
+            <param name="menuItem">需要删除的部件</param>
+        </member>
+        <member name="M:Wlst.Cr.Setting.SettingHolding.SettingComponentHolding.UpdateMenuItem(System.Collections.Generic.List{Wlst.Cr.Setting.Interfaces.IISetting})">
+            <summary>
+            删除未出现在重组后的列表中的部件
+            </summary>
+            <param name="lstShouldKeepItemsId">需要保留的部件列表清单,函数处理后仅包含此列表数据</param>
+        </member>
+        <member name="M:Wlst.Cr.Setting.SettingHolding.SettingComponentHolding.DeleteMenuItem(System.Int32)">
+            <summary>
+            删除部件  
+            </summary>
+            <param name="id">需要删除的部件id</param>
+        </member>
+    </members>
+</doc>

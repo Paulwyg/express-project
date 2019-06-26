@@ -33,7 +33,7 @@
   <ItemGroup>
     <Reference Include="Elysium, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\ZDebug\Elysium.dll</HintPath>
+      <HintPath>..\..\Rr\Binaries\WPF\Elysium.dll</HintPath>
     </Reference>
     <Reference Include="Interop.SpeechLib, Version=5.4.0.0, Culture=neutral, processorArchitecture=MSIL">
       <EmbedInteropTypes>True</EmbedInteropTypes>
@@ -43,14 +43,14 @@
       <HintPath>..\..\Rr\Binaries\WPF\Lurx.Controls.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Practices.Prism">
-      <HintPath>..\DLL\Microsoft.Practices.Prism.dll</HintPath>
+      <HintPath>..\..\Rr\Binaries\WPF\Microsoft.Practices.Prism.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Practices.Prism.MefExtensions">
-      <HintPath>..\DLL\Microsoft.Practices.Prism.MefExtensions.dll</HintPath>
+      <HintPath>..\..\Rr\Binaries\WPF\Microsoft.Practices.Prism.MefExtensions.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Practices.Prism.MefExtensions.Event, Version=4.1.0.1, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>D:\Cetc50Debug\Microsoft.Practices.Prism.MefExtensions.Event.dll</HintPath>
+      <HintPath>..\..\Rr\Binaries\WPF\Microsoft.Practices.Prism.MefExtensions.Event.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -66,34 +66,38 @@
     <Reference Include="System.Xml" />
     <Reference Include="Telerik.Windows.Controls, Version=2012.3.1129.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\DLL\Telerik.Windows.Controls.dll</HintPath>
+      <HintPath>..\..\Rr\Binaries\WPF\Telerik.Windows.Controls.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.Windows.Controls.Chart, Version=2015.3.2015.40, Culture=neutral, PublicKeyToken=d3625f8bf04286d7, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Rr\Binaries\WPF\Telerik.Windows.Controls.Chart.dll</HintPath>
     </Reference>
+    <Reference Include="Telerik.Windows.Controls.Data, Version=2015.3.2015.40, Culture=neutral, PublicKeyToken=d3625f8bf04286d7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Rr\Binaries\WPF\Telerik.Windows.Controls.Data.dll</HintPath>
+    </Reference>
     <Reference Include="Telerik.Windows.Controls.Docking, Version=2012.3.1129.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\DLL\Telerik.Windows.Controls.Docking.dll</HintPath>
+      <HintPath>..\..\Rr\Binaries\WPF\Telerik.Windows.Controls.Docking.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.Windows.Controls.GridView, Version=2013.1.720.40, Culture=neutral, PublicKeyToken=d3625f8bf04286d7, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\ZDebug\Telerik.Windows.Controls.GridView.dll</HintPath>
+      <HintPath>..\..\Rr\Binaries\WPF\Telerik.Windows.Controls.GridView.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.Windows.Controls.Input, Version=2012.3.1129.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\DLL\Telerik.Windows.Controls.Input.dll</HintPath>
+      <HintPath>..\..\Rr\Binaries\WPF\Telerik.Windows.Controls.Input.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.Windows.Controls.Navigation, Version=2012.3.1129.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\DLL\Telerik.Windows.Controls.Navigation.dll</HintPath>
+      <HintPath>..\..\Rr\Binaries\WPF\Telerik.Windows.Controls.Navigation.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.Windows.Controls.PrismAdapter">
-      <HintPath>..\DLL\Telerik.Windows.Controls.PrismAdapter.dll</HintPath>
+      <HintPath>..\..\Rr\Binaries\WPF\Telerik.Windows.Controls.PrismAdapter.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.Windows.Data, Version=2013.1.1704.40, Culture=neutral, PublicKeyToken=d3625f8bf04286d7, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\ZDebug\Telerik.Windows.Data.dll</HintPath>
+      <HintPath>..\..\Rr\Binaries\WPF\Telerik.Windows.Data.dll</HintPath>
     </Reference>
     <Reference Include="WindowForWlst, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
@@ -101,16 +105,16 @@
     </Reference>
     <Reference Include="WindowsBase" />
     <Reference Include="Wlst.Cr.Core">
-      <HintPath>..\DLL\Wlst.Cr.Core.dll</HintPath>
+      <HintPath>..\..\Rr\Binaries\WPF\Wlst.Cr.Core.dll</HintPath>
     </Reference>
     <Reference Include="Wlst.Cr.Coreb, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="Wlst.Cr.CoreMims, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\ZDebug\Wlst.Cr.CoreMims.dll</HintPath>
+      <HintPath>..\..\Rr\Binaries\WPF\Wlst.Cr.CoreMims.dll</HintPath>
     </Reference>
     <Reference Include="Wlst.Cr.CoreOne, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\ZDebug\Wlst.Cr.CoreOne.dll</HintPath>
+      <HintPath>..\..\Rr\Binaries\WPF\Wlst.Cr.CoreOne.dll</HintPath>
     </Reference>
     <Reference Include="Wlst.Cr.PPProtocolSvrCnt, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="Wlst.Cr.Setting, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -118,14 +122,14 @@
       <HintPath>..\..\Rr\Binaries\WPF\Wlst.Cr.Setting.dll</HintPath>
     </Reference>
     <Reference Include="Wlst.Sr.EquipmentInfoHolding">
-      <HintPath>..\DLL\Wlst.Sr.EquipmentInfoHolding.dll</HintPath>
+      <HintPath>..\..\Rr\Binaries\WPF\Wlst.Sr.EquipmentInfoHolding.dll</HintPath>
     </Reference>
     <Reference Include="Wlst.Sr.Menu">
-      <HintPath>..\DLL\Wlst.Sr.Menu.dll</HintPath>
+      <HintPath>..\..\Rr\Binaries\WPF\Wlst.Sr.Menu.dll</HintPath>
     </Reference>
     <Reference Include="Wlst.Sr.PPPandSocketSvr, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\ZDebug\Wlst.Sr.PPPandSocketSvr.dll</HintPath>
+      <HintPath>..\..\Rr\Binaries\WPF\Wlst.Sr.PPPandSocketSvr.dll</HintPath>
     </Reference>
     <Reference Include="Wlst.Sr.ProtocolPhone, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>

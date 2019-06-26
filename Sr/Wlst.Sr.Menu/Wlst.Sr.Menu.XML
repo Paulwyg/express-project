@@ -1,0 +1,704 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Wlst.Sr.Menu</name>
+    </assembly>
+    <members>
+        <member name="T:Wlst.Sr.Menu.DataHold.Classic.ClassicDataHoldExtend">
+            <summary>
+            实现对菜单资源的管理功能
+            对应数据库表为 menu_classic  
+            </summary>
+        </member>
+        <member name="M:Wlst.Sr.Menu.DataHold.Classic.ClassicDataHoldExtend.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Wlst.Sr.Menu.DataHold.Classic.ClassicDataHoldExtend.InnerLoad">
+            <summary>
+            从数据库中读取资源数据 ,在程序初始化的时候执行,模块内部会执行，其他地方不允许执行
+            </summary>
+        </member>
+        <member name="M:Wlst.Sr.Menu.DataHold.Classic.ClassicDataHoldExtend.UpdateMneu(System.Int32,System.String,System.String)">
+            <summary>
+            更新模板菜单 无则增加,并回写数据库
+            </summary>
+            <param name="keyId">唯一标示</param>
+            <param name="name">模板菜单名称</param>
+            <param name="content">模板菜单包含的菜单集合  以#分割开</param>
+        </member>
+        <member name="M:Wlst.Sr.Menu.DataHold.Classic.ClassicDataHoldExtend.UpdateMneu(System.Int32,System.String,System.Collections.Generic.List{System.Int32})">
+            <summary>
+            更新模板菜单 无则增加,并回写数据库
+            </summary>
+            <param name="keyId">唯一标示</param>
+            <param name="name">模板菜单名称</param>
+            <param name="content">模板菜单包含的菜单集合</param>
+        </member>
+        <member name="M:Wlst.Sr.Menu.DataHold.Classic.ClassicDataHoldExtend.DeleteMneu(System.Int32)">
+            <summary>
+            删除模板菜单,并删除数据库中保留的模板菜单
+            </summary>
+            <param name="keyId"></param>
+        </member>
+        <member name="F:Wlst.Sr.Menu.DataHold.Classic.ClassicDataHold.DicClassic">
+            <summary>
+            模板菜单  控制菜单的总体分类，如主菜单包含的 所有菜单Id集合
+            对应数据库表为 menu_classic
+            </summary>
+        </member>
+        <member name="M:Wlst.Sr.Menu.DataHold.Classic.ClassicDataHold.GetClassicValue(System.Int32)">
+            <summary>
+            获取模板菜单信息
+            </summary>
+            <param name="keyId">模板菜单Id值 </param>
+            <returns>模板菜单信息，包括名称以及控制的菜单集合  不存在则返回null</returns>
+        </member>
+        <member name="P:Wlst.Sr.Menu.DataHold.Classic.ClassicDataHold.GetClassicDic">
+            <summary>
+            获取整个数据
+            </summary>
+        </member>
+        <member name="M:Wlst.Sr.Menu.DataHold.Classic.ClassicDataHold.GetMaxAviableClassicId">
+            <summary>
+            获取可用的实例菜单值，返回值即可用的
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="F:Wlst.Sr.Menu.DataHold.MenuInstancesRelation.MenuInstanceRelationHold.DicInstanceRelation">
+            <summary>
+            菜单实例关系映射表  
+            对应数据库表为 menu_instances_relation
+            </summary>
+        </member>
+        <member name="M:Wlst.Sr.Menu.DataHold.MenuInstancesRelation.MenuInstanceRelationHold.GetInstanceRelation(System.Int32)">
+            <summary>
+            获取菜单实例关系映射信息,所有的信息
+            </summary>
+            <param name="instanceId">菜单实例关系映射Id值 </param>
+            <returns>菜单实例关系映射信息 不存在则返回null</returns>
+        </member>
+        <member name="M:Wlst.Sr.Menu.DataHold.MenuInstancesRelation.MenuInstanceRelationHold.GetInstanceRelationsByfatherId(System.Int32,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="instanceId"></param>
+            <param name="fatherId"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Wlst.Sr.Menu.DataHold.MenuInstancesRelation.MenuInstanceRelationHold.GetInstanceRelatioinDic">
+            <summary>
+            获取整个数据
+            </summary>
+        </member>
+        <member name="M:Wlst.Sr.Menu.DataHold.MenuInstancesRelation.MenuInstanceRelationHold.GetMaxAviableMenuFileId">
+            <summary>
+            获取可用的实例菜单值，返回值即可用的
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Wlst.Sr.Menu.DataHold.MenuInstancesRelation.MenuInstanceRelationHoldExtend">
+            <summary>
+            实现对菜单实例关系的管理功能
+            对应数据库表为 menu_instances_relation  
+            </summary>
+        </member>
+        <member name="M:Wlst.Sr.Menu.DataHold.MenuInstancesRelation.MenuInstanceRelationHoldExtend.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Wlst.Sr.Menu.DataHold.MenuInstancesRelation.MenuInstanceRelationHoldExtend.InnerLoad">
+            <summary>
+            从数据库中读取资源数据 
+            在程序初始化的时候执行
+            </summary>
+        </member>
+        <member name="M:Wlst.Sr.Menu.DataHold.MenuInstancesRelation.MenuInstanceRelationHoldExtend.UpdateMenuInstanceRelation(System.Int32,System.Int32,System.Int32,System.String,System.Int32)">
+            <summary>
+            更新实例菜单 无则增加
+            </summary>
+            <param name="sortIndex"> </param>
+            <param name="name">实例菜单名称</param>
+            <param name="fahterId">父节点为0标示为根节点 </param>
+            <param name="id"> </param>
+            <param name="instancesId">菜单实例标示值 </param>
+        </member>
+        <member name="M:Wlst.Sr.Menu.DataHold.MenuInstancesRelation.MenuInstanceRelationHoldExtend.AddMenuInstanceRelation(System.Int32,System.Int32,System.Int32,System.String,System.Int32)">
+            <summary>
+            增加实例关系
+            </summary>
+            <param name="sortIndex"> </param>
+            <param name="name">实例关系名称</param>
+            <param name="fahterId">父节点为0标示为根节点 </param>
+            <param name="id"> </param>
+            <param name="instancesId"> 菜单实例标示值</param>
+        </member>
+        <member name="M:Wlst.Sr.Menu.DataHold.MenuInstancesRelation.MenuInstanceRelationHoldExtend.DeleteMenuInstanceRelation(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            删除实例关系 
+            </summary>
+            <param name="instancesId">菜单实例地址</param>
+            <param name="fatherId"> </param>
+            <param name="id">需要删除的菜单地址id</param>
+        </member>
+        <member name="M:Wlst.Sr.Menu.DataHold.MenuInstancesRelation.MenuInstanceRelationHoldExtend.DeleteMenuInstanceRelation(System.Int32)">
+            <summary>
+            删除实例关系,立即回写数据库并发布事件
+            </summary>
+            <param name="instancesId"></param>
+        </member>
+        <member name="M:Wlst.Sr.Menu.DataHold.MenuInstancesRelation.MenuInstanceRelationHoldExtend.UpdateMenuInstanceRelation(System.Int32,System.String,System.Collections.Generic.IEnumerable{Wlst.Sr.Menu.Models.MenuInstancesRelation})">
+            <summary>
+            更新菜单实例信息 
+            </summary>
+            <param name="instanceId">菜单实例地址 </param>
+            <param name="instanceKey">该实例菜单关键字 </param>
+            <param name="lst">所有菜单实例信息的集合，必须包含一个节点信息为 fatherId=0的根节点</param>
+        </member>
+        <member name="F:Wlst.Sr.Menu.DataHold.MenuInstances.MenuInstancesHold.DicInstances">
+            <summary>
+            实例菜单根信息
+            对应数据库表为 menu_instances
+            </summary>
+        </member>
+        <member name="M:Wlst.Sr.Menu.DataHold.MenuInstances.MenuInstancesHold.GetInstancesValue(System.Int32)">
+            <summary>
+            获取实例菜单信息
+            </summary>
+            <param name="keyId">实例菜单Id值 </param>
+            <returns>实例菜单信息，包括名称以及右键关键字等  不存在则返回null</returns>
+        </member>
+        <member name="P:Wlst.Sr.Menu.DataHold.MenuInstances.MenuInstancesHold.GetInstancesDic">
+            <summary>
+            获取整个数据
+            </summary>
+        </member>
+        <member name="M:Wlst.Sr.Menu.DataHold.MenuInstances.MenuInstancesHold.GetMaxAviableInstancesId">
+            <summary>
+            获取可用的实例菜单值，返回值即可用的
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Wlst.Sr.Menu.DataHold.MenuInstances.MenuInstancesHoldExtend">
+            <summary>
+            实现对菜单实例的管理
+            数据库汉化资源交互
+            对应数据库表为 menu_instances(id,name,key,id_classic)
+            </summary>
+        </member>
+        <member name="M:Wlst.Sr.Menu.DataHold.MenuInstances.MenuInstancesHoldExtend.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Wlst.Sr.Menu.DataHold.MenuInstances.MenuInstancesHoldExtend.InnerLoad">
+            <summary>
+            从数据库中读取资源数据 
+            在程序初始化的时候执行
+            </summary>
+        </member>
+        <member name="M:Wlst.Sr.Menu.DataHold.MenuInstances.MenuInstancesHoldExtend.AddMenuInstances(System.Int32,System.String,System.String,System.Int32)">
+            <summary>
+            增加菜单实例
+            </summary>
+            <param name="keyId">唯一地址</param>
+            <param name="name">名称</param>
+            <param name="keyMenu"></param>
+            <param name="idClassic"></param>
+        </member>
+        <member name="M:Wlst.Sr.Menu.DataHold.MenuInstances.MenuInstancesHoldExtend.UpdateMenuInstances(System.Int32,System.String,System.String,System.Int32)">
+            <summary>
+            更新菜单实例 无则增加，回写数据库
+            </summary>
+            <param name="keyId">唯一标示</param>
+            <param name="name"></param>
+            <param name="keyMenu"></param>
+            <param name="idClassic"></param>
+        </member>
+        <member name="M:Wlst.Sr.Menu.DataHold.MenuInstances.MenuInstancesHoldExtend.DeleteMenuInstances(System.Int32)">
+            <summary>
+            删除菜单实例，回写数据库
+            </summary>
+            <param name="keyId"></param>
+        </member>
+        <member name="T:Wlst.Sr.Menu.DataHold.MenuShortCuts.MenuShortCutsHolding">
+            <summary>
+            保存程序主菜单所有快捷键原始信息
+            执行程序加载时自动加载数据库中保存的自定义快捷键信息
+            
+            本类对应的数据库表为 menu_shortcuts
+            </summary>
+        </member>
+        <member name="M:Wlst.Sr.Menu.DataHold.MenuShortCuts.MenuShortCutsHolding.GetClassicValue(System.Int32)">
+            <summary>
+            获取快捷键信息
+            </summary>
+            <param name="keyId">菜单Id值 </param>
+            <returns>快捷键信息  不存在则返回null</returns>
+        </member>
+        <member name="P:Wlst.Sr.Menu.DataHold.MenuShortCuts.MenuShortCutsHolding.GetClassicDic">
+            <summary>
+            获取整个数据
+            </summary>
+        </member>
+        <member name="T:Wlst.Sr.Menu.DataHold.MenuShortCuts.MenuShortCutsHoldingExtend">
+            <summary>
+            实现对菜单资源的汉化功能，汉化数据均保持于此，菜单名字需要汉化需在此实现
+            数据库汉化资源交互
+            对应数据库表为 menu_shortcuts(id,name,tooltips)
+            </summary>
+        </member>
+        <member name="M:Wlst.Sr.Menu.DataHold.MenuShortCuts.MenuShortCutsHoldingExtend.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Wlst.Sr.Menu.DataHold.MenuShortCuts.MenuShortCutsHoldingExtend.InnerLoad">
+            <summary>
+            从数据库中读取资源数据 
+            在程序初始化的时候执行
+            </summary>
+        </member>
+        <member name="M:Wlst.Sr.Menu.DataHold.MenuShortCuts.MenuShortCutsHoldingExtend.AddShortCut(System.Int32,System.String)">
+            <summary>
+            增加快捷键信息
+            </summary>
+            <param name="menuId">菜单部件唯一地址</param>
+            <param name="shortcut">名称</param>
+        </member>
+        <member name="M:Wlst.Sr.Menu.DataHold.MenuShortCuts.MenuShortCutsHoldingExtend.UpdateShortCut(System.Int32,System.String)">
+            <summary>
+            更新快捷键信息,立即回写数据库并发布事件
+            </summary>
+            <param name="menuId">菜单部件唯一标示</param>
+            <param name="shortcut"></param>
+        </member>
+        <member name="M:Wlst.Sr.Menu.DataHold.MenuShortCuts.MenuShortCutsHoldingExtend.DeleteShortCut(System.Int32)">
+            <summary>
+            删除快捷键信息，立即回写数据库并发布事件
+            </summary>
+            <param name="menuId"></param>
+        </member>
+        <member name="M:Wlst.Sr.Menu.DataHold.MenuShortCuts.MenuShortCutsHoldingExtend.WriteUpdateDb">
+            <summary>
+            所有数据会写数据库
+            </summary>
+        </member>
+        <member name="T:Wlst.Sr.Menu.DataHold.MenuShortCuts.RegisteShortCuts">
+            <summary>
+            系统菜单有效快捷键保存位置 
+            1、注册快捷键
+            2、处理快捷键事件
+            </summary>
+        </member>
+        <member name="M:Wlst.Sr.Menu.DataHold.MenuShortCuts.RegisteShortCuts.ClsMenuItem.#ctor(Wlst.Cr.CoreOne.CoreInterface.IIMenuItem,System.Windows.Input.ModifierKeys,System.Windows.Input.Key)">
+            <summary>
+            快捷键保存Item
+            </summary>
+            <param name="mi">菜单实例</param>
+            <param name="modifierKey">指定修改键集</param>
+            <param name="key">指定键盘上可能的键值</param>
+        </member>
+        <member name="F:Wlst.Sr.Menu.DataHold.MenuShortCuts.RegisteShortCuts.MySelf">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Wlst.Sr.Menu.DataHold.MenuShortCuts.RegisteShortCuts.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Wlst.Sr.Menu.DataHold.MenuShortCuts.RegisteShortCuts.AddMenuItem(Wlst.Cr.CoreOne.CoreInterface.IIMenuItem,System.String)">
+            <summary>
+            注册具有快捷键功能的MenuItem 注册后立即有效
+            其中MenuItem.InputGestureText属性携带快捷键信息
+            快捷键信息格式为  ModifierKeys+Key 或者 Key
+            </summary>
+            <param name="menuItem"></param>
+            <param name="strWantedPressKys"> </param>
+        </member>
+        <member name="M:Wlst.Sr.Menu.DataHold.MenuShortCuts.RegisteShortCuts.OnKeyDown(System.Windows.Input.KeyEventArgs)">
+            <summary>
+            快捷键事件处理函数
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="T:Wlst.Sr.Menu.Models.MenuClassic">
+            <summary>
+            菜单类别控制；把程序中所有的菜单分门别类出来；
+            </summary>
+        </member>
+        <member name="F:Wlst.Sr.Menu.Models.MenuClassic.Id">
+            <summary>
+            菜单类别Id
+            </summary>
+        </member>
+        <member name="F:Wlst.Sr.Menu.Models.MenuClassic.Name">
+            <summary>
+            菜单类别名称
+            </summary>
+        </member>
+        <member name="F:Wlst.Sr.Menu.Models.MenuClassic.Items">
+            <summary>
+            该菜单类别可控制的所有菜单Id列表
+            </summary>
+        </member>
+        <member name="T:Wlst.Sr.Menu.Models.MenuInstance">
+            <summary>
+            菜单实例根节点信息
+            </summary>
+        </member>
+        <member name="F:Wlst.Sr.Menu.Models.MenuInstance.Id">
+            <summary>
+            实例菜单Id值
+            </summary>
+        </member>
+        <member name="F:Wlst.Sr.Menu.Models.MenuInstance.Name">
+            <summary>
+            实例菜单名称
+            </summary>
+        </member>
+        <member name="F:Wlst.Sr.Menu.Models.MenuInstance.Key">
+            <summary>
+            菜单关键字
+            </summary>
+        </member>
+        <member name="F:Wlst.Sr.Menu.Models.MenuInstance.IdClassic">
+            <summary>
+            使用的模板菜单Id
+            </summary>
+        </member>
+        <member name="T:Wlst.Sr.Menu.Models.MenuInstancesRelation">
+            <summary>
+            菜单实例关系，主要包含父子关系
+            </summary>
+        </member>
+        <member name="F:Wlst.Sr.Menu.Models.MenuInstancesRelation.FatherId">
+            <summary>
+            本节点的父节点地址
+            </summary>
+        </member>
+        <member name="F:Wlst.Sr.Menu.Models.MenuInstancesRelation.Id">
+            <summary>
+            本节点地址
+            </summary>
+        </member>
+        <member name="F:Wlst.Sr.Menu.Models.MenuInstancesRelation.SortIndex">
+            <summary>
+            本节点在父节点下的子列表的排序序号
+            </summary>
+        </member>
+        <member name="F:Wlst.Sr.Menu.Models.MenuInstancesRelation.Name">
+            <summary>
+            本节点的名称，如果为菜单夹则有名称，否则使用默认名称或汉化的名称
+            </summary>
+        </member>
+        <member name="F:Wlst.Sr.Menu.Models.MenuInstancesRelation.InstancesId">
+            <summary>
+            本节点所属的菜单实例的根节点地址，即实例菜单的地址
+            </summary>
+        </member>
+        <member name="F:Wlst.Sr.Menu.Services.EventIdAssign.EventIdAssignBaseId">
+            <summary>
+            本模块的全局事件发布起始Id，3100000 + 10*100, 每个模块均发放100个Id值。
+            </summary>
+        </member>
+        <member name="F:Wlst.Sr.Menu.Services.EventIdAssign.ClassicMenuUpdate">
+            <summary>
+            菜单类别控制的菜单实例列表发生变化，可能删除，携带参数：菜单类别地址
+            </summary>
+        </member>
+        <member name="F:Wlst.Sr.Menu.Services.EventIdAssign.MenuInstanceUpdate">
+            <summary>
+            菜单实例信息发生变化，包含删除，携带参数：菜单实例地址
+            </summary>
+        </member>
+        <member name="F:Wlst.Sr.Menu.Services.EventIdAssign.MenuInstanceRelationUpdate">
+            <summary>
+            菜单实例信息发生变化，包含删除节点等，携带参数2个：菜单实例地址，菜单实例关键字
+            此为管理菜单实例的下层关系，无法删除节点信息的
+            </summary>
+        </member>
+        <member name="F:Wlst.Sr.Menu.Services.EventIdAssign.MenuShourtCutsUpdate">
+            <summary>
+            菜单快捷键修改，包含删除该快捷键，携带修改的快捷键地址列表,为多个参数地址
+            </summary>
+        </member>
+        <member name="F:Wlst.Sr.Menu.Services.EventIdAssign.ClassicMenuLoadUpdate">
+            <summary>
+            菜单类别控制加载完成，无参数
+            </summary>
+        </member>
+        <member name="F:Wlst.Sr.Menu.Services.EventIdAssign.MenuInstanceLoadUpdate">
+            <summary>
+            菜单实例信息加载完成，无参数
+            </summary>
+        </member>
+        <member name="F:Wlst.Sr.Menu.Services.EventIdAssign.MenuInstanceRelationLoadUpdate">
+            <summary>
+            菜单实例信息加载完成，无参数
+            </summary>
+        </member>
+        <member name="F:Wlst.Sr.Menu.Services.EventIdAssign.MenuShourtCutsLoadUpdate">
+            <summary>
+            菜单快捷键加载完成，无参数
+            </summary>
+        </member>
+        <member name="T:Wlst.Sr.Menu.Services.MenuBuilding">
+            <summary>
+            提供生产具体菜单功能，需要提供设置好的菜单关键字。
+            使用提供好的菜单关键字调用具体函数即可完成菜单生成。
+            </summary>
+        </member>
+        <member name="M:Wlst.Sr.Menu.Services.MenuBuilding.BulidCm(System.String,System.Boolean,System.Object)">
+            <summary>
+            生成菜单
+            </summary>
+            <param name="menuInstanceKey">菜单关键字</param>
+            <param name="hasShortCuts">是否具有快捷键</param>
+            <param name="arguData">菜单参数 </param>
+            <returns>菜单 不存在在返回空的list</returns>
+        </member>
+        <member name="M:Wlst.Sr.Menu.Services.MenuBuilding.HelpCmm(System.Collections.ObjectModel.ObservableCollection{Wlst.Cr.CoreOne.CoreInterface.IIMenuItem})">
+            <summary>
+            通过输入的数据来新建菜单集合；
+            如果为主菜单  则如果一级菜单下的所有叶子菜单均不可见则一级菜单页将不可见，
+            则即使权限发生变化下面的叶子菜单可见一级菜单依然不可见，无触发事件能让他可见 这是个debug
+            </summary>
+            <param name="t"></param>
+            <param name="isVislWhenMenuItemEnableFault">当菜单不可见时是否添加菜单到菜单价  默认 false </param>
+            <returns></returns>
+        </member>
+        <member name="T:Wlst.Sr.Menu.Services.MenuIdControlAssign">
+            <summary>
+            <para> 本模块的菜单Id分配;2 xxx xxx均为菜单地址；部分主菜单、右键菜单、单灯菜单。</para> 
+            <para>每个模块均有自己的独立的菜单地址，地址跟随模块的模块地址而分配；</para> 
+            <para>全局地址使用范围为2 100 000~2 899 999；前十万地址保留；后十万地址保留给菜单夹以及菜单实例；</para> 
+            <para>每个模块的使用全局Id范围为 2 100 000+ ModuleId*100 ~ 2 100 000+ ModuleId*100 +99, </para> 
+            <para>每个模块均发放99个菜单Id值。</para> 
+            <para>模块地址请在Assembly中AssemblyFileVersion中查阅，第三地址即为模块地址；如【"1.0.1.0"】模块地址为1。</para> 
+            </summary>
+        </member>
+        <member name="F:Wlst.Sr.Menu.Services.MenuIdControlAssign.MenuIdMin">
+            <summary>
+            部件菜单的最小ID值 2100000;
+            </summary>
+        </member>
+        <member name="F:Wlst.Sr.Menu.Services.MenuIdControlAssign.MenuIdMax">
+            <summary>
+            部件菜单的最大ID值 2899999
+            </summary>
+        </member>
+        <member name="F:Wlst.Sr.Menu.Services.MenuIdControlAssign.MenuClassicIdMin">
+            <summary>
+            模板菜单最小ID值  2900001
+            </summary>
+        </member>
+        <member name="F:Wlst.Sr.Menu.Services.MenuIdControlAssign.MenuClassicIdMax">
+            <summary>
+            模板菜单最多ID值   2919999
+            </summary>
+        </member>
+        <member name="F:Wlst.Sr.Menu.Services.MenuIdControlAssign.MenuInstanceKeyIdMin">
+            <summary>
+            目标设备最小ID值  2920001
+            </summary>
+        </member>
+        <member name="F:Wlst.Sr.Menu.Services.MenuIdControlAssign.MenuInstancesKeyIdMax">
+            <summary>
+            目标设置ID最大值   2939999
+            </summary>
+        </member>
+        <member name="F:Wlst.Sr.Menu.Services.MenuIdControlAssign.MenuFileGroupIdMin">
+            <summary>
+            菜单夹最小ID值 2940001
+            </summary>
+        </member>
+        <member name="F:Wlst.Sr.Menu.Services.MenuIdControlAssign.MenuFileGroupIdMax">
+            <summary>
+            菜单夹最大ID值 2959999
+            </summary>
+        </member>
+        <member name="M:Wlst.Sr.Menu.Services.ServerClassic.UpdateMneu(System.Int32,System.String,System.Collections.Generic.List{System.Int32})">
+            <summary>
+            更新模板菜单 无则增加,并回写数据库，发布事件
+            </summary>
+            <param name="keyId">唯一标示</param>
+            <param name="name">模板菜单名称</param>
+            <param name="content">模板菜单包含的菜单集合</param>
+        </member>
+        <member name="M:Wlst.Sr.Menu.Services.ServerClassic.DeleteMneu(System.Int32)">
+            <summary>
+            删除模板菜单,并删除数据库中保留的模板菜单，发布事件
+            </summary>
+            <param name="keyId"></param>
+        </member>
+        <member name="M:Wlst.Sr.Menu.Services.ServerClassic.GetClassicValue(System.Int32)">
+            <summary>
+            获取模板菜单信息
+            </summary>
+            <param name="keyId">模板菜单Id值 </param>
+            <returns>模板菜单信息，包括名称以及控制的菜单集合  不存在则返回null</returns>
+        </member>
+        <member name="P:Wlst.Sr.Menu.Services.ServerClassic.GetClassicDic">
+            <summary>
+            获取整个数据
+            </summary>
+        </member>
+        <member name="M:Wlst.Sr.Menu.Services.ServerClassic.GetMaxAviableClassicId">
+            <summary>
+            获取可用的实例菜单值，返回值即可用的
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Wlst.Sr.Menu.Services.ServerInstanceRelation.DeleteMenuInstanceRelation(System.Int32)">
+            <summary>
+            删除实例关系,立即回写数据库并发布事件
+            </summary>
+            <param name="instancesId"></param>
+        </member>
+        <member name="M:Wlst.Sr.Menu.Services.ServerInstanceRelation.AddMenuInstanceRelation(System.Int32,System.Int32,System.Int32,System.String,System.Int32)">
+            <summary>
+            增加实例关系,仅在程序内增加，未回写数据库，为注册菜单节点提供
+            </summary>
+            <param name="sortIndex"> </param>
+            <param name="name">实例关系名称</param>
+            <param name="fahterId">父节点为0标示为根节点 </param>
+            <param name="id"> </param>
+            <param name="instancesId"> 菜单实例标示值</param>
+        </member>
+        <member name="M:Wlst.Sr.Menu.Services.ServerInstanceRelation.UpdateMenuInstanceRelation(System.Int32,System.String,System.Collections.Generic.IEnumerable{Wlst.Sr.Menu.Models.MenuInstancesRelation})">
+            <summary>
+            更新菜单实例信息 
+            </summary>
+            <param name="instanceId">菜单实例地址 </param>
+            <param name="instanceKey">该实例菜单关键字 </param>
+            <param name="lst">所有菜单实例信息的集合，必须包含一个节点信息为 fatherId=0的根节点</param>
+        </member>
+        <member name="M:Wlst.Sr.Menu.Services.ServerInstanceRelation.GetInstanceRelation(System.Int32)">
+            <summary>
+            获取菜单实例关系映射信息,所有的信息
+            </summary>
+            <param name="instanceId">菜单实例关系映射Id值 </param>
+            <returns>菜单实例关系映射信息 不存在则返回null</returns>
+        </member>
+        <member name="M:Wlst.Sr.Menu.Services.ServerInstanceRelation.GetInstanceRelationsByfatherId(System.Int32,System.Int32)">
+            <summary>
+            返回的实例菜单该父节点下的所有点均按sortindex排序
+            </summary>
+            <param name="instanceId"></param>
+            <param name="fatherId"></param>
+            <returns>返回的实例菜单该父节点下的所有点均按sortindex排序</returns>
+        </member>
+        <member name="P:Wlst.Sr.Menu.Services.ServerInstanceRelation.GetInstanceRelatioinDic">
+            <summary>
+            获取整个数据
+            </summary>
+        </member>
+        <member name="M:Wlst.Sr.Menu.Services.ServerInstanceRelation.GetMaxAviableMenuFileId">
+            <summary>
+            获取可用的实例菜单值，返回值即可用的
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Wlst.Sr.Menu.Services.ServerInstanceRelation.GetInstancesRelationByMenuKey(System.String)">
+            <summary>
+            获取菜单实例关系映射信息,所有的信息,fatherid为0 则表示为根id，返回的字典关键字key为id值，使用时注意
+            </summary>
+            <returns>菜单实例关系映射信息 不存在则返回null</returns>
+        </member>
+        <member name="M:Wlst.Sr.Menu.Services.ServerInstanceRelation.GetInstanceRelationsByfatherId(System.String,System.Int32)">
+            <summary>
+            获取实例信息 通过父id值获取子列表
+            </summary>
+            <param name="menuKey"></param>
+            <param name="fatherId"></param>
+            <returns>不存在返回空 null</returns>
+        </member>
+        <member name="M:Wlst.Sr.Menu.Services.ServerInstanceRoot.UpdateMenuInstances(System.Int32,System.String,System.String,System.Int32)">
+            <summary>
+            更新菜单实例 无则增加，回写数据库
+            </summary>
+            <param name="keyId">唯一标示</param>
+            <param name="name"></param>
+            <param name="keyMenu"></param>
+            <param name="idClassic"></param>
+        </member>
+        <member name="M:Wlst.Sr.Menu.Services.ServerInstanceRoot.DeleteMenuInstances(System.Int32)">
+            <summary>
+            删除菜单实例，回写数据库
+            </summary>
+            <param name="keyId"></param>
+        </member>
+        <member name="M:Wlst.Sr.Menu.Services.ServerInstanceRoot.GetInstanceByKey(System.String)">
+            <summary>
+            获取菜单值
+            </summary>
+            <param name="key"></param>
+            <returns>菜单实例id值 不存在则返回null</returns>
+        </member>
+        <member name="M:Wlst.Sr.Menu.Services.ServerInstanceRoot.GetInstancesValue(System.Int32)">
+            <summary>
+            获取实例菜单信息
+            </summary>
+            <param name="keyId">实例菜单Id值 </param>
+            <returns>实例菜单信息，包括名称以及右键关键字等  不存在则返回null</returns>
+        </member>
+        <member name="P:Wlst.Sr.Menu.Services.ServerInstanceRoot.GetInstancesDic">
+            <summary>
+            获取整个数据
+            </summary>
+        </member>
+        <member name="M:Wlst.Sr.Menu.Services.ServerInstanceRoot.GetMaxAviableInstancesId">
+            <summary>
+            获取可用的实例菜单值，返回值即可用的
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Wlst.Sr.Menu.Services.ServicesShortCuts">
+            <summary>
+            系统快捷键
+            </summary>
+        </member>
+        <member name="M:Wlst.Sr.Menu.Services.ServicesShortCuts.UpdateShortCut(System.Int32,System.String)">
+            <summary>
+            更新或增加快捷键信息,立即回写数据库并发布事件
+            </summary>
+            <param name="menuId">菜单部件唯一标示</param>
+            <param name="shortcut">快捷键信息格式为  ModifierKeys+Key 或者 Key</param>
+        </member>
+        <member name="M:Wlst.Sr.Menu.Services.ServicesShortCuts.DeleteShortCut(System.Int32)">
+            <summary>
+            删除快捷键信息，立即回写数据库并发布事件
+            </summary>
+            <param name="menuId"></param>
+        </member>
+        <member name="M:Wlst.Sr.Menu.Services.ServicesShortCuts.GetShortCutValue(System.Int32)">
+            <summary>
+            获取快捷键信息
+            </summary>
+            <param name="menuId">菜单Id值 </param>
+            <returns>快捷键信息  不存在则返回null</returns>
+        </member>
+        <member name="P:Wlst.Sr.Menu.Services.ServicesShortCuts.GetShortCutDic">
+            <summary>
+            获取整个数据
+            </summary>
+        </member>
+        <member name="M:Wlst.Sr.Menu.Services.ServicesShortCuts.AddRegisterMenuItem(Wlst.Cr.CoreOne.CoreInterface.IIMenuItem,System.String)">
+            <summary>
+            注册实例菜单信息到运行程序快捷键
+            </summary>
+            <param name="menuItem"></param>
+            <param name="strWantedPressKys">快捷键信息格式为  ModifierKeys+Key 或者 Key</param>
+        </member>
+        <member name="M:Wlst.Sr.Menu.Services.ServicesShortCuts.ClearRegisterLst">
+            <summary>
+            清除所有注册到程序的快捷键信息
+            </summary>
+        </member>
+    </members>
+</doc>

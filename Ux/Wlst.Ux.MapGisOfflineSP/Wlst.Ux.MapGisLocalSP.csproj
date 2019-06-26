@@ -36,16 +36,16 @@
     <Reference Include="ESRI.ArcGIS.Client.Toolkit, Version=10.2.2.0, Culture=neutral, PublicKeyToken=29c6dd6e8553d944, processorArchitecture=MSIL" />
     <Reference Include="ESRI.ArcGIS.Client.Toolkit.DataSources, Version=10.2.2.0, Culture=neutral, PublicKeyToken=29c6dd6e8553d944, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Practices.Prism">
-      <HintPath>..\Rr\Binaries\WPF\Microsoft.Practices.Prism.dll</HintPath>
+      <HintPath>..\..\Rr\Binaries\WPF\Microsoft.Practices.Prism.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Practices.Prism.Interactivity">
-      <HintPath>..\Rr\Binaries\WPF\Microsoft.Practices.Prism.Interactivity.dll</HintPath>
+      <HintPath>..\..\Rr\Binaries\WPF\Microsoft.Practices.Prism.Interactivity.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Practices.Prism.MefExtensions">
-      <HintPath>..\Rr\Binaries\WPF\Microsoft.Practices.Prism.MefExtensions.dll</HintPath>
+      <HintPath>..\..\Rr\Binaries\WPF\Microsoft.Practices.Prism.MefExtensions.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Practices.Prism.MefExtensions.Event">
-      <HintPath>..\Rr\Binaries\WPF\Microsoft.Practices.Prism.MefExtensions.Event.dll</HintPath>
+      <HintPath>..\..\Rr\Binaries\WPF\Microsoft.Practices.Prism.MefExtensions.Event.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -61,42 +61,42 @@
     <Reference Include="System.Xml" />
     <Reference Include="WindowsBase" />
     <Reference Include="Wlst.Cr.Core">
-      <HintPath>..\Rr\Binaries\WPF\Wlst.Cr.Core.dll</HintPath>
+      <HintPath>..\..\Rr\Binaries\WPF\Wlst.Cr.Core.dll</HintPath>
     </Reference>
     <Reference Include="Wlst.Cr.Coreb, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Rr\Binaries\WPF\Wlst.Cr.Coreb.dll</HintPath>
     </Reference>
     <Reference Include="Wlst.Cr.CoreMims">
-      <HintPath>..\Rr\Binaries\WPF\Wlst.Cr.CoreMims.dll</HintPath>
+      <HintPath>..\..\Rr\Binaries\WPF\Wlst.Cr.CoreMims.dll</HintPath>
     </Reference>
     <Reference Include="Wlst.Cr.CoreOne">
-      <HintPath>..\Rr\Binaries\WPF\Wlst.Cr.CoreOne.dll</HintPath>
+      <HintPath>..\..\Rr\Binaries\WPF\Wlst.Cr.CoreOne.dll</HintPath>
     </Reference>
     <Reference Include="Wlst.Cr.MessageBoxOverride">
-      <HintPath>..\Rr\Binaries\WPF\Wlst.Cr.MessageBoxOverride.dll</HintPath>
+      <HintPath>..\..\Rr\Binaries\WPF\Wlst.Cr.MessageBoxOverride.dll</HintPath>
     </Reference>
     <Reference Include="Wlst.Cr.Setting">
-      <HintPath>..\Rr\Binaries\WPF\Wlst.Cr.Setting.dll</HintPath>
+      <HintPath>..\..\Rr\Binaries\WPF\Wlst.Cr.Setting.dll</HintPath>
     </Reference>
     <Reference Include="Wlst.Sr.EquipemntLightFault">
-      <HintPath>..\Rr\Binaries\WPF\Wlst.Sr.EquipemntLightFault.dll</HintPath>
+      <HintPath>..\..\Rr\Binaries\WPF\Wlst.Sr.EquipemntLightFault.dll</HintPath>
     </Reference>
     <Reference Include="Wlst.Sr.EquipmentInfoHolding">
-      <HintPath>..\Rr\Binaries\WPF\Wlst.Sr.EquipmentInfoHolding.dll</HintPath>
+      <HintPath>..\..\Rr\Binaries\WPF\Wlst.Sr.EquipmentInfoHolding.dll</HintPath>
     </Reference>
     <Reference Include="Wlst.Sr.Menu">
-      <HintPath>..\Rr\Binaries\WPF\Wlst.Sr.Menu.dll</HintPath>
+      <HintPath>..\..\Rr\Binaries\WPF\Wlst.Sr.Menu.dll</HintPath>
     </Reference>
     <Reference Include="Wlst.Sr.ProtocolPhone, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Rr\Binaries\WPF\Wlst.Sr.ProtocolPhone.dll</HintPath>
+      <HintPath>..\..\Rr\Binaries\WPF\Wlst.Sr.ProtocolPhone.dll</HintPath>
     </Reference>
     <Reference Include="Wlst.Ux.Wj2090Module">
-      <HintPath>..\Rr\Binaries\WPF\Wlst.Ux.Wj2090Module.dll</HintPath>
+      <HintPath>..\..\Rr\Binaries\WPF\Wlst.Ux.Wj2090Module.dll</HintPath>
     </Reference>
     <Reference Include="WPFSpark">
-      <HintPath>..\Rr\Binaries\WPF\WPFSpark.dll</HintPath>
+      <HintPath>..\..\Rr\Binaries\WPF\WPFSpark.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

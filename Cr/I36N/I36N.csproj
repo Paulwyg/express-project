@@ -43,7 +43,7 @@
     <Reference Include="System.Xml" />
     <Reference Include="Wlst.Cr.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\ZDebug\Wlst.Cr.Core.dll</HintPath>
+      <HintPath>..\..\Rr\Binaries\WPF\Wlst.Cr.Core.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

@@ -33,17 +33,17 @@
   <ItemGroup>
     <Reference Include="Elysium, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\ZDebug\Elysium.dll</HintPath>
+      <HintPath>..\..\Rr\Binaries\WPF\Elysium.dll</HintPath>
     </Reference>
     <Reference Include="Lurx.Controls, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\ZDebug\Lurx.Controls.dll</HintPath>
+      <HintPath>..\..\Rr\Binaries\WPF\Lurx.Controls.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Practices.Prism">
-      <HintPath>..\DLL\Microsoft.Practices.Prism.dll</HintPath>
+      <HintPath>..\..\Rr\Binaries\WPF\Microsoft.Practices.Prism.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Practices.Prism.MefExtensions">
-      <HintPath>..\DLL\Microsoft.Practices.Prism.MefExtensions.dll</HintPath>
+      <HintPath>..\..\Rr\Binaries\WPF\Microsoft.Practices.Prism.MefExtensions.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Practices.Prism.MefExtensions.Event, Version=4.1.0.1, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="PresentationCore" />
@@ -59,23 +59,23 @@
     <Reference Include="System.Xml" />
     <Reference Include="Telerik.Windows.Controls, Version=2013.1.720.40, Culture=neutral, PublicKeyToken=d3625f8bf04286d7, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\ZDebug\Telerik.Windows.Controls.dll</HintPath>
+      <HintPath>..\..\Rr\Binaries\WPF\Telerik.Windows.Controls.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.Windows.Controls.GridView, Version=2013.1.720.40, Culture=neutral, PublicKeyToken=d3625f8bf04286d7, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\ZDebug\Telerik.Windows.Controls.GridView.dll</HintPath>
+      <HintPath>..\..\Rr\Binaries\WPF\Telerik.Windows.Controls.GridView.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.Windows.Controls.Navigation, Version=2010.3.1110.35, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\ZDebug\Telerik.Windows.Controls.Navigation.dll</HintPath>
+      <HintPath>..\..\Rr\Binaries\WPF\Telerik.Windows.Controls.Navigation.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.Windows.Data, Version=2013.1.1704.40, Culture=neutral, PublicKeyToken=d3625f8bf04286d7, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\ZDebug\Telerik.Windows.Data.dll</HintPath>
+      <HintPath>..\..\Rr\Binaries\WPF\Telerik.Windows.Data.dll</HintPath>
     </Reference>
     <Reference Include="WindowForWlst, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\ZDebug\WindowForWlst.dll</HintPath>
+      <HintPath>..\..\Rr\Binaries\WPF\WindowForWlst.dll</HintPath>
     </Reference>
     <Reference Include="WindowsBase" />
     <Reference Include="Wlst.Cr.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -85,19 +85,19 @@
     <Reference Include="Wlst.Cr.Coreb, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="Wlst.Cr.CoreMims, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\ZDebug\Wlst.Cr.CoreMims.dll</HintPath>
+      <HintPath>..\..\Rr\Binaries\WPF\Wlst.Cr.CoreMims.dll</HintPath>
     </Reference>
     <Reference Include="Wlst.Cr.CoreOne, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\ZDebug\Wlst.Cr.CoreOne.dll</HintPath>
+      <HintPath>..\..\Rr\Binaries\WPF\Wlst.Cr.CoreOne.dll</HintPath>
     </Reference>
     <Reference Include="Wlst.Cr.PPProtocolSvrCnt, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\ZDebug\Wlst.Cr.PPProtocolSvrCnt.dll</HintPath>
+      <HintPath>..\..\Rr\Binaries\WPF\Wlst.Cr.PPProtocolSvrCnt.dll</HintPath>
     </Reference>
     <Reference Include="Wlst.Cr.Setting, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\ZDebug\Wlst.Cr.Setting.dll</HintPath>
+      <HintPath>..\..\Rr\Binaries\WPF\Wlst.Cr.Setting.dll</HintPath>
     </Reference>
     <Reference Include="Wlst.Sr.EquipemntLightFault, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -105,11 +105,11 @@
     </Reference>
     <Reference Include="Wlst.Sr.EquipmentInfoHolding, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\ZDebug\Wlst.Sr.EquipmentInfoHolding.dll</HintPath>
+      <HintPath>..\..\Rr\Binaries\WPF\Wlst.Sr.EquipmentInfoHolding.dll</HintPath>
     </Reference>
     <Reference Include="Wlst.Sr.Menu, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\ZDebug\Wlst.Sr.Menu.dll</HintPath>
+      <HintPath>..\..\Rr\Binaries\WPF\Wlst.Sr.Menu.dll</HintPath>
     </Reference>
     <Reference Include="Wlst.Sr.ProtocolPhone, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -117,7 +117,7 @@
     </Reference>
     <Reference Include="WPFToolkit.Extended, Version=1.8.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\ZDebug\WPFToolkit.Extended.dll</HintPath>
+      <HintPath>..\..\Rr\Binaries\WPF\WPFToolkit.Extended.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

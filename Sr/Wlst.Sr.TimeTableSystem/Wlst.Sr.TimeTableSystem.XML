@@ -1,0 +1,472 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Wlst.Sr.TimeTableSystem</name>
+    </assembly>
+    <members>
+        <member name="T:Wlst.Sr.TimeTableSystem.InfoHold.HolidayTimeandBanding">
+            <summary>
+            节假日方案以及 终端与节假日的绑定关系
+            </summary>
+            <summary>
+            Socket to Server
+            </summary>
+        </member>
+        <member name="F:Wlst.Sr.TimeTableSystem.InfoHold.HolidayTimeandBanding.InfoHolidaySchduleTime">
+            <summary>
+            节假日调度方案 全部 areaid-holidayid-  detail 
+            </summary>
+        </member>
+        <member name="F:Wlst.Sr.TimeTableSystem.InfoHold.HolidayTimeandBanding.InfoRtuBandingSchdule">
+            <summary>
+            终端绑定调度方案 全部 areaid-rtuid- holidayid
+            </summary>
+        </member>
+        <member name="M:Wlst.Sr.TimeTableSystem.InfoHold.HolidayTimeandBanding.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Wlst.Sr.TimeTableSystem.InfoHold.HolidayTimeandBanding.InfoHolidaySchduleTimeGet">
+            <summary>
+            节假日调度方案  获取只能读 不允许改
+            </summary>
+        </member>
+        <member name="P:Wlst.Sr.TimeTableSystem.InfoHold.HolidayTimeandBanding.InfoRtuBandingSchduleGet">
+            <summary>
+            终端绑定调度方案  获取只能读 不允许改
+            </summary>
+        </member>
+        <member name="M:Wlst.Sr.TimeTableSystem.InfoHold.HolidayTimeandBanding.InitStart">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Wlst.Sr.TimeTableSystem.InfoHold.HolidayTimeandBanding.RequestTimeSchduleInfo">
+            <summary>
+            请求数据;
+            </summary>
+        </member>
+        <member name="T:Wlst.Sr.TimeTableSystem.InfoHold.SunRaiseInfoHoldBase">
+            <summary>
+            基础数据
+            </summary>
+        </member>
+        <member name="M:Wlst.Sr.TimeTableSystem.InfoHold.SunRaiseInfoHoldBase.#ctor">
+            <summary>
+            构造函数；
+            </summary>
+        </member>
+        <member name="F:Wlst.Sr.TimeTableSystem.InfoHold.SunRaiseInfoHoldBase.Info">
+            <summary>
+            提供数据持有的数据结构
+            </summary>
+        </member>
+        <member name="P:Wlst.Sr.TimeTableSystem.InfoHold.SunRaiseInfoHoldBase.InfoDictionary">
+            <summary>
+            <para>任何使用此数据务必注意 此数据为原始数据，___只允许读不允许修改___ </para> 
+            <para>任何修改会使原始数据被修改形成脏数据 </para>
+            <para>修改请用SupperEquipmentInstanceContains 中具体数据的clone方法进行克隆副本使用</para>
+            </summary>
+        </member>
+        <member name="M:Wlst.Sr.TimeTableSystem.InfoHold.SunRaiseInfoHoldBase.GetSunRiseItemInfo(System.Int32,System.Int32)">
+            <summary>
+            获取日出日落信息
+            </summary>
+            <param name="month">月 </param>
+            <param name="day"> 日</param>
+            <returns>日出日落信息 无则null</returns>
+        </member>
+        <member name="T:Wlst.Sr.TimeTableSystem.InfoHold.SunRiseInfoHold">
+            <summary>
+            Event
+            </summary>
+            <summary>
+            Socket to Server
+            </summary>
+        </member>
+        <member name="M:Wlst.Sr.TimeTableSystem.InfoHold.SunRiseInfoHold.RequestSunRaiseSetInfomation">
+            <summary>
+            请求日出日落时间;
+            <para>qz  qiangzhi</para>
+            </summary>
+        </member>
+        <member name="T:Wlst.Sr.TimeTableSystem.InfoHold.TimeTableInfosHold">
+            <summary>
+            为数据持有提供基础服务;key为时间表Id   数据为一周时间表数据 仅保持一周数据  
+            </summary>
+            <summary>
+            为数据持有提供基础服务
+            </summary>
+            <summary>
+            Event
+            </summary>
+            <summary>
+            Socket to Server
+            </summary>
+        </member>
+        <member name="F:Wlst.Sr.TimeTableSystem.InfoHold.TimeTableInfosHold.InfoTimeItes">
+            <summary>
+            提供数据持有的数据结构 area_id -  rtuOrGrpId - timetable
+            </summary>
+        </member>
+        <member name="F:Wlst.Sr.TimeTableSystem.InfoHold.TimeTableInfosHold.InfoTimeItemsNew">
+            <summary>
+            提供数据持有的数据结构 area_id -  rtuOrGrpId - timetable  新协议  lvf 2019年6月19日10:01:12
+            </summary>
+        </member>
+        <member name="P:Wlst.Sr.TimeTableSystem.InfoHold.TimeTableInfosHold.InfoTimeTableDictionary">
+            <summary>
+            <para>任何使用此数据务必注意 此数据为原始数据，___只允许读不允许修改___ </para> 
+            <para>任何修改会使原始数据被修改形成脏数据 </para>
+            </summary>
+        </member>
+        <member name="M:Wlst.Sr.TimeTableSystem.InfoHold.TimeTableInfosHold.GetInfoTimeTableById(System.Int32,System.Int32)">
+            <summary>
+            不存在返回null
+            </summary>
+            <param name="id"></param>
+            <returns>不存在返回null</returns>
+        </member>
+        <member name="M:Wlst.Sr.TimeTableSystem.InfoHold.TimeTableInfosHold.GetInfoTimeTableList(System.Int32)">
+            <summary>
+            <para>获取升序排列的列表</para>
+            <para>任何使用此数据务必注意 此数据为原始数据，___只允许读不允许修改___  </para>
+            <para>任何修改会使原始数据被修改形成脏数据 </para>
+            </summary>
+        </member>
+        <member name="F:Wlst.Sr.TimeTableSystem.InfoHold.TimeTableInfosHold.InfoBanding">
+            <summary>
+            提供数据持有的数据结构  
+            </summary>
+        </member>
+        <member name="F:Wlst.Sr.TimeTableSystem.InfoHold.TimeTableInfosHold.InfoBandingNew">
+            <summary>
+            提供数据持有的数据结构  新协议  lvf 2019年6月19日08:39:52
+            </summary>
+        </member>
+        <member name="P:Wlst.Sr.TimeTableSystem.InfoHold.TimeTableInfosHold.BandingInfoDictionary">
+            <summary>
+            任何使用此数据务必注意 此数据为原始数据，___只允许读不允许修改___  
+            任何修改会使原始数据被修改形成脏数据 areaId - rtuOrGrpId ----  loop - timetable
+            </summary>
+        </member>
+        <member name="M:Wlst.Sr.TimeTableSystem.InfoHold.TimeTableInfosHold.GetBandingInfo(System.Int32,System.Int32)">
+            <summary>
+            不存在则返回null
+            </summary>
+            <param name="tmlorgrpId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Wlst.Sr.TimeTableSystem.InfoHold.TimeTableInfosHold.GetBandingInfo(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            不存在则返回-1
+            </summary>
+            <param name="tmlorgrpId"></param>
+            <param name="loop">1 ~6 </param>
+            <returns>-1</returns>
+        </member>
+        <member name="M:Wlst.Sr.TimeTableSystem.InfoHold.TimeTableInfosHold.GetBandingInfoNew(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            不存在则返回-1
+            </summary>
+            <param name="tmlorgrpId"></param>
+            <param name="loop">1 ~6 </param>
+            <returns>-1</returns>
+        </member>
+        <member name="P:Wlst.Sr.TimeTableSystem.InfoHold.TimeTableInfosHold.GetBandingInfoList">
+            <summary>
+            升序排列的数据
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Wlst.Sr.TimeTableSystem.InfoHold.TimeTableInfosHold.GetBangdingToThisTimeTablesTmls(System.Int32,System.Int32)">
+            <summary>
+            <para>获取绑定到本时间表的所有终端;</para>
+            <para>返回为lst 第一个数据为终端或组地址;</para>
+            <para>第二个数据为终端回路编号;</para>
+            </summary>
+            <param name="timetableid">时间表ID</param>
+            <returns>终端列表 不会为null的 </returns>
+        </member>
+        <member name="M:Wlst.Sr.TimeTableSystem.InfoHold.TimeTableInfosHold.RequestWeekTimeTableInfo">
+            <summary>
+            请求时间时间表;
+            </summary>
+        </member>
+        <member name="M:Wlst.Sr.TimeTableSystem.InfoHold.TimeTableInfosHold.RequestEventTaskInfo">
+            <summary>
+            请求时间时间表;
+            </summary>
+        </member>
+        <member name="M:Wlst.Sr.TimeTableSystem.InfoHold.TimeTableInfosHold.OnRequestTimeTableBandingInfo(System.String,Wlst.mobile.MsgWithMobile)">
+            <summary>
+            新协议，获取时间表绑定信息
+            </summary>
+            <param name="session"></param>
+            <param name="infos"></param>
+        </member>
+        <member name="M:Wlst.Sr.TimeTableSystem.InfoHold.TimeTableInfosHold.AddOrUpdateBandingInfoNew(Wlst.client.TimeTableBandingRtuInfoNew)">
+            <summary>
+            处理新协议绑定关系 lvf 2019年6月19日09:39:09
+            </summary>
+            <param name="info"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Wlst.Sr.TimeTableSystem.InfoHold.TimeTableInfosHold.OnRequestTimeTableInfoNew(System.String,Wlst.mobile.MsgWithMobile)">
+            <summary>
+            新协议，获取时间表信息
+            </summary>
+            <param name="session"></param>
+            <param name="infos"></param>
+        </member>
+        <member name="M:Wlst.Sr.TimeTableSystem.InfoHold.TimeTableInfosHold.AddOrUpdateTimeInfoNew(Wlst.client.TimeTableInfoNew)">
+            <summary>
+            处理新协议时间表信息 lvf 2019年6月19日09:39:09 暂时用原数据结构，如果不通用则用独立的
+            </summary>
+            <param name="info"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Wlst.Sr.TimeTableSystem.InfoHold.TimeTableInfosHold.UpdateTimeTableInfos(System.Int32,System.Collections.Generic.List{Wlst.client.TimeTableInfoWithRtuOrGrpBandingInfo.TimeTableItem},System.Collections.Generic.List{System.Tuple{System.Int32,System.Int32,System.Int32}})">
+            <summary>
+            
+            </summary>
+            <param name="lstTimeTables"></param>
+            <param name="lstUpdateRtuOrGrpBanding">第一个参数为终端或组地址，第二个参数为终端或组回路，第三个参数为时间表地址</param>
+        </member>
+        <member name="F:Wlst.Sr.TimeTableSystem.Services.TimeTabletemporaryHold.Info">
+            <summary>
+            提供数据持有的数据结构  araid-planid
+            </summary>
+        </member>
+        <member name="M:Wlst.Sr.TimeTableSystem.Services.HolidayTimeandBandingServices.InitService">
+            <summary>
+            执行数据初始化并注册事件,系统执行
+            </summary>
+        </member>
+        <member name="P:Wlst.Sr.TimeTableSystem.Services.HolidayTimeandBandingServices.InfoHolidaySchduleTimeGet">
+            <summary>
+            节假日调度方案  获取只能读 不允许改
+            </summary>
+        </member>
+        <member name="P:Wlst.Sr.TimeTableSystem.Services.HolidayTimeandBandingServices.InfoRtuBandingSchduleGet">
+            <summary>
+            终端绑定调度方案  获取只能读 不允许改
+            </summary>
+        </member>
+        <member name="M:Wlst.Sr.TimeTableSystem.Services.HolidayTimeandBandingServices.IsRtuInHoliday(System.Int32,System.Int32)">
+             <summary>
+            终端是否处于节假日时间
+             </summary>
+             <param name="rtuid"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Wlst.Sr.TimeTableSystem.Services.HolidayTimeandBandingServices.GetRtuSwitchOutOpenCloseTimeInholiday(System.Int32,System.Int32)">
+            <summary>
+            获取终端的 节假日 时间信息
+            </summary>
+            <param name="rtuid"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Wlst.Sr.TimeTableSystem.Services.IdServices.EventIdAssign">
+            <summary>
+            本模块的全局事件发布起始Id，3100000 + 51*100, 每个模块均发放100个Id值。
+            </summary>
+        </member>
+        <member name="F:Wlst.Sr.TimeTableSystem.Services.IdServices.EventIdAssign.EventIdAssignBaseId">
+            <summary>
+            本模块的全局事件发布起始Id，3100000 + 51*100, 每个模块均发放100个Id值。
+            </summary>
+        </member>
+        <member name="F:Wlst.Sr.TimeTableSystem.Services.IdServices.EventIdAssign.TimeTimeUpdate">
+            <summary>
+            时间表更新 
+            <para> 无参数</para>
+            </summary>
+        </member>
+        <member name="F:Wlst.Sr.TimeTableSystem.Services.IdServices.EventIdAssign.TimeTimeRequest">
+            <summary>
+            时间表请求 
+            </summary>
+        </member>
+        <member name="F:Wlst.Sr.TimeTableSystem.Services.IdServices.EventIdAssign.SunSetRiseRequest">
+            <summary>
+            日出日过事件发布 无参数
+            </summary>
+        </member>
+        <member name="F:Wlst.Sr.TimeTableSystem.Services.IdServices.EventIdAssign.SunSetRiseAdd">
+            <summary>
+            日出日落时间增加 10
+            <para>第一参数 月份</para>
+            <para>第二参数 日期</para>
+            </summary>
+        </member>
+        <member name="F:Wlst.Sr.TimeTableSystem.Services.IdServices.EventIdAssign.SunSetRiseDelete">
+            <summary>
+            日出日落删除 11
+            <para>第一参数 月份</para>
+            <para>第二参数 日期</para>
+            </summary>
+        </member>
+        <member name="F:Wlst.Sr.TimeTableSystem.Services.IdServices.EventIdAssign.SunSetRiseUpdate">
+            <summary>
+            日出日落更新 12
+            <para>第一参数 月份</para>
+            <para>第二参数 日期</para>
+            </summary>
+        </member>
+        <member name="F:Wlst.Sr.TimeTableSystem.Services.IdServices.EventIdAssign.TimeTableEventRequest">
+            <summary>
+            服务器反馈下一次执行时间表操作的信息
+            </summary>
+        </member>
+        <member name="F:Wlst.Sr.TimeTableSystem.Services.IdServices.EventIdAssign.TimeHolidayTimeSchduleAndRtuBandingChanged">
+            <summary>
+            当节假日信息或绑定信息发送变化的时候 发布时间  即客户端收到服务器的更新信息时发布 无参数
+            </summary>
+        </member>
+        <member name="F:Wlst.Sr.TimeTableSystem.Services.IdServices.EventIdAssign.TimeTemporaryInfoUpdateId">
+            <summary>
+            临时方案更新
+            </summary>
+        </member>
+        <member name="F:Wlst.Sr.TimeTableSystem.Services.IdServices.EventIdAssign.TimeTemporaryInfoRequestId">
+            <summary>
+            临时方案请求
+            </summary>
+        </member>
+        <member name="F:Wlst.Sr.TimeTableSystem.Services.IdServices.EventIdAssign.TunnelInfoSetUpdateId">
+            <summary>
+            隧道方案更新
+            </summary>
+        </member>
+        <member name="F:Wlst.Sr.TimeTableSystem.Services.IdServices.EventIdAssign.TunnelInfoSetRequestId">
+            <summary>
+            隧道方案请求
+            </summary>
+        </member>
+        <member name="M:Wlst.Sr.TimeTableSystem.Services.SunRiseSetInfoServices.InitService">
+            <summary>
+            执行数据初始化并注册事件,系统执行
+            </summary>
+        </member>
+        <member name="P:Wlst.Sr.TimeTableSystem.Services.SunRiseSetInfoServices.InfoDictionary">
+            <summary>
+            <para>任何使用此数据务必注意 此数据为原始数据，___只允许读不允许修改___ </para> 
+            <para>任何修改会使原始数据被修改形成脏数据 </para>
+            </summary>
+        </member>
+        <member name="M:Wlst.Sr.TimeTableSystem.Services.SunRiseSetInfoServices.GetSunRiseItemInfo(System.Int32,System.Int32)">
+            <summary>
+            获取日出日落信息
+            </summary>
+            <param name="month">月 </param>
+            <param name="day"> 日</param>
+            <returns>日出日落信息 无则null</returns>
+        </member>
+        <member name="P:Wlst.Sr.TimeTableSystem.Services.RtuOrGprBandingTimeTableInfoService.BandingInfoDictionary">
+            <summary>
+            任何使用此数据务必注意 此数据为原始数据，___只允许读不允许修改___  
+            任何修改会使原始数据被修改形成脏数据 
+            </summary>
+        </member>
+        <member name="M:Wlst.Sr.TimeTableSystem.Services.RtuOrGprBandingTimeTableInfoService.GetBandingInfo(System.Int32,System.Int32)">
+            <summary>
+            不存在则返回null
+            </summary>
+            <param name="tmlOrGrpId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Wlst.Sr.TimeTableSystem.Services.RtuOrGprBandingTimeTableInfoService.GetBandingInfo(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            不存在则返回-1
+            </summary>
+            <param name="tmlOrGrpId"></param>
+            <param name="switchoutloopid">1 ~6 </param>
+            <returns>-1</returns>
+        </member>
+        <member name="M:Wlst.Sr.TimeTableSystem.Services.RtuOrGprBandingTimeTableInfoService.GetBandingInfoNew(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            不存在则返回-1
+            </summary>
+            <param name="tmlOrGrpId"></param>
+            <param name="switchoutloopid">1 ~6 </param>
+            <returns>-1</returns>
+        </member>
+        <member name="P:Wlst.Sr.TimeTableSystem.Services.RtuOrGprBandingTimeTableInfoService.GetBandingInfoList">
+            <summary>
+            升序排列的数据
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Wlst.Sr.TimeTableSystem.Services.RtuOrGprBandingTimeTableInfoService.GetBangdingToThisTimeTablesTmls(System.Int32,System.Int32)">
+            <summary>
+            <para>获取绑定到本时间表的所有终端;</para>
+            <para>返回为lst 第一个数据为终端或组地址;</para>
+            <para>第二个数据为终端回路编号;</para>
+            </summary>
+            <param name="timetableid">时间表ID</param>
+            <returns>终端列表 不会为null的 </returns>
+        </member>
+        <member name="F:Wlst.Sr.TimeTableSystem.Services.TunnelSetHold.Info">
+            <summary>
+            提供数据持有的数据结构  araid-planid
+            </summary>
+        </member>
+        <member name="M:Wlst.Sr.TimeTableSystem.Services.WeekTimeTableInfoService.InitService">
+            <summary>
+            执行数据初始化并注册事件,系统执行
+            </summary>
+        </member>
+        <member name="P:Wlst.Sr.TimeTableSystem.Services.WeekTimeTableInfoService.WeekTimeTableInfoDictionary">
+            <summary>
+            <para>任何使用此数据务必注意 此数据为原始数据，___只允许读不允许修改___ </para> 
+            <para>任何修改会使原始数据被修改形成脏数据 </para>
+            </summary>
+        </member>
+        <member name="M:Wlst.Sr.TimeTableSystem.Services.WeekTimeTableInfoService.GeteekTimeTableInfo(System.Int32,System.Int32)">
+            <summary>
+            不存在返回null
+            </summary>
+            <param name="id"></param>
+            <returns>不存在返回null</returns>
+        </member>
+        <member name="M:Wlst.Sr.TimeTableSystem.Services.WeekTimeTableInfoService.GeteekTimeTableInfoList(System.Int32)">
+            <summary>
+            <para>获取升序排列的列表</para>
+            <para>任何使用此数据务必注意 此数据为原始数据，___只允许读不允许修改___  </para>
+            <para>任何修改会使原始数据被修改形成脏数据 </para>
+            </summary>
+        </member>
+        <member name="M:Wlst.Sr.TimeTableSystem.Services.WeekTimeTableInfoService.UpdateTimeTable(System.Int32,System.Collections.Generic.List{Wlst.client.TimeTableInfoWithRtuOrGrpBandingInfo.TimeTableItem},System.Collections.Generic.List{System.Tuple{System.Int32,System.Int32,System.Int32}})">
+            <summary>
+            
+            </summary>
+            <param name="lstTimeTables"></param>
+            <param name="lstUpdateRtuOrGrpBanding">第一个参数为终端或组地址，第二个参数为终端或组回路，第三个参数为时间表地址</param>
+        </member>
+        <member name="M:Wlst.Sr.TimeTableSystem.Services.WeekTimeTableInfoService.UpdateTimeTableNew(System.Int32,System.Collections.Generic.List{Wlst.client.TimeTableInfoWithRtuOrGrpBandingInfo.TimeTableItem})">
+            <summary>
+            
+            </summary>
+            <param name="lstTimeTables"></param>
+            <param name="lstUpdateRtuOrGrpBanding">第一个参数为终端或组地址，第二个参数为终端或组回路，第三个参数为时间表地址</param>
+        </member>
+        <member name="M:Wlst.Sr.TimeTableSystem.Services.WeekTimeTableInfoService.GetTmlLoopBandTimeTableNamex(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            获取终端某个回路上绑定的时间表名称
+            </summary>
+            <param name="rtuIdorGrpId">特殊终端地址或分组地址</param>
+            <param name="loopId">回路地址 1~6</param>
+            <returns>绑定到此回路的时间表名称  无绑定则为 ""</returns>
+        </member>
+        <member name="M:Wlst.Sr.TimeTableSystem.Services.WeekTimeTableInfoService.GetTmlLoopBandTimeTableTodayOpenCloseTimex(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            获取绑定到此时间表今天的开关灯时间
+            </summary>
+            <param name="rtuIdorGrpId">特殊终端地址或分组地址</param>
+            <param name="switchoutloopid"></param>
+            <param name="yesterday">昨天开关灯时间 </param>
+        </member>
+    </members>
+</doc>

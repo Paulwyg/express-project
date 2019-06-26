@@ -1,0 +1,645 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Wlst.Ux.StateBarModule</name>
+    </assembly>
+    <members>
+        <member name="T:Wlst.Ux.StateBarModule.AreaSet.AreaSetView">
+            <summary>
+            AreaSetView.xaml 的交互逻辑
+            </summary>
+            <summary>
+            AreaSetView
+            </summary>
+        </member>
+        <member name="M:Wlst.Ux.StateBarModule.AreaSet.AreaSetView.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:Wlst.Ux.StateBarModule.CommonSet.BaseView.SetSystemRegion">
+            <summary>
+            SetSystemRegion.xaml 的交互逻辑
+            </summary>
+            <summary>
+            method
+            </summary>
+            <summary>
+            SetSystemRegion
+            </summary>
+        </member>
+        <member name="M:Wlst.Ux.StateBarModule.CommonSet.BaseView.SetSystemRegion.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:Wlst.Ux.StateBarModule.CommonSet.CommonSettingView">
+            <summary>
+            CommonSettingView.xaml 的交互逻辑
+            </summary>
+            <summary>
+            CommonSettingView
+            </summary>
+        </member>
+        <member name="M:Wlst.Ux.StateBarModule.CommonSet.CommonSettingView.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="M:Wlst.Ux.StateBarModule.CommonSet.CommonSettingViewModel.ActionRcvSysTitle(System.String,Wlst.mobile.MsgWithMobile)">
+            <summary>
+            
+            </summary>
+            <param name="session"></param>
+            <param name="infos"></param>
+        </member>
+        <member name="P:Wlst.Ux.StateBarModule.CommonSet.CommonSettingViewModel.IsControlCenterNoErr">
+            <summary>
+            控制中心屏蔽报警
+            </summary>
+        </member>
+        <member name="P:Wlst.Ux.StateBarModule.CommonSet.CommonSettingViewModel.IsTimeTableSaveShowReport">
+            <summary>
+            时间表设置保存弹出周设置发送情况
+            </summary>
+        </member>
+        <member name="P:Wlst.Ux.StateBarModule.CommonSet.CommonSettingViewModel.IsRefreshAfterReCn">
+            <summary>
+            系统重连,是否刷新界面  lvf  2018年3月29日08:42:29
+            </summary>
+        </member>
+        <member name="P:Wlst.Ux.StateBarModule.CommonSet.CommonSettingViewModel.IsShowArgsInErrInfo">
+            <summary>
+            故障查询界面，显示参数信息
+            </summary>
+        </member>
+        <member name="P:Wlst.Ux.StateBarModule.CommonSet.CommonSettingViewModel.SystemX">
+            <summary>
+            地图X坐标 仅JPG
+            </summary>
+        </member>
+        <member name="P:Wlst.Ux.StateBarModule.CommonSet.CommonSettingViewModel.SystemY">
+            <summary>
+            地图Y坐标仅JPG
+            </summary>
+        </member>
+        <member name="P:Wlst.Ux.StateBarModule.CommonSet.CommonSettingViewModel.GlobalAShield">
+            <summary>
+            全局屏蔽小电流
+            </summary>
+        </member>
+        <member name="M:Wlst.Ux.StateBarModule.CommonSet.CommonSettingViewModel.LoadXmldata">
+            <summary>
+            RowHeight LoopNameLength TimeNameLength VaNameLength
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Wlst.Ux.StateBarModule.CommonSet.CommonSettingViewModel.SavConfig">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Wlst.Ux.StateBarModule.CommonSet.RegionItem.RegionId">
+            <summary>
+            地区编号
+            </summary>
+        </member>
+        <member name="P:Wlst.Ux.StateBarModule.CommonSet.RegionItem.RegionName">
+            <summary>
+            地区名称
+            </summary>
+        </member>
+        <member name="T:Wlst.Ux.StateBarModule.DataAreaController.View.DataAreaController">
+            <summary>
+            DataAreaController.xaml 的交互逻辑
+            </summary>
+            <summary>
+            DataAreaController
+            </summary>
+        </member>
+        <member name="M:Wlst.Ux.StateBarModule.DataAreaController.View.DataAreaController.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:Wlst.Ux.StateBarModule.NewMsgViewBottom.NewMsgViewBottomView">
+            <summary>
+            NewMsgViewBottomView.xaml 的交互逻辑
+            </summary>
+            <summary>
+            NewMsgViewBottomView
+            </summary>
+        </member>
+        <member name="M:Wlst.Ux.StateBarModule.NewMsgViewBottom.NewMsgViewBottomView.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="M:Wlst.Ux.StateBarModule.NewMsgViewBottom.NewMsgViewBottomVm.AddNewRecordItem(System.Int32,System.String,Wlst.Cr.CoreMims.ShowMsgInfo.OperatrType,System.String)">
+            <summary>
+            新增加新的用户操作信息
+            </summary>
+            <param name="rtuId">操作的终端地址</param>
+            <param name="rtuName">终端 </param>
+            <param name="operatr">用户操作还是服务器应答 </param>
+            <param name="operatorContent">执行情况 如 完成或 等待 </param>
+        </member>
+        <member name="M:Wlst.Ux.StateBarModule.NewSvrMsgView.ViewModel.NewSvrMsgViewModel.FundEventHandler(Wlst.Cr.Coreb.EventHelper.PublishEventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="args"></param>
+        </member>
+        <member name="M:Wlst.Ux.StateBarModule.NewSvrMsgView.ViewModel.NewSvrMsgViewModel.FundOrderFilter(Wlst.Cr.Coreb.EventHelper.PublishEventArgs)">
+            <summary>
+            事件过滤
+            </summary>
+            <param name="args"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Wlst.Ux.StateBarModule.NewSvrMsgView.ViewModel.NewSvrMsgViewModel.Records">
+            <summary>
+            操作码+操作终端+操作回路 如222222+1+3  操作码22222 1终端3回路
+            操作码+操作终端+操作集合 如 22222+1+135  操作码22222 1终端1、3、5回路
+            </summary>
+        </member>
+        <member name="M:Wlst.Ux.StateBarModule.NewSvrMsgView.ViewModel.NewSvrMsgViewModel.AddNewRecordItem(System.Int32,System.String,Wlst.Cr.CoreMims.ShowMsgInfo.OperatrType,System.String)">
+            <summary>
+            新增加新的用户操作信息
+            </summary>
+            <param name="rtuId">操作的终端地址</param>
+            <param name="rtuName">终端 </param>
+            <param name="operatr">用户操作还是服务器应答 </param>
+            <param name="operatorContent">执行情况 如 完成或 等待 </param>
+        </member>
+        <member name="T:Wlst.Ux.StateBarModule.NewSvrMsgView.View.NewSvrMsgView">
+            <summary>
+            NewSvrMsgView.xaml 的交互逻辑 EquipmentNewDataHoldingNewSvrMsgView
+            </summary>
+            <summary>
+            NewSvrMsgView
+            </summary>
+        </member>
+        <member name="M:Wlst.Ux.StateBarModule.NewSvrMsgView.View.NewSvrMsgView.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:Wlst.Ux.StateBarModule.OperatorDataQueryViewModel.ViewModel.OperatorDataQueryViewModel">
+            <summary>
+            绑定属性字段及其命令
+            </summary>
+            <summary>
+            方法
+            </summary>
+            <summary>
+            Event
+            </summary>
+            <summary>
+            Socket
+            </summary>
+        </member>
+        <member name="P:Wlst.Ux.StateBarModule.OperatorDataQueryViewModel.ViewModel.OperatorDataQueryViewModel.BeginDate">
+            <summary>
+            查询开始时间
+            </summary>
+        </member>
+        <member name="P:Wlst.Ux.StateBarModule.OperatorDataQueryViewModel.ViewModel.OperatorDataQueryViewModel.EndDate">
+            <summary>
+            查询结束时间
+            </summary>
+        </member>
+        <member name="P:Wlst.Ux.StateBarModule.OperatorDataQueryViewModel.ViewModel.OperatorDataQueryViewModel.IsTmlChecked">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Wlst.Ux.StateBarModule.OperatorDataQueryViewModel.ViewModel.OperatorDataQueryViewModel.DetailInfo">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Wlst.Ux.StateBarModule.OperatorDataQueryViewModel.ViewModel.OperatorDataQueryViewModel.DetailVisible">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Wlst.Ux.StateBarModule.OperatorDataQueryViewModel.ViewModel.OperatorDataQueryViewModel.Items">
+            <summary>
+            查询结果信息
+            </summary>
+        </member>
+        <member name="P:Wlst.Ux.StateBarModule.OperatorDataQueryViewModel.ViewModel.OperatorDataQueryViewModel.RtuName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Wlst.Ux.StateBarModule.OperatorDataQueryViewModel.ViewModel.OperatorDataQueryViewModel.Remind">
+            <summary>
+            提示信息
+            </summary>
+        </member>
+        <member name="P:Wlst.Ux.StateBarModule.OperatorDataQueryViewModel.ViewModel.OperatorDataQueryViewModel.ExportVisi">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Wlst.Ux.StateBarModule.OperatorDataQueryViewModel.ViewModel.OperatorDataQueryViewModel.PageIndex">
+            <summary>
+            页码
+            </summary>
+        </member>
+        <member name="P:Wlst.Ux.StateBarModule.OperatorDataQueryViewModel.ViewModel.OperatorDataQueryViewModel.ItemCount">
+            <summary>
+            数据总数
+            </summary>
+        </member>
+        <member name="P:Wlst.Ux.StateBarModule.OperatorDataQueryViewModel.ViewModel.OperatorDataQueryViewModel.PageSize">
+            <summary>
+            每页数量
+            </summary>
+        </member>
+        <member name="P:Wlst.Ux.StateBarModule.OperatorDataQueryViewModel.ViewModel.OperatorDataQueryViewModel.RtuId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Wlst.Ux.StateBarModule.OperatorDataQueryViewModel.ViewModel.OperatorDataQueryViewModel.UserItems">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Wlst.Ux.StateBarModule.OperatorDataQueryViewModel.ViewModel.OperatorDataQueryViewModel.OrderTransmissionTypeItems">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Wlst.Ux.StateBarModule.OperatorDataQueryViewModel.ViewModel.OperatorDataQueryViewModel.TypeItems">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Wlst.Ux.StateBarModule.OperatorDataQueryViewModel.ViewModel.OperatorDataQueryViewModel.CmdQuery">
+            <summary>
+            查询命令
+            </summary>
+        </member>
+        <member name="M:Wlst.Ux.StateBarModule.OperatorDataQueryViewModel.ViewModel.OperatorDataQueryViewModel.SelectRtuIdChange(System.Int32)">
+            <summary>
+            选中终端变化  提取数据
+            </summary>
+            <param name="rtuId"></param>
+        </member>
+        <member name="M:Wlst.Ux.StateBarModule.OperatorDataQueryViewModel.ViewModel.OperatorDataQueryViewModel.GetCheckedInformation">
+            <summary>
+            获取用户选中的信息
+            </summary>
+        </member>
+        <member name="M:Wlst.Ux.StateBarModule.OperatorDataQueryViewModel.ViewModel.OperatorDataQueryViewModel.InitAction">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Wlst.Ux.StateBarModule.OperatorDataQueryViewModel.ViewModel.OperatorTypeItem">
+            <summary>
+            操作类型模型定义
+            </summary>
+        </member>
+        <member name="P:Wlst.Ux.StateBarModule.OperatorDataQueryViewModel.ViewModel.OperatorTypeItem.Key">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Wlst.Ux.StateBarModule.OperatorDataQueryViewModel.ViewModel.OperatorTypeItem.Name">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Wlst.Ux.StateBarModule.OperatorDataQueryViewModel.ViewModel.OperatorTypeItem.Value">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Wlst.Ux.StateBarModule.OperatorDataQueryViewModel.View.OperatorDataQueryView">
+            <summary>
+            DataQueryView.xaml 的交互逻辑
+            </summary>
+            <summary>
+            OperatorDataQueryView
+            </summary>
+        </member>
+        <member name="M:Wlst.Ux.StateBarModule.OperatorDataQueryViewModel.View.OperatorDataQueryView.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="P:Wlst.Ux.StateBarModule.SendFailOperation.ViewModel.SendFailOneRecordViewModel.Index">
+            <summary>
+            序号
+            </summary>
+        </member>
+        <member name="P:Wlst.Ux.StateBarModule.SendFailOperation.ViewModel.SendFailOneRecordViewModel.RtuId">
+            <summary>
+            终端地址
+            </summary>
+        </member>
+        <member name="P:Wlst.Ux.StateBarModule.SendFailOperation.ViewModel.SendFailOneRecordViewModel.RtuName">
+            <summary>
+            终端名称
+            </summary>
+        </member>
+        <member name="P:Wlst.Ux.StateBarModule.SendFailOperation.ViewModel.SendFailOneRecordViewModel.RtuId2">
+            <summary>
+            终端地址
+            </summary>
+        </member>
+        <member name="P:Wlst.Ux.StateBarModule.SendFailOperation.ViewModel.SendFailOneRecordViewModel.RtuName2">
+            <summary>
+            终端名称
+            </summary>
+        </member>
+        <member name="P:Wlst.Ux.StateBarModule.SendFailOperation.ViewModel.SendFailOneRecordViewModel.RtuId3">
+            <summary>
+            终端地址
+            </summary>
+        </member>
+        <member name="P:Wlst.Ux.StateBarModule.SendFailOperation.ViewModel.SendFailOneRecordViewModel.RtuName3">
+            <summary>
+            终端名称
+            </summary>
+        </member>
+        <member name="P:Wlst.Ux.StateBarModule.SendFailOperation.ViewModel.SendFailOneRecordViewModel.ParaInfo">
+            <summary>
+            参数信息
+            </summary>
+        </member>
+        <member name="T:Wlst.Ux.StateBarModule.SendFailOperation.ViewModel.SendFailOperationViewModel">
+            <summary>
+            绑定属性字段及其命令
+            </summary>
+            <summary>
+            方法
+            </summary>
+            <summary>
+            Event
+            </summary>
+        </member>
+        <member name="P:Wlst.Ux.StateBarModule.SendFailOperation.ViewModel.SendFailOperationViewModel.BeginDate">
+            <summary>
+            查询开始时间
+            </summary>
+        </member>
+        <member name="P:Wlst.Ux.StateBarModule.SendFailOperation.ViewModel.SendFailOperationViewModel.EndDate">
+            <summary>
+            查询结束时间
+            </summary>
+        </member>
+        <member name="P:Wlst.Ux.StateBarModule.SendFailOperation.ViewModel.SendFailOperationViewModel.IsTmlChecked">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Wlst.Ux.StateBarModule.SendFailOperation.ViewModel.SendFailOperationViewModel.DetailInfo">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Wlst.Ux.StateBarModule.SendFailOperation.ViewModel.SendFailOperationViewModel.DetailVisible">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Wlst.Ux.StateBarModule.SendFailOperation.ViewModel.SendFailOperationViewModel.Records">
+            <summary>
+            查询结果信息
+            </summary>
+        </member>
+        <member name="P:Wlst.Ux.StateBarModule.SendFailOperation.ViewModel.SendFailOperationViewModel.RtuName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Wlst.Ux.StateBarModule.SendFailOperation.ViewModel.SendFailOperationViewModel.Remind">
+            <summary>
+            提示信息
+            </summary>
+        </member>
+        <member name="P:Wlst.Ux.StateBarModule.SendFailOperation.ViewModel.SendFailOperationViewModel.ExportVisi">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Wlst.Ux.StateBarModule.SendFailOperation.ViewModel.SendFailOperationViewModel.RtuId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Wlst.Ux.StateBarModule.SendFailOperation.ViewModel.SendFailOperationViewModel.TypeOneVisi">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Wlst.Ux.StateBarModule.SendFailOperation.ViewModel.SendFailOperationViewModel.TypeTwoVisi">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Wlst.Ux.StateBarModule.SendFailOperation.ViewModel.SendFailOperationViewModel.TypeThreeVisi">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Wlst.Ux.StateBarModule.SendFailOperation.ViewModel.SendFailOperationViewModel.CmdQuery">
+            <summary>
+            查询命令
+            </summary>
+        </member>
+        <member name="P:Wlst.Ux.StateBarModule.SendFailOperation.ViewModel.SendFailOperationViewModel.CmdSend">
+            <summary>
+            查询命令
+            </summary>
+        </member>
+        <member name="M:Wlst.Ux.StateBarModule.SendFailOperation.ViewModel.SendFailOperationViewModel.SelectRtuIdChange(System.Int32)">
+            <summary>
+            选中终端变化  提取数据
+            </summary>
+            <param name="rtuId"></param>
+        </member>
+        <member name="M:Wlst.Ux.StateBarModule.SendFailOperation.ViewModel.SendFailOperationViewModel.GetAllOperatorTypes">
+            <summary>
+            获取操作类型
+            </summary>
+            <param name="session"></param>
+            <param name="infos"></param>
+        </member>
+        <member name="T:Wlst.Ux.StateBarModule.SendFailOperation.View.SendFailOperationView">
+            <summary>
+            SendFailOperationView.xaml 的交互逻辑
+            </summary>
+            <summary>
+            SendFailOperationView
+            </summary>
+        </member>
+        <member name="M:Wlst.Ux.StateBarModule.SendFailOperation.View.SendFailOperationView.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:Wlst.Ux.StateBarModule.Services.EventIdAssign">
+            <summary>
+            本模块的全局事件发布起始Id，3100000 + 33*100, 每个模块均发放100个Id值。
+            </summary>
+        </member>
+        <member name="F:Wlst.Ux.StateBarModule.Services.EventIdAssign.EventIdAssignBaseId">
+            <summary>
+            本模块的全局事件发布起始Id，3100000 + 33*100, 每个模块均发放100个Id值。
+            </summary>
+        </member>
+        <member name="F:Wlst.Ux.StateBarModule.Services.EventIdAssign.AnimationOperatorDataQueryViewModelEnterId">
+            <summary>
+            </summary>
+        </member>
+        <member name="F:Wlst.Ux.StateBarModule.Services.MenuIdAssgin.MenuIdAssignBaseId">
+            <summary>
+            本模块的菜单起始Id，2100000 + 33*100, 每个模块均发放100个Id值。
+            </summary>
+        </member>
+        <member name="F:Wlst.Ux.StateBarModule.Services.ViewIdAssign.ViewIdAssignBaseId">
+            <summary>
+            本模块的视图起始Id，1100000 + 33*100, 每个模块均发放100个Id值。
+            </summary>
+        </member>
+        <member name="T:Wlst.Ux.StateBarModule.StateBarInBottom.ViewModel.StateBarViewModule">
+            <summary>
+            事件处理
+            </summary>
+        </member>
+        <member name="M:Wlst.Ux.StateBarModule.StateBarInBottom.ViewModel.StateBarViewModule.UpdateTOdaytime">
+            <summary>
+            更新日出日落显示时间
+            </summary>
+        </member>
+        <member name="M:Wlst.Ux.StateBarModule.StateBarInBottom.ViewModel.StateBarViewModule.GetEmeNums(System.String,Wlst.mobile.MsgWithMobile)">
+            <summary>
+            获取 应急关灯异常的设备数量
+            </summary>
+            <param name="session"></param>
+            <param name="infos"></param>
+        </member>
+        <member name="T:Wlst.Ux.StateBarModule.StateBarInBottom.Views.StateTimeView">
+            <summary>
+            StateTimeView.xaml 的交互逻辑
+            </summary>
+            <summary>
+            StateTimeView
+            </summary>
+        </member>
+        <member name="M:Wlst.Ux.StateBarModule.StateBarInBottom.Views.StateTimeView.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:Wlst.Ux.StateBarModule.StateBarInBottom.Views.StateBarView">
+            <summary>
+            StateBarView.xaml 的交互逻辑
+            </summary>
+            <summary>
+            StateBarView
+            </summary>
+        </member>
+        <member name="M:Wlst.Ux.StateBarModule.StateBarInBottom.Views.StateBarView.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:Wlst.Ux.StateBarModule.TopData.Views.MessageShowInfo">
+            <summary>
+            MessageShowInfo.xaml 的交互逻辑
+            </summary>
+            <summary>
+            MessageShowInfo
+            </summary>
+        </member>
+        <member name="M:Wlst.Ux.StateBarModule.TopData.Views.MessageShowInfo.#ctor">
+            <summary>
+            禁止在外部实例化
+            </summary>
+        </member>
+        <member name="M:Wlst.Ux.StateBarModule.TopData.Views.MessageShowInfo.Show(System.String,System.String)">
+            <summary>
+            静态方法 模拟MESSAGEBOX.Show方法
+            </summary>
+            <param name="title">标题</param>
+            <param name="msg">消息</param>
+            <returns></returns>
+        </member>
+        <member name="M:Wlst.Ux.StateBarModule.TopData.Views.MessageShowInfo.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:Wlst.Ux.StateBarModule.TopData.Views.TopDataView">
+            <summary>
+            TopDataView.xaml 的交互逻辑
+            </summary>
+            <summary>
+            TopDataView
+            </summary>
+        </member>
+        <member name="M:Wlst.Ux.StateBarModule.TopData.Views.TopDataView.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="F:Wlst.Ux.StateBarModule.UserOperateMsgView.ViewModel.OperateItem.Finish">
+            <summary>
+            是否已经完成本次应答操作
+            </summary>
+        </member>
+        <member name="F:Wlst.Ux.StateBarModule.UserOperateMsgView.ViewModel.UserOperateMsgViewModel._isfilter">
+            <summary>
+            
+            </summary>
+            <param name="args"></param>
+        </member>
+        <member name="M:Wlst.Ux.StateBarModule.UserOperateMsgView.ViewModel.UserOperateMsgViewModel.InitAction">
+            <summary>
+            事件过滤
+            </summary>
+            <param name="args"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Wlst.Ux.StateBarModule.UserOperateMsgView.ViewModel.UserOperateMsgViewModel.Records">
+            <summary>
+            操作码+操作终端+操作回路 如222222+1+3  操作码22222 1终端3回路
+            操作码+操作终端+操作集合 如 22222+1+135  操作码22222 1终端1、3、5回路
+            </summary>
+        </member>
+        <member name="M:Wlst.Ux.StateBarModule.UserOperateMsgView.ViewModel.UserOperateMsgViewModel.AddNewRecordItem(System.Int32,Wlst.Cr.CoreMims.ShowMsgInfo.OpType,System.Int32)">
+            <summary>
+            新增加新的用户操作信息
+            </summary>
+            <param name="rtuId">操作的终端地址</param>
+            <param name="oper">操作类型 </param>
+            <param name="loopid">操作回路 </param>
+        </member>
+        <member name="M:Wlst.Ux.StateBarModule.UserOperateMsgView.ViewModel.UserOperateMsgViewModel.recalctrlinfo">
+            <summary>
+            计算单灯操作的  
+            </summary>
+        </member>
+        <member name="T:Wlst.Ux.StateBarModule.UserOperateMsgView.View.UserOperateMsgView">
+            <summary>
+            UserOperateMsgView.xaml 的交互逻辑 EquipmentNewDataHoldingNewSvrMsgView
+            </summary>
+            <summary>
+            UserOperateMsgView
+            </summary>
+        </member>
+        <member name="M:Wlst.Ux.StateBarModule.UserOperateMsgView.View.UserOperateMsgView.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+    </members>
+</doc>
