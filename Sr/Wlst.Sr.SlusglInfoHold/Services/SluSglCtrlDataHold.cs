@@ -46,7 +46,7 @@ namespace Wlst.Sr.SlusglInfoHold.Services
         protected SluSglCtrlDataHold()
         {
             this.InitAciotn();
-            Wlst.Cr.Coreb.AsyncTask.Qtz.MySelf.AddQtz("fff", 0, DateTime.Now.AddSeconds(10).Ticks, 3, Ac1);
+            Wlst.Cr.Coreb.AsyncTask.Qtz.AddQtz("fff", 0, DateTime.Now.AddSeconds(10).Ticks, 3, Ac1);
         }
 
         #endregion

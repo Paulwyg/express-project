@@ -9,10 +9,7 @@ namespace Wlst.Ux.CoreModuelConfig.Views
     /// <summary>
     /// CoreModuleConfigView.xaml 的交互逻辑
     /// </summary>
-    [ViewExport(
-        AttachNow = true,
-        AttachRegion = DocumentRegionName.DocumentRegion,
-        ID = Services.ViewIdAssign.CoreModuleConfigViewId)]
+    [ViewExport(Services.ViewIdAssign.CoreModuleConfigViewId, DocumentRegionName.DocumentRegion,true )]
     [PartCreationPolicy(CreationPolicy.Shared)]
     public partial class CoreModuleConfigView : UserControl
     {

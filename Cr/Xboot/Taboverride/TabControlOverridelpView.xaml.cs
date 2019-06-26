@@ -99,7 +99,7 @@ namespace Xboot.Taboverride
             {
                 TabControlr.Items.Add(f);
             }
-            Wlst.Cr.Coreb.Servers.QtzLp.AddQtz("0", 999, DateTime.Now.AddSeconds(1).Ticks, RunInUiThread, 0, null, 1);
+            Wlst.Cr.Coreb.AsyncTask .Qtz .AddQtz("0", 999, DateTime.Now.AddSeconds(1).Ticks, RunInUiThread, 0, null, 1);
 
 
  

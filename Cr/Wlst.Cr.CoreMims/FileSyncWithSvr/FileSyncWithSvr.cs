@@ -42,9 +42,9 @@ namespace Wlst.Cr.CoreMims.FileSyncWithSvr
                 typeof (FileSyncWithSvr), this);
 
             //注册调度函数
-            Wlst.Cr.Coreb.Servers.QtzLp.AddQtz("nt", 0, DateTime.Now.AddMinutes(5).Ticks, 24 * 60 * 60,
+            Wlst.Cr.Coreb.AsyncTask .Qtz .AddQtz("nt", 0, DateTime.Now.AddMinutes(5).Ticks, 24 * 60 * 60,
                                                OnInit);
-            Wlst.Cr.Coreb.Servers.QtzLp.AddQtz("nt", 0, DateTime.Now.AddMinutes(5).Ticks, 5,
+            Wlst.Cr.Coreb.AsyncTask.Qtz.AddQtz("nt", 0, DateTime.Now.AddMinutes(5).Ticks, 5,
                                                OnOnReqFileInfoBackWrInThrd);
 
             //if (DirFileNeed.Contains(@"D:\CETC50\FileSync\SingleLamp") == false)
@@ -148,11 +148,11 @@ namespace Wlst.Cr.CoreMims.FileSyncWithSvr
                         _data.TryAdd(f, new List<Tuple<int, int>>());
 
                         //注册时间  每个5分钟检测一下 是否接受完毕 接受完毕则清理
-                        Wlst.Cr.Coreb.Servers.QtzLp.AddQtz("nt", 0, DateTime.Now.AddMinutes(5).Ticks,
+                        Wlst.Cr.Coreb.AsyncTask.Qtz. AddQtz("nt", 0, DateTime.Now.AddMinutes(5).Ticks,
                                                            OnLoadOver,
                                                            180, f, 6);
                         //间隔35分钟执行清理操作 即清除队列
-                        Wlst.Cr.Coreb.Servers.QtzLp.AddQtz("nt", 0, DateTime.Now.AddMinutes(24).Ticks,
+                        Wlst.Cr.Coreb.AsyncTask.Qtz.AddQtz("nt", 0, DateTime.Now.AddMinutes(24).Ticks,
                                                            OnLoadOver1,
                                                            10, f, 1);
 

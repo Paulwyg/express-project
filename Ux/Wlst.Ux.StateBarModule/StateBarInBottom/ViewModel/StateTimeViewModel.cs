@@ -24,7 +24,7 @@ namespace Wlst.Ux.StateBarModule.StateBarInBottom.ViewModel
         {
             _timeNow = DateTime.Now.ToString(CultureInfo.InvariantCulture);
 
-            Wlst.Cr.Coreb.Servers .QtzLp .AddQtz("null", 8888, DateTime.Now.Ticks+20000000, 60, UpdateTime);
+            Wlst.Cr.Coreb.AsyncTask  .Qtz  .AddQtz("null", 8888, DateTime.Now.Ticks+20000000, 60, UpdateTime);
 
 
 

@@ -781,7 +781,7 @@ namespace Wlst.Ux.Wj3005ExNewDataExcelModule.ZNewData.TmlNewDataViewModel.ViewMo
                 IntMeasureRtuid = Convert.ToInt32(args.EventAttachInfo.ToString());
                 LngMeasureTime = DateTime.Now.Ticks;   //记录选测时间
                 //开启线程
-                Wlst.Cr.Coreb.Servers.QtzLp.AddQtz("null", 8888, DateTime.Now.Ticks + IntMeasureOverTime * 10000000,50, ShowMeasureFail, LngMeasureTime,0);
+                Wlst.Cr.Coreb.AsyncTask .Qtz .AddQtz("null", 8888, DateTime.Now.Ticks + IntMeasureOverTime * 10000000,50, ShowMeasureFail, LngMeasureTime,0);
                 return;
             }
             try

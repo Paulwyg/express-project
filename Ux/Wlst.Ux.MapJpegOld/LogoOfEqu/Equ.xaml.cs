@@ -21,8 +21,7 @@ namespace Wlst.Ux.RadMapJpeg.LogoOfEqu
     /// <summary>
     /// Equ.xaml 的交互逻辑
     /// </summary>
-    [ViewExport(AttachNow = true, ID = RadMapJpeg.Services.ViewIdAssign.EquViewId,
-        AttachRegion = RadMapJpeg.Services.ViewIdAssign.EquViewAttachRegion)]
+    [ViewExport(RadMapJpeg.Services.ViewIdAssign.EquViewId, RadMapJpeg.Services.ViewIdAssign.EquViewAttachRegion,true    )]
     [PartCreationPolicy(CreationPolicy.Shared)]
     public partial class Equ : UserControl
     {
@@ -44,7 +43,7 @@ namespace Wlst.Ux.RadMapJpeg.LogoOfEqu
 
         private bool IsExistValue(int id)
         {
-            return  Wlst.Cr.Core.ComponentHold.ViewComponentHolding.ContainsComponent(id);
+            return  Wlst.Cr.Core.ComponentHold.ViewComponentHolding.ContainsComponent(id+"");
             //if (sss.Contains(id)) return true;
             //return false;
         }

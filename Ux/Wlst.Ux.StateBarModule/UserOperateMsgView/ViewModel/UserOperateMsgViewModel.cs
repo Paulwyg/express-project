@@ -42,7 +42,7 @@ namespace Wlst.Ux.StateBarModule.UserOperateMsgView.ViewModel
             //    FundOrderFilters);
 
             // Wlst .Cr .Core.ModuleServices .DelayEvent .RegisterDelayEvent(OnLoadCpt ,2,DelayEventHappen.EventOne);
-            Wlst.Cr.Coreb.Servers.QtzLp.AddQtz("nuu", 8888, DateTime.Now.Ticks, 60, Funcx);
+            Wlst.Cr.Coreb.AsyncTask .Qtz .AddQtz("nuu", 8888, DateTime.Now.Ticks, 60, Funcx);
         }
 
         void BeforSnd1(MsgWithMobile data)

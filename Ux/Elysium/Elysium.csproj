@@ -33,17 +33,17 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Expression.Drawing">
-      <HintPath>..\Dll\Microsoft.Expression.Drawing.dll</HintPath>
+      <HintPath>..\..\Rr\Binaries\WPF\Microsoft.Expression.Drawing.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Windows.Shell">
-      <HintPath>..\Dll\Microsoft.Windows.Shell.dll</HintPath>
+      <HintPath>..\..\Rr\Binaries\WPF\Microsoft.Windows.Shell.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="PresentationFramework.Classic" />
     <Reference Include="RibbonControlsLibrary, Version=4.0.0.11019, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Program Files (x86)\Microsoft Ribbon for WPF\V4.0\RibbonControlsLibrary.dll</HintPath>
+      <HintPath>..\..\Rr\Binaries\WPF\RibbonControlsLibrary.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -97,7 +97,7 @@
     </Reference>
     <Reference Include="Telerik.Windows.Controls.PrismAdapter, Version=4.1.0.1, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Programes\Develops\MIMS\ZDebug\Telerik.Windows.Controls.PrismAdapter.dll</HintPath>
+      <HintPath>..\..\Rr\Binaries\WPF\Telerik.Windows.Controls.PrismAdapter.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.Windows.Controls.RibbonView, Version=2015.3.2015.40, Culture=neutral, PublicKeyToken=d3625f8bf04286d7, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -141,7 +141,7 @@
     <Reference Include="Wlst.Cr.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="WPFToolkit.Extended, Version=1.8.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\WPFToolkit.Extended.dll</HintPath>
+      <HintPath>..\..\Rr\Binaries\WPF\WPFToolkit.Extended.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -185,11 +185,6 @@
     <Compile Include="Converters\ThicknessConverter.cs" />
     <Compile Include="Converters\ThicknessPositiveToNegativeConverter.cs" />
     <Compile Include="Converters\ThicknessToDoubleConverter.cs" />
-    <Compile Include="Documentation\en\Elysium.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Elysium.tt</DependentUpon>
-    </Compile>
     <Compile Include="Exceptions\InvalidStyleException.cs" />
     <Compile Include="Extensions\Boxing helpers\BooleanBoxingHelper.cs" />
     <Compile Include="Extensions\Boxing helpers\BoxingHelper.cs" />
@@ -344,14 +339,6 @@
     <None Include="Documentation\Documentation.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Documentation\en\Elysium.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Elysium.cs</LastGenOutput>
-    </None>
-    <None Include="Documentation\ru\Elysium.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Elysium1.xml</LastGenOutput>
-    </None>
     <None Include="Themes\Generic.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Generic1.xaml</LastGenOutput>
@@ -432,15 +419,6 @@
     <Content Include="Converters\ThicknessPositiveToNegativeConverter.ru.xml" />
     <Content Include="Converters\ThicknessToDoubleConverter.en.xml" />
     <Content Include="Converters\ThicknessToDoubleConverter.ru.xml" />
-    <Content Include="Documentation\en\Elysium.xml">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Documentation\ru\Elysium.xml" />
-    <Content Include="Documentation\ru\Elysium1.xml">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Elysium.tt</DependentUpon>
-    </Content>
     <Content Include="Exceptions\InvalidStyleException.en.xml" />
     <Content Include="Exceptions\InvalidStyleException.ru.xml" />
     <Content Include="Extensions\Collections\IObservableDictionary.en.xml" />
@@ -744,9 +722,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Themes\ColorBrushAttach\" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Properties\licenses.licx" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

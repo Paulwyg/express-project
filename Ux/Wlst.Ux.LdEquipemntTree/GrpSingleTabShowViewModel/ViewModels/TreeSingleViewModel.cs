@@ -72,7 +72,7 @@ namespace Wlst.Ux.LdEquipemntTree.GrpSingleTabShowViewModel.ViewModels
             this.IsNotShowFastControl = UxTreeSetting.IsRutsNotShowNullK != 0 ? 80 : 0;
             this.IsNotShowFastControlToCenter = UxTreeSetting.IsRutsNotShowNullK != 0 ? 23 : 0;
 
-            //Wlst.Cr.Coreb.Servers.QtzLp.AddQtz("null", 8888, DateTime.Now.Ticks,  ExSearchNode,10);
+        
         }
 
         public int timer_count = 0;

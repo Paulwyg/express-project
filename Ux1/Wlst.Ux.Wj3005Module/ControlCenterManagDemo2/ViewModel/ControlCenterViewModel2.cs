@@ -168,7 +168,7 @@ namespace Wlst.Ux.WJ3005Module.ControlCenterManagDemo2.ViewModel
         {
             //InitEvent();
             InitAction();
-            Wlst.Cr.Coreb.Servers.QtzLp.AddQtz("ColNoAlarmTime",0,DateTime.Now.Ticks,1,ColNoAlarmTime);
+            Wlst.Cr.Coreb.AsyncTask .Qtz .AddQtz("ColNoAlarmTime",0,DateTime.Now.Ticks,1,ColNoAlarmTime);
           
         }
 

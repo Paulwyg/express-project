@@ -1,8 +1,9 @@
 ﻿using System.ComponentModel.Composition;
-using Wlst.Cr.Core.Commands;
 using Wlst.Cr.Core.CoreInterface;
 using Wlst.Cr.Core.CoreServices;
-using Wlst.Cr.Core.Models;
+using Wlst.Cr.CoreMims.Commands;
+using Wlst.Cr.CoreOne.CoreInterface;
+using Wlst.Cr.CoreOne.Models;
 using Wlst.Ux.CoreDataEventMonitor.Services;
 
 namespace Wlst.Ux.CoreDataEventMonitor.SocketDataMonitorViewModel
@@ -29,7 +30,7 @@ namespace Wlst.Ux.CoreDataEventMonitor.SocketDataMonitorViewModel
 
         protected void Ex()
         {
-            this.ExNavNoArgs(DocumentRegionName.DocumentRegion,
+            this.ExNavNoArgs(
                              ViewIdAssign.SocketDataMonitorId);
         }
 

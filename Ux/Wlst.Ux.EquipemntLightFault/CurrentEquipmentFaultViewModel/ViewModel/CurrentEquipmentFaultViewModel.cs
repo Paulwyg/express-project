@@ -67,10 +67,10 @@ namespace Wlst.Ux.EquipemntLightFault.CurrentEquipmentFaultViewModel.ViewModel
             InitEvent();
             Wlst.Cr.Core.ModuleServices.DelayEvent.RegisterDelayEvent(NavOnLoadr, 2, DelayEventHappen.EventOne);
 
-            Wlst.Cr.Coreb.Servers.QtzLp.AddQtz("null", 8888, DateTime.Now.Ticks, 5, Ac);
-            Wlst.Cr.Coreb.Servers.QtzLp.AddQtz("null", 8888, DateTime.Now.Ticks, 1, AcVoice);
-            Wlst.Cr.Coreb.Servers.QtzLp.AddQtz("null", 8888, DateTime.Now.Ticks, 1, OneSecondAc);
-           // Wlst.Cr.Coreb.Servers.QtzLp.AddQtz("null", 8888, DateTime.Now.Ticks, 1, Run);
+            Wlst.Cr.Coreb.AsyncTask.Qtz.AddQtz("null", 8888, DateTime.Now.Ticks, 5, Ac);
+            Wlst.Cr.Coreb.AsyncTask.Qtz.AddQtz("null", 8888, DateTime.Now.Ticks, 1, AcVoice);
+            Wlst.Cr.Coreb.AsyncTask.Qtz.AddQtz("null", 8888, DateTime.Now.Ticks, 1, OneSecondAc);
+    
             //th = new Thread(Run);
             //th.Start();
             if (_myself == null) _myself = this;

@@ -28,9 +28,9 @@ namespace Wlst.Sr.EquipmentInfoHolding.Services
         {
             // InitAction();
             //LoadXml();
-            Wlst.Cr.Coreb.AsyncTask.Qtz.MySelf.AddQtz("fff", 0, DateTime.Now.AddSeconds(10).Ticks, 3, Ac1);
+            Wlst.Cr.Coreb .AsyncTask.Qtz.AddQtz("fff", 0, DateTime.Now.AddSeconds(10).Ticks, 3, Ac1);
 
-            Wlst.Cr.Coreb.AsyncTask.Qtz.MySelf.AddQtz("fff", 0, DateTime.Now.AddSeconds(10).Ticks, 2, Ac2);
+            Wlst.Cr.Coreb.AsyncTask.Qtz.AddQtz("fff", 0, DateTime.Now.AddSeconds(10).Ticks, 2, Ac2);
 
         }
 

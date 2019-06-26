@@ -26,8 +26,8 @@ namespace Wlst.Ux.MenuNewDraw.MenuViewx
     /// MenuViewDraw.xaml 的交互逻辑
     /// </summary>
  
-    [ViewExport(AttachNow = true, ID = Services.ViewIdAssign.MenuViewId,
-   AttachRegion = Services.ViewIdAssign.MenuViewAttachRegion)]
+    [ViewExport(  Services.ViewIdAssign.MenuViewId,
+     Services.ViewIdAssign.MenuViewAttachRegion,true )]
     [PartCreationPolicy(CreationPolicy.Shared)]
     public partial class MenuViewDraw : UserControl
     {
@@ -53,7 +53,7 @@ namespace Wlst.Ux.MenuNewDraw.MenuViewx
             Ribbon.Items.Clear();
             foreach (var f in fff)
             {
-                if (f.Items.Count > 0)
+                if (f.CmItems.Count > 0)
                 {
                     MenuItem rt = new MenuItem();
                     rt.Header = f.Text;
@@ -99,11 +99,11 @@ namespace Wlst.Ux.MenuNewDraw.MenuViewx
         {
             var rtn = new List<Cr.CoreOne.CoreInterface.IIMenuItem>();
 
-            if (data.Items.Count > 0)
+            if (data.CmItems.Count > 0)
             {
-                foreach (var f in data.Items)
+                foreach (var f in data.CmItems)
                 {
-                    if (f.Items.Count > 0) rtn.AddRange(AddItems(f));
+                    if (f.CmItems.Count > 0) rtn.AddRange(AddItems(f));
                     else rtn.Add(f);
                 }
 
@@ -182,14 +182,14 @@ namespace Wlst.Ux.MenuNewDraw.MenuViewx
                         }
                     }
                 }
-                if (args.EventId == Wlst.Sr.PrivilegesCrl.Services.EventIdAssign.RequestOrUpdateUserPrivilegInfoId)
-                {
-                    return true;
-                }
-                if (args.EventId == Wlst.Sr.PrivilegesCrl.Services.EventIdAssign.ModflyUserInfomationId)
-                {
-                    return true;
-                }
+                //if (args.EventId == Wlst.Sr.PrivilegesCrl.Services.EventIdAssign.RequestOrUpdateUserPrivilegInfoId)
+                //{
+                //    return true;
+                //}
+                //if (args.EventId == Wlst.Sr.PrivilegesCrl.Services.EventIdAssign.ModflyUserInfomationId)
+                //{
+                //    return true;
+                //}
             }
             return false;
         }

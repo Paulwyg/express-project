@@ -63,7 +63,7 @@ namespace Wlst.Cr.CoreMims
                     }
                 }
             }
-            Coreb.Servers .QtzLp .AddQtz("nu", 8888, DateTime.Now.AddHours(1).Ticks, 60 * 60, EmptyApp);
+            Wlst.Cr.Coreb.AsyncTask.Qtz.AddQtz("nu", 8888, DateTime.Now.AddHours(1).Ticks, 60 * 60, EmptyApp);
 
         }
 

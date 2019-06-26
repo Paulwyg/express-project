@@ -319,7 +319,7 @@ namespace Wlst.Ux.Nr6005Module.ZDataQuery.ElectricityQuery.ViewModel
             _isAns = false;
             Remind = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "  正在读取实时电能...";
 
-            Wlst.Cr.Coreb.Servers.QtzLp.AddQtz("null", 8888, DateTime.Now.Ticks + 5 * 10000000,100, ShowMeasureFail, DateTime.Now.Ticks,0);
+            Wlst.Cr.Coreb.AsyncTask .Qtz .AddQtz("null", 8888, DateTime.Now.Ticks + 5 * 10000000,100, ShowMeasureFail, DateTime.Now.Ticks,0);
 
         }
 

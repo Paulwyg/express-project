@@ -10,10 +10,7 @@ namespace Wlst.Ux.CoreDataEventMonitor.EventMonitorViewModel.Views
     /// <summary>
     /// EventMonitorView.xaml 的交互逻辑
     /// </summary>
-    [ViewExport(
-        AttachNow = true ,
-        AttachRegion = DocumentRegionName.DocumentRegion,
-        ID = ViewIdAssign.EventMonitorViewId)]
+    [ViewExport(ViewIdAssign.EventMonitorViewId, DocumentRegionName.DocumentRegion,true)]
     [PartCreationPolicy(CreationPolicy.Shared)]
     public partial class EventMonitorView : UserControl
     {

@@ -36,7 +36,7 @@ namespace Wlst.Ux.StateBarModule.NewMsgViewBottom
             IsStateBarShowRemark = Wlst.Cr.CoreOne.Services.OptionXmlSvr.GetOptionBool(2801, 19, false);
 
 
-            Wlst.Cr.Coreb.Servers .QtzLp .AddQtz("none", 8888, DateTime.Now.Ticks + 5000, 1, Updatetime);
+            Wlst.Cr.Coreb.AsyncTask  .Qtz  .AddQtz("none", 8888, DateTime.Now.Ticks + 5000, 1, Updatetime);
         }
 
         private bool FundOrderFilter(PublishEventArgs args)

@@ -1744,7 +1744,7 @@ namespace Wlst.Ux.MapGisCopyService.MapGis.View
             }
             catch(Exception ex)
             {
-                Cr.Coreb.UtilityFunction.WriteSystemLog.WriteSystemLogError("Error: "+ex);
+                Cr.Coreb.Servers .WriteLog.WriteLogError( "Error: "+ex);
             }
 
         }

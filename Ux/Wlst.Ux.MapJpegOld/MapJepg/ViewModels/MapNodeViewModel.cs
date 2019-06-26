@@ -10,7 +10,7 @@ using Wlst.Cr.Core.CoreInterface;
 using Wlst.Cr.Core.CoreServices;
 using Wlst.Cr.Core.EventHandlerHelper;
 using Wlst.Cr.CoreOne.CoreInterface;
-using Wlst.Cr.WjEquipmentBaseModels.Interface;
+ 
 using Wlst.Sr.EquipmentInfoHolding.Services;
 using Wlst.Sr.Menu.Services;
 

@@ -8,8 +8,7 @@ namespace Wlst.Ux.Menu.Views
     /// <summary>
     /// MenuView.xaml 的交互逻辑
     /// </summary>
-    [ViewExport(AttachNow = true, ID = Services .ViewIdAssign .MenuViewId ,
-        AttachRegion = Services .ViewIdAssign .MenuViewAttachRegion )]
+    [ViewExport(  Services .ViewIdAssign .MenuViewId ,  Services .ViewIdAssign .MenuViewAttachRegion,true  )]
     [PartCreationPolicy(CreationPolicy.Shared)]
     public partial class MenuView : UserControl
     {

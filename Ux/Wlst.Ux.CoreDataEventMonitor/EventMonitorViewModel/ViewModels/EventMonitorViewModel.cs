@@ -5,9 +5,10 @@ using System.Reflection;
 using System.Windows.Input;
 using Microsoft.Practices.Prism.MefExtensions.Event;
 using Microsoft.Practices.Prism.MefExtensions.Event.EventHelper;
-using Wlst.Cr.Core.Commands;
+ 
 using Wlst.Cr.Core.CoreServices;
 using Wlst.Cr.Core.UtilityFunction;
+using Wlst.Cr.CoreMims.Commands;
 using Wlst.Ux.CoreDataEventMonitor.EventMonitorViewModel.Services;
 
 namespace Wlst.Ux.CoreDataEventMonitor.EventMonitorViewModel.ViewModels
@@ -73,7 +74,10 @@ namespace Wlst.Ux.CoreDataEventMonitor.EventMonitorViewModel.ViewModels
 
 
         #region IITab
-
+        public int  Index
+        {
+            get { return  0; }
+        }
         /// <summary>
         /// 当显示在主界面的tab页面时 显示的title
         /// </summary>

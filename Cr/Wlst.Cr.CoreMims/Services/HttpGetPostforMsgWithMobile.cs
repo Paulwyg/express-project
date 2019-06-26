@@ -37,7 +37,7 @@ namespace Wlst.Cr.CoreMims
                 }
                 catch (Exception ex)
                 {
-                    Wlst.Cr.Coreb.Servers.WriteLog.WriteError(ex.ToString());
+                    Wlst.Cr.Coreb.Servers.WriteLog.WriteLogError(ex.ToString());
                 }
             
 
@@ -62,7 +62,7 @@ namespace Wlst.Cr.CoreMims
             }
             catch (Exception ex)
             {
-                Wlst.Cr.Coreb.Servers.WriteLog.WriteError(ex.ToString());
+                Wlst.Cr.Coreb.Servers.WriteLog.WriteLogError(ex.ToString());
             }
 
 
@@ -91,7 +91,7 @@ namespace Wlst.Cr.CoreMims
                 }
                 catch (Exception ex)
                 {
-                    Wlst.Cr.Coreb.Servers.WriteLog.WriteError(ex.ToString());
+                    Wlst.Cr.Coreb.Servers.WriteLog.WriteLogError(ex.ToString());
                 }
             }
 

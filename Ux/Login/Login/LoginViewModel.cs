@@ -89,7 +89,7 @@ namespace Login.Login
                 }
             }
             Wlst.Cr.CoreMims.Services.KeepAliveSocket.Myself.SndClientBeatTime = 55;
-            Wlst.Cr.Coreb.AsyncTask.Qtz.MySelf.AddQtz(
+            Wlst.Cr.Coreb.AsyncTask.Qtz.AddQtz(
                 "ff", 0, DateTime.Now.AddSeconds( 1).Ticks, _pingjg , Ping);
           //  Wlst.Cr.CoreMims.Services.KeepAliveSocket.Myself.StartHeatBeat();
 
@@ -135,7 +135,7 @@ namespace Login.Login
         private bool _islogin = false;
         private bool _isCanPing = false;
       //  private int xpingcount = 100;
-    private void Ping(object obj)
+    private  void Ping(object obj)
     {
 
         if (_isCanPing == false) return;

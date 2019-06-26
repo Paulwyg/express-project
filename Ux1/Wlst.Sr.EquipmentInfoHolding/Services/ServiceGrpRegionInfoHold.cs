@@ -664,7 +664,7 @@ namespace Wlst.Sr.EquipmentInfoHolding.Services
         public void RequestHttpRtuRegion()
         {
             //每5分钟 请求一次终端信息
-            Wlst.Cr.Coreb.Servers.QtzLp.AddQtz("null", 8888, DateTime.Now.Ticks + 20000000,300, RequestHttpRtuRegionInfo);
+            Wlst.Cr.Coreb.AsyncTask .Qtz .AddQtz("null", 8888, DateTime.Now.Ticks + 20000000,300, RequestHttpRtuRegionInfo);
 
         }
 

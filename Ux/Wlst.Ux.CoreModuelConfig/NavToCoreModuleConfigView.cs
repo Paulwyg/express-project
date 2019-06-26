@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.Composition;
 using Wlst.Cr.Core.CoreInterface;
 using Wlst.Cr.Core.CoreServices;
-using Wlst.Cr.CoreOne.Commands;
+using Wlst.Cr.CoreMims.Commands;
 using Wlst.Cr.CoreOne.CoreInterface;
 using Wlst.Cr.CoreOne.Models;
 
@@ -29,8 +29,9 @@ namespace Wlst.Ux.CoreModuelConfig
 
         protected void Ex()
         {
-            this.ExNavNoArgs(DocumentRegionName.DocumentRegion,
-                             Services.ViewIdAssign.CoreModuleConfigViewId);
+            this.ExNavNoArgs( Services.ViewIdAssign.CoreModuleConfigViewId);
+
+           
         }
 
     }

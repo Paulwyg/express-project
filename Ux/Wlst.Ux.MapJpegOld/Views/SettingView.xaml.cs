@@ -8,10 +8,7 @@ namespace Wlst.Ux.RadMapJpeg.Views
     /// <summary>
     /// SettingView.xaml 的交互逻辑
     /// </summary>
-    [ViewExport(
-        AttachNow = false,
-        AttachRegion = RadMapJpeg .Services .ViewIdAssign .SettingViewAttachRegion ,
-        ID = RadMapJpeg .Services .ViewIdAssign .SettingViewId )]
+    [ViewExport(  RadMapJpeg .Services .ViewIdAssign .SettingViewId ,RadMapJpeg .Services .ViewIdAssign .SettingViewAttachRegion ,false )]
     [PartCreationPolicy(CreationPolicy.Shared)]
     public partial class SettingView : UserControl
     {

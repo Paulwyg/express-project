@@ -42,7 +42,7 @@ namespace Wlst.Ux.StateBarModule.TopData.ViewModel
                 LightOffOffSet = 0;
             }
 
-            Wlst.Cr.Coreb.Servers.QtzLp.AddQtz("null", 8888, DateTime.Now.Ticks, 1, UpdateTime);
+            Wlst.Cr.Coreb.AsyncTask .Qtz .AddQtz("null", 8888, DateTime.Now.Ticks, 1, UpdateTime);
         }
 
         private bool Is1080ShowTopRight = false;

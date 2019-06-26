@@ -1,0 +1,149 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{8177CB6E-C113-450A-A730-B3B199DF07BD}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Wlst.Cr.Core</RootNamespace>
+    <AssemblyName>Wlst.Cr.Core</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\Rr\Binaries\WPF\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>Wlst.Cr.Core.XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\Rr\Binaries\WPF\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\Wlst.Cr.Core.xml</DocumentationFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="log4net, Version=1.2.11.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DLL\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Prism, Version=4.1.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\Cetc50Debug\Microsoft.Practices.Prism.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Prism.Interactivity, Version=4.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\Cetc50Debug\Microsoft.Practices.Prism.Interactivity.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Prism.MefExtensions, Version=4.1.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\Cetc50Debug\Microsoft.Practices.Prism.MefExtensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\Cetc50Debug\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.SQLite, Version=1.0.80.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DLL\System.Data.SQLite.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DLL\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowForWlst, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Rr\Binaries\WPF\WindowForWlst.dll</HintPath>
+    </Reference>
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Behavior\AutoPopulateExportedViewsBehaviorThread.cs" />
+    <Compile Include="Behavior\AutoPopulateExportedViewsBehavior.cs" />
+    <Compile Include="Behavior\ViewExportAttribute.cs" />
+    <Compile Include="CommandCore\DemoCommands.cs" />
+    <Compile Include="CommandCore\RelayCommand.cs" />
+    <Compile Include="CoreInterface\IINavInitBeforShow.cs" />
+    <Compile Include="CoreInterface\IIOnHideOrClose.cs" />
+    <Compile Include="CoreServices\AsynObservableCollectionAdd.cs" />
+    <Compile Include="CoreServices\RegionManageExtend.cs" />
+    <Compile Include="CoreServices\SystemOption.cs" />
+    <Compile Include="EventHandlerHelper\EventHandlerHelper.cs" />
+    <Compile Include="EventHandlerHelper\EventHandlerHelperExtendNotifyProperyChanged.cs" />
+    <Compile Include="CrCore.cs" />
+    <Compile Include="CoreInterface\IIViewExport.cs" />
+    <Compile Include="ComponentHold\ViewComponentHolding.cs" />
+    <Compile Include="CoreInterface\IINavOnLoad.cs" />
+    <Compile Include="CoreInterface\IITab.cs" />
+    <Compile Include="ModuleServices\Modularity\AssemblyConfig.cs" />
+    <Compile Include="ModuleServices\Modularity\AssemblyInfo.cs" />
+    <Compile Include="ModuleServices\Modularity\IIModuleItemInfo.cs" />
+    <Compile Include="ModuleServices\Modularity\IIModuleItemsCatalog.cs" />
+    <Compile Include="ModuleServices\Modularity\ModuleDependencySolver.cs" />
+    <Compile Include="ModuleServices\Modularity\ModuleItemsCatalog.cs" />
+    <Compile Include="ModuleServices\Modularity\ModuleItemInfo.cs" />
+    <Compile Include="ModuleServices\Modularity\ModulesInfo.cs" />
+    <Compile Include="ModuleServices\DelayEvent.cs" />
+    <Compile Include="ModuleServices\ModuleAssemblyEvent.cs" />
+    <Compile Include="ModuleServices\ModuleManage.cs" />
+    <Compile Include="CoreServices\ObservableObject.cs" />
+    <Compile Include="EventHandlerHelper\PublishEventType.cs" />
+    <Compile Include="CoreServices\RegionManage.cs" />
+    <Compile Include="CoreServices\DocumentRegionName.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SqlLite\IISQLite.cs" />
+    <Compile Include="SqlLite\SQLite.cs" />
+    <Compile Include="SqlLite\SQLiteInstanceHelper.cs" />
+    <Compile Include="UtilityFunction\OptionXmlSvr.cs" />
+    <Compile Include="UtilityFunction\SystemXmlConfig.cs" />
+    <Compile Include="UtilityFunction\TriggerEvent.cs" />
+    <Compile Include="Config\ConfigFilePath.cs" />
+    <Compile Include="UtilityFunction\SqlLiteHelper.cs" />
+    <Compile Include="UtilityFunction\UiHelper.cs" />
+    <Compile Include="UtilityFunction\WriteLog.cs" />
+    <Compile Include="WindowsShowHelper\ControlWinBase.cs" />
+    <Compile Include="WindowsShowHelper\ControlWinBaseWithEventHandlerHelper.cs" />
+    <Compile Include="WindowsShowHelper\IINavOnWindow.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Wlst.Cr.Coreb\Wlst.Cr.Coreb.csproj">
+      <Project>{CC9DADF4-4BBE-4231-954A-01D507B58BB9}</Project>
+      <Name>Wlst.Cr.Coreb</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

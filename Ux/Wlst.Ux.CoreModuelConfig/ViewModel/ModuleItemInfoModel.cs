@@ -1,7 +1,8 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Windows.Input;
-using Wlst.Cr.CoreOne.Commands;
+using Wlst.Cr.CoreMims.Commands;
+ 
 
 namespace Wlst.Ux.CoreModuelConfig.ViewModel
 {

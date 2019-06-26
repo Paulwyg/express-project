@@ -15,8 +15,7 @@ namespace Wlst.Ux.RadMapJpeg.Views
      //<summary>
      //MapJpegView.xaml 的交互逻辑
      //</summary>
-    [ViewExport(AttachNow = true, ID = RadMapJpeg .Services .ViewIdAssign .MapJpegViewId ,
-        AttachRegion = RadMapJpeg .Services .ViewIdAssign .MapJpegViewAttachRegion )]
+    [ViewExport(  RadMapJpeg .Services .ViewIdAssign .MapJpegViewId , RadMapJpeg .Services .ViewIdAssign .MapJpegViewAttachRegion,true  )]
     [PartCreationPolicy(CreationPolicy.Shared)]
     public partial class MapJpegView :UserControl
     {

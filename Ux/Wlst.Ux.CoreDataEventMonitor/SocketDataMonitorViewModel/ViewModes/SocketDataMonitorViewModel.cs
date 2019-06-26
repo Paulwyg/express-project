@@ -5,9 +5,10 @@ using System.Reflection;
 using System.Windows.Input;
 using Microsoft.Practices.Prism.MefExtensions.Event;
 using Microsoft.Practices.Prism.MefExtensions.Event.EventHelper;
-using Wlst.Cr.Core.Commands;
+ 
 using Wlst.Cr.Core.CoreServices;
 using Wlst.Cr.Core.UtilityFunction;
+using Wlst.Cr.CoreMims.Commands;
 using Wlst.Ux.CoreDataEventMonitor.SocketDataMonitorViewModel.Services;
 
 namespace Wlst.Ux.CoreDataEventMonitor.SocketDataMonitorViewModel.ViewModes
@@ -30,38 +31,38 @@ namespace Wlst.Ux.CoreDataEventMonitor.SocketDataMonitorViewModel.ViewModes
             //事件记录、标记、日志、提示等
             try
             {
-                if (args.EventType == EventTypeAssign.SocketServerRcvDataOri)
-                {
-                    this.AddItems(new ItemInfo() {SocketDataType = "Rcv Ori", Data = args.GetParams()[0].ToString()});
-                }
-                else if (args.EventType == EventTypeAssign.SocketServerSndDataOri)
-                {
-                    this.AddItems(new ItemInfo() {SocketDataType = "Snd Ori", Data = args.GetParams()[0].ToString()});
-                }
-                else if (args.EventType == EventTypeAssign.SocketServerSndDataProtocol )
-                {
-                    this.AddItems(new ItemInfo()
-                                      {
-                                          SocketDataType = "Snd Pcl",
-                                          Id = args.GetParams()[0].ToString(),
-                                          Guid = args.GetParams()[1].ToString(),
-                                          Cmd = args.GetParams()[2].ToString(),
-                                          OtherArug = args.GetParams()[3].ToString(),
-                                          Data = args.GetParams()[4].ToString()
-                                      });
-                }
-                else if (args.EventType == EventTypeAssign.SocketServerRcvDataProtocol)
-                {
-                    this.AddItems(new ItemInfo()
-                                      {
-                                          SocketDataType = "Rcv Pcl",
-                                          Id = args.GetParams()[0].ToString(),
-                                          Guid = args.GetParams()[1].ToString(),
-                                          Cmd = args.GetParams()[2].ToString(),
-                                          OtherArug = args.GetParams()[3].ToString(),
-                                          Data = args.GetParams()[4].ToString()
-                                      });
-                }
+                //if (args.EventType == EventTypeAssign.SocketServerRcvDataOri)
+                //{
+                //    this.AddItems(new ItemInfo() {SocketDataType = "Rcv Ori", Data = args.GetParams()[0].ToString()});
+                //}
+                //else if (args.EventType == EventTypeAssign.SocketServerSndDataOri)
+                //{
+                //    this.AddItems(new ItemInfo() {SocketDataType = "Snd Ori", Data = args.GetParams()[0].ToString()});
+                //}
+                //else if (args.EventType == EventTypeAssign.SocketServerSndDataProtocol )
+                //{
+                //    this.AddItems(new ItemInfo()
+                //                      {
+                //                          SocketDataType = "Snd Pcl",
+                //                          Id = args.GetParams()[0].ToString(),
+                //                          Guid = args.GetParams()[1].ToString(),
+                //                          Cmd = args.GetParams()[2].ToString(),
+                //                          OtherArug = args.GetParams()[3].ToString(),
+                //                          Data = args.GetParams()[4].ToString()
+                //                      });
+                //}
+                //else if (args.EventType == EventTypeAssign.SocketServerRcvDataProtocol)
+                //{
+                //    this.AddItems(new ItemInfo()
+                //                      {
+                //                          SocketDataType = "Rcv Pcl",
+                //                          Id = args.GetParams()[0].ToString(),
+                //                          Guid = args.GetParams()[1].ToString(),
+                //                          Cmd = args.GetParams()[2].ToString(),
+                //                          OtherArug = args.GetParams()[3].ToString(),
+                //                          Data = args.GetParams()[4].ToString()
+                //                      });
+                //}
 
             }
             catch (Exception ex)
@@ -85,22 +86,22 @@ namespace Wlst.Ux.CoreDataEventMonitor.SocketDataMonitorViewModel.ViewModes
             // TerminalInformation 
             if (_bolMonitor)
             {
-                if (args.EventType == EventTypeAssign.SocketServerRcvDataOri)
-                {
-                    return true;
-                }
-                else if (args.EventType == EventTypeAssign.SocketServerSndDataOri)
-                {
-                    return true;
-                }
-                else if (args.EventType == EventTypeAssign.SocketServerRcvDataProtocol)
-                {
-                    return true;
-                }
-                else if (args.EventType == EventTypeAssign.SocketServerSndDataProtocol  )
-                {
-                    return true;
-                }
+                //if (args.EventType == EventTypeAssign.SocketServerRcvDataOri)
+                //{
+                //    return true;
+                //}
+                //else if (args.EventType == EventTypeAssign.SocketServerSndDataOri)
+                //{
+                //    return true;
+                //}
+                //else if (args.EventType == EventTypeAssign.SocketServerRcvDataProtocol)
+                //{
+                //    return true;
+                //}
+                //else if (args.EventType == EventTypeAssign.SocketServerSndDataProtocol  )
+                //{
+                //    return true;
+                //}
                 return false;
             }
             return false;
@@ -111,7 +112,10 @@ namespace Wlst.Ux.CoreDataEventMonitor.SocketDataMonitorViewModel.ViewModes
 
 
         #region IITab
-
+        public int Index
+        {
+            get { return 0; }
+        }
         /// <summary>
         /// 当显示在主界面的tab页面时 显示的title
         /// </summary>
@@ -198,7 +202,7 @@ namespace Wlst.Ux.CoreDataEventMonitor.SocketDataMonitorViewModel.ViewModes
         {
             _bolMonitor = !_bolMonitor;
             Items.Clear();
-            EventTypeAssign.MonitorSocketData = _bolMonitor;
+           // EventTypeAssign.MonitorSocketData = _bolMonitor;
             this.RaisePropertyChanged(() => this.CmdName);
         }
 

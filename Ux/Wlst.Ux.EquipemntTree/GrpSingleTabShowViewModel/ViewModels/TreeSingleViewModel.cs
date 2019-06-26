@@ -85,7 +85,7 @@ namespace Wlst.Ux.EquipemntTree.GrpSingleTabShowViewModel.ViewModels
             this.IsFastControl = Wlst.Cr.CoreOne.Services.OptionXmlSvr.GetOptionBool(4001, 5, false);
 
 
-            //Wlst.Cr.Coreb.Servers.QtzLp.AddQtz("null", 8888, DateTime.Now.Ticks,  ExSearchNode,10);
+    
         }
 
         public int timer_count = 0;

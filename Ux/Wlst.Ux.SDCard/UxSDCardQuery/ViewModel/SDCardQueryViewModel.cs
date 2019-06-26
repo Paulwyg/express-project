@@ -10,11 +10,10 @@ using Wlst.Cr.Core.UtilityFunction;
 using Wlst.Cr.CoreMims.Commands;
 using Wlst.Cr.CoreMims.Services;
 using Wlst.Cr.CoreOne.Models;
-using Wlst.Cr.Coreb.EventHelper;
-using Wlst.Cr.Coreb.Servers;
 using Wlst.Ux.SDCard.UxSDCardQuery.Services;
 using Wlst.Ux.WJ3005Module.ZDataQuery.DailyDataQuery.ViewModel;
 using Wlst.client;
+using Wlst.Cr.Coreb.Servers;
 
 namespace Wlst.Ux.SDCard.UxSDCardQuery.ViewModel
 {
@@ -358,7 +357,7 @@ namespace Wlst.Ux.SDCard.UxSDCardQuery.ViewModel
                             _currentSelectRecord.DataInfo.RtuId]
                         as Wlst.Sr.EquipmentInfoHolding.Model.Wj3005Rtu;
 
-                    var args = new PublishEventArgs
+                    var args = new Wlst.Cr.Coreb.EventHelper.PublishEventArgs
                     {
                         EventType = PublishEventType.Core,
                         EventId =
@@ -368,7 +367,7 @@ namespace Wlst.Ux.SDCard.UxSDCardQuery.ViewModel
                     args.AddParams(_currentSelectRecord.DataInfo);
                     EventPublish.PublishEvent(args);
 
-                    EventPublish.PublishEvent(new PublishEventArgs() { EventType = "MainWindow.Measure.show" });
+                    EventPublish.PublishEvent(new Wlst.Cr.Coreb.EventHelper.PublishEventArgs() { EventType = "MainWindow.Measure.show" });
                 }
             }
         }
@@ -404,7 +403,7 @@ namespace Wlst.Ux.SDCard.UxSDCardQuery.ViewModel
                                     PublishEventType.Core);
         }
 
-        public override void ExPublishedEvent(PublishEventArgs args)
+        public override void ExPublishedEvent( Wlst .Cr .Coreb .EventHelper . PublishEventArgs args)
         {
 
             if (_thisViewActive == false) return;

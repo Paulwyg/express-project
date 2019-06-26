@@ -16,7 +16,7 @@ namespace Wlst.Cr.Coreb.AsyncTask
         private static volatile Qtz _instance = null;
         private static readonly object LockHelper = new object();
 
-        private static Qtz MySelf
+        private static Qtz _mySelf
         {
             get
             {
@@ -78,7 +78,7 @@ namespace Wlst.Cr.Coreb.AsyncTask
         public static void AddQtz( string taskName,int portInf, long firstExecutetime, int intervalSeconds, Action<object> function,
                                   object functionArgu = null, int repecttimes = -1, Action<object> funOnTaskOverExecuted = null, Func<object, string, bool> canExecute = null,bool runInUithread=false )
         {
-            MySelf.Items.Enqueue(new QtzItem(portInf, taskName, firstExecutetime, intervalSeconds * 10000000L, function,
+            _mySelf.Items.Enqueue(new QtzItem(portInf, taskName, firstExecutetime, intervalSeconds * 10000000L, function,
                                              functionArgu,
                                              repecttimes,funOnTaskOverExecuted, canExecute,runInUithread));
 
@@ -102,7 +102,7 @@ namespace Wlst.Cr.Coreb.AsyncTask
         public static void AddQtz( string taskName,int portInf, long firstExecutetime, Action<object> function, long intervalmillisecondes,
                                   object functionArgu = null, int repecttimes = -1, Action<object> funOnTaskOverExecuted = null, Func<object, string, bool> canExecute = null, bool runInUithread = false)
         {
-            MySelf.Items.Enqueue(new QtzItem(portInf, taskName, firstExecutetime, intervalmillisecondes * 10000, function,
+            _mySelf.Items.Enqueue(new QtzItem(portInf, taskName, firstExecutetime, intervalmillisecondes * 10000, function,
                                              functionArgu,
                                              repecttimes,funOnTaskOverExecuted, canExecute,runInUithread));
 

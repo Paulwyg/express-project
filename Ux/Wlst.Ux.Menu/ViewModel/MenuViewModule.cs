@@ -51,7 +51,7 @@ namespace Wlst.Ux.Menu.ViewModel
 
         protected void Helpcmmm(ObservableCollection<IIMenuItem> t)
         {
-            var fs = MenuBuilding.HelpCmm(t,true );
+            var fs = MenuBuilding.HelpCmm(t );
             Items.Clear();
             foreach (var g in fs)
             {
@@ -128,14 +128,14 @@ namespace Wlst.Ux.Menu.ViewModel
                         }
                     }
                 }
-                if (args.EventId == Wlst.Sr.PrivilegesCrl.Services.EventIdAssign.RequestOrUpdateUserPrivilegInfoId)
-                {
-                    return true;
-                }
-                if (args.EventId == Wlst.Sr.PrivilegesCrl.Services.EventIdAssign.ModflyUserInfomationId)
-                {
-                    return true;
-                }
+                //if (args.EventId == Wlst.Sr.PrivilegesCrl.Services.EventIdAssign.RequestOrUpdateUserPrivilegInfoId)
+                //{
+                //    return true;
+                //}
+                //if (args.EventId == Wlst.Sr.PrivilegesCrl.Services.EventIdAssign.ModflyUserInfomationId)
+                //{
+                //    return true;
+                //}
             }
             return false;
         }

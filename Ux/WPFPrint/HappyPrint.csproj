@@ -60,7 +60,7 @@
     <Reference Include="System.Xml" />
     <Reference Include="WindowsBase" />
     <Reference Include="Xceed.Wpf.Toolkit">
-      <HintPath>..\Lib\Xceed.Wpf.Toolkit.dll</HintPath>
+      <HintPath>..\..\Rr\Binaries\WPF\Xceed.Wpf.Toolkit.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

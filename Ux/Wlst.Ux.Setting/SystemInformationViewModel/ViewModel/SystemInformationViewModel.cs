@@ -22,7 +22,7 @@ namespace Wlst.Ux.Setting.SystemInformationViewModel.ViewModel
              this.InitAction();
              ClientTime = DateTime.Now;
              MiddleTime = DateTime.Now.AddDays(1);
-             Wlst.Cr.Coreb.Servers.QtzLp.AddQtz("none", 8888, DateTime.Now.Ticks + 5000, 1, Updatetime);
+             Wlst.Cr.Coreb.AsyncTask .Qtz .AddQtz("none", 8888, DateTime.Now.Ticks + 5000, 1, Updatetime);
          }
 
          public void NavOnLoad(params object[] parsObjects)

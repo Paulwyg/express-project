@@ -2725,7 +2725,7 @@ namespace Wlst.Ux.Wj2090Module.Wj2090InfoSet.ViewModel
                 ShowSndInfo3 = "";
                 ShowSndInfo4 = "";
 
-                Wlst.Cr.Coreb.Servers.QtzLp.AddQtz("nuu", 8888, DateTime.Now.Ticks + 10000000, 0, ExSnd, null, 1);
+                Wlst.Cr.Coreb.AsyncTask .Qtz .AddQtz("nuu", 8888, DateTime.Now.Ticks + 10000000, 0, ExSnd, null, 1);
             }
             else
             {

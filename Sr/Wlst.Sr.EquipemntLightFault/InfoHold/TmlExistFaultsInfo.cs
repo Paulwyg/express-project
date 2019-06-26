@@ -47,7 +47,7 @@ namespace Wlst.Sr.EquipemntLightFault.InfoHold
             Wlst.Cr.Core.ModuleServices.DelayEvent.RegisterDelayEvent(RequestTmlExistFaultsInfo, 4,
                                                                       DelayEventHappen.EventOne);
             //每半小时  请求最新故障
-            Wlst.Cr.Coreb.Servers.QtzLp.AddQtz("null", 8888, DateTime.Now.Ticks+1800,1800, RequestTmlExistFaultsInfos);
+            Wlst.Cr.Coreb.AsyncTask.Qtz.AddQtz("null", 8888, DateTime.Now.Ticks+1800,1800, RequestTmlExistFaultsInfos);
         }
         private void RequestTmlExistFaultsInfos(object obj)
         {

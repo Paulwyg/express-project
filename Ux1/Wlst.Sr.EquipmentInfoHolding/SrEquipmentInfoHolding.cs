@@ -42,7 +42,7 @@ namespace Wlst.Sr.EquipmentInfoHolding
             if (x == 1)
             {
                 Wlst.Cr.PPProtocolSvrCnt.Server.ProtocolServer.InitDebugTest = true;
-                Wlst.Cr.Coreb.EventHelper.EventPublisher.InitDebugTest = true;
+               // Wlst.Cr.Coreb.EventHelper.EventPublisher.InitDebugTest = true;
             }
             //x = Wlst.Cr.Core.CoreServices.SystemOption.GetOption(3);
             //if (x == 1)

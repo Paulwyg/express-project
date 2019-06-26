@@ -4,41 +4,25 @@
         <name>Telerik.Windows.Controls.Override</name>
     </assembly>
     <members>
-        <member name="T:Telerik.Windows.Controls.Override.RadPaneWithTabControl.RelayCommandtmp">
+        <member name="T:Telerik.Windows.Controls.Override.RadPaneGroupWithRadSplitContainer.RadSplitContainerOverride">
             <summary>
-            A command whose sole purpose is to relay its functionality to other objects by invoking delegates. The default return value for the CanExecute method is 'true'.
+            RadSplitContainerOverride.xaml 的交互逻辑
+            </summary>
+            <summary>
+            RadSplitContainerOverride
             </summary>
         </member>
-        <member name="M:Telerik.Windows.Controls.Override.RadPaneWithTabControl.RelayCommandtmp.#ctor(System.Action)">
+        <member name="E:Telerik.Windows.Controls.Override.RadPaneGroupWithRadSplitContainer.RadSplitContainerOverride.OnItemsChangeded">
             <summary>
-            Initializes a new instance of the <see cref="!:RelayCommand&lt;T&gt;"/> class and the command can always be executed.
-            </summary>
-            <param name="execute">The execution logic.</param>
-        </member>
-        <member name="M:Telerik.Windows.Controls.Override.RadPaneWithTabControl.RelayCommandtmp.#ctor(System.Action,System.Func{System.Boolean})">
-            <summary>
-            Initializes a new instance of the <see cref="!:RelayCommand&lt;T&gt;"/> class.
-            </summary>
-            <param name="execute">The execution logic.</param>
-            <param name="canExecute">The execution status logic.</param>
-        </member>
-        <member name="T:Telerik.Windows.Controls.Override.RadPaneWithTabControl.RadPaneWithTabControl">
-            <summary>
-            RadPaneWithTabControl.xaml 的交互逻辑
-            </summary>
-            <summary>
-            RadPaneWithTabControl
+            当内容发生变化的时候呈现
             </summary>
         </member>
-        <member name="M:Telerik.Windows.Controls.Override.RadPaneWithTabControl.RadPaneWithTabControl.GetVisualAncestor(System.Windows.DependencyObject,System.Type)">
+        <member name="P:Telerik.Windows.Controls.Override.RadPaneGroupWithRadSplitContainer.RadSplitContainerOverride.RadPaneGroupOverride">
             <summary>
-            获取指定DependencyObject对象的满足类型为type的父类  搜索到第一个满足条件时  返回
+            RadPaneGroup
             </summary>
-            <param name="d">指定DependencyObject对象</param>
-            <param name="type">目标类型</param>
-            <returns>指定DependencyObject对象的满足类型为type的第一个父类</returns>
         </member>
-        <member name="M:Telerik.Windows.Controls.Override.RadPaneWithTabControl.RadPaneWithTabControl.InitializeComponent">
+        <member name="M:Telerik.Windows.Controls.Override.RadPaneGroupWithRadSplitContainer.RadSplitContainerOverride.InitializeComponent">
             <summary>
             InitializeComponent
             </summary>
@@ -63,28 +47,44 @@
             Button边框厚度
             </summary>
         </member>
-        <member name="T:Telerik.Windows.Controls.Override.RadPaneGroupWithRadSplitContainer.RadSplitContainerOverride">
+        <member name="T:Telerik.Windows.Controls.Override.RadPaneWithTabControl.RadPaneWithTabControl">
             <summary>
-            RadSplitContainerOverride.xaml 的交互逻辑
+            RadPaneWithTabControl.xaml 的交互逻辑
             </summary>
             <summary>
-            RadSplitContainerOverride
+            RadPaneWithTabControl
             </summary>
         </member>
-        <member name="M:Telerik.Windows.Controls.Override.RadPaneGroupWithRadSplitContainer.RadSplitContainerOverride.InitializeComponent">
+        <member name="M:Telerik.Windows.Controls.Override.RadPaneWithTabControl.RadPaneWithTabControl.GetVisualAncestor(System.Windows.DependencyObject,System.Type)">
+            <summary>
+            获取指定DependencyObject对象的满足类型为type的父类  搜索到第一个满足条件时  返回
+            </summary>
+            <param name="d">指定DependencyObject对象</param>
+            <param name="type">目标类型</param>
+            <returns>指定DependencyObject对象的满足类型为type的第一个父类</returns>
+        </member>
+        <member name="M:Telerik.Windows.Controls.Override.RadPaneWithTabControl.RadPaneWithTabControl.InitializeComponent">
             <summary>
             InitializeComponent
             </summary>
         </member>
-        <member name="E:Telerik.Windows.Controls.Override.RadPaneGroupWithRadSplitContainer.RadSplitContainerOverride.OnItemsChangeded">
+        <member name="T:Telerik.Windows.Controls.Override.RadPaneWithTabControl.RelayCommandtmp">
             <summary>
-            当内容发生变化的时候呈现
+            A command whose sole purpose is to relay its functionality to other objects by invoking delegates. The default return value for the CanExecute method is 'true'.
             </summary>
         </member>
-        <member name="P:Telerik.Windows.Controls.Override.RadPaneGroupWithRadSplitContainer.RadSplitContainerOverride.RadPaneGroupOverride">
+        <member name="M:Telerik.Windows.Controls.Override.RadPaneWithTabControl.RelayCommandtmp.#ctor(System.Action)">
             <summary>
-            RadPaneGroup
+            Initializes a new instance of the <see cref="!:RelayCommand&lt;T&gt;"/> class and the command can always be executed.
             </summary>
+            <param name="execute">The execution logic.</param>
+        </member>
+        <member name="M:Telerik.Windows.Controls.Override.RadPaneWithTabControl.RelayCommandtmp.#ctor(System.Action,System.Func{System.Boolean})">
+            <summary>
+            Initializes a new instance of the <see cref="!:RelayCommand&lt;T&gt;"/> class.
+            </summary>
+            <param name="execute">The execution logic.</param>
+            <param name="canExecute">The execution status logic.</param>
         </member>
         <member name="E:Telerik.Windows.Controls.Override.RadPaneWithTabControl.TabControlOveride.OnItemsChangeded">
             <summary>

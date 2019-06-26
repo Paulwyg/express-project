@@ -10,10 +10,7 @@ namespace Wlst.Ux.CoreDataEventMonitor.SocketDataMonitorViewModel.Views
     /// <summary>
     /// SocketDataMonitorView.xaml 的交互逻辑
     /// </summary>
-    [ViewExport(
-    AttachNow = true ,
-    AttachRegion = DocumentRegionName.DocumentRegion,
-    ID = ViewIdAssign.SocketDataMonitorId)]
+    [ViewExport(ViewIdAssign.SocketDataMonitorId, DocumentRegionName.DocumentRegion,true )]
     [PartCreationPolicy(CreationPolicy.Shared)]
     public partial class SocketDataMonitorView : UserControl
     {

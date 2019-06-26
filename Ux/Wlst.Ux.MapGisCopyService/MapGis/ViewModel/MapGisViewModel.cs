@@ -31,7 +31,7 @@ namespace Wlst.Ux.MapGisCopyService.MapGis.ViewModel
         //private const string XmlConfigName = "MapGis";
         //public MapGisViewModel()
         //{
-            
+
         //    var  info = Wlst.Cr.CoreOne.Services.SystemXmlConfig.Read(XmlConfigName);
         //    foreach (var g in info)
         //    {
@@ -41,14 +41,20 @@ namespace Wlst.Ux.MapGisCopyService.MapGis.ViewModel
         //        }
         //        break;
         //    }
-        
-        
+
+
         //}
 
-        
+
 
         #region tab iinterface
-
+        public int  Index
+        {
+            get
+            {
+                return 0;
+            }
+        }
         public string Title
         {
             get
