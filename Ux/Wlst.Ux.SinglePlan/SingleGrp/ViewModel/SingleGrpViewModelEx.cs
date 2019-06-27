@@ -88,6 +88,7 @@ namespace Wlst.Ux.SinglePlan.SingleGrp.ViewModel
             foreach (var f in SluBref)
             {
                 var rootinfo = LoadNodeGetSluInfo(f);
+                if (rootinfo == null) continue;
                 var lst2 = LoadNode2GetAreaGrpInput(f, rootinfo);
                 rtn.Add(rootinfo);
                 rtn.AddRange(lst2);
@@ -95,7 +96,7 @@ namespace Wlst.Ux.SinglePlan.SingleGrp.ViewModel
             TvcInitNode(rtn);
         }
 
-        private new void TvcInitNode(List<InputInfo> data)
+        private void TvcInitNode(List<InputInfo> data)
         {
 
             Tvc.InitNode(data);

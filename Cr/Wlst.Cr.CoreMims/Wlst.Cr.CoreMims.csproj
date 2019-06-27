@@ -107,6 +107,10 @@
     <Compile Include="CoreInterface\IIEquipmentModel.cs" />
     <Compile Include="DataValidation\RangeDouble.cs" />
     <Compile Include="FileSyncWithSvr\FileSyncWithSvr.cs" />
+    <Compile Include="GoogleBuf\ProtocolParser.cs" />
+    <Compile Include="GoogleBuf\protocol_svr.cs" />
+    <Compile Include="GoogleBuf\protocol_svr.partial.cs" />
+    <Compile Include="GoogleBuf\protocol_svr.Serializer.cs" />
     <Compile Include="NodeServices\IITreeViewMenuItem.cs" />
     <Compile Include="NodeServices\InputInfo.cs" />
     <Compile Include="NodeServices\ObservableObjectInfo.cs" />
@@ -127,6 +131,19 @@
     <Compile Include="TopDataInfo\TopDataInfoServers.cs" />
     <Compile Include="XML\XmlOptionSvr.cs" />
     <Compile Include="XML\XmlReadSave.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="GoogleBuf\20190131广州协议.rar" />
+    <None Include="GoogleBuf\20190220广州协议.rar" />
+    <None Include="GoogleBuf\20190304广州协议.rar" />
+    <None Include="GoogleBuf\lx_iif_svr.proto" />
+    <None Include="GoogleBuf\proto\BS逻辑设计.docx" />
+    <None Include="GoogleBuf\proto\lx_iif.proto" />
+    <None Include="GoogleBuf\proto\proto.rar" />
+    <None Include="GoogleBuf\proto\协议_part.xls" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="GoogleBuf\running\config.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

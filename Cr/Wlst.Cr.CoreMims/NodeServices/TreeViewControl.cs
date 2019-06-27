@@ -137,7 +137,7 @@ namespace Wlst.Cr.CoreMims.NodeServices
 
 
             var root = (from t in data
-                where t.FatherTreeNodeInfo == null && t.FatherInputInfo == null
+                where t!=null && t.FatherTreeNodeInfo == null && t.FatherInputInfo == null
                 orderby t.ZindexN ascending
                 select t).ToList();
 

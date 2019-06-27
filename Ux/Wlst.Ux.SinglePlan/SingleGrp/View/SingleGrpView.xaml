@@ -123,7 +123,7 @@
                         </Style>
                     </TextBox.Style>
                 </TextBox>
-                <CheckBox Grid.Column="1" Margin="10,2,0,2" IsChecked="{Binding Ischecked1}" Content="全选/清" VerticalAlignment="Center"></CheckBox>
+                <CheckBox Grid.Column="1" Margin="60,2,0,2" IsChecked="{Binding Ischecked1}" Content="全选/清" VerticalAlignment="Center"></CheckBox>
                 <CheckBox Grid.Column="2" Margin="10,2,0,2" IsChecked="{Binding Ischecked2}" Content="全选/清" VerticalAlignment="Center"></CheckBox>
                 <CheckBox Grid.Column="3" Margin="10,2,0,2" IsChecked="{Binding Ischecked3}" Content="全选/清" VerticalAlignment="Center"></CheckBox>
                 <CheckBox Grid.Column="4" Margin="10,2,20,2" IsChecked="{Binding Ischecked4}" Content="全选/清" VerticalAlignment="Center"></CheckBox>
@@ -132,7 +132,7 @@
                 <telerik:RadTreeView.ItemTemplate>
                     <HierarchicalDataTemplate DataType="{x:Type telerik:RadTreeViewItem}" ItemsSource="{Binding Path=ChildItems}">
                         <StackPanel Orientation="Horizontal" >
-                            <CheckBox  Margin="10,2,0,0" IsChecked="{Binding IsSelected2B}" HorizontalAlignment="Left" VerticalAlignment="Top" Content="{Binding NodeName1B}" Width="150"></CheckBox>
+                            <CheckBox  Margin="10,2,0,0" IsChecked="{Binding IsSelected2B}" HorizontalAlignment="Left" VerticalAlignment="Top" Content="{Binding NodeName1B}" Width="200"></CheckBox>
                             <CheckBox  Margin="10,2,0,0" IsChecked="{Binding Is1B}" HorizontalAlignment="Left" VerticalAlignment="Top" Content="灯头1" IsEnabled="{Binding IsEnable1}" Visibility="{Binding IsVisi1}"></CheckBox>
                             <CheckBox  Margin="25,2,0,0" IsChecked="{Binding Is2B}" HorizontalAlignment="Left" VerticalAlignment="Top" Content="灯头2" IsEnabled="{Binding IsEnable2}" Visibility="{Binding IsVisi2}"></CheckBox>
                             <CheckBox  Margin="25,2,0,0" IsChecked="{Binding Is3B}" HorizontalAlignment="Left" VerticalAlignment="Top" Content="灯头3" IsEnabled="{Binding IsEnable3}" Visibility="{Binding IsVisi3}"></CheckBox>
