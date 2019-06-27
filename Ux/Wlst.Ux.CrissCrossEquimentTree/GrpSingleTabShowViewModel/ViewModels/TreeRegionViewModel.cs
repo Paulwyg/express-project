@@ -78,7 +78,7 @@ namespace Wlst.Ux.CrissCrossEquipemntTree.GrpSingleTabShowViewModel.ViewModels
             this.IsNotShowFastControl = UxTreeSetting.IsRutsNotShowNullK != 0 ? 80 : 0;
             this.IsNotShowFastControlToCenter = UxTreeSetting.IsRutsNotShowNullK != 0 ? 23 : 0;
 
-          
+            //Wlst.Cr.Coreb.Servers.QtzLp.AddQtz("null", 8888, DateTime.Now.Ticks,  ExSearchNode,10);
         }
 
         public int timer_count = 0;
@@ -3786,6 +3786,35 @@ namespace Wlst.Ux.CrissCrossEquipemntTree.GrpSingleTabShowViewModel.ViewModels
 
         #endregion
 
+
+
+        #region Refresh
+        private ICommand _cmdRefresh;
+
+        public ICommand CmdRefresh
+        {
+            get
+            {
+                if (_cmdRefresh == null)
+                    _cmdRefresh = new RelayCommand(ExCmdRefresh, CanCmdRefresh, false);
+                return _cmdRefresh;
+            }
+        }
+
+        private void ExCmdRefresh()
+        {
+            LoadNodeOther();
+        }
+
+
+        private bool CanCmdRefresh()
+        {
+            return true;
+
+        }
+
+
+        #endregion
 
         private ObservableCollection<Wlst.Cr.CoreOne.Models.NameIntBool> _searchchsdfsdfsInfo;
 

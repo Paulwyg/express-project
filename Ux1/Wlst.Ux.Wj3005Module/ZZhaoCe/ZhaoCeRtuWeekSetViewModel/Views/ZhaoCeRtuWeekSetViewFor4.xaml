@@ -7,7 +7,7 @@
              xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"   
              xmlns:Views="clr-namespace:Wlst.Ux.WJ3005Module.ZZhaoCe.ZhaoCeRtuWeekSetViewModel.Views"
              xmlns:Service="clr-namespace:Wlst.Ux.WJ3005Module.ZZhaoCe.ZhaoCeRtuWeekSetViewModel.Services"
-             d:DesignHeight="500" d:DesignWidth="1024" d:Title="召测终端时间表" d:TitleCetc="召测终端时间表">
+             d:DesignHeight="500" d:DesignWidth="1024" >
     <UserControl.Resources>
         <Service:TimeDateConverter x:Key="myDateConverter"/>
         <Service:TimeIs2500 x:Key="TimeIs2500"/>

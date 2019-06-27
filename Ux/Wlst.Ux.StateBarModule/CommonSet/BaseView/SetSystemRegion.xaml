@@ -47,7 +47,7 @@
 
         <Button x:Name="AddRegion" Content="增加区域" Width="100" Margin="10,5,0,5"  Grid.Column="0" Grid.Row="2" HorizontalAlignment="Center" Click="AddRegion_OnClick" />
 
-        <Button x:Name="DelRegion" Content="删除区域" Width="100" Margin="10,5,0,5"  Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center" Click="DelRegion_OnClick" />
+        <Button x:Name="DelRegion" Content="删除区域" Width="100" Margin="10,5,0,5"  Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center" Click="DelRegion_OnClick" Visibility="Collapsed"/>
 
         <Button x:Name="Save" Content="确定" Width="100" Margin="10,5,10,5" Grid.Column="2"  Grid.Row="2" HorizontalAlignment="Center"  Click="Save_OnClick" />
     </Grid>

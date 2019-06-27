@@ -133,7 +133,7 @@ namespace Wlst.Ux.TimeTableSystem.TimeInfoNew
 
         public string Title
         {
-            get { return "应急操作查询"; }
+            get { return "时间表设置"; }
         }
 
         public bool CanClose

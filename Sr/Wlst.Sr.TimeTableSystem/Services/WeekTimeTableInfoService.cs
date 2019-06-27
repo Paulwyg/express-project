@@ -114,9 +114,9 @@ namespace Wlst.Sr.TimeTableSystem.Services
             {
                 RtuGrpId = rtuIdorGrpId;
             }
-
-
-            int timetableid = RtuOrGprBandingTimeTableInfoService.GetBandingInfo(areaid,RtuGrpId, switchoutloopid);
+            //采用新协议 细化到终端
+            int timetableid = RtuOrGprBandingTimeTableInfoService.GetBandingInfoNew(areaid, RtuGrpId, switchoutloopid);
+            //int timetableid = RtuOrGprBandingTimeTableInfoService.GetBandingInfo(areaid,RtuGrpId, switchoutloopid);
             if (timetableid == -1) return null;
 
             //绑定该时间表的临时方案 2018/4/20

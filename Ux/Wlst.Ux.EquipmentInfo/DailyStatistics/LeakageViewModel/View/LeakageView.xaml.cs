@@ -63,9 +63,11 @@ namespace Wlst.Ux.EquipmentInfo.DailyStatistics.LeakageViewModel.View
         {
             foreach (DataPointInfo info in e.Context.DataPointInfos)
             {
-                var x = info.DisplayContent.ToString().Replace("Value", "漏电值");
-                info.DisplayContent = x.Split('\r')[0] + "mA";
-                //info.DisplayContent = "无数据"; ;
+                //var x = info.DisplayContent.ToString().Replace("Value", "漏电值");
+                //info.DisplayContent = x.Split('\r')[0] + "mA";
+                var distmp = info.DisplayContent.ToString().Replace("Value", "漏电值");
+                distmp = distmp.Replace("Category","时间"); ;
+                info.DisplayContent = distmp;
                 tmp = info;
                 info.DisplayHeader = "Custom data point header";
             }
