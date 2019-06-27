@@ -1252,6 +1252,7 @@ namespace Wlst.Ux.SinglePlan.SingleGrp.ViewModel
             var data = Wlst.Cr.CoreMims.HttpGetPostforMsgWithMobile.OrderSndHttp("post4078", System.Convert.ToBase64String(MsgWithIif.SerializeToBytes(req)));
             if (data == null) return;
             var res = MsgWithIif.Deserialize(data);
+            if (res.Back4078 == null) return;
             foreach (var f in res.Back4078.ItemsGrp)
             {
                 GrpItem.Add(f);
@@ -1279,7 +1280,7 @@ namespace Wlst.Ux.SinglePlan.SingleGrp.ViewModel
             //    var name = Wlst.Sr.EquipmentInfoHolding.Services.EquipmentDataInfoHold.GetInfoById(slu);
 
             //}
-            
+            if (res.Back4078 == null) return;
             foreach (var f in res.Back4078.ItemsLst)
             {
                 SluBref.Add(f);
@@ -1313,6 +1314,7 @@ namespace Wlst.Ux.SinglePlan.SingleGrp.ViewModel
                 var data = Wlst.Cr.CoreMims.HttpGetPostforMsgWithMobile.OrderSndHttp("post4078", System.Convert.ToBase64String(MsgWithIif.SerializeToBytes(req)));
                 if (data == null) return;
                 var res = MsgWithIif.Deserialize(data);
+                if (res.Back4078 == null) return;
                 foreach (var slu in res.Back4078.ItemsSlu)
                 {
                     SluItem.Add(slu);
