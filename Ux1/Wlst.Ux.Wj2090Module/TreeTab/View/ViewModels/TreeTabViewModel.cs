@@ -60,7 +60,7 @@ namespace Wlst.Ux.Wj2090Module.TreeTab.View.ViewModels
             IsLoadOnlyOneArea = true;
             EventPublish.AddEventTokener(
                 Assembly.GetExecutingAssembly().GetName().ToString(), FundEventHandlers, FundOrderFilters);
-            LoadNode();
+            LoadNode(false );
             IsSearchTreeVisi = Visibility.Collapsed;
             //Wlst.Cr.Core.ModuleServices.DelayEvent.RegisterDelayEvent(Update, 1, DelayEventHappen.EventOne);  //20170519
             this.SetIsCollapsedWhenChildItemsEmptyNByKeyType(1, true);
@@ -708,7 +708,7 @@ namespace Wlst.Ux.Wj2090Module.TreeTab.View.ViewModels
         private void ExQuery()
         {
             _dtQuery = DateTime.Now;
-            this.LoadNode();
+            this.LoadNode(true );
         }
 
         private bool CanQuery()
@@ -853,7 +853,7 @@ namespace Wlst.Ux.Wj2090Module.TreeTab.View.ViewModels
                     else if (x == 3)
                     {
                         // 刷新 test  事后去除 lvf 2019年5月27日10:57:52 
-                        LoadNode();
+                        LoadNode(true  );
                     }
 
                     OpenClsoelIGT(_curnetselectrtu, _curselectctrl, loops, x == 1);

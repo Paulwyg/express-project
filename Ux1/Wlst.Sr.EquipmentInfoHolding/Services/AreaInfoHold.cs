@@ -258,7 +258,7 @@ namespace Wlst.Sr.EquipmentInfoHolding.Services
 
 
             }
-            Version = DateTime.Now.Ticks;
+            
 
             //发布事件  
             var args = new PublishEventArgs()
@@ -269,6 +269,7 @@ namespace Wlst.Sr.EquipmentInfoHolding.Services
             EventPublish.PublishEvent(args);
 
 
+            Version = DateTime.Now.Ticks;
            var   arg = new PublishEventArgs()
             {
                 EventId = EventIdAssign.SingleInfoGroupAllNeedUpdate,

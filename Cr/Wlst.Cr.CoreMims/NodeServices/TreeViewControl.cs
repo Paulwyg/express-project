@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading;
 using System.Windows;
 
 
@@ -120,6 +121,8 @@ namespace Wlst.Cr.CoreMims.NodeServices
 
         #region  初始化显示树  输入List<InputInfo> data
 
+
+        
         /// <summary>
         /// 初始化显示树，
         /// 排序按照给定的顺序进行排序，
