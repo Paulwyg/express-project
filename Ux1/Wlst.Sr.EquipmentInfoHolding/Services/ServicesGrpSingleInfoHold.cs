@@ -21,6 +21,10 @@ namespace Wlst.Sr.EquipmentInfoHolding.Services
         public const int GroupStartId = 501000;
         private static readonly GrpSingleInfoHoldExtend GrpSingle = new GrpSingleInfoHoldExtend();
 
+        public static long GetVersion
+        {
+            get { return GrpSingleInfoHoldExtend.Version; }
+        }
 
         /// <summary>
         /// 程序初始化时必须执行一次;由本模块自动执行
@@ -378,6 +382,8 @@ namespace Wlst.Sr.EquipmentInfoHolding.Services
 
         }
 
+        //更新版本 
+        public static long Version = 0;
         private void OnSvrGroupInfoArrive(string session, MsgWithMobile infos)
         {
             if (infos.WstAreagrpGroupInfo == null) return;
@@ -387,7 +393,7 @@ namespace Wlst.Sr.EquipmentInfoHolding.Services
             var lstfromServer = grpInfoExchangefromServer.GroupItems;
             if (lstfromServer == null) return;
 
-
+            Version = DateTime.Now.Ticks; 
             if (grpInfoExchangefromServer.Op == 1)
             {
                 //终端与分组的排序序号

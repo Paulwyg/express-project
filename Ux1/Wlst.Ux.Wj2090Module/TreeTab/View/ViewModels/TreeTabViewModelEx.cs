@@ -607,11 +607,30 @@ namespace Wlst.Ux.Wj2090Module.TreeTab.View.ViewModels
         /// </summary>
         private int  _onlyOneAreaLoad = -1;
 
+
+        private Tuple<long, long, long> LstLoadversion = null;
+
         /// <summary>
         /// 加载节点
         /// </summary>
         private void LoadNode()
         {
+            var  v1 = Wlst.Sr.EquipmentInfoHolding.Services.ServicesGrpSingleInfoHold.GetVersion;
+            var v2 = Wlst.Sr.EquipmentInfoHolding.Services.AreaInfoHold.Version;
+            var v3 = Wlst.Sr.EquipmentInfoHolding.Services.EquipmentDataInfoHold.Version;
+            if (v1 == 0 || v2 == 0 || v3 == 0) return;
+            if (LstLoadversion == null)
+            {
+                LstLoadversion = new Tuple<long, long, long>(v1, v2, v3);
+            }
+            else
+            {
+                if (LstLoadversion.Item1 == v1 && LstLoadversion.Item2 == v2 && LstLoadversion.Item3 == v3) return;
+                LstLoadversion = new Tuple<long, long, long>(v1, v2, v3);
+            }
+
+
+
             var lst1 = LoadNode1GetArea();
             if (lst1.Count == 0) return;
 
@@ -1212,6 +1231,7 @@ namespace Wlst.Ux.Wj2090Module.TreeTab.View.ViewModels
             {
                 if (args.EventType == PublishEventType.SvAv)
                 {
+                    if (DateTime.Now.Ticks - dtLoad.Ticks < 45 * 10000000) return;
                     LoadNode();
                     return;
                 }
@@ -1222,6 +1242,7 @@ namespace Wlst.Ux.Wj2090Module.TreeTab.View.ViewModels
                         global::Wlst.Sr.EquipmentInfoHolding.Services.EventIdAssign.SingleInfoGroupAllNeedUpdate)
                     {
                         LoadNode();
+                        Wlst.Cr.Coreb.Servers.WriteLog.WriteLogError("Load Node ");
 
                     }
 

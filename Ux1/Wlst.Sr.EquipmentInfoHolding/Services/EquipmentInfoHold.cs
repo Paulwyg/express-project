@@ -494,8 +494,9 @@ namespace Wlst.Sr.EquipmentInfoHolding.Services
         }
 
         #endregion
-     
-        
+
+        //更新版本 
+        public static long Version = 0;
         public void update_EquipentxyPositon(string session, Wlst.mobile.MsgWithMobile infos)
         {
             var info = infos.WstEquUpdateMapXy ;
@@ -574,7 +575,7 @@ namespace Wlst.Sr.EquipmentInfoHolding.Services
                 return;
             }
             UpdateInfo(infos.WstEquSvrAnsCntRequestAdd, infos.Head.Gid);
-
+            Version = DateTime.Now.Ticks;
             try
             {
                 var lstAdd = new List<Tuple<int, int>>();
@@ -610,6 +611,7 @@ namespace Wlst.Sr.EquipmentInfoHolding.Services
 
         public void UpdateEquipment(string session, Wlst.mobile.MsgWithMobile infos)
         {
+            Version = DateTime.Now.Ticks;
             UpdateInfo(infos.WstEquUpdate  , infos.Head.Gid);
         }
 
@@ -624,6 +626,7 @@ namespace Wlst.Sr.EquipmentInfoHolding.Services
             var info = infos.WstEquDelete ;
             if (info != null)
             {
+                Version = DateTime.Now.Ticks;
                 DeleteInfo(info);
             }
         }
@@ -1318,7 +1321,7 @@ namespace Wlst.Sr.EquipmentInfoHolding.Services
             {
                 WriteLog.WriteLogError("Error to update tml core data ,ex:" + ex);
             }
-
+            Version = DateTime.Now.Ticks;
 
             RequestNextPackageInfo();
             Wlst.Cr.Core.ModuleServices.DelayEvent.RaiseEventHappen(DelayEventHappen.EventOne);

@@ -52,7 +52,7 @@ namespace Wlst.Ux.Wj2090Module.TreeTab.View.ViewModels
         }
 
         public static TreeTabViewModel MySelf;
-
+        private DateTime dtLoad = DateTime.Now;
         public TreeTabViewModel():base(OnNodeSelected, null )
         {
 

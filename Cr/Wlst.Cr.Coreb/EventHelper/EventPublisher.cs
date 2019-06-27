@@ -38,6 +38,7 @@ namespace Wlst.Cr.Coreb.EventHelper
         {
             AsyncTask.Qtz.AddQtz("EventPublisRunMain", 8888, DateTime.Now.Ticks, Run1, 100);
             AsyncTask.Qtz.AddQtz("EventPublisRunDispath", 8888, DateTime.Now.Ticks, Run2, 100);
+            AsyncTask.Qtz.AddQtz("EventPublisRunDispath3", 8888, DateTime.Now.Ticks, Run3, 1000);
         }
 
         void Run1(object obj)
@@ -45,11 +46,21 @@ namespace Wlst.Cr.Coreb.EventHelper
 
             try
             {
+                //int SingleInfoGroupAllNeedUpdate = 3100000 + 21 * 100 + 33;
+                //bool has = false;
                 while (publisEvents.Count > 0)
                 {
+
                     PublishEventArgs tmp = null;
                     if (publisEvents.TryDequeue(out tmp))
                     {
+                        //if (tmp.EventId == SingleInfoGroupAllNeedUpdate)
+                        //{
+                        //    if (has)
+                        //        continue;
+                        //    has = true;
+                        //}
+
                         foreach (var f in Info)
                         {
 
@@ -57,7 +68,50 @@ namespace Wlst.Cr.Coreb.EventHelper
                             {
                                 _exEvent.Enqueue(
                                     new Tuple<Action<PublishEventArgs>, bool, PublishEventArgs>(f.Value.Item2,
-                                                                                                f.Value.Item4, tmp));
+                                        f.Value.Item4, tmp));
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                WriteLog.WriteLogError("EventPublish Run Main Error:" + ex);
+            }
+        }
+
+        void Run3(object obj)
+        {
+
+            try
+            {
+                //int SingleInfoGroupAllNeedUpdate = 3100000 + 21 * 100 + 33;
+                //bool has = false;
+                while (publisEvents3.Count > 0)
+                {
+                    var dicexecd = new Dictionary<Tuple<int, string>,bool >();
+                    PublishEventArgs tmp = null;
+                    if (publisEvents3.TryDequeue(out tmp))
+                    {
+                        //if (tmp.EventId == SingleInfoGroupAllNeedUpdate)
+                        //{
+                        //    if (has)
+                        //        continue;
+                        //    has = true;
+                        //}
+
+                        var tu = new Tuple<int, string>(tmp.EventId, tmp.EventType);
+                        if (dicexecd.ContainsKey(tu)) continue; //执行过 就不再执行 
+                        dicexecd.Add(tu, true);
+
+                        foreach (var f in Info)
+                        {
+
+                            if (f.Value.Item3(tmp))
+                            {
+                                _exEvent.Enqueue(
+                                    new Tuple<Action<PublishEventArgs>, bool, PublishEventArgs>(f.Value.Item2,
+                                        f.Value.Item4, tmp));
                             }
                         }
                     }
@@ -111,13 +165,23 @@ namespace Wlst.Cr.Coreb.EventHelper
             new ConcurrentQueue<Tuple<Action<PublishEventArgs>, bool, PublishEventArgs>>();
 
         private ConcurrentQueue<PublishEventArgs> publisEvents = new ConcurrentQueue<PublishEventArgs>();
-
+        private ConcurrentQueue<PublishEventArgs> publisEvents3 = new ConcurrentQueue<PublishEventArgs>();
 
 
         internal void AddEventPublish(PublishEventArgs args)
         {
+
+            if (args == null) return;
+            if (args.EventAttachInfo == null && args.GetParams().Count == 0) //主要为事件通知  延迟执行
+            {
+                publisEvents3.Enqueue(args);
+            }
+            else
+            {
+                publisEvents.Enqueue(args);
+            }
             //  return EventAggregator.EventPublish(args);
-            publisEvents.Enqueue(args);
+
         }
 
         ///// <summary>

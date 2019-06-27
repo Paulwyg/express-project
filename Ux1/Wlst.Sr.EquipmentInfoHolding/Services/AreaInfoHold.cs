@@ -170,8 +170,9 @@ namespace Wlst.Sr.EquipmentInfoHolding.Services
                 if (alreadyDel == null) alreadyDel = new List<int>();
                 return alreadyDel;
             }
-        } 
-
+        }
+        //更新版本 
+        public static long Version = 0;
         protected void OrderRtuOnLine(string session, Wlst.mobile.MsgWithMobile infos)
         {
             if (infos.WstAreagrpAreaInfo == null) return;
@@ -257,7 +258,7 @@ namespace Wlst.Sr.EquipmentInfoHolding.Services
 
 
             }
-
+            Version = DateTime.Now.Ticks;
 
             //发布事件  
             var args = new PublishEventArgs()
@@ -281,8 +282,8 @@ namespace Wlst.Sr.EquipmentInfoHolding.Services
                 EventType = PublishEventType.Core
             };
             EventPublish.PublishEvent(aarg);
-
             
+
 
 
         }
