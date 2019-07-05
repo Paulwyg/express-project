@@ -39,7 +39,7 @@
         <TextBlock Visibility="Collapsed"  Width="{Binding Hightxx}" Height="0" x:Name="txb"/>
 
         <!--<Views:TmlFaultsShieldView Margin="0,0,0,5" Visibility="{Binding ShowFault, Converter={StaticResource BoolToVisible}}" Grid.Row="1"/>-->
-        <Grid Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="25,5,0,0"> 
+        <Grid Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="25,5,0,0" Visibility="{Binding ReportType, Converter={StaticResource GridEnumToBoolConverter}, ConverterParameter=NoReport}"> 
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"></ColumnDefinition>
                 <ColumnDefinition Width="Auto"></ColumnDefinition>
@@ -78,34 +78,34 @@
             <TextBlock Text="{Binding ColNoAlarmTimeMinute}" HorizontalAlignment="Right" Margin="1,5,0,5" Grid.Column="12" Visibility="{Binding IsShowAlarmTime}" Foreground="Red"/>
             <TextBlock Text="秒" HorizontalAlignment="Right" Margin="1,5,20,5" Grid.Column="13" Visibility="{Binding IsShowAlarmTime}" Foreground="Red"/>
         </Grid>
-        
+
         <Grid  Margin="15,5,5,5"  Visibility="{Binding ReportType, Converter={StaticResource GridEnumToBoolConverter}, ConverterParameter=NoReport}" Grid.Row="2" Grid.RowSpan="2">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="Auto" MinHeight="30"/>
                 <RowDefinition Height="Auto" MinHeight="30"/>
             </Grid.RowDefinitions>
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <telerik:RadTreeListView RowIndicatorVisibility="Collapsed"  x:Name="rtl"  FilteringMode="Popup" AutoGenerateColumns="False" MouseDoubleClick="GridViewDataColumn_MouseUp"
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <telerik:RadTreeListView RowIndicatorVisibility="Collapsed"  x:Name="rtl"  FilteringMode="Popup" AutoGenerateColumns="False" MouseDoubleClick="GridViewDataColumn_MouseUp"
 							Grid.Column="1"  ItemsSource="{Binding Items}"  >
-                <telerik:RadTreeListView.ChildTableDefinitions>
-                    <telerik:TreeListViewTableDefinition  ItemsSource="{Binding ChildTreeItems}"  />
-                </telerik:RadTreeListView.ChildTableDefinitions>
+                    <telerik:RadTreeListView.ChildTableDefinitions>
+                        <telerik:TreeListViewTableDefinition  ItemsSource="{Binding ChildTreeItems}"  />
+                    </telerik:RadTreeListView.ChildTableDefinitions>
 
-                        <telerik:RadTreeListView.Columns>
-                    <telerik:GridViewDataColumn  Header="选择" HeaderTextAlignment="Center" Width="90" IsReadOnly="True">
-                        <telerik:GridViewDataColumn.CellTemplate>
-                            <DataTemplate>
-                                <Grid>
-                                    <CheckBox VerticalAlignment="Center" HorizontalAlignment="Center"  IsChecked="{Binding IsChecked}"/>
-                                </Grid>
-                            </DataTemplate>
-                        </telerik:GridViewDataColumn.CellTemplate>
-                    </telerik:GridViewDataColumn>
+                    <telerik:RadTreeListView.Columns>
+                        <telerik:GridViewDataColumn  Header="选择" HeaderTextAlignment="Center" Width="90" IsReadOnly="True">
+                            <telerik:GridViewDataColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <CheckBox VerticalAlignment="Center" HorizontalAlignment="Center"  IsChecked="{Binding IsChecked}"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </telerik:GridViewDataColumn.CellTemplate>
+                        </telerik:GridViewDataColumn>
                         <telerik:GridViewDataColumn Header="区域名称" IsReadOnly="True"   IsVisible="{Binding AreaCount}" Width="100">
                             <telerik:GridViewDataColumn.CellTemplate>
                                 <DataTemplate >
@@ -115,122 +115,122 @@
                         </telerik:GridViewDataColumn>
                         <telerik:GridViewDataColumn  Header="地址" IsFilterable="False" MinWidth="75" MaxWidth="150"  DataMemberBinding="{Binding PhysicalId, StringFormat={}{0:D2}}" IsReadOnly="True" />
                         <telerik:GridViewDataColumn Header="组、终端名称" IsReadOnly="True" Width="170">
-                        <telerik:GridViewDataColumn.CellTemplate>
-                            <DataTemplate >
-                                <TextBlock Text="{Binding NodeName}"></TextBlock>
-                            </DataTemplate>
-                        </telerik:GridViewDataColumn.CellTemplate>
-                    </telerik:GridViewDataColumn>
-                  
-                    <telerik:GridViewDataColumn IsFilterable="True" IsFilteringDeferred="True"  HeaderTextAlignment="Center" Header="终端状态" IsReadOnly="True" Width="70" >
-                        <telerik:GridViewDataColumn.CellTemplate>
-                            <DataTemplate >
-                                <Grid >
+                            <telerik:GridViewDataColumn.CellTemplate>
+                                <DataTemplate >
+                                    <TextBlock Text="{Binding NodeName}"></TextBlock>
+                                </DataTemplate>
+                            </telerik:GridViewDataColumn.CellTemplate>
+                        </telerik:GridViewDataColumn>
+
+                        <telerik:GridViewDataColumn IsFilterable="True" IsFilteringDeferred="True"  HeaderTextAlignment="Center" Header="终端状态" IsReadOnly="True" Width="70" >
+                            <telerik:GridViewDataColumn.CellTemplate>
+                                <DataTemplate >
+                                    <Grid >
                                         <TextBlock Visibility="{Binding IsGroup, Converter={StaticResource OppositeBoolToVisibleConverter}}" HorizontalAlignment="Center" VerticalAlignment="Center"  Text="{Binding Path=State, Converter={StaticResource rtustateconverter}}"   Height="25"></TextBlock>
                                         <!--<Image Visibility="{Binding IsGroup, Converter={StaticResource OppositeBoolToVisibleConverter}}" HorizontalAlignment="Center" VerticalAlignment="Center"  Source="{Binding Path=State, Converter={StaticResource imageconverter}}" Width="25" Height="25"></Image>-->
                                         <TextBlock Visibility="{Binding IsGroup, Converter={StaticResource BoolToVisible}}" HorizontalAlignment="Center" VerticalAlignment="Center"   Text="--" ></TextBlock>
 
                                     </Grid>
-                            </DataTemplate>
-                        </telerik:GridViewDataColumn.CellTemplate>
-                    </telerik:GridViewDataColumn>
-                    <telerik:GridViewDataColumn  HeaderTextAlignment="Center"  Header="K1"  IsReadOnly="True" Width="45" >
-                        <telerik:GridViewDataColumn.CellTemplate>
-                            <DataTemplate >
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="auto"/>
-                                        <ColumnDefinition Width="*"/>
-                                        <!--<ColumnDefinition Width="Auto"/>-->
-                                    </Grid.ColumnDefinitions>
+                                </DataTemplate>
+                            </telerik:GridViewDataColumn.CellTemplate>
+                        </telerik:GridViewDataColumn>
+                        <telerik:GridViewDataColumn  HeaderTextAlignment="Center"  Header="K1"  IsReadOnly="True" Width="45" >
+                            <telerik:GridViewDataColumn.CellTemplate>
+                                <DataTemplate >
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <!--<ColumnDefinition Width="Auto"/>-->
+                                        </Grid.ColumnDefinitions>
                                         <!--IsEnabled="{Binding IsChecked}"-->
                                         <CheckBox  Visibility="{Binding IsShowSelectedCheckBox, Converter={StaticResource BoolToVisible}}" IsChecked="{Binding IsSwitch1Checked}" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center"/>
                                         <!--<Image Grid.Column="1" Visibility="{Binding IsK1ShowOpenOrColseAns, Converter={StaticResource BoolToVisible}}" HorizontalAlignment="Center" VerticalAlignment="Center"  Source="{Binding Path=K1OpenOrCloseAns, Converter={StaticResource SelectionAnsConverterOne}}" Width="25" Height="25"></Image>-->
-                                    <!--<Image Grid.Column="2" Visibility="{Binding SelectVisi, Converter={StaticResource BoolToVisible}}" HorizontalAlignment="Center" VerticalAlignment="Center"  Source="{Binding Path=K1SelectionTestAns, Converter={StaticResource SelectionAnsConverter}}" Width="25" Height="25"></Image>-->
-                                </Grid>
-                            </DataTemplate>
-                        </telerik:GridViewDataColumn.CellTemplate>
-                    </telerik:GridViewDataColumn>
+                                        <!--<Image Grid.Column="2" Visibility="{Binding SelectVisi, Converter={StaticResource BoolToVisible}}" HorizontalAlignment="Center" VerticalAlignment="Center"  Source="{Binding Path=K1SelectionTestAns, Converter={StaticResource SelectionAnsConverter}}" Width="25" Height="25"></Image>-->
+                                    </Grid>
+                                </DataTemplate>
+                            </telerik:GridViewDataColumn.CellTemplate>
+                        </telerik:GridViewDataColumn>
                         <telerik:GridViewDataColumn HeaderTextAlignment="Center" Header="K2" Width="45" IsReadOnly="True"  >
-                        <telerik:GridViewDataColumn.CellTemplate>
-                            <DataTemplate >
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="auto"/>
-                                        <ColumnDefinition Width="*"/>
-                                        <!--<ColumnDefinition Width="Auto"/>-->
-                                    </Grid.ColumnDefinitions>
+                            <telerik:GridViewDataColumn.CellTemplate>
+                                <DataTemplate >
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <!--<ColumnDefinition Width="Auto"/>-->
+                                        </Grid.ColumnDefinitions>
                                         <CheckBox  Visibility="{Binding IsShowSelectedCheckBox, Converter={StaticResource BoolToVisible}}" IsChecked="{Binding IsSwitch2Checked}" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center"/>
                                         <!--<Image Grid.Column="1" Visibility="{Binding IsK2ShowOpenOrColseAns, Converter={StaticResource BoolToVisible}}" HorizontalAlignment="Center" VerticalAlignment="Center"  Source="{Binding Path=K2OpenOrCloseAns, Converter={StaticResource SelectionAnsConverterOne}}" Width="25" Height="25"></Image>-->
-                                    <!--<Image Grid.Column="2" Visibility="{Binding SelectVisi, Converter={StaticResource BoolToVisible}}" HorizontalAlignment="Center" VerticalAlignment="Center"  Source="{Binding Path=K2SelectionTestAns, Converter={StaticResource SelectionAnsConverter}}" Width="25" Height="25"></Image>-->
-                                </Grid>
-                            </DataTemplate>
-                        </telerik:GridViewDataColumn.CellTemplate>
-                    </telerik:GridViewDataColumn>
+                                        <!--<Image Grid.Column="2" Visibility="{Binding SelectVisi, Converter={StaticResource BoolToVisible}}" HorizontalAlignment="Center" VerticalAlignment="Center"  Source="{Binding Path=K2SelectionTestAns, Converter={StaticResource SelectionAnsConverter}}" Width="25" Height="25"></Image>-->
+                                    </Grid>
+                                </DataTemplate>
+                            </telerik:GridViewDataColumn.CellTemplate>
+                        </telerik:GridViewDataColumn>
                         <telerik:GridViewDataColumn  HeaderTextAlignment="Center" Header="K3" Width="45" IsReadOnly="True"   >
-                        <telerik:GridViewDataColumn.CellTemplate>
-                            <DataTemplate >
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="auto"/>
-                                        <ColumnDefinition Width="*"/>
-                                        <!--<ColumnDefinition Width="Auto"/>-->
-                                    </Grid.ColumnDefinitions>
+                            <telerik:GridViewDataColumn.CellTemplate>
+                                <DataTemplate >
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <!--<ColumnDefinition Width="Auto"/>-->
+                                        </Grid.ColumnDefinitions>
                                         <CheckBox  Visibility="{Binding IsShowSelectedCheckBox, Converter={StaticResource BoolToVisible}}" IsChecked="{Binding IsSwitch3Checked}" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center"/>
                                         <!--<Image Grid.Column="1" Visibility="{Binding IsK3ShowOpenOrColseAns, Converter={StaticResource BoolToVisible}}" HorizontalAlignment="Center" VerticalAlignment="Center"  Source="{Binding Path=K3OpenOrCloseAns, Converter={StaticResource SelectionAnsConverterOne}}" Width="25" Height="25"></Image>-->
-                                    <!--<Image Grid.Column="2" Visibility="{Binding SelectVisi, Converter={StaticResource BoolToVisible}}" HorizontalAlignment="Center" VerticalAlignment="Center"  Source="{Binding Path=K3SelectionTestAns, Converter={StaticResource SelectionAnsConverter}}" Width="25" Height="25"></Image>-->
-                                </Grid>
-                            </DataTemplate>
-                        </telerik:GridViewDataColumn.CellTemplate>
-                    </telerik:GridViewDataColumn>
+                                        <!--<Image Grid.Column="2" Visibility="{Binding SelectVisi, Converter={StaticResource BoolToVisible}}" HorizontalAlignment="Center" VerticalAlignment="Center"  Source="{Binding Path=K3SelectionTestAns, Converter={StaticResource SelectionAnsConverter}}" Width="25" Height="25"></Image>-->
+                                    </Grid>
+                                </DataTemplate>
+                            </telerik:GridViewDataColumn.CellTemplate>
+                        </telerik:GridViewDataColumn>
                         <telerik:GridViewDataColumn  HeaderTextAlignment="Center"  Header="K4" Width="45" IsReadOnly="True"  MinWidth="40"  >
-                        <telerik:GridViewDataColumn.CellTemplate>
-                            <DataTemplate >
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="auto"/>
-                                        <ColumnDefinition Width="*"/>
-                                        <!--<ColumnDefinition Width="Auto"/>-->
-                                    </Grid.ColumnDefinitions>
+                            <telerik:GridViewDataColumn.CellTemplate>
+                                <DataTemplate >
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <!--<ColumnDefinition Width="Auto"/>-->
+                                        </Grid.ColumnDefinitions>
                                         <CheckBox  Visibility="{Binding IsShowSelectedCheckBox, Converter={StaticResource BoolToVisible}}" IsChecked="{Binding IsSwitch4Checked}" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center"/>
                                         <!--<Image Grid.Column="1" Visibility="{Binding IsK4ShowOpenOrColseAns, Converter={StaticResource BoolToVisible}}" HorizontalAlignment="Center" VerticalAlignment="Center"  Source="{Binding Path=K4OpenOrCloseAns, Converter={StaticResource SelectionAnsConverterOne}}" Width="25" Height="25"></Image>-->
-                                    <!--<Image Grid.Column="2" Visibility="{Binding SelectVisi, Converter={StaticResource BoolToVisible}}" HorizontalAlignment="Center" VerticalAlignment="Center"  Source="{Binding Path=K4SelectionTestAns, Converter={StaticResource SelectionAnsConverter}}" Width="25" Height="25"></Image>-->
-                                </Grid>
-                            </DataTemplate>
-                        </telerik:GridViewDataColumn.CellTemplate>
-                    </telerik:GridViewDataColumn>
+                                        <!--<Image Grid.Column="2" Visibility="{Binding SelectVisi, Converter={StaticResource BoolToVisible}}" HorizontalAlignment="Center" VerticalAlignment="Center"  Source="{Binding Path=K4SelectionTestAns, Converter={StaticResource SelectionAnsConverter}}" Width="25" Height="25"></Image>-->
+                                    </Grid>
+                                </DataTemplate>
+                            </telerik:GridViewDataColumn.CellTemplate>
+                        </telerik:GridViewDataColumn>
                         <telerik:GridViewDataColumn  HeaderTextAlignment="Center" Header="K5" Width="45" IsReadOnly="True" >
-                        <telerik:GridViewDataColumn.CellTemplate>
-                            <DataTemplate >
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="auto"/>
-                                        <ColumnDefinition Width="*"/>
-                                        <!--<ColumnDefinition Width="Auto"/>-->
-                                    </Grid.ColumnDefinitions>
+                            <telerik:GridViewDataColumn.CellTemplate>
+                                <DataTemplate >
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <!--<ColumnDefinition Width="Auto"/>-->
+                                        </Grid.ColumnDefinitions>
                                         <CheckBox  Visibility="{Binding IsShowSelectedCheckBox, Converter={StaticResource BoolToVisible}}" IsChecked="{Binding IsSwitch5Checked}" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center"/>
                                         <!--<Image Grid.Column="1" Visibility="{Binding IsK5ShowOpenOrColseAns, Converter={StaticResource BoolToVisible}}" HorizontalAlignment="Center" VerticalAlignment="Center"  Source="{Binding Path=K5OpenOrCloseAns, Converter={StaticResource SelectionAnsConverterOne}}" Width="25" Height="25"></Image>-->
-                                    <!--<Image Grid.Column="2" Visibility="{Binding SelectVisi, Converter={StaticResource BoolToVisible}}" HorizontalAlignment="Center" VerticalAlignment="Center"  Source="{Binding Path=K5SelectionTestAns, Converter={StaticResource SelectionAnsConverter}}" Width="25" Height="25"></Image>-->
-                                </Grid>
-                            </DataTemplate>
-                        </telerik:GridViewDataColumn.CellTemplate>
-                    </telerik:GridViewDataColumn>
+                                        <!--<Image Grid.Column="2" Visibility="{Binding SelectVisi, Converter={StaticResource BoolToVisible}}" HorizontalAlignment="Center" VerticalAlignment="Center"  Source="{Binding Path=K5SelectionTestAns, Converter={StaticResource SelectionAnsConverter}}" Width="25" Height="25"></Image>-->
+                                    </Grid>
+                                </DataTemplate>
+                            </telerik:GridViewDataColumn.CellTemplate>
+                        </telerik:GridViewDataColumn>
                         <telerik:GridViewDataColumn  HeaderTextAlignment="Center" Header="K6" Width="45" IsReadOnly="True"  >
-                        <telerik:GridViewDataColumn.CellTemplate>
-                            <DataTemplate >
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
+                            <telerik:GridViewDataColumn.CellTemplate>
+                                <DataTemplate >
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="auto"/>
-                                        <ColumnDefinition Width="*"/>
-                                        <!--<ColumnDefinition Width="Auto"/>-->
-                                    </Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <!--<ColumnDefinition Width="Auto"/>-->
+                                        </Grid.ColumnDefinitions>
                                         <CheckBox Visibility="{Binding IsShowSelectedCheckBox, Converter={StaticResource BoolToVisible}}" IsChecked="{Binding IsSwitch6Checked}" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center"/>
                                         <!--<Image Grid.Column="1" Visibility="{Binding IsK6ShowOpenOrColseAns, Converter={StaticResource BoolToVisible}}" HorizontalAlignment="Center" VerticalAlignment="Center"  Source="{Binding Path=K6OpenOrCloseAns, Converter={StaticResource SelectionAnsConverterOne}}" Width="25" Height="25"></Image>-->
-                                    <!--<Image Grid.Column="2" Visibility="{Binding SelectVisi, Converter={StaticResource BoolToVisible}}" HorizontalAlignment="Center" VerticalAlignment="Center"  Source="{Binding Path=K6SelectionTestAns, Converter={StaticResource SelectionAnsConverter}}" Width="25" Height="25"></Image>-->
-                                </Grid>
-                            </DataTemplate>
-                        </telerik:GridViewDataColumn.CellTemplate>
-                    </telerik:GridViewDataColumn>
+                                        <!--<Image Grid.Column="2" Visibility="{Binding SelectVisi, Converter={StaticResource BoolToVisible}}" HorizontalAlignment="Center" VerticalAlignment="Center"  Source="{Binding Path=K6SelectionTestAns, Converter={StaticResource SelectionAnsConverter}}" Width="25" Height="25"></Image>-->
+                                    </Grid>
+                                </DataTemplate>
+                            </telerik:GridViewDataColumn.CellTemplate>
+                        </telerik:GridViewDataColumn>
                         <telerik:GridViewDataColumn  HeaderTextAlignment="Center" Header="K7" Width="45" IsReadOnly="True" >
                             <telerik:GridViewDataColumn.CellTemplate>
                                 <DataTemplate >
@@ -265,14 +265,14 @@
                             </telerik:GridViewDataColumn.CellTemplate>
                         </telerik:GridViewDataColumn>
                         <telerik:GridViewDataColumn  HeaderTextAlignment="Center" Header="全部"  IsReadOnly="True" Width="45">
-                        <telerik:GridViewDataColumn.CellTemplate>
-                            <DataTemplate >
-                                <Grid>
+                            <telerik:GridViewDataColumn.CellTemplate>
+                                <DataTemplate >
+                                    <Grid>
                                         <CheckBox IsEnabled="{Binding IsChecked}" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{Binding IsShowSelectedCheckBox, Converter={StaticResource BoolToVisible}}" IsChecked="{Binding IsSwitch0}" ></CheckBox>
-                                </Grid>
-                            </DataTemplate>
-                        </telerik:GridViewDataColumn.CellTemplate>
-                    </telerik:GridViewDataColumn>
+                                    </Grid>
+                                </DataTemplate>
+                            </telerik:GridViewDataColumn.CellTemplate>
+                        </telerik:GridViewDataColumn>
                         <!--<telerik:GridViewDataColumn  HeaderTextAlignment="Center" Header="选测" Width="60" MaxWidth="100" IsReadOnly="True"  MinWidth="40">
                             <telerik:GridViewDataColumn.CellTemplate>
                                 <DataTemplate >
@@ -303,7 +303,7 @@
                         </telerik:GridViewDataColumn.CellTemplate>
                     </telerik:GridViewDataColumn>-->
 
-                      
+
                         <!--<telerik:GridViewDataColumn  Header="停运" HeaderTextAlignment="Center" IsReadOnly="True" MinWidth="30">
                         <telerik:GridViewDataColumn.CellTemplate>
                             <DataTemplate >
@@ -313,7 +313,7 @@
                             </DataTemplate>
                         </telerik:GridViewDataColumn.CellTemplate>
                     </telerik:GridViewDataColumn>-->
-                    <!--<telerik:GridViewDataColumn  Header="启运" HeaderTextAlignment="Center" IsReadOnly="True" MinWidth="30">
+                        <!--<telerik:GridViewDataColumn  Header="启运" HeaderTextAlignment="Center" IsReadOnly="True" MinWidth="30">
                         <telerik:GridViewDataColumn.CellTemplate>
                             <DataTemplate >
                                 <Grid>
@@ -322,11 +322,11 @@
                             </DataTemplate>
                         </telerik:GridViewDataColumn.CellTemplate>
                     </telerik:GridViewDataColumn>-->
-                </telerik:RadTreeListView.Columns>
-            </telerik:RadTreeListView>
-        </Grid>
-        <Grid Grid.Row="1" Visibility="{Binding IsShowAllDate, Converter={StaticResource BoolToVisible}}" Grid.RowSpan="2" >
-            <Grid.ColumnDefinitions>
+                    </telerik:RadTreeListView.Columns>
+                </telerik:RadTreeListView>
+            </Grid>
+            <Grid Grid.Row="1" Visibility="{Binding IsShowAllDate, Converter={StaticResource BoolToVisible}}" Grid.RowSpan="2" >
+                <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="auto"/>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="Auto"/>
@@ -338,7 +338,7 @@
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
+                </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" MinHeight="30"/>
                     <RowDefinition Height="Auto" MinHeight="30"/>
@@ -360,8 +360,8 @@
 
                 <!--<Button Margin="10,2,5,2"  Content="设置亮灯率"  Command="{Binding CmdSetLdl}" HorizontalAlignment="Left" VerticalAlignment="Center" MinWidth="80" Grid.Column="8"/>-->
                 <!--<Button Margin="10,2,5,2"  Content="停运"   Command="{Binding CmdStopRun}" HorizontalAlignment="Left" VerticalAlignment="Center" MinWidth="80" Grid.Column="7"/>-->
-            <!--<Button Margin="10,2,10,2"  Content="启运"  Command="{Binding CmdReRun}" HorizontalAlignment="Left" VerticalAlignment="Center" MinWidth="80" Grid.Column="8"/>-->
-            <!--<CheckBox Margin="10,2,10,2"  Content="报表" IsChecked="{Binding SelectReportType}" HorizontalAlignment="Center" VerticalAlignment="Center"  Grid.Column="9"/>-->
+                <!--<Button Margin="10,2,10,2"  Content="启运"  Command="{Binding CmdReRun}" HorizontalAlignment="Left" VerticalAlignment="Center" MinWidth="80" Grid.Column="8"/>-->
+                <!--<CheckBox Margin="10,2,10,2"  Content="报表" IsChecked="{Binding SelectReportType}" HorizontalAlignment="Center" VerticalAlignment="Center"  Grid.Column="9"/>-->
                 <TextBlock Grid.Row="1" Grid.Column="0" Margin="10,2,5,2" Text="临时控制终端数： " VerticalAlignment="Center" Visibility="{Binding LinshiVisi}"></TextBlock>
                 <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding RtuSumTemp}" VerticalAlignment="Center" Visibility="{Binding LinshiVisi}"></TextBlock>
                 <TextBlock Grid.Row=" 1" Text="{Binding Remind}" HorizontalAlignment="Left" Margin="5,2,5,2" Grid.ColumnSpan="5" VerticalAlignment="Center"/>
@@ -399,7 +399,7 @@
                 <RadioButton Grid.Column="4" Margin="10,0,10,0" VerticalAlignment="Center" Content="对时结果" IsChecked="{Binding CurrtReportType, Converter={StaticResource EnumFilterTypeConverter}, ConverterParameter=AsyncTimeReport}"/>
                 <RadioButton Grid.Column="5" Margin="10,0,10,0" VerticalAlignment="Center" Content="发送周设置结果" IsChecked="{Binding CurrtReportType, Converter={StaticResource EnumFilterTypeConverter}, ConverterParameter=WeekSndReport}"/>-->
 
-                
+
             </Grid>
         </Grid>
         <!--开灯报表-->
