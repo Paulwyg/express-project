@@ -44,7 +44,11 @@ namespace Wlst.Sr.TimeTableSystem.Services
         public static int GetBandingInfo(int areaid,int tmlOrGrpId, int switchoutloopid)
         {
 
-            return WeekTimeTableInfoService.info.GetBandingInfo(areaid,tmlOrGrpId, switchoutloopid);
+
+            //用新协议 细化到终端   lvf 2019年6月27日18:50:47
+            return GetBandingInfoNew(areaid,tmlOrGrpId,switchoutloopid);
+
+            //return WeekTimeTableInfoService.info.GetBandingInfo(areaid,tmlOrGrpId, switchoutloopid);
         }
 
 

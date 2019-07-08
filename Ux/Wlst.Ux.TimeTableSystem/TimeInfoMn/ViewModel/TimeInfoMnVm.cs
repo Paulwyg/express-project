@@ -2469,7 +2469,8 @@ namespace Wlst.Ux.TimeTableSystem.TimeInfoMn.ViewModel
                 if (xx != null)
                 {
                     if ((xx.RtuModel == EnumRtuModel.Wj3005 || xx.RtuModel == EnumRtuModel.Wj3006 ||
-                         xx.RtuModel == EnumRtuModel.Wj4005) && xx.RtuStateCode != 0)
+                         xx.RtuModel == EnumRtuModel.Wj4005 ||
+                         xx.RtuModel == EnumRtuModel.Gz6005) && xx.RtuStateCode != 0)
                     {
                         var state = "不用";
                         if (xx.RtuStateCode == 1)

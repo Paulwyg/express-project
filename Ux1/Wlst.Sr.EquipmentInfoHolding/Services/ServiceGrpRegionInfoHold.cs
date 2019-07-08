@@ -81,6 +81,20 @@ namespace Wlst.Sr.EquipmentInfoHolding.Services
 
 
         /// <summary>
+        /// 获取相关类型的分组 1是地区  2是普通分组（全局分组）
+        /// </summary>
+        /// <param name="group"></param>
+        /// <returns>不存在返回 null;grpid,grpname</returns>
+        public static string GetGrpName(int type,int areaid,int grpid)
+        {
+            var tu = new Tuple<int, int, int>(type,areaid, grpid);
+            if (InfoRegionGroups.ContainsKey(tu)) return InfoRegionGroups[tu];
+
+            return "地域分组";
+
+        }
+
+        /// <summary>
         /// 获取分组和区域下的终端list  rtuid，imageid
         /// </summary>
         /// <param name="grpId"></param>
@@ -223,6 +237,8 @@ namespace Wlst.Sr.EquipmentInfoHolding.Services
             return 3005;
 
         }
+
+
 
 
     }
@@ -664,7 +680,7 @@ namespace Wlst.Sr.EquipmentInfoHolding.Services
         public void RequestHttpRtuRegion()
         {
             //每5分钟 请求一次终端信息
-            Wlst.Cr.Coreb.AsyncTask .Qtz .AddQtz("null", 8888, DateTime.Now.Ticks + 20000000,300, RequestHttpRtuRegionInfo);
+            Wlst.Cr.Coreb.AsyncTask.Qtz.AddQtz("null", 8888, DateTime.Now.Ticks + 20000000,300, RequestHttpRtuRegionInfo);
 
         }
 

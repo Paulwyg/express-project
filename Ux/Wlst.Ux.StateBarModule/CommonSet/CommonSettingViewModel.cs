@@ -110,6 +110,7 @@ namespace Wlst.Ux.StateBarModule.CommonSet
 
                     //lvf 2019年4月28日14:12:12 设置区域读取
                     this.RegionItems.Clear();
+                    Wlst.Sr.EquipmentInfoHolding.Services.Others.RegionItems.Clear();
                     foreach (var g in infos.WstSysTitle.ReginItems)
                     {
                         RegionItems.Add(new RegionItem()
@@ -118,23 +119,23 @@ namespace Wlst.Ux.StateBarModule.CommonSet
                             RegionName = g.RegionName
                         });
 
-                        Wlst.Sr.EquipmentInfoHolding.Services.Others.RegionItems.Clear();
                         var tu = new Tuple<int,string>(g.Id,g.RegionName);
                         Sr.EquipmentInfoHolding.Services.Others.RegionItems.Add(tu);
                     }
+                    RegionRemarks = "共有" + this.RegionItems.Count + "个地区";
                     //todo test
-                    for (int i = 0; i < 3; i++)
-                    {
-                        RegionItems.Add(new RegionItem()
-                        {
-                            RegionId = i,
-                            RegionName = "新地区"+i
-                        });
+                    //for (int i = 0; i < 3; i++)
+                    //{
+                    //    RegionItems.Add(new RegionItem()
+                    //    {
+                    //        RegionId = i,
+                    //        RegionName = "新地区"+i
+                    //    });
 
-                        //Wlst.Sr.EquipmentInfoHolding.Services.Others.RegionItems.Clear();
-                        //var tu = new Tuple<int, string>(i, );
-                        //Sr.EquipmentInfoHolding.Services.Others.RegionItems.Add(tu);
-                    }
+                    //    //Wlst.Sr.EquipmentInfoHolding.Services.Others.RegionItems.Clear();
+                    //    //var tu = new Tuple<int, string>(i, );
+                    //    //Sr.EquipmentInfoHolding.Services.Others.RegionItems.Add(tu);
+                    //}
 
 
 
@@ -194,7 +195,32 @@ namespace Wlst.Ux.StateBarModule.CommonSet
             }
         }
 
+
+
         #endregion
+
+
+        #region RegionRemarks
+
+        private string _regionRemarks;
+
+        public string RegionRemarks
+        {
+            get { return _regionRemarks; }
+            set
+            {
+                if (value != _regionRemarks)
+                {
+                    _regionRemarks = value;
+                    RaisePropertyChanged(() => this.RegionRemarks);
+                }
+            }
+        }
+
+
+
+        #endregion
+        
 
         #region IsOpenCloseLigthSecondConfirm
 
@@ -878,49 +904,6 @@ namespace Wlst.Ux.StateBarModule.CommonSet
 
         private void _setSystemRegions_OnFormBtnOkClick(object sender, BaseView.EventArgsSetRegions e) //todo 暂存
         {
-
-            //var updateinfo = e.SetSystemRegion;
-            //if (updateinfo == null) return;
-            //ConcurrentDictionary<int, string> newRegionItems = new ConcurrentDictionary<int, string>();
-            //foreach (var g in updateinfo)
-            //{
-            //    newRegionItems.TryAdd(g.RegionId, g.RegionName);
-            //}
-            //var lstOldkey = new List<int>();
-            //var lstUpdate = new List<int>();
-            //lstOldkey = (from t in RegionItems select t.RegionId).ToList();
-            //lstUpdate = (from t in updateinfo select t.RegionId).ToList();
-            //var jiaoji = lstOldkey.Intersect(lstUpdate).ToList(); //需要更新的地区
-            //var oldChaji = lstOldkey.Except(lstUpdate).ToList();  //需要删除的地区
-            //var newChaji = lstUpdate.Except(lstOldkey).ToString();//需要增加的地区
-
-            //for (int i = RegionItems.Count -1; i >=0; i--)
-            //{
-            //    var idd = RegionItems[i].RegionId;
-            //    //需要更新
-            //    if (jiaoji.Contains(idd))
-            //    {
-            //        RegionItems[i].RegionName = newRegionItems[idd];
-            //        continue;
-            //    }
-            //    //需要删除
-            //    if (oldChaji.Contains(idd))
-            //    {
-            //        RegionItems.RemoveAt(i);
-            //    }
-
-            //}
-            ////需要增加的
-            //foreach (var g in newChaji)
-            //{
-            //    RegionItems.Add(new RegionItem()
-            //    {
-            //        RegionId = g,
-            //        RegionName = newRegionItems[g]
-            //    });
-            //}
-
-
           
 
             try
@@ -933,6 +916,8 @@ namespace Wlst.Ux.StateBarModule.CommonSet
 
             }
             _setSystemRegion = null;
+
+            this.RegionRemarks = "共有" + this.RegionItems.Count + "个地区";
         }
         #endregion
 

@@ -424,7 +424,7 @@ namespace Wlst.Ux.WJ3005Module.Wj3005TmlInfoSetViewModel.ViewModel
 
 
             //设备型号确认  
-            if ((int)t.RtuModel == 3005)
+            if ((int)t.RtuModel == 3005 || (int)t.RtuModel == 6005)
             {
                 CountSwitchIn = 16;
                 CountSwitchOut = 6;

@@ -37,7 +37,7 @@ namespace Wlst.Sr.TimeTableSystem.Services
         /// <returns>不存在返回null</returns>
         public static TimeTableInfoWithRtuOrGrpBandingInfo.TimeTableItem GeteekTimeTableInfo(int area, int id)
         {
-
+            return info.GetInfoTimeTableByIdNew(area, id);
             return info.GetInfoTimeTableById(area,id);
         }
 
@@ -48,6 +48,7 @@ namespace Wlst.Sr.TimeTableSystem.Services
         /// </summary>
         public static List<TimeTableInfoWithRtuOrGrpBandingInfo.TimeTableItem> GeteekTimeTableInfoList(int areaid)
         {
+
             return info.GetInfoTimeTableList(areaid);
         }
 
@@ -114,9 +115,9 @@ namespace Wlst.Sr.TimeTableSystem.Services
             {
                 RtuGrpId = rtuIdorGrpId;
             }
-
-
-            int timetableid = RtuOrGprBandingTimeTableInfoService.GetBandingInfo(areaid,RtuGrpId, switchoutloopid);
+            //采用新协议 细化到终端
+            int timetableid = RtuOrGprBandingTimeTableInfoService.GetBandingInfoNew(areaid, RtuGrpId, switchoutloopid);
+            //int timetableid = RtuOrGprBandingTimeTableInfoService.GetBandingInfo(areaid,RtuGrpId, switchoutloopid);
             if (timetableid == -1) return null;
 
             //绑定该时间表的临时方案 2018/4/20

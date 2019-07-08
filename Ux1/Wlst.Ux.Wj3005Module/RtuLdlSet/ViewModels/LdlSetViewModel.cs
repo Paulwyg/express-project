@@ -48,7 +48,7 @@ namespace Wlst.Ux.WJ3005Module.RtuLdlSet.ViewModels
 
         public string Title
         {
-            get { return "亮灯率设置"; }
+            get { return "终端亮灯率"; }
         }
 
         public bool CanClose
@@ -290,7 +290,12 @@ namespace Wlst.Ux.WJ3005Module.RtuLdlSet.ViewModels
                 }
                 this.ItemsTree.Add(new TreeGroupNode(f, 0));
             }
-
+            foreach (var child in ItemsTree) {
+                foreach(var rtu in child.ChildTreeItems)
+                {
+                    rtu.NodeName = rtu.PhysicalId.ToString().PadLeft(3,'0') + "-" + rtu.NodeName;
+                }
+            }
             for (int i = Items.Count - 1; i >= 0; i--)
             {
                 if (ItemsTree[i].ChildTreeItems.Count == 0) Items.RemoveAt(i);
