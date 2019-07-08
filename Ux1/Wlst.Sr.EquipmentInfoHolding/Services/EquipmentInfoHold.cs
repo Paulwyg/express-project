@@ -1095,7 +1095,7 @@ namespace Wlst.Sr.EquipmentInfoHolding.Services
         {
 
             if (data.Equipment.RtuModel == EnumRtuModel.Wj3090 || data.Equipment.RtuModel == EnumRtuModel.Wj3006 || data.Equipment.RtuModel ==EnumRtuModel.Wj4005 ||
-                data.Equipment.RtuModel == EnumRtuModel.Wj3005)
+                data.Equipment.RtuModel == EnumRtuModel.Wj3005 || data.Equipment.RtuModel == EnumRtuModel.Gz6005)
             {
                 return new Wj3005Rtu(data.Equipment, data.Voltage, data.ParaGprs, data.AmpLoop, 
                                      data.SwitchOut);

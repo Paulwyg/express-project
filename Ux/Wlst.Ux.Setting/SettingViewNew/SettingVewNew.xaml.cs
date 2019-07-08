@@ -20,8 +20,8 @@ namespace Wlst.Ux.Setting.SettingViewNew
     /// <summary>
     /// SettingVewNew.xaml 的交互逻辑
     /// </summary>
-    [ViewExport(ViewIdAssign.SettingViewId)]
-    [PartCreationPolicy(CreationPolicy.Shared)]
+    //[ViewExport(ViewIdAssign.SettingViewId)]
+    //[PartCreationPolicy(CreationPolicy.Shared)]
     public partial class SettingVewNew : UserControl
     {
         public SettingVewNew()

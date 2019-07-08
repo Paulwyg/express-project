@@ -37,7 +37,7 @@ namespace Wlst.Sr.TimeTableSystem.Services
         /// <returns>不存在返回null</returns>
         public static TimeTableInfoWithRtuOrGrpBandingInfo.TimeTableItem GeteekTimeTableInfo(int area, int id)
         {
-
+            return info.GetInfoTimeTableByIdNew(area, id);
             return info.GetInfoTimeTableById(area,id);
         }
 
@@ -48,6 +48,7 @@ namespace Wlst.Sr.TimeTableSystem.Services
         /// </summary>
         public static List<TimeTableInfoWithRtuOrGrpBandingInfo.TimeTableItem> GeteekTimeTableInfoList(int areaid)
         {
+
             return info.GetInfoTimeTableList(areaid);
         }
 

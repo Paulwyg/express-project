@@ -356,7 +356,6 @@ namespace Wlst.Ux.StateBarModule.NewMsgViewBottom
                     name = para.FieldName;
                     phyid = para.PhyId;
                 }
-
             }
 
             if (phyid > 0)

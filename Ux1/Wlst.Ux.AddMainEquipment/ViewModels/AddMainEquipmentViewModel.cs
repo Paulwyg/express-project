@@ -549,7 +549,7 @@ namespace Wlst.Ux.AddMainEquipment.ViewModels
 
 
             int idstart = 0;
-            if (mouduleKey == 3090 || mouduleKey == 3005 || mouduleKey == 3006)
+            if (mouduleKey == 3090 || mouduleKey == 3005 || mouduleKey == 3006 || mouduleKey == 6005)
             {
                 idstart = 1000000;
             }

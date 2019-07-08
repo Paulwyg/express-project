@@ -468,8 +468,8 @@ namespace Login.Login
             else if (ServerBak)
             {
                 ServerStyle = 2;
-                Wlst.Sr.EquipmentInfoHolding.Services.Others.SeverIpAddr = IpAddr + "";
-                Wlst.Sr.EquipmentInfoHolding.Services.Others.SeverPort = IpPort + "";
+                Wlst.Sr.EquipmentInfoHolding.Services.Others.SeverIpAddr = IpAddrBak + "";
+                Wlst.Sr.EquipmentInfoHolding.Services.Others.SeverPort = IpPortBak + "";
                 if (!Wlst.Sr.PPPandSocketSvr.Server.SocketClient.Connect(IpAddrBak, IpPortBak, 3))
                 {
                     Msg = "连接服务器失败...<未联网或服务器未开启>";

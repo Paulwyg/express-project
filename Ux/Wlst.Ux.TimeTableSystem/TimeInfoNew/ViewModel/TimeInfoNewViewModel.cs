@@ -78,16 +78,21 @@ namespace Wlst.Ux.TimeTableSystem.TimeInfoNew
             //grpid //areaid
             if (parsObjects.Count() > 1)
             {
-                this.TreeItems.Clear();
-                isUserSelectGrp = true;
-                Visi = Visibility.Collapsed;
+                
                 aareaId = (int)parsObjects[0];
                 ggrpId = (int)parsObjects[1];
+                AreaId = aareaId;
+                LoadTimeTableInfoFromSr();
+
 
                 var tu = new Tuple<int, int>(aareaId, ggrpId);
 
                 if (Sr.EquipmentInfoHolding.Services.ServicesGrpSingleInfoHold.InfoGroups.ContainsKey(tu) == false) return;
 
+
+                this.TreeItems.Clear();
+                isUserSelectGrp = true;
+                Visi = Visibility.Collapsed;
                 var tn = new TreeGrpNodes(aareaId, ggrpId, true);
 
                 this.TreeItems.Add(tn);
@@ -96,8 +101,13 @@ namespace Wlst.Ux.TimeTableSystem.TimeInfoNew
             }
             else if (parsObjects.Count() == 1)  //交叉分组
             {
+                
                 var rtulst = parsObjects[0] as List<int>;
                 if (rtulst == null || rtulst.Count == 0) return;
+
+                this.TreeItems.Clear();
+                Visi = Visibility.Collapsed;
+                AreaId = Wlst.Sr.EquipmentInfoHolding.Services.AreaInfoHold.MySlef.GetAreaThatRtuIn(rtulst[0]);
 
                 this.TreeItems.Clear();
                 rrrtulst.Clear();
@@ -105,7 +115,14 @@ namespace Wlst.Ux.TimeTableSystem.TimeInfoNew
                 isUserSelectGrp = true;
 
                 rrrtulst.AddRange(rtulst);
-                var tn = new TreeGrpNodes("地域分组",rtulst);
+
+                LoadTimeTableInfoFromSr();
+
+                var grpinfo = Wlst.Sr.EquipmentInfoHolding.Services.ServiceGrpRegionInfoHold.GetGrpRegionByRtuid(rtulst[0]);
+                var grpName = Wlst.Sr.EquipmentInfoHolding.Services.ServiceGrpRegionInfoHold.GetGrpName(1, grpinfo.Item1, grpinfo.Item3);
+                //var tn = new TreeGrpNodes(grpName, rrrtulst);
+
+                var tn = new TreeGrpNodes(grpName, rtulst);
 
                 this.TreeItems.Add(tn);
             }
@@ -194,8 +211,12 @@ namespace Wlst.Ux.TimeTableSystem.TimeInfoNew
                 }
             }
             Visi = Visibility.Collapsed;
-            if (AreaName.Count > 1) Visi = Visibility.Visible;
+            if (AreaName.Count > 1)
+            {
+                Visi = Visibility.Visible;
+                //AreaComboBoxSelected = AreaName[0];
 
+            }
 
         }
         private static ObservableCollection<AreaInt> _devices;
@@ -498,9 +519,29 @@ namespace Wlst.Ux.TimeTableSystem.TimeInfoNew
                     tmp.Add(g.Items[5].TimeTableName);
                     tmp.Add(g.Items[6].TimeTableName);
                     tmp.Add(g.Items[7].TimeTableName);
-
-
                     lstobj.Add(tmp);
+                    if (g.ChildTreeItems.Count > 0)
+                    {
+                        foreach(var k in g.ChildTreeItems)
+                        {
+                            var tmpp = new List<object>();
+                            tmpp.Add(k.PhyIdMsg);
+                            tmpp.Add(k.RtuOrGrpName);
+                            tmpp.Add(k.Items[0].TimeTableName);
+                            tmpp.Add(k.Items[1].TimeTableName);
+                            tmpp.Add(k.Items[2].TimeTableName);
+                            tmpp.Add(k.Items[3].TimeTableName);
+                            tmpp.Add(k.Items[4].TimeTableName);
+                            tmpp.Add(k.Items[5].TimeTableName);
+                            tmpp.Add(k.Items[6].TimeTableName);
+                            tmpp.Add(k.Items[7].TimeTableName);
+
+                            lstobj.Add(tmpp);
+
+                        }
+
+                       
+                    }
                 }
                 Wlst.Cr.CoreMims.ReportExcel.ExcelExport.ExcelExportWriteByRow(lsttitle, lstobj);
                 lstobj = null;
@@ -670,7 +711,7 @@ namespace Wlst.Ux.TimeTableSystem.TimeInfoNew
 
             var info = Wlst.Sr.ProtocolPhone.LxRtuTime.wst_timetable_set_bandingnew;
             info.WstRtutimeTimetableSetbandingnew.Op = 2;
-            info.WstRtutimeTimetableSetbandingnew.AreaId = areaId;
+            info.WstRtutimeTimetableSetbandingnew.AreaId = AreaId;
             info.WstRtutimeTimetableSetbandingnew.RtuOrGrpTimeTableAndBandingItems = bandingRelation;
             SndOrderServer.OrderSnd(info, 10, 6);
 
@@ -1434,9 +1475,11 @@ namespace Wlst.Ux.TimeTableSystem.TimeInfoNew
 
                     this.TreeItems.Clear();
 
-                    if (aareaId ==0 && ggrpId == 0)  //交叉分组
+                    if (aareaId == 0 && ggrpId == 0)  //交叉分组
                     {
-                        var tn = new TreeGrpNodes("地域分组", rrrtulst);
+                        var grpinfo = Wlst.Sr.EquipmentInfoHolding.Services.ServiceGrpRegionInfoHold.GetGrpRegionByRtuid(rrrtulst[0]);
+                        var grpName = Wlst.Sr.EquipmentInfoHolding.Services.ServiceGrpRegionInfoHold.GetGrpName(1, grpinfo.Item1, grpinfo.Item3);
+                        var tn = new TreeGrpNodes(grpName, rrrtulst);
 
                         this.TreeItems.Add(tn);
                         return;
