@@ -128,11 +128,25 @@
             <param name="id"></param>
             <returns>不存在返回null</returns>
         </member>
+        <member name="M:Wlst.Sr.TimeTableSystem.InfoHold.TimeTableInfosHold.GetInfoTimeTableByIdNew(System.Int32,System.Int32)">
+            <summary>
+            不存在返回null
+            </summary>
+            <param name="id"></param>
+            <returns>不存在返回null</returns>
+        </member>
         <member name="M:Wlst.Sr.TimeTableSystem.InfoHold.TimeTableInfosHold.GetInfoTimeTableList(System.Int32)">
             <summary>
             <para>获取升序排列的列表</para>
             <para>任何使用此数据务必注意 此数据为原始数据，___只允许读不允许修改___  </para>
             <para>任何修改会使原始数据被修改形成脏数据 </para>
+            </summary>
+        </member>
+        <member name="M:Wlst.Sr.TimeTableSystem.InfoHold.TimeTableInfosHold.GetInfoTimeTableListNew(System.Int32)">
+            <summary>
+            <para>获取升序排列的列表</para>
+            <para>任何使用此数据务必注意 此数据为原始数据，___只允许读不允许修改___  </para>
+            <para>任何修改会使原始数据被修改形成脏数据  lvf 采用新协议 2019年6月28日09:58:40</para>
             </summary>
         </member>
         <member name="F:Wlst.Sr.TimeTableSystem.InfoHold.TimeTableInfosHold.InfoBanding">

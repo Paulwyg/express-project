@@ -63,7 +63,6 @@ namespace Wlst.Ux.CrissCrossEquipemntTree.GrpSingleTabShowViewModel.ViewModels
             IsLoadOnlyOneArea = true;
             EventPublish.AddEventTokener(
                  Assembly.GetExecutingAssembly().GetName().ToString(), FundEventHandlers, FundOrderFilters);
-            Wlst.Sr.EquipmentInfoHolding.Services.ServiceGrpRegionInfoHold.RequestHttpRegionInfo();
 
             LoadNodeOther();
             LoadXml();

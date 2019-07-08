@@ -1849,7 +1849,7 @@ namespace Wlst.Ux.WJ3005Module.ControlCenterManagDemo2.ViewModel
                     tmp.Add(g.NodeId);
                     tmp.Add(g.PhysicalId);
                     tmp.Add(g.NodeName);
-                    tmp.Add(g.State);
+                    tmp.Add(g.State == EnumTmlState.Use ? "使用" : g.State == EnumTmlState.Disable ? "不用" : "停用");
                     tmp.Add(g.SyncTimeAns?"成功":"失败");
                     tmp.Add(g.ZcTimeAns);
                     tmp.Add(g.ZcVerAns);
