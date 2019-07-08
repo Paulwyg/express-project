@@ -42,7 +42,7 @@
             </Grid.ColumnDefinitions>           
             <Button Content="增加分组" Command="{Binding CmdAddGrp}"  Width="70" Height="25" HorizontalAlignment="Center"  Grid.Column="0"></Button>
             <Button Content="编辑分组" Command="{Binding CmdEditGrp}"  Width="70" Height="25" HorizontalAlignment="Center"  Grid.Column="1"></Button>
-            <Button Content="删除分组" Command="{Binding CmdDelGrp}"  Width="70" Height="25" HorizontalAlignment="Center"  Grid.Column="2"></Button>
+            <Button Content="删除分组" Command="{Binding CmdDelGrp}"  Width="70" Height="25" HorizontalAlignment="Center"  Grid.Column="2" IsEnabled="{Binding IsDelete}"></Button>
         </Grid>
             
         <Grid >

@@ -37,9 +37,9 @@
 
             <DockPanel Grid.Column="4" Width="330">
                 <CheckBox Margin="10,0,0,0" Content="启用终端" IsChecked="{Binding IsLock}" VerticalAlignment="Center" HorizontalAlignment="Left"/>
-                <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Margin="10,0,0,0"  Grid.Column="4" VerticalAlignment="Center" HorizontalAlignment="Left" Text="{Binding PhyId}"></TextBlock>
-                <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Margin="4,0,0,0"  VerticalAlignment="Center" HorizontalAlignment="Left" Text=" - "></TextBlock>
-                <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Width="200" Margin="4,0,0,0"  VerticalAlignment="Center" HorizontalAlignment="Left" Text="{Binding RtuName}"></TextBlock>
+                <!--<TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Margin="10,0,0,0"  Grid.Column="4" VerticalAlignment="Center" HorizontalAlignment="Left" Text="{Binding PhyId}"></TextBlock>
+                <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Margin="4,0,0,0"  VerticalAlignment="Center" HorizontalAlignment="Left" Text=" - "></TextBlock>-->
+                <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Width="200" Margin="10,0,0,0"  VerticalAlignment="Center" HorizontalAlignment="Left" Text="{Binding RtuInfo}"></TextBlock>
                 </DockPanel>
                  
                 <Button Margin="5,5,0,5" Content="查询" Grid.Column="6" MinHeight="23"   VerticalAlignment="Center"   Width="120"  Command="{Binding CmdQuery}"></Button>

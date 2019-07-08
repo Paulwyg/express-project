@@ -38,7 +38,7 @@ namespace Wlst.Ux.WJ3005Module.ZDataQuery.SndWeekTimeQuery.ViewModel
                 if (parsObjects.Length > 0)
                 {
                     RtuId = Convert.ToInt32(parsObjects[0]);
-                    if (RtuId >= 0)
+                    if (RtuId > 0)
                     {
                        // this.Query(DtStartTime, DtEndTime, RtuId);
                         IsLock = true;
@@ -49,14 +49,14 @@ namespace Wlst.Ux.WJ3005Module.ZDataQuery.SndWeekTimeQuery.ViewModel
                     {
                         PhyId = 0;
                         IsLock = false;
-                        RtuName = "所有终端";
+                        RtuInfo = "0 - 所有终端";
                     }
                 }
                 else
                 {
                     PhyId = 0;
                     IsLock = false;
-                    RtuName = "所有终端";
+                    RtuInfo = "0 - 所有终端";
                 }
             }
             catch (Exception ex)
@@ -73,6 +73,8 @@ namespace Wlst.Ux.WJ3005Module.ZDataQuery.SndWeekTimeQuery.ViewModel
             ExportVisi=Visibility.Collapsed;
             ItemCount = 0;
             PageTotal = "";
+            RtuInfo = "";
+            RtuName = "";
         }
 
         #region iitabl
@@ -128,8 +130,12 @@ namespace Wlst.Ux.WJ3005Module.ZDataQuery.SndWeekTimeQuery.ViewModel
                 _isLock = value;
                 if(value==false)
                 {
-                    PhyId = 0;
-                    RtuName = "所有终端";
+                    //PhyId = 0;
+                    RtuInfo = "0 - 所有终端";
+                }
+                else
+                {
+                    RtuInfo = PhyId + " - " + RtuName;
                 }
                 RaisePropertyChanged(()=>IsLock);
                 
@@ -246,11 +252,11 @@ namespace Wlst.Ux.WJ3005Module.ZDataQuery.SndWeekTimeQuery.ViewModel
                     this.RaisePropertyChanged(() => this.RtuId);
                     if (_rtuId == 0)
                     {
-                      //  IsLock = false;
-                        RtuName = "所有终端设备.";
+                        //  IsLock = false;
+                        RtuInfo = "0 - 所有终端设备.";
                         return;
                     }
-                    RtuName = "" + _rtuId;
+                    //RtuName = "" + _rtuId;
                     if (
                         Wlst.Sr.EquipmentInfoHolding.Services.EquipmentDataInfoHold .
                             InfoItems .ContainsKey(_rtuId))
@@ -260,7 +266,10 @@ namespace Wlst.Ux.WJ3005Module.ZDataQuery.SndWeekTimeQuery.ViewModel
                                 InfoItems [_rtuId];
                         this.RtuName = info.RtuName;
                         PhyId = info.RtuPhyId ;
-
+                        if (IsLock)
+                        {
+                            RtuInfo = PhyId + " - " + RtuName;
+                        }
                     }
                     else
                     {
@@ -305,6 +314,26 @@ namespace Wlst.Ux.WJ3005Module.ZDataQuery.SndWeekTimeQuery.ViewModel
                 {
                     _rtuName = value;
                     this.RaisePropertyChanged(() => this.RtuName);
+                }
+            }
+        }
+        #endregion
+
+        #region RtuInfo
+        private string _rtuInfo;
+
+        /// <summary>
+        /// 选中终端信息
+        /// </summary>
+        public string RtuInfo
+        {
+            get { return _rtuInfo; }
+            set
+            {
+                if (value != _rtuInfo)
+                {
+                    _rtuInfo = value;
+                    this.RaisePropertyChanged(() => this.RtuInfo);
                 }
             }
         }
@@ -477,9 +506,10 @@ namespace Wlst.Ux.WJ3005Module.ZDataQuery.SndWeekTimeQuery.ViewModel
         {
             if (rtuId < 1) return;
             RtuId = rtuId;
-           // Record.Clear();
+            // Record.Clear();
             //Query(DtStartTime, DtEndTime, RtuId);
-            this.Record.Clear();
+            if (IsLock)
+                this.Record.Clear();
         }
 
         #endregion
@@ -503,7 +533,7 @@ namespace Wlst.Ux.WJ3005Module.ZDataQuery.SndWeekTimeQuery.ViewModel
         {
             var info = infos.WstRtuWeeksetSndRecord;
             if (info == null) return;
-            this.RtuId = info.RtuId ;
+            //this.RtuId = info.RtuId ;
 
             var tmpitems = new ObservableCollection<SndWeekTimeOneRecordViewModel>();
             int index = 0;
@@ -576,10 +606,10 @@ namespace Wlst.Ux.WJ3005Module.ZDataQuery.SndWeekTimeQuery.ViewModel
                             id = tmps.RtuFid ;
                         }
                         if (id < 1000000 || id > 1100000) return;
-                        if(IsLock)
-                        {
+                        //if(IsLock)
+                        //{
                             SelectRtuIdChange(id); 
-                        }
+                        //}
                     }
                     break;
             }
@@ -634,6 +664,7 @@ namespace Wlst.Ux.WJ3005Module.ZDataQuery.SndWeekTimeQuery.ViewModel
 
             if (!GetCheckedInformation()) return;
             this.Record.Clear();
+            if (IsLock && tml == 0) return;
             //Remind = "查询命令已发送...请等待数据反馈！";
             var info = Wlst.Sr.ProtocolPhone.LxRtuHttp.wst_weekset_snd_record_http;//.wlst_cnt_request_weekset_record;
             info.WstRtuWeeksetSndRecord.DtEndTime = tEndTime.Ticks;
