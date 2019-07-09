@@ -71,7 +71,7 @@
                 <telerik:TreeListViewTableDefinition  ItemsSource="{Binding ChildTreeItems}" />
             </telerik:RadTreeListView.ChildTableDefinitions>
             <telerik:RadTreeListView.Columns>
-                    <telerik:GridViewDataColumn Header="地址" IsFilterable="False" Width="90" DataMemberBinding="{Binding PhyId}" IsReadOnly="True" />
+                    <telerik:GridViewDataColumn Header="地址" IsFilterable="False" Width="90" DataMemberBinding="{Binding PhyId}" IsReadOnly="True" IsVisible="False"/>
                 <telerik:GridViewDataColumn Header="组、终端名称"  IsReadOnly="True" Width="250" >
                     <telerik:GridViewDataColumn.CellTemplate>
                         <DataTemplate >
@@ -118,7 +118,7 @@
                 <!--<TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Text="设置方法为：左侧选择终端,右侧勾选报警;"></TextBlock>
                 <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Margin="0,5,0,0" Text="请全部设置完成后再保存。"></TextBlock>-->
 
-                <CheckBox IsChecked="{Binding IsChecked}" Content="显示不报警终端设置" Margin="0,0,20,0" VerticalAlignment="Center" ></CheckBox>
+                <CheckBox IsChecked="{Binding IsChecked}" Content="设置屏蔽报警终端" Margin="0,0,20,0" VerticalAlignment="Center" ></CheckBox>
             </StackPanel>
             <!--<telerik:RadGridView  MinWidth="390" Grid.Row="2" RowIndicatorVisibility="Collapsed"  ShowGroupPanel="False" AutoGenerateColumns="False"
                   AllowDrop="True" ItemsSource="{Binding Path=FaultCollection}">
