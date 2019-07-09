@@ -395,9 +395,10 @@ namespace Wlst.Sr.EquipmentInfoHolding.Services
             var lstfromServer = grpInfoExchangefromServer.GroupItems;
             if (lstfromServer == null) return;
 
-            Version = DateTime.Now.Ticks; 
+            
             if (grpInfoExchangefromServer.Op == 1)
             {
+               
                 //终端与分组的排序序号
                 int index = 1;
 
@@ -449,7 +450,7 @@ namespace Wlst.Sr.EquipmentInfoHolding.Services
 
             }
 
-
+            Version = DateTime.Now.Ticks;
             var arg = new PublishEventArgs()
             {
                 EventId = EventIdAssign.SingleInfoGroupAllNeedUpdate,
