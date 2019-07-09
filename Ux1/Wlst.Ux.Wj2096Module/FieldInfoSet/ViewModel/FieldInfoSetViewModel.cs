@@ -1354,7 +1354,7 @@ namespace Wlst.Ux.Wj2096Module.FieldInfoSet.ViewModel
 
                 return;
             }
-            SndOrderServer.OrderSnd(info, 10, 6);
+            SndOrderServer.OrderSnd(info, 10,0);//6
         }
 
         private void SaveFieldCtrlGrp()
