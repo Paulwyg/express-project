@@ -574,8 +574,9 @@ namespace Wlst.Sr.EquipmentInfoHolding.Services
                 UMessageBox.Show("添加错误", mess, UMessageBoxButton.Ok);
                 return;
             }
-            UpdateInfo(infos.WstEquSvrAnsCntRequestAdd, infos.Head.Gid);
             Version = DateTime.Now.Ticks;
+            UpdateInfo(infos.WstEquSvrAnsCntRequestAdd, infos.Head.Gid);
+            
             try
             {
                 var lstAdd = new List<Tuple<int, int>>();
@@ -623,10 +624,11 @@ namespace Wlst.Sr.EquipmentInfoHolding.Services
 
         public void deleteEquipment(string session, Wlst.mobile.MsgWithMobile infos)
         {
+            Version = DateTime.Now.Ticks;
             var info = infos.WstEquDelete ;
             if (info != null)
             {
-                Version = DateTime.Now.Ticks;
+                
                 DeleteInfo(info);
             }
         }
@@ -782,6 +784,17 @@ namespace Wlst.Sr.EquipmentInfoHolding.Services
             EventPublish.PublishEvent(arg);
 
             RequestNextPackageInfo();
+
+            if (LstWantInfo.Count == 0)
+            {
+                Version = DateTime.Now.Ticks;
+                var argx = new PublishEventArgs()
+                {
+                    EventId = EventIdAssign.SingleInfoGroupAllNeedUpdate,
+                    EventType = PublishEventType.Core
+                };
+                EventPublish.PublishEvent(argx);
+            }
 
         }
 
@@ -1072,6 +1085,7 @@ namespace Wlst.Sr.EquipmentInfoHolding.Services
                     WriteLog.WriteLogError("Error to update tml core data ,ex:" + ex);
                 }
 
+            Version = DateTime.Now.Ticks;
             //mkx
             var arg = new PublishEventArgs()
             {
@@ -1297,6 +1311,7 @@ namespace Wlst.Sr.EquipmentInfoHolding.Services
                 UpdateAttachLst();
                 if (lstUpdate.Count > 0)
                 {
+                    
                     var ar = new PublishEventArgs()
                     {
                         EventId = EventIdAssign.EquipmentUpdateEventId,
@@ -1307,6 +1322,7 @@ namespace Wlst.Sr.EquipmentInfoHolding.Services
                 }
                 if (lstAdd.Count > 0)
                 {
+                     
                     var ar = new PublishEventArgs()
                     {
                         EventId = EventIdAssign.EquipmentAddEventId,
@@ -1321,7 +1337,7 @@ namespace Wlst.Sr.EquipmentInfoHolding.Services
             {
                 WriteLog.WriteLogError("Error to update tml core data ,ex:" + ex);
             }
-            Version = DateTime.Now.Ticks;
+          //  Version = DateTime.Now.Ticks;
 
             RequestNextPackageInfo();
             Wlst.Cr.Core.ModuleServices.DelayEvent.RaiseEventHappen(DelayEventHappen.EventOne);
@@ -1392,7 +1408,11 @@ namespace Wlst.Sr.EquipmentInfoHolding.Services
 
         protected void RequestNextPackageInfo()
         {
-            if (LstWantInfo.Count < 1) return;
+            if (LstWantInfo.Count < 1)
+            {
+             
+                return;
+            }
             //int waitId = Infrastructure.UtilityFunction.TickCount.EnvironmentTickCount;
             //LogInfo.Log("正在请求设备信息!!!");
             //var info = new RequestEquipmentInfoLst();
@@ -1406,14 +1426,20 @@ namespace Wlst.Sr.EquipmentInfoHolding.Services
             //                        info, waitId, 10, 60, true);
             Wlst.Cr.CoreMims.ShowMsgInfo.ShowNewMsg.AddNewShowMsg(0, "请求参数-共 " + LstWantInfo.Count, OperatrType.SystemInfo, "请求");
 
-            var info = Wlst.Sr.ProtocolPhone.LxEqu .wst_request_equ ;//.ServerPart.wlst_equipment_client_request_Equipment;
+            var info = Wlst.Sr.ProtocolPhone.LxEqu.wst_request_equ;//.ServerPart.wlst_equipment_client_request_Equipment;
             foreach (var t in LstWantInfo)
             {
-                info.WstEquRequest .LstInfo .Add(t);
+                info.WstEquRequest.LstInfo.Add(t);
                 if (info.WstEquRequest.LstInfo.Count >= MaxPackageNumber) break;
             }
 
-            SndOrderServer.OrderSnd(info, 20, 60);
+            //SndOrderServer.OrderSnd(info, 20, 60);
+
+            var dhx = Wlst.Cr.CoreMims.HttpGetPostforMsgWithMobile.OrderSndHttp(info);
+            if (dhx != null)
+            {
+                UpdateRequest(dhx.WstEquRequest);
+            }
         }
 
 
