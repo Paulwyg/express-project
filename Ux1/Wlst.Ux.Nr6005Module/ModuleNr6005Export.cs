@@ -43,7 +43,8 @@ namespace Wlst.Ux.Nr6005Module
                              {
                                  ImageSourcePath = "/Image/EquipmentImage/3005.png",
                                  ModelInfoSetViewAttachRegion = Cr .Core .CoreServices .DocumentRegionName .DocumentRegion ,
-                                 ModelInfoSetViewId = Services.ViewIdAssign.Wj3005TmlInfoSetViewId,
+                                 ModelInfoSetViewId = 1102801,
+                                 //ModelInfoSetViewId = Services.ViewIdAssign.Wj3005TmlInfoSetViewId,
                                  Name = "6005型路灯控制设备"
 
                              }; }

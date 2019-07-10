@@ -199,10 +199,6 @@
       <Project>{7326E79B-65A6-4E0D-B90D-E1F4D1F10DF3}</Project>
       <Name>Wlst.Cr.CoreMims</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Cr\Wlst.Cr.Core\Wlst.Cr.Core.csproj">
-      <Project>{8177cb6e-c113-450a-a730-b3b199df07bd}</Project>
-      <Name>Wlst.Cr.Core</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Cr\Wlst.Cr.MessageBoxOverride\Wlst.Cr.MessageBoxOverride.csproj">
       <Project>{72A08659-526B-49BE-A3ED-D032300AAC58}</Project>
       <Name>Wlst.Cr.MessageBoxOverride</Name>

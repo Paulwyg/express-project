@@ -492,7 +492,7 @@ namespace Wlst.Sr.SlusglInfoHold.Services
         {
             var info = Wlst.Sr.ProtocolPhone.LxSluSgl.wst_slusgl_equ;
             info.WstSlusglEqu.Op = 1;
-            SndOrderServer.OrderSnd(info, 10,0);//120
+            SndOrderServer.OrderSnd(info, 10,6);//120
         }
 
         /// <summary>

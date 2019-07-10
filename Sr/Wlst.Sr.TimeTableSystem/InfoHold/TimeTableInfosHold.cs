@@ -317,6 +317,8 @@ namespace Wlst.Sr.TimeTableSystem.InfoHold
 
             Wlst.Cr.Core.ModuleServices.DelayEvent.RegisterDelayEvent(RequestWeekTimeTableInfo, 1);
             Wlst.Cr.Core.ModuleServices.DelayEvent.RegisterDelayEvent(RequestEventTaskInfo, 1);
+            Wlst.Cr.Core.ModuleServices.DelayEvent.RegisterDelayEvent(RequestYearTimeInfo, 1);
+            // todo 
         }
 
 
@@ -338,6 +340,7 @@ namespace Wlst.Sr.TimeTableSystem.InfoHold
             {
                 this.RequestWeekTimeTableInfo();
                 this.RequestEventTaskInfo();
+                this.RequestYearTimeInfo();
             }
         }
 
@@ -404,12 +407,18 @@ namespace Wlst.Sr.TimeTableSystem.InfoHold
             var info = Wlst.Sr.ProtocolPhone.LxRtuTime .wst_timetable_next_execute_info ;//.wlst_cnt_request_timetable_next_execute_info;//.ServerPart.wlst_TimeTable_clinet_request_timetableevent;
        
             SndOrderServer.OrderSnd(info, 10, 6);
+            var infos = Wlst.Sr.ProtocolPhone.LxRtuTime.wst_rtutime_query_year_time_table_info;
+        }
+        /// <summary>
+        /// 请求全年时间表
+        /// </summary>
+        public void RequestYearTimeInfo()
+        {
+            var info = Wlst.Sr.ProtocolPhone.LxRtuTime.wst_rtutime_query_year_time_table_info;//.wlst_cnt_request_timetable_next_execute_info;//.ServerPart.wlst_TimeTable_clinet_request_timetableevent;
 
-
-
+            SndOrderServer.OrderSnd(info, 10, 6);
 
         }
-
     }
 
 

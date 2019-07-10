@@ -42,8 +42,8 @@ namespace Wlst.Ux.Nr6005Module.Wj3005TmlInfoSetViewModel
             if (rtuId < 1)
                 return;
             this.ExNavWithArgs(
-                Nr6005Module .Services .ViewIdAssign .Wj3005TmlInfoSetViewId ,
-                rtuId);
+                1102801,
+                rtuId);//Nr6005Module .Services .ViewIdAssign .Wj3005TmlInfoSetViewId   采用 3005终端设置界面
         }
     }
 }
