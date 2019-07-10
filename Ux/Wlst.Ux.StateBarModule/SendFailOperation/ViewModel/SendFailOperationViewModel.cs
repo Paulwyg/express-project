@@ -29,6 +29,7 @@ namespace Wlst.Ux.StateBarModule.SendFailOperation.ViewModel
             Title = "下发失败查询";
             InitAction();
             InitEvent();
+
         }
 
         private bool _isViewVisual;
@@ -36,6 +37,7 @@ namespace Wlst.Ux.StateBarModule.SendFailOperation.ViewModel
         {
             if (_isViewVisual) return;
             _isViewVisual = true;
+            TypeOneVisi = Visibility.Visible;
             GetAllOperatorTypes();
 
             //BeginDate = DateTime.Now.AddDays(-1);

@@ -76,9 +76,6 @@
     <Reference Include="Telerik.Windows.Controls.Navigation, Version=2015.3.2015.40, Culture=neutral, PublicKeyToken=d3625f8bf04286d7, processorArchitecture=MSIL" />
     <Reference Include="Telerik.Windows.Data, Version=2015.3.2015.40, Culture=neutral, PublicKeyToken=d3625f8bf04286d7" />
     <Reference Include="WindowsBase" />
-    <Reference Include="Wlst.Cr.Core">
-      <HintPath>..\..\Rr\Binaries\WPF\Wlst.Cr.Core.dll</HintPath>
-    </Reference>
     <Reference Include="Wlst.Cr.Coreb">
       <HintPath>..\..\Rr\Binaries\WPF\Wlst.Cr.Coreb.dll</HintPath>
     </Reference>
