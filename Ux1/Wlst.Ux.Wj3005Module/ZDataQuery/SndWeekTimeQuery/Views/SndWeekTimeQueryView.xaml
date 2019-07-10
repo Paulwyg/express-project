@@ -80,7 +80,7 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            <!--<TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}"  Text="{Binding Remind}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0"/>-->
+            <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}"  Text="{Binding Remind}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0"/>
             <Button Content="导出" Click="BtnExportClick"  Visibility="{Binding ExportVisi}" Grid.Column="1" Margin="20,2,20,2" MinWidth="120"  MinHeight="25"/>
         </Grid>
     </Grid>

@@ -1013,10 +1013,10 @@ namespace Wlst.Ux.SinglePlan.SinglePlan.ViewModel
             var res = CommAns.Deserialize(data);
             if (res.Head.IfSt != 1)
             {
-                WlstMessageBox.Show("删除失败", "删除失败", WlstMessageBoxType.Ok);
+                WlstMessageBox.Show("保存失败", "保存失败", WlstMessageBoxType.Ok);
                 return;
             }
-            WlstMessageBox.Show("删除成功", "删除成功", WlstMessageBoxType.Ok);
+            WlstMessageBox.Show("保存成功", "保存成功", WlstMessageBoxType.Ok);
             SinglePlanViewModel._addOrModifyInstruction.Close();
             var args = new PublishEventArgs()
             {

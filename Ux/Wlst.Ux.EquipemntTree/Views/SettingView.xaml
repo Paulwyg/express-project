@@ -63,7 +63,7 @@
             </DockPanel>
 
             <DockPanel Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Center">
-                <CheckBox IsChecked="{Binding IsSelectGrpMapOnlyShow}" Content="选中分组时地图只显示该分组下的设备" VerticalAlignment="Center" ></CheckBox>
+                <CheckBox IsChecked="{Binding IsSelectGrpMapOnlyShow}" Content="选中终端分组时地图只显示该分组下的设备" VerticalAlignment="Center" ></CheckBox>
 
             </DockPanel>
 

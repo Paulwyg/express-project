@@ -372,7 +372,7 @@
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            <!--<TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}"  Text="{Binding Remind}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0"/>-->
+            <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}"  Text="{Binding Remind}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0"/>
             <CheckBox  Grid.Column="1" Margin="20,0,0,0"  Content="回路数据" IsChecked="{Binding IsCheckedLoop}"  VerticalAlignment="Center" />
                 <Button Content="导出" Command="{Binding CmdExport}"  Grid.Column="2"  Margin="20,2,50,2" MinWidth="120"  MinHeight="25"/>
         </Grid>

@@ -45,7 +45,7 @@
                                     <ColumnDefinition Width="60"/>
                                 </Grid.ColumnDefinitions>
                                 <Button Content="修改" MinWidth="55" Grid.Column="0" Command="{Binding CmdModflyUser, Mode=OneWay}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                                <Button Content="删除" MinWidth="55" Grid.Column="2" Command="{Binding CmdDeleteUser, Mode=OneWay}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                <Button Content="删除" MinWidth="55" Grid.Column="2" Command="{Binding CmdDeleteUser, Mode=OneWay}" VerticalAlignment="Center" HorizontalAlignment="Center" IsEnabled="{Binding IsDelete}"/>
                             </Grid>
                         </DataTemplate>
                     </telerik:GridViewDataColumn.CellTemplate>
