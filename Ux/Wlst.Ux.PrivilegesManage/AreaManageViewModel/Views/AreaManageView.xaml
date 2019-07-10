@@ -116,7 +116,7 @@
             <StackPanel Orientation ="Horizontal"  Grid.Row="2" Width="600" HorizontalAlignment="Left">
             <Label Width="300" Grid.Row="2"  HorizontalAlignment="Left" />
             <TextBox Grid.Row="2"  Text="{Binding SearchText, Mode=TwoWay,  ValidatesOnExceptions=True, ValidatesOnDataErrors=True, NotifyOnValidationError=True}" HorizontalAlignment="Left"  Height="25" Width="160"></TextBox>
-            <Button Grid.Row="2"  Margin="10,3,10,3" Content="终端名称查询" Command="{Binding CmdFastSearch}" Width="120"></Button>
+            <Button Grid.Row="2"  Margin="10,3,10,3" Content="终端查询" Command="{Binding CmdFastSearch}" Width="120"></Button>
             </StackPanel>
             
             <telerik:RadGridView  Grid.Row="3" Grid.ColumnSpan="5" x:Name="lv" ItemsSource="{Binding TmlData}" vm:DragDrop.IsDragSource="True" ShowGroupPanel="False" HorizontalAlignment="Left"

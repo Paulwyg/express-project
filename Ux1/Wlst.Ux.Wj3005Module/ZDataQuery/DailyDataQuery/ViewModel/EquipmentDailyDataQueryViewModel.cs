@@ -1689,7 +1689,7 @@ namespace Wlst.Ux.WJ3005Module.ZDataQuery.DailyDataQuery.ViewModel
             //Records.Clear();
             //this.Query(tStartTime, tEndTime, this.RtuId);
             PageIndex = 0;
-            RequestHttpData(tStartTime, tEndTime, PageIndex, 0, 0);
+            RequestHttpData(tStartTime, tEndTime, this.RtuId, 0, 0);
         }
 
         private void QueryLoop()
@@ -1820,7 +1820,7 @@ namespace Wlst.Ux.WJ3005Module.ZDataQuery.DailyDataQuery.ViewModel
 
                     lstobj.Add(tmp);
                 }
-                Wlst.Cr.CoreMims.ReportExcel.ExcelExport.ExcelExportWriteByRow(System.Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),lsttitle, lstobj);
+                Wlst.Cr.CoreMims.ReportExcel.ExcelExport.ExcelExportWriteByRow(lsttitle, lstobj);
                 lstobj = null;
                 lsttitle = null;
             }
@@ -2205,19 +2205,24 @@ namespace Wlst.Ux.WJ3005Module.ZDataQuery.DailyDataQuery.ViewModel
         {
 
             if (_thisViewActive == false) return;
-
             if (infos == null || infos.WstRtuData == null) return;
             //if (infos.WstRtuData.Op != 2 && infos.WstRtuData.Op != 4 && infos.WstRtuData.Op != 3) return;
-
             if (pagingFlag == 0)
             {
                 PageSize = infos.Head.PagingNum;
                 ItemCount = infos.Head.PagingRecordTotal;
                 count = ItemCount / PageSize + (ItemCount % PageSize > 0 ? 1 : 0);
-                PagerVisi = count < 2 ? Visibility.Collapsed : Visibility.Visible;
+                PagerVisi = count < 2 || IsCheckedLoop? Visibility.Collapsed : Visibility.Visible;
                 PageTotal = "页     " + ItemCount + " 条";
             }
-
+            if (infos.Head.Scc == 0)
+            {
+                Remind = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "--终端数据查询成功，共计" + ItemCount + "条数据.";
+            }
+            else
+            {
+                Remind = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "--终端数据查询失败.";
+            }
             var info = infos.WstRtuData;
 
             this.RtuId = info.RtuId;
@@ -2373,7 +2378,6 @@ namespace Wlst.Ux.WJ3005Module.ZDataQuery.DailyDataQuery.ViewModel
             }
             Records = tmpitems;
 
-            Remind = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "--终端数据查询成功，共计" + Records.Count + "条数据.";
 
             //if (_guidsThatLastUsed.Contains(infos.Head.Gid))
             //{
@@ -2735,7 +2739,7 @@ namespace Wlst.Ux.WJ3005Module.ZDataQuery.DailyDataQuery.ViewModel
             }
             if ((this.PhyId == 0 || IsAllRtu == true) && IsOneTime == false && IsCompare == false)
             {
-                UMessageBox.Show("提醒", "所有终端数据查询请勾选“查看指定时刻”", UMessageBoxButton.Ok);
+                UMessageBox.Show("提醒", "所有终端数据查询请勾选“指定时刻”", UMessageBoxButton.Ok);
                 //WLSTMessageBox.WpfMessageBox.Show("请重新选择时间，时间需选择在30天以内");
                 return false;
             }
@@ -2751,6 +2755,7 @@ namespace Wlst.Ux.WJ3005Module.ZDataQuery.DailyDataQuery.ViewModel
         //http请求
       private void RequestHttpData(DateTime dtstarttime, DateTime dtendtime, int tml, int pageIndex, int pagingFlag)
       {
+          Remind = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " 正在查询...";
           MsgWithMobile info;
           int type;
           if (IsCompare == true)

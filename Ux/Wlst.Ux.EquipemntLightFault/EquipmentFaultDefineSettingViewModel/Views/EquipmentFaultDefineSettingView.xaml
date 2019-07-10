@@ -11,7 +11,7 @@
              xmlns:Service="clr-namespace:Wlst.Ux.EquipemntLightFault.EquipmentFaultDefineSettingViewModel.Services"
              xmlns:RadioButtonConverter="clr-namespace:Wlst.Cr.CoreOne.RadioButtonConverter;assembly=Wlst.Cr.CoreOne"
              mc:Ignorable="d" 
-             d:DesignHeight="700" d:DesignWidth="950">
+             d:DesignHeight="700" d:DesignWidth="960">
     <UserControl.Resources>
         <Service:IsCheckedMore x:Key="IsCheckedMore"/>
         <RadioButtonConverter:RadioButtonIntConverter x:Key="RadioMultiIntConverter">
@@ -307,7 +307,7 @@
                                 <ColumnDefinition Width="105"></ColumnDefinition>
                                 <ColumnDefinition Width="105"></ColumnDefinition>
                                 <ColumnDefinition Width="105"></ColumnDefinition>
-                                <ColumnDefinition Width="105"></ColumnDefinition>
+                                <ColumnDefinition Width="120"></ColumnDefinition>
                                 <ColumnDefinition Width="105"></ColumnDefinition>
                                 <ColumnDefinition Width="105"></ColumnDefinition>
                                 <ColumnDefinition Width="105"></ColumnDefinition>
@@ -335,7 +335,7 @@
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="110"></ColumnDefinition>
                                 <ColumnDefinition Width="110"></ColumnDefinition>
-                                <ColumnDefinition Width="110"></ColumnDefinition>
+                                <ColumnDefinition Width="130"></ColumnDefinition>
                                 <ColumnDefinition Width="110"></ColumnDefinition>
                             </Grid.ColumnDefinitions>
 

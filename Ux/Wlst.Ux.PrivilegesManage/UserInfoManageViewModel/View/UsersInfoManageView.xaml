@@ -22,7 +22,7 @@
             <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Margin="10,0,0,0" VerticalAlignment="Center" Text="用户名："/>
             <TextBox VerticalAlignment="Center" Text="{Binding InquiryKeyWord}" Width="400"/>
             <Button Margin="30,0,0,0" Content="查询" Command="{Binding BtnInquiry}" VerticalAlignment="Center" MinWidth="60"/>
-            <Button Margin="20,0,0,0" Content="重置" Command="{Binding BtnReSetInquiryKeyWord}" VerticalAlignment="Center" MinWidth="60"/>
+            <Button Margin="20,0,0,0" Content="重置" Command="{Binding BtnReSetInquiryKeyWord}" VerticalAlignment="Center" MinWidth="60" Visibility="Collapsed"/>
             <Button Margin="20,0,0,0" Content="添加" IsEnabled="{Binding AddEnable}" Command="{Binding BtnAddUser}" VerticalAlignment="Center" MinWidth="60" />
         </StackPanel>
 
@@ -45,7 +45,7 @@
                                     <ColumnDefinition Width="60"/>
                                 </Grid.ColumnDefinitions>
                                 <Button Content="修改" MinWidth="55" Grid.Column="0" Command="{Binding CmdModflyUser, Mode=OneWay}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                                <Button Content="删除" MinWidth="55" Grid.Column="2" Command="{Binding CmdDeleteUser, Mode=OneWay}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                <Button Content="删除" MinWidth="55" Grid.Column="2" Command="{Binding CmdDeleteUser, Mode=OneWay}" VerticalAlignment="Center" HorizontalAlignment="Center" IsEnabled="{Binding IsDelete}"/>
                             </Grid>
                         </DataTemplate>
                     </telerik:GridViewDataColumn.CellTemplate>

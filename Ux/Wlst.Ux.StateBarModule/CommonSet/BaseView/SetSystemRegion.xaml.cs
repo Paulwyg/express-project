@@ -31,7 +31,7 @@ namespace Wlst.Ux.StateBarModule.CommonSet.BaseView
         public SetSystemRegion()
         {
             InitializeComponent();
-
+            this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
         }
 
         private ObservableCollection<RegionItem> dt;

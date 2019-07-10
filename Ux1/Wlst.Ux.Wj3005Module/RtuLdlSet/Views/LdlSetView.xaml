@@ -39,7 +39,7 @@
                             </DataTemplate>
                         </telerik:GridViewDataColumn.CellTemplate>
                     </telerik:GridViewDataColumn>
-                    <telerik:GridViewDataColumn  Header="地址" IsFilterable="False" MinWidth="100" MaxWidth="200"  DataMemberBinding="{Binding PhysicalId, StringFormat={}{0:D2}}" IsReadOnly="True" />
+                    <telerik:GridViewDataColumn  Header="地址" IsFilterable="False" MinWidth="100" MaxWidth="200"  DataMemberBinding="{Binding PhysicalId, StringFormat={}{0:D2}}" IsReadOnly="True" IsVisible="False"/>
                         <telerik:GridViewDataColumn Header="区域名称" IsReadOnly="True" MinWidth="0" MaxWidth="{Binding AreaCount}" >
                         <telerik:GridViewDataColumn.CellTemplate>
                             <DataTemplate >

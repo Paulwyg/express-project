@@ -916,8 +916,16 @@ namespace Wlst.Ux.StateBarModule.CommonSet
 
             }
             _setSystemRegion = null;
-
-            this.RegionRemarks = "共有" + this.RegionItems.Count + "个地区";
+            var namelist = "";
+            for(var i=0;i< RegionItems.Count;i++)
+            {
+                if (i > 4) {
+                    namelist = namelist + "等" + RegionItems.Count + "个区域";
+                    break;
+                }
+                namelist = namelist + (namelist == "" ? "" : "，") + RegionItems[i].RegionName;
+            }
+            this.RegionRemarks = namelist;
         }
         #endregion
 

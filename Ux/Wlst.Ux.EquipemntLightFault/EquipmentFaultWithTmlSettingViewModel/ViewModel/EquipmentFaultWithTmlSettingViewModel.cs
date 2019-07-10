@@ -317,7 +317,13 @@ namespace Wlst.Ux.EquipemntLightFault.EquipmentFaultWithTmlSettingViewModel.View
                     }
                         
                 }
-
+            foreach (var child in ChildTreeItems)
+            {
+                foreach (var rtu in child.ChildTreeItems)
+                {
+                    rtu.NodeName = rtu.PhyId.ToString().PadLeft(3, '0') + "-" + rtu.NodeName;
+                }
+            }
 
             var spe =
                 Wlst.Sr.EquipmentInfoHolding.Services.ServicesGrpSingleInfoHold.GetRtuNotInAnyGroup(
