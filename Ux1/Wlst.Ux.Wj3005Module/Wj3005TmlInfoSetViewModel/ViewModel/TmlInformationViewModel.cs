@@ -456,7 +456,7 @@ namespace Wlst.Ux.WJ3005Module.Wj3005TmlInfoSetViewModel.ViewModel
 
 
             }
-            if ((int)t.RtuModel == 6005)
+            else if ((int)t.RtuModel == 6005)
             {
                 CountSwitchIn = 16;
                 CountSwitchOut = 6;

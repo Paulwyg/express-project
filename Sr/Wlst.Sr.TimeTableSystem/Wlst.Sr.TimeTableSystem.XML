@@ -213,6 +213,11 @@
             请求时间时间表;
             </summary>
         </member>
+        <member name="M:Wlst.Sr.TimeTableSystem.InfoHold.TimeTableInfosHold.RequestYearTimeInfo">
+            <summary>
+            请求全年时间表
+            </summary>
+        </member>
         <member name="M:Wlst.Sr.TimeTableSystem.InfoHold.TimeTableInfosHold.OnRequestTimeTableBandingInfo(System.String,Wlst.mobile.MsgWithMobile)">
             <summary>
             新协议，获取时间表绑定信息

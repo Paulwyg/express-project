@@ -416,7 +416,7 @@
 								  HorizontalAlignment="Left" 
 							
                                  Grid.Row="1" 
-								  CanUserReorderColumns="False">
+								  CanUserReorderColumns="False" SelectionChanged="DataGrid_SelectionChanged">
 
                 <DataGrid.RowStyle>
                     <Style TargetType="DataGridRow">

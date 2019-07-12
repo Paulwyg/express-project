@@ -18,7 +18,7 @@ namespace Wlst.Ux.About.UxAbout.ViewModel
             {
                 softwareName = "数字化城市照明监控管理平台软件";
 
-                softwareVersion = "软件版本 \"v5.0.3-20180928\"";
+                softwareVersion = "软件版本 \"v4.0.3-20180928\"";
 
                // protocolVersion = "协议版本 v20170501";
 

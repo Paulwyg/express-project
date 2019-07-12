@@ -27,6 +27,9 @@ namespace Wlst.Ux.WJ3005Module.Wj3005TmlInfoSetViewModel.Views
            // DataGridRow
         }
 
-     
+        private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }
