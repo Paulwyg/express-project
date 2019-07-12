@@ -47,7 +47,7 @@ namespace Wlst.Ux.Wj9001Module.Wj9001DataQueryViewModel.ViewModel
             {
 
             }
-            Remind =DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " --"+ "通过左侧终端树选择几种控制器来进行数据查询.";
+            Remind =DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " --"+ "通过左侧终端树选择几种光控来进行数据查询.";
         }
 
         public void OnUserHideOrClosing()
@@ -768,7 +768,7 @@ namespace Wlst.Ux.Wj9001Module.Wj9001DataQueryViewModel.ViewModel
             }
             FilterErrs(obs);
             Remind = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " --" + "数据已反馈...";
-            Remind = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") +"  终端数据查询成功，共计" + Items.Count + " 条数据.";
+            Remind = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") +"  光控数据查询成功，共计" + ItemCount + " 条数据.";
         }
         private void FilterErrs(ObservableCollection<Wj9001DataQueryoneItemViewModel> records)
         {
@@ -809,7 +809,7 @@ namespace Wlst.Ux.Wj9001Module.Wj9001DataQueryViewModel.ViewModel
             }
 
 
-            Remind = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " 故障记录查询成功，共计" + Items.Count + " 条数据.";
+            Remind = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " 光控数据查询成功，共计" + ItemCount + " 条数据.";
         }
         private void InitEvent()
         {

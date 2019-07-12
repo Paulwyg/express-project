@@ -77,7 +77,7 @@
         <Grid Grid.ColumnSpan="13" Grid.Row="2">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
-                <RowDefinition Height="30"/>
+                <RowDefinition Height="35"/>
             </Grid.RowDefinitions>
             <telerik:RadTreeListView RowIndicatorVisibility="Collapsed"  x:Name="rtl"  FilteringMode="Popup" AutoGenerateColumns="False" 
 							  ItemsSource="{Binding OperateItems}"  >
@@ -271,12 +271,12 @@
                     </telerik:GridViewDataColumn>
                 </telerik:RadTreeListView.Columns>
             </telerik:RadTreeListView>
-            <DockPanel Grid.Row="2" HorizontalAlignment="Right" >
-                <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground1}" Width="500" Text="{Binding OperaterRemind}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0"/>
-                <Button Content="全选/全清"   Width="150" Margin="50,5,0,5"   HorizontalAlignment="Left" Command="{Binding CmdSelectAllOp}"   />
-                <Button Content="删除选中"   Width="150" Margin="10,5,0,5"   HorizontalAlignment="Left" Command="{Binding CmdDelSelectionOp}"   />
-                <Button Content="应急关灯"  Foreground="Red" ToolTip="下发关灯指令  并发送今日屏蔽开灯的周设置" Grid.Column="10" Width="150" Margin="10,5,0,5"   HorizontalAlignment="Left" Command="{Binding CmdEmergencyClose}" CommandParameter="1" />
-                <Button Content="导出"  Width="150" Margin="10,5,0,5"   HorizontalAlignment="Left" Command="{Binding CmdExportOp}"   />
+            <DockPanel Grid.Row="2">
+                <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground1}" Width="600" Text="{Binding OperaterRemind}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0"/>
+                <Button Content="全选/全清"   Width="120" Height="25" Margin="110,5,0,5"   HorizontalAlignment="Left" Command="{Binding CmdSelectAllOp}"   />
+                <Button Content="删除选中"   Width="120" Height="25" Margin="10,5,0,5"   HorizontalAlignment="Left" Command="{Binding CmdDelSelectionOp}"   />
+                <Button Content="应急关灯"  Foreground="Red"  ToolTip="下发关灯指令  并发送今日屏蔽开灯的周设置" Grid.Column="10" Width="120" Height="25" Margin="10,5,0,5"   HorizontalAlignment="Left" Command="{Binding CmdEmergencyClose}" CommandParameter="1" />
+                <Button Content="导出"  Width="120" Height="25" Margin="10,5,0,5"   HorizontalAlignment="Left" Command="{Binding CmdExportOp}"   />
             </DockPanel>
         </Grid>
 
@@ -285,9 +285,9 @@
         <Grid Grid.ColumnSpan="13" Grid.Row="4">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
-                <RowDefinition Height="30"/>
+                <RowDefinition Height="35"/>
             </Grid.RowDefinitions>
-            <telerik:RadTreeListView ShowGroupPanel="False" RowIndicatorVisibility="Collapsed" FilteringMode="Popup" AutoGenerateColumns="False" ItemsSource="{Binding EmergencyItems}" Height="220" VerticalAlignment="Top">
+            <telerik:RadTreeListView RowIndicatorVisibility="Collapsed" FilteringMode="Popup" AutoGenerateColumns="False" ItemsSource="{Binding EmergencyItems}">
                 <telerik:RadTreeListView.Columns>
                     <telerik:GridViewDataColumn  Header="序号" HeaderTextAlignment="Center" IsFilterable="False" MinWidth="75" MaxWidth="150"  DataMemberBinding="{Binding Index}" IsReadOnly="True" />
                     <telerik:GridViewDataColumn  Header="选择" HeaderTextAlignment="Center" Width="90" IsReadOnly="True">
@@ -421,13 +421,13 @@
 
             
             <DockPanel Grid.Row="2">
-                <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground1}" Width="500" Text="{Binding AnsRemind}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0"/>
-                <Button Content="最新数据"   Width="100" Margin="20,5,0,5"   HorizontalAlignment="Left" Command="{Binding CmdShowNewData}"   />
-                <Button Content="补关"   Width="100" Margin="10,5,0,5"   HorizontalAlignment="Left" Command="{Binding CmdCloseAgain}"   />
-                <Button Content="全选/反选"   Width="100" Margin="10,5,0,5"   HorizontalAlignment="Left" Command="{Binding CmdSelectEmergencyRtus}"   />
-                <Button Content="[选中]恢复开灯" Foreground="Red" ToolTip="下发开灯指令 并恢复正常周设置" Width="135" Margin="10,5,0,5"   HorizontalAlignment="Left" Command="{Binding CmdEmergencyClose}" CommandParameter="3"   />
-                <Button Content="[选中]取消应急关灯"  Foreground="Red" ToolTip="取消应急关灯设定，仅发送正常周设置" Grid.Column="10" Width="135" Margin="10,5,0,5"   HorizontalAlignment="Left" Command="{Binding CmdEmergencyClose}" CommandParameter="2"  />
-                <Button Content="导出"   Width="100" Margin="10,5,0,5"   HorizontalAlignment="Left" Command="{Binding CmdExportEmergency}"   />
+                <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground1}" Width="400" Text="{Binding AnsRemind}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0"/>
+                <Button Content="最新数据"   Width="120" Height="25" Margin="20,5,0,5"   HorizontalAlignment="Left" Command="{Binding CmdShowNewData}"   />
+                <Button Content="补关"   Width="120" Height="25" Margin="10,5,0,5"   HorizontalAlignment="Left" Command="{Binding CmdCloseAgain}"   />
+                <Button Content="全选/反选"   Width="120" Height="25" Margin="10,5,0,5"   HorizontalAlignment="Left" Command="{Binding CmdSelectEmergencyRtus}"   />
+                <Button Content="[选中]恢复开灯" Foreground="Red" ToolTip="下发开灯指令 并恢复正常周设置" Width="135" Height="25" Margin="10,5,0,5"   HorizontalAlignment="Left" Command="{Binding CmdEmergencyClose}" CommandParameter="3"   />
+                <Button Content="[选中]取消应急关灯"  Foreground="Red" ToolTip="取消应急关灯设定，仅发送正常周设置" Grid.Column="10" Width="135" Height="25" Margin="10,5,0,5"   HorizontalAlignment="Left" Command="{Binding CmdEmergencyClose}" CommandParameter="2"  />
+                <Button Content="导出"   Width="120" Height="25" Margin="10,5,0,5"   HorizontalAlignment="Left" Command="{Binding CmdExportEmergency}"   />
             </DockPanel>
         </Grid>
 

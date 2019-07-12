@@ -10,7 +10,7 @@
                                   mc:Ignorable="d" 
                                    
                     Height="525"  Title="时间表快速选择"  TitleCetc="时间表快速选择"     Topmost="True" TopmostButtonVisibility="Collapsed"
-        Width="600">
+        Width="650">
     <Grid>
         <Grid>
             <Grid.Resources>
@@ -34,10 +34,10 @@
                             </DataTemplate>
                         </telerik:GridViewDataColumn.CellTemplate>
                     </telerik:GridViewDataColumn>
-                    <telerik:GridViewDataColumn Header="序号" IsFilterable="False"    Width="50" DataMemberBinding="{Binding Path=Id,Mode=TwoWay}"/>
+                    <telerik:GridViewDataColumn Header="区域" IsFilterable="False"   DataMemberBinding="{Binding  Path=Area,Mode=TwoWay}"  IsVisible="{Binding AreaView}" Width="120"  />
+                    <telerik:GridViewDataColumn Header="时间表编号" IsFilterable="False"    Width="80" DataMemberBinding="{Binding Path=Id,Mode=TwoWay}"/>
                     <telerik:GridViewDataColumn Header="时间表名称" IsFilterable="False"   DataMemberBinding="{Binding  Path=Name,Mode=TwoWay}" Width="200" />
-                    <telerik:GridViewDataColumn Header="所属区域" IsFilterable="False"   DataMemberBinding="{Binding  Path=Area,Mode=TwoWay}"  IsVisible="{Binding AreaView}" Width="150"  />
-                    <telerik:GridViewDataColumn Header="时间表描述" IsFilterable="False"   DataMemberBinding="{Binding  Path=NameDesc,Mode=TwoWay}"  Width="250"/>
+                    <telerik:GridViewDataColumn Header="时间表描述" IsFilterable="False"   DataMemberBinding="{Binding  Path=NameDesc,Mode=TwoWay}"  Width="185"/>
 
 
                 </telerik:RadGridView.Columns>

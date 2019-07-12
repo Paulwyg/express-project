@@ -199,7 +199,7 @@
                     </telerik:RadGridView>
 
                     <Button Grid.Row="1" Margin="0,0,70,0" HorizontalAlignment="Right" Click="Button_Click" Content="导 出" Width="120" Height="25"></Button>
-                    <Button Grid.Row="1" Margin="0,0,220,0" HorizontalAlignment="Right"  Content="日落时间计算" Width="120" Height="25" Click="Button_Click_2"></Button>
+                    <Button Grid.Row="1" Margin="0,0,220,0" HorizontalAlignment="Right"  Content="开灯时长计算" Width="120" Height="25" Click="Button_Click_2"></Button>
                 
                 </Grid>
             </TabItem>

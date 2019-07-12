@@ -132,7 +132,7 @@
                 <RadioButton  IsChecked="{Binding Path=TreeSortBy, Converter={StaticResource RadioMultiIntConverter}, ConverterParameter=3}" Content="按终端分组终端顺序排序 " VerticalAlignment="Center" ></RadioButton>
             </DockPanel>
             <DockPanel Grid.Row="17" HorizontalAlignment="Left" VerticalAlignment="Center">
-                <RadioButton  IsChecked="{Binding Path=TreeSortBy, Converter={StaticResource RadioMultiIntConverter}, ConverterParameter=4}" Content="按终端逻辑地址排序" VerticalAlignment="Center" ></RadioButton>
+                <RadioButton  IsChecked="{Binding Path=TreeSortBy, Converter={StaticResource RadioMultiIntConverter}, ConverterParameter=4}" Content="按终端地址排序" VerticalAlignment="Center" ></RadioButton>
             </DockPanel>
 
             <Button  Tag="11060007" Content="应用" Command="{Binding CmdApply}" 

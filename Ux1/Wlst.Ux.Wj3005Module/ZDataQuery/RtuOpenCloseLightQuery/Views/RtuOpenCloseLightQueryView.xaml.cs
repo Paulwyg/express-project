@@ -132,15 +132,15 @@ namespace Wlst.Ux.WJ3005Module.ZDataQuery.RtuOpenCloseLightQuery.Views
             string strSum366to1 = (Sum366to1 / 60).ToString("D2") + "小时" + (Sum366to1 % 60).ToString("D2") + "分钟";
             string strSum365to1 = (Sum365to1 / 60).ToString("D2") + "小时" + (Sum365to1 % 60).ToString("D2") + "分钟";
 
-            string strline = "全夜时间即日落时刻-日出时刻的时长" + "。 \n";
+            string strline = "开灯时长：日落时刻 至 日出时刻的时长" + "。 \n";
 
-            string str = strline + year366 + "有366天，则总全夜时长为" + Sum366 + "分钟，即" + strSum366 + "；平均每天全夜时长为" + Sum366to1 + "分钟，即" + strSum366to1 + "。 \n" +
-                         year365 + "有365天，则总全夜时长为" + Sum365 + "分钟，即" + strSum365 + "；平均每天全夜时长为" + Sum365to1 + "分钟，即" + strSum365to1 + "。";
+            string str = strline + year366 + "有366天" + " \n" + "则总全夜时长为：" + Sum366 + "分钟，即" + strSum366 + "； \n" + "平均每天全夜时长为：" + Sum366to1 + "分钟，即" + strSum366to1 + "。 \n" +
+                         year365 + "有365天" + " \n" + "则总全夜时长为：" + Sum365 + "分钟，即" + strSum365 + "； \n" + "平均每天全夜时长为：" + Sum365to1 + "分钟，即" + strSum365to1 + "。";
 
-            if (year365 == "今年") str = strline + year365 + "有365天，则总全夜时长为" + Sum365 + "分钟，即" + strSum365 + "；平均每天全夜时长为" + Sum365to1 + "分钟，即" + strSum365to1 + "。 \n" +
-                                         year366 + "有366天，则总全夜时长为" + Sum366 + "分钟，即" + strSum366 + "；平均每天全夜时长为" + Sum366to1 + "分钟，即" + strSum366to1 + "。";
+            if (year365 == "今年") str = strline + year365 + "有365天" + " \n" + "则总全夜时长为：" + Sum365 + "分钟，即" + strSum365 + "； \n" + "平均每天全夜时长为：" + Sum365to1 + "分钟，即" + strSum365to1 + "。 \n" +
+                                         year366 + "有366天" + " \n" + "则总全夜时长为：" + Sum366 + "分钟，即" + strSum366 + "； \n" + "平均每天全夜时长为：" + Sum366to1 + "分钟，即" + strSum366to1 + "。";
 
-            WlstMessageBox.Show("统计全夜时长", str , WlstMessageBoxType.Ok);
+            WlstMessageBox.Show("统计开灯时长", str , WlstMessageBoxType.Ok);
         }
 
         private void Button_Click_3(object sender, RoutedEventArgs e)

@@ -1503,6 +1503,7 @@ namespace Wlst.Ux.WJ3005Module.ControlCenterManagDemo2.ViewModel
                     UMessageBox.Show("请选择终端", "请选择需要操作的终端......", UMessageBoxButton.Ok);
                     return;
                 }
+
                 RegionManage.ShowViewByIdAttachRegionWithArgu(
                     Wlst.Ux.WJ3005Module.Services.ViewIdAssign.NavToBatchStopView, lstRtu,1);
                 return;
@@ -4667,7 +4668,7 @@ namespace Wlst.Ux.WJ3005Module.ControlCenterManagDemo2.ViewModel
 
                 #endregion
             }
-            else if (datax.Op == 7 || datax.Op == 8)
+            else if (datax.Op == 7 || datax.Op == 6)
             {
 
                 #region

@@ -149,9 +149,9 @@
     </Grid>
         <Grid HorizontalAlignment="Left" Visibility="{Binding Shield}">
             <Grid.RowDefinitions>
-                <RowDefinition Height=" 1*"/>
-                <RowDefinition Height=" 8*"/>
-                <RowDefinition Height=" 1*"/>
+                <RowDefinition Height=" 30"/>
+                <RowDefinition Height=" *"/>
+                <RowDefinition Height=" 30"/>
             </Grid.RowDefinitions>
             <TextBlock Grid.Row="0" Text="      屏蔽回路数据" HorizontalAlignment="Left" VerticalAlignment="Center" />
             <telerik:RadGridView x:Name="RadGridView2" ScrollMode="Deferred" ShowGroupPanel="False"
@@ -159,18 +159,18 @@
                              ItemsSource="{Binding ShieldPatrolData}" SelectedItem="{Binding CurrentShieldPatrolData}"  RowIndicatorVisibility="Collapsed"
                    IsReadOnly="True"  AutoGenerateColumns="False" ShowColumnHeaders="True">
                 <telerik:RadGridView.Columns>
-                    <telerik:GridViewDataColumn Header="地址" IsFilterable="False" DataMemberBinding="{Binding RtuId, StringFormat={}{0:D4}}" IsReadOnly="True" Width="75"/>
-                    <telerik:GridViewDataColumn Header="终端名称" IsFilterable="False" DataMemberBinding="{Binding RtuName}" IsReadOnly="True" Width="150"/>
-                    <telerik:GridViewDataColumn Header="屏蔽回路ID" IsFilterable="False" DataMemberBinding="{Binding LoopId}"  IsReadOnly="True" Width="80"/>
-                    <telerik:GridViewDataColumn Header="屏蔽回路名称" IsFilterable="False" DataMemberBinding="{Binding LoopName}"  IsReadOnly="True" Width="90"/>
-                    <telerik:GridViewDataColumn Header="电压"  IsFilterable="False"  DataMemberBinding="{Binding V}"  IsReadOnly="True" Width="60" />
-                    <telerik:GridViewDataColumn Header="电流" IsFilterable="False" DataMemberBinding="{Binding A}"  IsReadOnly="True" Width="60"/>
-                    <telerik:GridViewDataColumn Header="功率"  IsFilterable="False"  DataMemberBinding="{Binding Power}"  IsReadOnly="True" Width="60"/>
+                    <telerik:GridViewDataColumn Header="物理地址" IsFilterable="False" DataMemberBinding="{Binding RtuId, StringFormat={}{0:D4}}" IsReadOnly="True" Width="120"/>
+                    <telerik:GridViewDataColumn Header="终端名称" IsFilterable="False" DataMemberBinding="{Binding RtuName}" IsReadOnly="True" Width="250"/>
+                    <telerik:GridViewDataColumn Header="回路序号" IsFilterable="False" DataMemberBinding="{Binding LoopId}"  IsReadOnly="True" Width="120"/>
+                    <telerik:GridViewDataColumn Header="回路名称" IsFilterable="False" DataMemberBinding="{Binding LoopName}"  IsReadOnly="True" Width="250"/>
+                    <telerik:GridViewDataColumn Header="电压"  IsFilterable="False"  DataMemberBinding="{Binding V}"  IsReadOnly="True" Width="120" />
+                    <telerik:GridViewDataColumn Header="电流" IsFilterable="False" DataMemberBinding="{Binding A}"  IsReadOnly="True" Width="120"/>
+                    <telerik:GridViewDataColumn Header="功率"  IsFilterable="False"  DataMemberBinding="{Binding Power}"  IsReadOnly="True" Width="120"/>
                     
 
                 </telerik:RadGridView.Columns>
             </telerik:RadGridView>
-            <Button Grid.Row="2" Width=" 80" Height="25" HorizontalAlignment="Right" Margin="5,5,20,5" Content="返回" Command="{Binding CmdReturn}" />
+            <Button Grid.Row="2" Width=" 100" Height="25" HorizontalAlignment="Right" Margin="10,0,10,0" Content="返回" Command="{Binding CmdReturn}" />
         </Grid>
     </Grid>
 </UserControl>
