@@ -294,6 +294,7 @@ namespace Wlst.Ux.WJ3005Module.RtuLdlSet.ViewModels
                 foreach(var rtu in child.ChildTreeItems)
                 {
                     rtu.NodeName = rtu.PhysicalId.ToString().PadLeft(3,'0') + "-" + rtu.NodeName;
+                    rtu.StateString = rtu.State == EnumTmlState.Use ? "使用" : rtu.State == EnumTmlState.NotUse ? "不用" : "停运";
                 }
             }
             for (int i = Items.Count - 1; i >= 0; i--)

@@ -179,7 +179,7 @@
                         <telerik:GridViewDataColumn Header="B相功率" IsFilterable="False" IsSortable="False" DataMemberBinding="{Binding RtuPowerSumB}"  IsReadOnly="True"  MinWidth="55" MaxWidth="105" IsVisible="{Binding IsShowSumPower}"/>
                         <telerik:GridViewDataColumn Header="C相功率" IsFilterable="False" IsSortable="False" DataMemberBinding="{Binding RtuPowerSumC}"  IsReadOnly="True"  MinWidth="55" MaxWidth="105" IsVisible="{Binding IsShowSumPower}"/>
                         <telerik:GridViewDataColumn Header="总功率" IsFilterable="False" IsSortable="False" DataMemberBinding="{Binding RtuPowerSum}"  IsReadOnly="True"  MinWidth="55" MaxWidth="105" IsVisible="{Binding IsShowSumPower}"/>
-                        <telerik:GridViewDataColumn Header="总功率因数" IsFilterable="False" IsSortable="False" DataMemberBinding="{Binding RtuTotalPowerFactor}"  IsReadOnly="True"  MinWidth="55" MaxWidth="105" IsVisible="{Binding IsShowSumPower}"/>
+                        <telerik:GridViewDataColumn Header="总功率因数" IsFilterable="False" IsSortable="False" DataMemberBinding="{Binding RtuTotalPowerFactor}"  IsReadOnly="True"  MinWidth="55" MaxWidth="105" IsVisible="False"/>
                     </telerik:RadGridView.Columns>
                 </telerik:RadGridView>
                     <!--<Controls:DataPager Grid.Row="1" Visibility="{Binding IsVisiTerminalInfo}" HorizontalAlignment="Center" Margin="5,0,5,0"></Controls:DataPager>-->
@@ -207,7 +207,7 @@
                         <telerik:GridViewDataColumn Header="回路" IsFilterable="False" Width="60" DataMemberBinding="{Binding LoopId}" IsReadOnly="True" />
                         <telerik:GridViewDataColumn Header="回路名称" IsFilterable="False" Width="150" DataMemberBinding="{Binding LoopName}" IsReadOnly="True" />
                         <telerik:GridViewDataColumn Header="开关量" IsFilterable="False" Width="95" DataMemberBinding="{Binding LoopK}" IsReadOnly="True" />
-                        <telerik:GridViewDataColumn Header="状态" IsFilterable="False" DataMemberBinding="{Binding SwitchInState}"  IsReadOnly="True" Width="90"/>
+                        <telerik:GridViewDataColumn Header="输入状态" IsFilterable="False" DataMemberBinding="{Binding SwitchInState}"  IsReadOnly="True" Width="90"/>
                         <telerik:GridViewDataColumn Header="电压" IsFilterable="False" IsSortable="False" DataMemberBinding="{Binding V}"  IsReadOnly="True" Width="105"/>
                         <telerik:GridViewDataColumn Header="电流" IsFilterable="False" IsSortable="False" DataMemberBinding="{Binding A}"  IsReadOnly="True"  Width="105"/>
                         <telerik:GridViewDataColumn Header="功率" IsFilterable="False" IsSortable="False" DataMemberBinding="{Binding Power}"  IsReadOnly="True" Width="105"/>

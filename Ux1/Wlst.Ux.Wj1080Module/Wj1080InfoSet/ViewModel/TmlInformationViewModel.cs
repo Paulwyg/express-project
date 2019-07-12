@@ -892,7 +892,7 @@ namespace Wlst.Ux.Wj1080Module.Wj1080InfoSet.ViewModel
                 index = index + 1;
             }
             this.Items = tmps;
-            Remind = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " --" + Wlst.Sr.EquipmentInfoHolding.Services.EquipmentDataInfoHold.GetInfoById( RtuId) .RtuPhyId + "--光控数据查询成功，共计" + Items.Count + " 条数据.";
+            Remind = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " --" + Wlst.Sr.EquipmentInfoHolding.Services.EquipmentDataInfoHold.GetInfoById( RtuId) .RtuPhyId + "--光控数据查询成功，共计" + ItemCount + " 条数据.";
         }
        
 

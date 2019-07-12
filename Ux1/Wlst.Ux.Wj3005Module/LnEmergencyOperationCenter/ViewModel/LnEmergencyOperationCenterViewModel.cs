@@ -34,7 +34,7 @@ namespace Wlst.Ux.WJ3005Module.LnEmergencyOperationCenter.ViewModel
 
         public string Title
         {
-            get { return "应急中心"; }
+            get { return "应急操作中心"; }
         }
 
         public bool CanClose

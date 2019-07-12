@@ -432,7 +432,7 @@ namespace Wlst.Sr.TimeTableSystem.InfoHold
             var info = Wlst.Sr.ProtocolPhone.LxRtuTime .wst_timetable_next_execute_info ;//.wlst_cnt_request_timetable_next_execute_info;//.ServerPart.wlst_TimeTable_clinet_request_timetableevent;
        
             SndOrderServer.OrderSnd(info, 10, 6);
-            var infos = Wlst.Sr.ProtocolPhone.LxRtuTime.wst_rtutime_query_year_time_table_info;
+           
         }
         /// <summary>
         /// 请求全年时间表
@@ -442,7 +442,6 @@ namespace Wlst.Sr.TimeTableSystem.InfoHold
             var info = Wlst.Sr.ProtocolPhone.LxRtuTime.wst_rtutime_query_year_time_table_info;//.wlst_cnt_request_timetable_next_execute_info;//.ServerPart.wlst_TimeTable_clinet_request_timetableevent;
             info.WstQueryYearTimeTableInfo.OP = 1;
             SndOrderServer.OrderSnd(info, 10, 6);
-
         }
     }
 

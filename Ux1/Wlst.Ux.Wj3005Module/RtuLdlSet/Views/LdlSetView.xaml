@@ -59,7 +59,8 @@
                         <telerik:GridViewDataColumn.CellTemplate>
                             <DataTemplate >
                                 <Grid >
-                                    <Image Visibility="{Binding IsGroup, Converter={StaticResource OppositeBoolToVisibleConverter}}" HorizontalAlignment="Center" VerticalAlignment="Center"  Source="{Binding Path=State, Converter={StaticResource imageconverter}}" Width="25" Height="25"></Image>
+                                    <!--<Image Visibility="{Binding IsGroup, Converter={StaticResource OppositeBoolToVisibleConverter}}" HorizontalAlignment="Center" VerticalAlignment="Center"  Source="{Binding Path=State, Converter={StaticResource imageconverter}}" Width="25" Height="25"></Image>-->
+                                        <TextBlock Visibility="{Binding IsGroup, Converter={StaticResource OppositeBoolToVisibleConverter}}" Text="{Binding StateString}" HorizontalAlignment="Center"></TextBlock>
                                 </Grid>
                             </DataTemplate>
                         </telerik:GridViewDataColumn.CellTemplate>
