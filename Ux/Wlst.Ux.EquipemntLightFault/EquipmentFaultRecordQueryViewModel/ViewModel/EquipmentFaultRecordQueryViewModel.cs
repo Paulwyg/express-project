@@ -435,6 +435,7 @@ namespace Wlst.Ux.EquipemntLightFault.EquipmentFaultRecordQueryViewModel.ViewMod
             this.Remind = "";
             ItemCount = 0;
             PageTotal = "";
+            _faultName.Clear();
         }
 
         #region tab

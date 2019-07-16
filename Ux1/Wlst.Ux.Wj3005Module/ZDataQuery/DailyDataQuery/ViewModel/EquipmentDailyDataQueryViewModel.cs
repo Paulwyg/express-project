@@ -555,7 +555,7 @@ namespace Wlst.Ux.WJ3005Module.ZDataQuery.DailyDataQuery.ViewModel
                     _all = value;
                     this.RaisePropertyChanged(() => this.IsAllRtu);
                     if (IsAllRtu == false) IsOneTime = false;
-
+                    if (IsAllRtu && IsCompare == false) IsOneTime = true;
                 }
             }
         }
