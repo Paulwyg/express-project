@@ -481,9 +481,9 @@ namespace Wlst.Ux.TimeTableSystem.TimeInfoMn.Views.BaseView
                         }
                     }
 
-                    var infoss = WlstMessageBox.Show("警告",
-                                                     "主光控 " + dt.CurrentSelectLux.Name + " 不属于" + masg +
-                                                     "，是否继续操作？ 是 继续，否 退出.", WlstMessageBoxType.YesNo);
+                    var infoss = WlstMessageBox.Show("警告: "+dt.TimeId+"-"+dt.TimeName,
+                                                     "主光控: " + dt.CurrentSelectLux.Name + " 不属于" + masg +
+                                                     "， 是 继续，否 取消当前选择.", WlstMessageBoxType.YesNo);
                     if (infoss != WlstMessageBoxResults.Yes) dt.CurrentSelectLux = dt.LuxCollection[0];
                 }
 
@@ -570,9 +570,9 @@ namespace Wlst.Ux.TimeTableSystem.TimeInfoMn.Views.BaseView
                         }
                     }
 
-                    var infoss = WlstMessageBox.Show("警告",
-                                                     "备用光控 " + dt.CurrentSelectLux2.Name + " 不属于" + masg +
-                                                     "，是否继续操作？ 是 继续，否 退出.", WlstMessageBoxType.YesNo);
+                    var infoss = WlstMessageBox.Show("警告: " + dt.TimeId + "-" + dt.TimeName,
+                                                     "备用光控: " + dt.CurrentSelectLux2.Name + " 不属于" + masg +
+                                                     "， 是 继续，否 取消当前选择.", WlstMessageBoxType.YesNo);
                     if (infoss == WlstMessageBoxResults.Yes)
                     {
                         return;

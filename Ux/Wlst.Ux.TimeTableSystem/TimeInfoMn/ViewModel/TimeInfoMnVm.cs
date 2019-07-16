@@ -1533,10 +1533,18 @@ namespace Wlst.Ux.TimeTableSystem.TimeInfoMn.ViewModel
             get { return _currentSelectItem; }
             set
             {
-                if (_currentSelectItem == value || value == null) return;
-                _currentSelectItem = value;
-                if (_currentSelectItem.LuxId2 == 0 ) _currentSelectItem.ShowCurrentSelectLux2 = 0;
-                RaisePropertyChanged(() => CurrentSelectItem);
+
+                if (_currentSelectItem == value) return;
+                else
+                {
+                    IsOperate = value != null;
+                    _currentSelectItem = value;
+                    if (value != null)
+                    {
+                        if (_currentSelectItem.LuxId2 == 0) _currentSelectItem.ShowCurrentSelectLux2 = 0;
+                    }
+                    RaisePropertyChanged(() => CurrentSelectItem);
+                }
             }
         }
 
@@ -1558,6 +1566,22 @@ namespace Wlst.Ux.TimeTableSystem.TimeInfoMn.ViewModel
             }
         }
 
+        private bool _isOperate;
+        /// <summary>
+        /// 是否可操作
+        /// </summary>
+        public bool IsOperate
+        {
+            get { return _isOperate; }
+            set
+            {
+                if (value != _isOperate)
+                {
+                    _isOperate = value;
+                    this.RaisePropertyChanged(() => this.IsOperate);
+                }
+            }
+        }
 
         #endregion
 

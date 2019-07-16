@@ -36,6 +36,10 @@ namespace Wlst.Ux.StateBarModule.OperatorDataQueryViewModel.ViewModel
         {
             if (_isViewVisual) return;
             _isViewVisual = true;
+            UserItems.Clear();
+            TypeItems.Clear();
+            Items.Clear();
+            IsAdvanceQueryChecked = false;
             BeginDate = DateTime.Now.AddDays(-1);
             EndDate = DateTime.Now;
             RequestAllUserInfomation();

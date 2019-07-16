@@ -331,6 +331,7 @@ namespace Wlst.Ux.TimeTableSystem.TimeInfoNew
             }
         }
 
+
     }
 
     /// <summary>
@@ -370,6 +371,7 @@ namespace Wlst.Ux.TimeTableSystem.TimeInfoNew
                 if (value == _items) return;
                 _items = value;
                 this.RaisePropertyChanged(() => Items);
+                
             }
         }
 

@@ -95,15 +95,15 @@
         </Grid>
 
         <!--<DockPanel Grid.Row="3">-->
-        <Button Content="删 除" Grid.Row="3" Grid.Column="0"  Width="100"  Command="{Binding CmdDeleteTimeTable}" Height="25" HorizontalAlignment="Left" Margin="5"/>
+        <Button Content="删 除" Grid.Row="3" Grid.Column="0"  Width="100"  Command="{Binding CmdDeleteTimeTable}" Height="25" HorizontalAlignment="Left" Margin="5" IsEnabled="{Binding IsOperate}"/>
         <Button Content="增 加" Grid.Row="3" Grid.Column="1" Width="100" Command="{Binding CmdAddTimeTable}" Height="25"  HorizontalAlignment="Left" Margin="5"  />
-        <Button Content="复制当前增加" Grid.Row="3" Grid.Column="2" Height="25" Command="{Binding CmdCopyAddTimeTable}" Width="100" HorizontalAlignment="Left" Margin="5"/>
+        <Button Content="复制当前增加" Grid.Row="3" Grid.Column="2" Height="25" Command="{Binding CmdCopyAddTimeTable}" Width="100" HorizontalAlignment="Left" Margin="5" IsEnabled="{Binding IsOperate}"/>
 
-        <Button Content="修 改" Grid.Row="3" Grid.Column="3" Command="{Binding CmdModifyTimeTable}" Width="100" Height="25"  HorizontalAlignment="Left" Margin="5"/>
+        <Button Content="修 改" Grid.Row="3" Grid.Column="3" Command="{Binding CmdModifyTimeTable}" Width="100" Height="25"  HorizontalAlignment="Left" Margin="5" IsEnabled="{Binding IsOperate}"/>
 
         <Button Content="特设方案" Grid.Row="3" Grid.Column="4" Command="{Binding CmdTemporaryTimeTable}" Width="100" Height="25"  HorizontalAlignment="Left" Margin="5"/>
 
-        <Button Content="全年时间查看" Grid.Row="3" Grid.Column="5" Command="{Binding CmdQueryRecordSun}" Width="100" Height="25"  HorizontalAlignment="Left" Margin="5"/>
+        <Button Content="全年时间查看" Grid.Row="3" Grid.Column="5" Command="{Binding CmdQueryRecordSun}" Width="100" Height="25"  HorizontalAlignment="Left" Margin="5" IsEnabled="{Binding IsOperate}"/>
 
 
         <!--</DockPanel>-->

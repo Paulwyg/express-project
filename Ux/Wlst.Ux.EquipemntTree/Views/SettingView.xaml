@@ -41,7 +41,7 @@
 
             <DockPanel Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center">
 
-                <CheckBox IsChecked="{Binding IsShowGrpInTreeModelShowId}" Content="分组显示组地址" VerticalAlignment="Center" ></CheckBox>
+                <CheckBox IsChecked="{Binding IsShowGrpInTreeModelShowId}" Content="分组显示组地址(终端显示物理地址)" VerticalAlignment="Center" ></CheckBox>
                
             </DockPanel>
 
