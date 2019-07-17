@@ -54,7 +54,7 @@
         </Grid>
 
         <telerik:RadTreeView Grid.Row="0" ItemsSource="{Binding AreaTreeItem}" Width="Auto" Padding="0" Margin="0" SelectedItem="{Binding SelectedTreeItem}"
-                         BorderThickness="1" vm:DragDrop.IsDragSource="True" vm:DragDrop.DragHandler="{Binding DragSourceTree}"  
+                         BorderThickness="1" vm:DragDrop.IsDragSource="True" vm:DragDrop.DragHandler="{Binding DragSourceTree}" IsVirtualizing="True"
                          vm:DragDrop.IsDropTarget="True" vm:DragDrop.DropHandler="{Binding DropTargetTree}" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                          >          
             <telerik:RadTreeView.ItemContainerStyle>
