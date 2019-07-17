@@ -9,7 +9,7 @@
              xmlns:Converters="clr-namespace:Elysium.Converters;assembly=Elysium"
              xmlns:Service="clr-namespace:Wlst.Ux.TimeTableSystem.TimeInfoMn.Services" mc:Ignorable="d" 
               
-             d:DesignHeight="580" d:DesignWidth="750">
+             d:DesignHeight="580" d:DesignWidth="1010">
     <UserControl.Resources>
         <Converters:BoolToVisibleConverter x:Key="BoolToVisibleConvert"></Converters:BoolToVisibleConverter>
         <Service:TimeIsOverTwo x:Key="TimeIsOverTwo"/>
@@ -19,10 +19,10 @@
     <Grid Margin="5">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"></ColumnDefinition>
@@ -34,8 +34,8 @@
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
-        <DockPanel Grid.Row="0" Visibility="{Binding Visi}" Grid.ColumnSpan="7">
-            <TextBlock Grid.Row="1" Text="  当前区域为：" VerticalAlignment="Center" Width="100" HorizontalAlignment="Left"></TextBlock>
+        <DockPanel Grid.Row="0" Visibility="{Binding Visi}" Margin="5,0,0,0"  Grid.ColumnSpan="7">
+            <TextBlock Grid.Row="1" Text="当前区域为：" VerticalAlignment="Center" Width="100" HorizontalAlignment="Left"></TextBlock>
             <ComboBox x:Name="AreaComboBox"  Width="150" Height="18" HorizontalAlignment="Left" Margin="6,0,0,0"
                       ItemsSource="{Binding AreaName}" DisplayMemberPath="Value" SelectedItem="{Binding AreaComboBoxSelected}" ></ComboBox>
         </DockPanel>
@@ -56,11 +56,11 @@
                 <TextBlock Text="时间表信息:"></TextBlock>
                 <Label x:Name="fg"/>
                 <telerik:RadGridView AutoGenerateColumns="False" RowIndicatorVisibility="Collapsed" ShowGroupPanel="False" ItemsSource="{Binding Items}" 
-                               HorizontalAlignment="Left" MaxHeight="330"  SelectedItem="{Binding CurrentSelectItem}" Grid.Row="1" Height="200">
+                               HorizontalAlignment="Left"    SelectedItem="{Binding CurrentSelectItem}" Grid.Row="1" MinHeight="100">
                     <telerik:RadGridView.Columns>
-                        <telerik:GridViewDataColumn Header="序号" IsFilterable="False" IsSortable="False"   DataMemberBinding="{Binding Path=TimeId,Mode=TwoWay}"  Width="60"/>
-                        <telerik:GridViewDataColumn IsFilterable="False" IsSortable="False"  Header="名称"   DataMemberBinding="{Binding  Path=TimeName,Mode=TwoWay}"  Width="120" />
-                        <telerik:GridViewDataColumn IsFilterable="False" IsSortable="False"  Header="描述" Width="125">
+                        <telerik:GridViewDataColumn Header="序号" IsFilterable="False" IsSortable="False"   DataMemberBinding="{Binding Path=TimeId,Mode=TwoWay}"  Width="80"/>
+                        <telerik:GridViewDataColumn IsFilterable="False" IsSortable="False"  Header="名称"   DataMemberBinding="{Binding  Path=TimeName,Mode=TwoWay}"  Width="180" />
+                        <telerik:GridViewDataColumn IsFilterable="False" IsSortable="False"  Header="描述" Width="135">
                             <telerik:GridViewDataColumn.CellTemplate>
                                 <DataTemplate >
                                     <DockPanel >
@@ -70,11 +70,11 @@
                                 </DataTemplate>
                             </telerik:GridViewDataColumn.CellTemplate>
                         </telerik:GridViewDataColumn>
-                        <telerik:GridViewDataColumn IsFilterable="False" IsSortable="False"  Header="开灯偏移值"   DataMemberBinding="{Binding  Path=LightOnOffset,Mode=TwoWay}"  Width="80" />
-                        <telerik:GridViewDataColumn IsFilterable="False" IsSortable="False"  Header="关灯偏移值"   DataMemberBinding="{Binding  Path=LightOffOffset,Mode=TwoWay}"  Width="80" />
-                        <telerik:GridViewDataColumn IsFilterable="False" IsSortable="False"  Header="开灯光控值"   DataMemberBinding="{Binding  Path=LuxOnValue,Mode=TwoWay}"  Width="80" />
-                        <telerik:GridViewDataColumn IsFilterable="False" IsSortable="False"  Header="关灯光控值"   DataMemberBinding="{Binding  Path=LuxOffValue,Mode=TwoWay}"  Width="80" />
-                        <telerik:GridViewDataColumn IsFilterable="False" IsSortable="False"  Header="光控有效时间"   DataMemberBinding="{Binding  Path=LuxEffective,Mode=TwoWay}"  Width="80" />
+                        <telerik:GridViewDataColumn IsFilterable="False" IsSortable="False"  Header="开灯偏移值"   DataMemberBinding="{Binding  Path=LightOnOffset,Mode=TwoWay}"  Width="120" />
+                        <telerik:GridViewDataColumn IsFilterable="False" IsSortable="False"  Header="关灯偏移值"   DataMemberBinding="{Binding  Path=LightOffOffset,Mode=TwoWay}"  Width="120" />
+                        <telerik:GridViewDataColumn IsFilterable="False" IsSortable="False"  Header="开灯光控值"   DataMemberBinding="{Binding  Path=LuxOnValue,Mode=TwoWay}"  Width="120" />
+                        <telerik:GridViewDataColumn IsFilterable="False" IsSortable="False"  Header="关灯光控值"   DataMemberBinding="{Binding  Path=LuxOffValue,Mode=TwoWay}"  Width="120" />
+                        <telerik:GridViewDataColumn IsFilterable="False" IsSortable="False"  Header="光控有效时间"   DataMemberBinding="{Binding  Path=LuxEffective,Mode=TwoWay}"  Width="120" />
                     </telerik:RadGridView.Columns>
                 </telerik:RadGridView>
             </Grid>
@@ -113,10 +113,10 @@
 
 
             <TextBlock Grid.Row="4" Grid.ColumnSpan="3" Text="{Binding Msg}" VerticalAlignment="Center" Width="350" HorizontalAlignment="Left"></TextBlock>
-            <CheckBox IsChecked="{Binding IsShowTimeTable}" Grid.Row="4" Grid.Column="4" Content="显示时间表" Margin="5" VerticalAlignment="Center"></CheckBox>
+        <CheckBox IsChecked="{Binding IsShowTimeTable}"   Visibility="Collapsed" Grid.Row="4" Grid.Column="4" Content="显示时间表" Margin="5" VerticalAlignment="Center"></CheckBox>
             <!--<Button Grid.Row="1" HorizontalAlignment="Right" Margin="0,0,50,0" Content="批量设置" Width="120" Height="25" Command="{Binding CmdSetup}" Visibility="{Binding VisiSetup}"></Button>-->
             <!--<Button Grid.Row="1" HorizontalAlignment="Right" Margin="0,0,50,0" Content="导出终端设置" Width="120" Height="25" Command="{Binding CmdExport}"></Button>-->
-            <Button  Grid.Row="4" Grid.Column="5" HorizontalAlignment="Right" Content="保存" Width="100" Height="25" Command="{Binding CmdSaveNew}" Margin="5"></Button>
+            <Button  Grid.Row="4" Grid.Column="5" HorizontalAlignment="Right" Content="保存" Width="100" Height="25" Command="{Binding CmdSaveNew}" Margin="5,5,5,1"></Button>
             <Button Grid.Row="4" HorizontalAlignment="Right" Visibility="Collapsed" Margin="0,0,170,0" Content="重新加载" Width="120" Height="25" Command="{Binding CmdReflesh}" ></Button>
 
     </Grid>

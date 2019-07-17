@@ -49,18 +49,18 @@
                 
 
                 <DockPanel HorizontalAlignment="Left" Grid.ColumnSpan ="3">
-                    <TextBlock Margin="10,0,0,0" Foreground="{Binding ElementName=fg, Path=Foreground}"  Text="起始时间:" VerticalAlignment="Center"></TextBlock>
+                    <TextBlock Margin="5,0,0,0" Foreground="{Binding ElementName=fg, Path=Foreground}"  Text="起始时间:" VerticalAlignment="Center"></TextBlock>
                     <DatePicker SelectedDateFormat="Short"  VerticalAlignment="Center" Width="120"   Margin="10,0,0,0"  HorizontalAlignment="Center" SelectedDate="{Binding DtStartTime}"></DatePicker>
                     <TextBox HorizontalAlignment="Center" Width="50" Text="{Binding StTime,Converter={StaticResource TimeConverterIntToString}}" Margin="10,3,10,3"/>   
                 </DockPanel>
                 <DockPanel HorizontalAlignment="Left" Grid.Column="2" Visibility="{Binding IsOneCheck}" Margin="6,0,0,0">
                     <!--<TextBlock Margin="10,0,0,0" Foreground="{Binding ElementName=fg, Path=Foreground}"  Text="结束时间:" VerticalAlignment="Center"></TextBlock>-->
-                    <TextBlock Margin="10,0,0,0" Foreground="{Binding ElementName=fg, Path=Foreground}" Text="{Binding SndTimeName}" VerticalAlignment="Center"></TextBlock>
+                    <TextBlock Margin="5,0,0,0" Foreground="{Binding ElementName=fg, Path=Foreground}" Text="{Binding SndTimeName}" VerticalAlignment="Center"></TextBlock>
                     <DatePicker SelectedDateFormat="Short"  VerticalAlignment="Center" Width="120"  Margin="10,0,0,0" HorizontalAlignment="Center" SelectedDate="{Binding DtEndTime}"></DatePicker>
                     <TextBox HorizontalAlignment="Center" Width="50" Text="{Binding EndTime,Converter={StaticResource TimeConverterIntToString}}" Margin="10,3,10,3"/>
                 </DockPanel>
                 <DockPanel Grid.Column="3" >
-                    <Button Content="&lt;&lt;&lt;" HorizontalAlignment="Right"   Width="80"   Margin="10,0,10,0" Command="{Binding CmdLeft}" ToolTip="点击查询起始时间前一天的数据" Height="23"></Button>
+                    <Button Content="&lt;&lt;&lt;" HorizontalAlignment="Right"   Width="80"   Margin="5,0,10,0" Command="{Binding CmdLeft}" ToolTip="点击查询起始时间前一天的数据" Height="23"></Button>
                     <Button Content=">>>" HorizontalAlignment="Right"   Width="80"  Margin="10,0,10,0" Command="{Binding CmdRight}" ToolTip="点击查询结束时间后一天的数据" Height="23"></Button>
                 </DockPanel>
                 <DockPanel Grid.Column="4" Visibility="{Binding CompCheck}">
@@ -71,7 +71,7 @@
             </Grid>
                 <DockPanel  Grid.Row="1"  VerticalAlignment="Center" >
 
-            <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Margin="10,0,0,0" Text="终端地址: "></TextBlock>
+            <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Margin="5,0,0,0" Text="终端地址: "></TextBlock>
             <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Text="{Binding PhyId}"></TextBlock>
             <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Text="      终端名称: "></TextBlock>
             <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Width="200" Text="{Binding RtuName}"></TextBlock>
@@ -102,7 +102,7 @@
                 <TextBlock   Width="{Binding Hightxx}" Height="0" x:Name="txb"/>
                 <telerik:RadGridView x:Name="exportgridview" ItemsSource="{Binding Records}" 
                                  SelectedItem="{Binding CurrentSelectRecord}" AutoGenerateColumns="False"
-								 Background="Transparent" Margin="0,5,0,0"
+								 Background="Transparent" Margin="5,5,0,0"
                                   FrozenColumnCount="4"  Visibility="{Binding IsVisiTerminalInfo}"
 								  RowIndicatorVisibility="Collapsed" 
                                      ColumnReordered="exportgridview_ColumnReordered" VerticalAlignment="Top">
@@ -199,7 +199,7 @@
                 </Grid>
                 <telerik:RadGridView x:Name="viewloop" AutoGenerateColumns="False" ItemsSource="{Binding CurrentSelectDataInfo}" ScrollViewer.HorizontalScrollBarVisibility="Auto" 
                                  Grid.Row="2"  Height="{Binding ViewHeight}"  Visibility="{Binding IsVisiTerminalInfo}"
-								 Background="Transparent" Margin="0,5,0,0"
+								 Background="Transparent" Margin="5,5,0,0"
 								  HorizontalAlignment="Stretch" 
 								  VerticalAlignment="Stretch"
                                   CanUserFreezeColumns="False" 
@@ -218,7 +218,7 @@
                     </telerik:RadGridView.Columns>
                 </telerik:RadGridView>
                 
-                <telerik:RadCartesianChart x:Name="RadChart1" Margin="10" Visibility="{Binding IsVisiGraphics}"
+                <telerik:RadCartesianChart x:Name="RadChart1" Margin="5" Visibility="{Binding IsVisiGraphics}"
                                            HorizontalZoomRangeStart="0" HorizontalZoomRangeEnd="{Binding ZoomNumber, Mode=TwoWay}">
                     <telerik:RadCartesianChart.Behaviors>
                         <telerik:ChartTrackBallBehavior ShowTrackInfo="True"
@@ -315,7 +315,7 @@
 
                 <telerik:RadGridView x:Name="loop" AutoGenerateColumns="False" ItemsSource="{Binding RecordsLoops}" ScrollViewer.HorizontalScrollBarVisibility="Auto" 
                                  Visibility="{Binding IsVisiForm}"
-								 Background="Transparent" Margin="0,5,0,0"
+								 Background="Transparent" Margin="5,5,0,0"
 								  HorizontalAlignment="Stretch" 
 								  VerticalAlignment="Stretch" 
                                   CanUserFreezeColumns="False" 
@@ -335,7 +335,7 @@
                     </telerik:RadGridView.Columns>
                 </telerik:RadGridView>
 
-                <DockPanel Grid.Row="1" Visibility="{Binding IsVisiLoopInfo}">
+                <DockPanel Margin="5,0,0,0"  Grid.Row="1" Visibility="{Binding IsVisiLoopInfo}">
                     <RadioButton  IsChecked="{Binding FormOrGraphics, Converter={StaticResource RadioMultiIntConverter}, ConverterParameter=1}" HorizontalAlignment="Left" VerticalAlignment="Center" Content="图形" Margin="20,5,0,5"></RadioButton>
                     <RadioButton  IsChecked="{Binding FormOrGraphics, Converter={StaticResource RadioMultiIntConverter}, ConverterParameter=2}" HorizontalAlignment="Left" VerticalAlignment="Center" Content="表格" Margin="20,5,20,5"></RadioButton>                   
                     <TextBlock   Margin="100,5,20,5" Text="回路" VerticalAlignment="Center" HorizontalAlignment="Left" ></TextBlock>
@@ -374,7 +374,7 @@
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}"  Text="{Binding Remind}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0"/>
+            <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}"  Text="{Binding Remind}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5,0,0,0"/>
             <CheckBox  Grid.Column="1" Margin="20,0,0,0"  Content="回路数据" IsChecked="{Binding IsCheckedLoop}"  VerticalAlignment="Center" />
                 <Button Content="导出" Command="{Binding CmdExport}"  Grid.Column="2"  Margin="20,2,50,2" MinWidth="120"  MinHeight="25"/>
         </Grid>

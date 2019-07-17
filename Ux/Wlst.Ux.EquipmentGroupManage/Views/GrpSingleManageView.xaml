@@ -27,9 +27,9 @@
             </Grid.ColumnDefinitions>
             
             <!--<Button Content="全选" Command="{Binding CmdCleanSelected}" Margin="10,5,20,5" Grid.Column="0" MinWidth="120" MinHeight="25" ></Button>-->
-            <Button Content="清除选择" Command="{Binding CmdCleanSelected}" Margin="10,5,20,5" Grid.Column="1" MinWidth="120" MinHeight="25" ></Button>
-            <Label  Margin="10,5,0,5" Width="200" MinHeight="25" MouseDoubleClick="Label_MouseDoubleClick" VerticalAlignment="Center" HorizontalContentAlignment="Right" HorizontalAlignment="Right"></Label>
-            <Button Content="批量操作" Command="{Binding CmdSelectAll}" Margin="10,5,20,5" Grid.Column="2" MinWidth="120" MinHeight="25" ></Button>
+            <Button Content="清除选择" Command="{Binding CmdCleanSelected}" Margin="10,5,20,5" Grid.Column="1" Width="120" Height="25" ></Button>
+            <Label  Margin="10,5,0,5" Width="200" Height="25" MouseDoubleClick="Label_MouseDoubleClick" VerticalAlignment="Center" HorizontalContentAlignment="Right" HorizontalAlignment="Right"></Label>
+            <Button Content="批量操作" Command="{Binding CmdSelectAll}" Margin="10,5,20,5" Grid.Column="2" Width="120" Height="25" ></Button>
 
             <Button Content="保存" Command="{Binding CmdSave}" MinWidth="120" MinHeight="25" Margin="10,5,20,5" Grid.Column="3"></Button>
         </Grid>

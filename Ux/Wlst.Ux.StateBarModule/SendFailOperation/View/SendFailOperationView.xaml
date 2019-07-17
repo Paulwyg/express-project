@@ -8,11 +8,11 @@
                           
              xmlns:AppleWindowSet="clr-namespace:Elysium.ThemesSet.AppleWindowSet;assembly=Elysium"
              mc:Ignorable="d" 
-             d:DesignHeight="500" d:DesignWidth="680">
+             d:DesignHeight="500" d:DesignWidth="890">
     <UserControl.Resources>
         <converters:BoolToVisibleConverter x:Key="BoolToVisible"/>
     </UserControl.Resources>
-    <Grid>
+    <Grid HorizontalAlignment="Left">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
@@ -27,7 +27,7 @@
         <Grid Grid.Column="0" Grid.Row="0" >
             <Grid.RowDefinitions>
                 <RowDefinition Height="30"/>
-                <RowDefinition Height="30"/>
+                <!--<RowDefinition Height="30"/>-->
 
 
             </Grid.RowDefinitions>
@@ -38,24 +38,24 @@
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="120"/>
                 <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="30"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
 
           
             <Button Content="查询"  Command="{Binding CmdQuery}" Height="25" Margin="10,0,10,0" Width="100" Grid.Column="7" HorizontalAlignment="Right" ></Button>
-            <Button Content="下发"  Command="{Binding CmdSend}" Height="25" Margin="10,0,10,0" Width="100" Grid.Column="8" ></Button>
+            <Button Content="下发"  Command="{Binding CmdSend}" Height="25" Margin="10,0,3,0" Width="100" Grid.Column="8" ></Button>
 
            <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}"  Text="类型选择:" Margin="10,0,10,0" VerticalAlignment="Center" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left"></TextBlock>
             <ComboBox x:Name="TypeComboBox"  Width="160" Height="25" HorizontalAlignment="Left"  Margin="0,0,0,0"     Grid.Row="0" Grid.Column="1"  
-                      ItemsSource="{Binding TypeName}" DisplayMemberPath="Value" SelectedItem="{Binding TypeComboBoxSelected}" MinWidth="160" ></ComboBox>
+                      ItemsSource="{Binding TypeName}" DisplayMemberPath="Value" SelectedItem="{Binding TypeComboBoxSelected}"  ></ComboBox>
             <!--</DockPanel>-->
 
 
-            <CheckBox x:Name="Tml"  Foreground="{Binding ElementName=fg, Path=Foreground}"   Margin="10,0,0,0" Grid.Row="1" Grid.Column="0"  IsChecked="{Binding IsTmlChecked}" Content="当前设备" VerticalAlignment="Center" HorizontalAlignment="Left" ></CheckBox>
-            <DockPanel  Visibility="{Binding ElementName=Tml, Path=IsChecked, Converter={StaticResource BoolToVisible} }" Margin="10,0,0,0" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3"  >
+            <CheckBox x:Name="Tml"  Foreground="{Binding ElementName=fg, Path=Foreground}"   Margin="10,0,0,0" Grid.Row="0" Grid.Column="3"  IsChecked="{Binding IsTmlChecked}" Content="当前设备" VerticalAlignment="Center" HorizontalAlignment="Left" ></CheckBox>
+            <DockPanel  Visibility="{Binding ElementName=Tml, Path=IsChecked, Converter={StaticResource BoolToVisible} }" Margin="10,0,0,0" Grid.Row="0" Grid.Column="4"  Width="280" >
                 <!--<TextBlock Foreground="Red"    Text="{Binding PhyId}" FontSize="15" VerticalAlignment="Center" HorizontalAlignment="Left"  />
                 <TextBlock Foreground="Red"    Text=" - " VerticalAlignment="Center" HorizontalAlignment="Left" />-->
                 <TextBlock Foreground="Red"    Text="{Binding RtuName}" FontSize="15"  VerticalAlignment="Center" HorizontalAlignment="Left"  />
@@ -65,27 +65,27 @@
 
         <telerik:RadGridView x:Name="gridview1"   AutoGenerateColumns="False" ItemsSource="{Binding Records}" Grid.Row="1"  Margin="5"
 								 ScrollMode="Deferred" IsReadOnly="True"  ShowGroupPanel="False" Visibility="{Binding TypeOneVisi}"
-                                 HorizontalAlignment="Left"  Width="660"
+                                 HorizontalAlignment="Left"  Width="888"
                                   SnapsToDevicePixels="False" ShowColumnFooters="False" UseLayoutRounding="False" RowIndicatorVisibility="Collapsed">
             <telerik:RadGridView.Columns>
-                <telerik:GridViewDataColumn Header="序号" IsFilterable="False" MinWidth="50" MaxWidth="80" DataMemberBinding="{Binding Index}" IsReadOnly="True" />
-                <telerik:GridViewDataColumn Header="设备物理地址" IsFilterable="False" DataMemberBinding="{Binding PhyId}"  IsReadOnly="True" MinWidth="120" MaxWidth="180" />
-                <telerik:GridViewDataColumn Header="设备名称" IsFilterable="False" DataMemberBinding="{Binding RtuName}"  IsReadOnly="True" MinWidth="150" MaxWidth="180" />
-                <telerik:GridViewDataColumn Header="内容" IsFilterable="False" IsSortable="False" DataMemberBinding="{Binding ParaInfo}"  Width="250"  />
+                <telerik:GridViewDataColumn Header="序号" IsFilterable="False" Width="80" DataMemberBinding="{Binding Index}" IsReadOnly="True" />
+                <telerik:GridViewDataColumn Header="设备地址" IsFilterable="False" DataMemberBinding="{Binding PhyId}"  IsReadOnly="True" Width="120" />
+                <telerik:GridViewDataColumn Header="设备名称" IsFilterable="False" DataMemberBinding="{Binding RtuName}"  IsReadOnly="True" Width="340" />
+                <telerik:GridViewDataColumn Header="内容" IsFilterable="False" IsSortable="False" DataMemberBinding="{Binding ParaInfo}"  Width="340"  />
             </telerik:RadGridView.Columns>
         </telerik:RadGridView>
 
         <telerik:RadGridView x:Name="gridview2"   AutoGenerateColumns="False" ItemsSource="{Binding Records}" Grid.Row="1"  Margin="5"
 								 ScrollMode="Deferred" IsReadOnly="True"  ShowGroupPanel="False" Visibility="{Binding TypeTwoVisi}"
-                                 HorizontalAlignment="Left"  Width="660"
+                                 HorizontalAlignment="Left"  
                                   SnapsToDevicePixels="False" ShowColumnFooters="False" UseLayoutRounding="False" RowIndicatorVisibility="Collapsed">
             <telerik:RadGridView.Columns>
-                <telerik:GridViewDataColumn Header="序号" IsFilterable="False" MinWidth="50" MaxWidth="80" DataMemberBinding="{Binding Index}" IsReadOnly="True" />
-                <telerik:GridViewDataColumn Header="设备物理地址" IsFilterable="False" DataMemberBinding="{Binding PhyId}"  IsReadOnly="True" MinWidth="120" MaxWidth="180" />
-                <telerik:GridViewDataColumn Header="设备名称" IsFilterable="False" DataMemberBinding="{Binding RtuName}"  IsReadOnly="True" MinWidth="150" MaxWidth="180" />
-                <telerik:GridViewDataColumn Header="控制器地址" IsFilterable="False" DataMemberBinding="{Binding PhyId2}"  IsReadOnly="True" Width="80" />
+                <telerik:GridViewDataColumn Header="序号" IsFilterable="False" Width="80" DataMemberBinding="{Binding Index}" IsReadOnly="True" />
+                <telerik:GridViewDataColumn Header="设备地址" IsFilterable="False" DataMemberBinding="{Binding PhyId}"  IsReadOnly="True" Width="100"  />
+                <telerik:GridViewDataColumn Header="设备名称" IsFilterable="False" DataMemberBinding="{Binding RtuName}"  IsReadOnly="True" Width="250" />
+                <telerik:GridViewDataColumn Header="控制器地址" IsFilterable="False" DataMemberBinding="{Binding PhyId2}"  IsReadOnly="True" Width="100" />
                 <telerik:GridViewDataColumn Header="控制器名称" IsFilterable="False" DataMemberBinding="{Binding RtuName2}"  IsReadOnly="True" Width="150"  />
-                <telerik:GridViewDataColumn Header="内容" IsFilterable="False" IsSortable="False" DataMemberBinding="{Binding ParaInfo}"  Width="250"  />
+                <telerik:GridViewDataColumn Header="内容" IsFilterable="False" IsSortable="False" DataMemberBinding="{Binding ParaInfo}"  Width="200"  />
             </telerik:RadGridView.Columns>
         </telerik:RadGridView>
 
@@ -122,12 +122,12 @@
 
 
 
-            <Button Content="导出"  Grid.Column="5"   Margin="5,2,50,2" MinWidth="120"  MinHeight="25" Command="{Binding CmdExport}" HorizontalAlignment="Right"/>
+            <Button Content="导出"  Grid.Column="5"   Margin="5,2,3,5" MinWidth="120"  Height="25" Command="{Binding CmdExport}" HorizontalAlignment="Right"/>
             <!--Click="Button_Click"-->
             <!--<Button Content="打印"  Grid.Column="4"   Margin="10,2,20,2" MinWidth="120"  MinHeight="25" Command="{Binding CmdPrint}" />
             <Button Content="打印预览"  Grid.Column="5"   Margin="10,2,20,2" MinWidth="120"  MinHeight="25" Command="{Binding CmdPrintPriview}" />-->
 
-            <Button Content="打印"  Grid.Column="4"   Margin="10,2,20,2" Width="100"  MinHeight="25" Visibility="Collapsed" Command="{Binding CmdPrint}" />
+            <Button Content="打印"  Grid.Column="4"   Margin="10,2,20,2" Width="100"  Height="25" Visibility="Collapsed" Command="{Binding CmdPrint}" />
 
 
         </Grid>

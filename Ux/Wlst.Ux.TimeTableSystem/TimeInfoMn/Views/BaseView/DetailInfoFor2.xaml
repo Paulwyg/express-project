@@ -10,7 +10,7 @@
              xmlns:WindowForWlst="clr-namespace:WindowForWlst;assembly=WindowForWlst"
              xmlns:Service="clr-namespace:Wlst.Ux.TimeTableSystem.TimeInfoMn.Services" mc:Ignorable="d" 
               
-             d:DesignHeight="300" d:DesignWidth="600">
+             d:DesignHeight="300" d:DesignWidth="1010">
     <UserControl.Resources>
         <Service:TimeDateConverter x:Key="myDateConverter"/>
     </UserControl.Resources>
@@ -23,7 +23,7 @@
             <RowDefinition Height="0"></RowDefinition>
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <DockPanel Margin="8,0,3,0">
+        <DockPanel Margin="5,0,3,0">
             <TextBlock Text="当前选中:"></TextBlock>
             <TextBlock Text="{Binding TimeName}"></TextBlock>
             <TextBlock Text="{Binding ExTimeTableName}"></TextBlock>
@@ -36,7 +36,7 @@
                 ItemsSource="{Binding MainRuleItems}"    FrozenColumnCount="4" MinHeight="150"
                 Margin="0,0,0,10"  CanUserResizeColumns="False"
                                   FontSize="15" 
-                                  RowHeight="28" Width="600"
+                                  RowHeight="28" Width="1000"
                                   Grid.Row="1" >
 
             <telerik:RadGridView.Columns>
@@ -99,7 +99,7 @@
         <!--</Grid>-->
 
 
-        <Grid Margin="8,0,0,0" Grid.Row="2">
+        <Grid Margin="5,0,0,0" Grid.Row="2">
             <Grid.RowDefinitions>
                 <RowDefinition></RowDefinition>
                 <RowDefinition></RowDefinition>
@@ -108,10 +108,10 @@
                 <TextBlock   HorizontalAlignment="Left" Text="开灯光控值:  "></TextBlock>
                 <TextBlock   HorizontalAlignment="Left" Width="23" Text="{Binding LuxOnValue}" TextAlignment="Right"></TextBlock>
 
-                <TextBlock   HorizontalAlignment="Left" Text="(Lux)  开灯日落偏移值:"></TextBlock>
+                <TextBlock Margin="120,0,0,0"  HorizontalAlignment="Left" Text="(Lux)  开灯日落偏移值:"></TextBlock>
                 <TextBlock   HorizontalAlignment="Left" Width="26"  Text="{Binding LightOnOffset}" TextAlignment="Right"></TextBlock>
                 <TextBlock   HorizontalAlignment="Left" Text="(分)"></TextBlock>
-                <TextBlock  HorizontalAlignment="Left"  Text="  光控有效时间:  "></TextBlock>
+                <TextBlock  Margin="120,0,0,0"   HorizontalAlignment="Left"  Text="  光控有效时间:  "></TextBlock>
                 <TextBlock  HorizontalAlignment="Left"  Width="23"  Text="{Binding LuxEffective}" TextAlignment="Right"></TextBlock>
                 <TextBlock  HorizontalAlignment="Left"  Text=" (分)"></TextBlock>
 
@@ -120,10 +120,10 @@
             <DockPanel Grid.Row="1">
                 <TextBlock   HorizontalAlignment="Left" Text="关灯光控值:  "></TextBlock>
                 <TextBlock   HorizontalAlignment="Left" Width="23"  Text="{Binding LuxOffValue}" TextAlignment="Right"></TextBlock>
-                <TextBlock   HorizontalAlignment="Left" Text="(Lux)  关灯日出偏移值:"></TextBlock>
+                <TextBlock   Margin="120,0,0,0"  HorizontalAlignment="Left" Text="(Lux)  关灯日出偏移值:"></TextBlock>
                 <TextBlock   HorizontalAlignment="Left" Width="26"  Text="{Binding LightOffOffset}" TextAlignment="Right"></TextBlock>
                 <TextBlock   HorizontalAlignment="Left" Text="(分)"></TextBlock>
-                <TextBlock  HorizontalAlignment="Left" Text="  光控:  " ToolTip="{Binding LuxName}"></TextBlock>
+                <TextBlock  Margin="120,0,0,0"  HorizontalAlignment="Left" Text="  光控:  " ToolTip="{Binding LuxName}"></TextBlock>
                 <TextBlock HorizontalAlignment="Left" Text="{Binding LuxName}" MaxWidth="100" ToolTip="{Binding LuxName}"></TextBlock>
                 <TextBlock  HorizontalAlignment="Left" Text=" 备用:  " Height="{Binding ShowCurrentSelectLux2}" ToolTip="{Binding LuxName2}"></TextBlock>
                 <TextBlock HorizontalAlignment="Left" Text="{Binding LuxName2}" Height="{Binding ShowCurrentSelectLux2}" MaxWidth="60" ToolTip="{Binding LuxName2}"></TextBlock>

@@ -39,9 +39,9 @@
        
                 <TextBlock></TextBlock>
             </DockPanel>-->
-            <DockPanel HorizontalAlignment="Left" VerticalAlignment="Center" Visibility="{Binding Visi}" Margin="0,10,0,0">
-                <TextBlock Text="区域选择:" VerticalAlignment="Center"   Margin="15,0,10,0" ></TextBlock>
-                <ComboBox Width="160" ItemsSource="{Binding ItemsArea}" DisplayMemberPath="Name" SelectedItem="{Binding CurrentSlecteArea}" ></ComboBox>
+            <DockPanel HorizontalAlignment="Left" VerticalAlignment="Center" Visibility="{Binding Visi}" Margin="10,5,0,5">
+                <TextBlock Text="区域选择:" VerticalAlignment="Center"   Margin="0,0,10,0" ></TextBlock>
+                <ComboBox Width="160" ItemsSource="{Binding ItemsArea}" DisplayMemberPath="Name" Height="23"  SelectedItem="{Binding CurrentSlecteArea}" ></ComboBox>
             </DockPanel> 
               <telerik:RadTreeListView   Width="542" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="1"
 								  
@@ -114,7 +114,7 @@
                 <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Text="操作："></TextBlock>
                 <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Text="{Binding ShowMsg}"></TextBlock>
             </DockPanel>-->
-            <StackPanel HorizontalAlignment="Left"  Margin="5,0,0,0" VerticalAlignment="Center">
+            <StackPanel HorizontalAlignment="Left"  Margin="0,0,0,0" VerticalAlignment="Center">
                 <!--<TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Text="设置方法为：左侧选择终端,右侧勾选报警;"></TextBlock>
                 <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Margin="0,5,0,0" Text="请全部设置完成后再保存。"></TextBlock>-->
 
@@ -225,8 +225,8 @@
             
         </Grid>
         <DockPanel Grid.Row="1" HorizontalAlignment="Left" Grid.ColumnSpan="2">
-            <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Text="{Binding Msg}" Width="550"   VerticalAlignment="Center" HorizontalAlignment="Left" Margin="20,0,0,0"></TextBlock>
-        <Button   Content="保 存" HorizontalAlignment="Right"  Width="120" Margin="41,0,0,0" Height="25" Command="{Binding CmdSave}"></Button>
+            <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Text="{Binding Msg}" Width="550"   VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0"></TextBlock>
+        <Button   Content="保 存" HorizontalAlignment="Right"  Width="120" Margin="52,0,0,0" Height="25" Command="{Binding CmdSave}"></Button>
             <Button   Content="导 出" HorizontalAlignment="Right"  Width="120" Margin="25,0,0,0" Height="25" Command="{Binding Cmdexport}" ></Button>
         </DockPanel>
         <!--<Button Content="暂时保存" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Right" Margin="0,5,180,5" Command="{Binding CmdSaveThisSet}" Height="25" Width="100"></Button>-->

@@ -11,7 +11,7 @@
     <UserControl.Resources>
         <Services:TimeIs25 x:Key="TimeIs25"/>
     </UserControl.Resources>
-    <Grid>
+    <Grid Margin="5">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="530" ></ColumnDefinition>
             <ColumnDefinition  Width="Auto"></ColumnDefinition>
@@ -367,7 +367,7 @@
                     </Grid.RowDefinitions>
 
                     <Button Grid.Column="2" HorizontalAlignment="Center" Grid.ColumnSpan="2"  Height="25" Width="120" Content="保 存" Command="{Binding CmdSave}"></Button>
-                    <TextBlock  HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="1" Text="{Binding Remind}" Grid.ColumnSpan="4"></TextBlock>
+                    <TextBlock  HorizontalAlignment="Left" Margin="5,0,0,0" Grid.Row="1" Text="{Binding Remind}" Grid.ColumnSpan="4"></TextBlock>
                 </Grid>
             </Grid>
         </ScrollViewer>
