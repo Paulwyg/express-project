@@ -370,7 +370,7 @@ namespace Wlst.Sr.EquipmentInfoHolding.Services
 
             InitEvent();
             this.InitAction();
-            Wlst.Cr.Core.ModuleServices.DelayEvent.RegisterDelayEvent(RequestGroupInfo, 1);
+            Wlst.Cr.Core.ModuleServices.DelayEvent.RegisterDelayEvent(RequestGroupInfo, 0);
 
         }
 
@@ -502,10 +502,99 @@ namespace Wlst.Sr.EquipmentInfoHolding.Services
             BolGetServerReturn = false;
             var info = Wlst.Sr.ProtocolPhone.LxAreaGrp.wls_group_info;
             info.WstAreagrpGroupInfo.Op = 1;
-           
-            SndOrderServer.OrderSnd(info, 10, 6);
+            var dhx = Wlst.Cr.CoreMims.HttpGetPostforMsgWithMobile.OrderSndHttp(info);
+            if (dhx != null )
+            {
+                OnSvrGroupInfoArrive(dhx);
+            }
+           // SndOrderServer.OrderSnd(info, 10, 6);
         }
 
+        private void OnSvrGroupInfoArrive(  MsgWithMobile infos)
+        {
+            if (infos.WstAreagrpGroupInfo == null) return;
+
+            var grpInfoExchangefromServer = infos.WstAreagrpGroupInfo;
+
+            var lstfromServer = grpInfoExchangefromServer.GroupItems;
+            if (lstfromServer == null) return;
+
+
+            if (grpInfoExchangefromServer.Op == 1)
+            {
+
+                //终端与分组的排序序号
+                int index = 1;
+
+                //分组信息更新
+                InfoGroups.Clear();
+                foreach (var t in grpInfoExchangefromServer.GroupItems)
+                {
+                    var item = new GroupInformation(t) { Index = index++ };
+
+                    var tu = new Tuple<int, int>(t.AreaId, t.GroupId);
+                    if (InfoGroups.ContainsKey(tu)) InfoGroups[tu] = item;
+                    else InfoGroups.Add(tu, item);
+                }
+               
+            }
+            else
+            {
+                //终端与分组的排序序号
+                int index = 1;
+
+                if (grpInfoExchangefromServer.GroupItems.Count == 0) return;
+                int areaid = grpInfoExchangefromServer.GroupItems[0].AreaId;
+                var dlt = (from t in InfoGroups where t.Key.Item1 == areaid select t.Key).ToList();
+                foreach (var f in dlt) if (InfoGroups.ContainsKey(f)) InfoGroups.Remove(f);
+                foreach (var t in grpInfoExchangefromServer.GroupItems)
+                {
+                    var item = new GroupInformation(t) { Index = index++ };
+
+                    var tu = new Tuple<int, int>(t.AreaId, t.GroupId);
+                    if (InfoGroups.ContainsKey(tu)) InfoGroups[tu] = item;
+                    else InfoGroups.Add(tu, item);
+                }
+            }
+
+            //更新终端归属第一个最大分组的信息
+            //rtu-->grp
+
+            InfoRtuBelong.Clear();
+            foreach (var f in InfoGroups)
+            {
+                var tu = new Tuple<int, int>(f.Value.AreaId, f.Value.GroupId);
+                foreach (var g in f.Value.LstTml)
+                    if (!InfoRtuBelong.ContainsKey(g)) InfoRtuBelong.Add(g, tu);
+
+            }
+
+            Version = DateTime.Now.Ticks;
+
+            Wlst.Cr.Coreb.Servers.WriteLog.WriteLogError(
+                "OnInitLoadAreaSucc:" + InfoGroups.Count);
+            if (SrEquipmentInfoHolding.OnInitLoadRtuSucc   && SrEquipmentInfoHolding.OnInitLoadAreaSucc  )
+            {
+                if (grpInfoExchangefromServer.Op == 1)
+                {
+                    var args = new PublishEventArgs()
+                    {
+                        EventId = EventIdAssign.SingleNeedRefresh,
+                        EventType = PublishEventType.Core
+                    };
+                    EventPublish.PublishEvent(args);
+                }
+                var arg = new PublishEventArgs()
+                {
+                    EventId = EventIdAssign.SingleInfoGroupAllNeedUpdate,
+                    EventType = PublishEventType.Core
+                };
+                EventPublish.PublishEvent(arg);
+            }
+
+            SrEquipmentInfoHolding.OnInitLoadGrpSucc  = true;
+
+        }
 
 
 
