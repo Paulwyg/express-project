@@ -101,9 +101,9 @@ namespace Wlst.Ux.Wj3005ExNewDataExcelModule.RapidSetRtuAmp
                                   SwitchInState = f.SwitchInState,
 
                                   Lower = f.isShieldLoop==1 ? 0 : Getint(f.Lower),
-                                  RefA = f.isShieldLoop ==1? 0 : Getint(f.RefA),
+                                  RefA = f.isShieldLoop ==1? 0 : Double.Parse(f.RefA),
                                   Upper = f.isShieldLoop ==1? 0 : Getint(f.Upper)
-                              });
+                });
             }
             if (index < 0) index = 0;
             if (rapidSetAmp.Items.Count < 1) return;
@@ -145,9 +145,9 @@ namespace Wlst.Ux.Wj3005ExNewDataExcelModule.RapidSetRtuAmp
                                   LoopId = f.LoopId,
                                   LoopName = f.LoopName,
                                   SwitchInState = f.SwitchInState,
-                                  Lower = f.isShieldLoop ==1 ? 0 : Getint(f.Lower),
-                                  RefA = f.isShieldLoop ==1? 0 : Getint(f.RefA),
-                                  Upper = f.isShieldLoop ==1 ? 0 : Getint(f.Upper)
+                                  Lower = f.isShieldLoop ==1 ? 0 :Getint(f.Lower),
+                                  RefA = f.isShieldLoop ==1? 0 :Double.Parse(f.RefA), //Getint(f.RefA),
+                                  Upper = f.isShieldLoop ==1 ? 0 :  Getint(f.Upper)
                                   
                               });
                 
@@ -574,12 +574,12 @@ namespace Wlst.Ux.Wj3005ExNewDataExcelModule.RapidSetRtuAmp
 
 
 
-            private int _refA;
+            private double _refA;
 
             /// <summary>
             /// 参考电流
             /// </summary>
-            public int RefA
+            public double RefA
             {
                 get { return _refA; }
                 set

@@ -172,7 +172,7 @@
                 <TextBlock  Text ="地域设置："  VerticalAlignment="Center" HorizontalAlignment="Left" ></TextBlock>
                 <Button  Content="设置"  Command="{Binding CmdSetRegion}" HorizontalAlignment="Left"   Margin="10,0,0,0"
                          Width="60"  Height="23"></Button>
-                <TextBlock Width="500" Height="23" VerticalAlignment="Center" Margin="20,0,0,0" Text="{Binding GlobalAShield}" ></TextBlock>
+                <TextBlock Width="500" Height="23" VerticalAlignment="Center" Margin="20,0,0,0" Text="{Binding RegionRemarks}" ></TextBlock>
             </DockPanel>
             <!--<DockPanel Grid.Row="15" HorizontalAlignment="Left" Grid.ColumnSpan="2" VerticalAlignment="Center" Visibility="{Binding IsShowHLbph}">
                 <TextBlock Width="250" HorizontalAlignment="Left" VerticalAlignment="Center">终端火零不平衡报警电流差值上限</TextBlock>

@@ -23,11 +23,12 @@ namespace Wlst.Ux.TimeTableSystem.TimeInfoNew.ViewModel
                 Msg = "终端";
                 var tmp =
                     Wlst.Sr.EquipmentInfoHolding.Services.EquipmentDataInfoHold.InfoItems[grpOrRtuId];
-
+                var areaInfo = Wlst.Sr.EquipmentInfoHolding.Services.AreaInfoHold.MySlef.GetAreaThatRtuIn(grpOrRtuId);
                 //var tmp = Wlst.Sr.EquipmentInfoHolding.Services.EquipmentDataInfoHold.GetShowFidPhyAndNameByRtuId(grpOrRtuId);
-
+                AreaId = areaInfo;
                 if (tmp == null)
                 {
+                    
                     PhyId = RtuOrGrpId + "";
                     RtuOrGrpName = RtuOrGrpId + "";
                     PhyIdMsg = PhyId + "(" + Msg + ")";
@@ -37,6 +38,7 @@ namespace Wlst.Ux.TimeTableSystem.TimeInfoNew.ViewModel
                     PhyId = tmp.RtuPhyId.ToString("d4");
                     RtuOrGrpName = tmp.RtuName;
                     PhyIdMsg = PhyId + "(" + Msg + ")";
+                    
                 }
 
                 if (tmp.RtuModel == EnumRtuModel.Wj3005 || tmp.RtuModel == EnumRtuModel.Wj3090)
@@ -148,9 +150,13 @@ namespace Wlst.Ux.TimeTableSystem.TimeInfoNew.ViewModel
             RtuOrGrpName = grpName;
                    
             PhyIdMsg = PhyId + "(" + Msg + ")";
-
+                       
             Has3005 = false;
             Has3006 = false;
+
+            FristLoadTimeTableInfo(true, Has3005);
+
+
             //清空子节点
             ChildTreeItems.Clear();
 
@@ -160,11 +166,12 @@ namespace Wlst.Ux.TimeTableSystem.TimeInfoNew.ViewModel
             //添加节点
             foreach (var g in rtuLst)
             {
+                AreaId = Wlst.Sr.EquipmentInfoHolding.Services.AreaInfoHold.MySlef.GetAreaThatRtuIn(g);
                 ChildTreeItems.Add(new TreeGrpNodes(AreaId, g, false));
             }
           
         
-            FristLoadTimeTableInfo(true, Has3005);
+
         }
 
         private void FristLoadTimeTableInfo(bool isgrp, bool has3005)

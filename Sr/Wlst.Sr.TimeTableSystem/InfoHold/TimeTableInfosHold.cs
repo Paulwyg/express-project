@@ -63,22 +63,63 @@ namespace Wlst.Sr.TimeTableSystem.InfoHold
         }
 
         /// <summary>
+        /// 不存在返回null
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>不存在返回null</returns>
+        public TimeTableInfoWithRtuOrGrpBandingInfo.TimeTableItem GetInfoTimeTableByIdNew(int area, int id)
+        {
+            var tu = new Tuple<int, int>(area, id);
+            if (InfoTimeItes.ContainsKey(tu))
+            {
+                return InfoTimeItes[tu];
+            }
+            return null;
+        }
+
+        /// <summary>
         /// <para>获取升序排列的列表</para>
         /// <para>任何使用此数据务必注意 此数据为原始数据，___只允许读不允许修改___  </para>
         /// <para>任何修改会使原始数据被修改形成脏数据 </para>
         /// </summary>
         public List<TimeTableInfoWithRtuOrGrpBandingInfo.TimeTableItem> GetInfoTimeTableList(int AreaId)
         {
-                var lstReturn = new List<TimeTableInfoWithRtuOrGrpBandingInfo.TimeTableItem>();
-                var result = from pair in InfoTimeItes where pair.Key.Item1 == AreaId  orderby pair.Key select pair;
-                foreach (var p in result)
-                {
-                    //将原始数据的地址赋给返回list 共享原始数据   数据安全性无法保证
-                    lstReturn.Add(p.Value);
-                }
-                return lstReturn;
-           
+            //采用新协议  lvf 2019年6月28日10:07:13
+               //return GetInfoTimeTableListNew(AreaId);
+
+            var lstReturn = new List<TimeTableInfoWithRtuOrGrpBandingInfo.TimeTableItem>();
+            var result = from pair in InfoTimeItes where pair.Key.Item1 == AreaId orderby pair.Key select pair;
+            foreach (var p in result)
+            {
+                //将原始数据的地址赋给返回list 共享原始数据   数据安全性无法保证
+                lstReturn.Add(p.Value);
+            }
+            return lstReturn;
+
         }
+
+
+
+
+
+        /// <summary>
+        /// <para>获取升序排列的列表</para>
+        /// <para>任何使用此数据务必注意 此数据为原始数据，___只允许读不允许修改___  </para>
+        /// <para>任何修改会使原始数据被修改形成脏数据  lvf 采用新协议 2019年6月28日09:58:40</para>
+        /// </summary>
+        public List<TimeTableInfoWithRtuOrGrpBandingInfo.TimeTableItem> GetInfoTimeTableListNew(int AreaId)
+        {
+            var lstReturn = new List<TimeTableInfoWithRtuOrGrpBandingInfo.TimeTableItem>();
+            var result = from pair in InfoTimeItemsNew where pair.Key.Item1 == AreaId orderby pair.Key select pair;
+            foreach (var p in result)
+            {
+                //将原始数据的地址赋给返回list 共享原始数据   数据安全性无法保证
+                lstReturn.Add(p.Value);
+            }
+            return lstReturn;
+
+        }
+
 
         #endregion
 
@@ -113,6 +154,12 @@ namespace Wlst.Sr.TimeTableSystem.InfoHold
         /// <returns></returns>
         public Dictionary<int, int> GetBandingInfo(int areaId, int tmlorgrpId)
         {
+            //采用新协议 lvf 2019年7月1日16:50:44
+            return GetBandingInfoNew(areaId,tmlorgrpId);
+
+
+
+
             var tu = new Tuple<int, int>(areaId, tmlorgrpId);
             if (InfoBanding.ContainsKey(tu))
             {
@@ -120,6 +167,19 @@ namespace Wlst.Sr.TimeTableSystem.InfoHold
             }
             return null;
         }
+
+
+        public Dictionary<int, int> GetBandingInfoNew(int areaId, int tmlorgrpId)
+        {
+
+            var tu = new Tuple<int, int>(areaId, tmlorgrpId);
+            if (InfoBandingNew.ContainsKey(tu))
+            {
+                return InfoBandingNew[tu];
+            }
+            return null;
+        }
+
 
         /// <summary>
         /// 不存在则返回-1
@@ -129,6 +189,9 @@ namespace Wlst.Sr.TimeTableSystem.InfoHold
         /// <returns>-1</returns>
         public int GetBandingInfo(int areaId, int tmlorgrpId, int loop)
         {
+            //采用新协议 lvf 2019年7月1日16:50:44
+            return GetBandingInfoNew(areaId, tmlorgrpId, loop);
+
             var tu = new Tuple<int, int>(areaId, tmlorgrpId);
             if (InfoBanding.ContainsKey(tu ) && InfoBanding[tu ].ContainsKey(loop))
             {
@@ -162,8 +225,25 @@ namespace Wlst.Sr.TimeTableSystem.InfoHold
         {
             get
             {
+
                 var lstReturn = new List<Dictionary<int, int>>();
                 var result = from pair in InfoBanding orderby pair.Key select pair;
+                foreach (var p in result)
+                {
+                    //将原始数据的地址赋给返回list 共享原始数据   数据安全性无法保证
+                    lstReturn.Add(p.Value);
+                }
+                return lstReturn;
+            }
+        }
+
+
+        public List<Dictionary<int, int>> GetBandingInfoListNew
+        {
+            get
+            {
+                var lstReturn = new List<Dictionary<int, int>>();
+                var result = from pair in InfoBandingNew orderby pair.Key select pair;
                 foreach (var p in result)
                 {
                     //将原始数据的地址赋给返回list 共享原始数据   数据安全性无法保证
@@ -184,6 +264,11 @@ namespace Wlst.Sr.TimeTableSystem.InfoHold
         /// <returns>终端列表 不会为null的 </returns>
         public List<Tuple<int, int>> GetBangdingToThisTimeTablesTmls(int areaId, int timetableid)
         {
+
+            //新协议  lvf 2019年7月1日17:03:26
+            return GetBangdingToThisTimeTablesTmlsNew(areaId, timetableid);
+
+
             List<Tuple<int, int>> lstReturn = new List<Tuple<int, int>>();
  
             foreach (var t in InfoBanding)
@@ -199,6 +284,26 @@ namespace Wlst.Sr.TimeTableSystem.InfoHold
             }
             return lstReturn;
         }
+
+        public List<Tuple<int, int>> GetBangdingToThisTimeTablesTmlsNew(int areaId, int timetableid)
+        {
+            List<Tuple<int, int>> lstReturn = new List<Tuple<int, int>>();
+
+            foreach (var t in InfoBandingNew)
+            {
+                foreach (var tt in t.Value)
+                {
+                    if (tt.Value == timetableid && t.Key.Item1 == areaId)
+                    {
+                        Tuple<int, int> tu = new Tuple<int, int>(t.Key.Item2, tt.Key);
+                        lstReturn.Add(tu);
+                    }
+                }
+            }
+            return lstReturn;
+        }
+
+
     }
 
     /// <summary>
@@ -248,14 +353,45 @@ namespace Wlst.Sr.TimeTableSystem.InfoHold
 
 
             //新协议 cs  lvf 2019年6月18日18:41:22   请求时间表
-            var infos = Wlst.Sr.ProtocolPhone.LxRtuTime.wst_timetable_set_new;//.wlst_cnt_request_timetable_info;
-            infos.WstRtutimeTimetableSetnew.Op = 1;
-            SndOrderServer.OrderSnd(infos, 10, 6);
 
-            //新协议 cs  lvf 2019年6月18日18:41:22 请求绑定信息
-            var infoss = Wlst.Sr.ProtocolPhone.LxRtuTime.wst_timetable_set_bandingnew;//.wlst_cnt_request_timetable_info;
-            infoss.WstRtutimeTimetableSetbandingnew.Op = 1;
-            SndOrderServer.OrderSnd(infoss, 10, 6);
+            //先http 请求  areaLst
+            var infoArea = Wlst.Sr.ProtocolPhone.LxAreaGrp.wls_area_info;
+            //.wlst_sys_rtu_online;//.ServerPart.wlst_Measures_clinet_request_RtuOnLine;
+            infoArea.WstAreagrpAreaInfo.Op = 1;
+            var data = Wlst.Cr.CoreMims.HttpGetPostforMsgWithMobile.OrderSndHttp(infoArea);
+            if (data != null)
+            {
+                var areaInfoExchangefromServer = data.WstAreagrpAreaInfo;
+
+                var lstfromServer = areaInfoExchangefromServer.AreaItems;
+                if (lstfromServer == null) return;
+
+                foreach (var t in lstfromServer)
+                {
+                    //逐一区域请求
+                    var infos = Wlst.Sr.ProtocolPhone.LxRtuTime.wst_timetable_set_new;//.wlst_cnt_request_timetable_info;
+                    infos.WstRtutimeTimetableSetnew.Op = 1;
+                    infos.WstRtutimeTimetableSetnew.AreaId = t.AreaId;
+                    SndOrderServer.OrderSnd(infos, 10, 6);
+
+
+                    //新协议 cs  lvf 2019年6月18日18:41:22 请求绑定信息
+                    var infoss = Wlst.Sr.ProtocolPhone.LxRtuTime.wst_timetable_set_bandingnew;//.wlst_cnt_request_timetable_info;
+                    infoss.WstRtutimeTimetableSetbandingnew.Op = 1;
+                    infoss.WstRtutimeTimetableSetbandingnew.AreaId =t.AreaId;
+                    SndOrderServer.OrderSnd(infoss, 10, 6);
+
+                }
+
+
+            }
+
+
+
+
+           
+
+  
 
         }
 
@@ -430,20 +566,27 @@ namespace Wlst.Sr.TimeTableSystem.InfoHold
         {
             if (info == null) return false;
             if (info.RtuOrGrpTimeTableAndBandingItems == null) return false;
-            //if (info.Op == 1)
-            //{
-                InfoBandingNew.Clear();
-            //}
+            ////if (info.Op == 1)
+            ////{
+            //    InfoBandingNew.Clear();
+            ////}
+
+
             int areaId = info.AreaId;
             int rtuOrGrpid = 0;
 
+            //var keysClean = (from t in InfoBandingNew where t.Key.Item1 == areaId select t.Key).ToList();
+            //foreach (var f in keysClean)
+            //{
+            //    if (InfoBandingNew.ContainsKey(f)) InfoBandingNew.Remove(f);
+            //}
             //遍历 绑定关系
             foreach (var fg in info.RtuOrGrpTimeTableAndBandingItems)
             {
                 rtuOrGrpid = fg.RtuOrGrpId;
                 var tu = new Tuple<int, int>(areaId, fg.RtuOrGrpId);
 
-                //if (InfoBandingNew.ContainsKey(tu)) InfoBandingNew.Remove(tu);
+                if (InfoBandingNew.ContainsKey(tu)) InfoBandingNew.Remove(tu);
 
                 foreach (var f in fg.SwitchOutBandingTimeTableInfo)
                 {
@@ -501,12 +644,14 @@ namespace Wlst.Sr.TimeTableSystem.InfoHold
         {
             if (info == null) return false;
             if (info.TimeTableItems == null) return false;
-            if (info.Op == 1)
-            {
-                InfoTimeItes.Clear();
-            }
+            //if (info.Op == 1)
+            //{
+            //    InfoTimeItes.Clear();
+            //}
             int areaId = info.AreaId;
-            
+            var removedItem = (from t in InfoTimeItes where t.Key.Item1 == areaId select t.Key).ToList();
+            foreach (var f in removedItem) if (InfoTimeItes.ContainsKey(f)) InfoTimeItes.Remove(f);
+
             foreach (var f in info.TimeTableItems)
             {
                 var tu = new Tuple<int, int>(areaId, f.TimeId);

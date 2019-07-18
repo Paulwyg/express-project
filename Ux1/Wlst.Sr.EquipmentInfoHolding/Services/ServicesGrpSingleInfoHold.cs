@@ -98,6 +98,8 @@ namespace Wlst.Sr.EquipmentInfoHolding.Services
             }
             return lst;
         }
+
+
         /// <summary>
         /// 当终端所属区域发生变化时，将此终端从曾属分组中移除
         /// </summary>

@@ -188,9 +188,25 @@ namespace Wlst.Ux.EquipmentGroupManage.GrpSingleManageViewModel.ViewModels
         }
 
 
+        private bool _isDelete;
+
+        /// <summary>
+        /// 删除分组按钮是否可用
+        /// </summary>
+        public bool IsDelete
+        {
+            get { return _isDelete; }
+            set
+            {
+                if (value != _isDelete)
+                {
+                    _isDelete = value;
+                    this.RaisePropertyChanged(() => this.IsDelete);
+                }
+            }
+        }
 
 
-       
 
         private Wlst.Cr.CoreOne.Models.NameValueInt _cur;
         public Wlst.Cr.CoreOne.Models.NameValueInt CurrentSelectArea
@@ -244,7 +260,7 @@ namespace Wlst.Ux.EquipmentGroupManage.GrpSingleManageViewModel.ViewModels
                 f.GetChildRtuCount();
             }
             AddMaxId = maxidx;
-
+            IsDelete = ChildTreeItems.Count > 1;
         }
 
         
@@ -671,12 +687,13 @@ namespace Wlst.Ux.EquipmentGroupManage.GrpSingleManageViewModel.ViewModels
                             var infoss = WlstMessageBox.Show("确认删除", "是否删除该分组，是 继续删除，否 退出.", WlstMessageBoxType.YesNo);
                             if (infoss != WlstMessageBoxResults.Yes) return;
                             this.ChildTreeItems.RemoveAt(i);
-                        //}
-                        //else
-                        //{
-                        //    this.ChildTreeItems.RemoveAt( i);
-                        //}
-                    }
+                    //}
+                    //else
+                    //{
+                    //    this.ChildTreeItems.RemoveAt( i);
+                    //}
+                    IsDelete = ChildTreeItems.Count > 1;
+                }
 
                 }
             ReLoadTmlsGrpsBelong();

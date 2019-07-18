@@ -175,10 +175,11 @@
                 <DockPanel Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0,0,0">
                     <CheckBox IsEnabled="{Binding KxInfo[6].IsEnable}" IsChecked="{Binding KxInfo[6].IsSelected}" Content="K7 " Visibility="{Binding Visi}"></CheckBox>
                     <CheckBox IsEnabled="{Binding KxInfo[7].IsEnable}" IsChecked="{Binding KxInfo[7].IsSelected}" Content="K8" Visibility="{Binding Visi}"></CheckBox>
-                    <Button Margin="30,1,0,1"  Content="开灯" Width="45" Height="23" Command="{Binding CmdOpenCloselight}" CommandParameter="1" ></Button>
+                    <Button Margin="10,1,0,1"  Content="开灯" Width="45" Height="23" Command="{Binding CmdOpenCloselight}" CommandParameter="1" ></Button>
 
                     <Button Margin="10,1,0,1"  Content="关灯" Width="45" Height="23" Command="{Binding CmdOpenCloselight}"  CommandParameter="2" ></Button>
                     <Button Margin="10,1,0,1"  Content="清空" Width="45" Height="23" Command="{Binding CmdClear}"  CommandParameter="2" ></Button>
+                    <Button Margin="10,1,0,1"  Content="刷新" Width="45" Height="23" Command="{Binding CmdRefresh}"  ></Button>
                 </DockPanel>
 
             </Grid>

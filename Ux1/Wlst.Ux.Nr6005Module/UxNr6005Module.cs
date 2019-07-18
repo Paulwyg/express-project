@@ -1,6 +1,6 @@
 ﻿using Microsoft.Practices.Prism.MefExtensions.Modularity;
 using Microsoft.Practices.Prism.Modularity;
-using Wlst.Ux.Nr6005Module.ZOrders.OpenCloseLight;
+
 
 namespace Wlst.Ux.Nr6005Module
 {
@@ -11,14 +11,14 @@ namespace Wlst.Ux.Nr6005Module
 
         #region IModule 成员
 
-        private OpenCloseLightDataDispatch _openCloseLightDataDispatch;
+        //private OpenCloseLightDataDispatch _openCloseLightDataDispatch;
 
         public void Initialize()
         {
 
             //throw new NotImplementedException();
 
-            _openCloseLightDataDispatch = new OpenCloseLightDataDispatch();
+            //_openCloseLightDataDispatch = new OpenCloseLightDataDispatch();
         }
 
         #endregion

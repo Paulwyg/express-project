@@ -1820,7 +1820,7 @@ namespace Wlst.Ux.WJ3005Module.ZDataQuery.DailyDataQuery.ViewModel
 
                     lstobj.Add(tmp);
                 }
-                Wlst.Cr.CoreMims.ReportExcel.ExcelExport.ExcelExportWriteByRow(lsttitle, lstobj);
+                Wlst.Cr.CoreMims.ReportExcel.ExcelExport.ExcelExportWriteByRow(System.Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),lsttitle, lstobj);
                 lstobj = null;
                 lsttitle = null;
             }
