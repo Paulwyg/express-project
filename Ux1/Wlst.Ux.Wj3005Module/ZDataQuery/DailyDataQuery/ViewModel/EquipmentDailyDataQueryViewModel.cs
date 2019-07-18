@@ -883,7 +883,7 @@ namespace Wlst.Ux.WJ3005Module.ZDataQuery.DailyDataQuery.ViewModel
                 foreach (var f in value)
                 {
                     //var loopInfoItem = new LoopDataInfo();
-                    if (f == null || f.DataInfo == null || f.DataInfo.RtuTemperature < -50) break;
+                    if (f == null || f.DataInfo == null || f.DataInfo.RtuTemperature < -50) continue;
 
                     var tmps =
                         Sr.EquipmentInfoHolding.Services.EquipmentDataInfoHold.InfoItems[

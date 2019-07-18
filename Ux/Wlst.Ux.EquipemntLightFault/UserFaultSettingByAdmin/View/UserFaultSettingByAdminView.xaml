@@ -119,10 +119,10 @@
                                 </DataTemplate>
                             </telerik:GridViewDataColumn.CellTemplate>
                         </telerik:GridViewDataColumn>
-                        <telerik:GridViewDataColumn  Header="设备或组地址" ToolTip="X/Y表示 该组总共有Y套设备，勾选设备共计X" IsFilterable="False" MinWidth="120" MaxWidth="150"  DataMemberBinding="{Binding WuLiId}" IsReadOnly="True" />
+                        <telerik:GridViewDataColumn  Header="地址" ToolTip="X/Y表示 该组总共有Y套设备，勾选设备共计X" IsFilterable="False" MinWidth="100" MaxWidth="150"  DataMemberBinding="{Binding WuLiId}" IsReadOnly="True" />
 
 
-                        <telerik:GridViewDataColumn Header="设备或名称" IsReadOnly="True" Width="180">
+                        <telerik:GridViewDataColumn Header="设备或名称" IsReadOnly="True" MinWidth="180" MaxWidth="220">
                             <telerik:GridViewDataColumn.CellTemplate>
                                 <DataTemplate >
                                     <TextBlock Text="{Binding NodeName}"></TextBlock>

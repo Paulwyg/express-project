@@ -741,6 +741,7 @@ namespace Wlst.Ux.EquipemntLightFault.UserFaultSettingByAdmin.ViewModel
                 foreach (var g in grps)
                 {
                     if (g.LstTml.Count == 0) continue;
+                    var gprs = Wlst.Sr.EquipmentInfoHolding.Services.ServicesGrpSingleInfoHold.GetRtuOrGrpIndex(g.LstTml);
                     var selsect = false;
                     foreach (
                         var fg in info .ItemsAlarmGroup  )
@@ -753,7 +754,7 @@ namespace Wlst.Ux.EquipemntLightFault.UserFaultSettingByAdmin.ViewModel
                         }
                     }
                     if (areax.Contains(g.AreaId) == false) areax.Add(g.AreaId);
-                    var tmp = GetNode(g.AreaId, name, g.GroupId, g.GroupId, g.GroupName, selsect, g.LstTml, ref areaTml,
+                    var tmp = GetNode(g.AreaId, name, g.GroupId, g.GroupId, g.GroupName, selsect, gprs, ref areaTml,
                                       selecteRtu);
                     this.Items.Add(tmp);
 
@@ -762,7 +763,8 @@ namespace Wlst.Ux.EquipemntLightFault.UserFaultSettingByAdmin.ViewModel
                 {
                     var trsfsf = new List<int>();
                     trsfsf.AddRange(areaTml);
-                    var tmp = GetNode(f, name, 0, 0, "未分组设备", selecteRtu.Count > 0, trsfsf, ref areaTml, selecteRtu);
+                    var gprs = Wlst.Sr.EquipmentInfoHolding.Services.ServicesGrpSingleInfoHold.GetRtuOrGrpIndex(trsfsf);
+                    var tmp = GetNode(f, name, 0, 0, "未分组设备", selecteRtu.Count > 0, gprs, ref areaTml, selecteRtu);
 
                     tmp.IsExpanded = false;
 

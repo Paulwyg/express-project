@@ -132,7 +132,8 @@ namespace Wlst.Ux.EquipemntTree.GrpMulitTabShowViewModel.ViewModel
                     var grp = Wlst.Sr.EquipmentInfoHolding.Services.ServicesGrpMultiInfoHoldNew.GetGroupInfomation(AreaId,
                                                                                                                  NodeId);
                     if (grp == null) return;
-                    foreach (var f in grp.LstTml)
+                    var gprs = Wlst.Sr.EquipmentInfoHolding.Services.ServicesGrpSingleInfoHold.GetRtuOrGrpIndex(grp.LstTml);
+                    foreach (var f in gprs)
                     {
                         if (tmlLstOfArea.Contains(f) == false) continue;
                         var para = Wlst.Sr.EquipmentInfoHolding.Services.EquipmentDataInfoHold.GetInfoById(f);
@@ -144,8 +145,9 @@ namespace Wlst.Ux.EquipemntTree.GrpMulitTabShowViewModel.ViewModel
                 {
                     var grp = Wlst.Sr.EquipmentInfoHolding.Services.ServicesGrpMultiInfoHoldNew.GetGroupInfomation(AreaId,
                                                                                                                  NodeId);
-                    if (grp == null) return;                   
-                    foreach (var f in grp.LstTml)
+                    if (grp == null) return;
+                    var gprs = Wlst.Sr.EquipmentInfoHolding.Services.ServicesGrpSingleInfoHold.GetRtuOrGrpIndex(grp.LstTml);
+                    foreach (var f in gprs)
                     {
                         var para = Wlst.Sr.EquipmentInfoHolding.Services.EquipmentDataInfoHold.GetInfoById(f);
                         if (para == null || para.EquipmentType != WjParaBase.EquType.Rtu) continue;
