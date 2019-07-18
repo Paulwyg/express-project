@@ -209,7 +209,7 @@
                 </telerik:RadTreeListView.Columns>
                 </telerik:RadTreeListView>
       
-            <Grid Grid.Row="1" Grid.ColumnSpan="3">
+            <Grid Grid.Row="1" Grid.ColumnSpan="3" Margin="5,0,0,0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="Auto"/>

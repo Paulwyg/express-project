@@ -16,7 +16,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="40"/>
-            
+
         </Grid.RowDefinitions>
         <DockPanel Grid.Row="0">
             <Grid>
@@ -30,7 +30,7 @@
                     <ColumnDefinition Width="3*"/>
                 </Grid.ColumnDefinitions>
                 <DockPanel Grid.ColumnSpan="6">
-                    <TextBlock   Text="    当前查看故障时间:  " VerticalAlignment="Center" HorizontalAlignment="Left" />
+                    <TextBlock Margin="10,0,0,0"  Text="当前查看故障时间:  " VerticalAlignment="Center" HorizontalAlignment="Left" />
                     <TextBlock   Name="txttime" VerticalAlignment="Center" HorizontalAlignment="Left" Text="{Binding FaultTypeText}"/>
                 </DockPanel>
                 <CheckBox  Content="增加查看规则" Grid.Column="3"  Grid.ColumnSpan="4" HorizontalAlignment="Right" VerticalAlignment="Center" IsChecked="{Binding IsSettingChecked}"  Margin="0,0,30,0"/>
@@ -44,20 +44,21 @@
                 </Grid.RowDefinitions>
 
                 <Grid.ColumnDefinitions >
-                    <ColumnDefinition Width="6*"/>
-                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="39*"/>
+                    <ColumnDefinition Width="368*"/>
+                    <ColumnDefinition Width="68*"/>
                 </Grid.ColumnDefinitions>
 
 
-                <DockPanel Grid.Column="0" Grid.Row="0" >
-                    <TextBlock Grid.Column="0" Text="    查看故障时间:  " VerticalAlignment="Center" HorizontalAlignment="Left" />
+                <DockPanel Grid.Column="0" Margin="10,0,0,0"  Grid.Row="0" Grid.ColumnSpan="2" >
+                    <TextBlock Grid.Column="0" Text="查看故障时间:  " VerticalAlignment="Center" HorizontalAlignment="Left" />
                     <RadioButton Content="所有故障  " Grid.Column=" 1" VerticalAlignment="Center" HorizontalAlignment="Left" Name="faulttype1" IsChecked="{Binding IsCheckedFaultType1}" />
                     <RadioButton Content="当天故障  " Grid.Column=" 2" VerticalAlignment="Center" HorizontalAlignment="Left" Name="faulttype2" IsChecked="{Binding IsCheckedFaultType2}" />
                     <RadioButton Content="两天内故障  " Grid.Column=" 3" VerticalAlignment="Center" HorizontalAlignment="Left" Name="faulttype3" IsChecked="{Binding IsCheckedFaultType3}"/>
                     <RadioButton Content="三天内故障  " Grid.Column=" 4" VerticalAlignment="Center" HorizontalAlignment="Left" Name="faulttype4" IsChecked="{Binding IsCheckedFaultType4}"/>
                     <RadioButton Content="6小时内故障  " Grid.Column=" 5" VerticalAlignment="Center" HorizontalAlignment="Left" Name="faulttype5" IsChecked="{Binding IsCheckedFaultType5}"/>
                 </DockPanel>
-                <telerik:RadGridView Grid.Column="0" Grid.Row="1" Width="780" AutoGenerateColumns="False" HorizontalAlignment="Left" Margin="10" ItemsSource="{Binding Path=FaultRules}"  >
+                <telerik:RadGridView Grid.Column="0" Grid.Row="1" Width="780" AutoGenerateColumns="False" HorizontalAlignment="Left" Margin="10,10,0,10" ItemsSource="{Binding Path=FaultRules}" Grid.ColumnSpan="2"  >
                     <!--SelectedItem="{Binding CurrentFaultRules}"-->
                     <telerik:RadGridView.Columns>
                         <telerik:GridViewDataColumn   Header="序号" DataMemberBinding="{Binding Path=Id, StringFormat={}{0:D1}}"  IsFilterable="False" Width="40"/>
@@ -155,7 +156,7 @@
                     <telerik:GridViewDataColumn   Header="已选故障" DataMemberBinding="{Binding Path=SelectedFault, StringFormat={}{0:D4}}"  IsFilterable="False" MinWidth="300" MaxWidth="350"/>-->
                     </telerik:RadGridView.Columns>
                 </telerik:RadGridView>
-                <DockPanel Grid.Column=" 1" Grid.Row="1">
+                <DockPanel Grid.Column="2" Grid.Row="1">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <!--<ColumnDefinition Width="*"/>
@@ -180,15 +181,15 @@
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="30"/>
                     <RowDefinition Height="*"/>
-                    
+
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions >
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*" />
-                   
-                    
+
+
                 </Grid.ColumnDefinitions>
-                <TextBlock Text="{Binding Records[0].FaultName}" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="2" Grid.Row="0" Grid.Column="0"/>
+                <TextBlock Text="{Binding Records[0].FaultName}" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="5,2,2,2" Grid.Row="0" Grid.Column="0"/>
                 <telerik:RadGridView Grid.Row="1" Margin="5" Grid.Column="0" AutoGenerateColumns="False" ItemsSource="{Binding Records[0].RecordItems}">
                     <telerik:RadGridView.RowStyle>
                         <Style TargetType="telerik:GridViewRow">
@@ -202,7 +203,7 @@
                         <telerik:GridViewDataColumn DataMemberBinding="{Binding Path=DataCreateTime,StringFormat={}\{0:yyyy-MM-dd HH:mm:ss\}}"  IsFilterable="False"  Header="发生时间" MinWidth="140" MaxWidth="180"/>
                     </telerik:RadGridView.Columns>
                 </telerik:RadGridView>
-                <TextBlock Text="{Binding Records[1].FaultName}" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="2" Grid.Row="0" Grid.Column="1"/>
+                <TextBlock Text="{Binding Records[1].FaultName}" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="5,2,2,2" Grid.Row="0" Grid.Column="1"/>
                 <telerik:RadGridView Grid.Row="1" Grid.Column="1" Margin="5" AutoGenerateColumns="False" ItemsSource="{Binding Records[1].RecordItems}">
                     <telerik:RadGridView.RowStyle>
                         <Style TargetType="telerik:GridViewRow">
@@ -216,7 +217,7 @@
                         <telerik:GridViewDataColumn DataMemberBinding="{Binding Path=DataCreateTime,StringFormat={}\{0:yyyy-MM-dd HH:mm:ss\}}"  IsFilterable="False"  Header="发生时间" MinWidth="140" MaxWidth="180"/>
                     </telerik:RadGridView.Columns>
                 </telerik:RadGridView>
-                <TextBlock Text="{Binding Records[2].FaultName}" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="2" Grid.Row="2" Grid.Column="0"/>
+                <TextBlock Text="{Binding Records[2].FaultName}" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="5,2,2,2" Grid.Row="2" Grid.Column="0"/>
                 <telerik:RadGridView Grid.Row="3" Margin="5" Grid.Column="0" AutoGenerateColumns="False" ItemsSource="{Binding Records[2].RecordItems}">
                     <telerik:RadGridView.RowStyle>
                         <Style TargetType="telerik:GridViewRow">
@@ -230,7 +231,7 @@
                         <telerik:GridViewDataColumn DataMemberBinding="{Binding Path=DataCreateTime,StringFormat={}\{0:yyyy-MM-dd HH:mm:ss\}}"  IsFilterable="False"  Header="发生时间" MinWidth="140" MaxWidth="180"/>
                     </telerik:RadGridView.Columns>
                 </telerik:RadGridView>
-                <TextBlock Text="{Binding Records[3].FaultName}" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="2" Grid.Row="2" Grid.Column="1"/>
+                <TextBlock Text="{Binding Records[3].FaultName}" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="5,2,2,2" Grid.Row="2" Grid.Column="1"/>
                 <telerik:RadGridView Grid.Row="3" Grid.Column="1" Margin="5"  AutoGenerateColumns="False" ItemsSource="{Binding Records[3].RecordItems}">
                     <telerik:RadGridView.RowStyle>
                         <Style TargetType="telerik:GridViewRow">
@@ -244,7 +245,7 @@
                         <telerik:GridViewDataColumn DataMemberBinding="{Binding Path=DataCreateTime,StringFormat={}\{0:yyyy-MM-dd HH:mm:ss\}}"  IsFilterable="False"  Header="发生时间" MinWidth="140" MaxWidth="180"/>
                     </telerik:RadGridView.Columns>
                 </telerik:RadGridView>
-                <TextBlock Text="{Binding Records[4].FaultName}" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="2" Grid.Row="4" Grid.Column="0"/>
+                <TextBlock Text="{Binding Records[4].FaultName}" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="5,2,2,2" Grid.Row="4" Grid.Column="0"/>
                 <telerik:RadGridView Grid.Row="5" Margin="5"  Grid.Column="0" AutoGenerateColumns="False" ItemsSource="{Binding Records[4].RecordItems}">
                     <telerik:RadGridView.RowStyle>
                         <Style TargetType="telerik:GridViewRow">
@@ -258,7 +259,7 @@
                         <telerik:GridViewDataColumn DataMemberBinding="{Binding Path=DataCreateTime,StringFormat={}\{0:yyyy-MM-dd HH:mm:ss\}}"  IsFilterable="False"  Header="发生时间" MinWidth="140" MaxWidth="180"/>
                     </telerik:RadGridView.Columns>
                 </telerik:RadGridView>
-                <TextBlock Text="{Binding Records[5].FaultName}" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="2" Grid.Row="4" Grid.Column="1"/>
+                <TextBlock Text="{Binding Records[5].FaultName}" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="5,2,2,2" Grid.Row="4" Grid.Column="1"/>
                 <telerik:RadGridView Grid.Row="5" Grid.Column="1" Margin="5"  AutoGenerateColumns="False" ItemsSource="{Binding Records[5].RecordItems}">
                     <telerik:RadGridView.RowStyle>
                         <Style TargetType="telerik:GridViewRow">

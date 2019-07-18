@@ -33,17 +33,17 @@
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            <Label  VerticalAlignment="Center"  Width="Auto" Content="巡测:"></Label>
+            <Label  VerticalAlignment="Center" Margin="5,0,0,0"  Width="Auto" Content="巡测:"></Label>
             <Label Grid.Column="1" VerticalAlignment="Center" Content="{Binding SumPartolTmlNumer}"></Label>
             <Label Grid.Column="2" VerticalAlignment="Center"  Width="Auto" Content="应答:"></Label>
             <Label Grid.Column="3" VerticalAlignment="Center" Content="{Binding SumAnswerPartolTmlNumber}"></Label>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Column="4">
 
-                    <Button   Command="{Binding CmdPartol}" Margin="10,5,10,5" MinWidth="120" MinHeight="25" Content="巡测"/>
-                    <Button  Command="{Binding CmdRePartol}" Margin="10,5,10,5" MinWidth="120" MinHeight="25" Content="补测"/>
+                    <Button   Command="{Binding CmdPartol}" Margin="10,5,10,5" Width="120" Height="25" Content="巡测"/>
+                    <Button  Command="{Binding CmdRePartol}" Margin="10,5,10,5" Width="120" Height="25" Content="补测"/>
                     <!--<Button  Grid.Column="7"  Command="{Binding CmdTongji}" Margin="10,5,10,5" MinWidth="50" MinHeight="25" Content="统计"/>-->
 
-                    <Button  Command="{Binding CmdOnLine}" Margin="10,5,10,5" MinWidth="120" MinHeight="25" Content="请求在线列表"/>
+                    <Button  Command="{Binding CmdOnLine}" Margin="10,5,10,5" Width="120" Height="25" Content="请求在线列表"/>
 
                 </StackPanel>
                    
@@ -51,7 +51,7 @@
         </Grid>
 
             <telerik:RadTreeListView x:Name="RadGridView1" ScrollMode="Deferred" ShowGroupPanel="False" SelectedItem="{Binding CurrentSelectedItem}"
-                             MinWidth="600"  Grid.Row="1" HorizontalAlignment="Left" 
+                             MinWidth="600"  Grid.Row="1" HorizontalAlignment="Left" Margin="5,0,0,0"
                              ItemsSource="{Binding MeasurePatrolData}"   RowIndicatorVisibility="Collapsed"
                    IsReadOnly="True"  AutoGenerateColumns="False" ShowColumnHeaders="True" ColumnReordered="RadGridView1_ColumnReordered">
                 <telerik:RadTreeListView.Columns>

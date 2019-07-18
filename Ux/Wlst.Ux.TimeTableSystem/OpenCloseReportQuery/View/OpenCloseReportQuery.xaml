@@ -66,7 +66,7 @@
                 <!--<TextBlock Text="查询时间段不超过两个月" Grid.Column="10" HorizontalAlignment="Right" Margin="0,0,-73,0" Width="205" VerticalAlignment="Center" />-->
             </Grid>
         <telerik:RadGridView  AutoGenerateColumns="False" ItemsSource="{Binding Records}" Grid.Row="1"  AllowDrop="True"  HorizontalAlignment="Left"
-                             Grid.Column="0" SelectedItem="{Binding CurrentSelectItem}" Margin="0,0,2,0" ShowGroupPanel="False"
+                             Grid.Column="0" SelectedItem="{Binding CurrentSelectItem}" Margin="5,0,2,0" ShowGroupPanel="False"
 							ScrollViewer.VerticalScrollBarVisibility="Auto"	  RowIndicatorVisibility="Collapsed">
             <telerik:RadGridView.Columns>
                 <telerik:GridViewDataColumn Header="地址" IsFilterable="False"  Width="40"  DataMemberBinding="{Binding TimeTableId}" IsReadOnly="True" />

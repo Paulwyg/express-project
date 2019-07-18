@@ -6,7 +6,7 @@
              xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="950">
 
-    <Grid>
+    <Grid  HorizontalAlignment="Left">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="*"/>
@@ -23,16 +23,17 @@
             </Grid.RowDefinitions>
             <Label x:Name="fg"/>
             <DockPanel HorizontalAlignment="Stretch" >
-                <TextBlock Margin="10,0,0,0" Foreground="{Binding ElementName=fg, Path=Foreground}"  Text="起始时间:" VerticalAlignment="Center"></TextBlock>
+                <TextBlock Margin="5,0,0,0" Foreground="{Binding ElementName=fg, Path=Foreground}"  Text="起始时间:" VerticalAlignment="Center"></TextBlock>
                 <DatePicker  HorizontalAlignment="Center"  VerticalAlignment="Center" SelectedDateFormat="Short" Width="180"   Margin="10,0,0,0" SelectedDate="{Binding DtStartTime}"></DatePicker>
 
                 <TextBlock Margin="50,0,0,0" Foreground="{Binding ElementName=fg, Path=Foreground}" Text=" 结束时间:" VerticalAlignment="Center"></TextBlock>
                 <DatePicker  HorizontalAlignment="Center"  VerticalAlignment="Center" SelectedDateFormat="Short" Width="180"   Margin="10,0,10,0" SelectedDate="{Binding DtEndTime}"></DatePicker>
-                <Button Content="查询" Width="120" ToolTip="点击左侧终端树中的终端来改变选择的终端，查询完成后请关闭本页面，避免不必要的数据流量。" Margin="0,0,50,0" Command="{Binding CmdQuery}" Height="23" HorizontalAlignment="Right" ></Button>
+                <Button Content="查询" Width="120" ToolTip="点击左侧终端树中的终端来改变选择的终端，查询完成后请关闭本页面，避免不必要的数据流量。"  Command="{Binding CmdQuery}" Height="25" 
+                        HorizontalAlignment="Right" ></Button>
             </DockPanel>
             <DockPanel  Grid.Row="1"  VerticalAlignment="Center">
 
-                <CheckBox Foreground="{Binding ElementName=fg, Path=Foreground}" Margin="10,0,0,0" Content="" IsChecked="{Binding IsRtuSelected}"></CheckBox>
+                <CheckBox Foreground="{Binding ElementName=fg, Path=Foreground}" Margin="5,0,0,0" Content="" IsChecked="{Binding IsRtuSelected}"></CheckBox>
                 <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Text="集中器地址:"></TextBlock>
                 <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Text="{Binding SluShowId}" Width="100"></TextBlock>
                 <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Text="      集中器名称:"></TextBlock>
@@ -54,11 +55,11 @@
                 <telerik:RadGridView x:Name="exportgridview" AutoGenerateColumns="False" ItemsSource="{Binding Items}" 
                                  SelectedItem="{Binding CurrentSelectRecord}"
                                  Grid.Row="1" 
-								 Background="Transparent" Margin="0,5,0,0"
+								 Background="Transparent" Margin="5,5,0,0"
 								  HorizontalAlignment="Stretch" 
 								  VerticalAlignment="Stretch" 
                                   CanUserFreezeColumns="False" 
-								  CanUserReorderColumns="False" 
+								  CanUserReorderColumns="False" Width="992"
 								  RowIndicatorVisibility="Collapsed"   ShowGroupPanel="False" ShowColumnHeaders="True" SnapsToDevicePixels="True">
                     <telerik:RadGridView.Columns>
                         <telerik:GridViewDataColumn Header="序号" IsFilterable="False"  Width="60"  DataMemberBinding="{Binding Index}" IsReadOnly="True" />
@@ -93,8 +94,8 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}"  Text="{Binding Remind}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0"/>
-                <Button Content="导出"   Grid.Column="1"  Margin="20,2,50,2" MinWidth="120"  MinHeight="25" Click="Button_Click" />
+                <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}"  Text="{Binding Remind}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5,0,0,0"/>
+                <Button Content="导出"   Grid.Column="1"  Margin="20,2,50,2" Width="120"   HorizontalAlignment="Right" Height="25" Click="Button_Click" />
             </Grid>
 
 

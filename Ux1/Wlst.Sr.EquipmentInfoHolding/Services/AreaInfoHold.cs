@@ -27,7 +27,7 @@ namespace Wlst.Sr.EquipmentInfoHolding.Services
         {
             get
             {
-                if (_mySlef == null) _mySlef=new AreaInfoHold();
+                if (_mySlef == null) _mySlef = new AreaInfoHold();
                 return _mySlef;
             }
         }
@@ -39,13 +39,14 @@ namespace Wlst.Sr.EquipmentInfoHolding.Services
         /// </summary>
         protected AreaInfoHold()
         {
-          //  this.InitAction();
+            //  this.InitAction();
         }
 
         /// <summary>
         /// 提供数据持有的数据结构
         /// </summary>
-        protected ConcurrentDictionary<int, AreaInfo.AreaItem> Info = new ConcurrentDictionary<int, AreaInfo.AreaItem>();
+        protected ConcurrentDictionary<int, AreaInfo.AreaItem>
+            Info = new ConcurrentDictionary<int, AreaInfo.AreaItem>();
 
 
         #region 提供外部对数据的操作Get Set
@@ -77,10 +78,11 @@ namespace Wlst.Sr.EquipmentInfoHolding.Services
         /// <returns></returns>
         public int GetAreaThatRtuIn(int rtuId)
         {
-            foreach (var f in Info )
+            foreach (var f in Info)
             {
                 if (f.Value.LstTml.Contains(rtuId)) return f.Key;
             }
+
             return 0;
         }
 
@@ -101,6 +103,7 @@ namespace Wlst.Sr.EquipmentInfoHolding.Services
             {
                 if (f.Value.LstTml.Contains(rtuId)) return f.Key;
             }
+
             return -1;
         }
 
@@ -129,7 +132,9 @@ namespace Wlst.Sr.EquipmentInfoHolding.Services
         {
             this.AddEventFilterInfo(100, PublishEventType.ReCn);
 
-        }/// <summary>
+        }
+
+        /// <summary>
         /// 事件数据处理
         /// </summary>
         /// <param name="args"></param>
@@ -137,7 +142,7 @@ namespace Wlst.Sr.EquipmentInfoHolding.Services
         {
             if (args.EventType == PublishEventType.ReCn)
             {
-                Request() ;
+                Request();
                 return;
             }
         }
@@ -146,23 +151,23 @@ namespace Wlst.Sr.EquipmentInfoHolding.Services
         {
             InitEvent();
             InitAction();
-            Wlst.Cr.Core.ModuleServices.DelayEvent.RegisterDelayEvent(Request, 1);
+            Wlst.Cr.Core.ModuleServices.DelayEvent.RegisterDelayEvent(RequestOninit, 0);
 
         }
 
 
-        protected  void InitAction()
+        protected void InitAction()
         {
             ProtocolServer.RegistProtocol(
                 Wlst.Sr.ProtocolPhone.LxAreaGrp.wls_area_info,
                 //.ClientPart.wlst_Measures_server_ans_clinet_request_RtuOnLine,
                 OrderRtuOnLine,
-                typeof (AreaInfoHold), this);
-            
+                typeof(AreaInfoHold), this);
+
         }
 
         private List<int> alreadyDel;
- 
+
         public List<int> AlreadyDel
         {
             get
@@ -171,8 +176,10 @@ namespace Wlst.Sr.EquipmentInfoHolding.Services
                 return alreadyDel;
             }
         }
+
         //更新版本 
         public static long Version = 0;
+
         protected void OrderRtuOnLine(string session, Wlst.mobile.MsgWithMobile infos)
         {
             if (infos.WstAreagrpAreaInfo == null) return;
@@ -182,6 +189,7 @@ namespace Wlst.Sr.EquipmentInfoHolding.Services
                 if (Info.ContainsKey(f.AreaId)) Info[f.AreaId] = f;
                 else Info.TryAdd(f.AreaId, f);
             }
+
             if (infos.WstAreagrpAreaInfo.Op == 2)
             {
                 EquipmentInfoHolding.Services.EquipmentDataInfoHold.MySlef.RequestEquipmentInfoLstfromServer();
@@ -190,18 +198,19 @@ namespace Wlst.Sr.EquipmentInfoHolding.Services
             if (Wlst.Cr.CoreMims.Services.UserInfo.UserLoginInfo.D == false)
             {
                 var tmplst = new List<int>();
-                
+
                 tmplst.AddRange(Wlst.Cr.CoreMims.Services.UserInfo.UserLoginInfo.AreaR);
                 tmplst.AddRange(Wlst.Cr.CoreMims.Services.UserInfo.UserLoginInfo.AreaW);
                 tmplst.AddRange(Wlst.Cr.CoreMims.Services.UserInfo.UserLoginInfo.AreaX);
                 var originalLst = new List<int>();
-                foreach(var f in tmplst)
+                foreach (var f in tmplst)
                 {
-                    if (!originalLst.Contains(f) && f!=-1)
+                    if (!originalLst.Contains(f) && f != -1)
                     {
                         originalLst.Add(f);
                     }
                 }
+
                 #region Original
 
                 //bool find = false;
@@ -226,64 +235,64 @@ namespace Wlst.Sr.EquipmentInfoHolding.Services
                 string delLsts = "";
                 foreach (var f in originalLst)
                 {
-                    if (!Info.ContainsKey(f)&&!delLst.Contains(f)&&!AlreadyDel.Contains(f))
+                    if (!Info.ContainsKey(f) && !delLst.Contains(f) && !AlreadyDel.Contains(f))
                     {
-                        delLst.Add(f);     
+                        delLst.Add(f);
                     }
                 }
 
-                
-                
+
+
 
                 if (delLst.Count > 0)
                 {
                     if (AlreadyDel.Count == originalLst.Count - 1)
                     {
-                        MessageBox.Show( "您所管理的区域已经删除，您被迫下线!!!","请下线", MessageBoxButton.OK);
+                        MessageBox.Show("您所管理的区域已经删除，您被迫下线!!!", "请下线", MessageBoxButton.OK);
                         tmplst.Clear();
                         originalLst.Clear();
-                        delLst.Clear();                       
+                        delLst.Clear();
                         Environment.Exit(0);
                     }
                     else
                     {
-                        delLsts = string.Join(",", delLst.ToArray());                   
-                        MessageBox.Show( "您所管理的区域中，id为" + delLsts + "的区域被管理员删除", "区域信息发生变动",MessageBoxButton.OK);
+                        delLsts = string.Join(",", delLst.ToArray());
+                        MessageBox.Show("您所管理的区域中，id为" + delLsts + "的区域被管理员删除", "区域信息发生变动", MessageBoxButton.OK);
                         AlreadyDel.AddRange(delLst);
                         tmplst.Clear();
                         originalLst.Clear();
-                        delLst.Clear(); 
+                        delLst.Clear();
                     }
                 }
 
 
             }
-            
+
 
             //发布事件  
             var args = new PublishEventArgs()
-                           {
-                               EventType = PublishEventType.Core,
-                               EventId = EventIdAssign.AreaInfoChanged,
-                           };
+            {
+                EventType = PublishEventType.Core,
+                EventId = EventIdAssign.AreaInfoChanged,
+            };
             EventPublish.PublishEvent(args);
 
 
             Version = DateTime.Now.Ticks;
-           var   arg = new PublishEventArgs()
+            var arg = new PublishEventArgs()
             {
                 EventId = EventIdAssign.SingleInfoGroupAllNeedUpdate,
                 EventType = PublishEventType.Core
             };
             EventPublish.PublishEvent(arg);
 
-            var  aarg = new PublishEventArgs()
+            var aarg = new PublishEventArgs()
             {
                 EventId = EventIdAssign.MulityInfoGroupAllNeedUpdate,
                 EventType = PublishEventType.Core
             };
             EventPublish.PublishEvent(aarg);
-            
+
 
 
 
@@ -296,9 +305,18 @@ namespace Wlst.Sr.EquipmentInfoHolding.Services
         {
 
             var info = Wlst.Sr.ProtocolPhone.LxAreaGrp.wls_area_info;
-                //.wlst_sys_rtu_online;//.ServerPart.wlst_Measures_clinet_request_RtuOnLine;
+            //.wlst_sys_rtu_online;//.ServerPart.wlst_Measures_clinet_request_RtuOnLine;
             info.WstAreagrpAreaInfo.Op = 1;
-            SndOrderServer.OrderSnd(info);
+
+
+
+            var dhx = Wlst.Cr.CoreMims.HttpGetPostforMsgWithMobile.OrderSndHttp(info);
+            if (dhx != null && dhx.WstEquRequest != null)
+            {
+                OrderRtuOnLine(null, dhx);
+            }
+
+            //SndOrderServer.OrderSnd(info);
         }
 
 
@@ -331,4 +349,122 @@ namespace Wlst.Sr.EquipmentInfoHolding.Services
         }
     }
 
+    public partial class AreaInfoHold
+    {
+
+        private void RequestOninit()
+        {
+
+            var info = Wlst.Sr.ProtocolPhone.LxAreaGrp.wls_area_info;
+            //.wlst_sys_rtu_online;//.ServerPart.wlst_Measures_clinet_request_RtuOnLine;
+            info.WstAreagrpAreaInfo.Op = 1;
+
+
+
+            var dhx = Wlst.Cr.CoreMims.HttpGetPostforMsgWithMobile.OrderSndHttp(info);
+            if (dhx != null )
+            {
+                Step1OrderRtuOnLine(dhx);
+            }
+
+            //SndOrderServer.OrderSnd(info);
+        }
+
+        protected void Step1OrderRtuOnLine(Wlst.mobile.MsgWithMobile infos)
+        {
+            if (infos.WstAreagrpAreaInfo == null) return;
+            Info.Clear();
+
+
+            foreach (var f in infos.WstAreagrpAreaInfo.AreaItems)
+            {
+                if (Info.ContainsKey(f.AreaId)) Info[f.AreaId] = f;
+                else Info.TryAdd(f.AreaId, f);
+            }
+
+            if (infos.WstAreagrpAreaInfo.Op == 2)
+            {
+                EquipmentInfoHolding.Services.EquipmentDataInfoHold.MySlef.RequestEquipmentInfoLstfromServer();
+            }
+
+            if (Wlst.Cr.CoreMims.Services.UserInfo.UserLoginInfo.D == false)
+            {
+                var tmplst = new List<int>();
+
+                tmplst.AddRange(Wlst.Cr.CoreMims.Services.UserInfo.UserLoginInfo.AreaR);
+                tmplst.AddRange(Wlst.Cr.CoreMims.Services.UserInfo.UserLoginInfo.AreaW);
+                tmplst.AddRange(Wlst.Cr.CoreMims.Services.UserInfo.UserLoginInfo.AreaX);
+                var originalLst = new List<int>();
+                foreach (var f in tmplst)
+                {
+                    if (!originalLst.Contains(f) && f != -1)
+                    {
+                        originalLst.Add(f);
+                    }
+                }
+
+
+
+                var delLst = new List<int>();
+                string delLsts = "";
+                foreach (var f in originalLst)
+                {
+                    if (!Info.ContainsKey(f) && !delLst.Contains(f) && !AlreadyDel.Contains(f))
+                    {
+                        delLst.Add(f);
+                    }
+                }
+
+
+
+
+                if (delLst.Count > 0)
+                {
+                    if (AlreadyDel.Count == originalLst.Count - 1)
+                    {
+                        MessageBox.Show("您所管理的区域已经删除，您被迫下线!!!", "请下线", MessageBoxButton.OK);
+                        tmplst.Clear();
+                        originalLst.Clear();
+                        delLst.Clear();
+                        Environment.Exit(0);
+                    }
+                    else
+                    {
+                        delLsts = string.Join(",", delLst.ToArray());
+                        MessageBox.Show("您所管理的区域中，id为" + delLsts + "的区域被管理员删除", "区域信息发生变动", MessageBoxButton.OK);
+                        AlreadyDel.AddRange(delLst);
+                        tmplst.Clear();
+                        originalLst.Clear();
+                        delLst.Clear();
+                    }
+                }
+
+
+            }
+            Wlst.Cr.Coreb.Servers.WriteLog.WriteLogError(
+                "OnInitLoadAreaSucc:" + Info.Count);
+            Version = DateTime.Now.Ticks;
+            if (SrEquipmentInfoHolding.OnInitLoadGrpSucc  && SrEquipmentInfoHolding.OnInitLoadRtuSucc )
+            {
+
+                var arg = new PublishEventArgs()
+                {
+                    EventId = EventIdAssign.SingleInfoGroupAllNeedUpdate,
+                    EventType = PublishEventType.Core
+                };
+                EventPublish.PublishEvent(arg);
+
+                var aarg = new PublishEventArgs()
+                {
+                    EventId = EventIdAssign.MulityInfoGroupAllNeedUpdate,
+                    EventType = PublishEventType.Core
+                };
+                EventPublish.PublishEvent(aarg);
+            }
+
+            SrEquipmentInfoHolding.OnInitLoadAreaSucc = true;
+
+        }
+
+    }
 }

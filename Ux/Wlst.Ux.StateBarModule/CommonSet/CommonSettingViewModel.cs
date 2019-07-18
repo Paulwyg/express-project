@@ -1020,7 +1020,7 @@ namespace Wlst.Ux.StateBarModule.CommonSet
             xxxinfo.WstSysTitle.GlobalAShield = this.GlobalAShield; //todo
 
 
-
+            Sr.EquipmentInfoHolding.Services.Others.RegionItems.Clear();
             //lvf 2019年4月28日14:45:57  设置区域
             var lstRegion = new List<SystemTitle.ReginInfo>();
             foreach (var g in RegionItems)
@@ -1030,6 +1030,10 @@ namespace Wlst.Ux.StateBarModule.CommonSet
                     Id = g.RegionId,
                     RegionName = g.RegionName
                 });
+
+                var tu = new Tuple<int, string>(g.RegionId, g.RegionName);
+                Sr.EquipmentInfoHolding.Services.Others.RegionItems.Add(tu);
+
             }
             xxxinfo.WstSysTitle.ReginItems = lstRegion;
 

@@ -1035,19 +1035,33 @@ namespace Wlst.Ux.TimeTableSystem.TimeInfoMn.ViewModel
                 this.MainIsOverOne[i] = true;
             }
 
+            //if (max == 1)
+            //{
+            //    MainType = new ObservableCollection<int>() { 55, 75, 160, 30, 50, 160 };
+            //}
+            //else if (max == 2)
+            //{
+            //    MainType = new ObservableCollection<int>() { 30, 50, 105, 30, 50, 80 };
+            //}
+            //else
+            //{
+            //    MainType = new ObservableCollection<int>() { 25, 45, 100, 30, 50, 75 };
+            //}
             if (max == 1)
             {
-                MainType = new ObservableCollection<int>() { 55, 75, 160, 30, 50, 160 };
+                MainType = new ObservableCollection<int>() { 100, 150, 250, 30, 50, 160 };
+                //MainScrollBar = "Hidden";
             }
             else if (max == 2)
             {
-                MainType = new ObservableCollection<int>() { 30, 50, 105, 30, 50, 80 };
+                MainType = new ObservableCollection<int>() { 64, 128, 150, 30, 50, 80 };
+                //MainScrollBar = "Hidden";
             }
             else
             {
-                MainType = new ObservableCollection<int>() { 25, 45, 100, 30, 50, 75 };
+                MainType = new ObservableCollection<int>() { 65, 75, 120, 30, 50, 75 };
+                //MainScrollBar = "Visible";
             }
-            
 
             for (int i = 0; i < 7; i++)
             {
@@ -2565,17 +2579,17 @@ namespace Wlst.Ux.TimeTableSystem.TimeInfoMn.ViewModel
 
             if (max == 1)
             {
-                MainType = new ObservableCollection<int>() {55, 75, 160, 30, 50, 160};
+                MainType = new ObservableCollection<int>() { 100, 150, 250, 30, 50, 160};
                 //MainScrollBar = "Hidden";
             }
             else if (max == 2)
             {
-                MainType = new ObservableCollection<int>() {30, 50, 105, 30, 50, 80};
+                MainType = new ObservableCollection<int>() { 64, 128, 150, 30, 50, 80};
                 //MainScrollBar = "Hidden";
             }
             else
             {
-                MainType = new ObservableCollection<int>() {25, 45, 100, 30, 50, 75};
+                MainType = new ObservableCollection<int>() { 65, 75, 120, 30, 50, 75};
                 //MainScrollBar = "Visible";
             }
 
@@ -2702,22 +2716,36 @@ namespace Wlst.Ux.TimeTableSystem.TimeInfoMn.ViewModel
             }
 
 
+            //if (max == 1)
+            //{
+            //    MainType = new ObservableCollection<int>() {55, 75, 160, 30, 50, 160};
+            //    //MainScrollBar = "Hidden";
+            //}
+            //else if (max == 2)
+            //{
+            //    MainType = new ObservableCollection<int>() {30, 50, 105, 30, 50, 80};
+            //    //MainScrollBar = "Hidden";
+            //}
+            //else
+            //{
+            //    MainType = new ObservableCollection<int>() {25, 45, 100, 30, 50, 75};
+            //    //MainScrollBar = "Visible";
+            //}
             if (max == 1)
             {
-                MainType = new ObservableCollection<int>() {55, 75, 160, 30, 50, 160};
+                MainType = new ObservableCollection<int>() { 100, 150, 250, 30, 50, 160 };
                 //MainScrollBar = "Hidden";
             }
             else if (max == 2)
             {
-                MainType = new ObservableCollection<int>() {30, 50, 105, 30, 50, 80};
+                MainType = new ObservableCollection<int>() { 64, 128, 150, 30, 50, 80 };
                 //MainScrollBar = "Hidden";
             }
             else
             {
-                MainType = new ObservableCollection<int>() {25, 45, 100, 30, 50, 75};
+                MainType = new ObservableCollection<int>() { 65, 75, 120, 30, 50, 75 };
                 //MainScrollBar = "Visible";
             }
-
             var plans = (from tt in TimeTabletemporaryHold.Myself.Info
                          where tt.Key.Item1 == TimeInfoMnVm.areaId
                          orderby tt.Key.Item2 ascending

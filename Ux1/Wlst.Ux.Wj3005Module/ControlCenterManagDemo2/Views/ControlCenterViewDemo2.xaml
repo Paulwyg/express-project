@@ -39,7 +39,7 @@
         <TextBlock Visibility="Collapsed"  Width="{Binding Hightxx}" Height="0" x:Name="txb"/>
 
         <!--<Views:TmlFaultsShieldView Margin="0,0,0,5" Visibility="{Binding ShowFault, Converter={StaticResource BoolToVisible}}" Grid.Row="1"/>-->
-        <Grid Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="25,5,0,0" Visibility="{Binding ReportType, Converter={StaticResource GridEnumToBoolConverter}, ConverterParameter=NoReport}"> 
+        <Grid Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="15,5,0,0" Visibility="{Binding ReportType, Converter={StaticResource GridEnumToBoolConverter}, ConverterParameter=NoReport}"> 
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"></ColumnDefinition>
                 <ColumnDefinition Width="Auto"></ColumnDefinition>

@@ -18,15 +18,15 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Label x:Name="fg"/>
-        <StackPanel Grid.Row="0" Orientation="Horizontal">
-            <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Margin="10,0,0,0" VerticalAlignment="Center" Text="用户名："/>
-            <TextBox VerticalAlignment="Center" Text="{Binding InquiryKeyWord}" Width="400"/>
-            <Button Margin="30,0,0,0" Content="查询" Command="{Binding BtnInquiry}" VerticalAlignment="Center" MinWidth="60"/>
+        <StackPanel Grid.Row="0" Orientation="Horizontal"  HorizontalAlignment="Right" Margin="0,0,6,0">
+            <!--<TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Margin="10,0,0,0" VerticalAlignment="Center" Text="用户名："/>-->
+            <!--<TextBox VerticalAlignment="Center" Text="{Binding InquiryKeyWord}" Width="400"/>-->
+            <!--<Button Margin="30,0,0,0" Content="查询" Command="{Binding BtnInquiry}" VerticalAlignment="Center" MinWidth="60"/>-->
             <Button Margin="20,0,0,0" Content="重置" Command="{Binding BtnReSetInquiryKeyWord}" VerticalAlignment="Center" MinWidth="60" Visibility="Collapsed"/>
-            <Button Margin="20,0,0,0" Content="添加" IsEnabled="{Binding AddEnable}" Command="{Binding BtnAddUser}" VerticalAlignment="Center" MinWidth="60" />
+            <Button Margin="20,0,0,0" Content="添加" IsEnabled="{Binding AddEnable}" Command="{Binding BtnAddUser}" Height="25"  VerticalAlignment="Center" Width="120" />
         </StackPanel>
 
-        <telerik:RadGridView Name="radGridView" ShowGroupPanel="False" AutoGenerateColumns="False" RowIndicatorVisibility="Collapsed" ItemsSource="{Binding UserItems}" Grid.Row="1"  Height="Auto" MinHeight="50" SelectedItem="{Binding Path=CurrentSelectUser, Mode=TwoWay}" >
+        <telerik:RadGridView Name="radGridView"  Margin="5" ShowGroupPanel="False" AutoGenerateColumns="False" RowIndicatorVisibility="Collapsed"  ItemsSource="{Binding UserItems}" Grid.Row="1"  Height="Auto" MinHeight="50" SelectedItem="{Binding Path=CurrentSelectUser, Mode=TwoWay}" >
             <telerik:RadGridView.Columns>
                 <telerik:GridViewDataColumn Header="用户名" IsFilterable="False"  DataMemberBinding="{Binding Path=UserName,Mode=TwoWay}" Width="80" />
                 <telerik:GridViewDataColumn Header="真实姓名" IsFilterable="False"  DataMemberBinding="{Binding Path=UserRealName,Mode=TwoWay}" Width="80" />

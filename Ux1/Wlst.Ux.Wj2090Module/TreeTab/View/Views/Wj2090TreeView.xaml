@@ -106,7 +106,7 @@
                         <!--<Image VerticalAlignment="Center"  Source="{Binding ImagesIcon}" Width="24" Height="24" Margin="0,0,2,2"></Image>-->
                         <Image VerticalAlignment="Center"  Source="{Binding ImagesIcon1B}" Width="{Binding ElementName=txb,Path=Width}" Height="{Binding ElementName=txb,Path=Width}" Margin="0,0,2,2"></Image>
                         <TextBlock VerticalAlignment="Center" Text="{Binding NodeName1B}"></TextBlock>
-
+                        <TextBlock VerticalAlignment="Center" Text="{Binding NodeName2B}"></TextBlock>
                     </StackPanel>
                 </HierarchicalDataTemplate>
             </telerik:RadTreeView.ItemTemplate>
