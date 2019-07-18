@@ -1267,7 +1267,7 @@ namespace Wlst.Ux.Wj2090Module.HisDataQuery.ConcentratorDataQuery.ViewModel
                         info.SluId);
 
                     Remind = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " --" +
-                       (tmo == null ? info.SluId : tmo.RtuPhyId) + "--单灯集中器数据查询成功，共计" + index + " 条数据.";
+                       (tmo == null ? info.SluId : tmo.RtuPhyId) + "--单灯集中器数据查询成功，共计" + ItemCount + " 条数据.";
                     FlagVisiIndex = 1;IsHasData = ItemsSlu.Count > 0;
                     return;
                 }
@@ -1293,7 +1293,7 @@ namespace Wlst.Ux.Wj2090Module.HisDataQuery.ConcentratorDataQuery.ViewModel
                     this.ItemsLamp = sg;
                     index--;
                     FlagVisiIndex = 3; IsHasData = ItemsLamp.Count > 0;
-                    Remind = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " --" + "--单灯控制器数据查询成功，共计" + index +
+                    Remind = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " --" + "--单灯控制器数据查询成功，共计" + ItemCount +
                              " 条数据.";
                     return;
                 }
@@ -1319,7 +1319,7 @@ namespace Wlst.Ux.Wj2090Module.HisDataQuery.ConcentratorDataQuery.ViewModel
                     this.ItemsPhyInfo = sg;
                     index--;
                     FlagVisiIndex = 4; IsHasData = ItemsPhyInfo.Count > 0;
-                    Remind = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " --" + "--单灯控制器物理信息查询成功，共计" + index +
+                    Remind = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " --" + "--单灯控制器物理信息查询成功，共计" + ItemCount +
                              " 条数据.";
                     return;
                 }

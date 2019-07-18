@@ -184,6 +184,18 @@ namespace Wlst.Ux.WJ3005Module.ControlCenterManagDemo2.Services
                 RaisePropertyChanged(()=>State);
             }
         }
+
+        private string _stateString;
+        public string StateString
+        {
+            get { return _stateString; }
+            set
+            {
+                if (value == _stateString) return;
+                _stateString = value;
+                RaisePropertyChanged(() => StateString);
+            }
+        }
         #endregion
 
         #endregion

@@ -53,8 +53,8 @@
                         </Grid.RowDefinitions>
                         <DockPanel Grid.Row="0">
                             <TextBlock  Text="     K1" VerticalAlignment="Center" Width="50" ></TextBlock>
-                            <TextBlock  Text="    召测时间："></TextBlock>
-                            <TextBlock  Text="{Binding CurrentSelectedItem.WeekTime[0].DateTimeRecevie}"></TextBlock>                   
+                            <TextBlock  Text="    召测时间：" Visibility="Collapsed"></TextBlock>
+                        <TextBlock  Text="{Binding CurrentSelectedItem.WeekTime[0].DateTimeRecevie}" Visibility="Collapsed"></TextBlock>                   
                         </DockPanel>
                         <telerik:RadGridView x:Name="_K1GridView" AutoGenerateColumns="False" RowIndicatorVisibility="Collapsed" ShowGroupPanel="False" 
                                      ItemsSource="{Binding CurrentSelectedItem.WeekTime[0].ZhaoCeRtuItems}" FontSize="10" 
@@ -111,8 +111,8 @@
                         </Grid.RowDefinitions>
                     <DockPanel Grid.Row="0">
                         <TextBlock  Text="     K2" VerticalAlignment="Center" Width="50" HorizontalAlignment="Left"></TextBlock>
-                        <TextBlock  Text="    召测时间："></TextBlock>
-                        <TextBlock  Text="{Binding CurrentSelectedItem.WeekTime[1].DateTimeRecevie}"></TextBlock>
+                        <TextBlock  Text="    召测时间：" Visibility="Collapsed"></TextBlock>
+                        <TextBlock  Text="{Binding CurrentSelectedItem.WeekTime[1].DateTimeRecevie}" Visibility="Collapsed"></TextBlock>
                     </DockPanel>
                     <telerik:RadGridView x:Name="_K2GridView" AutoGenerateColumns="False" RowIndicatorVisibility="Collapsed" ShowGroupPanel="False" 
                                      ItemsSource="{Binding CurrentSelectedItem.WeekTime[1].ZhaoCeRtuItems}" FontSize="10" 
@@ -170,8 +170,8 @@
                         </Grid.RowDefinitions>
                     <DockPanel Grid.Row="0">
                         <TextBlock  Text="     K3" VerticalAlignment="Center" Width="50" HorizontalAlignment="Left"></TextBlock>
-                        <TextBlock  Text="    召测时间："></TextBlock>
-                        <TextBlock  Text="{Binding CurrentSelectedItem.WeekTime[2].DateTimeRecevie}"></TextBlock>
+                        <TextBlock  Text="    召测时间：" Visibility="Collapsed"></TextBlock>
+                        <TextBlock  Text="{Binding CurrentSelectedItem.WeekTime[2].DateTimeRecevie}" Visibility="Collapsed"></TextBlock>
                     </DockPanel>
                     <telerik:RadGridView x:Name="_K3GridView" AutoGenerateColumns="False" RowIndicatorVisibility="Collapsed" ShowGroupPanel="False" ItemsSource="{Binding CurrentSelectedItem.WeekTime[2].ZhaoCeRtuItems}" 
                                HorizontalAlignment="Left" MaxHeight="450"   Grid.Row="1" FontSize="10"  FrozenColumnCount="2" ScrollViewer.HorizontalScrollBarVisibility="{Binding CurrentSelectedItem.WeekTime[2].ZhaoCeScroll}" 
@@ -228,8 +228,8 @@
 
                     <DockPanel Grid.Row="0">
                         <TextBlock  Text="     K4" VerticalAlignment="Center" Width="50" HorizontalAlignment="Left"></TextBlock>
-                        <TextBlock  Text="    召测时间："></TextBlock>
-                        <TextBlock  Text="{Binding CurrentSelectedItem.WeekTime[3].DateTimeRecevie}"></TextBlock>
+                        <TextBlock  Text="    召测时间：" Visibility="Collapsed"></TextBlock>
+                        <TextBlock  Text="{Binding CurrentSelectedItem.WeekTime[3].DateTimeRecevie}" Visibility="Collapsed"></TextBlock>
                     </DockPanel>
                     <telerik:RadGridView x:Name="_K4GridView" AutoGenerateColumns="False" RowIndicatorVisibility="Collapsed" ShowGroupPanel="False" ItemsSource="{Binding CurrentSelectedItem.WeekTime[3].ZhaoCeRtuItems}" 
                                HorizontalAlignment="Left" MaxHeight="450"   Grid.Row="1" FontSize="10"  Width="450"  FrozenColumnCount="2" ScrollViewer.HorizontalScrollBarVisibility="{Binding CurrentSelectedItem.WeekTime[3].ZhaoCeScroll}"
@@ -285,8 +285,8 @@
                         </Grid.RowDefinitions>
                     <DockPanel Grid.Row="0">
                         <TextBlock  Text="     K5" VerticalAlignment="Center" Width="50" HorizontalAlignment="Left"></TextBlock>
-                        <TextBlock  Text="    召测时间："></TextBlock>
-                        <TextBlock  Text="{Binding CurrentSelectedItem.WeekTime[4].DateTimeRecevie}"></TextBlock>
+                        <TextBlock  Text="    召测时间：" Visibility="Collapsed"></TextBlock>
+                        <TextBlock  Text="{Binding CurrentSelectedItem.WeekTime[4].DateTimeRecevie}" Visibility="Collapsed"></TextBlock>
                     </DockPanel>
                     <telerik:RadGridView x:Name="_K5GridView" AutoGenerateColumns="False" RowIndicatorVisibility="Collapsed" ShowGroupPanel="False" ItemsSource="{Binding CurrentSelectedItem.WeekTime[4].ZhaoCeRtuItems}" 
                                HorizontalAlignment="Left" MaxHeight="450"   Grid.Row="1" FontSize="10"  Width="450" FrozenColumnCount="2" ScrollViewer.HorizontalScrollBarVisibility="{Binding CurrentSelectedItem.WeekTime[4].ZhaoCeScroll}"
@@ -342,8 +342,8 @@
                         </Grid.RowDefinitions>
                     <DockPanel Grid.Row="0">
                         <TextBlock  Text="     K6" VerticalAlignment="Center" Width="50" HorizontalAlignment="Left"></TextBlock>
-                        <TextBlock  Text="    召测时间："></TextBlock>
-                        <TextBlock  Text="{Binding CurrentSelectedItem.WeekTime[5].DateTimeRecevie}"></TextBlock>
+                        <TextBlock  Text="    召测时间：" Visibility="Collapsed"></TextBlock>
+                        <TextBlock  Text="{Binding CurrentSelectedItem.WeekTime[5].DateTimeRecevie}" Visibility="Collapsed"></TextBlock>
                     </DockPanel>
                     <telerik:RadGridView x:Name="_K6GridView" AutoGenerateColumns="False" RowIndicatorVisibility="Collapsed" ShowGroupPanel="False" ItemsSource="{Binding CurrentSelectedItem.WeekTime[5].ZhaoCeRtuItems}" 
                                HorizontalAlignment="Left" MaxHeight="450"  Grid.Row="1" FontSize="10"  Width="450" FrozenColumnCount="2" ScrollViewer.HorizontalScrollBarVisibility="{Binding CurrentSelectedItem.WeekTime[5].ZhaoCeScroll}"
@@ -399,8 +399,8 @@
                         </Grid.RowDefinitions>
                     <DockPanel Grid.Row="0">
                         <TextBlock  Text="     K7" VerticalAlignment="Center" Width="50" HorizontalAlignment="Left"></TextBlock>
-                        <TextBlock  Text="    召测时间："></TextBlock>
-                        <TextBlock  Text="{Binding CurrentSelectedItem.WeekTime[6].DateTimeRecevie}"></TextBlock>
+                        <TextBlock  Text="    召测时间：" Visibility="Collapsed"></TextBlock>
+                        <TextBlock  Text="{Binding CurrentSelectedItem.WeekTime[6].DateTimeRecevie}" Visibility="Collapsed"></TextBlock>
                     </DockPanel>
                     <telerik:RadGridView x:Name="_K7GridView" AutoGenerateColumns="False" RowIndicatorVisibility="Collapsed" ShowGroupPanel="False" ItemsSource="{Binding CurrentSelectedItem.WeekTime[6].ZhaoCeRtuItems}" 
                                HorizontalAlignment="Left" MaxHeight="450"  Grid.Row="1" FontSize="10" Width="450" FrozenColumnCount="2" ScrollViewer.HorizontalScrollBarVisibility="{Binding CurrentSelectedItem.WeekTime[6].ZhaoCeScroll}"
@@ -456,8 +456,8 @@
                         </Grid.RowDefinitions>
                     <DockPanel Grid.Row="0">
                         <TextBlock  Text="     K8" VerticalAlignment="Center" Width="50" HorizontalAlignment="Left"></TextBlock>
-                        <TextBlock  Text="    召测时间："></TextBlock>
-                        <TextBlock  Text="{Binding CurrentSelectedItem.WeekTime[7].DateTimeRecevie}"></TextBlock>
+                        <TextBlock  Text="    召测时间：" Visibility="Collapsed"></TextBlock>
+                        <TextBlock  Text="{Binding CurrentSelectedItem.WeekTime[7].DateTimeRecevie}" Visibility="Collapsed"></TextBlock>
                     </DockPanel>
                     <telerik:RadGridView x:Name="_K8GridView" AutoGenerateColumns="False" RowIndicatorVisibility="Collapsed" ShowGroupPanel="False" ItemsSource="{Binding CurrentSelectedItem.WeekTime[7].ZhaoCeRtuItems}" 
                                HorizontalAlignment="Left" MaxHeight="450"    Grid.Row="1" FontSize="10" Width="450" FrozenColumnCount="2" ScrollViewer.HorizontalScrollBarVisibility="{Binding CurrentSelectedItem.WeekTime[7].ZhaoCeScroll}"

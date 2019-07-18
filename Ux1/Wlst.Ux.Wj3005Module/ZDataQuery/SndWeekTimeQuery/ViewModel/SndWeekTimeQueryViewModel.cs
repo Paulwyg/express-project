@@ -555,7 +555,7 @@ namespace Wlst.Ux.WJ3005Module.ZDataQuery.SndWeekTimeQuery.ViewModel
             {
                 //Remind = "没有所需要查询记录！";
                 Record.Clear();
-                Remind = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " --" + phyid  + "-- 终端记录查询成功，共计" + info.Info.Count + " 条数据.";
+                Remind = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " --" + phyid  + "-- 终端记录查询成功，共计" + ItemCount + " 条数据.";
      
                 return;
             }
@@ -568,7 +568,7 @@ namespace Wlst.Ux.WJ3005Module.ZDataQuery.SndWeekTimeQuery.ViewModel
             this.Record = tmpitems;
             //Remind = "数据已反馈！";
 
-            Remind = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " --" +phyid  + "-- 终端记录查询成功，共计" + info.Info.Count + " 条数据.";
+            Remind = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " --" +phyid  + "-- 终端记录查询成功，共计" + ItemCount + " 条数据.";
         }
         //private void ResoloveRequestAnsData(object data)
         //{

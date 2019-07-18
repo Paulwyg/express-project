@@ -139,8 +139,9 @@
       <HintPath>..\..\Rr\Binaries\WPF\Telerik.Windows.Zip.dll</HintPath>
     </Reference>
     <Reference Include="WindowsBase" />
-    <Reference Include="Wlst.Cr.Core">
-      <HintPath>..\..\Rr\Binaries\WPF\Wlst.Cr.Core.dll</HintPath>
+    <Reference Include="Wlst.Cr.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Cetc50\mimslp\Rr\Binaries\WPF\Wlst.Cr.Core.dll</HintPath>
     </Reference>
     <Reference Include="Wlst.Cr.Coreb, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>

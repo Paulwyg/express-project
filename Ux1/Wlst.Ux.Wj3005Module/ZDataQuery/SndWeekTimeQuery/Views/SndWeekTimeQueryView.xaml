@@ -30,7 +30,7 @@
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
-            <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Margin="10,0,0,0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Text="起始时间:"></TextBlock>
+            <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Margin="5,0,0,0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Text="起始时间:"></TextBlock>
                 <DatePicker Margin="10,0,0,0"  SelectedDateFormat="Short" Width="130" Grid.Column="1" VerticalAlignment="Center"  HorizontalAlignment="Left" SelectedDate="{Binding DtStartTime}"></DatePicker>
             <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Margin="10,0,0,0" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Left" Text="结束时间:"></TextBlock>
                 <DatePicker Margin="10,0,0,0" Width="130"  SelectedDateFormat="Short" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Left"  SelectedDate="{Binding DtEndTime}"></DatePicker>
@@ -42,12 +42,12 @@
                 <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Width="200" Margin="10,0,0,0"  VerticalAlignment="Center" HorizontalAlignment="Left" Text="{Binding RtuInfo}"></TextBlock>
                 </DockPanel>
                  
-                <Button Margin="5,5,0,5" Content="查询" Grid.Column="6" MinHeight="23"   VerticalAlignment="Center"   Width="120"  Command="{Binding CmdQuery}"></Button>
+                <Button Margin="15,5,0,5" Content="查询" Grid.Column="6" MinHeight="23"   VerticalAlignment="Center"   Width="120"  Command="{Binding CmdQuery}"></Button>
 
             </Grid>
 
         <telerik:RadGridView x:Name="exportgridview" AutoGenerateColumns="False" ItemsSource="{Binding Record}" Grid.Row="1" 
-								 Background="Transparent" Margin="0,5,0,0"
+								 Background="Transparent" Margin="5,5,0,0"
 								  HorizontalAlignment="Left" 
 								  VerticalAlignment="Stretch" 
                                   CanUserFreezeColumns="False" 
@@ -80,7 +80,7 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            <!--<TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}"  Text="{Binding Remind}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0"/>-->
+            <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}"  Text="{Binding Remind}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5,0,0,0"/>
             <Button Content="导出" Click="BtnExportClick"  Visibility="{Binding ExportVisi}" Grid.Column="1" Margin="20,2,20,2" MinWidth="120"  MinHeight="25"/>
         </Grid>
     </Grid>

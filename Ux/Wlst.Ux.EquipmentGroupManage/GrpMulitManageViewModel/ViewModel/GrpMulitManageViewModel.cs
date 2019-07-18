@@ -127,7 +127,7 @@ namespace Wlst.Ux.EquipmentGroupManage.GrpMulitManageViewModel.ViewModel
                 {
                     this.ItemsArea.Add(new NameValueInt()
                                            {
-                                               Name = "-1-全部区域",
+                                               Name = "全部区域",
                                                Value = -1
                                            });
                 }
@@ -157,7 +157,7 @@ namespace Wlst.Ux.EquipmentGroupManage.GrpMulitManageViewModel.ViewModel
                 {
                     this.ItemsArea.Add(new NameValueInt()
                                            {
-                                               Name = "-1 - 全部区域",
+                                               Name = "全部区域",
                                                Value = -1
                                            });
                 }

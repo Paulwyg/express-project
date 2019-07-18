@@ -1151,11 +1151,13 @@ namespace Wlst.Ux.EquipemntTree.GrpSingleTabShowViewModel.ViewModels
             //    //return;
             //}
             //if (tmpList2.Count == 0) return;
-            if (ChildTreeItemsSearch.Count < 0) return;
+            //if (ChildTreeItemsSearch.Count < 0) return;
+            if (tmpList2.Count < 0) return;
 
             if (Wlst.Sr.EquipmentInfoHolding.Services.Others.ControlCenterIsShow) WlstMessageBox.Show("警告", "控制中心已经打开，正在处理其他操作，请关闭控制中心界面，重试", WlstMessageBoxType.Ok);
 
-            foreach (var t in ChildTreeItemsSearch)//ChildTreeItemsSearch
+            foreach (var t in tmpList2)
+            //foreach (var t in ChildTreeItemsSearch)//ChildTreeItemsSearch
             {
                 if (t.NodeType == TypeOfTabTreeNode.IsTml)
                 {
@@ -2728,7 +2730,11 @@ namespace Wlst.Ux.EquipemntTree.GrpSingleTabShowViewModel.ViewModels
                     ChildTreeItemsSearch.Add(f);
                 }
             }
-
+            tmpList2.Clear();
+            foreach(var child in ChildTreeItemsSearch)
+            {
+                tmpList2.Add(child);
+            }
 
             ////int index = 0;
             //foreach (var t in tmpList)
@@ -2777,7 +2783,7 @@ namespace Wlst.Ux.EquipemntTree.GrpSingleTabShowViewModel.ViewModels
 
 
 
-            var tmpList2 = (from t in tmpList orderby t.NodeId ascending select t).ToList();
+            var tmpList2 = (from t in tmpList orderby t.PhyId ascending select t).ToList();
             return tmpList2;
 
 

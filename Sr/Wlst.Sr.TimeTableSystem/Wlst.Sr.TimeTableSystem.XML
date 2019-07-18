@@ -115,6 +115,11 @@
             提供数据持有的数据结构 area_id -  rtuOrGrpId - timetable  新协议  lvf 2019年6月19日10:01:12
             </summary>
         </member>
+        <member name="F:Wlst.Sr.TimeTableSystem.InfoHold.TimeTableInfosHold.InfoYearTimeItems">
+            <summary>
+            提供数据持有的数据结构 area_id -  rtuOrGrpId - timetable  新协议 lvf 用于全年时间表
+            </summary>
+        </member>
         <member name="P:Wlst.Sr.TimeTableSystem.InfoHold.TimeTableInfosHold.InfoTimeTableDictionary">
             <summary>
             <para>任何使用此数据务必注意 此数据为原始数据，___只允许读不允许修改___ </para> 
@@ -203,6 +208,14 @@
             <param name="timetableid">时间表ID</param>
             <returns>终端列表 不会为null的 </returns>
         </member>
+        <member name="M:Wlst.Sr.TimeTableSystem.InfoHold.TimeTableInfosHold.IsYearTimeTable(System.Int32,System.Int32)">
+            <summary>
+            不存在则返回  false,是否是全年时间表
+            </summary>
+            <param name="areaId"></param>
+            <param name="timeId"></param>
+            <returns></returns>
+        </member>
         <member name="M:Wlst.Sr.TimeTableSystem.InfoHold.TimeTableInfosHold.RequestWeekTimeTableInfo">
             <summary>
             请求时间时间表;
@@ -211,6 +224,11 @@
         <member name="M:Wlst.Sr.TimeTableSystem.InfoHold.TimeTableInfosHold.RequestEventTaskInfo">
             <summary>
             请求时间时间表;
+            </summary>
+        </member>
+        <member name="M:Wlst.Sr.TimeTableSystem.InfoHold.TimeTableInfosHold.RequestYearTimeInfo">
+            <summary>
+            请求全年时间表
             </summary>
         </member>
         <member name="M:Wlst.Sr.TimeTableSystem.InfoHold.TimeTableInfosHold.OnRequestTimeTableBandingInfo(System.String,Wlst.mobile.MsgWithMobile)">
@@ -240,6 +258,13 @@
             </summary>
             <param name="info"></param>
             <returns></returns>
+        </member>
+        <member name="M:Wlst.Sr.TimeTableSystem.InfoHold.TimeTableInfosHold.OnRequestYearTimeTableInfo(System.String,Wlst.mobile.MsgWithMobile)">
+            <summary>
+            处理光环境推送的年时间表，记录缓存，供时间表界面判断是否为他们推送的年时间表
+            </summary>
+            <param name="session"></param>
+            <param name="infos"></param>
         </member>
         <member name="M:Wlst.Sr.TimeTableSystem.InfoHold.TimeTableInfosHold.UpdateTimeTableInfos(System.Int32,System.Collections.Generic.List{Wlst.client.TimeTableInfoWithRtuOrGrpBandingInfo.TimeTableItem},System.Collections.Generic.List{System.Tuple{System.Int32,System.Int32,System.Int32}})">
             <summary>
@@ -451,6 +476,14 @@
             <para>任何使用此数据务必注意 此数据为原始数据，___只允许读不允许修改___  </para>
             <para>任何修改会使原始数据被修改形成脏数据 </para>
             </summary>
+        </member>
+        <member name="M:Wlst.Sr.TimeTableSystem.Services.WeekTimeTableInfoService.IsYearTimeTable(System.Int32,System.Int32)">
+            <summary>
+            不存在返回false
+            </summary>
+            <param name="area"></param>
+            <param name="id"></param>
+            <returns></returns>
         </member>
         <member name="M:Wlst.Sr.TimeTableSystem.Services.WeekTimeTableInfoService.UpdateTimeTable(System.Int32,System.Collections.Generic.List{Wlst.client.TimeTableInfoWithRtuOrGrpBandingInfo.TimeTableItem},System.Collections.Generic.List{System.Tuple{System.Int32,System.Int32,System.Int32}})">
             <summary>

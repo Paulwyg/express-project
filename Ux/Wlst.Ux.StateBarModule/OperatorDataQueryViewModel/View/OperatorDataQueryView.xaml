@@ -46,7 +46,7 @@
                     <ColumnDefinition Width="Auto"/>
                     
                 </Grid.ColumnDefinitions>
-                <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Text="起始时间：" Margin="10,2,0,2" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Text="起始时间：" Margin="5,2,0,2" HorizontalAlignment="Left" VerticalAlignment="Center"/>
                 <!--<xctk:DateTimePicker Grid.Column="1" Margin="10,0,0,0" MinWidth="180" DefaultValue="{Binding BeginDate}"  Text="{Binding BeginDate}" HorizontalAlignment="Left" VerticalAlignment="Center"/>-->
                 <DatePicker SelectedDateFormat="Short"  Grid.Column="1" Margin="10,2,0,2" MinWidth="100" SelectedDate="{Binding BeginDate}" HorizontalAlignment="Left" VerticalAlignment="Center"></DatePicker>
                 <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Grid.Column="2" Margin="30,2,0,2" Text="结束时间：" HorizontalAlignment="Left" VerticalAlignment="Center" />
@@ -231,7 +231,7 @@
            
             <telerik:RadGridView x:Name="gridview"   AutoGenerateColumns="False" ItemsSource="{Binding Items}" Grid.Row="2"  
 								 ScrollMode="Deferred" IsReadOnly="True"  ShowGroupPanel="False" 
-                                 HorizontalAlignment="Left"  Width="960"
+                                 HorizontalAlignment="Left"  Width="960" Margin="5,0,0,0"
                                   SnapsToDevicePixels="False" ShowColumnFooters="False" UseLayoutRounding="False" RowIndicatorVisibility="Collapsed">
              
                 <telerik:RadGridView.Columns>
@@ -334,7 +334,7 @@
                         </Style>
                     </Button.Style>
                 </Button>
-            <TextBox Foreground="{Binding ElementName=fg, Path=Foreground}"  TextWrapping="Wrap" Margin="10,0,0,0" x:Name="DetailInfo" IsReadOnly="True" Grid.Row="1" MinHeight="30" Text="{Binding DetailInfo}"/>
+            <TextBox Foreground="{Binding ElementName=fg, Path=Foreground}"  TextWrapping="Wrap" Margin="5,0,0,0" x:Name="DetailInfo" IsReadOnly="True" Grid.Row="1" MinHeight="30" Text="{Binding DetailInfo}"/>
             </Grid>
     </Grid>
 

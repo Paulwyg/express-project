@@ -39,7 +39,7 @@
         <TextBlock Visibility="Collapsed"  Width="{Binding Hightxx}" Height="0" x:Name="txb"/>
 
         <!--<Views:TmlFaultsShieldView Margin="0,0,0,5" Visibility="{Binding ShowFault, Converter={StaticResource BoolToVisible}}" Grid.Row="1"/>-->
-        <Grid Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="25,5,0,0" Visibility="{Binding ReportType, Converter={StaticResource GridEnumToBoolConverter}, ConverterParameter=NoReport}"> 
+        <Grid Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="15,5,0,0" Visibility="{Binding ReportType, Converter={StaticResource GridEnumToBoolConverter}, ConverterParameter=NoReport}"> 
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"></ColumnDefinition>
                 <ColumnDefinition Width="Auto"></ColumnDefinition>
@@ -113,7 +113,7 @@
                                 </DataTemplate>
                             </telerik:GridViewDataColumn.CellTemplate>
                         </telerik:GridViewDataColumn>
-                        <telerik:GridViewDataColumn  Header="地址" IsFilterable="False" MinWidth="75" MaxWidth="150"  DataMemberBinding="{Binding PhysicalId, StringFormat={}{0:D2}}" IsReadOnly="True" />
+                        <telerik:GridViewDataColumn  Header="地址" IsFilterable="False" MinWidth="75" MaxWidth="150"  DataMemberBinding="{Binding PhysicalId, StringFormat={}{0:D4}}" IsReadOnly="True" />
                         <telerik:GridViewDataColumn Header="组、终端名称" IsReadOnly="True" Width="170">
                             <telerik:GridViewDataColumn.CellTemplate>
                                 <DataTemplate >
@@ -416,7 +416,7 @@
                 <telerik:RadTreeListView ShowGroupPanel="False" RowIndicatorVisibility="Collapsed" FilteringMode="Popup" AutoGenerateColumns="False"
 							Grid.Column="1"  ItemsSource="{Binding OpenLightReport}" >
                     <telerik:RadTreeListView.Columns>
-                        <telerik:GridViewDataColumn IsFilterable="False" Header="地址" MinWidth="65" MaxWidth="150" DataMemberBinding="{Binding PhysicalId}" IsReadOnly="True" />
+                        <telerik:GridViewDataColumn IsFilterable="False" Header="地址" MinWidth="65" MaxWidth="150" DataMemberBinding="{Binding PhysicalId, StringFormat={}{0:D4}}" IsReadOnly="True" />
                         <telerik:GridViewDataColumn Header="终端名称" IsReadOnly="True" MinWidth="180" MaxWidth="300" >
                             <telerik:GridViewDataColumn.CellTemplate>
                                 <DataTemplate >
@@ -575,7 +575,7 @@
                 <telerik:RadTreeListView ShowGroupPanel="False" RowIndicatorVisibility="Collapsed" FilteringMode="Popup" AutoGenerateColumns="False"
 							Grid.Column="1"  ItemsSource="{Binding CloseLightReport}" >
                     <telerik:RadTreeListView.Columns>
-                        <telerik:GridViewDataColumn IsFilterable="False" Header="地址" MinWidth="60" MaxWidth="150" DataMemberBinding="{Binding PhysicalId}" IsReadOnly="True" />
+                        <telerik:GridViewDataColumn IsFilterable="False" Header="地址" MinWidth="60" MaxWidth="150" DataMemberBinding="{Binding PhysicalId, StringFormat={}{0:D4}}" IsReadOnly="True" />
                         <telerik:GridViewDataColumn Header="终端名称" IsReadOnly="True" Width="270">
                             <telerik:GridViewDataColumn.CellTemplate>
                                 <DataTemplate >
@@ -737,7 +737,7 @@
                 <telerik:RadTreeListView ShowGroupPanel="False" RowIndicatorVisibility="Collapsed" FilteringMode="Popup" AutoGenerateColumns="False"
 							Grid.Column="1"  ItemsSource="{Binding SelectionTestReport}" MouseUp="RadTreeListView_MouseUp">
                     <telerik:RadTreeListView.Columns>
-                        <telerik:GridViewDataColumn IsFilterable="False"  Header="地址" MinWidth="60" MaxWidth="150" DataMemberBinding="{Binding PhysicalId}" IsReadOnly="True" />
+                        <telerik:GridViewDataColumn IsFilterable="False"  Header="地址" MinWidth="60" MaxWidth="150" DataMemberBinding="{Binding PhysicalId, StringFormat={}{0:D4}}" IsReadOnly="True" />
                         <telerik:GridViewDataColumn Header="终端名称" IsReadOnly="True" Width="270">
                             <telerik:GridViewDataColumn.CellTemplate>
                                 <DataTemplate >
@@ -881,7 +881,7 @@
                 <telerik:RadTreeListView ShowGroupPanel="False" RowIndicatorVisibility="Collapsed"  FilteringMode="Popup" AutoGenerateColumns="False"
 							Grid.Column="1"  ItemsSource="{Binding SyncTimeReport}" >
                     <telerik:RadTreeListView.Columns>
-                        <telerik:GridViewDataColumn IsFilterable="False"  Header="地址" MinWidth="60" MaxWidth="150" DataMemberBinding="{Binding PhysicalId}" IsReadOnly="True" />
+                        <telerik:GridViewDataColumn IsFilterable="False"  Header="地址" MinWidth="60" MaxWidth="150" DataMemberBinding="{Binding PhysicalId, StringFormat={}{0:D4}}" IsReadOnly="True" />
                         <telerik:GridViewDataColumn Header="终端名称" IsReadOnly="True" Width="270">
                             <telerik:GridViewDataColumn.CellTemplate>
                                 <DataTemplate >
@@ -974,7 +974,7 @@
                 <telerik:RadTreeListView ShowGroupPanel="False" RowIndicatorVisibility="Collapsed" FilteringMode="Popup" AutoGenerateColumns="False"
 							Grid.Column="1" ItemsSource="{Binding WeekSndReport}" ColumnReordered="RadTreeListView_ColumnReordered" >
                     <telerik:RadTreeListView.Columns>
-                        <telerik:GridViewDataColumn IsFilterable="False" Header="地址" MinWidth="60" MaxWidth="150" DataMemberBinding="{Binding PhysicalId}" IsReadOnly="True" />
+                        <telerik:GridViewDataColumn IsFilterable="False" Header="地址" MinWidth="60" MaxWidth="150" DataMemberBinding="{Binding PhysicalId, StringFormat={}{0:D4}}" IsReadOnly="True" />
                         <telerik:GridViewDataColumn Header="终端名称" IsReadOnly="True" Width="270">
                             <telerik:GridViewDataColumn.CellTemplate>
                                 <DataTemplate >
@@ -1057,7 +1057,7 @@
                 <telerik:RadTreeListView ShowGroupPanel="False" RowIndicatorVisibility="Collapsed" FilteringMode="Popup" AutoGenerateColumns="False"
 							Grid.Column="1"  ItemsSource="{Binding YjOpenLightReport}" >
                     <telerik:RadTreeListView.Columns>
-                        <telerik:GridViewDataColumn IsFilterable="False" Header="地址" MinWidth="65" MaxWidth="150" DataMemberBinding="{Binding PhysicalId}" IsReadOnly="True" />
+                        <telerik:GridViewDataColumn IsFilterable="False" Header="地址" MinWidth="65" MaxWidth="150" DataMemberBinding="{Binding PhysicalId, StringFormat={}{0:D4}}" IsReadOnly="True" />
                         <telerik:GridViewDataColumn Header="终端名称" IsReadOnly="True" MinWidth="180" MaxWidth="300" >
                             <telerik:GridViewDataColumn.CellTemplate>
                                 <DataTemplate >
@@ -1227,7 +1227,7 @@
                 <telerik:RadTreeListView ShowGroupPanel="False" RowIndicatorVisibility="Collapsed" FilteringMode="Popup" AutoGenerateColumns="False"
 							Grid.Column="1"  ItemsSource="{Binding YjCloseLightReport}" >
                     <telerik:RadTreeListView.Columns>
-                        <telerik:GridViewDataColumn IsFilterable="False" Header="地址" MinWidth="60" MaxWidth="150" DataMemberBinding="{Binding PhysicalId}" IsReadOnly="True" />
+                        <telerik:GridViewDataColumn IsFilterable="False" Header="地址" MinWidth="60" MaxWidth="150" DataMemberBinding="{Binding PhysicalId, StringFormat={}{0:D4}}" IsReadOnly="True" />
                         <telerik:GridViewDataColumn Header="终端名称" IsReadOnly="True" Width="270">
                             <telerik:GridViewDataColumn.CellTemplate>
                                 <DataTemplate >

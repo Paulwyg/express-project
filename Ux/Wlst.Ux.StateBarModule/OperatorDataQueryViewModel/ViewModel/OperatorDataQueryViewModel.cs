@@ -36,6 +36,10 @@ namespace Wlst.Ux.StateBarModule.OperatorDataQueryViewModel.ViewModel
         {
             if (_isViewVisual) return;
             _isViewVisual = true;
+            UserItems.Clear();
+            TypeItems.Clear();
+            Items.Clear();
+            IsAdvanceQueryChecked = false;
             BeginDate = DateTime.Now.AddDays(-1);
             EndDate = DateTime.Now;
             RequestAllUserInfomation();
@@ -542,8 +546,8 @@ namespace Wlst.Ux.StateBarModule.OperatorDataQueryViewModel.ViewModel
         private void ExCmdQuery()
         {
             _dtQuery = DateTime.Now;
+            Remind = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + ",查询命令已发送...，请等待数据反馈！";
             Query();
-            Remind = "查询命令已发送...，请等待数据反馈！";
             ExportVisi = Visibility.Visible;
         }
         private bool CanCmdQuery()
@@ -706,6 +710,14 @@ namespace Wlst.Ux.StateBarModule.OperatorDataQueryViewModel.ViewModel
                 PagerVisi = count < 2 ? Visibility.Collapsed : Visibility.Visible;
                 PageTotal = "页     " + ItemCount + " 条";
             }
+            if (infos.Head.Scc == 0)
+            {
+                Remind = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "--操作数据查询成功，共计" + ItemCount + "条数据.";
+            }
+            else
+            {
+                Remind = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "--操作数据查询失败.";
+            }
             if (type == 1)
             {
                 foreach (var item in info.TypeItems)
@@ -763,9 +775,9 @@ namespace Wlst.Ux.StateBarModule.OperatorDataQueryViewModel.ViewModel
                 //Items = tmpitems;
 
 
-                Remind = "数据装载完毕...请查看...";
-                Remind = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " 操作记录查询成功，共计" + info.RecordItems.Count +
-                         " 条数据.";
+                //Remind = "数据装载完毕...请查看...";
+                //Remind = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " 操作记录查询成功，共计" + info.RecordItems.Count +
+                //         " 条数据.";
             }
         }
 

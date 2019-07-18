@@ -35,6 +35,12 @@ namespace Wlst.Sr.TimeTableSystem.InfoHold
         protected Dictionary<Tuple<int, int>, TimeTableInfoWithRtuOrGrpBandingInfo.TimeTableItem> InfoTimeItemsNew;
 
 
+        /// <summary>
+        /// 提供数据持有的数据结构 area_id -  rtuOrGrpId - timetable  新协议 lvf 用于全年时间表
+        /// </summary>
+        protected Dictionary<Tuple<int, int>, List<QueryYearTimeTableInfo.OneYearTimeTableInfo.YearTimeTableDetails>> InfoYearTimeItems;
+
+
         #region 提供外部对数据的操作Get Set
 
         /// <summary>
@@ -304,6 +310,25 @@ namespace Wlst.Sr.TimeTableSystem.InfoHold
         }
 
 
+
+        /// <summary>
+        /// 不存在则返回  false,是否是全年时间表
+        /// </summary>
+        /// <param name="areaId"></param>
+        /// <param name="timeId"></param>
+        /// <returns></returns>
+        public bool IsYearTimeTable(int areaId, int timeId)
+        {
+            if (InfoYearTimeItems == null) return false;
+            var tu = new Tuple<int, int>(areaId, timeId);
+            if (InfoYearTimeItems.ContainsKey(tu))
+            {
+                return true;
+            }
+            return false;
+        }
+
+
     }
 
     /// <summary>
@@ -317,6 +342,8 @@ namespace Wlst.Sr.TimeTableSystem.InfoHold
 
             Wlst.Cr.Core.ModuleServices.DelayEvent.RegisterDelayEvent(RequestWeekTimeTableInfo, 1);
             Wlst.Cr.Core.ModuleServices.DelayEvent.RegisterDelayEvent(RequestEventTaskInfo, 1);
+            Wlst.Cr.Core.ModuleServices.DelayEvent.RegisterDelayEvent(RequestYearTimeInfo, 1);
+            // todo 
         }
 
 
@@ -338,6 +365,7 @@ namespace Wlst.Sr.TimeTableSystem.InfoHold
             {
                 this.RequestWeekTimeTableInfo();
                 this.RequestEventTaskInfo();
+                this.RequestYearTimeInfo();
             }
         }
 
@@ -404,12 +432,17 @@ namespace Wlst.Sr.TimeTableSystem.InfoHold
             var info = Wlst.Sr.ProtocolPhone.LxRtuTime .wst_timetable_next_execute_info ;//.wlst_cnt_request_timetable_next_execute_info;//.ServerPart.wlst_TimeTable_clinet_request_timetableevent;
        
             SndOrderServer.OrderSnd(info, 10, 6);
-
-
-
-
+           
         }
-
+        /// <summary>
+        /// 请求全年时间表
+        /// </summary>
+        public void RequestYearTimeInfo()
+        {
+            var info = Wlst.Sr.ProtocolPhone.LxRtuTime.wst_rtutime_query_year_time_table_info;//.wlst_cnt_request_timetable_next_execute_info;//.ServerPart.wlst_TimeTable_clinet_request_timetableevent;
+            info.WstQueryYearTimeTableInfo.OP = 1;
+            SndOrderServer.OrderSnd(info, 10, 6);
+        }
     }
 
 
@@ -441,6 +474,11 @@ namespace Wlst.Sr.TimeTableSystem.InfoHold
             ProtocolServer.RegistProtocol(Sr.ProtocolPhone.LxRtuTime.wst_timetable_set_bandingnew,
                               OnRequestTimeTableBandingInfo,
                               typeof(TimeTableInfosHold), this);
+
+
+            ProtocolServer.RegistProtocol(Sr.ProtocolPhone.LxRtuTime.wst_rtutime_query_year_time_table_info,
+                  OnRequestYearTimeTableInfo,
+                  typeof(TimeTableInfosHold), this);
 
 
         }
@@ -663,7 +701,32 @@ namespace Wlst.Sr.TimeTableSystem.InfoHold
             return true;
         }
 
+        /// <summary>
+        /// 处理光环境推送的年时间表，记录缓存，供时间表界面判断是否为他们推送的年时间表
+        /// </summary>
+        /// <param name="session"></param>
+        /// <param name="infos"></param>
+        private void OnRequestYearTimeTableInfo(string session, MsgWithMobile infos)
+        {
+            if (infos == null) return;
+            var info = infos.WstQueryYearTimeTableInfo;
+            if (info == null) return;
 
+
+            InfoYearTimeItems = new Dictionary<Tuple<int, int>, List<QueryYearTimeTableInfo.OneYearTimeTableInfo.YearTimeTableDetails>>();
+            //var removedItem = (from t in InfoTimeItes where t.Key.Item1 == areaId select t.Key).ToList();
+            //foreach (var f in removedItem) if (InfoTimeItes.ContainsKey(f)) InfoTimeItes.Remove(f);
+
+            foreach (var f in info.Items)
+            {
+                int areaid = f.AreaId;
+                var tu = new Tuple<int, int>(areaid, f.TimeId);
+                if (InfoYearTimeItems.ContainsKey(tu)) InfoYearTimeItems[tu] = f.Items;
+                else InfoYearTimeItems.Add(tu, f.Items);
+            }
+
+
+        }
 
 
         #region  timetable event

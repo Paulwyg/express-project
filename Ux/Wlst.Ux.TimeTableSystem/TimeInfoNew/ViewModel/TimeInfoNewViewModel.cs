@@ -53,6 +53,7 @@ namespace Wlst.Ux.TimeTableSystem.TimeInfoNew
         public void NavOnLoad(params object[] parsObjects)
         {
             _isViewActive = true;
+            RequestYearTimeInfo();
             isUserSelectGrp = false;
             Msg = "";
             AreaName.Clear();
@@ -135,7 +136,16 @@ namespace Wlst.Ux.TimeTableSystem.TimeInfoNew
 
         public event EventHandler<EventArgsEx> OnUserWantSetGroupWeekSet;
 
+        /// <summary>
+        /// 请求全年时间表
+        /// </summary>
+        public void RequestYearTimeInfo()
+        {
+            var info = Wlst.Sr.ProtocolPhone.LxRtuTime.wst_rtutime_query_year_time_table_info;//.wlst_cnt_request_timetable_next_execute_info;//.ServerPart.wlst_TimeTable_clinet_request_timetableevent;
+            info.WstQueryYearTimeTableInfo.OP = 1;
+            SndOrderServer.OrderSnd(info, 10, 6);
 
+        }
         public void OnUserHideOrClosing()
         {
             _isViewActive = false;
@@ -321,6 +331,7 @@ namespace Wlst.Ux.TimeTableSystem.TimeInfoNew
             }
         }
 
+
     }
 
     /// <summary>
@@ -360,6 +371,7 @@ namespace Wlst.Ux.TimeTableSystem.TimeInfoNew
                 if (value == _items) return;
                 _items = value;
                 this.RaisePropertyChanged(() => Items);
+                
             }
         }
 

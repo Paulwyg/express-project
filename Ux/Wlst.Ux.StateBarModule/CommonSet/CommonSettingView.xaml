@@ -76,8 +76,8 @@
             </DockPanel>
             <DockPanel Grid.Row="4" HorizontalAlignment="Left" Grid.ColumnSpan="2" VerticalAlignment="Center">
 
-                <CheckBox Content="备份数据库到本地" IsChecked="{Binding IsCopySvrDataBase}"></CheckBox>
-                <CheckBox  Margin="50,0,0,0" IsChecked="{Binding IsRefreshAfterReCn}" Content="系统重连后,不刷新界面[默认刷新]" ></CheckBox>
+                <CheckBox Content="备份数据库到本地" IsChecked="{Binding IsCopySvrDataBase}" Visibility="Collapsed"></CheckBox>
+                <CheckBox  IsChecked="{Binding IsRefreshAfterReCn}" Content="系统重连后,不刷新界面[默认刷新]" ></CheckBox>
             </DockPanel>
 
             <DockPanel Grid.Row="5" HorizontalAlignment="Left" Grid.ColumnSpan="2" VerticalAlignment="Center">

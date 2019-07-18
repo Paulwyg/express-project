@@ -12,7 +12,7 @@
         <Service:TimeConverterIntToString x:Key="TimeConverterIntToString"/>
     </UserControl.Resources>
 
-    <Grid Margin="15" ScrollViewer.HorizontalScrollBarVisibility="Auto" >
+    <Grid Margin="5" ScrollViewer.HorizontalScrollBarVisibility="Auto" >
         <Grid Visibility="Visible" Name="grid1">
             <!--<Grid.ColumnDefinitions>
             <ColumnDefinition Width="490"></ColumnDefinition>
@@ -188,7 +188,7 @@
 
 
         
-        <TextBlock Grid.ColumnSpan="3" Grid.Row="5" Text="{Binding Remark}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0" ></TextBlock>
+        <TextBlock Grid.ColumnSpan="3" Grid.Row="5" Text="{Binding Remark}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0,0,0" ></TextBlock>
 
             <Button Grid.Row="5" Grid.Column="2"  Content="计算并保存" Width="130" Height="25" Command="{Binding CmdUpdate}"  HorizontalAlignment="left"  Margin="290,0,0,0" ></Button>
 

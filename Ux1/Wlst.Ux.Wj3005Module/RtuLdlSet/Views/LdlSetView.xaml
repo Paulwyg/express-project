@@ -39,7 +39,7 @@
                             </DataTemplate>
                         </telerik:GridViewDataColumn.CellTemplate>
                     </telerik:GridViewDataColumn>
-                    <telerik:GridViewDataColumn  Header="地址" IsFilterable="False" MinWidth="100" MaxWidth="200"  DataMemberBinding="{Binding PhysicalId, StringFormat={}{0:D2}}" IsReadOnly="True" />
+                    <telerik:GridViewDataColumn  Header="地址" IsFilterable="False" MinWidth="100" MaxWidth="200"  DataMemberBinding="{Binding PhysicalId, StringFormat={}{0:D2}}" IsReadOnly="True" IsVisible="False"/>
                         <telerik:GridViewDataColumn Header="区域名称" IsReadOnly="True" MinWidth="0" MaxWidth="{Binding AreaCount}" >
                         <telerik:GridViewDataColumn.CellTemplate>
                             <DataTemplate >
@@ -59,7 +59,8 @@
                         <telerik:GridViewDataColumn.CellTemplate>
                             <DataTemplate >
                                 <Grid >
-                                    <Image Visibility="{Binding IsGroup, Converter={StaticResource OppositeBoolToVisibleConverter}}" HorizontalAlignment="Center" VerticalAlignment="Center"  Source="{Binding Path=State, Converter={StaticResource imageconverter}}" Width="25" Height="25"></Image>
+                                    <!--<Image Visibility="{Binding IsGroup, Converter={StaticResource OppositeBoolToVisibleConverter}}" HorizontalAlignment="Center" VerticalAlignment="Center"  Source="{Binding Path=State, Converter={StaticResource imageconverter}}" Width="25" Height="25"></Image>-->
+                                        <TextBlock Visibility="{Binding IsGroup, Converter={StaticResource OppositeBoolToVisibleConverter}}" Text="{Binding StateString}" HorizontalAlignment="Center"></TextBlock>
                                 </Grid>
                             </DataTemplate>
                         </telerik:GridViewDataColumn.CellTemplate>

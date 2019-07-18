@@ -838,8 +838,8 @@ namespace Wlst.Ux.WJ3005Module.ZPartol.PartolViewMoel.ViewModels
         {
             _lastExCmdReport = DateTime.Now.Ticks;
 
-            
-                WriteData();
+            //Wlst.Cr.Coreb.AsyncTask.Qtz.AddQtz("export", 0, DateTime.Now.AddSeconds(1).Ticks, 1, WriteData, 0, 1);
+            WriteData();
         }
 
         private long _lastExCmdReport = DateTime.Now.AddDays(-1).Ticks;

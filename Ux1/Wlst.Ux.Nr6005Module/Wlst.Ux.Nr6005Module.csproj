@@ -120,9 +120,6 @@
       <HintPath>..\..\Rr\Binaries\WPF\WindowForWlst.dll</HintPath>
     </Reference>
     <Reference Include="WindowsBase" />
-    <Reference Include="Wlst.Cr.Core">
-      <HintPath>..\..\Rr\Binaries\WPF\Wlst.Cr.Core.dll</HintPath>
-    </Reference>
     <Reference Include="Wlst.Cr.Coreb, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="Wlst.Cr.CoreMims, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -211,6 +208,10 @@
     <ProjectReference Include="..\..\Cr\TestWin\TestWin.csproj">
       <Project>{E5A9D98C-7719-4B55-8D66-80F7AFD7A3CD}</Project>
       <Name>TestWin</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Cr\Wlst.Cr.Core\Wlst.Cr.Core.csproj">
+      <Project>{8177cb6e-c113-450a-a730-b3b199df07bd}</Project>
+      <Name>Wlst.Cr.Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Sr\Wlst.Sr.AssetManageInfoHold\Wlst.Sr.AssetManageInfoHold.csproj">
       <Project>{A673EE5B-4088-4592-8973-96596D65F938}</Project>

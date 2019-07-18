@@ -1085,9 +1085,9 @@ namespace Wlst.Ux.PrivilegesManage.UserInfoManageViewModel.ViewModels
         {
 
             ProtocolServer.RegistProtocol(Wlst.Sr.ProtocolPhone.LxLogin.wst_request_user_info,
-                                          OnRequestUser, typeof (UserInfoManageViewModel), this);
+                                          OnRequestUser, typeof(UserInfoManageViewModel), this);
             ProtocolServer.RegistProtocol(Wlst.Sr.ProtocolPhone.LxLogin.wst_add_or_update_user,
-                                          OnAddOrUpdateUser, typeof (UserInfoManageViewModel), this);
+                                          OnAddOrUpdateUser, typeof (UserInfoManageViewModel), this, true);
             ProtocolServer.RegistProtocol(Wlst.Sr.ProtocolPhone.LxLogin.wst_delete_user,
                                           OnDeleteUser, typeof (UserInfoManageViewModel), this);
 

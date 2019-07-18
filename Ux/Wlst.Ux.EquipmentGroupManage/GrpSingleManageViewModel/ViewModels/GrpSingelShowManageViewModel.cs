@@ -1323,7 +1323,7 @@ namespace Wlst.Ux.EquipmentGroupManage.GrpSingleManageViewModel.ViewModels
                     if (areaRtuLst == null || areaRtuLst.LstTml.Count < 1) return;
                     if (areaRtuLst.LstTml.Contains(t.Key) == false) continue;
 
-                    if (t.Value.RtuName.Contains(this.SearchText) || StringContainKeyword(t.Value.RtuName, SearchText) || t.Value.RtuPhyId.ToString().Contains(SearchText))
+                    if (t.Value.RtuName.Contains(this.SearchText) || StringContainKeyword(t.Value.RtuName, SearchText) || t.Value.RtuPhyId.ToString().PadLeft(4, '0').Contains(SearchText))
                     {
                         if (t.Value.RtuModel == EnumRtuModel.Wj3005) type = "3005终端";
                         else if (t.Value.RtuModel == EnumRtuModel.Wj3090) type = "3090终端";

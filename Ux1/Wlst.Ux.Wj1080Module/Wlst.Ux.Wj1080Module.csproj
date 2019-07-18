@@ -35,7 +35,8 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Rr\Binaries\WPF\Elysium.dll</HintPath>
     </Reference>
-    <Reference Include="Interop.SpeechLib, Version=5.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Interop.SpeechLib">
+      <HintPath>..\..\Rr\Binaries\WPF\Interop.SpeechLib.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="Lurx.Controls, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">

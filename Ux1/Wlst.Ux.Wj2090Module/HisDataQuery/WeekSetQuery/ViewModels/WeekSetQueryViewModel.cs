@@ -476,7 +476,7 @@ namespace Wlst.Ux.Wj2090Module.HisDataQuery.WeekSetQuery.ViewModels
             }
             this.Items.Clear();
             this.Items = lst;
-            Remind = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " 共计查阅 " + lst.Count + " 条数据.";
+            Remind = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " 共计查阅 " + ItemCount + " 条数据.";
         }
 
         #endregion

@@ -416,7 +416,7 @@
 								  HorizontalAlignment="Left" 
 							
                                  Grid.Row="1" 
-								  CanUserReorderColumns="False">
+								  CanUserReorderColumns="False" SelectionChanged="DataGrid_SelectionChanged">
 
                 <DataGrid.RowStyle>
                     <Style TargetType="DataGridRow">
@@ -520,8 +520,17 @@
                             </DockPanel >
                         </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
-
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="亮灯率下限" Width="65">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <DockPanel >
+                                <TextBox BorderThickness="0" MaxLength="4" Foreground="{Binding ForegroundColors}" IsEnabled="{Binding IsEnable}" Width="40" Text="{Binding LightRateLowerLimit,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"></TextBox>
+                                <TextBlock Text="%" Margin="0,2,0,0"   HorizontalAlignment="Right"/>
+                            </DockPanel >
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
                 <DataGridTemplateColumn Header="屏蔽小电流" Width="80">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>

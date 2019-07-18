@@ -287,7 +287,7 @@ namespace Wlst.Ux.Setting.EventTaskViewModel.ViewModel
                     {
                         if (t.Interval < 10 || t.Interval > 180)
                         {
-                            UMessageBox.Show("设置错误", "终端、单灯、节电、线路检测巡测间隔须在10分钟到3小时之间", UMessageBoxButton.Yes);
+                            UMessageBox.Show("设置错误", "终端、单灯、节电、线路检测巡测间隔"+"\n"+"须在10分钟到3小时之间", UMessageBoxButton.Yes);
                             t.Interval = 10;
                             return false;
                         }

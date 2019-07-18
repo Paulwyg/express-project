@@ -52,10 +52,22 @@ namespace Wlst.Sr.TimeTableSystem.Services
             return info.GetInfoTimeTableList(areaid);
         }
 
+        /// <summary>
+        /// 不存在返回false
+        /// </summary>
+        /// <param name="area"></param>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public static bool IsYearTimeTable(int area, int id)
+        {
+            return info.IsYearTimeTable(area, id);
+           
+        }
 
 
 
-                /// <summary>
+
+        /// <summary>
         /// 
         /// </summary>
         /// <param name="lstTimeTables"></param>
@@ -105,18 +117,22 @@ namespace Wlst.Sr.TimeTableSystem.Services
         /// <param name="yesterday">昨天开关灯时间 </param>
         public static TodayOpenCloseTime GetTmlLoopBandTimeTableTodayOpenCloseTimex(int areaid, int rtuIdorGrpId, int switchoutloopid)
         {
-            int RtuGrpId = 0;
-            if (Wlst.Sr.EquipmentInfoHolding.Services.ServicesGrpSingleInfoHold.InfoRtuBelong.ContainsKey(rtuIdorGrpId))
-            {
-                RtuGrpId =
-                    Wlst.Sr.EquipmentInfoHolding.Services.ServicesGrpSingleInfoHold.InfoRtuBelong[rtuIdorGrpId].Item2;
-            }
-            else
-            {
-                RtuGrpId = rtuIdorGrpId;
-            }
+
+            //新协议更改到绑定到终端上  不需要判断分组id   lvf  2019年7月11日09:20:37
+
+            ////int RtuGrpId = 0;
+            ////if (Wlst.Sr.EquipmentInfoHolding.Services.ServicesGrpSingleInfoHold.InfoRtuBelong.ContainsKey(rtuIdorGrpId))
+            ////{
+            ////    RtuGrpId =
+            ////        Wlst.Sr.EquipmentInfoHolding.Services.ServicesGrpSingleInfoHold.InfoRtuBelong[rtuIdorGrpId].Item2;
+            ////}
+            ////else
+            ////{
+            ////    RtuGrpId = rtuIdorGrpId;
+            ////}
+
             //采用新协议 细化到终端
-            int timetableid = RtuOrGprBandingTimeTableInfoService.GetBandingInfoNew(areaid, RtuGrpId, switchoutloopid);
+            int timetableid = RtuOrGprBandingTimeTableInfoService.GetBandingInfoNew(areaid, rtuIdorGrpId, switchoutloopid);
             //int timetableid = RtuOrGprBandingTimeTableInfoService.GetBandingInfo(areaid,RtuGrpId, switchoutloopid);
             if (timetableid == -1) return null;
 

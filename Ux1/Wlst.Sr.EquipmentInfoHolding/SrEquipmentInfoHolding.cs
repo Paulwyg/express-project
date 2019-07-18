@@ -15,9 +15,11 @@ namespace Wlst.Sr.EquipmentInfoHolding
             //new PPProtocol().RegistProtocol();
 
             //    InfoHold.EquipmentDataInfoHold.MySlef.InitStart();
-            Services.EquipmentDataInfoHold.MySlef.InitStart();
+            
             AreaInfoHold.MySlef.InitStartService();
             Services.ServicesGrpSingleInfoHold.InitLoad();
+Services.EquipmentDataInfoHold.MySlef.InitStart();
+
 
             //加载地区 lvf 2019年5月6日16:56:24
             Services.ServiceGrpRegionInfoHold.InitLoad();
@@ -50,6 +52,11 @@ namespace Wlst.Sr.EquipmentInfoHolding
             //    Wlst.Cr.Coreb.EventHelper.EventPublisher.RunInUi = false ;
             //}
         }
+
+        public static bool OnInitLoadAreaSucc = false;
+        public static bool OnInitLoadGrpSucc = false;
+        public static bool OnInitLoadRtuSucc = false;
+
 
         //View i36N id 11040000~11049999
 

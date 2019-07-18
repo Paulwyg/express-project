@@ -254,6 +254,24 @@ namespace Wlst.Ux.PrivilegesManage.UserInfoManageViewModel.ViewModels
             }
         }
 
+        /// <summary>
+        /// admin和root不能删除
+        /// </summary>
+        private bool _isDelete;
+
+        public bool IsDelete
+        {
+            get { return _isDelete; }
+            set
+            {
+                if (value != _isDelete)
+                {
+                    _isDelete = value;
+                    this.RaisePropertyChanged(() => this.IsDelete);
+                }
+            }
+        }
+
         #region UserMobileRight
 
         private int _userMobileRight;
@@ -332,7 +350,7 @@ namespace Wlst.Ux.PrivilegesManage.UserInfoManageViewModel.ViewModels
             AreaWLst = GetAreaWLst(userinfo);
             AreaXLst = GetAreaXLst(userinfo);
 
-
+            IsDelete = userinfo.UserName != "admin" && userinfo.UserName != "root";
         }
 
         public void UpdaetRwx(UserInfomation userinfo)

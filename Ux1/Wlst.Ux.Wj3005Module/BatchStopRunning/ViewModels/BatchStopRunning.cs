@@ -312,6 +312,35 @@ namespace Wlst.Ux.WJ3005Module.BatchStopRunning.ViewModels
         }
         private void ExStopRun()
         {
+            if (Wlst.Sr.EquipmentInfoHolding.Services.Others.OpenCloseLightSecondConfirm == 2)
+            {
+                var sss = UMessageBoxWantPassWord.Show("密码验证", "请输入您的用户密码", "");
+                if (sss == UMessageBoxWantPassWord.CancelReturn)
+                {
+                    return;
+                }
+                if (sss != UserInfo.UserLoginInfo.UserPassword)
+                {
+                    UMessageBox.Show("验证失败", "您输入的密码与本用户密码不匹配，请检查......",
+                                     UMessageBoxButton.Yes);
+                    return;
+                }
+            }
+            else
+            {
+                var sss = UMessageBoxWantSomefromUser.Show("上海五零盛同信息科技有限公司", "您将要进行停运操作，\r\n若确定请输入验证码:1234", "");
+                if (sss == UMessageBoxWantSomefromUser.CancelReturn)
+                {
+                    return;
+                }
+
+                if (sss != "1234")
+                {
+                    UMessageBox.Show("验证失败", "您输入的验证码与默认值不匹配，请检查......", UMessageBoxButton.Yes);
+                    return;
+                }
+            }
+
             var infoss = WlstMessageBox.Show("确认停运",
                                            "确认停运。", WlstMessageBoxType.YesNo);
             if (infoss == WlstMessageBoxResults.Yes)
@@ -349,6 +378,35 @@ namespace Wlst.Ux.WJ3005Module.BatchStopRunning.ViewModels
         }
         private void ExReRun()
         {
+            if (Wlst.Sr.EquipmentInfoHolding.Services.Others.OpenCloseLightSecondConfirm == 2)
+            {
+                var sss = UMessageBoxWantPassWord.Show("密码验证", "请输入您的用户密码", "");
+                if (sss == UMessageBoxWantPassWord.CancelReturn)
+                {
+                    return;
+                }
+                if (sss != UserInfo.UserLoginInfo.UserPassword)
+                {
+                    UMessageBox.Show("验证失败", "您输入的密码与本用户密码不匹配，请检查......",
+                                     UMessageBoxButton.Yes);
+                    return;
+                }
+            }
+            else
+            {
+                var sss = UMessageBoxWantSomefromUser.Show("上海五零盛同信息科技有限公司", "您将要进行解除停运操作，\r\n若确定请输入验证码:1234", "");
+                if (sss == UMessageBoxWantSomefromUser.CancelReturn)
+                {
+                    return;
+                }
+
+                if (sss != "1234")
+                {
+                    UMessageBox.Show("验证失败", "您输入的验证码与默认值不匹配，请检查......", UMessageBoxButton.Yes);
+                    return;
+                }
+            }
+
             var infoss = WlstMessageBox.Show("确认解除停运",
                                            "确认解除停运。", WlstMessageBoxType.YesNo);
             if (infoss == WlstMessageBoxResults.Yes)
