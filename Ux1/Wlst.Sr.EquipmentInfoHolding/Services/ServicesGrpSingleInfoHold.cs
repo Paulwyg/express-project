@@ -505,12 +505,12 @@ namespace Wlst.Sr.EquipmentInfoHolding.Services
             var dhx = Wlst.Cr.CoreMims.HttpGetPostforMsgWithMobile.OrderSndHttp(info);
             if (dhx != null )
             {
-                OnSvrGroupInfoArrive(dhx);
+                OnSvrGroupInfoArrivexxxx(dhx);
             }
            // SndOrderServer.OrderSnd(info, 10, 6);
         }
 
-        private void OnSvrGroupInfoArrive(  MsgWithMobile infos)
+        private void OnSvrGroupInfoArrivexxxx(  MsgWithMobile infos)
         {
             if (infos.WstAreagrpGroupInfo == null) return;
 
