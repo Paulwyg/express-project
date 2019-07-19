@@ -274,6 +274,18 @@ namespace Login.Login
             }
         }
 
+        public bool IsValidPort(int port) {
+            try
+            {
+                if (port >= 1024 && port <= 65535) return true;
+                else return false;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
         private int _ipPort;
 
 
@@ -283,6 +295,7 @@ namespace Login.Login
             set
             {
                 if (value == _ipPort) return;
+                if (!IsValidPort(value)) return;
                 _ipPort = value;
                 this.RaisePropertyChanged(() => this.IpPort);
             }
@@ -297,6 +310,7 @@ namespace Login.Login
             set
             {
                 if (value == _ipPortBak) return;
+                if (!IsValidPort(value)) return;
                 _ipPortBak = value;
                 this.RaisePropertyChanged(() => this.IpPortBak);
             }
