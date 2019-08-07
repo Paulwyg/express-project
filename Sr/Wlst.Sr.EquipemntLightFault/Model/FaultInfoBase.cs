@@ -204,7 +204,7 @@ namespace Wlst.Sr.EquipemntLightFault.Model
             if (nts == null) return;
             RtuName = nts.RtuName;
 
-            if (FaultId == 20 || FaultId == 21)
+            if (FaultId == 20 || FaultId == 21 ||(FaultId >=30 && FaultId <= 35))
             {
                 var t =
                     Sr.EquipmentInfoHolding.Services.EquipmentDataInfoHold.InfoItems[RtuId]

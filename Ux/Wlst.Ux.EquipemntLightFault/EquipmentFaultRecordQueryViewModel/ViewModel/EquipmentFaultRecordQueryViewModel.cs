@@ -3975,7 +3975,7 @@ namespace Wlst.Ux.EquipemntLightFault.EquipmentFaultRecordQueryViewModel.ViewMod
                 //if (item.FaultId == 21 || item.FaultId ==20) loopName = "开关量输出K" + item.LoopId;
                 string loopName = "";
 
-                if (item.FaultId == 20 || item.FaultId == 21)
+                if (item.FaultId == 20 || item.FaultId == 21 || (item.FaultId >= 30 && item.FaultId <= 35))
                 {
                     var t =
                         Sr.EquipmentInfoHolding.Services.EquipmentDataInfoHold.InfoItems[item.RtuId]
@@ -4494,7 +4494,7 @@ namespace Wlst.Ux.EquipemntLightFault.EquipmentFaultRecordQueryViewModel.ViewMod
                 //if (item.FaultId == 21 || item.FaultId == 20) loopName = "开关量输出K" + item.LoopId;
                 string loopName = "";
 
-                if (item.FaultId == 20 || item.FaultId == 21)
+                if (item.FaultId == 20 || item.FaultId == 21 || (item.FaultId >= 30 && item.FaultId <= 35))
                 {
                     var t =
                         Sr.EquipmentInfoHolding.Services.EquipmentDataInfoHold.InfoItems[item.RtuId]
@@ -4648,7 +4648,7 @@ namespace Wlst.Ux.EquipemntLightFault.EquipmentFaultRecordQueryViewModel.ViewMod
 
                 string loopName = "";
 
-                if (item.FaultId == 20 || item.FaultId == 21)
+                if (item.FaultId == 20 || item.FaultId == 21 || (item.FaultId >= 30 && item.FaultId <= 35))
                 {
                     var t =
                         Sr.EquipmentInfoHolding.Services.EquipmentDataInfoHold.InfoItems[item.RtuId]

@@ -51,12 +51,13 @@ namespace Wlst.Ux.WJ3005Module.ZOrders.OpenCloseLight.ForTmlRightMenu
             var ter = argu as Wlst.Sr.EquipmentInfoHolding.Model.WjParaBase;
             if (ter == null) return;
 
-            var rtuIdOrGrpId = ter.RtuId;var tmp=
-                     Wlst.Sr.EquipmentInfoHolding .Services.ServicesGrpSingleInfoHold.GetRtuBelongGrp(ter.RtuId);
-            // Wlst.Sr.EquipmentGroupInfoHolding.Services.ServicesGrpSingleInfoHold.GetRtuBelongGrp(ter.RtuId)
+            var rtuIdOrGrpId = ter.RtuId;
+            //var tmp=
+            //         Wlst.Sr.EquipmentInfoHolding .Services.ServicesGrpSingleInfoHold.GetRtuBelongGrp(ter.RtuId);
+            //// Wlst.Sr.EquipmentGroupInfoHolding.Services.ServicesGrpSingleInfoHold.GetRtuBelongGrp(ter.RtuId)
 
 
-            if (tmp  !=null ) rtuIdOrGrpId = tmp .Item2 ;
+            //if (tmp  !=null ) rtuIdOrGrpId = tmp .Item2 ;
             var areaId = Sr.EquipmentInfoHolding.Services.AreaInfoHold.MySlef.GetRtuBelongArea(ter.RtuId);
             //this.ExText = "-" +
             //    Wlst.Sr.TimeTableSystem.Services.WeekTimeTableInfoService.GetTmlLoopBandTimeTableNamex(areaId,rtuIdOrGrpId, LoopId);
