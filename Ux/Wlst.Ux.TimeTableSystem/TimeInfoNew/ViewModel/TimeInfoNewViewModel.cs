@@ -118,10 +118,20 @@ namespace Wlst.Ux.TimeTableSystem.TimeInfoNew
                 rrrtulst.AddRange(rtulst);
 
                 LoadTimeTableInfoFromSr();
-
+                var grpName = "";
                 var grpinfo = Wlst.Sr.EquipmentInfoHolding.Services.ServiceGrpRegionInfoHold.GetGrpRegionByRtuid(rtulst[0]);
-                var grpName = Wlst.Sr.EquipmentInfoHolding.Services.ServiceGrpRegionInfoHold.GetGrpName(1, grpinfo.Item1, grpinfo.Item3);
+                if (grpinfo != null)
+                {
+                    grpName = Wlst.Sr.EquipmentInfoHolding.Services.ServiceGrpRegionInfoHold.GetGrpName(1, grpinfo.Item1, grpinfo.Item3);
+                }
+                
                 //var tn = new TreeGrpNodes(grpName, rrrtulst);
+                var grpname2 = Wlst.Sr.EquipmentInfoHolding.Services.ServicesGrpSingleInfoHold.GetRtuBelongGrp(rtulst[0]) ;
+                if (grpname2 != null)
+                {
+                    var grpn = Wlst.Sr.EquipmentInfoHolding.Services.ServicesGrpSingleInfoHold.GetGroupInfomation(grpname2.Item1, grpname2.Item2);
+                    if (grpn != null) grpName = grpName+"-"+ grpn.GroupName;
+                }
 
                 var tn = new TreeGrpNodes(grpName, rtulst);
 

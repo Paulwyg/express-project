@@ -526,15 +526,15 @@ namespace Wlst.Sr.EquipmentInfoHolding.Services
 
 
             }
-            var arg = new PublishEventArgs()
+            var args = new PublishEventArgs()
             {
                 EventId = EventIdAssign.RtuRegionNeedUpdate,
                 EventType = PublishEventType.Core,
                 EventAttachInfo = opChangeImage ? "ChangeImage" : "ChangeStructure",
 
             };
-            arg.AddParams(rtulst);
-            EventPublish.PublishEvent(arg);
+            args.AddParams(rtulst);
+            EventPublish.PublishEvent(args);
 
 
 
@@ -806,7 +806,10 @@ namespace Wlst.Sr.EquipmentInfoHolding.Services
                 EventAttachInfo = "ChangeImage" ,
 
             };
-            arg.AddParams(rtulsttt);
+
+
+            var rt = (from t in rtulst orderby t.RtuId select t.RtuId).ToList();
+            arg.AddParams(rt);
             EventPublish.PublishEvent(arg);
 
         }

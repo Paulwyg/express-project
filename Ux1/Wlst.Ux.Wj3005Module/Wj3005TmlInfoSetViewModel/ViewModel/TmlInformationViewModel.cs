@@ -186,9 +186,7 @@ namespace Wlst.Ux.WJ3005Module.Wj3005TmlInfoSetViewModel.ViewModel
             DataCreateZcSjStart = DateTime.Now.AddHours(-6);
 
 
-
-
-
+         
             InitEvent();
             //Wlst.Cr.Core.ModuleServices.DelayEvent.RegisterDelayEvent(RequestHttpData,3);
             if (parsObjects.Length==1)
@@ -2367,6 +2365,7 @@ namespace Wlst.Ux.WJ3005Module.Wj3005TmlInfoSetViewModel.ViewModel
             this.Call = info.WjGprs .IsCall ;
             // this.CommType = info.CommType;
             this.Display = info.WjGprs .IsDisplay ;
+
             this.ErrorDelays = info.WjGprs .RtuAlarmDelay ;
             this.HeartBeatPeriod = info.WjGprs .RtuHeartbeatCycle ;
             if (info.WjVoltage.RtuUsedType < 1 || info.WjVoltage.RtuUsedType > 6) 
@@ -3261,10 +3260,67 @@ namespace Wlst.Ux.WJ3005Module.Wj3005TmlInfoSetViewModel.ViewModel
                 {
                     _value19 = value;
                     this.RaisePropertyChanged(() => this.Display);
+                
                 }
             }
         }
 
+
+ 
+
+        private int _value199;
+        public  int DisplayTest
+        {
+            get { return _value199; }
+            set
+            {
+                if (value != _value199)
+                {
+                    _value199 = value;
+                    this.RaisePropertyChanged(() => this.DisplayTest);
+                }
+            }
+        }
+
+
+        private ObservableCollection<NameIntBool> _displayArray=null ;
+        public ObservableCollection<NameIntBool> DisplayArray
+        {
+            get
+            {
+                if(_displayArray ==null)
+                {
+                    _displayArray = new ObservableCollection<NameIntBool>();
+                    _displayArray.Add(new NameIntBool() { IsSelected = true  });
+                    _displayArray.Add(new NameIntBool() { IsSelected = true });
+                    _displayArray.Add(new NameIntBool() { IsSelected = true });
+                    _displayArray.Add(new NameIntBool() { IsSelected = false });
+                    _displayArray.Add(new NameIntBool() { IsSelected = false });
+                    _displayArray.Add(new NameIntBool() { IsSelected = false });
+                    _displayArray.Add(new NameIntBool() { IsSelected = false });
+                    _displayArray.Add(new NameIntBool() { IsSelected = false });
+                    _displayArray.Add(new NameIntBool() { IsSelected = true  });
+                    _displayArray.Add(new NameIntBool() { IsSelected = false });
+                    _displayArray.Add(new NameIntBool() { IsSelected = false });
+                    _displayArray.Add(new NameIntBool() { IsSelected = false });
+                    _displayArray.Add(new NameIntBool() { IsSelected = true  });
+                    _displayArray.Add(new NameIntBool() { IsSelected = false });
+                    _displayArray.Add(new NameIntBool() { IsSelected = false });
+                    _displayArray.Add(new NameIntBool() { IsSelected = false });
+                    _displayArray.Add(new NameIntBool() { IsSelected = false });
+                    _displayArray.Add(new NameIntBool() { IsSelected = false });
+                }
+                return _displayArray;
+            }
+            set
+            {
+                if (_displayArray != value)
+                {
+                    _displayArray = value;
+                    this.RaisePropertyChanged(() => this.DisplayArray);
+                }
+            }
+        }
         /// <summary>
         /// 工作参数 开机申请
         /// </summary>
@@ -3277,6 +3333,19 @@ namespace Wlst.Ux.WJ3005Module.Wj3005TmlInfoSetViewModel.ViewModel
                 {
                     _value20 = value;
                     this.RaisePropertyChanged(() => this.Boot);
+                }
+            }
+        }
+        private int _value192;
+        public int BootTest
+        {
+            get { return _value192; }
+            set
+            {
+                if (value != _value192)
+                {
+                    _value192 = value;
+                    this.RaisePropertyChanged(() => this.BootTest);
                 }
             }
         }
@@ -3294,6 +3363,21 @@ namespace Wlst.Ux.WJ3005Module.Wj3005TmlInfoSetViewModel.ViewModel
                 {
                     _value21 = value;
                     this.RaisePropertyChanged(() => this.Sound);
+                    //SoundTest = _value21 ? 1 : 0;
+                }
+            }
+        }
+
+        private int _value198;
+        public int SoundTest
+        {
+            get { return _value198; }
+            set
+            {
+                if (value != _value198)
+                {
+                    _value198 = value;
+                    this.RaisePropertyChanged(() => this.SoundTest);
                 }
             }
         }
@@ -3310,6 +3394,22 @@ namespace Wlst.Ux.WJ3005Module.Wj3005TmlInfoSetViewModel.ViewModel
                 {
                     _value22 = value;
                     this.RaisePropertyChanged(() => this.Selfcheck);
+
+                    //SelfcheckTest = _value22 ? 1 : 0;
+                }
+            }
+        }
+
+        private int _value197;
+        public int SelfcheckTest
+        {
+            get { return _value197; }
+            set
+            {
+                if (value != _value197)
+                {
+                    _value197 = value;
+                    this.RaisePropertyChanged(() => this.SelfcheckTest);
                 }
             }
         }
@@ -3326,6 +3426,22 @@ namespace Wlst.Ux.WJ3005Module.Wj3005TmlInfoSetViewModel.ViewModel
                 {
                     _value23 = value;
                     this.RaisePropertyChanged(() => this.Alarm);
+
+                    //AlarmTest = _value23 ? 1 : 0;
+                }
+            }
+        }
+
+        private int _value196;
+        public int AlarmTest
+        {
+            get { return _value196; }
+            set
+            {
+                if (value != _value196)
+                {
+                    _value196 = value;
+                    this.RaisePropertyChanged(() => this.AlarmTest);
                 }
             }
         }
@@ -3342,9 +3458,27 @@ namespace Wlst.Ux.WJ3005Module.Wj3005TmlInfoSetViewModel.ViewModel
                 {
                     _value24 = value;
                     this.RaisePropertyChanged(() => this.Report);
+
+                    //ReportTest = _value24 ? 1 : 0;
                 }
             }
         }
+
+        private int _value195;
+        public int ReportTest
+        {
+            get { return _value195; }
+            set
+            {
+                if (value != _value195)
+                {
+                    _value195 = value;
+                    this.RaisePropertyChanged(() => this.ReportTest);
+                }
+            }
+        }
+
+
 
         /// <summary>
         /// 工作参数 允许呼叫
@@ -3358,9 +3492,26 @@ namespace Wlst.Ux.WJ3005Module.Wj3005TmlInfoSetViewModel.ViewModel
                 {
                     _value25 = value;
                     this.RaisePropertyChanged(() => this.Call);
+
+                    //CallTest = _value25 ? 1 : 0;
                 }
             }
         }
+
+        private int _value194;
+        public int CallTest
+        {
+            get { return _value194; }
+            set
+            {
+                if (value != _value194)
+                {
+                    _value194 = value;
+                    this.RaisePropertyChanged(() => this.CallTest);
+                }
+            }
+        }
+
 
         /// <summary>
         /// 工作参数 禁止路由
@@ -3374,9 +3525,26 @@ namespace Wlst.Ux.WJ3005Module.Wj3005TmlInfoSetViewModel.ViewModel
                 {
                     _value26 = value;
                     this.RaisePropertyChanged(() => this.Route);
+
+                    //RouteTest = _value26 ? 1 : 0;
                 }
             }
         }
+
+        private int _value193;
+        public int RouteTest
+        {
+            get { return _value193; }
+            set
+            {
+                if (value != _value193)
+                {
+                    _value193 = value;
+                    this.RaisePropertyChanged(() => this.RouteTest);
+                }
+            }
+        }
+
 
         /// <summary>
         /// 工作参数 报警延时（秒）

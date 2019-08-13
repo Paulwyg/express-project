@@ -65,7 +65,7 @@ namespace Wlst.Ux.CrissCrossEquipemntTree.GrpSingleTabShowViewModel.ViewModels
                  Assembly.GetExecutingAssembly().GetName().ToString(), FundEventHandlers, FundOrderFilters);
 
             LoadNode();
-            LoadNodeOther();
+            //LoadNodeOther();
             LoadXml();
             IsSearchTreeVisi = Visibility.Collapsed;
             Wlst.Cr.Core.ModuleServices.DelayEvent.RegisterDelayEvent(Update, 1, DelayEventHappen.EventOne);
@@ -3283,7 +3283,7 @@ namespace Wlst.Ux.CrissCrossEquipemntTree.GrpSingleTabShowViewModel.ViewModels
                 if (args.EventType == PublishEventType.SvAv)
                 {
                     Update();
-                    LoadNodeOther();
+                    //LoadNodeOther();
                     return;
                 }
 
@@ -3293,14 +3293,14 @@ namespace Wlst.Ux.CrissCrossEquipemntTree.GrpSingleTabShowViewModel.ViewModels
                     if (args.EventId == EventIdAssign.RegionNeedUpdate)
                     {
                         LoadNode();
-                        LoadNodeOther();
+                        //LoadNodeOther();
 
                         Update();
                     }
                     if (args.EventId == EventIdAssign.RtuRegionNeedUpdate)
                     {
 
-                        var lst = args.GetParams()[0] as IEnumerable<int>;
+                        var lst = args.GetParams()[0] as List<int>;
                         if (lst == null) return;
                         foreach (var g in lst)
                         {
