@@ -280,6 +280,7 @@
     <Compile Include="Wj3005TmlInfoSetViewModel\Services\BoolToComboBox.cs" />
     <Compile Include="Wj3005TmlInfoSetViewModel\Services\BoolToVisibleConverter.cs" />
     <Compile Include="Wj3005TmlInfoSetViewModel\Services\LittleAConverter.cs" />
+    <Compile Include="Wj3005TmlInfoSetViewModel\Services\OpposittBoolConverter.cs" />
     <Compile Include="Wj3005TmlInfoSetViewModel\ViewModel\RtuLoopInfoVm.cs" />
     <Compile Include="Wj3005TmlInfoSetViewModel\Views\LoopInfoManage.xaml.cs">
       <DependentUpon>LoopInfoManage.xaml</DependentUpon>

@@ -29,9 +29,9 @@
             <!--<Button Content="全选" Command="{Binding CmdCleanSelected}" Margin="10,5,20,5" Grid.Column="0" MinWidth="120" MinHeight="25" ></Button>-->
             <Button Content="清除选择" Command="{Binding CmdCleanSelected}"   Grid.Column="1" Width="120" Height="25" HorizontalAlignment="Right" ></Button>
             <Label  Margin="10,5,0,5" Width="200" Height="25" MouseDoubleClick="Label_MouseDoubleClick" VerticalAlignment="Center" HorizontalContentAlignment="Right" HorizontalAlignment="Right"></Label>
-            <Button Content="批量操作" Command="{Binding CmdSelectAll}"   Grid.Column="2" Width="120" Height="25" HorizontalAlignment="Right" ></Button>
+                <Button Content="批量操作" Command="{Binding CmdSelectAll}"   Grid.Column="2" Width="120" Height="25" HorizontalAlignment="Right" ></Button>
 
-            <Button Content="保存" Command="{Binding CmdSave}" Width="120" Height="25" HorizontalAlignment="Left" Margin="30,0,0,0" Grid.Column="3"></Button>
+                <Button Content="保存" Command="{Binding CmdSave}" Width="120" Height="25" HorizontalAlignment="Left" Margin="30,0,0,0" Grid.Column="3"></Button>
         </Grid>
 
         <Grid Grid.Row="1" Margin="10,0,10,0">

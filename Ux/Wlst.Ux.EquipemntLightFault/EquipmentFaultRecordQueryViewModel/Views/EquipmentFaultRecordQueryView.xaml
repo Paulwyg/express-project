@@ -390,7 +390,7 @@
             <Button Content="打印预览" Grid.Row="1" Grid.Column="4"   Margin="10,2,0,2" Width="120"  Height="25" Command="{Binding CmdPrintPriview}" />
 
 
-            <!--<Button Content="打印"  Visibility="{Binding ExportVisi}" Grid.Column="2"  Margin="20,2,20,2" MinWidth="120"  MinHeight="25" Click="Button_Click_1" />-->
+                <!--<Button Content="打印"  Visibility="{Binding ExportVisi}" Grid.Column="2"  Margin="20,2,20,2" MinWidth="120"  MinHeight="25" Click="Button_Click_1" />-->
         </Grid>
 
         <Grid Name="grid1" Visibility="Hidden" IsEnabled="{Binding CountPreErrs}"/>

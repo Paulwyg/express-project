@@ -640,7 +640,7 @@ namespace Wlst.Ux.CrissCrossEquipemntTree.GrpSingleTabShowViewModel.ViewModels
         {
             if (this.ChildTreeItems.Count == 0)
             {
-                this.LoadNode();
+                //this.LoadNode();
                 this.LoadNodeOther();
                 return;
             }
@@ -3300,15 +3300,14 @@ namespace Wlst.Ux.CrissCrossEquipemntTree.GrpSingleTabShowViewModel.ViewModels
 
                     if (args.EventId == EventIdAssign.RegionNeedUpdate)
                     {
-                        LoadNode();
+                        //LoadNode();
                         LoadNodeOther();
 
                         Update();
                     }
                     if (args.EventId == EventIdAssign.RtuRegionNeedUpdate)
                     {
-
-                        var lst = args.GetParams()[0] as IEnumerable<int>;
+                        var lst = args.GetParams()[0] as List<int>;
                         if (lst == null) return;
                         foreach (var g in lst)
                         {
@@ -3339,7 +3338,7 @@ namespace Wlst.Ux.CrissCrossEquipemntTree.GrpSingleTabShowViewModel.ViewModels
                             {
 
 
-                                LoadNode();
+                                //LoadNode();
                                 LoadNodeOther();
                                 return;
                                 if (TreeNodeItemTmlViewModel.RtuItems.ContainsKey(g))

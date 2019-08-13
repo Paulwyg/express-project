@@ -49,7 +49,7 @@
 
             <!--<Button Content="批量操作" Command="{Binding CmdSelectAll}" Margin="10,5,20,5" Grid.Column="2" MinWidth="120" MinHeight="25" ></Button>-->
 
-            <Button Content="保存" Command="{Binding CmdSave}" Width="120" Height="25" Margin="0,5,0,0" HorizontalAlignment="Right" Grid.Column="2"></Button>
+                <Button Content="保存" Command="{Binding CmdSave}" Width="120" Height="25" Margin="0,5,0,0" HorizontalAlignment="Right" Grid.Column="2"></Button>
         </Grid>
 
         <telerik:RadTreeView Grid.Row="0" ItemsSource="{Binding AreaTreeItem}" Width="Auto" Padding="0" Margin="0" SelectedItem="{Binding SelectedTreeItem}"
@@ -113,8 +113,8 @@
             <Label x:Name="fg" Grid.ColumnSpan="5" Grid.RowSpan="2" />
             <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" VerticalAlignment="Center" Text="为分组增加终端:在右侧终端列表中勾选终端并拖动到该分组组名上或该分组下。"  Margin="0,1,0,7" Grid.Row="1"></TextBlock>
             <StackPanel Orientation ="Horizontal"  Grid.Row="2" Width="580" HorizontalAlignment="Left">
-            <Label Width="320" Grid.Row="2"  HorizontalAlignment="Left" />
-            <TextBox Grid.Row="2"  Text="{Binding SearchText, Mode=TwoWay,  ValidatesOnExceptions=True, ValidatesOnDataErrors=True, NotifyOnValidationError=True}" HorizontalAlignment="Left"  
+                <Label Width="320" Grid.Row="2"  HorizontalAlignment="Left" />
+                <TextBox Grid.Row="2"  Text="{Binding SearchText, Mode=TwoWay,  ValidatesOnExceptions=True, ValidatesOnDataErrors=True, NotifyOnValidationError=True}" HorizontalAlignment="Left"  
                      Height="25" Width="120"></TextBox>
                 <Button Grid.Row="2"  Margin="20,3,0,3" Content="终端查询" Command="{Binding CmdFastSearch}" Height="25"  Width="120"></Button>
             </StackPanel>
