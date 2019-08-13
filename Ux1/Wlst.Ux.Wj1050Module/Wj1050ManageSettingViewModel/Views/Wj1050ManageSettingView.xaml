@@ -7,32 +7,31 @@
                   d:DesignHeight="300" d:DesignWidth="600">
 
     <Grid >
-        <Grid Margin="10">
+        <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="30"></RowDefinition>
-                <RowDefinition Height="30"></RowDefinition>
-                <RowDefinition Height="30"></RowDefinition>
-                <RowDefinition Height="30"></RowDefinition>
-                <RowDefinition Height="30"></RowDefinition>
-                <RowDefinition Height="30"></RowDefinition>
-                <RowDefinition Height="30"></RowDefinition>
-                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="25"></RowDefinition>
+                <RowDefinition Height="25"></RowDefinition>
+                <RowDefinition Height="25"></RowDefinition>
+                <RowDefinition Height="25"></RowDefinition>
+                <RowDefinition Height="25"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+ 
             </Grid.RowDefinitions>
 
-            <CheckBox Grid.Row="1" IsChecked="{Binding IsShowGrpInTreeModelShowId}" Content="分组显示组地址" VerticalAlignment="Center" ></CheckBox>
+            <!--<CheckBox Grid.Row="1" IsChecked="{Binding IsShowGrpInTreeModelShowId}" Content="分组显示组地址" VerticalAlignment="Center" ></CheckBox>-->
 
-            <CheckBox IsChecked="{Binding IsShowTreeOnTab}" Content="在主界面树区域显示电表设备面板" VerticalAlignment="Center" ></CheckBox>
+            <CheckBox IsChecked="{Binding IsShowTreeOnTab}" VerticalContentAlignment="Center" Content="显示电表设备树 [主界面树区域将显示电表设备树]" VerticalAlignment="Center" ></CheckBox>
 
-            <CheckBox Grid.Row="2" IsChecked="{Binding IsOnSelectNodeNavToParsSetView}" Content="在选中抄表设备时立即弹出该电表设备的设置界面" VerticalAlignment="Center" ></CheckBox>
+            <TextBlock Grid.Row="1" VerticalAlignment="Center" Text="电表设备树显示设置: [重启或刷新设备树有效]"></TextBlock>
 
-            <CheckBox Grid.Row="3" IsChecked="{Binding IsShowArea}" Content="是否显示区域" VerticalAlignment="Center" ></CheckBox>
+            <CheckBox Grid.Row="2" VerticalContentAlignment="Center" Margin="25,0,0,0" IsChecked="{Binding IsShowArea}" Content="显示区域节点" VerticalAlignment="Center" ></CheckBox>
 
-            <CheckBox Grid.Row="4" IsChecked="{Binding IsShowGrp}" Content="是否显示分组" VerticalAlignment="Center" ></CheckBox>
+            <CheckBox Grid.Row="3" VerticalContentAlignment="Center" Margin="25,0,0,0" IsChecked="{Binding IsShowGrp}" Content="显示分组节点" VerticalAlignment="Center" ></CheckBox>
 
-            <CheckBox Grid.Row="5" IsChecked="{Binding IsShowFid}" Content="是否显示主设备名称" VerticalAlignment="Center" ></CheckBox>
+            <CheckBox Grid.Row="4" VerticalContentAlignment="Center" Margin="25,0,0,0" IsChecked="{Binding IsShowFid}" Content="显示电表连接的终端信息 [终端地址-终端名称]" VerticalAlignment="Center" ></CheckBox>
             
-            <Button  Tag="11060007" Content="应用" Command="{Binding CmdApply}" 
-                     Width="120" Height="30" Grid.Row="6"></Button>
+            <Button  Tag="11060007" Content="应用" Command="{Binding CmdApply}"  Margin="250,10,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"
+                     Width="120" Height="25" Grid.Row="5"></Button>
         </Grid>
     </Grid>
 </UserControl>

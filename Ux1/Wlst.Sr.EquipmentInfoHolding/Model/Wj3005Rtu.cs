@@ -52,6 +52,7 @@ namespace Wlst.Sr.EquipmentInfoHolding.Model
             this.RtuRealState = basepara.RtuRealState;
             //添加地区 lvf 2019年5月6日09:20:23
             this.RtuRegion = basepara.RtuRegion;
+            this.Imei = basepara.Imei;
 
 
             EquipmentsThatAttachToThisRtu = new List<int>();

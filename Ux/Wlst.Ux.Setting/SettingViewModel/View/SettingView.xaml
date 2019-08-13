@@ -41,6 +41,9 @@
       </telerik:RadTreeView.ItemTemplate>
     </telerik:RadTreeView>
 
-    <UserControl Grid.Column="1" Margin="0" HorizontalAlignment="Left" Content="{Binding View}"></UserControl>
+        <ScrollViewer Grid.Column="1" Margin="0" HorizontalAlignment="Left" VerticalScrollBarVisibility="Hidden">
+            <UserControl Margin="10,10,0,10" Content="{Binding View}"></UserControl>  
+        </ScrollViewer>
+    
   </Grid>
 </UserControl>

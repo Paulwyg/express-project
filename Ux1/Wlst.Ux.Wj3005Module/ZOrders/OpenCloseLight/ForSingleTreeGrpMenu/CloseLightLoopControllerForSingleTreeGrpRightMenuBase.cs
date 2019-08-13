@@ -53,8 +53,8 @@ namespace Wlst.Ux.WJ3005Module.ZOrders.OpenCloseLight.ForSingleTreeGrpMenu
 
             if (ter == null) return;
 
-            this.ExText = "-" +
-                Wlst.Sr.TimeTableSystem.Services.WeekTimeTableInfoService.GetTmlLoopBandTimeTableNamex(ter.AreaId,ter.GroupId, LoopId);
+            //this.ExText = "-" +
+            //    Wlst.Sr.TimeTableSystem.Services.WeekTimeTableInfoService.GetTmlLoopBandTimeTableNamex(ter.AreaId,ter.GroupId, LoopId);
         }
 
         public int LoopId;

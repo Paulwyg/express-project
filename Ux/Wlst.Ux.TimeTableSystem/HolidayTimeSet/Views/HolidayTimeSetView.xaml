@@ -11,7 +11,7 @@
     <UserControl.Resources>
         <Services:TimeIs25 x:Key="TimeIs25"/>
     </UserControl.Resources>
-    <Grid>
+    <Grid Margin="5">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="530" ></ColumnDefinition>
             <ColumnDefinition  Width="Auto"></ColumnDefinition>
@@ -256,100 +256,100 @@
 
                     <TextBlock Text="K1" Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
                     <DockPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="1" Grid.Row="1">
-                        <TextBox IsEnabled="{Binding IsTextEnable}"  Width="35" Height="20" Text="{Binding K1HourStart}"></TextBox> <!--,Converter={StaticResource TimeIs25}-->
+                        <TextBox IsEnabled="{Binding IsTextEnable}"  Width="35" Height="20" Text="{Binding K1HourStart, StringFormat={}{0:D2}}"></TextBox> <!--,Converter={StaticResource TimeIs25}-->
                         <TextBlock Text=":"></TextBlock>
-                        <TextBox IsEnabled="{Binding IsTextEnable}"   Width="35" Height="20"  Text="{Binding K1MinutStart}"></TextBox>
+                        <TextBox IsEnabled="{Binding IsTextEnable}"   Width="35" Height="20"  Text="{Binding K1MinutStart, StringFormat={}{0:D2}}"></TextBox>
                     </DockPanel>
                     <DockPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="2" Grid.Row="1">
-                        <TextBox IsEnabled="{Binding IsTextEnable}"  Width="35" Height="20" Text="{Binding K1HourEnd}"></TextBox>
+                        <TextBox IsEnabled="{Binding IsTextEnable}"  Width="35" Height="20" Text="{Binding K1HourEnd, StringFormat={}{0:D2}}"></TextBox>
                         <!--,Converter={StaticResource TimeIs25}-->
                         <TextBlock Text=":"></TextBlock>
-                        <TextBox IsEnabled="{Binding IsTextEnable}"   Width="35" Height="20"  Text="{Binding K1MinutEnd}"></TextBox>
+                        <TextBox IsEnabled="{Binding IsTextEnable}"   Width="35" Height="20"  Text="{Binding K1MinutEnd, StringFormat={}{0:D2}}"></TextBox>
                     </DockPanel>
 
 
                     <TextBlock Text="K2" Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
                     <DockPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="1" Grid.Row="2">
-                        <TextBox IsEnabled="{Binding IsTextEnable}"  Width="35" Height="20" Text="{Binding K2HourStart}"></TextBox>
+                        <TextBox IsEnabled="{Binding IsTextEnable}"  Width="35" Height="20" Text="{Binding K2HourStart, StringFormat={}{0:D2}}"></TextBox>
                         <TextBlock Text=":"></TextBlock>
-                        <TextBox IsEnabled="{Binding IsTextEnable}"   Width="35" Height="20"  Text="{Binding K2MinutStart}"></TextBox>
+                        <TextBox IsEnabled="{Binding IsTextEnable}"   Width="35" Height="20"  Text="{Binding K2MinutStart, StringFormat={}{0:D2}}"></TextBox>
                     </DockPanel>
                     <DockPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="2" Grid.Row="2">
-                        <TextBox IsEnabled="{Binding IsTextEnable}"  Width="35" Height="20" Text="{Binding K2HourEnd}"></TextBox>
+                        <TextBox IsEnabled="{Binding IsTextEnable}"  Width="35" Height="20" Text="{Binding K2HourEnd, StringFormat={}{0:D2}}"></TextBox>
                         <TextBlock Text=":"></TextBlock>
-                        <TextBox IsEnabled="{Binding IsTextEnable}"   Width="35" Height="20"  Text="{Binding K2MinutEnd}"></TextBox>
+                        <TextBox IsEnabled="{Binding IsTextEnable}"   Width="35" Height="20"  Text="{Binding K2MinutEnd, StringFormat={}{0:D2}}"></TextBox>
                     </DockPanel>
 
                     <TextBlock Text="K3" Grid.Column="0" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
                     <DockPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="1" Grid.Row="3">
-                        <TextBox IsEnabled="{Binding IsTextEnable}"  Width="35" Height="20" Text="{Binding K3HourStart}"></TextBox>
+                        <TextBox IsEnabled="{Binding IsTextEnable}"  Width="35" Height="20" Text="{Binding K3HourStart, StringFormat={}{0:D2}}"></TextBox>
                         <TextBlock Text=":"></TextBlock>
-                        <TextBox  IsEnabled="{Binding IsTextEnable}"  Width="35" Height="20"  Text="{Binding K3MinutStart}"></TextBox>
+                        <TextBox  IsEnabled="{Binding IsTextEnable}"  Width="35" Height="20"  Text="{Binding K3MinutStart, StringFormat={}{0:D2}}"></TextBox>
                     </DockPanel>
                     <DockPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="2" Grid.Row="3">
-                        <TextBox IsEnabled="{Binding IsTextEnable}"  Width="35" Height="20" Text="{Binding K3HourEnd}"></TextBox>
+                        <TextBox IsEnabled="{Binding IsTextEnable}"  Width="35" Height="20" Text="{Binding K3HourEnd, StringFormat={}{0:D2}}"></TextBox>
                         <TextBlock Text=":"></TextBlock>
-                        <TextBox  IsEnabled="{Binding IsTextEnable}"  Width="35" Height="20"  Text="{Binding K3MinutEnd}"></TextBox>
+                        <TextBox  IsEnabled="{Binding IsTextEnable}"  Width="35" Height="20"  Text="{Binding K3MinutEnd, StringFormat={}{0:D2}}"></TextBox>
                     </DockPanel>
 
                     <TextBlock Text="K5" Grid.Column="3" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
                     <DockPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="4" Grid.Row="1">
-                        <TextBox Width="35" Height="20" Text="{Binding K5HourStart}"></TextBox>
+                        <TextBox Width="35" Height="20" Text="{Binding K5HourStart, StringFormat={}{0:D2}}"></TextBox>
                         <TextBlock Text=":"></TextBlock>
-                        <TextBox  Width="35" Height="20"  Text="{Binding K5MinutStart}"></TextBox>
+                        <TextBox  Width="35" Height="20"  Text="{Binding K5MinutStart, StringFormat={}{0:D2}}"></TextBox>
                     </DockPanel>
                     <DockPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="5" Grid.Row="1">
-                        <TextBox IsEnabled="{Binding IsTextEnable}"  Width="35" Height="20" Text="{Binding K5HourEnd}"></TextBox>
+                        <TextBox IsEnabled="{Binding IsTextEnable}"  Width="35" Height="20" Text="{Binding K5HourEnd, StringFormat={}{0:D2}}"></TextBox>
                         <TextBlock Text=":"></TextBlock>
-                        <TextBox  IsEnabled="{Binding IsTextEnable}"  Width="35" Height="20"  Text="{Binding K5MinutEnd}"></TextBox>
+                        <TextBox  IsEnabled="{Binding IsTextEnable}"  Width="35" Height="20"  Text="{Binding K5MinutEnd, StringFormat={}{0:D2}}"></TextBox>
                     </DockPanel>
 
                     <TextBlock Text="K6" Grid.Column="3" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
                     <DockPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="4" Grid.Row="2">
-                        <TextBox IsEnabled="{Binding IsTextEnable}"  Width="35" Height="20" Text="{Binding K6HourStart}"></TextBox>
+                        <TextBox IsEnabled="{Binding IsTextEnable}"  Width="35" Height="20" Text="{Binding K6HourStart, StringFormat={}{0:D2}}"></TextBox>
                         <TextBlock Text=":"></TextBlock>
-                        <TextBox IsEnabled="{Binding IsTextEnable}"   Width="35" Height="20"  Text="{Binding K6MinutStart}"></TextBox>
+                        <TextBox IsEnabled="{Binding IsTextEnable}"   Width="35" Height="20"  Text="{Binding K6MinutStart, StringFormat={}{0:D2}}"></TextBox>
                     </DockPanel>
                     <DockPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="5" Grid.Row="2">
-                        <TextBox Width="35" Height="20" Text="{Binding K6HourEnd}"></TextBox>
+                        <TextBox Width="35" Height="20" Text="{Binding K6HourEnd, StringFormat={}{0:D2}}"></TextBox>
                         <TextBlock Text=":"></TextBlock>
-                        <TextBox  Width="35" Height="20"  Text="{Binding K6MinutEnd}"></TextBox>
+                        <TextBox  Width="35" Height="20"  Text="{Binding K6MinutEnd, StringFormat={}{0:D2}}"></TextBox>
                     </DockPanel>
 
                     <TextBlock Text="K7" Grid.Column="3" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
                     <DockPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="4" Grid.Row="3">
-                        <TextBox IsEnabled="{Binding IsTextEnable}"  Width="35" Height="20" Text="{Binding K7HourStart}"></TextBox>
+                        <TextBox IsEnabled="{Binding IsTextEnable}"  Width="35" Height="20" Text="{Binding K7HourStart, StringFormat={}{0:D2}}"></TextBox>
                         <TextBlock Text=":"></TextBlock>
-                        <TextBox  IsEnabled="{Binding IsTextEnable}"  Width="35" Height="20"  Text="{Binding K7MinutStart}"></TextBox>
+                        <TextBox  IsEnabled="{Binding IsTextEnable}"  Width="35" Height="20"  Text="{Binding K7MinutStart, StringFormat={}{0:D2}}"></TextBox>
                     </DockPanel>
                     <DockPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="5" Grid.Row="3">
-                        <TextBox IsEnabled="{Binding IsTextEnable}"  Width="35" Height="20" Text="{Binding K7HourEnd}"></TextBox>
+                        <TextBox IsEnabled="{Binding IsTextEnable}"  Width="35" Height="20" Text="{Binding K7HourEnd, StringFormat={}{0:D2}}"></TextBox>
                         <TextBlock Text=":"></TextBlock>
-                        <TextBox  IsEnabled="{Binding IsTextEnable}"  Width="35" Height="20"  Text="{Binding K7MinutEnd}"></TextBox>
+                        <TextBox  IsEnabled="{Binding IsTextEnable}"  Width="35" Height="20"  Text="{Binding K7MinutEnd, StringFormat={}{0:D2}}"></TextBox>
                     </DockPanel>
 
                     <TextBlock Text="K4" Grid.Column="0" Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
                     <DockPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="1" Grid.Row="4">
-                        <TextBox IsEnabled="{Binding IsTextEnable}"  Width="35" Height="20" Text="{Binding K4HourStart}"></TextBox>
+                        <TextBox IsEnabled="{Binding IsTextEnable}"  Width="35" Height="20" Text="{Binding K4HourStart, StringFormat={}{0:D2}}"></TextBox>
                         <TextBlock Text=":"></TextBlock>
-                        <TextBox  IsEnabled="{Binding IsTextEnable}"  Width="35" Height="20"  Text="{Binding K4MinutStart}"></TextBox>
+                        <TextBox  IsEnabled="{Binding IsTextEnable}"  Width="35" Height="20"  Text="{Binding K4MinutStart, StringFormat={}{0:D2}}"></TextBox>
                     </DockPanel>
                     <DockPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="2" Grid.Row="4">
-                        <TextBox IsEnabled="{Binding IsTextEnable}"  Width="35" Height="20" Text="{Binding K4HourEnd}"></TextBox>
+                        <TextBox IsEnabled="{Binding IsTextEnable}"  Width="35" Height="20" Text="{Binding K4HourEnd, StringFormat={}{0:D2}}"></TextBox>
                         <TextBlock Text=":"></TextBlock>
-                        <TextBox  IsEnabled="{Binding IsTextEnable}"  Width="35" Height="20"  Text="{Binding K4MinutEnd}"></TextBox>
+                        <TextBox  IsEnabled="{Binding IsTextEnable}"  Width="35" Height="20"  Text="{Binding K4MinutEnd, StringFormat={}{0:D2}}"></TextBox>
                     </DockPanel>
 
                     <TextBlock Text="K8" Grid.Column="3" Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
                     <DockPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="4" Grid.Row="4">
-                        <TextBox IsEnabled="{Binding IsTextEnable}"  Width="35" Height="20" Text="{Binding K8HourStart}"></TextBox>
+                        <TextBox IsEnabled="{Binding IsTextEnable}"  Width="35" Height="20" Text="{Binding K8HourStart, StringFormat={}{0:D2}}"></TextBox>
                         <TextBlock Text=":"></TextBlock>
-                        <TextBox  IsEnabled="{Binding IsTextEnable}"  Width="35" Height="20"  Text="{Binding K8MinutStart}"></TextBox>
+                        <TextBox  IsEnabled="{Binding IsTextEnable}"  Width="35" Height="20"  Text="{Binding K8MinutStart, StringFormat={}{0:D2}}"></TextBox>
                     </DockPanel>
                     <DockPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="5" Grid.Row="4">
-                        <TextBox IsEnabled="{Binding IsTextEnable}"  Width="35" Height="20" Text="{Binding K8HourEnd}"></TextBox>
+                        <TextBox IsEnabled="{Binding IsTextEnable}"  Width="35" Height="20" Text="{Binding K8HourEnd, StringFormat={}{0:D2}}"></TextBox>
                         <TextBlock Text=":"></TextBlock>
-                        <TextBox  IsEnabled="{Binding IsTextEnable}"  Width="35" Height="20"  Text="{Binding K8MinutEnd}"></TextBox>
+                        <TextBox  IsEnabled="{Binding IsTextEnable}"  Width="35" Height="20"  Text="{Binding K8MinutEnd, StringFormat={}{0:D2}}"></TextBox>
                     </DockPanel>
                 </Grid>
 
@@ -367,7 +367,7 @@
                     </Grid.RowDefinitions>
 
                     <Button Grid.Column="2" HorizontalAlignment="Center" Grid.ColumnSpan="2"  Height="25" Width="120" Content="保 存" Command="{Binding CmdSave}"></Button>
-                    <TextBlock  HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="1" Text="{Binding Remind}" Grid.ColumnSpan="4"></TextBlock>
+                    <TextBlock  HorizontalAlignment="Left" Margin="5,0,0,0" Grid.Row="1" Text="{Binding Remind}" Grid.ColumnSpan="4"></TextBlock>
                 </Grid>
             </Grid>
         </ScrollViewer>

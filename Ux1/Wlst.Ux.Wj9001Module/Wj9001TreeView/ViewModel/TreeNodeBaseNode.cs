@@ -157,7 +157,7 @@ namespace Wlst.Ux.Wj9001Module.Wj9001TreeView.ViewModel
                 //}
                 //if (Wlst.Sr.EquipmentInfoHolding.Services.EquipmentIdAssignRang.IsRtuIsRtuLight(t.NodeId)) count += 1;
                 if (t.NodeType == TypeOfTabTreeNode.IsTml) count += 1;
-                else
+                else if (t.NodeType == TypeOfTabTreeNode.IsAll)
                 {
                     t.GetChildRtuCount();
                     count += t.RtuCount;

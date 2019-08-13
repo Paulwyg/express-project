@@ -96,7 +96,11 @@ namespace Wlst.Ux.WJ3005Module.ZZhaoCe.ZhaoCeRtuWeekSetViewModel.ViewModel
             {   
                 grporrtuid = IsGrp(rtuId).Item1;
                 areaid = IsGrp(rtuId).Item2;
-                var dic = Wlst.Sr.TimeTableSystem.Services.RtuOrGprBandingTimeTableInfoService.GetBandingInfo(areaid,grporrtuid);
+
+
+                //采用新协议  不需要走分组id 直接传入rtuid  lvf 2019年7月11日09:37:03
+                var dic = Wlst.Sr.TimeTableSystem.Services.RtuOrGprBandingTimeTableInfoService.GetBandingInfo(areaid, rtuId); //grporrtuid
+
                 if (dic == null)
                 {
                     dic=new Dictionary<int, int>();

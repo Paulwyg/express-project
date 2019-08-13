@@ -72,7 +72,8 @@
       <HintPath>..\..\Rr\Binaries\WPF\Telerik.Windows.Data.dll</HintPath>
     </Reference>
     <Reference Include="WindowsBase" />
-    <Reference Include="Wlst.Cr.Core">
+    <Reference Include="Wlst.Cr.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Rr\Binaries\WPF\Wlst.Cr.Core.dll</HintPath>
     </Reference>
     <Reference Include="Wlst.Cr.Coreb, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">

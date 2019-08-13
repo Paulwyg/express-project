@@ -15,7 +15,7 @@
         </RadioButtonConverter:RadioButtonIntConverter>
         <Converters1:GridEnumVisibleConverter x:Key="GridEnumVisibleConvert"></Converters1:GridEnumVisibleConverter>
     </UserControl.Resources>
-    <Grid Margin="5" HorizontalAlignment="Left">
+    <Grid Margin="1" HorizontalAlignment="Left">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" MinHeight="100"/>
             <RowDefinition Height="*"/>
@@ -37,12 +37,12 @@
                 <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
             <DockPanel>
-                  <TextBlock Text="起始时间：" VerticalAlignment="Center" Margin="15,0,0,0"/>
-                <DatePicker SelectedDateFormat="Short" SelectedDate="{Binding BeginTime}"  VerticalAlignment="Center" Margin="10,0,0,0" MinWidth="120"/>
+                  <TextBlock Text="起始时间：" VerticalAlignment="Center" Margin="5,0,0,0"/>
+                <DatePicker SelectedDateFormat="Short" SelectedDate="{Binding BeginTime}"  VerticalAlignment="Center" Margin="5,0,0,0" MinWidth="120"/>
             </DockPanel>
             <DockPanel Grid.Column="1"  Margin="25,0,0,0">
                              <TextBlock Text="结束时间：" Grid.Column="2" VerticalAlignment="Center" Margin="10,0,0,0"/>
-                <DatePicker SelectedDateFormat="Short"  SelectedDate="{Binding EndTime}" Grid.Column="3" VerticalAlignment="Center" Margin="10,0,0,0" MinWidth="120"/>
+                <DatePicker SelectedDateFormat="Short"  SelectedDate="{Binding EndTime}" Grid.Column="3" VerticalAlignment="Center" Margin="5,0,0,0" MinWidth="120"/>
             </DockPanel>
 
             <CheckBox IsChecked="{Binding IsPhy}" Content="物理信息"  Margin="0,0,15,0"  Grid.Column="2" HorizontalAlignment="Right"  VerticalAlignment="Center"/>
@@ -54,7 +54,7 @@
                 <RadioButton Margin="10,0,0,0" IsChecked="{Binding Path=FlagDataType, Converter={StaticResource RadioMultiIntConverter}, ConverterParameter=3}"   Content="查询灯具数据" VerticalAlignment="Center"></RadioButton>
             </DockPanel>-->
 
-            <DockPanel  HorizontalAlignment="Left"  Grid.Row="1" Margin="15,5,0,0" Grid.ColumnSpan="3" VerticalAlignment="Center">
+            <DockPanel  HorizontalAlignment="Left"  Grid.Row="1" Margin="5,5,0,0" Grid.ColumnSpan="3" VerticalAlignment="Center">
                 <CheckBox x:Name="sdfsdfs" IsChecked="{Binding FlagIsRtuUseed}" VerticalAlignment="Center" Content="集中器查询"></CheckBox>
                 <TextBlock  Margin="25,0,0,0" Text="集中器地址:"></TextBlock>
                 <TextBlock  Margin="10,0,0,0" Width="70" Text="{Binding SluPhyId}"></TextBlock>
@@ -68,7 +68,7 @@
 
 
 
-            <DockPanel HorizontalAlignment="Left" Grid.Row="2" Margin="15,5,0,0" Grid.ColumnSpan="3" VerticalAlignment="Center">
+            <DockPanel HorizontalAlignment="Left" Grid.Row="2" Margin="5,5,0,0" Grid.ColumnSpan="3" VerticalAlignment="Center">
                 <CheckBox IsChecked="{Binding FlagIsCtrlUseed}" IsEnabled="{Binding IsChecked,ElementName=sdfsdfs}" MouseDoubleClick="CheckBox_MouseDoubleClick" VerticalAlignment="Center" Content="控制器查询"></CheckBox>
                 
                 <TextBlock  Margin="25,0,0,0" Text="控制器地址:"></TextBlock>
@@ -97,7 +97,7 @@
         </Grid>
 
         <Grid x:Name="xg1" Grid.Row="1" Visibility="{Binding FlagVisiIndex,Converter={StaticResource GridEnumVisibleConvert},ConverterParameter=1}">
-            <telerik:RadGridView x:Name="gridview1"  VirtualizingStackPanel.IsVirtualizing="True" AutoGenerateColumns="False" ItemsSource="{Binding ItemsSlu}"   Margin="15,0,0,0" 
+            <telerik:RadGridView x:Name="gridview1"  VirtualizingStackPanel.IsVirtualizing="True" AutoGenerateColumns="False" ItemsSource="{Binding ItemsSlu}"   Margin="5,0,0,0" 
 								 ScrollMode="Deferred" IsReadOnly="True"  ShowGroupPanel="False"  FrozenColumnCount="2"
                                   SnapsToDevicePixels="False" ShowColumnFooters="False" UseLayoutRounding="False" RowIndicatorVisibility="Collapsed">
 
@@ -118,7 +118,7 @@
         </telerik:RadGridView>
  </Grid>
         <Grid x:Name="xg2"  Grid.Row="1" Visibility="{Binding FlagVisiIndex,Converter={StaticResource GridEnumVisibleConvert},ConverterParameter=2}">
-            <telerik:RadGridView x:Name="gridview2"  VirtualizingStackPanel.IsVirtualizing="True" AutoGenerateColumns="False" ItemsSource="{Binding ItemsCtrl}"   Margin="15,0,0,0" 
+            <telerik:RadGridView x:Name="gridview2"  VirtualizingStackPanel.IsVirtualizing="True" AutoGenerateColumns="False" ItemsSource="{Binding ItemsCtrl}"   Margin="5,0,0,0" 
 								 ScrollMode="Deferred" IsReadOnly="True"  ShowGroupPanel="False"  FrozenColumnCount="3"
                              
                                   SnapsToDevicePixels="False" ShowColumnFooters="False" UseLayoutRounding="False" RowIndicatorVisibility="Collapsed">
@@ -145,7 +145,7 @@
         
       
         <Grid  x:Name="xg3"  Grid.Row="1" Visibility="{Binding FlagVisiIndex,Converter={StaticResource GridEnumVisibleConvert},ConverterParameter=3}">
-            <telerik:RadGridView x:Name="gridview3"  VirtualizingStackPanel.IsVirtualizing="True" AutoGenerateColumns="False" ItemsSource="{Binding ItemsLamp}"   Margin="15,0,0,0" 
+            <telerik:RadGridView x:Name="gridview3"  VirtualizingStackPanel.IsVirtualizing="True" AutoGenerateColumns="False" ItemsSource="{Binding ItemsLamp}"   Margin="5,0,0,0" 
 								             ScrollMode="Deferred" IsReadOnly="True" ShowGroupPanel="False" FrozenColumnCount="4"
                      
                                               SnapsToDevicePixels="False" ShowColumnFooters="False" UseLayoutRounding="False" RowIndicatorVisibility="Collapsed">
@@ -188,7 +188,7 @@
         </Grid>
 
         <Grid  x:Name="xg4"  Grid.Row="1" Visibility="{Binding FlagVisiIndex,Converter={StaticResource GridEnumVisibleConvert},ConverterParameter=4}">
-            <telerik:RadGridView x:Name="gridview4"  VirtualizingStackPanel.IsVirtualizing="True" AutoGenerateColumns="False" ItemsSource="{Binding ItemsPhyInfo}"   Margin="15,0,0,0" 
+            <telerik:RadGridView x:Name="gridview4"  VirtualizingStackPanel.IsVirtualizing="True" AutoGenerateColumns="False" ItemsSource="{Binding ItemsPhyInfo}"   Margin="5,0,0,0" 
 								             ScrollMode="Deferred" IsReadOnly="True" ShowGroupPanel="False" FrozenColumnCount="4"
                      
                                               SnapsToDevicePixels="False" ShowColumnFooters="False" UseLayoutRounding="False" RowIndicatorVisibility="Collapsed">
@@ -234,7 +234,7 @@
                 <ColumnDefinition Width="Auto" MinWidth="120"/>
             </Grid.ColumnDefinitions>
             <TextBlock Text="{Binding Remind}" VerticalAlignment="Center" Margin="20,3,3,3"/>
-            <Button Content="数据导出" IsEnabled="{Binding IsHasData}" Click="BtnExport" Grid.Column="1" Margin="20,3,50,3" MinWidth="120" HorizontalAlignment="Right"/>
+            <Button Content="数据导出" IsEnabled="{Binding IsHasData}" Click="BtnExport" Grid.Column="1" Margin="20,3,50,3" Width="120" HorizontalAlignment="Right"/>
         </Grid>
     </Grid>
 </UserControl>

@@ -386,7 +386,7 @@ namespace Wlst.Ux.TimeTableSystem.HolidayTimeSet.ViewModel
         private int dayStart;
 
         /// <summary>
-        /// 调度其实日期
+        /// 调度起始日期
         /// </summary>
         public int DayStart
         {
@@ -394,7 +394,21 @@ namespace Wlst.Ux.TimeTableSystem.HolidayTimeSet.ViewModel
             set
             {
                 if (value < 1) value = 1;
-                if (value > 31) value = 31;
+                if (MonthStart == 1 || MonthStart == 3 || MonthStart == 5 || MonthStart == 7 || MonthStart == 8 || MonthStart == 10 || MonthStart == 12)
+                {
+                    if (value > 31)
+                        value = 31;
+                }
+                else if (MonthStart == 2)
+                {
+                    if (value > 29)
+                        value = 29;
+                }
+                else
+                {
+                    if (value > 30)
+                        value = 30;
+                }
                 if (value == dayStart) return;
                 dayStart = value;
                 this.RaisePropertyChanged(() => this.DayStart);
@@ -412,7 +426,22 @@ namespace Wlst.Ux.TimeTableSystem.HolidayTimeSet.ViewModel
             set
             {
                 if (value < 1) value = 1;
-                if (value > 31) value = 31;
+                if (MonthEnd == 1 || MonthEnd == 3 || MonthEnd == 5 || MonthEnd == 7 || MonthEnd == 8 || MonthEnd == 10 || MonthEnd == 12)
+                {
+                    if (value > 31)
+                        value = 31;
+                }
+                else if (MonthEnd == 2)
+                {
+                    if (value > 29)
+                        value = 29;
+                }
+                else
+                {
+                    if (value > 30)
+                        value = 30;
+                }
+
                 if (value == dayEnd) return;
                 dayEnd = value;
                 this.RaisePropertyChanged(() => this.DayEnd);
@@ -483,8 +512,9 @@ namespace Wlst.Ux.TimeTableSystem.HolidayTimeSet.ViewModel
             get { return k1MinutStart; }
             set
             {
-                if (value < 1) value = 1;
+                if (value < 0) value = 0;
                 if (value > 59) value = 59;
+                if (K1HourStart == 24 || K1HourStart == 25) value = 0;
                 if (value == k1MinutStart) return;
                 k1MinutStart = value;
                 this.RaisePropertyChanged(() => this.K1MinutStart);
@@ -501,8 +531,9 @@ namespace Wlst.Ux.TimeTableSystem.HolidayTimeSet.ViewModel
             get { return k1MinutEnd; }
             set
             {
-                if (value < 1) value = 1;
+                if (value < 0) value = 0;
                 if (value > 59) value = 59;
+                if (K1HourEnd == 24 || K1HourEnd == 25) value = 0;
                 if (value == k1MinutEnd) return;
 
                 k1MinutEnd = value;
@@ -559,9 +590,11 @@ namespace Wlst.Ux.TimeTableSystem.HolidayTimeSet.ViewModel
             get { return k2MinutStart; }
             set
             {
-                if (value < 1) value = 1;
+                if (value < 0) value = 0;
                 if (value > 59) value = 59;
+                if (K2HourStart == 24 || K2HourStart == 25) value = 0;
                 if (value == k2MinutStart) return;
+                
                 k2MinutStart = value;
                 this.RaisePropertyChanged(() => this.K2MinutStart);
             }
@@ -577,8 +610,9 @@ namespace Wlst.Ux.TimeTableSystem.HolidayTimeSet.ViewModel
             get { return k2MinutEnd; }
             set
             {
-                if (value < 1) value =1;
+                if (value < 0) value =0;
                 if (value > 59) value = 59;
+                if (K2HourEnd == 24 || K2HourEnd == 25) value = 0;
                 if (value == k2MinutEnd) return;
 
                 k2MinutEnd = value;
@@ -634,8 +668,9 @@ namespace Wlst.Ux.TimeTableSystem.HolidayTimeSet.ViewModel
             get { return k3MinutStart; }
             set
             {
-                if (value < 1) value = 1;
+                if (value < 0) value = 0;
                 if (value > 59) value = 59;
+                if (K3HourStart == 24 || K3HourStart == 25) value = 0;
                 if (value == k3MinutStart) return;
                 k3MinutStart = value;
                 this.RaisePropertyChanged(() => this.K3MinutStart);
@@ -652,8 +687,9 @@ namespace Wlst.Ux.TimeTableSystem.HolidayTimeSet.ViewModel
             get { return k3MinutEnd; }
             set
             {
-                if (value < 1) value = 1;
+                if (value < 0) value = 0;
                 if (value > 59) value = 59;
+                if (K3HourEnd == 24 || K3HourEnd == 25) value = 0;
                 if (value == k3MinutEnd) return;
 
                 k3MinutEnd = value;
@@ -710,8 +746,9 @@ namespace Wlst.Ux.TimeTableSystem.HolidayTimeSet.ViewModel
             get { return k4MinutStart; }
             set
             {
-                if (value < 1) value = 1;
+                if (value < 0) value = 0;
                 if (value > 59) value = 59;
+                if (K4HourStart == 24 || K4HourStart == 25) value = 0;
                 if (value == k4MinutStart) return;
                 k4MinutStart = value;
                 this.RaisePropertyChanged(() => this.K4MinutStart);
@@ -728,8 +765,9 @@ namespace Wlst.Ux.TimeTableSystem.HolidayTimeSet.ViewModel
             get { return k4MinutEnd; }
             set
             {
-                if (value < 1) value = 1;
+                if (value < 0) value = 0;
                 if (value > 59) value = 59;
+                if (K4HourEnd == 24 || K4HourEnd == 25) value = 0;
                 if (value == k4MinutEnd) return;
 
                 k4MinutEnd = value;
@@ -785,8 +823,9 @@ namespace Wlst.Ux.TimeTableSystem.HolidayTimeSet.ViewModel
             get { return k5MinutStart; }
             set
             {
-                if (value < 1) value =1;
+                if (value < 0) value =0;
                 if (value > 59) value = 59;
+                if (K5HourStart == 24 || K5HourStart == 25) value = 0;
                 if (value == k5MinutStart) return;
                 k5MinutStart = value;
                 this.RaisePropertyChanged(() => this.K5MinutStart);
@@ -803,8 +842,9 @@ namespace Wlst.Ux.TimeTableSystem.HolidayTimeSet.ViewModel
             get { return k5MinutEnd; }
             set
             {
-                if (value < 1) value = 1;
+                if (value < 0) value = 0;
                 if (value > 59) value = 59;
+                if (K5HourEnd == 24 || K5HourEnd == 25) value = 0;
                 if (value == k5MinutEnd) return;
 
                 k5MinutEnd = value;
@@ -860,8 +900,9 @@ namespace Wlst.Ux.TimeTableSystem.HolidayTimeSet.ViewModel
             get { return k6MinutStart; }
             set
             {
-                if (value < 1) value = 1;
+                if (value < 0) value = 0;
                 if (value > 59) value = 59;
+                if (K6HourStart == 24 || K6HourStart == 25) value = 0;
                 if (value == k6MinutStart) return;
                 k6MinutStart = value;
                 this.RaisePropertyChanged(() => this.K6MinutStart);
@@ -878,8 +919,9 @@ namespace Wlst.Ux.TimeTableSystem.HolidayTimeSet.ViewModel
             get { return k6MinutEnd; }
             set
             {
-                if (value < 1) value = 1;
+                if (value < 0) value = 0;
                 if (value > 59) value = 59;
+                if (K6HourEnd == 24 || K6HourEnd == 25) value = 0;
                 if (value == k6MinutEnd) return;
 
                 k6MinutEnd = value;
@@ -934,8 +976,9 @@ namespace Wlst.Ux.TimeTableSystem.HolidayTimeSet.ViewModel
             get { return k7MinutStart; }
             set
             {
-                if (value < 1) value = 1;
+                if (value < 0) value = 0;
                 if (value > 59) value = 59;
+                if (K7HourStart == 24 || K7HourStart == 25) value = 0;
                 if (value == k7MinutStart) return;
                 k7MinutStart = value;
                 this.RaisePropertyChanged(() => this.K7MinutStart);
@@ -952,8 +995,9 @@ namespace Wlst.Ux.TimeTableSystem.HolidayTimeSet.ViewModel
             get { return k7MinutEnd; }
             set
             {
-                if (value < 1) value = 1;
+                if (value < 0) value = 0;
                 if (value > 59) value = 59;
+                if (K7HourEnd == 24 || K7HourEnd == 25) value = 0;
                 if (value == k7MinutEnd) return;
 
                 k7MinutEnd = value;
@@ -1008,8 +1052,9 @@ namespace Wlst.Ux.TimeTableSystem.HolidayTimeSet.ViewModel
             get { return k8MinutStart; }
             set
             {
-                if (value < 1) value =1;
+                if (value < 0) value =0;
                 if (value > 59) value = 59;
+                if (K8HourStart == 24 || K8HourStart == 25) value = 0;
                 if (value == k8MinutStart) return;
                 k8MinutStart = value;
                 this.RaisePropertyChanged(() => this.K8MinutStart);
@@ -1026,8 +1071,9 @@ namespace Wlst.Ux.TimeTableSystem.HolidayTimeSet.ViewModel
             get { return k8MinutEnd; }
             set
             {
-                if (value < 1) value =1;
+                if (value < 0) value =0;
                 if (value > 59) value = 59;
+                if (K8HourEnd == 24 || K8HourEnd == 25) value = 0;
                 if (value == k8MinutEnd) return;
 
                 k8MinutEnd = value;

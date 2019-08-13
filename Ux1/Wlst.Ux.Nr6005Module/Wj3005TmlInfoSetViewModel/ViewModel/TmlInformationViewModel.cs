@@ -1156,7 +1156,7 @@ namespace Wlst.Ux.Nr6005Module.Wj3005TmlInfoSetViewModel.ViewModel
                 }
             }
 
-            if ((int)tmp.RtuModel != RtuModelModify[IntRtuModelModify].Value)
+            if ((int)tmp.RtuModel != RtuModelModify[IntRtuModelModify].Value  && (int) tmp.RtuModel !=6005)
             {
                 if ((int)tmp.RtuModel == 3090)
                 {

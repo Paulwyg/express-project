@@ -242,6 +242,9 @@ namespace Wlst.Ux.Wj2090Module.Wj2090InfoSet.ViewModel
             VAlarmMax = _terminalInformation.WjSlu.UpperVoltage;
             PowerFactor = _terminalInformation.WjSlu.AlarmPowerfactorLower;
             VAlarmMin = _terminalInformation.WjSlu.LowerVoltage;
+
+           
+
             if (_terminalInformation.WjSlu.PowerAdjustType == 1)
             {
                 PowerControl = false;
@@ -335,6 +338,7 @@ namespace Wlst.Ux.Wj2090Module.Wj2090InfoSet.ViewModel
                            StaticIp = 0,
 
                            RelatedRtuId = this.RelatedRtuId,
+
                        };
 
  
@@ -1179,6 +1183,28 @@ namespace Wlst.Ux.Wj2090Module.Wj2090InfoSet.ViewModel
         }
 
         #endregion
+
+
+        /// <summary>
+        /// 控制器24小时带电，0-不带电（集中器不转发时间），1-带电（集中器转发时间）
+        /// </summary>
+
+        #region AlwaysOnline
+        private int _alwaysOnline;
+
+        public int AlwaysOnline
+        {
+            get { return _alwaysOnline; }
+            set
+            {
+                if (_alwaysOnline == value) return;
+                _alwaysOnline = value;
+                RaisePropertyChanged(() => AlwaysOnline);
+            }
+        }
+
+        #endregion
+
 
         /// <summary>
         /// 功率调节

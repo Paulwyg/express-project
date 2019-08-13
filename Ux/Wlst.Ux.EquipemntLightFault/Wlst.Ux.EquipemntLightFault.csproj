@@ -192,6 +192,8 @@
     <Compile Include="EquipmentFaultRecordQueryLnViewModel\Views\EquipmentFaultRecordQueryLnView.xaml.cs">
       <DependentUpon>EquipmentFaultRecordQueryLnView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="EquipmentFaultRecordQueryViewModel\ViewModel\EquipmentFaultRecordQueryViewModel1.cs" />
+    <Compile Include="EquipmentFaultRecordQueryViewModel\ViewModel\EquipmentFaultRecordQueryViewModel2.cs" />
     <Compile Include="EquipmentFaultWithTmlPriorityLevelSettingViewModel\NavToEquipmentFaultWithTmlPriorityLevelSettingViewforMainMenu.cs" />
     <Compile Include="EquipmentFaultWithTmlPriorityLevelSettingViewModel\Services\IIEquipmentFaultWithTmlPriorityLevelSettingViewModel.cs" />
     <Compile Include="EquipmentFaultWithTmlPriorityLevelSettingViewModel\Services\IsCheckedToNoValue.cs" />

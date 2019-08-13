@@ -165,18 +165,22 @@ namespace Wlst.Sr.EquipemntLightFault.Services
 
         public static MsgWithMobile ReqeustPreExistErrorHttp(List<int> rtuId, DateTime dtStartTime, DateTime dtEndtime, List<int> faultIds, int pageIndex, int pagingFlag, int level = 0)
         {
-            if (rtuId.Count == 0) return null;
+            // if (rtuId.Count == 0) return null;
             var tStartTime = new DateTime(dtStartTime.Year, dtStartTime.Month, dtStartTime.Day, 0, 0, 1);
             var tEndTime = new DateTime(dtEndtime.Year, dtEndtime.Month, dtEndtime.Day, 23, 59, 59);
 
 
             var info = Wlst.Sr.ProtocolPhone.LxFaultHttp.wlst_fault_pre_http;
             //info.WstFaultPre.RtuId = rtuId[0];
-            info.WstFaultPre.RtuIds.Add(rtuId[0]);
-            info.Args.Addr.AddRange(rtuId);
+            if (rtuId.Count > 0)
+            {
+                info.WstFaultPre.RtuIds.AddRange(rtuId);
+                //info.Args.Addr.AddRange(rtuId);
+            }
             info.WstFaultPre.DtEndTime = tEndTime.Ticks;
             info.WstFaultPre.DtStartTime = tStartTime.Ticks;
-            info.WstFaultPre.FaultIds.AddRange(faultIds); // = faultId;
+            if (faultIds.Count > 0)
+                info.WstFaultPre.FaultIds.AddRange(faultIds); // = faultId;
 
             info.Args.Cid = level;
             info.Head.PagingIdx = pageIndex + 1;

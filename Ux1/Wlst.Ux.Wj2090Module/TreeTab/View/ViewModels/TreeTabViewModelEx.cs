@@ -32,6 +32,10 @@ namespace Wlst.Ux.Wj2090Module.TreeTab.View.ViewModels
         private List<int> LoadNode1GetArea()
         {
             var rtn = new List<int>();
+            Wlst.Cr.Coreb.Servers.WriteLog.WriteLogError(
+                "WJ2090 A:" + Sr.EquipmentInfoHolding.Services.AreaInfoHold.MySlef.AreaInfo.Count);
+            Wlst.Cr.Coreb.Servers.WriteLog.WriteLogError(
+                "WJ2090 G:" + ServicesGrpSingleInfoHold.InfoGroups.Count);
             if (ServicesGrpSingleInfoHold.InfoGroups.Count == 0 &&
                 Sr.EquipmentInfoHolding.Services.AreaInfoHold.MySlef.AreaInfo.Count == 0)
                 return new List<int>();
@@ -613,26 +617,33 @@ namespace Wlst.Ux.Wj2090Module.TreeTab.View.ViewModels
         /// <summary>
         /// 加载节点
         /// </summary>
-        private void LoadNode()
+        private void LoadNode(bool force)
         {
-            var  v1 = Wlst.Sr.EquipmentInfoHolding.Services.ServicesGrpSingleInfoHold.GetVersion;
-            var v2 = Wlst.Sr.EquipmentInfoHolding.Services.AreaInfoHold.Version;
-            var v3 = Wlst.Sr.EquipmentInfoHolding.Services.EquipmentDataInfoHold.Version;
-            if (v1 == 0 || v2 == 0 || v3 == 0) return;
-            if (LstLoadversion == null)
-            {
-                LstLoadversion = new Tuple<long, long, long>(v1, v2, v3);
-            }
-            else
-            {
-                if (LstLoadversion.Item1 == v1 && LstLoadversion.Item2 == v2 && LstLoadversion.Item3 == v3) return;
-                LstLoadversion = new Tuple<long, long, long>(v1, v2, v3);
-            }
+            //var v1 = Wlst.Sr.EquipmentInfoHolding.Services.ServicesGrpSingleInfoHold.GetVersion;
+            //var v2 = Wlst.Sr.EquipmentInfoHolding.Services.AreaInfoHold.Version;
+            //var v3 = Wlst.Sr.EquipmentInfoHolding.Services.EquipmentDataInfoHold.Version;
+            //if (force == false)
+            //{
 
+            //    if (v1 == 0 || v2 == 0 || v3 == 0) return;
+            //    if (LstLoadversion == null)
+            //    {
+            //        LstLoadversion = new Tuple<long, long, long>(v1, v2, v3);
+            //    }
+            //    else
+            //    {
+            //        if (LstLoadversion.Item1 == v1 && LstLoadversion.Item2 == v2 &&
+            //            LstLoadversion.Item3 == v3) return;
 
+            //    }
+            //}
+
+            //LstLoadversion = new Tuple<long, long, long>(v1, v2, v3);
+
+            Wlst .Cr .Coreb .Servers .WriteLog .WriteLogError("Wj2090 1");
 
             var lst1 = LoadNode1GetArea();
-            if (lst1.Count == 0) return;
+            if (lst1.Count == 0) return; Wlst.Cr.Coreb.Servers.WriteLog.WriteLogError("Wj2090 2");
 
             var rtn = new List<InputInfo>();
             var rootGrp = new List<InputInfo>();
@@ -643,7 +654,7 @@ namespace Wlst.Ux.Wj2090Module.TreeTab.View.ViewModels
                 {
                     var lst2 = LoadNode2GetAreaGrpInput(f, null);
                     rootGrp.AddRange(lst2);
-                    _onlyOneAreaLoad = f ;
+                    _onlyOneAreaLoad = f;
                 }
                 else //否则  区域为根节点
                 {
@@ -659,6 +670,16 @@ namespace Wlst.Ux.Wj2090Module.TreeTab.View.ViewModels
 
 
             var lst3 = LoadNode3GetSluInfoByGrp(rootGrp); //通过集中器分组 获取所有的集中器input清单
+
+            Wlst.Cr.Coreb.Servers.WriteLog.WriteLogError("Wj2090 3:" + (lst3==null ?0: lst3 .Count) );
+            if (force == false)
+            {
+                Wlst.Cr.Coreb.Servers.WriteLog.WriteLogError("Wj2090 4:");
+                if (lst3.Count == Lcount) return;
+
+            }
+
+            Lcount = lst3.Count;
             rtn.AddRange(lst3);
 
             foreach (var f in lst3) // 通过集中器的信息 加载控制器分组  - 控制器数据  ，注意此时  控制器分组与控制器 作为一个整体 ，后续参数变化也是如此
@@ -668,9 +689,66 @@ namespace Wlst.Ux.Wj2090Module.TreeTab.View.ViewModels
             }
 
 
-
+            Wlst.Cr.Coreb.Servers.WriteLog.WriteLogError("Wj2090 5");
             InitNode(rtn);
 
+            CalCount();
+        }
+
+        private int Lcount = 0;
+
+        /// <summary>
+        /// 重新计算 灯头数
+        /// </summary>
+        private void CalCount()
+        {
+            // Key1Type  1、区域    ，2、集中器分组   ，3、集中器  ，4、控制器分组                             ，5 、控制器
+            foreach (var f in this.ChildItems)
+            {
+                CalCount(f);
+                foreach (var g in f.ChildItems)
+                {
+                    CalCount(g);
+                    foreach (var gx in g.ChildItems)
+                    {
+                        CalCount(gx);
+                        foreach (var gxx in gx.ChildItems)
+                        {
+                            CalCount(gxx);
+                            foreach (var gxxx in gxx.ChildItems)
+                            {
+                                CalCount(gxxx);
+
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        private void CalCount(TreeViewBaseNode f)
+        {
+            if (f.Key1TypeN == 2)
+            {
+                f.NodeName2B = "[" + f.ChildItems.Count + "个]";
+            }
+            // // Key1Type  1、区域    ，2、集中器分组   ，3、集中器  ，4、控制器分组                             ，5 、控制器
+            if (f.Key1TypeN == 3)
+            {
+                //Key3        1-X、组，0、所有，-1 未划分分组
+                foreach (var l in f.ChildItems)
+                {
+                    if (f.Key3 == 0)
+                    {
+                        f.NodeName2B = "[" + l.ChildItems.Count + "个]";
+                        break;
+                    }
+                }
+            }
+            if (f.Key1TypeN == 4)
+            {
+                f.NodeName2B = "[" + f.ChildItems.Count + "个]";
+            }
         }
     }
 
@@ -857,6 +935,7 @@ namespace Wlst.Ux.Wj2090Module.TreeTab.View.ViewModels
                     }
                 }
             }
+            CalCount();
         }
 
         /// <summary>
@@ -918,7 +997,7 @@ namespace Wlst.Ux.Wj2090Module.TreeTab.View.ViewModels
                 }
             }
 
-            this.DeleteNode(dlt);
+            this.DeleteNode(dlt); CalCount();
         }
 
         private void OnUpdateRtuPara(List<int> rtuList)
@@ -935,7 +1014,7 @@ namespace Wlst.Ux.Wj2090Module.TreeTab.View.ViewModels
                     UpdateNode(fx.IdfN, child);
                 }
             }
-
+            CalCount();
         }
 
         /// <summary>
@@ -1109,7 +1188,7 @@ namespace Wlst.Ux.Wj2090Module.TreeTab.View.ViewModels
 
             if (_onlyOneAreaLoad == areaid)
             {
-                this.LoadNode();
+                this.LoadNode(false );
                 return;
             }
 
@@ -1125,7 +1204,7 @@ namespace Wlst.Ux.Wj2090Module.TreeTab.View.ViewModels
 
             if (rooTreeViewBaseNode == null)
             {
-                this.LoadNode();
+                this.LoadNode(false );
                 return;
             }
 
@@ -1150,7 +1229,7 @@ namespace Wlst.Ux.Wj2090Module.TreeTab.View.ViewModels
                 rtn.AddRange(lst4);
             }
 
-            UpdateNode(rooTreeViewBaseNode.IdfN, rtn);
+            UpdateNode(rooTreeViewBaseNode.IdfN, rtn); CalCount();
         }
 
 
@@ -1232,7 +1311,7 @@ namespace Wlst.Ux.Wj2090Module.TreeTab.View.ViewModels
                 if (args.EventType == PublishEventType.SvAv)
                 {
                     if (DateTime.Now.Ticks - dtLoad.Ticks < 45 * 10000000) return;
-                    LoadNode();
+                    LoadNode(false );
                     return;
                 }
 
@@ -1241,7 +1320,7 @@ namespace Wlst.Ux.Wj2090Module.TreeTab.View.ViewModels
                     if (args.EventId ==
                         global::Wlst.Sr.EquipmentInfoHolding.Services.EventIdAssign.SingleInfoGroupAllNeedUpdate)
                     {
-                        LoadNode();
+                        LoadNode(false );
                         Wlst.Cr.Coreb.Servers.WriteLog.WriteLogError("Load Node ");
 
                     }

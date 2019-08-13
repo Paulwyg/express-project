@@ -107,7 +107,7 @@
                 <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Margin="2" Grid.Row="6"  Name="textBlock55" Text="终端类型:" VerticalAlignment="Center" />
                 <ComboBox   Grid.Row="6"  Grid.Column="1" ItemsSource="{Binding RtuType}" SelectedIndex="{Binding intRtuType}" Height="20" DisplayMemberPath="Name"  HorizontalAlignment="Left" Width="80"></ComboBox>
 
-                <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Margin="2" Grid.Row="6" Grid.Column="2"  Name="textBlock65" Text="归属地域:" VerticalAlignment="Center" HorizontalAlignment="Right" />
+                <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Margin="2" Grid.Row="6" Grid.Column="2"  Name="textBlock65" Text="归属地区:" VerticalAlignment="Center" HorizontalAlignment="Right" />
                 <ComboBox   Grid.Row="6"  Grid.Column="3"  ItemsSource="{Binding RtuRegion}" SelectedIndex="{Binding intRtuRegion}" Height="20" DisplayMemberPath="Name"  HorizontalAlignment="Left" MaxWidth="170" Width="170" ></ComboBox>
 
 

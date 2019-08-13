@@ -5,33 +5,33 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <Grid HorizontalAlignment="Center">
+    <Grid HorizontalAlignment="Left">
         <Grid >
             <Grid.RowDefinitions>
-                <RowDefinition Height="30"></RowDefinition>
-                <RowDefinition Height="30"></RowDefinition>
-                <RowDefinition Height="30"></RowDefinition>
-                <RowDefinition Height="30"></RowDefinition>
-                <RowDefinition Height="30"></RowDefinition>
-                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="25"></RowDefinition>
+                <RowDefinition Height="25"></RowDefinition>
+                <RowDefinition Height="25"></RowDefinition>
+                <RowDefinition Height="25"></RowDefinition>
+                <RowDefinition Height="25"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
 
             <!--<CheckBox Grid.Row="2" IsChecked="{Binding IsShowGrpInTreeModelShowId}" Content="分组显示组地址" VerticalAlignment="Center" ></CheckBox>-->
 
             <CheckBox IsChecked="{Binding IsShowTreeOnTab}" Content="在主界面树区域显示单灯设备面板" VerticalAlignment="Center" ></CheckBox>
 
-            <CheckBox Grid.Row="1" IsChecked="{Binding IsShowConOnNodeSelected}" Content="在选中控制器分组时显示控制器列表" VerticalAlignment="Center" ></CheckBox>
+            <CheckBox Grid.Row="1" Margin="25,0,0,0" VerticalContentAlignment="Center" IsChecked="{Binding IsShowConOnNodeSelected}" Content="在选中控制器分组时显示控制器列表" VerticalAlignment="Center" ></CheckBox>
 
-            <CheckBox Grid.Row="2" IsChecked="{Binding IsShowArgsOnNewData}" Content="最新数据显示参数信息" VerticalAlignment="Center" ></CheckBox>
+            <CheckBox Grid.Row="3"  VerticalContentAlignment="Center" IsChecked="{Binding IsShowArgsOnNewData}" Content="最新数据显示参数信息" VerticalAlignment="Center" ></CheckBox>
 
-            <CheckBox Grid.Row="3" IsChecked="{Binding IsIconFollowTheRtu}" Content="单灯图标跟随绑定终端的状态" VerticalAlignment="Center" ></CheckBox>
+            <CheckBox Grid.Row="2" Margin="25,0,0,0" VerticalContentAlignment="Center" IsChecked="{Binding IsIconFollowTheRtu}" Content="单灯图标跟随绑定终端的状态" VerticalAlignment="Center" ></CheckBox>
 
-            <CheckBox Grid.Row="4" IsChecked="{Binding IsShowCtrlTime}" Content="单灯方案显示控制器方案" VerticalAlignment="Center" ></CheckBox>
+            <CheckBox Grid.Row="4"  VerticalContentAlignment="Center" IsChecked="{Binding IsShowCtrlTime}" Content="单灯方案显示控制器方案" VerticalAlignment="Center" ></CheckBox>
 
             <!--<CheckBox Grid.Row="3" IsChecked="{Binding IsShowConOnNodeSelected}" Content="显示参数信息" VerticalAlignment="Center" ></CheckBox>-->
 
-            <Button  Tag="11060007" Content="应用" Command="{Binding CmdApply}" 
-                     Width="120" Height="30" Grid.Row="5"></Button>
+            <Button  Tag="11060007" Content="应用" Command="{Binding CmdApply}"  Margin="150,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"
+                     Width="120" Height="25" Grid.Row="5"></Button>
         </Grid>
     </Grid>
 </UserControl>

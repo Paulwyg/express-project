@@ -424,7 +424,7 @@ namespace Wlst.Ux.WJ3005Module.Wj3005TmlInfoSetViewModel.ViewModel
 
 
             //设备型号确认  
-            if ((int)t.RtuModel == 3005 || (int)t.RtuModel == 6005)
+            if ((int)t.RtuModel == 3005 )
             {
                 CountSwitchIn = 16;
                 CountSwitchOut = 6;
@@ -455,6 +455,17 @@ namespace Wlst.Ux.WJ3005Module.Wj3005TmlInfoSetViewModel.ViewModel
                 IntRtuModelModify = 2;
 
 
+            }
+            else if ((int)t.RtuModel == 6005)
+            {
+                CountSwitchIn = 16;
+                CountSwitchOut = 8;
+                CountAmpLoops = 36;
+                CountVectorSample = 36;
+                Visi = Visibility.Collapsed;
+
+                CanChangeModuel = true;
+                IntRtuModelModify = 3;
             }
             else return;
  
@@ -497,6 +508,10 @@ namespace Wlst.Ux.WJ3005Module.Wj3005TmlInfoSetViewModel.ViewModel
 
             Visi = info.RtuModel == EnumRtuModel.Wj3006 ? Visibility.Visible : Visibility.Collapsed;
             CanChangeModuel = info.RtuModel == EnumRtuModel.Wj3006 ? false : true;
+            Visi = info.RtuModel == EnumRtuModel.Gz6005 ? Visibility.Visible : Visibility.Collapsed;
+            CanChangeModuel = info.RtuModel == EnumRtuModel.Gz6005 ? false : true;
+
+
 
             var tmps = new ObservableCollection<RtuLoopInfoVm>();
             //  RtuParaAnalogueAmpViewModels.Clear();
@@ -551,9 +566,7 @@ namespace Wlst.Ux.WJ3005Module.Wj3005TmlInfoSetViewModel.ViewModel
             {
                 loops.Add(t.BackRtuParaAnalogueAmp());
             }
-
-        
-
+            
             return new Wj3005Rtu(BackVmToTerminalInfomationBasePara(), BackVmToTerminalInfomationVoltage(),
                                  BackVmToTerminalInfomationGprs(), loops,  swout);
 
@@ -568,6 +581,9 @@ namespace Wlst.Ux.WJ3005Module.Wj3005TmlInfoSetViewModel.ViewModel
             if (RtuModelModify[IntRtuModelModify].Value == 3005) rtuModeltmp = EnumRtuModel.Wj3005;
             if (RtuModelModify[IntRtuModelModify].Value == 3006) rtuModeltmp = EnumRtuModel.Wj3006;
             if (RtuModelModify[IntRtuModelModify].Value == 3090) rtuModeltmp = EnumRtuModel.Wj3090;
+            if (RtuModelModify[IntRtuModelModify].Value == 6005) rtuModeltmp = EnumRtuModel.Gz6005;
+            long imeitmp = 0;
+            Int64.TryParse(RtuIdf, out imeitmp);
 
             return new EquipmentParameter()
                        {
@@ -591,7 +607,8 @@ namespace Wlst.Ux.WJ3005Module.Wj3005TmlInfoSetViewModel.ViewModel
                            RtuRealState = RtuRealState > 2 ? 0 : RtuRealState,
                            Idf = RtuIdf,
                            RtuRegion = this.intRtuRegion,
-                       };
+                           Imei = imeitmp,
+            };
 
         }
 
@@ -1156,7 +1173,7 @@ namespace Wlst.Ux.WJ3005Module.Wj3005TmlInfoSetViewModel.ViewModel
                 }
             }
 
-            if ((int)tmp.RtuModel != RtuModelModify[IntRtuModelModify].Value)
+            if ((int)tmp.RtuModel != RtuModelModify[IntRtuModelModify].Value )
             {
                 if ((int)tmp.RtuModel == 3090)
                 {
@@ -1231,6 +1248,7 @@ namespace Wlst.Ux.WJ3005Module.Wj3005TmlInfoSetViewModel.ViewModel
             }
 
             if (!CheckLoopCanBeSave()) return null;
+
 
             return BackViewModelToTerminalInformation();
 
@@ -2418,6 +2436,7 @@ namespace Wlst.Ux.WJ3005Module.Wj3005TmlInfoSetViewModel.ViewModel
             //地区解析  lvf 2019年5月6日09:14:34
             this.intRtuRegion = info.RtuRegion;
 
+            
 
             try
             {
@@ -2928,7 +2947,7 @@ namespace Wlst.Ux.WJ3005Module.Wj3005TmlInfoSetViewModel.ViewModel
                     _rtuModelModify.Add(new NameValueInt() { Name = "3090型", Value = 3090 });
                     _rtuModelModify.Add(new NameValueInt() { Name = "3005型", Value = 3005 });
                     _rtuModelModify.Add(new NameValueInt() { Name = "3006型", Value = 3006 });
-
+                    _rtuModelModify.Add(new NameValueInt() { Name = "6005型", Value = 6005 });
                 }
                 return _rtuModelModify;
             }

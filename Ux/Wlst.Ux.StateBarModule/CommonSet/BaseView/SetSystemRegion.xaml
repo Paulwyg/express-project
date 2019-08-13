@@ -7,7 +7,6 @@
                                    xmlns:windowForWlst="clr-namespace:WindowForWlst;assembly=WindowForWlst"
                                    xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
                                    mc:Ignorable="d" 
-                                   d:DesignHeight="300" d:DesignWidth="300"
              Title="地域管理" TitleCetc="地域管理" Height="500" Width="400"    Topmost="True" TopmostButtonVisibility ="Collapsed">
 
     <Grid>
@@ -45,7 +44,7 @@
         </telerik:RadGridView>
 
 
-        <Button x:Name="AddRegion" Content="增加区域" Width="100" Margin="10,5,0,5"  Grid.Column="0" Grid.Row="2" HorizontalAlignment="Center" Click="AddRegion_OnClick" />
+        <Button x:Name="AddRegion" Content="增加地域" Width="100" Margin="10,5,0,5"  Grid.Column="0" Grid.Row="2" HorizontalAlignment="Center" Click="AddRegion_OnClick" />
 
         <Button x:Name="DelRegion" Content="删除区域" Width="100" Margin="10,5,0,5"  Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center" Click="DelRegion_OnClick" Visibility="Collapsed"/>
 

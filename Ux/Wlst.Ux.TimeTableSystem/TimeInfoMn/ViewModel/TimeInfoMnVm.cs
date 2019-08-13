@@ -52,6 +52,7 @@ namespace Wlst.Ux.TimeTableSystem.TimeInfoMn.ViewModel
 
         }
 
+
         public void getAreaRId()
         {
             AreaName.Clear();
@@ -154,6 +155,9 @@ namespace Wlst.Ux.TimeTableSystem.TimeInfoMn.ViewModel
             VisiSetup = File.Exists("Config\\西安.txt") ? Visibility.Visible : Visibility.Collapsed;
 
             _isActive = true;
+            RequestYearTimeInfo();
+
+
             Msg = "";
             AreaName.Clear();
             getAreaRId();
@@ -221,7 +225,16 @@ namespace Wlst.Ux.TimeTableSystem.TimeInfoMn.ViewModel
             }
         }
 
+        /// <summary>
+        /// 请求全年时间表
+        /// </summary>
+        public void RequestYearTimeInfo()
+        {
+            var info = Wlst.Sr.ProtocolPhone.LxRtuTime.wst_rtutime_query_year_time_table_info;//.wlst_cnt_request_timetable_next_execute_info;//.ServerPart.wlst_TimeTable_clinet_request_timetableevent;
+            info.WstQueryYearTimeTableInfo.OP = 1;
+            SndOrderServer.OrderSnd(info, 10, 6);
 
+        }
 
         public  event EventHandler<EventArgsEx> OnUserWantSetGroupWeekSet;
 
@@ -744,6 +757,7 @@ namespace Wlst.Ux.TimeTableSystem.TimeInfoMn.ViewModel
         {
 
             return (Wlst.Cr.CoreMims.Services.UserInfo.UserLoginInfo.AreaW.Contains(AreaId) || Wlst.Cr.CoreMims.Services.UserInfo.UserLoginInfo.D) && CurrentSelectItem != null && DateTime.Now.Ticks - _dateTimes[1].Ticks > 10000000;
+
         }
 
         private void ExCmdModifyTimeTable()
@@ -764,6 +778,13 @@ namespace Wlst.Ux.TimeTableSystem.TimeInfoMn.ViewModel
                 _addTimeTable = null;
             }
             if (CurrentSelectItem == null) return;
+
+            //是全年时间表则提示
+            if (Wlst.Sr.TimeTableSystem.Services.WeekTimeTableInfoService.IsYearTimeTable(areaId, CurrentSelectItem.TimeId))
+            {
+                WlstMessageBox.Show("光环境全年时间表无法修改,请到Web端修改。", WlstMessageBoxType.Ok);
+                return;
+            }
             var ntg = CurrentSelectItem.BackToWeekTimeTableInforemation();
 
             //var ntgbak = ntg.RuleItems;
@@ -933,6 +954,14 @@ namespace Wlst.Ux.TimeTableSystem.TimeInfoMn.ViewModel
         {
             _dateTimes[2] = DateTime.Now;
             if (CurrentSelectItem == null) return;
+
+            //是全年时间表则提示
+            if (Wlst.Sr.TimeTableSystem.Services.WeekTimeTableInfoService.IsYearTimeTable(areaId, CurrentSelectItem.TimeId))
+            {
+                WlstMessageBox.Show("光环境全年时间表无法删除,请到Web端删除。", WlstMessageBoxType.Ok);
+                return;
+            }
+
             var xcount = GetBandingTimeTableInfo(CurrentSelectItem.TimeId );
             if (xcount > 0)
             {
@@ -1504,10 +1533,18 @@ namespace Wlst.Ux.TimeTableSystem.TimeInfoMn.ViewModel
             get { return _currentSelectItem; }
             set
             {
-                if (_currentSelectItem == value || value == null) return;
-                _currentSelectItem = value;
-                if (_currentSelectItem.LuxId2 == 0 ) _currentSelectItem.ShowCurrentSelectLux2 = 0;
-                RaisePropertyChanged(() => CurrentSelectItem);
+
+                if (_currentSelectItem == value) return;
+                else
+                {
+                    IsOperate = value != null;
+                    _currentSelectItem = value;
+                    if (value != null)
+                    {
+                        if (_currentSelectItem.LuxId2 == 0) _currentSelectItem.ShowCurrentSelectLux2 = 0;
+                    }
+                    RaisePropertyChanged(() => CurrentSelectItem);
+                }
             }
         }
 
@@ -1529,6 +1566,22 @@ namespace Wlst.Ux.TimeTableSystem.TimeInfoMn.ViewModel
             }
         }
 
+        private bool _isOperate;
+        /// <summary>
+        /// 是否可操作
+        /// </summary>
+        public bool IsOperate
+        {
+            get { return _isOperate; }
+            set
+            {
+                if (value != _isOperate)
+                {
+                    _isOperate = value;
+                    this.RaisePropertyChanged(() => this.IsOperate);
+                }
+            }
+        }
 
         #endregion
 

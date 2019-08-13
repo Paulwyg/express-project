@@ -8,7 +8,7 @@
                           
              xmlns:AppleWindowSet="clr-namespace:Elysium.ThemesSet.AppleWindowSet;assembly=Elysium"
              d:DesignHeight="500" d:DesignWidth="1024">
-    <Grid x:Name="element">
+    <Grid x:Name="element" HorizontalAlignment="Left"  >
         <Grid.RowDefinitions >
             <RowDefinition Height="30"/>
             <RowDefinition Height="*"/>
@@ -29,7 +29,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Label x:Name="fg"/>
-            <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Margin="10,2,0,2" Grid.Column="0" VerticalAlignment="Center" Text="起始时间:"></TextBlock>
+            <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Margin="5,2,0,2" Grid.Column="0" VerticalAlignment="Center" Text="起始时间:"></TextBlock>
             <!--<xctk:DateTimePicker Margin="10,0,0,0" MinWidth="150"  Grid.Column="1" Text="{Binding DtStartTime}"/>-->
             <DatePicker SelectedDateFormat="Short"  VerticalAlignment="Center" HorizontalAlignment="Center"  Width="160" Grid.Column="1" Margin="10,2,0,2"   SelectedDate="{Binding DtStartTime}"></DatePicker>
 
@@ -39,19 +39,19 @@
             <TextBlock VerticalAlignment="Center" Text="任务类别:" Grid.Column="4" Margin="30,2,0,2"></TextBlock>
             <ComboBox Margin="10,2,0,2"  Grid.Column="5" Width="150" ItemsSource="{Binding Class}" SelectedItem="{Binding CurrentSelectItem}" 
                       DisplayMemberPath="Name" HorizontalAlignment="Left"  MinHeight="25"></ComboBox>
-           <Button Margin="30,2,0,2" Content="查询" Grid.Column="6" Width="120" HorizontalAlignment="Left"  MinHeight="25" Command="{Binding CmdQuery}"></Button>
+           <Button Margin="30,2,0,2" Content="查询" Grid.Column="6" Width="120" HorizontalAlignment="Right"  Height="25" Command="{Binding CmdQuery}"></Button>
    
         </Grid>
-        <telerik:RadGridView x:Name="RadGridView1" ScrollMode="Deferred" ShowGroupPanel="False" Margin="0,5,0,0"   Grid.Row="1" HorizontalAlignment="Left"
-                             ItemsSource="{Binding Record}"   RowIndicatorVisibility="Collapsed" Width="900"
+        <telerik:RadGridView x:Name="RadGridView1" ScrollMode="Deferred" ShowGroupPanel="False" Margin="5,5,0,0"   Grid.Row="1" HorizontalAlignment="Left"
+                             ItemsSource="{Binding Record}"   RowIndicatorVisibility="Collapsed" Width="913"
                    IsReadOnly="True"  AutoGenerateColumns="False" ShowColumnHeaders="True">
             <telerik:RadGridView.Columns>
-                <telerik:GridViewDataColumn Header="记录序号" IsFilterable="False" DataMemberBinding="{Binding RecordIndex}" IsReadOnly="True" MinWidth="50" MaxWidth="120"/>
-                <telerik:GridViewDataColumn Header="发生时间" IsFilterable="False" DataMemberBinding="{Binding DateCreate,StringFormat={}\{0:yyyy-MM-dd HH:mm:ss\}}" MaxWidth="180" IsReadOnly="True" MinWidth="100"/>
+                <telerik:GridViewDataColumn Header="记录序号" IsFilterable="False" DataMemberBinding="{Binding RecordIndex}" IsReadOnly="True" Width="100"/>
+                <telerik:GridViewDataColumn Header="发生时间" IsFilterable="False" DataMemberBinding="{Binding DateCreate,StringFormat={}\{0:yyyy-MM-dd HH:mm:ss\}}" Width="180" IsReadOnly="True"/>
                 <!--<telerik:GridViewDataColumn Header="操作名称" IsFilterable="False" DataMemberBinding="{Binding OperatorName}"  IsReadOnly="True" MinWidth="100" MaxWidth="180"/>-->
-                <telerik:GridViewDataColumn Header="任务名称"  IsFilterable="True" DataMemberBinding="{Binding TaskName}"  IsReadOnly="True" MinWidth="120" MaxWidth="180"/>
-                <telerik:GridViewDataColumn Header="任务描述" IsSortable="False" IsFilterable="False" DataMemberBinding="{Binding TaskDescription}"  IsReadOnly="True" MinWidth="120" MaxWidth="250"/>
-                <telerik:GridViewDataColumn Header="操作对象" IsSortable="False" IsFilterable="False" DataMemberBinding="{Binding OperatorTarget}"  IsReadOnly="True" Width="250"/>
+                <telerik:GridViewDataColumn Header="任务名称"  IsFilterable="True" DataMemberBinding="{Binding TaskName}"  IsReadOnly="True" Width="150"/>
+                <telerik:GridViewDataColumn Header="任务描述" IsSortable="False" IsFilterable="False" DataMemberBinding="{Binding TaskDescription}"  IsReadOnly="True" Width="120"/>
+                <telerik:GridViewDataColumn Header="操作对象" IsSortable="False" IsFilterable="False" DataMemberBinding="{Binding OperatorTarget}"  IsReadOnly="True" Width="180"/>
                 <telerik:GridViewDataColumn Header="附加参数" IsSortable="False" IsFilterable="False" DataMemberBinding="{Binding AttachInfo}"  IsReadOnly="True" Width="180"/>
             </telerik:RadGridView.Columns>
         </telerik:RadGridView>
@@ -60,8 +60,8 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Text="{Binding Remind}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0"/>
-            <Button Content="导出" Click="BtnExportClick" Grid.Column="1" Visibility="{Binding ExportVisi}"  HorizontalAlignment="Right" Margin="20,2,0,2" MinWidth="120"  MinHeight="25"/>
+            <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Text="{Binding Remind}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5,0,0,0"/>
+            <Button Content="导出" Click="BtnExportClick" Grid.Column="1" Visibility="{Binding ExportVisi}"  HorizontalAlignment="Right" Margin="20,2,0,2" Width="120"  Height="25"/>
         </Grid>
 
     </Grid>

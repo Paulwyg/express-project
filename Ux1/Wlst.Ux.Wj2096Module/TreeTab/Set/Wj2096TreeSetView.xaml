@@ -8,12 +8,9 @@
     <Grid HorizontalAlignment="Center">
         <Grid >
             <Grid.RowDefinitions>
-                <RowDefinition Height="30"></RowDefinition>
-                <RowDefinition Height="30"></RowDefinition>
-                <RowDefinition Height="30"></RowDefinition>
-                <RowDefinition Height="30"></RowDefinition>
-                <RowDefinition Height="30"></RowDefinition>
-                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="25"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+
             </Grid.RowDefinitions>
 
             <!--<CheckBox Grid.Row="2" IsChecked="{Binding IsShowGrpInTreeModelShowId}" Content="分组显示组地址" VerticalAlignment="Center" ></CheckBox>-->
@@ -31,8 +28,8 @@
 
             <!--<CheckBox Grid.Row="3" IsChecked="{Binding IsShowConOnNodeSelected}" Content="显示参数信息" VerticalAlignment="Center" ></CheckBox>-->
 
-            <Button  Tag="11060007" Content="应用" Command="{Binding CmdApply}" 
-                     Width="120" Height="30" Grid.Row="5"></Button>
+            <Button  Tag="11060007" Content="应用" Command="{Binding CmdApply}" Margin="120,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"
+                     Width="120" Height="25" Grid.Row="2"></Button>
         </Grid>
     </Grid>
 </UserControl>

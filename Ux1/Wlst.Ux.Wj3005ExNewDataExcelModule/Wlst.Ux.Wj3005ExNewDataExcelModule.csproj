@@ -127,6 +127,9 @@
     <Compile Include="ZNewData\Views\TmlNewDataView.xaml.cs">
       <DependentUpon>TmlNewDataView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ZNewData\Views\UserControl1.xaml.cs">
+      <DependentUpon>UserControl1.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Page Include="RapidSetRtuAmp\RapidSetRtuAmp.xaml">
@@ -144,6 +147,10 @@
     <Page Include="ZNewData\Views\TmlNewDataView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ZNewData\Views\UserControl1.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>

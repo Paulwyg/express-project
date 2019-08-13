@@ -38,7 +38,7 @@ namespace Wlst.Ux.EquipemntLightFault.EquipmentFaultRecordQueryViewModel.ViewMod
     [PartCreationPolicy(CreationPolicy.Shared)]
     public partial class EquipmentFaultRecordQueryViewModel : ObservableObject, IIEquipmentFaultRecordQueryViewModel
     {
-         
+
         public EquipmentFaultRecordQueryViewModel()
         {
             ClickTime = DateTime.Now;
@@ -46,7 +46,7 @@ namespace Wlst.Ux.EquipemntLightFault.EquipmentFaultRecordQueryViewModel.ViewMod
             InitAction();
             DtEndTime = DateTime.Now;
             DtStartTime = DateTime.Now.AddDays(-1);
-            var shh = new List<int>() { 19, 20, 21, 46, 53,50 };
+            var shh = new List<int>() { 19, 20, 21, 46, 53, 50 };
             for (int i = 1; i < 80; i++)
             {
                 if (shh.Contains(i)) continue;
@@ -63,14 +63,15 @@ namespace Wlst.Ux.EquipemntLightFault.EquipmentFaultRecordQueryViewModel.ViewMod
             if (ggg == null || ggg.Value.Count == 0) return;
             foreach (var g in TypeItems)
             {
-                if(g.IsSelected)
+                if (g.IsSelected)
                 {
                     g.IsShow = true;
                     for (int i = 0; i < g.Value.Count; i++)
                     {
-                        g.Value[i].IsShow = true ;
+                        g.Value[i].IsShow = true;
                     }
-                }else
+                }
+                else
                 {
                     g.IsShow = false;
                     g.IsSelectedAll = false;
@@ -80,7 +81,7 @@ namespace Wlst.Ux.EquipemntLightFault.EquipmentFaultRecordQueryViewModel.ViewMod
                         g.Value[i].IsSelected = false;
                     }
                 }
-                
+
             }
             //if(ggg.IsSelected)
             //{
@@ -91,7 +92,7 @@ namespace Wlst.Ux.EquipemntLightFault.EquipmentFaultRecordQueryViewModel.ViewMod
             //        g.IsShow = true;
             //    }
             //}
-            
+
         }
         private void LoadXml()
         {
@@ -100,25 +101,27 @@ namespace Wlst.Ux.EquipemntLightFault.EquipmentFaultRecordQueryViewModel.ViewMod
             {
                 if (Convert.ToInt32(infos["IsShowArgsInErrInfo"]) == 1)
                 {
-                    ArgsInfoVisi = true ;
-                    ArgsInfoVisiE = false ;   
-                }else if(Convert.ToInt32(infos["IsShowArgsInErrInfo"]) == 2)
+                    ArgsInfoVisi = true;
+                    ArgsInfoVisiE = false;
+                }
+                else if (Convert.ToInt32(infos["IsShowArgsInErrInfo"]) == 2)
                 {
                     ArgsInfoVisi = true;
-                    ArgsInfoVisiE = true  ;   
-                }else
+                    ArgsInfoVisiE = true;
+                }
+                else
                 {
-                    ArgsInfoVisi = false ;
-                    ArgsInfoVisiE = false; 
+                    ArgsInfoVisi = false;
+                    ArgsInfoVisiE = false;
                 }
 
             }
             else
             {
-                ArgsInfoVisi = false ;
-                ArgsInfoVisiE = false; 
+                ArgsInfoVisi = false;
+                ArgsInfoVisiE = false;
             }
-                
+
 
 
 
@@ -141,8 +144,8 @@ namespace Wlst.Ux.EquipemntLightFault.EquipmentFaultRecordQueryViewModel.ViewMod
         /// <summary>
         /// 记录需要呈现电流电压等数据的的故障id
         /// </summary>
-        private static List<int> Sh = new List<int>() ;
-
+        private static List<int> Sh = new List<int>();
+        private bool _thisViewActive;
         public void NavOnLoad(params object[] parsObjects)
         {
 
@@ -162,20 +165,20 @@ namespace Wlst.Ux.EquipemntLightFault.EquipmentFaultRecordQueryViewModel.ViewMod
                 RequestTmlExistFaultsInfos();
             }
 
-          
+
             LoadXml();
             //是否呈现删除按钮,管理员权限并且勾选选项 才呈现
             CmdDeleteVisi = Wlst.Cr.CoreMims.Services.UserInfo.UserLoginInfo.D && Wlst.Cr.CoreOne.Services.OptionXmlSvr.GetOptionBool(3102, 1, false) ? Visibility.Visible : Visibility.Collapsed;
-            
+
             var lsthase = new List<int>();
             foreach (var f in EquipmentModelComponentHolding.DicEquipmentModels.Values)
             {
                 lsthase.Add(f.ModelKey);
-               
+
             }
             lsthase.Add(0000); //自定义故障 lvf
 
-            CountPreErrs = false  ;
+            CountPreErrs = false;
 
             IsCalcFault = Wlst.Cr.CoreOne.Services.OptionXmlSvr.GetOptionBool(3102, 2, false);
 
@@ -198,67 +201,67 @@ namespace Wlst.Ux.EquipemntLightFault.EquipmentFaultRecordQueryViewModel.ViewMod
             //foreach (var g in TypeItems) count += g.Value.Count;
             //if (count < 5)
             //{
-                TypeItems.Clear();
+            TypeItems.Clear();
 
-                //var ntg = new NameIntBoolXg {Name = "所有报警", Value = 0, IsSelected = true};
-                //ntg.OnIsSelectedChanged += new EventHandler(ntg_OnIsSelectedChanged);
-                //ntg.IsMonitor = true;
+            //var ntg = new NameIntBoolXg {Name = "所有报警", Value = 0, IsSelected = true};
+            //ntg.OnIsSelectedChanged += new EventHandler(ntg_OnIsSelectedChanged);
+            //ntg.IsMonitor = true;
 
-                //  FaultType.Add(ntg);
+            //  FaultType.Add(ntg);
 
-                var lst = new Dictionary<Tuple<int, int, int, string>, List<Tuple<int, string>>>();
+            var lst = new Dictionary<Tuple<int, int, int, string>, List<Tuple<int, string>>>();
 
-                foreach (var g in Sr.EquipemntLightFault.Services.FaultClassisDef.FaultClass)
+            foreach (var g in Sr.EquipemntLightFault.Services.FaultClassisDef.FaultClass)
+            {
+                var t = g;
+                if (!lsthase.Contains(g.Item1)) continue;
+                if (lst.ContainsKey(g)) continue;
+                if (g.Item4 != "自定义故障")
                 {
-                    var t = g;
-                    if (!lsthase.Contains(g.Item1)) continue;
-                    if (lst.ContainsKey(g)) continue;
-                    if (g.Item4 != "自定义故障")
-                    {
-                        t =new Tuple<int, int, int, string>(g.Item1,g.Item2,g.Item3,"  "+g.Item4+"  ");
-                    }
-                    else
-                    {
-                        t = new Tuple<int, int, int, string>(g.Item1, g.Item2, g.Item3, g.Item4);
-                    }
-                    lst.Add(t, new List<Tuple<int, string>>());
-
+                    t = new Tuple<int, int, int, string>(g.Item1, g.Item2, g.Item3, "  " + g.Item4 + "  ");
                 }
-
-                foreach (var t in Sr.EquipemntLightFault.Services.TmlFaultTypeInfoServices.InfoDictionary)
+                else
                 {
-                    if (!t.Value.IsEnable) continue;
-                    foreach (var f in lst)
-                    {
-                        if (t.Key >= f.Key.Item2 && t.Key <= f.Key.Item3)
-                        {
-                            if (!f.Value.Contains(new Tuple<int, string>(t.Key, t.Value.FaultNameByDefine)))
-                                f.Value.Add(new Tuple<int, string>(t.Key, t.Value.FaultNameByDefine));
-                        }
-                    }
+                    t = new Tuple<int, int, int, string>(g.Item1, g.Item2, g.Item3, g.Item4);
                 }
+                lst.Add(t, new List<Tuple<int, string>>());
 
+            }
 
-                foreach (var g in lst)
+            foreach (var t in Sr.EquipemntLightFault.Services.TmlFaultTypeInfoServices.InfoDictionary)
+            {
+                if (!t.Value.IsEnable) continue;
+                foreach (var f in lst)
                 {
-
-                    var gnt = new OperatorTypeItem()
-                                  {
-                                      IsSelected = false,
-                                      Name = g.Key.Item4,
-                                      Value = new ObservableCollection<NameIntBool>(),
-                                      IsShow =false ,
-                                  };
-                    foreach (var f in g.Value)
+                    if (t.Key >= f.Key.Item2 && t.Key <= f.Key.Item3)
                     {
-                        gnt.Value.Add(new NameIntBool() { IsSelected = false, Name = f.Item2, Value = f.Item1 ,IsShow = false });
-                    }
-                    if (gnt.Value.Count > 0)
-                    {
-                        gnt.OnIsSelectedChanged += new EventHandler(ntg_OnIsSelectedChanged);
-                        TypeItems.Add(gnt);
+                        if (!f.Value.Contains(new Tuple<int, string>(t.Key, t.Value.FaultNameByDefine)))
+                            f.Value.Add(new Tuple<int, string>(t.Key, t.Value.FaultNameByDefine));
                     }
                 }
+            }
+
+
+            foreach (var g in lst)
+            {
+
+                var gnt = new OperatorTypeItem()
+                {
+                    IsSelected = false,
+                    Name = g.Key.Item4.Trim(),
+                    Value = new ObservableCollection<NameIntBool>(),
+                    IsShow = false,
+                };
+                foreach (var f in g.Value)
+                {
+                    gnt.Value.Add(new NameIntBool() { IsSelected = false, Name = f.Item2.Trim(), Value = f.Item1 , IsShow = false });
+                }
+                if (gnt.Value.Count > 0)
+                {
+                    gnt.OnIsSelectedChanged += new EventHandler(ntg_OnIsSelectedChanged);
+                    TypeItems.Add(gnt);
+                }
+            }
 
             //}
             // if (FaultType.Count > 0) CurrentSelectType = FaultType[0];
@@ -269,24 +272,25 @@ namespace Wlst.Ux.EquipemntLightFault.EquipmentFaultRecordQueryViewModel.ViewMod
             //}
 
             _dtQuery = DateTime.Now.AddDays(-1);
-            IsSingleEquipmentQuery = false  ;
-            IsOldFaultQuery = false ;
+            IsSingleEquipmentQuery = false;
+            //IsOldFaultQuery = true;
+            IsOldFaultQuery = false;
 
 
             GetAllFaultName();
 
 
 
-            //添加区域  lvf 2018年6月15日09:40:49  
-            AreaName.Clear();
-            getAreaRId();
-            if (AreaName.Count > 0)
-            {
-                if (AreaComboBoxSelected == null) AreaComboBoxSelected = AreaName.First();
-            }
-            AreaVisi = Visibility.Collapsed;
-            if (AreaName.Count > 1) AreaVisi = Visibility.Visible;
-            QueryMode = 3;
+            ////添加区域  lvf 2018年6月15日09:40:49  
+            //AreaName.Clear();
+            //getAreaRId();
+            //if (AreaName.Count > 0)
+            //{
+            //    if (AreaComboBoxSelected == null) AreaComboBoxSelected = AreaName.First();
+            //}
+            //AreaVisi = Visibility.Collapsed;
+            //if (AreaName.Count > 1) AreaVisi = Visibility.Visible;
+            //QueryMode = 3;
 
 
 
@@ -309,7 +313,7 @@ namespace Wlst.Ux.EquipemntLightFault.EquipmentFaultRecordQueryViewModel.ViewMod
                 SelectedRtus.Clear();
                 SelectedRtus = rtus;
 
-                QueryMode = 2;
+                //QueryMode = 2;
                 if (rtus.Count == 0)
                 {
                     this.SelectedRtus.Clear();
@@ -350,7 +354,7 @@ namespace Wlst.Ux.EquipemntLightFault.EquipmentFaultRecordQueryViewModel.ViewMod
                 {
                     SelectedRtus.Add(rutid);
                     RtuId = rutid;
-                    QueryMode = 2;
+                    //QueryMode = 2;
                     this.IsAdvancedQueryChecked = true;
                     this.IsSingleEquipmentQuery = true;
                     //IsNewAllQuery = false;
@@ -385,7 +389,7 @@ namespace Wlst.Ux.EquipemntLightFault.EquipmentFaultRecordQueryViewModel.ViewMod
                         typeid.Add(f.Value);
                 }
             }
-            QueryNewErrorAllRtuFault(typeid, false);
+            QueryNewErrorAllRtuFault(new List<int>(), typeid, false);
         }
 
         //lvf 2018年8月9日15:49:59  请求最新故障
@@ -435,6 +439,7 @@ namespace Wlst.Ux.EquipemntLightFault.EquipmentFaultRecordQueryViewModel.ViewMod
             this.Remind = "";
             ItemCount = 0;
             PageTotal = "";
+            _faultName.Clear();
         }
 
         #region tab
@@ -474,155 +479,6 @@ namespace Wlst.Ux.EquipemntLightFault.EquipmentFaultRecordQueryViewModel.ViewMod
     }
 
 
-    /// <summary>
-    /// 打印及打印预览
-    /// </summary>
-    public partial class EquipmentFaultRecordQueryViewModel
-    {
-
-        //wyg  打印预览
-        #region CmdPrintPriview
-        private ICommand _cmdPrintPriview;
-        public ICommand CmdPrintPriview
-        {
-            get
-            {
-                if (_cmdPrintPriview == null)
-                    _cmdPrintPriview = new RelayCommand(ExCmdPrintPriview, CanExPrintPriview, false);
-                return _cmdPrintPriview;
-            }
-        }
-
-        private void ExCmdPrintPriview()
-        {
-            _dtCmdExport = DateTime.Now;
-            try
-            {
-                var tabletitle = new List<string>();
-                tabletitle.Add("地址");
-                tabletitle.Add("名称");
-                tabletitle.Add("故障回路");
-                tabletitle.Add("故障名称");
-                tabletitle.Add("发生时间");
-                if (IsOldFaultQuery) tabletitle.Add("消除时间");
-                tabletitle.Add("备注");
-                var table = new List<List<string>>();
-                DateTime createtime;
-                DateTime removetime;
-                DateTimeFormatInfo dtFormat = new DateTimeFormatInfo();
-                dtFormat.ShortDatePattern = "yyyy/MM/dd HH:mm:ss";
-                foreach (var g in Records)
-                {
-                    createtime = Convert.ToDateTime(g.DtCreateTime, dtFormat);
-                    var tem = new List<string>();
-                    tem.Add(g.PhyId.ToString());
-                    tem.Add(g.RtuName);
-                    tem.Add(g.RtuLoopName);
-                    tem.Add(g.FaultName);
-                    tem.Add(createtime.ToString("MM/dd HH:mm:ss"));
-                    if (IsOldFaultQuery)
-                    {
-                        removetime = Convert.ToDateTime(g.DtRemoceTime, dtFormat);
-                        tem.Add(removetime.ToString("MM/dd HH:mm:ss"));
-                    }
-                    tem.Add(g.Remark);
-                    table.Add(tem);
-                }
-                print.Prints.PrintPriview(tabletitle, table, false, "故障统计表", Wlst.Sr.EquipmentInfoHolding.Services.Others.SystemName, "", "");
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-        }
-
-        private bool CanExPrintPriview()
-        {
-            if (Records.Count < 1) return false;
-            return DateTime.Now.Ticks - _dtCmdExport.Ticks > 30000000;
-        }
-
-
-        #endregion
-
-        //打印
-        #region CmdPrint
-        private ICommand _cmdPrint;
-        public ICommand CmdPrint
-        {
-            get
-            {
-                if (_cmdPrint == null)
-                    _cmdPrint = new RelayCommand(ExCmdPrint, CanExPrint, false);
-                return _cmdPrint;
-            }
-        }
-
-        private void ExCmdPrint()
-        {
-            _dtCmdExport = DateTime.Now;
-            try
-            {
-                var tabletitle = new List<string>();
-                tabletitle.Add("地址");
-                tabletitle.Add("名称");
-                tabletitle.Add("故障回路");
-                tabletitle.Add("故障名称");
-                tabletitle.Add("发生时间");
-                if (IsOldFaultQuery) tabletitle.Add("消除时间");
-                tabletitle.Add("备注");
-                var table = new List<List<string>>();
-                DateTime createtime;
-                DateTime removetime;
-                DateTimeFormatInfo dtFormat = new DateTimeFormatInfo();
-                dtFormat.ShortDatePattern = "yyyy/MM/dd HH:mm:ss";
-                foreach (var g in Records)
-                {
-                    createtime = Convert.ToDateTime(g.DtCreateTime, dtFormat);
-                    var tem = new List<string>();
-                    tem.Add(g.PhyId.ToString());
-                    tem.Add(g.RtuName);
-                    tem.Add(g.RtuLoopName);
-                    tem.Add(g.FaultName);
-                    tem.Add(createtime.ToString("MM/dd HH:mm:ss"));
-                    if (IsOldFaultQuery)
-                    {
-                        removetime = Convert.ToDateTime(g.DtRemoceTime, dtFormat);
-                        tem.Add(removetime.ToString("MM/dd HH:mm:ss"));
-                    }
-                    tem.Add(g.Remark);
-                    table.Add(tem);
-                }
-                print.Prints.Print(tabletitle, table, false, "故障统计表", Wlst.Sr.EquipmentInfoHolding.Services.Others.SystemName, "", "");
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-        }
-
-        private bool CanExPrint()
-        {
-            if (Records.Count < 1) return false;
-            return DateTime.Now.Ticks - _dtCmdExport.Ticks > 30000000;
-        }
-        #endregion
-    }
-
-
-
-
-
-
-
-
-     public partial class EquipmentFaultRecordQueryViewModel
-     {
-         //多终端选中 协议
-         public List<int> SelectedRtus = new List<int>();
-     }
     /// <summary>
     /// Field ,Attri, ICommand ,Methods
     /// </summary>
@@ -681,7 +537,7 @@ namespace Wlst.Ux.EquipemntLightFault.EquipmentFaultRecordQueryViewModel.ViewMod
                     if (lastCount == 0) lastCount = DateTime.Now.Ticks;
                     if (DateTime.Now.Ticks - lastCount < 10000000) counxxxxx++;
                     else counxxxxx = 0;
-                    if(counxxxxx >5)
+                    if (counxxxxx > 5)
                     {
                         CounterLableDoubleClick = 5;
                     }
@@ -716,20 +572,20 @@ namespace Wlst.Ux.EquipemntLightFault.EquipmentFaultRecordQueryViewModel.ViewMod
 
         #region RtuId
 
-        private int _iphyd;
+        //private int _iphyd;
 
-        public int PhyId
-        {
-            get { return _iphyd; }
-            set
-            {
-                if (_iphyd != value)
-                {
-                    _iphyd = value;
-                    this.RaisePropertyChanged(() => this.PhyId);
-                }
-            }
-        }
+        //public int PhyId
+        //{
+        //    get { return _iphyd; }
+        //    set
+        //    {
+        //        if (_iphyd != value)
+        //        {
+        //            _iphyd = value;
+        //            this.RaisePropertyChanged(() => this.PhyId);
+        //        }
+        //    }
+        //}
 
         private int _rtuid;
 
@@ -742,7 +598,7 @@ namespace Wlst.Ux.EquipemntLightFault.EquipmentFaultRecordQueryViewModel.ViewMod
                 if (value != _rtuid)
                 {
                     _rtuid = value;
-                    PhyId = value;
+
                     RaisePropertyChanged(() => RtuId);
                     RtuName = "";
                     if (
@@ -750,21 +606,22 @@ namespace Wlst.Ux.EquipemntLightFault.EquipmentFaultRecordQueryViewModel.ViewMod
                              InfoItems.ContainsKey
                              (_rtuid))
                     {
+                        var PhyId = value;
                         var tml =
                             Sr.EquipmentInfoHolding.Services.EquipmentDataInfoHold.InfoItems
-                                [_rtuid];
-                        RtuName = tml.RtuName;
-
-                        if (tml.RtuFid == 0)
+                                [_rtuid]; if (tml.RtuFid == 0)
                             PhyId = tml.RtuPhyId;
                         else PhyId = value;
+                        RtuName = PhyId + " - " + tml.RtuName;
+
+
                     }
-                    if (RtuId>1700000 && RtuId<1800000  )
+                    if (RtuId > 1700000 && RtuId < 1800000)
                     {
                         var nametmp = Wlst.Sr.SlusglInfoHold.Services.SluSglInfoHold.MySlef.GetField(RtuId);
                         if (nametmp == null) return;
-                        RtuName = nametmp.FieldName;
-                        PhyId = nametmp.PhyId;
+                        RtuName = nametmp.PhyId + " - " + nametmp.FieldName;
+                        //PhyId = nametmp.PhyId;
 
                     }
 
@@ -831,7 +688,7 @@ namespace Wlst.Ux.EquipemntLightFault.EquipmentFaultRecordQueryViewModel.ViewMod
 
         #region ArgsInfoVisi
 
-        private bool _argsInfoVisi = false ;
+        private bool _argsInfoVisi = false;
 
         public bool ArgsInfoVisi
         {
@@ -1095,9 +952,9 @@ namespace Wlst.Ux.EquipemntLightFault.EquipmentFaultRecordQueryViewModel.ViewMod
                     if (IsSingleEquipmentQuery && Wlst.Sr.EquipmentInfoHolding.Services.Others.CurrentSelectRtuId != 0)
                     {
                         RtuId = Wlst.Sr.EquipmentInfoHolding.Services.Others.CurrentSelectRtuId;
-                        SelectedRtus.Add(RtuId);  
+                        SelectedRtus.Add(RtuId);
                     }
-                       
+
                 }
             }
         }
@@ -1124,7 +981,8 @@ namespace Wlst.Ux.EquipemntLightFault.EquipmentFaultRecordQueryViewModel.ViewMod
                 {
                     ViewHeight = 0;
                     PagerVisi = Visibility.Collapsed;
-                }else if(IsShowCalcFaultDetail)
+                }
+                else if (IsShowCalcFaultDetail)
                 {
                     ViewHeight = 200;
                 }
@@ -1133,6 +991,15 @@ namespace Wlst.Ux.EquipemntLightFault.EquipmentFaultRecordQueryViewModel.ViewMod
                     PagerVisi = middleVisi;
                 }
                 OnStartTimeEnableChange();
+
+                if(value)
+                {
+                    IsShowChkHideLoopErrs = false;
+                }
+                else
+                {
+                    IsShowChkHideLoopErrs = Sr.EquipmentInfoHolding.Services.Others.CityNum == 7;
+                }
             }
         }
 
@@ -1166,14 +1033,14 @@ namespace Wlst.Ux.EquipemntLightFault.EquipmentFaultRecordQueryViewModel.ViewMod
             }
         }
 
-
+       // && IsOldFaultQuery==false
         private bool _isShowChkHideLoopErrs;
         /// <summary>
         /// 苏州新区 需要屏蔽晚上回路报警 谁吃得消  lvf 2019年3月27日10:35:30   一塌糊涂 是否呈现单选框
         /// </summary>
         public bool IsShowChkHideLoopErrs
         {
-            get { return _isShowChkHideLoopErrs; }
+            get { return _isShowChkHideLoopErrs  ; }
             set
             {
                 if (_isShowChkHideLoopErrs == value) return;
@@ -1249,20 +1116,20 @@ namespace Wlst.Ux.EquipemntLightFault.EquipmentFaultRecordQueryViewModel.ViewMod
             }
         }
 
-        private bool _isCountNewErrs;
-        /// <summary>
-        /// 是否统计现存故障
-        /// </summary>
-        public bool CountNewErrs
-        {
-            get { return _isCountNewErrs; }
-            set
-            {
-                if (_isCountNewErrs == value) return;
-                _isCountNewErrs = value;
-                RaisePropertyChanged(() => CountNewErrs);
-            }
-        }
+        //private bool _isCountNewErrs;
+        ///// <summary>
+        ///// 是否统计现存故障
+        ///// </summary>
+        //public bool CountNewErrs
+        //{
+        //    get { return _isCountNewErrs; }
+        //    set
+        //    {
+        //        if (_isCountNewErrs == value) return;
+        //        _isCountNewErrs = value;
+        //        RaisePropertyChanged(() => CountNewErrs);
+        //    }
+        //}
 
         private bool _isOlIsNewAllQuerydFaultQuery;
 
@@ -1327,7 +1194,7 @@ namespace Wlst.Ux.EquipemntLightFault.EquipmentFaultRecordQueryViewModel.ViewMod
                 if (_dtEndTime != value)
                 {
                     _dtEndTime = value;
-                    
+
                     RaisePropertyChanged(() => DtEndTime);
                 }
             }
@@ -1396,80 +1263,83 @@ namespace Wlst.Ux.EquipemntLightFault.EquipmentFaultRecordQueryViewModel.ViewMod
 
 
         #region  QueryMode 
-        private int _queryMode;
+        //private int _queryMode;
 
-        /// <summary>
-        /// 查询模式   1：全部设备   2：当前设备   3：区域查询  lvf 2018年6月15日09:37:17
-        /// </summary>
-        public int QueryMode
-        {
-            get { return _queryMode; }
-            set
-            {
-                if (value != _queryMode)
-                {
-                    _queryMode = value;
-                    this.RaisePropertyChanged(() => this.QueryMode);
-                    if (QueryMode == 2)
-                    {
-                        IsSingleEquipmentQuery = true;
-                        //如果是单个终端查询，这无视终端类型的判断。
-                        RtuTypeSelected = RtuType[0];
-                    }
-                    else
-                    {
-                        IsSingleEquipmentQuery = false;
-                    }
-                }
-            }
-        }
+        ///// <summary>
+        ///// 查询模式   1：全部设备   2：当前设备   3：区域查询  lvf 2018年6月15日09:37:17
+        ///// </summary>
+        //public int QueryMode
+        //{
+        //    get { return _queryMode; }
+        //    set
+        //    {
+        //        if (value != _queryMode)
+        //        {
+        //            _queryMode = value;
+        //            this.RaisePropertyChanged(() => this.QueryMode);
+        //            if (QueryMode == 2)
+        //            {
+        //                IsSingleEquipmentQuery = true;
+        //                //如果是单个终端查询，这无视终端类型的判断。
+        //                RtuTypeSelected = RtuType[0];
+        //            }
+        //            else
+        //            {
+        //                IsSingleEquipmentQuery = false;
+        //            }
+        //        }
+        //    }
+        //}
+
+     
+  
 
         #endregion
 
         #region AreaId
 
-        public void getAreaRId()
-        {
-            AreaName.Clear();
-            AreaName.Add(new AreaInt() { Value = "全部", Key = -1 });
-            if (Cr.CoreMims.Services.UserInfo.UserLoginInfo.D)
-            {
-                foreach (var t in Wlst.Sr.EquipmentInfoHolding.Services.AreaInfoHold.MySlef.AreaInfo)
-                {
-                    string area = t.Value.AreaName;
-                    AreaName.Add(new AreaInt() { Value = t.Value.AreaId.ToString("d2") + "-" + area, Key = t.Value.AreaId });
-                }
-            }
-            else
-            {
-                foreach (var t in Cr.CoreMims.Services.UserInfo.UserLoginInfo.AreaR)
-                {
-                    if (Sr.EquipmentInfoHolding.Services.AreaInfoHold.MySlef.AreaInfo.ContainsKey(t))
-                    {
-                        string area = Sr.EquipmentInfoHolding.Services.AreaInfoHold.MySlef.AreaInfo[t].AreaName;
-                        AreaName.Add(new AreaInt() { Value = t.ToString("d2") + "-" + area, Key = t });
-                    }
-                }
-            }
+        //public void getAreaRId()
+        //{
+        //    AreaName.Clear();
+        //    AreaName.Add(new AreaInt() { Value = "全部", Key = -1 });
+        //    if (Cr.CoreMims.Services.UserInfo.UserLoginInfo.D)
+        //    {
+        //        foreach (var t in Wlst.Sr.EquipmentInfoHolding.Services.AreaInfoHold.MySlef.AreaInfo)
+        //        {
+        //            string area = t.Value.AreaName;
+        //            AreaName.Add(new AreaInt() { Value = t.Value.AreaId.ToString("d2") + "-" + area, Key = t.Value.AreaId });
+        //        }
+        //    }
+        //    else
+        //    {
+        //        foreach (var t in Cr.CoreMims.Services.UserInfo.UserLoginInfo.AreaR)
+        //        {
+        //            if (Sr.EquipmentInfoHolding.Services.AreaInfoHold.MySlef.AreaInfo.ContainsKey(t))
+        //            {
+        //                string area = Sr.EquipmentInfoHolding.Services.AreaInfoHold.MySlef.AreaInfo[t].AreaName;
+        //                AreaName.Add(new AreaInt() { Value = t.ToString("d2") + "-" + area, Key = t });
+        //            }
+        //        }
+        //    }
 
 
-        }
+        //}
 
 
-        private static ObservableCollection<AreaInt> _devices;
+        //private static ObservableCollection<AreaInt> _devices;
 
-        public static ObservableCollection<AreaInt> AreaName
-        {
-            get
-            {
-                if (_devices == null)
-                {
-                    _devices = new ObservableCollection<AreaInt>();
-                }
-                return _devices;
-            }
+        //public static ObservableCollection<AreaInt> AreaName
+        //{
+        //    get
+        //    {
+        //        if (_devices == null)
+        //        {
+        //            _devices = new ObservableCollection<AreaInt>();
+        //        }
+        //        return _devices;
+        //    }
 
-        }
+        //}
 
         public class AreaInt : Wlst.Cr.Core.CoreServices.ObservableObject
         {
@@ -1504,176 +1374,178 @@ namespace Wlst.Ux.EquipemntLightFault.EquipmentFaultRecordQueryViewModel.ViewMod
             }
         }
 
-        private AreaInt _areacomboboxselected;
-        private int AreaId;
+        //private AreaInt _areacomboboxselected;
+        //private int AreaId;
 
-        public AreaInt AreaComboBoxSelected
-        {
-            get { return _areacomboboxselected; }
-            set
-            {
-                if (_areacomboboxselected != value)
-                {
-                    _areacomboboxselected = value;
-                    this.RaisePropertyChanged(() => this.AreaComboBoxSelected);
-                    if (value == null) return;
-                    AreaId = value.Key;
+        //public AreaInt AreaComboBoxSelected
+        //{
+        //    get { return _areacomboboxselected; }
+        //    set
+        //    {
+        //        if (_areacomboboxselected != value)
+        //        {
+        //            _areacomboboxselected = value;
+        //            this.RaisePropertyChanged(() => this.AreaComboBoxSelected);
+        //            if (value == null) return;
+        //            AreaId = value.Key;
 
-                    GetGrpIdByAreaId();
-                }
-            }
-        }
-
-
-
-        private Visibility _txtVisi;
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public Visibility AreaVisi
-        {
-            get { return _txtVisi; }
-            set
-            {
-                if (value != _txtVisi)
-                {
-                    _txtVisi = value;
-                    this.RaisePropertyChanged(() => this.AreaVisi);
-                }
-            }
-        }
+        //            GetGrpIdByAreaId();
+        //        }
+        //    }
+        //}
 
 
 
+        //private Visibility _txtVisi;
 
-        #endregion
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public Visibility AreaVisi
+        //{
+        //    get { return _txtVisi; }
+        //    set
+        //    {
+        //        if (value != _txtVisi)
+        //        {
+        //            _txtVisi = value;
+        //            this.RaisePropertyChanged(() => this.AreaVisi);
+        //        }
+        //    }
+        //}
 
-
-        #region  Group
-
-        private Visibility _txtgrpVisi;
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public Visibility GrpVisi
-        {
-            get { return _txtgrpVisi; }
-            set
-            {
-                if (value != _txtgrpVisi)
-                {
-                    _txtgrpVisi = value;
-                    this.RaisePropertyChanged(() => this.GrpVisi);
-                }
-            }
-        }
-        private static ObservableCollection<GroupInt> _grpdevices;
-
-        public static ObservableCollection<GroupInt> GroupName
-        {
-            get
-            {
-                if (_grpdevices == null)
-                {
-                    _grpdevices = new ObservableCollection<GroupInt>();
-                }
-                return _grpdevices;
-            }
-
-        }
-
-        public class GroupInt : Wlst.Cr.Core.CoreServices.ObservableObject
-        {
-            private int _key;
-
-            public int Key
-            {
-                get { return _key; }
-                set
-                {
-                    if (_key != value)
-                    {
-                        _key = value;
-                        this.RaisePropertyChanged(() => this.Key);
-                    }
-                }
-            }
-
-            private string _value;
-
-            public string Value
-            {
-                get { return _value; }
-                set
-                {
-                    if (value != _value)
-                    {
-                        _value = value;
-                        this.RaisePropertyChanged(() => this.Value);
-                    }
-                }
-            }
-        }
-
-        private GroupInt _grpcomboboxselected;
-        private int GrpId;
-
-        public GroupInt GroupComboBoxSelected
-        {
-            get { return _grpcomboboxselected; }
-            set
-            {
-                if (_grpcomboboxselected != value)
-                {
-                    _grpcomboboxselected = value;
-                    this.RaisePropertyChanged(() => this.GroupComboBoxSelected);
-                    if (value == null) return;
-                    GrpId = value.Key;
-                }
-            }
-        }
-
-        public void GetGrpIdByAreaId()
-        {
-            GroupName.Clear();
-
-            if (AreaId == -1)//全部区域
-            {
-                GrpVisi = Visibility.Collapsed;
-
-            }
-            else
-            {
-                GrpVisi = Visibility.Visible;
-                var area = Wlst.Sr.EquipmentInfoHolding.Services.AreaInfoHold.MySlef.GetAreaInfo(AreaId);
-                if (area == null) return;
-                var grps =
-                    Wlst.Sr.EquipmentInfoHolding.Services.ServicesGrpSingleInfoHold.GrpInfoList(AreaId);
-                GroupName.Add(new GroupInt() { Value = "全部", Key = -1 });
-                if (grps.Count > 0)
-                {
-                    var grpsTmp = (from t in grps orderby t.GroupId select t).ToList();
-                    foreach (var f in grpsTmp)
-                    {
-
-                        GroupName.Add(new GroupInt() { Value = f.GroupName, Key = f.GroupId });
-
-                    }
-
-
-                }
-                GroupComboBoxSelected = GroupName[0];
-            }
-
-
-
-        }
 
 
 
         #endregion
+
+
+        //#region  Group
+
+        //private Visibility _txtgrpVisi;
+
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public Visibility GrpVisi
+        //{
+        //    get { return _txtgrpVisi; }
+        //    set
+        //    {
+        //        if (value != _txtgrpVisi)
+        //        {
+        //            _txtgrpVisi = value;
+        //            this.RaisePropertyChanged(() => this.GrpVisi);
+        //        }
+        //    }
+        //}
+        //private static ObservableCollection<GroupInt> _grpdevices;
+
+        //public static ObservableCollection<GroupInt> GroupName
+        //{
+        //    get
+        //    {
+        //        if (_grpdevices == null)
+        //        {
+        //            _grpdevices = new ObservableCollection<GroupInt>();
+        //        }
+        //        return _grpdevices;
+        //    }
+
+        //}
+
+        //public class GroupInt : Wlst.Cr.Core.CoreServices.ObservableObject
+        //{
+        //    private int _key;
+
+        //    public int Key
+        //    {
+        //        get { return _key; }
+        //        set
+        //        {
+        //            if (_key != value)
+        //            {
+        //                _key = value;
+        //                this.RaisePropertyChanged(() => this.Key);
+        //            }
+        //        }
+        //    }
+
+        //    private string _value;
+
+        //    public string Value
+        //    {
+        //        get { return _value; }
+        //        set
+        //        {
+        //            if (value != _value)
+        //            {
+        //                _value = value;
+        //                this.RaisePropertyChanged(() => this.Value);
+        //            }
+        //        }
+        //    }
+        //}
+
+        //private GroupInt _grpcomboboxselected;
+        //private int GrpId;
+
+        //public GroupInt GroupComboBoxSelected
+        //{
+        //    get { return _grpcomboboxselected; }
+        //    set
+        //    {
+        //        if (_grpcomboboxselected != value)
+        //        {
+        //            _grpcomboboxselected = value;
+        //            this.RaisePropertyChanged(() => this.GroupComboBoxSelected);
+        //            if (value == null) return;
+        //            GrpId = value.Key;
+        //        }
+        //    }
+        //}
+
+        //public void GetGrpIdByAreaId()
+        //{
+        //    GroupName.Clear();
+
+        //    if (AreaId == -1)//全部区域
+        //    {
+        //        GrpVisi = Visibility.Collapsed;
+
+        //    }
+        //    else
+        //    {
+        //        GrpVisi = Visibility.Visible;
+        //        var area = Wlst.Sr.EquipmentInfoHolding.Services.AreaInfoHold.MySlef.GetAreaInfo(AreaId);
+        //        if (area == null) return;
+        //        var grps =
+        //            Wlst.Sr.EquipmentInfoHolding.Services.ServicesGrpSingleInfoHold.GrpInfoList(AreaId);
+        //        GroupName.Add(new GroupInt() { Value = "全部", Key = -1 });
+        //        if (grps.Count > 0)
+        //        {
+        //            var grpsTmp = (from t in grps orderby t.GroupId select t).ToList();
+        //            foreach (var f in grpsTmp)
+        //            {
+        //                var rtn = Wlst.Sr.EquipmentInfoHolding.Services.ServicesGrpSingleInfoHold.GetGrpTmlList(
+        //               AreaId, f.GroupId);
+        //                if (rtn.Count == 0) continue;
+        //                GroupName.Add(new GroupInt() { Value = f.GroupName, Key = f.GroupId });
+
+        //            }
+
+
+        //        }
+        //        GroupComboBoxSelected = GroupName[0];
+        //    }
+
+
+
+        //}
+
+
+
+        //#endregion
 
 
         #region RtuType
@@ -1710,19 +1582,19 @@ namespace Wlst.Ux.EquipemntLightFault.EquipmentFaultRecordQueryViewModel.ViewMod
 
                     if (Wlst.Sr.EquipmentInfoHolding.Services.Others.LocalRtuType.Count != 0)
                     {
-                        _rtuType.Add(new NameValueInt() {Name = "所有", Value = -1});
+                        _rtuType.Add(new NameValueInt() { Name = "所有", Value = -1 });
                         foreach (var g in Wlst.Sr.EquipmentInfoHolding.Services.Others.LocalRtuType)
                         {
-                            _rtuType.Add(new NameValueInt() {Name = g.Value.Item1, Value = g.Key});
+                            _rtuType.Add(new NameValueInt() { Name = g.Value.Item1, Value = g.Key });
                         }
                         return _rtuType;
                     }
 
-                    _rtuType.Add(new NameValueInt() {Name = "所有", Value = -1});
-                    _rtuType.Add(new NameValueInt() {Name = "路灯", Value = 1});
-                    _rtuType.Add(new NameValueInt() {Name = "亮化", Value = 2});
-                    _rtuType.Add(new NameValueInt() {Name = "广告", Value = 3});
-                    _rtuType.Add(new NameValueInt() {Name = "其他", Value = 4});
+                    _rtuType.Add(new NameValueInt() { Name = "所有", Value = -1 });
+                    _rtuType.Add(new NameValueInt() { Name = "路灯", Value = 1 });
+                    _rtuType.Add(new NameValueInt() { Name = "亮化", Value = 2 });
+                    _rtuType.Add(new NameValueInt() { Name = "广告", Value = 3 });
+                    _rtuType.Add(new NameValueInt() { Name = "其他", Value = 4 });
 
 
 
@@ -1888,7 +1760,7 @@ namespace Wlst.Ux.EquipemntLightFault.EquipmentFaultRecordQueryViewModel.ViewMod
             {
                 foreach (var f in g.Value)
                 {
-                   ntg.Add(f.Value);
+                    ntg.Add(f.Value);
                 }
             }
             return ntg;
@@ -1896,19 +1768,18 @@ namespace Wlst.Ux.EquipemntLightFault.EquipmentFaultRecordQueryViewModel.ViewMod
         private void Ex()
         {
             //CmdDeleteVisi = Visibility.Collapsed; lvf 2018年3月28日17:58:05  取消  管理可配置选项呈现删除按钮
-            //Remind = "查询命令已发送...请等待数据反馈！";
+             
             _dtQuery = DateTime.Now;
             Records.Clear();
-            if (!GetCheckedInformation()) return;
             this.Records.Clear();
-            CountPreErrs = false  ;
-            CountNewErrs = false;
+            CountPreErrs = false;
+            //CountNewErrs = false;
             CountErrs = false;
             //ArgsInfoVisi = Wlst.Sr.EquipmentInfoHolding.Services.Others.IsShowArgsInErrInfo;
             PageIndex = 0;
             Query(PageIndex, 0);
 
-            
+
 
             ManageInfoVisi = ManageInfoExist & (!IsOldFaultQuery) & EquipemntLightFaultSetting.IsShowCQJandDGGH;
 
@@ -1922,80 +1793,37 @@ namespace Wlst.Ux.EquipemntLightFault.EquipmentFaultRecordQueryViewModel.ViewMod
 
         }
 
-        private void Query(int pageIndex,int pagingFlag)
+        private void Query(int pageIndex, int pagingFlag)
         {
             var tmptype = GetSelectFaultType();
-            if (IsSingleEquipmentQuery) //单个终端查询 IsSingleEquipmentQuery
+            var lst = GetSelectedRtuLst();
+            if (lst == null)
             {
-                if (RtuId == 0)
-                {
-                    UMessageBox.Show("提醒", "未选择终端！", UMessageBoxButton.Ok);
-                    return;
-                }
-                Remind = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " 正在查询 ...";
-                if (!IsOldFaultQuery) //新故障查询
-                {
-                    // if (tmptype.Count == 0) return;
-                    if (tmptype.Count == 0) //所有故障
-                    {
-                        QueryNewErrorSingleFault(RtuId, false);
-                    }
-                    else //单个故障
-                    {
-                        // if (tmptype.Contains(0)) tmptype.Remove(0);
-                        QueryNewErrorSingleFault(RtuId, tmptype, false);
-                    }
-                }
-                else
-                {
+                return;
 
-                    // if (tmptype.Count == 0) return;
-                    if (tmptype.Count == 0) //所有故障
-                    {
-                        QueryPreErrorSingleFault(RtuId, pageIndex, pagingFlag);
-                    }
-                    else //单个故障
-                    {
-                        //  if (tmptype.Contains(0)) tmptype.Remove(0);
-                        QueryPreErrorSingleFault(RtuId, tmptype, pageIndex, pagingFlag);
-                    }
-                }
             }
-            else   //全部查询  or 区域查询
             {
-                Remind = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " 正在查询 ...";
+                Remind = "正在查询 ...";
 
                 if (!IsOldFaultQuery) //新故障查询
                 {
-                    //  if (tmptype.Count == 0) return;
-                    if (tmptype.Count == 0) //所有故障
-                    {
-                        //QueryNewErrorAllRtuFault();
-                        ResolveNewErrorAllRtuFault(false);
-                    }
-                    else //单个故障
-                    {
-                        //if (tmptype.Contains(0)) tmptype.Remove(0);
-                        QueryNewErrorAllRtuFault(tmptype, false);
-                    }
+                    if (IsAdvancedQueryChecked)
+                        QueryNewErrorAllRtuFault(lst, tmptype, false);
+                    else
+                        QueryNewErrorAllRtuFault(new List<int>(), new List<int>(), false);
+
                 }
                 else
                 {
-
-                    // if (tmptype.Count == 0) return;
-                    if (tmptype.Count == 0) //所有故障
-                    {
-                        QueryPreErrorAllRtuFault(pageIndex, pagingFlag);
-                    }
-                    else //单个故障
-                    {
-                        //if (tmptype.Contains(0)) tmptype.Remove(0);
-                        QueryPreErrorAllRtuFault(tmptype, pageIndex, pagingFlag);
-                    }
+                    //  QueryPreErrorSingleFault(RtuId, tmptype, pageIndex, pagingFlag);
+                    if (IsAdvancedQueryChecked)
+                        QueryPreErrorAllRtuFault(lst, tmptype, pageIndex, pagingFlag);
+                    else
+                        QueryPreErrorAllRtuFault(new List<int>(), new List<int>(), pageIndex, pagingFlag);
                 }
             }
 
-            
+
 
             ManageInfoVisi = ManageInfoExist & (!IsOldFaultQuery) & EquipemntLightFaultSetting.IsShowCQJandDGGH;
 
@@ -2020,346 +1848,14 @@ namespace Wlst.Ux.EquipemntLightFault.EquipmentFaultRecordQueryViewModel.ViewMod
                 if (DtStartTime > DtEndTime) return false;
             }
             else return (_dtPreQueryEndTime.Ticks != DtEndTime.Ticks || _dtPreQueryStartTime.Ticks != DtStartTime.Ticks) &&
-                DateTime.Now.Ticks - _dtQuery.Ticks > 30000000 && DateTime.Now.Ticks - _dtOneAfter.Ticks > 300000 &&
-                DateTime.Now.Ticks - _dtOneBefore.Ticks > 300000;
+                DateTime.Now.Ticks - _dtQuery.Ticks > 30000000;
 
             return (_dtPreQueryEndTime.Ticks != DtEndTime.Ticks || _dtPreQueryStartTime.Ticks != DtStartTime.Ticks) &&
-                 DateTime.Now.Ticks - _dtQuery.Ticks > 3000000 && DateTime.Now.Ticks - _dtOneAfter.Ticks > 300000 &&
-                 DateTime.Now.Ticks - _dtOneBefore.Ticks > 300000;
+                 DateTime.Now.Ticks - _dtQuery.Ticks > 3000000;
         }
 
         #endregion
 
-        #region CmdCountNow
-
-        private DateTime _dtCountNow;
-
-        public ICommand CmdCountNow
-        {
-            get { return new RelayCommand(ExCountNow, CanExCountNow, true); }
-        }
-
-        public List<EquipmentFaultCurr.OneFaultItem> FaultItemsTemp =new List<EquipmentFaultCurr.OneFaultItem>(); 
-        private void ExCountNow()
-        {
-            CountPreErrs = false;
-            CountNewErrs = true;
-            CountErrs = true;
-            //CmdDeleteVisi = Visibility.Collapsed; lvf 2018年3月28日17:58:05  取消  管理可配置选项呈现删除按钮
-            //Remind = "查询命令已发送...请等待数据反馈！";
-            _dtQuery = DateTime.Now;
-            Remind = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " 正在查询 ...";
-            Records.Clear();
-            Recordss.Clear();
-            var tmptype = GetSelectFaultType();
-            if (!GetCheckedInformation()) return;
-
-            this.Recordss.Clear();
-            if (this.TimeLong == Sr.EquipemntLightFault.Services.TmlFaultTypeInfoServices.GetTimeAlarmLong)
-            {
-                CountNewErrs = false;
-                if (IsSingleEquipmentQuery) //单个终端查询
-                {
-                    if (tmptype.Count == 0) //所有故障
-                    {
-                        QueryNewErrorSingleFault(RtuId,true);
-                    }
-                    else //单个故障
-                    {
-                        // if (tmptype.Contains(0)) tmptype.Remove(0);
-
-                        QueryNewErrorSingleFault(RtuId, tmptype,true);
-                    }
-                }
-                else
-                {
-                    if (tmptype.Count == 0) //所有故障
-                    {
-                        //QueryNewErrorAllRtuFault();
-                        ResolveNewErrorAllRtuFault(true);
-                    }
-                    else //单个故障
-                    {
-                        //if (tmptype.Contains(0)) tmptype.Remove(0);
-                        QueryNewErrorAllRtuFault(tmptype,true);
-                    }
-                }
-                
-                return;
-            }
-
-            QueryNowErrCount(TimeLong,FaultItemsTemp);
-            _isOnExport = false;
-            ExportVisi = Visibility.Visible;
-
-        }
-
-        private bool CanExCountNow()
-        {
-            return (_dtPreQueryEndTime.Ticks != DtEndTime.Ticks || _dtPreQueryStartTime.Ticks != DtStartTime.Ticks) &&
-                DateTime.Now.Ticks - _dtQuery.Ticks > 30000000 && DateTime.Now.Ticks - _dtOneAfter.Ticks > 300000 &&
-                DateTime.Now.Ticks - _dtOneBefore.Ticks > 300000;
-
-        }
-
-        #endregion
-
-        #region CmdCountOld
-
-        private DateTime _dtCountOld;
-
-        public ICommand CmdCountOld
-        {
-            get { return new RelayCommand(ExCountOld, CanExCountOld, true); }
-        }
-
-
-        private void ExCountOld()
-        {
-            var tmptype = GetSelectFaultType();
-            int timeTmp;
-            if ((TimeLong / 24) < 1)
-            {
-                UMessageBox.Show("提醒", "请选择大于1天！", UMessageBoxButton.Ok);
-                return;
-            }
-            else
-            {
-                timeTmp = TimeLong / 24;
-            }
-
-            CountPreErrs = true;
-            CountErrs = true;
-            Records.Clear();
-            Recordss.Clear();
-            //CmdDeleteVisi = Visibility.Collapsed; lvf 2018年3月28日17:58:05  取消  管理可配置选项呈现删除按钮
-            //Remind = "查询命令已发送...请等待数据反馈！";
-            _dtQuery = DateTime.Now;
-            Remind = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " 正在查询 ...";
-            if (!GetCheckedInformation()) return;
-           
-
-
-            if (IsSingleEquipmentQuery) //单个终端查询
-            {
-                if (RtuId == 0) return;
-            
-                {
-                    // if (tmptype.Count == 0) return;
-                    if (tmptype.Count == 0) //所有故障
-                    {
-                        Sr.EquipemntLightFault.Services.PreErrorServices.ReqeustPreExistError(SelectedRtus , DtEndTime.AddDays(-timeTmp), DtEndTime);  //默认统计前7天
-                    }
-                    else //单个故障
-                    {
-                        Sr.EquipemntLightFault.Services.PreErrorServices.ReqeustPreExistError(SelectedRtus , DtEndTime.AddDays(-timeTmp), DtEndTime,
-                                                                                 tmptype);
-                        //  if (tmptype.Contains(0)) tmptype.Remove(0);
-                        //QueryPreErrorSingleFault(RtuId, tmptype);
-                    }
-                }
-            }
-            else
-            {
-                
-                    // if (tmptype.Count == 0) return;
-                    if (tmptype.Count == 0) //所有故障
-                    {
-                        Sr.EquipemntLightFault.Services.PreErrorServices.ReqeustPreExistError(DtEndTime.AddDays(-timeTmp), DtEndTime);
-                        //QueryPreErrorAllRtuFault();
-                    }
-                    else //单个故障
-                    {
-                        Sr.EquipemntLightFault.Services.PreErrorServices.ReqeustPreExistError(DtEndTime.AddDays(-timeTmp), DtEndTime, tmptype);
-                        //if (tmptype.Contains(0)) tmptype.Remove(0);
-                        //QueryPreErrorAllRtuFault(tmptype);
-                    }
-                
-            }
-            _isOnExport = false;
-            ExportVisi = Visibility.Visible;
-
-        }
-
-        private DateTime _dtCountOldStartTime;
-        private DateTime _dtCountOldEndTime;
-
-        private bool CanExCountOld()
-        {
-            return (_dtPreQueryEndTime.Ticks != DtEndTime.Ticks || _dtPreQueryStartTime.Ticks != DtStartTime.Ticks) &&
-                DateTime.Now.Ticks - _dtQuery.Ticks > 30000000 && DateTime.Now.Ticks - _dtOneAfter.Ticks > 300000 &&
-                DateTime.Now.Ticks - _dtOneBefore.Ticks > 300000;
-        }
-
-        #endregion
-
-        #region CmdOneAfter
-
-        private DateTime _dtOneAfter;
-
-        public ICommand CmdOneAfter
-        {
-            get { return new RelayCommand(ExQueryAfter, CanExQueryAfter, true); }
-        }
-
-
-        private void ExQueryAfter()
-        {
-            CountPreErrs = false;
-            //CountLastPreErrs = false;
-            //CmdDeleteVisi = Visibility.Collapsed; lvf 2018年3月28日17:58:05  取消  管理可配置选项呈现删除按钮
-            //Remind = "查询命令已发送...请等待数据反馈！";
-            _dtQuery = DateTime.Now;
-
-            var tmptype = GetSelectFaultType();
-            if (tmptype.Count == 0) tmptype = GetAllFaultType();
-            Remind = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " 正在查询 ...";
-            if (!GetCheckedInformation()) return;
-            //this.Records.Clear();
-            //if (CountLastPreErrs )
-            //{
-            //    UMessageBox.Show("提醒", "无数据,这是最后一条数据！", UMessageBoxButton.Ok);
-            //    return;
-            //}
-
-            if (IsSingleEquipmentQuery)
-            {
-                if(Records.Count==0)
-                {
-                    QueryErrAtSomeTime(RtuId, tmptype, false);
-                }
-                else
-                {
-                    if (RtuId==Records[0].RtuId )
-                    {
-                        DateTime DtTmp = new DateTime();
-                        DtTmp = Convert.ToDateTime(Records[0].DtCreateTime).Date.AddDays(1);
-                        Sr.EquipemntLightFault.Services.PreErrorServices.RequestErrAtSomeTime(RtuId, DtTmp, tmptype, false);
-                    }
-                    else
-                    {
-                        QueryErrAtSomeTime(RtuId, tmptype, false);
-                    }
-                }
-                
-            }
-            else
-            {
-                RtuId = 0;
-                if (Records.Count == 0)
-                {
-                    QueryErrAtSomeTime(RtuId, tmptype, true);
-                }
-                else
-                {
-                    DateTime tmp = new DateTime();
-                    tmp = Convert.ToDateTime(Records[0].DtCreateTime).Date.AddDays(1);
-                    Sr.EquipemntLightFault.Services.PreErrorServices.RequestErrAtSomeTime(RtuId, tmp, tmptype, false);
-                }
-            }
-            //this.Records.Clear();
-            _isOnExport = false;
-            ExportVisi = Visibility.Visible;
-
-        }
-
-        private DateTime _dtPreQueryAfterStartTime;
-        private DateTime _dtPreQueryAfterEndTime;
-
-        private bool CanExQueryAfter()
-        {
-            return (_dtPreQueryEndTime.Ticks != DtEndTime.Ticks || _dtPreQueryStartTime.Ticks != DtStartTime.Ticks) &&
-                DateTime.Now.Ticks - _dtQuery.Ticks > 30000000 ;
-        }
-
-        #endregion
-
-        #region CmdOneBefore/
-
-        private DateTime _dtOneBefore;
-
-        public ICommand CmdOneBefore
-        {
-            get { return new RelayCommand(ExQueryBefore, CanExQueryBefore, true); }
-        }
-
-
-        private void ExQueryBefore()
-        {
-            CountPreErrs = false;
-            //CmdDeleteVisi = Visibility.Collapsed; lvf 2018年3月28日17:58:05  取消  管理可配置选项呈现删除按钮
-            //Remind = "查询命令已发送...请等待数据反馈！";
-            _dtQuery = DateTime.Now;
-            var tmptype = GetSelectFaultType();
-            if (tmptype.Count == 0) tmptype = GetAllFaultType();
-            Remind = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " 正在查询 ...";
-            //Records.Clear();
-            if (!GetCheckedInformation()) return;
-            //if (CountLastPreErrs)
-            //{
-            //    UMessageBox.Show("提醒", "无数据，这是第一条数据~", UMessageBoxButton.Ok);
-            //    return;
-            //}
-            if (IsSingleEquipmentQuery)
-            {
-                if (Records.Count == 0)
-                {
-                    QueryErrAtSomeTime(RtuId, tmptype, true );
-                }
-                else
-                {
-                    if (RtuId == Records[0].RtuId)
-                    {
-                        DateTime tmp = new DateTime();
-                        tmp = Convert.ToDateTime(Records[0].DtCreateTime).Date;
-                        Sr.EquipemntLightFault.Services.PreErrorServices.RequestErrAtSomeTime(RtuId, tmp, tmptype, true);
-                    }
-                    else
-                    {
-                        QueryErrAtSomeTime(RtuId, tmptype, true);
-                    }
-                }
-            }
-            else
-            {
-                RtuId = 0;
-                if (Records.Count == 0)
-                {
-                    QueryErrAtSomeTime(RtuId, tmptype, true);
-                }
-                else
-                {
-                    //if (RtuId == Records[0].RtuId)
-                    //{
-                        DateTime tmp = new DateTime();
-                        tmp = Convert.ToDateTime(Records[0].DtCreateTime).Date.AddDays(-1);
-                        Sr.EquipemntLightFault.Services.PreErrorServices.RequestErrAtSomeTime(RtuId, tmp, tmptype, true);
-                    //}
-                    //else
-                    //{
-                    //    QueryErrAtSomeTime(RtuId, tmptype, true);
-                    //}
-                }
-                
-                //DtStartTime = DtStartTime.AddDays(-1);
-                //Sr.EquipemntLightFault.Services.PreErrorServices.RequestErrAtSomeTime(RtuId, DtStartTime, tmptype, true);
-            }
-            //Records.Clear();
-            _isOnExport = false;
-            ExportVisi = Visibility.Visible;
-
-        }
-
-        private DateTime _dtPreQueryBeforeStartTime;
-        private DateTime _dtPreQueryBeforeEndTime;
-
-        private bool CanExQueryBefore()
-        {
-            return (_dtPreQueryEndTime.Ticks != DtEndTime.Ticks || _dtPreQueryStartTime.Ticks != DtStartTime.Ticks) &&
-                    DateTime.Now.Ticks - _dtQuery.Ticks > 30000000 ;
-        }
-
-        #endregion
 
         #endregion
 
@@ -2376,17 +1872,6 @@ namespace Wlst.Ux.EquipemntLightFault.EquipmentFaultRecordQueryViewModel.ViewMod
 
             return fff.RtuName;
 
-        }
-
-        private bool GetCheckedInformation()
-        {
-            //if (DtStartTime.AddDays(63) < DtEndTime)
-            //{
-            //    UMessageBox.Show("提醒", "请重新选择时间，时间需选择在62天以内", UMessageBoxButton.Ok);
-            //    //WLSTMessageBox.WpfMessageBox.Show("请重新选择时间，时间需选择在30天以内");
-            //    return false;
-            //}
-            return true;
         }
 
 
@@ -2455,7 +1940,7 @@ namespace Wlst.Ux.EquipemntLightFault.EquipmentFaultRecordQueryViewModel.ViewMod
                                                                                           UMessageBoxButton.YesNo);
             if (info != true)
             {
-                return ;
+                return;
             }
             //CmdDeleteVisi = Visibility.Collapsed; lvf 2018年3月28日17:58:05  取消  管理可配置选项呈现删除按钮
             Remind = "删除命令已经发送，1秒后可重新查询...";
@@ -2530,50 +2015,50 @@ namespace Wlst.Ux.EquipemntLightFault.EquipmentFaultRecordQueryViewModel.ViewMod
                     tmp.Add(g.Remark);
                     //if (IsOldFaultQuery)
                     //{
-                        try
+                    try
+                    {
+                        if (g.FaultName == "回路电流越上限")
                         {
-                            if (g.FaultName == "回路电流越上限")
+                            var zhi = g.Remark.Substring(0, g.Remark.IndexOf(","));
+                            zhi = zhi.Substring(3, zhi.Length - 3);
+                            var xian = g.Remark.Substring(g.Remark.IndexOf(",") + 4, g.Remark.Length - 4 - g.Remark.IndexOf(","));
+                            double dzhi, dxian, chazhi;
+                            if (double.TryParse(zhi, out dzhi) && double.TryParse(xian, out dxian))
                             {
-                                var zhi = g.Remark.Substring(0, g.Remark.IndexOf(","));
-                                zhi = zhi.Substring(3, zhi.Length - 3);
-                                var xian = g.Remark.Substring(g.Remark.IndexOf(",") + 4, g.Remark.Length - 4 - g.Remark.IndexOf(","));
-                                double dzhi, dxian, chazhi;
-                                if (double.TryParse(zhi, out dzhi) && double.TryParse(xian, out dxian))
-                                {
-                                    chazhi = dzhi - dxian;
-                                    tmp.Add(chazhi.ToString("F3"));
-                                }
-                                else
-                                {
-                                    tmp.Add("Error");
-                                }
-
-                            }
-                            else if (g.FaultName == "回路电流越下限")
-                            {
-                                var zhi = g.Remark.Substring(0, g.Remark.IndexOf(","));
-                                zhi = zhi.Substring(3, zhi.Length - 3);
-                                var xian = g.Remark.Substring(g.Remark.IndexOf(",") + 4, g.Remark.Length - 4 - g.Remark.IndexOf(","));
-                                double dzhi, dxian, chazhi;
-                                if (double.TryParse(zhi, out dzhi) && double.TryParse(xian, out dxian))
-                                {
-                                    chazhi = dxian - dzhi;
-                                    tmp.Add(chazhi.ToString("F3"));
-                                }
-                                else
-                                {
-                                    tmp.Add("Error");
-                                }
+                                chazhi = dzhi - dxian;
+                                tmp.Add(chazhi.ToString("F3"));
                             }
                             else
                             {
-                                tmp.Add("");
+                                tmp.Add("Error");
+                            }
+
+                        }
+                        else if (g.FaultName == "回路电流越下限")
+                        {
+                            var zhi = g.Remark.Substring(0, g.Remark.IndexOf(","));
+                            zhi = zhi.Substring(3, zhi.Length - 3);
+                            var xian = g.Remark.Substring(g.Remark.IndexOf(",") + 4, g.Remark.Length - 4 - g.Remark.IndexOf(","));
+                            double dzhi, dxian, chazhi;
+                            if (double.TryParse(zhi, out dzhi) && double.TryParse(xian, out dxian))
+                            {
+                                chazhi = dxian - dzhi;
+                                tmp.Add(chazhi.ToString("F3"));
+                            }
+                            else
+                            {
+                                tmp.Add("Error");
                             }
                         }
-                        catch
+                        else
                         {
-                            tmp.Add("Error");
+                            tmp.Add("");
                         }
+                    }
+                    catch
+                    {
+                        tmp.Add("Error");
+                    }
                     //}
 
                     lstobj.Add(tmp);
@@ -2624,431 +2109,34 @@ namespace Wlst.Ux.EquipemntLightFault.EquipmentFaultRecordQueryViewModel.ViewMod
 
                         break;
                     }
-                }                
+                }
             }
         }
 
-        private void QueryNewErrorSingleFault(int rtuId, List<int> faultIds, bool isCol)
+
+
+        private void QueryNewErrorAllRtuFault(List<int> rtus, List<int> faultIds, bool isCol)
         {
-
-            var sss = new List<FaultInfoBase>();
-            if (IsNewAllQuery)
-            {
-                sss = (from gg in Sr.EquipemntLightFault.Services.TmlExistFaultsInfoServices.InfoDictionary.Values
-                       where SelectedRtus .Contains( gg.RtuId )  && faultIds.Contains(gg.FaultId)
-                       select gg).ToList();
-            }
-            else
-            {
-                var dts = new DateTime(DtStartTime.Year, DtStartTime.Month, DtStartTime.Day, 0, 0, 1).Ticks;
-                sss = (from gg in Sr.EquipemntLightFault.Services.TmlExistFaultsInfoServices.InfoDictionary.Values
-                       where gg.DateCreate.Ticks > dts && SelectedRtus.Contains(gg.RtuId) && faultIds.Contains(gg.FaultId)
-                       select gg).ToList();
-            }
-
             Recordss.Clear();
             Records.Clear();
-            FaultItemsTemp.Clear();
 
             bool isloopError = false;
             var obss = new List<EquipmentFaultCurr.OneFaultItem>();
 
             var obs = new ObservableCollection<EquipmentFaultViewModel>();
-            //var ff = Sr.EquipemntLightFault.Services.TmlExistFaultsInfoServices.GetLstInfoByRtuId(FaultWarmType.Rtu,
-            //               rtuId);
             int intx = 0;
-            foreach (var t in sss)
-            {
-                //this.AddErrorInfo(t);
-                var error = Sr.EquipemntLightFault.Services.TmlExistFaultsInfoServices.GetFaultInfoById(t.Id);
-                if (error == null) continue;
-                intx++;
-
-                if (!Sh.Contains(t.FaultId))//error.A < 0.0001 && error.ALower < 0.0001 && error.AUpper < 0.0001 && error.Aeding < 0.0001 && error.V < 0.0001
-                {
-                    isloopError = false;
-                }
-                else
-                {
-                    isloopError = true;
-                }
-
-                var dtremocetime = "--";
-                var dtcreatetime = "--";
-                if (isCol)
-                {
-                    dtremocetime = error.DateCreate.ToString("yyyy-MM-dd HH:mm:ss");
-                }
-                else
-                {
-                    dtcreatetime = error.DateCreate.ToString("yyyy-MM-dd HH:mm:ss");
-                }
-
-
-                obs.Add(new EquipmentFaultViewModel
-                            {
-                                Index = intx,
-                                DtCreateTime = dtcreatetime,
-                                DtRemoceTime = dtremocetime,
-                                FaultId = t.FaultId,
-                                RtuId = t.RtuId ,
-                                RtuLoopName = error.RtuLoopName,
-                                RtuLoops = t.LoopId,
-                                FaultName = error.FaultName,
-                                PhyId = error.RtuPhyId,
-                                Count = t.AlarmCount,
-                                RtuName = error.RtuName,
-                                Color = error.Color,
-                                Remark = error.Remark,
-                                DateCreateId = error.RecordId,
-                                DateRemoveId = 0,
-                                LampId = error.LampId,
-                                A = !isloopError ? "---" : error.A.ToString("f2") + "",
-                                AUpper = !isloopError ? "---" : error.AUpper.ToString("f2") + "",
-                                ALower = !isloopError ? "---" : error.ALower.ToString("f2") + "",
-                                Aeding = !isloopError ? "---" : error.Aeding.ToString("f2") + "",
-                                V = !isloopError ? "---" : error.V.ToString("f2") + "",
-                            });
-                obss.Add(new EquipmentFaultCurr.OneFaultItem
-                             {
-                                 AlarmCount = 0,
-                                 FaultId = t.FaultId,
-                                 DateCreate = error.DateCreate.Ticks,
-                                 LoopId = t.LoopId,
-                                 RtuId = t.RtuId,
-                                 Remark = error.Remark,
-                                 LampId = error.LampId,
-                             });
-
-            }
-            FaultItemsTemp.AddRange(obss);
-            if (!CountNewErrs)
-            {
-                //添加区域筛选   lvf 2018年6月27日13:57:41
-                FilterAreaErrs(obs,isCol);
-                //if (isCol) Recordss = obs;
-                //else Records = obs;
-
-                //Remind = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " 故障记录查询成功，共计" + Records.Count + " 条数据.";
-            }
-        }
-
-        private void QueryNewErrorSingleFault(int rtuId,bool isCol)
-        {
-
-            var sss = new List<FaultInfoBase>();
-            if (IsNewAllQuery)
-            {
-                sss = (from gg in Sr.EquipemntLightFault.Services.TmlExistFaultsInfoServices.InfoDictionary.Values
-                       where SelectedRtus .Contains( gg.RtuId )  
-                       select gg).ToList();
-            }
-            else
-            {
-                var dts = new DateTime(DtStartTime.Year, DtStartTime.Month, DtStartTime.Day, 0, 0, 1).Ticks;
-                sss =
-                (from gg in Sr.EquipemntLightFault.Services.TmlExistFaultsInfoServices.InfoDictionary.Values
-                 where gg.DateCreate.Ticks > dts && SelectedRtus.Contains(gg.RtuId)  
-                 select gg).ToList();
-            }
-            
-            Recordss.Clear(); 
-            Records.Clear();
-            FaultItemsTemp.Clear();
-            bool isloopError = false;
-            var obss = new List<EquipmentFaultCurr.OneFaultItem>();
-            var obs = new ObservableCollection<EquipmentFaultViewModel>();
-            //var ff = Sr.EquipemntLightFault.Services.TmlExistFaultsInfoServices.GetLstInfoByRtuId(FaultWarmType.Rtu,
-            //                                                                                      rtuId);
-            int intx = 0;
-            foreach (var t in sss)
-            {
-                //this.AddErrorInfo(t);
-                var error = Sr.EquipemntLightFault.Services.TmlExistFaultsInfoServices.GetFaultInfoById(t.Id);
-                if (error == null) continue;
-
-                intx++;
-
-                if (!Sh.Contains(t.FaultId))
-                {
-                    isloopError = false;
-                }
-                else
-                {
-                    isloopError = true;
-                }
-
-                var dtremocetime = "--";
-                var dtcreatetime = "--";
-                if (isCol)
-                {
-                    dtremocetime = error.DateCreate.ToString("yyyy-MM-dd HH:mm:ss");
-                }
-                else
-                {
-                    dtcreatetime = error.DateCreate.ToString("yyyy-MM-dd HH:mm:ss");
-                }
-
-
-                obs.Add(new EquipmentFaultViewModel
-                            {
-                                Index = intx,
-                                DtCreateTime = dtcreatetime,
-                                DtRemoceTime = dtremocetime,
-                                FaultId = t.FaultId,
-                                PhyId = error.RtuPhyId,
-                                RtuId = t.RtuId ,
-                                RtuLoopName = error.RtuLoopName,
-                                RtuLoops = t.LoopId,
-                                FaultName = error.FaultName,
-                                Count = t.AlarmCount ,
-                                Color = error.Color,
-                                RtuName = error.RtuName,
-                                Remark = error.Remark,
-                                DateCreateId = error.RecordId,
-                                DateRemoveId = 0,
-                                LampId = error.LampId,
-
-                                A = !isloopError ? "---" : error.A.ToString("f2") + "",
-                                AUpper = !isloopError ? "---" : error.AUpper.ToString("f2") + "",
-                                ALower = !isloopError ? "---" : error.ALower.ToString("f2") + "",
-                                Aeding = !isloopError ? "---" : error.Aeding.ToString("f2") + "",
-                                V = !isloopError ? "---" : error.V.ToString("f2") + "",
-                            });
-                obss.Add(new EquipmentFaultCurr.OneFaultItem
-                {
-                    AlarmCount = 0,
-                    FaultId = t.FaultId,
-                    DateCreate = error.DateCreate.Ticks,
-                    LoopId = t.LoopId,
-                    RtuId = t.RtuId,
-                    Remark = error.Remark,
-                    LampId = error.LampId,
-                    
-                });
-
-            }
-            FaultItemsTemp.AddRange(obss);
-            if (!CountNewErrs)
-            {
-                //添加区域筛选   lvf 2018年6月27日13:57:41
-                FilterAreaErrs(obs,isCol);
-                //if (isCol) Recordss = obs;
-                //else Records = obs;
-                //Remind = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " 查询成功，共" + Records.Count + " 条数据.";
-            }
-        }
-
-        private void ResolveNewErrorAllRtuFault(bool isCol)
-        {
-
-            bool isloopError = false;
             var dts = new DateTime(DtStartTime.Year, DtStartTime.Month, DtStartTime.Day, 0, 0, 1).Ticks;
-            FaultItemsTemp.Clear();
-            Recordss.Clear();
-            Records.Clear();
-            var obs = new ObservableCollection<EquipmentFaultViewModel>();
-            var obs2 = new ObservableCollection<EquipmentFaultViewModel>();
-            var obss = new List<EquipmentFaultCurr.OneFaultItem>();
-            int intx = 0;
 
             var tmox = (from t in Sr.EquipemntLightFault.Services.TmlExistFaultsInfoServices.InfoDictionary.Values
-                        orderby  t.DateCreate descending
+                        orderby t.DateCreate descending
                         select t).ToList();               //t.IsShowAtTop descending ,
             foreach (var t in tmox)
             {
-                if (IsNewAllQuery == false)
-                {
-                    if (t.DateCreate.Ticks < dts) continue;
-                }
-                //this.AddErrorInfo(t);
-                var error = Sr.EquipemntLightFault.Services.TmlExistFaultsInfoServices.GetFaultInfoById(t.Id);
-
-                //if (QueryMode ==3 ) //如果是区域查询 筛选一下咯  lvf 2018年6月19日09:52:54
-                //{
-                //   var areaid =
-                //    Wlst.Sr.EquipmentInfoHolding.Services.AreaInfoHold.MySlef.GetRtuBelongArea(t.RtuId);
-                //   if (areaid != AreaId) continue;
-                //}
 
 
 
-                if (error == null) continue;
-
-
-                //如果 终端类型 需要判断 lvf 2018年12月11日13:48:19
-                if (RtuTypeSelected.Value != -1)
-                {
-
-                    if (
-                        !Sr.EquipmentInfoHolding.Services.EquipmentDataInfoHold.InfoItems.
-                             ContainsKey(t.RtuId))
-                        return;
-                    var tt =
-                        Sr.EquipmentInfoHolding.Services.EquipmentDataInfoHold.InfoItems[t.RtuId]
-                        as Wlst.Sr.EquipmentInfoHolding.Model.Wj3005Rtu;
-                    if (tt == null || tt.WjVoltage == null) continue;
-                    if (tt.WjVoltage.RtuUsedType != RtuTypeSelected.Value) continue;
-
-                }
-
-
-
-                intx++;
-
-                var dtcreatetime = "--";
-                var dtremocetime = "--";
-
-
-                if (!Sh.Contains(t.FaultId))
-                {
-                    isloopError = false ;
-                }else
-                {
-                    isloopError = true   ;
-                }
-                    
-                //if (isCol)
-                //{
-                //    dtremocetime = error.DateCreate.ToString("yyyy-MM-dd HH:mm:ss");
-                //} 
-                //else
-                //{
-                //    dtcreatetime = error.DateCreate.ToString("yyyy-MM-dd HH:mm:ss");
-                //}
-
-                //if (error.DateFirst.Ticks > 100)
-                //{
-                //    dtcreatetime = error.DateFirst.ToString("yyyy-MM-dd HH:mm:ss");
-                //    dtremocetime = error.DateCreate.ToString("yyyy-MM-dd HH:mm:ss");
-                //}
-                //else 
-                if (!isCol)
-                {
-                    dtcreatetime = error.DateCreate.ToString("yyyy-MM-dd HH:mm:ss");
-                }
-                else
-                {
-                    dtremocetime = error.DateCreate.ToString("yyyy-MM-dd HH:mm:ss");
-                }
-
-                if (isCol)
-                {
-                    obs.Add(new EquipmentFaultViewModel
-                    {
-                        Index = intx,
-                        DtCreateTime = dtcreatetime,
-                        DtRemoceTime = dtremocetime,
-                        FaultId = t.FaultId,
-                        RtuId = t.RtuId,
-                        RtuLoopName = error.RtuLoopName,
-                        RtuLoops = t.LoopId,
-                        PhyId = error.RtuPhyId,
-                        FaultName = error.FaultName,
-                        Count = t.AlarmCount,
-                        Color = error.Color,
-                        RtuName = error.RtuName,
-                        Remark = error.Remark,
-                        DateCreateId = error.RecordId,
-                        DateRemoveId = 0,
-                        LampId = error.LampId,
-
-                        A = !isloopError ? "---" : error.A.ToString("f2") + "",
-                        AUpper = !isloopError ? "---" : error.AUpper.ToString("f2") + "",
-                        ALower = !isloopError ? "---" : error.ALower.ToString("f2") + "",
-                        Aeding = !isloopError ? "---" : error.Aeding.ToString("f2") + "",
-                        V = !isloopError ? "---" : error.V.ToString("f2") + "",
-                    });
-                }
-                else
-                {
-                    obs.Add(new EquipmentFaultViewModel
-                    {
-                        Index = intx,
-                        DtCreateTime = dtcreatetime,
-                        DtRemoceTime = dtremocetime,
-                        FaultId = t.FaultId,
-                        RtuId = t.RtuId,
-                        RtuLoopName = error.RtuLoopName,
-                        RtuLoops = t.LoopId,
-                        PhyId = error.RtuPhyId,
-                        FaultName = error.FaultName,
-                        Count = t.AlarmCount,
-                        Color = error.Color,
-                        RtuName = error.RtuName,
-                        Remark = error.Remark,
-                        DateCreateId = error.RecordId,
-                        DateRemoveId = 0,
-                        A = !isloopError ? "---" : error.A.ToString("f2") + "",
-                        AUpper = !isloopError ? "---" : error.AUpper.ToString("f2") + "",
-                        ALower = !isloopError ? "---" : error.ALower.ToString("f2") + "",
-                        Aeding = !isloopError ? "---" : error.Aeding.ToString("f2") + "",
-                        V = !isloopError ? "---" : error.V.ToString("f2") + "",
-                        LampId = error.LampId,
-                    });
-                    
-                }
-                obss.Add(new EquipmentFaultCurr.OneFaultItem
-                {
-                    AlarmCount = 0,
-                    FaultId = t.FaultId,
-                    DateCreate =error.DateCreate.Ticks,
-                    LoopId = t.LoopId,
-                    RtuId = t.RtuId,
-                    Remark = error.Remark,
-                    LampId = error.LampId,
-
-
-                    A=error.A,
-                    AUpper = error.AUpper,
-                    ALower = error.ALower,
-                    Aeding = error.Aeding,
-                    V = error.V,
-                }
-                );
-            }
-            FaultItemsTemp.AddRange(obss);
-            if (!CountPreErrs)
-            {
-                //if (isCol)
-                //{
-                //    Recordss = obs;
-                //    Remind = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " 查询成功，共" + Recordss.Count + " 条数据.";    
-
-                //} 
-                //else
-                //{
-                //    Records = obs;
-                //    Remind = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " 查询成功，共" + Records.Count + " 条数据.";    
-
-                //}
-
-                //添加区域筛选   lvf 2018年6月27日13:57:41
-                FilterAreaErrs(obs, isCol);
-            }
-            
-        }
-
-
-
-        private void QueryNewErrorAllRtuFault(List<int> faultIds, bool isCol)
-        {
-            Recordss.Clear();
-            Records.Clear();
-            FaultItemsTemp.Clear();
-
-            bool isloopError = false;
-            var obss = new List<EquipmentFaultCurr.OneFaultItem>();
-
-            var obs = new ObservableCollection<EquipmentFaultViewModel>();
-            int intx = 0;
-            var dts = new DateTime(DtStartTime.Year, DtStartTime.Month, DtStartTime.Day, 0, 0, 1).Ticks;
-            foreach (var t in Sr.EquipemntLightFault.Services.TmlExistFaultsInfoServices.InfoDictionary.Values)
-            {
-
-
-
-                if (!faultIds.Contains(t.FaultId)) continue;
+                if (faultIds.Count > 0 && !faultIds.Contains(t.FaultId)) continue;
+                if (rtus.Count > 0 && !rtus.Contains(t.RtuId)) continue;
 
 
 
@@ -3087,7 +2175,7 @@ namespace Wlst.Ux.EquipemntLightFault.EquipmentFaultRecordQueryViewModel.ViewMod
 
 
 
-                int rtuphyid;
+                //int rtuphyid;
                 //if (error.FaultId == 48) rtuphyid = error.RtuFhyId;
                 //else rtuphyid = error.RtuPhyId;
 
@@ -3115,97 +2203,87 @@ namespace Wlst.Ux.EquipemntLightFault.EquipmentFaultRecordQueryViewModel.ViewMod
                 }
 
                 obs.Add(new EquipmentFaultViewModel
-                            {
-                                Index = intx,
-                                DtCreateTime = dtcreatetime,
-                                DtRemoceTime = dtremocetime,
-                                FaultId = t.FaultId,
-                                RtuId = t.RtuId,
-                                RtuLoopName = error.RtuLoopName,
-                                RtuLoops = t.LoopId,
-                                PhyId = error.RtuPhyId,
-                                FaultName = error.FaultName,
-                                Count = t.AlarmCount,
-                                Color = error.Color,
-                                RtuName = error.RtuName,
-                                Remark = error.Remark,
-                                DateCreateId = error.RecordId,
-                                DateRemoveId = 0,
-                                A = !isloopError ? "---" : error.A.ToString("f2") + "",
-                                AUpper = !isloopError ? "---" : error.AUpper.ToString("f2") + "",
-                                ALower = !isloopError ? "---" : error.ALower.ToString("f2") + "",
-                                Aeding = !isloopError ? "---" : error.Aeding.ToString("f2") + "",
-                                V = !isloopError ? "---" : error.V.ToString("f2") + "",
-                                LampId = error.LampId,
-                            });
+                {
+                    Index = intx,
+                    DtCreateTime = dtcreatetime,
+                    DtRemoceTime = dtremocetime,
+                    FaultId = t.FaultId,
+                    RtuId = t.RtuId,
+                    RtuLoopName = error.RtuLoopName,
+                    RtuLoops = t.LoopId,
+                    PhyId = error.RtuPhyId,
+                    FaultName = error.FaultName,
+                    Count = t.AlarmCount,
+                    Color = error.Color,
+                    RtuName = error.RtuName,
+                    Remark = error.Remark,
+                    DateCreateId = error.RecordId,
+                    DateRemoveId = 0,
+                    A = !isloopError ? "---" : error.A.ToString("f2") + "",
+                    AUpper = !isloopError ? "---" : error.AUpper.ToString("f2") + "",
+                    ALower = !isloopError ? "---" : error.ALower.ToString("f2") + "",
+                    Aeding = !isloopError ? "---" : error.Aeding.ToString("f2") + "",
+                    V = !isloopError ? "---" : error.V.ToString("f2") + "",
+                    LampId = error.LampId,
+                });
                 obss.Add(new EquipmentFaultCurr.OneFaultItem
-                             {
-                                 AlarmCount = 0,
-                                 FaultId = t.FaultId,
-                                 DateCreate = error.DateCreate.Ticks,
-                                 LoopId = t.LoopId,
-                                 RtuId = t.RtuId,
-                                 Remark = error.Remark,
-                                 LampId = error.LampId,
+                {
+                    AlarmCount = 0,
+                    FaultId = t.FaultId,
+                    DateCreate = error.DateCreate.Ticks,
+                    LoopId = t.LoopId,
+                    RtuId = t.RtuId,
+                    Remark = error.Remark,
+                    LampId = error.LampId,
 
-                                 A = error.A,
-                                 AUpper = error.AUpper,
-                                 ALower = error.ALower,
-                                 Aeding = error.Aeding,
-                                 V = error.V,
+                    A = error.A,
+                    AUpper = error.AUpper,
+                    ALower = error.ALower,
+                    Aeding = error.Aeding,
+                    V = error.V,
 
-                             });
+                });
 
             }
-            FaultItemsTemp.AddRange(obss);
-            if (!CountNewErrs)
+            //if (!CountNewErrs)
             {
                 //添加区域筛选   lvf 2018年6月27日13:57:41
                 FilterAreaErrs(obs, isCol);
-                //if (isCol) Recordss = obs;
-                //else Records = obs;
-                //Remind = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " 查询成功，共" + Records.Count + " 条数据.";
+  
             }
         }
 
 
-        private void QueryPreErrorSingleFault(int rtuId, List<int> faultIds, int pageIndex, int pagingFlag)
+
+        private void QueryPreErrorAllRtuFault(List<int> rtus, List<int> faultIds, int pageIndex, int pagingFlag)
         {
-            //Sr.EquipemntLightFault.Services.PreErrorServices.ReqeustPreExistError(SelectedRtus, DtStartTime, DtEndTime,
-            //                                                                      faultIds);
-            RequestInfo = Sr.EquipemntLightFault.Services.PreErrorServices.ReqeustPreExistErrorHttp(SelectedRtus, DtStartTime, DtEndTime,
-                                                                                  faultIds, pageIndex, pagingFlag);
+            //if (rtus.Count == 0)
+            //{
+            //    if (faultIds.Count == 0)
+            //        RequestInfo = Sr.EquipemntLightFault.Services.PreErrorServices.ReqeustPreExistErrorHttp(DtStartTime, DtEndTime, pageIndex, pagingFlag);
+            //    else
+            //        RequestInfo = Sr.EquipemntLightFault.Services.PreErrorServices.ReqeustPreExistErrorHttp(DtStartTime, DtEndTime, faultIds, pageIndex, pagingFlag);
+
+            //}
+            //else
+            //{
+            //    if (faultIds.Count == 0)
+            //        RequestInfo = Sr.EquipemntLightFault.Services.PreErrorServices.ReqeustPreExistErrorHttp(rtus, DtStartTime, DtEndTime, pageIndex, pagingFlag);
+
+            //    else
+            //        RequestInfo = Sr.EquipemntLightFault.Services.PreErrorServices.ReqeustPreExistErrorHttp(rtus, DtStartTime, DtEndTime,
+            //                                                                              faultIds, pageIndex, pagingFlag);
+            //}
+
+            RequestInfo = Sr.EquipemntLightFault.Services.PreErrorServices.ReqeustPreExistErrorHttp(rtus, DtStartTime, DtEndTime,
+                                                                                          faultIds, pageIndex, pagingFlag);
             OnRequestFaultPre(RequestInfo, pagingFlag);
         }
 
-        private void QueryPreErrorSingleFault(int rtuId, int pageIndex, int pagingFlag)
+        private void QueryErrAtSomeTime(int rtuId, List<int> faultIds, bool isPre)
         {
-           //Sr.EquipemntLightFault.Services.PreErrorServices.ReqeustPreExistError(SelectedRtus, DtStartTime, DtEndTime);
-           RequestInfo = Sr.EquipemntLightFault.Services.PreErrorServices.ReqeustPreExistErrorHttp(SelectedRtus, DtStartTime, DtEndTime, pageIndex, pagingFlag);
-           OnRequestFaultPre(RequestInfo, pagingFlag);
+            Sr.EquipemntLightFault.Services.PreErrorServices.RequestErrAtSomeTime(rtuId, DtStartTime, faultIds, isPre);
         }
-
-        private void QueryPreErrorAllRtuFault(int pageIndex, int pagingFlag)
-        {
-            //Sr.EquipemntLightFault.Services.PreErrorServices.ReqeustPreExistError(DtStartTime, DtEndTime);
-            RequestInfo = Sr.EquipemntLightFault.Services.PreErrorServices.ReqeustPreExistErrorHttp(DtStartTime, DtEndTime, pageIndex, pagingFlag);
-            OnRequestFaultPre(RequestInfo, pagingFlag);                                                                                
-        }
-
-        private void QueryPreErrorAllRtuFault(List<int> faultIds, int pageIndex, int pagingFlag)
-        {
-            //Sr.EquipemntLightFault.Services.PreErrorServices.ReqeustPreExistError(DtStartTime, DtEndTime, faultIds);
-            RequestInfo = Sr.EquipemntLightFault.Services.PreErrorServices.ReqeustPreExistErrorHttp(DtStartTime, DtEndTime, faultIds, pageIndex, pagingFlag);
-            OnRequestFaultPre(RequestInfo, pagingFlag);
-        }
-         private void QueryNowErrCount(int dt,List<EquipmentFaultCurr.OneFaultItem> lstOneFaultItem )
-         {
-             Sr.EquipemntLightFault.Services.PreErrorServices.RequestErrCountBetweenSomeTime(dt, lstOneFaultItem);
-         }
-         private void QueryErrAtSomeTime(int rtuId, List<int> faultIds,bool isPre)
-         {
-             Sr.EquipemntLightFault.Services.PreErrorServices.RequestErrAtSomeTime(rtuId, DtStartTime, faultIds, isPre);
-         }
         private void DeleteQuery()
         {
             if (this.Records.Count == 0) return;
@@ -3214,84 +2292,45 @@ namespace Wlst.Ux.EquipemntLightFault.EquipmentFaultRecordQueryViewModel.ViewMod
             foreach (var t in this.Records)
             {
 
-                
+
                 nt.WstFaultDeleteCurr.DeleteItems.Add(new EquipmentFaultDelete.EquipmentFaultDeleteItem()
-                                           {
-                                               FaultCode = t.FaultId,
-                                               LoopId = t.RtuLoops,
-                                               RtuId = t.RtuId,
-                                               LampId = t.LampId
-                                           });
+                {
+                    FaultCode = t.FaultId,
+                    LoopId = t.RtuLoops,
+                    RtuId = t.RtuId,
+                    LampId = t.LampId
+                });
             }
 
 
             Wlst.Sr.PPPandSocketSvr.Server.SocketClient.SndData(nt);
         }
 
-        //private void OnPreDataBack(EquipmentPreFaultExChange info)
-        //{
-        //    int index = 1;
-        //    Records.Clear();
-        //    var obs = new ObservableCollection<EquipmentFaultViewModel>();
-        //    foreach (var t in info.Info)
-        //    {
-
-        //      var mtpsss = Sr.EquipmentInfoHolding.Services.ServicesEquipemntInfoHold.GetEquipmentInfo(RtuId);
-
-
-
-
-        //        var itemsss = new EquipmentFaultViewModel
-        //                          {
-        //                              DtCreateTime = t.DateCreate.ToString("yyyy-MM-dd HH:mm:ss"),
-        //                              DtRemoceTime = t.DateRemove.ToString("yyyy-MM-dd HH:mm:ss"),
-        //                              FaultId = t.FaultCodeId,
-        //                              FaultName = "",
-
-        //                              Index = index,
-        //                              RtuId = t.RtuId,
-        //                              PhyId = mtpsss == null ? 0 : mtpsss.PhyId,
-        //                              RtuLoopName = mtpsss == null ? t.LoopId + "" : mtpsss.GetRtuLoopName( t.LoopId ),
-        //                              RtuLoops = t.LoopId,
-        //                              RtuName = mtpsss == null ? "" : mtpsss.RtuName,
-        //                              Remark = t.Remark,
-
-        //                              DateCreateId = t.RecordAlarmId,
-        //                              DateRemoveId = t.RecordRemoveId,
-        //                              LampId = t.LampId
-        //                          };
-        //        var typ = Sr.EquipemntLightFault.Services.TmlFaultTypeInfoServices.GetInfoById(t.FaultCodeId);
-        //        if (typ != null)
-        //        {
-        //            itemsss.FaultName = typ.FaultNameByDefine;
-        //            itemsss.Color = typ.Color;
-        //        }
-        //        if (mtpsss == null)
-        //        {
-
-
-        //            itemsss.RtuName = GetRtuName(t.RtuId);
-        //            itemsss.PhyId =
-        //                Wlst.Sr.EquipmentInfoHolding.Services.ServicesEquipemntInfoHold.GetPhysicalIdByLogicalId(t.RtuId);
-        //        }
-        //        obs.Add(itemsss);
-        //        index++;
-        //    }
-        //    Records = obs;
-        //    Remind = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " 故障记录查询成功，共计" + Records.Count + " 条数据.";
-        //}
+        List<int> LstLoopError = new List<int>();
 
         private void FilterAreaErrs(ObservableCollection<EquipmentFaultViewModel> records, bool iscol = false)
         {
-            Remind = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " 故障记录查询成功，共计0条数据.";
+            Remind = "查询成功，共计0条数据.";
 
 
             //lvf 苏州新区  过滤  晚上回路报警 2019年3月27日11:01:14
-            if (Sr.EquipmentInfoHolding.Services.Others.CityNum==7)
+            if (Sr.EquipmentInfoHolding.Services.Others.CityNum == 7)
             {
+
+                if(LstLoopError .Count ==0)
+                {
+                    for (int i = 6; i < 18; i++)
+                    {
+                        LstLoopError.Add(i);
+                    }
+                    for (int i = 6; i < 35; i++)
+                    {
+                        LstLoopError.Add(i);
+                    }
+                }
                 var recordtmp = new ObservableCollection<EquipmentFaultViewModel>();
-                
-                if (IsHideLoopErrInNight==false )
+
+                if (IsHideLoopErrInNight == false)
                 {
 
                     foreach (var g in records)
@@ -3306,7 +2345,7 @@ namespace Wlst.Ux.EquipemntLightFault.EquipmentFaultRecordQueryViewModel.ViewMod
 
                     foreach (var g in records)
                     {
-                        if ( g.FaultId<6 || g.FaultId>17)
+                        if ( LstLoopError .Contains  (g.FaultId )==false )// g.FaultId < 6 || g.FaultId > 17)
                         {
                             recordtmp.Add(g);
                         }
@@ -3314,12 +2353,12 @@ namespace Wlst.Ux.EquipemntLightFault.EquipmentFaultRecordQueryViewModel.ViewMod
                         {
 
                             var dt = new DateTime(g.DateCreateId);
-                            int dtt = dt.Hour*60 + dt.Minute;
+                            int dtt = dt.Hour * 60 + dt.Minute;
                             //如果报警为白天的呈现；如果是晚上的不呈现
-                            if (dtt>Wlst.Sr.EquipmentInfoHolding.Services.Others.Sunrise  && dtt <Wlst.Sr.EquipmentInfoHolding.Services.Others.Sunset)
+                            if (dtt > Wlst.Sr.EquipmentInfoHolding.Services.Others.Sunrise && dtt < Wlst.Sr.EquipmentInfoHolding.Services.Others.Sunset)
                             {
                                 recordtmp.Add(g);
-                            
+
                             }
 
                         }
@@ -3327,188 +2366,23 @@ namespace Wlst.Ux.EquipemntLightFault.EquipmentFaultRecordQueryViewModel.ViewMod
                     }
 
                 }
+                records = recordtmp;
 
-             
-
-                #region  苏州新区 数据处理
-                if (QueryMode != 3 || AreaId == -1)
-                {
-                    if (iscol == false)
-                    {
-                        Records = recordtmp;
-                        Remind = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " 故障记录查询成功，共计" + Records.Count + " 条数据.";
-                    }
-                    else
-                    {
-                        Recordss = recordtmp;
-                        Remind = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " 故障记录查询成功，共计" + Recordss.Count + " 条数据.";
-                    }
-
-                }
-                else
-                {
-                    if (GrpId == -1) //全部分组
-                    {
-                        int newindex = 1;
-                        foreach (var g in recordtmp)
-                        {
-                            var areaid =
-                                Wlst.Sr.EquipmentInfoHolding.Services.AreaInfoHold.MySlef.GetRtuBelongArea(g.RtuId);
-                            if (areaid == AreaId)
-                            {
-                                g.Index = newindex;
-                                newindex++;
-                                if (iscol == false)
-                                {
-                                    Records.Add(g);
-                                    if (Records.Count % 100 == 0) Wlst.Cr.Core.UtilityFunction.UiHelper.UiDoOtherUserEvent();
-                                    Remind = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " 故障记录查询成功，共计" + Records.Count +
-                                             " 条数据.";
-                                }
-                                else
-                                {
-                                    Recordss.Add(g);
-                                    if (Recordss.Count % 100 == 0) Wlst.Cr.Core.UtilityFunction.UiHelper.UiDoOtherUserEvent();
-                                    Remind = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " 故障记录查询成功，共计" + Recordss.Count +
-                                             " 条数据.";
-                                }
-
-                            }
-                        }
-                    }
-                    else //选择了分组
-                    {
-                        var lstInArea = Wlst.Sr.EquipmentInfoHolding.Services.ServicesGrpSingleInfoHold.GetGrpTmlList(
-                            AreaId, GrpId); //GetRtuInArea(AreaId);
-
-                        var pb = (from t in Wlst.Sr.EquipmentInfoHolding.Services.EquipmentDataInfoHold.InfoItems
-                                  where lstInArea.Contains(t.Value.RtuFid)
-                                  select t.Key).ToList();
-                        lstInArea.AddRange(pb);
-
-                        int newindex = 1;
-                        foreach (var g in recordtmp)
-                        {
-
-                            if (lstInArea.Contains(g.RtuId) == false) continue;
-                            g.Index = newindex;
-                            newindex++;
-                            if (iscol == false)
-                            {
-                                Records.Add(g);
-                                if (Records.Count % 100 == 0) Wlst.Cr.Core.UtilityFunction.UiHelper.UiDoOtherUserEvent();
-                                Remind = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " 故障记录查询成功，共计" + Records.Count +
-                                         " 条数据.";
-                            }
-                            else
-                            {
-                                Recordss.Add(g);
-                                if (Recordss.Count % 100 == 0) Wlst.Cr.Core.UtilityFunction.UiHelper.UiDoOtherUserEvent();
-                                Remind = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " 故障记录查询成功，共计" + Recordss.Count +
-                                         " 条数据.";
-                            }
-
-
-
-
-                        }
-                    }
-
-                }
-
-
-                #endregion
-
-                return;
             }
 
-
-
-
-            if (QueryMode != 3 || AreaId == -1)
+            if (iscol == false)
             {
-                if (iscol == false)
-                {
-                    Records = records;
-                    Remind = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " 故障记录查询成功，共计" + Records.Count + " 条数据.";
-                }
-                else
-                {
-                    Recordss = records;
-                    Remind = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " 故障记录查询成功，共计" + Recordss.Count + " 条数据.";
-                }
-
+                Records = records;
+                Remind =  "查询成功，共计" + (IsOldFaultQuery ? ItemCount : Records.Count) + " 条数据.";
             }
             else
             {
-                if (GrpId == -1) //全部分组
-                {
-                    int newindex = 1;
-                    foreach (var g in records)
-                    {
-                        var areaid =
-                            Wlst.Sr.EquipmentInfoHolding.Services.AreaInfoHold.MySlef.GetRtuBelongArea(g.RtuId);
-                        if (areaid == AreaId)
-                        {
-                            g.Index = newindex;
-                            newindex++;
-                            if (iscol == false)
-                            {
-                                Records.Add(g);
-                                if (Records.Count % 100 == 0) Wlst.Cr.Core.UtilityFunction.UiHelper.UiDoOtherUserEvent();
-                                Remind = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " 故障记录查询成功，共计" + Records.Count +
-                                         " 条数据.";
-                            }
-                            else
-                            {
-                                Recordss.Add(g);
-                                if (Recordss.Count % 100 == 0) Wlst.Cr.Core.UtilityFunction.UiHelper.UiDoOtherUserEvent();
-                                Remind = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " 故障记录查询成功，共计" + Recordss.Count +
-                                         " 条数据.";
-                            }
-
-                        }
-                    }
-                }
-                else //选择了分组
-                {
-                    var lstInArea = Wlst.Sr.EquipmentInfoHolding.Services.ServicesGrpSingleInfoHold.GetGrpTmlList(
-                        AreaId, GrpId); //GetRtuInArea(AreaId);
-
-                    var pb = (from t in Wlst.Sr.EquipmentInfoHolding.Services.EquipmentDataInfoHold.InfoItems
-                              where lstInArea.Contains(t.Value.RtuFid)
-                              select t.Key).ToList();
-                    lstInArea.AddRange(pb);
-
-                    int newindex = 1;
-                    foreach (var g in records)
-                    {
-
-                        if (lstInArea.Contains(g.RtuId) == false) continue;
-                        g.Index = newindex;
-                        newindex++;
-                        if (iscol == false)
-                        {
-                            Records.Add(g);
-                            if (Records.Count % 100 == 0) Wlst.Cr.Core.UtilityFunction.UiHelper.UiDoOtherUserEvent();
-                            Remind = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " 故障记录查询成功，共计" + Records.Count +
-                                     " 条数据.";
-                        }
-                        else
-                        {
-                            Recordss.Add(g);
-                            if (Recordss.Count % 100 == 0) Wlst.Cr.Core.UtilityFunction.UiHelper.UiDoOtherUserEvent();
-                            Remind = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " 故障记录查询成功，共计" + Recordss.Count +
-                                     " 条数据.";
-                        }
-
-
-
-
-                    }
-                }
-
+                Recordss = records;
+                Remind =  "查询成功，共计" + (IsOldFaultQuery ? ItemCount : Recordss.Count) + " 条数据.";
             }
+
+
+
 
         }
 
@@ -3523,49 +2397,37 @@ namespace Wlst.Ux.EquipemntLightFault.EquipmentFaultRecordQueryViewModel.ViewMod
         }
     }
 
+
+
+
     /// <summary>
     /// Event
     /// </summary>
     public partial class EquipmentFaultRecordQueryViewModel
     {
-        
 
-        public void OnRequestServerData(EquipmentFaultViewModel info)
-        {
-            if (info == null) return;
-            Sr.EquipemntLightFault.Services.PreErrorServices.RequestDataWhenErrorHappen(info.RtuId, info.RtuLoops,
-                                                                                        info.DateCreateId);
-            
-            //发布事件  选中当前节点
-            var args = new PublishEventArgs
-                           {
-                               EventType = PublishEventType.Core,
-                               EventId = Sr.EquipmentInfoHolding.Services.EventIdAssign.EquipmentSelected,
-                               EventAttachInfo = "RequestDataWhenErrorHappenEqu",
-                           };
+        //多终端选中 协议 ，同时所有终端树选中的终端都方放这
 
-            args.AddParams(info.RtuId);
-            EventPublish.PublishEvent(args);
-        }
+        public List<int> SelectedRtus = new List<int>();
 
         private void InitEvent()
         {
-           EventPublish.AddEventTokener( 
-                Assembly.GetExecutingAssembly().GetName().ToString(), FundEventHandler,
-                FundOrderFilter);
+            EventPublish.AddEventTokener(
+                 Assembly.GetExecutingAssembly().GetName().ToString(), FundEventHandler,
+                 FundOrderFilter);
 
         }
-        
+
 
 
         #region EventSubScriptionTokener
 
-        private bool _thisViewActive;
+
 
         public void FundEventHandler(PublishEventArgs args) // should do somework
         {
 
-            
+
             try
             {
                 if (args.EventType == PublishEventType.Core)
@@ -3575,7 +2437,7 @@ namespace Wlst.Ux.EquipemntLightFault.EquipmentFaultRecordQueryViewModel.ViewMod
                     if (args.EventId == Sr.EquipmentInfoHolding.Services.EventIdAssign.EquipmentSelected)
                     {
                         //  
-                        if (OptionXmlSvr.GetOptionInt(4001, 2) ==1) return;
+                        if (OptionXmlSvr.GetOptionInt(4001, 2) == 1) return;
                         if (!_thisViewActive) return;
                         if (args.EventAttachInfo == "RequestDataWhenErrorHappenEqu") return;
                         int id = Convert.ToInt32(args.GetParams()[0]);
@@ -3583,33 +2445,25 @@ namespace Wlst.Ux.EquipemntLightFault.EquipmentFaultRecordQueryViewModel.ViewMod
                         if (RtuId == id) return;
 
                         SelectedRtus.Clear();
-                        SelectedRtus.Add(id);  
+                        SelectedRtus.Add(id);
                         RtuId = id;
-                        
+
                         if (IsSingleEquipmentQuery)
                         {
-                          
+
                             Records.Clear();
                             CountLastPreErrs = false;
 
                             Ex();
                         }
-
-                        //if (!IsOldFaultQuery)
-                        //{
-                        //    Ex();
-                        //}else
-                        //{
-                        //     if (IsSingleEquipmentQuery) Ex();
-                        //}
                     }
 
-                    if (args.EventId == Sr.EquipmentInfoHolding.Services.EventIdAssign.EquipmentMulSelected )
+                    if (args.EventId == Sr.EquipmentInfoHolding.Services.EventIdAssign.EquipmentMulSelected)
                     {
                         if (!_thisViewActive) return;
                         if (OptionXmlSvr.GetOptionInt(4001, 2) != 1) return;
-                       // if (args.EventAttachInfo == "RequestDataWhenErrorHappenEqu") return;
-                        var  ids = args.GetParams()[0] as List< int >;
+                        // if (args.EventAttachInfo == "RequestDataWhenErrorHappenEqu") return;
+                        var ids = args.GetParams()[0] as List<int>;
 
                         var rtus = (from t in ids
                                     where
@@ -3641,92 +2495,22 @@ namespace Wlst.Ux.EquipemntLightFault.EquipmentFaultRecordQueryViewModel.ViewMod
 
                         }
 
-                        //if (RtuId == id) return;
 
-
-                        //if (IsSingleEquipmentQuery)
-                        //{
-                        //    RtuId = id;
-                        //    Records.Clear();
-                        //    CountLastPreErrs = false;
-
-                        //    Ex();
-                        //}
-
-                        //if (!IsOldFaultQuery)
-                        //{
-                        //    Ex();
-                        //}else
-                        //{
-                        //     if (IsSingleEquipmentQuery) Ex();
-                        //}
                     }
-                    //if (args.EventId == Sr.EquipemntLightFault.Services.EventIdAssign.EquipmentExistFaultAddId)
-                    //{
-                    //    if (Wlst.Sr.EquipmentInfoHolding.Services.Others.IsShowNewErrArriveOnUi)
-                    //    {
-                    //        if (args.GetParams().Count > 0)
-                    //        {
-                    //            var rtx = args.GetParams()[0] as List<int>;
-                    //            if (rtx == null) return;
 
-                    //            if (rtx.Count > 1)
-                    //            {
-                    //                if (Sr.EquipemntLightFault.Services.TmlExistFaultsInfoServices.InfoDictionary.Count
-                    //                    > 0)
-                    //                    ClickTime =
-                    //                        (from t in
-                    //                             Sr.EquipemntLightFault.Services.TmlExistFaultsInfoServices.
-                    //                             InfoDictionary.
-                    //                             Values
-                    //                         orderby t.DateCreate descending
-                    //                         select t).ToList()[0].DateCreate;
-                    //            }
-                    //            else
-                    //            {
-                    //                var tmox =
-                    //                    (from t in
-                    //                         Sr.EquipemntLightFault.Services.TmlExistFaultsInfoServices.InfoDictionary.
-                    //                         Values
-                    //                     where t.DateCreate > ClickTime && t.IsThisUserShow
-                    //                     orderby t.DateCreate descending
-                    //                     select t).ToList();
-
-                    //                var argss = new PublishEventArgs()
-                    //                                {
-                    //                                    EventType = PublishEventType.Core,
-                    //                                    EventId = EventIdAssign.PushErrNums
-                    //                                };
-                    //                argss.AddParams(tmox.Count);
-                    //                EventPublish.PublishEvent(argss);
-
-                                    
-                    //            }
-                    //        }
-                    //    }
-                    //    if (!_thisViewActive) return;
-                    //    if (IsLockThisViewOnNewErrArrive) return;
-                    //    var info = args.GetParams()[0] as List<int>;
-                    //    if (info == null) return;
-                    //    foreach (var t in info)
-                    //    {
-                    //        var ntgs =
-                    //            Wlst.Sr.EquipemntLightFault.Services.TmlExistFaultsInfoServices.
-                    //                GetFaultInfoById
-                    //                (t);
-                    //        if (ntgs != null)
-                    //            AddErrorInfo(ntgs, true);
-                    //    }
-
-
-                    //}
                 }
-                //if (args.EventId == Sr.EquipemntLightFault.Services.EventIdAssign.PreExistErrorRequestId)
-                //{
-                //    var infos = args.GetParams()[1] as EquipmentPreFaultExChange;
-                //    if (infos == null) return;
-                //    OnPreDataBack(infos);
-                //}
+                if (args.EventId == Sr.EquipmentInfoHolding.Services.EventIdAssign.TargetSelected)
+                {
+                    if (args.GetParams().Count < 2) return;
+                    var lst = args.GetParams()[1] as List<int>;
+                    if (lst == null || lst.Count == 0) return;
+                    if (args.GetParams()[0] == null) return;
+                    RtuName = args.GetParams()[0].ToString() + " [" + lst.Count + "]";
+                    SelectedRtus.Clear();
+                    SelectedRtus.AddRange(lst);
+
+
+                }
             }
             catch (Exception ex)
             {
@@ -3740,23 +2524,16 @@ namespace Wlst.Ux.EquipemntLightFault.EquipmentFaultRecordQueryViewModel.ViewMod
         public bool FundOrderFilter(PublishEventArgs args) //接收终端选中变更事件
         {
             if (!_thisViewActive) return false;
-            // if (!IsSingleEquipmentQuery) return false;
+
             try
             {
                 if (args.EventType == PublishEventType.Core)
                 {
-                    //if (!IsSingleEquipmentQuery) return false;  lvf
-                    //if (args.EventId == Sr.EquipmentGroupInfoHolding.Services.EventIdAssign.MainSingleTreeNodeActive)
-                    //{
-                    //    if (Convert.ToInt32(args.GetParams()[1]) == 2)
-                    //    {
-                    //        return true;
-                    //    }
-                    //}
+
                     if (args.EventId == Sr.EquipmentInfoHolding.Services.EventIdAssign.EquipmentSelected)
                     {
-                        if (OptionXmlSvr.GetOptionInt(4001, 2) == 1) return false ;
-           
+                        if (OptionXmlSvr.GetOptionInt(4001, 2) == 1) return false;
+
                         return true;
                     }
                     if (args.EventId == Sr.EquipmentInfoHolding.Services.EventIdAssign.EquipmentMulSelected)
@@ -3765,17 +2542,12 @@ namespace Wlst.Ux.EquipemntLightFault.EquipmentFaultRecordQueryViewModel.ViewMod
                         return false;
 
                     }
-                    //if (args.EventId ==Sr.EquipemntLightFault.Services.EventIdAssign.EquipmentExistFaultAddId)
-                    //{
-                    //    return true;
-                    //}
-
+                    if (args.EventId == Sr.EquipmentInfoHolding.Services.EventIdAssign.TargetSelected)
+                    {
+                        if (args.GetParams().Count < 2) return false;
+                        return true;
+                    }
                 }
-                //if (args.EventType == PublishEventType.Sevr &&
-                //    args.EventId == Sr.EquipemntLightFault.Services.EventIdAssign.PreExistErrorRequestId)
-                //{
-                //    return true;
-                //}
             }
             catch (Exception ex)
             {
@@ -3784,6 +2556,15 @@ namespace Wlst.Ux.EquipemntLightFault.EquipmentFaultRecordQueryViewModel.ViewMod
             return false;
         }
 
+
+        #endregion
+    }
+
+    /// <summary>
+    /// Action
+    /// </summary>
+    public partial class EquipmentFaultRecordQueryViewModel
+    {
         private void AddErrorInfo(FaultInfoBase error, bool dongtaiupdate)
         {
             return;
@@ -3818,40 +2599,40 @@ namespace Wlst.Ux.EquipemntLightFault.EquipmentFaultRecordQueryViewModel.ViewMod
             //}
         }
 
-        #endregion
 
+        public void OnRequestServerData(EquipmentFaultViewModel info)
+        {
+            if (info == null) return;
+            Sr.EquipemntLightFault.Services.PreErrorServices.RequestDataWhenErrorHappen(info.RtuId, info.RtuLoops,
+                                                                                        info.DateCreateId);
+
+            //发布事件  选中当前节点
+            var args = new PublishEventArgs
+            {
+                EventType = PublishEventType.Core,
+                EventId = Sr.EquipmentInfoHolding.Services.EventIdAssign.EquipmentSelected,
+                EventAttachInfo = "RequestDataWhenErrorHappenEqu",
+            };
+
+            args.AddParams(info.RtuId);
+            EventPublish.PublishEvent(args);
+        }
         private void InitAction()
         {
-            //ProtocolServer.RegistProtocol(
-            //    Sr.ProtocolPhone.LxFault.wlst_fault_pre,
-            //    OnRequestFaultPre,
-            //    typeof(EquipmentFaultRecordQueryViewModel), this);
+
             ProtocolServer.RegistProtocol(
                 Sr.ProtocolPhone.LxFault.wlst_fault_curr_time_cal,//现存故障统计
                 OnRequestFaultCurrTimeCal,
-                typeof (EquipmentFaultRecordQueryViewModel), this);
+                typeof(EquipmentFaultRecordQueryViewModel), this);
             ProtocolServer.RegistProtocol(
                 Sr.ProtocolPhone.LxFault.wlst_fault_pre_for_single, //查询最近的前一条 or后一条
                 OnRequestFaultPreForSingle,
-                typeof (EquipmentFaultRecordQueryViewModel), this);
+                typeof(EquipmentFaultRecordQueryViewModel), this);
             //lvf todo
         }
 
 
-        //private string pathcx = Environment.CurrentDirectory + "\\Config\\IsShowThisViewOnNewErrArrive.txt";
-        //private void LoadIsShowThisViewOnNewErrArrive()
-        //{
-        //    var ft = Wlst.Ux.EquipemntLightFault.Services.fileread.Read(pathcx);
-        //    if (string.IsNullOrEmpty(ft)) IsShowThisViewOnNewErrArrive = false;
-        //    else
-        //    {
-        //        int x = 0;
-        //        if (Int32.TryParse(ft, out x))
-        //        {
-        //            IsShowThisViewOnNewErrArrive = (x == 1);
-        //        }
-        //    }
-        //}
+
 
         //public static bool IsShowThisViewOnNewErrArriveInfo = false;
         private bool _cheIsLockThisViewOnNewErrArriveck;
@@ -3871,10 +2652,10 @@ namespace Wlst.Ux.EquipemntLightFault.EquipmentFaultRecordQueryViewModel.ViewMod
         }
 
         private Visibility middleVisi;
-        public void OnRequestFaultPre(Wlst.mobile.MsgWithMobile infos,int pagingFlag)
+        public void OnRequestFaultPre(Wlst.mobile.MsgWithMobile infos, int pagingFlag)
         {
 
-            if (!_thisViewActive) return ;
+            if (!_thisViewActive) return;
             var list = infos.WstFaultPre;
             if (pagingFlag == 0)
             {
@@ -3885,14 +2666,8 @@ namespace Wlst.Ux.EquipemntLightFault.EquipmentFaultRecordQueryViewModel.ViewMod
                 middleVisi = PagerVisi;
                 PageTotal = "页     " + ItemCount + " 条";
             }
-            ////////if (CountPreErrs)
-            ////////{
-            ////////    OnRequestFaultPreCount(list);
-            ////////    return;
-            ////////}
-            //var list = obj as List<PreErrorItem>;
-            //if (list == null) return;
-            //  Records.Clear();
+
+
             var tmp = new Dictionary<Tuple<int, int, int>, int>();
 
             bool isloopError = false;
@@ -3906,16 +2681,6 @@ namespace Wlst.Ux.EquipemntLightFault.EquipmentFaultRecordQueryViewModel.ViewMod
             foreach (var item in faultItems) //list.FaultItems
             {
                 int count;
-
-                //if (IsUseTimeLongQuery)
-                //{
-
-                //if (QueryMode == 3) //如果是区域查询 筛选一下咯  lvf 2018年6月19日09:52:54
-                //{
-                //    var areaid =
-                //     Wlst.Sr.EquipmentInfoHolding.Services.AreaInfoHold.MySlef.GetRtuBelongArea(item.RtuId);
-                //    if (areaid != AreaId) continue;
-                //}
 
                 var tu = new Tuple<int, int, int>(item.RtuId, item.LoopId, item.FaultId);
                 if (tmp.ContainsKey(tu)) count = tmp[tu];
@@ -3931,14 +2696,6 @@ namespace Wlst.Ux.EquipemntLightFault.EquipmentFaultRecordQueryViewModel.ViewMod
 
                 }
                 indexx++;
-
-
-
-
-
-
-
-
 
                 var mtpsss = Sr.EquipmentInfoHolding.Services.EquipmentDataInfoHold.GetInfoById(item.RtuId);
                 int py = item.RtuId;
@@ -3962,7 +2719,7 @@ namespace Wlst.Ux.EquipemntLightFault.EquipmentFaultRecordQueryViewModel.ViewMod
                 else
                 {
                     var sluinfo = Sr.SlusglInfoHold.Services.SluSglInfoHold.MySlef.GetField(item.RtuId);
-                    if ( sluinfo != null)
+                    if (sluinfo != null)
                     {
                         rtuname = sluinfo.FieldName;
                         py = sluinfo.PhyId;
@@ -3974,7 +2731,7 @@ namespace Wlst.Ux.EquipemntLightFault.EquipmentFaultRecordQueryViewModel.ViewMod
                 //if (item.FaultId == 21 || item.FaultId ==20) loopName = "开关量输出K" + item.LoopId;
                 string loopName = "";
 
-                if (item.FaultId == 20 || item.FaultId == 21)
+                if (item.FaultId == 20 || item.FaultId == 21 || (item.FaultId >= 30 && item.FaultId <= 35))
                 {
                     var t =
                         Sr.EquipmentInfoHolding.Services.EquipmentDataInfoHold.InfoItems[item.RtuId]
@@ -4015,7 +2772,7 @@ namespace Wlst.Ux.EquipemntLightFault.EquipmentFaultRecordQueryViewModel.ViewMod
 
 
                     //nb 单灯
-                    if (item.RtuId > 1700000 && item.RtuId<1800000)
+                    if (item.RtuId > 1700000 && item.RtuId < 1800000)
                     {
                         var ctrlinfo = Wlst.Sr.SlusglInfoHold.Services.SluSglInfoHold.MySlef.Get(item.LoopId);
                         if (ctrlinfo != null)
@@ -4024,7 +2781,7 @@ namespace Wlst.Ux.EquipemntLightFault.EquipmentFaultRecordQueryViewModel.ViewMod
                             loopName = loopName + "," + item.LampId;
                         }
                     }
-           
+
                 }
                 else
                 {
@@ -4034,15 +2791,6 @@ namespace Wlst.Ux.EquipemntLightFault.EquipmentFaultRecordQueryViewModel.ViewMod
                                    : item.LoopId.ToString(CultureInfo.InvariantCulture);
 
                 }
-
-                //if (item.A < 0.0001 && item.ALower < 0.0001 && item.AUpper < 0.0001 && item.Aeding < 0.0001 && item.V < 0.0001)
-                //{
-                //    isloopError = false;
-                //}
-                //else
-                //{
-                //    isloopError = true;
-                //}
 
 
                 if (!Sh.Contains(item.FaultId))
@@ -4057,50 +2805,50 @@ namespace Wlst.Ux.EquipemntLightFault.EquipmentFaultRecordQueryViewModel.ViewMod
 
                 //筛选
 
-                //如果 终端类型 需要判断 lvf 2018年12月11日13:48:19
-                if (RtuTypeSelected.Value != -1)
-                {
+                ////如果 终端类型 需要判断 lvf 2018年12月11日13:48:19
+                //if (RtuTypeSelected.Value != -1)
+                //{
 
-                    if (
-                        !Sr.EquipmentInfoHolding.Services.EquipmentDataInfoHold.InfoItems.
-                            ContainsKey(item.RtuId))
-                        return;
-                    var tt =
-                        Sr.EquipmentInfoHolding.Services.EquipmentDataInfoHold.InfoItems[item.RtuId]
-                            as Wlst.Sr.EquipmentInfoHolding.Model.Wj3005Rtu;
-                    if (tt == null || tt.WjVoltage == null) continue;
-                    if (tt.WjVoltage.RtuUsedType != RtuTypeSelected.Value) continue;
+                //    if (
+                //        !Sr.EquipmentInfoHolding.Services.EquipmentDataInfoHold.InfoItems.
+                //            ContainsKey(item.RtuId))
+                //        return;
+                //    var tt =
+                //        Sr.EquipmentInfoHolding.Services.EquipmentDataInfoHold.InfoItems[item.RtuId]
+                //            as Wlst.Sr.EquipmentInfoHolding.Model.Wj3005Rtu;
+                //    if (tt == null || tt.WjVoltage == null) continue;
+                //    if (tt.WjVoltage.RtuUsedType != RtuTypeSelected.Value) continue;
 
-                }
+                //}
 
 
                 obs.Add(new EquipmentFaultViewModel
-                            {
-                                DtCreateTime = new DateTime(item.DateCreate).ToString("yyyy-MM-dd HH:mm:ss"),
-                                DtRemoceTime = new DateTime(item.DateRemove).ToString("yyyy-MM-dd HH:mm:ss"),
-                                Index = indexx,
-                                FaultId = item.FaultId,
-                                RtuId = item.RtuId,
-                                PhyId = py,
-                                RtuLoopName = loopName,
-                                RtuLoops = item.LoopId,
-                                RtuName = rtuname,
-                                //mtpsss != null ? mtpsss.RtuName : GetRtuName(item.RtuId),
-                                FaultName = GetFaultName(item.FaultId).Item1,
-                                Color = GetFaultColor(item.FaultId),
-                                Count = count,
-                                Remark = item.Remark,
-                                DateCreateId = item.DateCreate,
-                                DateRemoveId = item.DateRemove,
-                                LampId = item.LampId,
-                                IsShowAtTop = GetFaultName(item.FaultId).Item2,
+                {
+                    DtCreateTime = new DateTime(item.DateCreate).ToString("yyyy-MM-dd HH:mm:ss"),
+                    DtRemoceTime = new DateTime(item.DateRemove).ToString("yyyy-MM-dd HH:mm:ss"),
+                    Index = indexx,
+                    FaultId = item.FaultId,
+                    RtuId = item.RtuId,
+                    PhyId = py,
+                    RtuLoopName = loopName,
+                    RtuLoops = item.LoopId,
+                    RtuName = rtuname,
+                    //mtpsss != null ? mtpsss.RtuName : GetRtuName(item.RtuId),
+                    FaultName = GetFaultName(item.FaultId).Item1,
+                    Color = GetFaultColor(item.FaultId),
+                    Count = count,
+                    Remark = item.Remark,
+                    DateCreateId = item.DateCreate,
+                    DateRemoveId = item.DateRemove,
+                    LampId = item.LampId,
+                    IsShowAtTop = GetFaultName(item.FaultId).Item2,
 
-                                A = !isloopError ? "---" : item.A.ToString("f2") + "",
-                                AUpper = !isloopError ? "---" : item.AUpper.ToString("f2") + "",
-                                ALower = !isloopError ? "---" : item.ALower.ToString("f2") + "",
-                                Aeding = !isloopError ? "---" : item.Aeding.ToString("f2") + "",
-                                V = !isloopError ? "---" : item.V.ToString("f2") + "",
-                            });
+                    A = !isloopError ? "---" : item.A.ToString("f2") + "",
+                    AUpper = !isloopError ? "---" : item.AUpper.ToString("f2") + "",
+                    ALower = !isloopError ? "---" : item.ALower.ToString("f2") + "",
+                    Aeding = !isloopError ? "---" : item.Aeding.ToString("f2") + "",
+                    V = !isloopError ? "---" : item.V.ToString("f2") + "",
+                });
                 // if (indexx % 100 == 0) Wlst.Cr.Core.UtilityFunction.UiHelper.UiDoOtherUserEvent(); //todo
             }
 
@@ -4111,8 +2859,8 @@ namespace Wlst.Ux.EquipemntLightFault.EquipmentFaultRecordQueryViewModel.ViewMod
             //lvf 2018年5月9日09:50:23   历史故障统计 选项中开启
             if (IsCalcFault)
             {
-                var errDic = new Dictionary<Tuple<int, int, int, int>, List< EquipmentFaultViewModel>>();
-                foreach (var f in mtp )
+                var errDic = new Dictionary<Tuple<int, int, int, int>, List<EquipmentFaultViewModel>>();
+                foreach (var f in mtp)
                 {
                     var tu = new Tuple<int, int, int, int>(f.RtuId, f.RtuLoops, f.LampId, f.FaultId);
                     if (errDic.ContainsKey(tu) == false) errDic.Add(tu, new List<EquipmentFaultViewModel>());
@@ -4121,7 +2869,7 @@ namespace Wlst.Ux.EquipemntLightFault.EquipmentFaultRecordQueryViewModel.ViewMod
 
                 var mtpTmp = new List<EquipmentFaultViewModel>();
                 int inddd = 0;
-                foreach (var f in errDic )
+                foreach (var f in errDic)
                 {
                     inddd++;
                     var ntg = (from t in f.Value orderby t.DateCreateId ascending select t).ToList();
@@ -4131,37 +2879,37 @@ namespace Wlst.Ux.EquipemntLightFault.EquipmentFaultRecordQueryViewModel.ViewMod
                     int indeeex = 0;
                     foreach (var fx in ntg)
                     {
-                        if(indeeex==0 )
+                        if (indeeex == 0)
                         {
                             indeeex++;
-                          
-                            var fxx = new EquipmentFaultViewModel
-                                                {
-                                                    DtCreateTime = fx.DtCreateTime,
-                                                    DtRemoceTime = fx.DtRemoceTime,
-                                                    Index = indeeex,
-                                                    FaultId = fx.FaultId,
-                                                    RtuId = fx.RtuId,
-                                                    PhyId = fx.PhyId,
-                                                    RtuLoopName = fx.RtuLoopName,
-                                                    RtuLoops = fx.RtuLoops,
-                                                    RtuName = fx.RtuName,
-                                                    //mtpsss != null ? mtpsss.RtuName : GetRtuName(item.RtuId),
-                                                    FaultName = fx.FaultName,
-                                                    Color = fx.Color,
-                                                    Count = fx.Count ,
-                                                    Remark = fx.Remark,
-                                                    DateCreateId = fx.DateCreateId,
-                                                    DateRemoveId = fx.DateRemoveId,
-                                                    LampId = fx.LampId,
-                                                    IsShowAtTop = fx.IsShowAtTop,
 
-                                                    A = fx.A,
-                                                    AUpper = fx.AUpper,
-                                                    ALower = fx.ALower,
-                                                    Aeding = fx.Aeding,
-                                                    V = fx.V,
-                                                };
+                            var fxx = new EquipmentFaultViewModel
+                            {
+                                DtCreateTime = fx.DtCreateTime,
+                                DtRemoceTime = fx.DtRemoceTime,
+                                Index = indeeex,
+                                FaultId = fx.FaultId,
+                                RtuId = fx.RtuId,
+                                PhyId = fx.PhyId,
+                                RtuLoopName = fx.RtuLoopName,
+                                RtuLoops = fx.RtuLoops,
+                                RtuName = fx.RtuName,
+                                //mtpsss != null ? mtpsss.RtuName : GetRtuName(item.RtuId),
+                                FaultName = fx.FaultName,
+                                Color = fx.Color,
+                                Count = fx.Count,
+                                Remark = fx.Remark,
+                                DateCreateId = fx.DateCreateId,
+                                DateRemoveId = fx.DateRemoveId,
+                                LampId = fx.LampId,
+                                IsShowAtTop = fx.IsShowAtTop,
+
+                                A = fx.A,
+                                AUpper = fx.AUpper,
+                                ALower = fx.ALower,
+                                Aeding = fx.Aeding,
+                                V = fx.V,
+                            };
                             first.ChildItems.Add(fxx);
                         }
                         else
@@ -4172,7 +2920,7 @@ namespace Wlst.Ux.EquipemntLightFault.EquipmentFaultRecordQueryViewModel.ViewMod
                         }
 
                     } // ?
-        
+
 
                     mtpTmp.Add(first);
                 }
@@ -4183,31 +2931,13 @@ namespace Wlst.Ux.EquipemntLightFault.EquipmentFaultRecordQueryViewModel.ViewMod
 
                 //添加区域筛选   lvf 2018年6月27日13:57:41
                 FilterAreaErrs(mtppp);
-                
-                //foreach (var f in mtppp)
-                //{
-                //    indexx++;
-                //    Records.Add(f);
-                //    if (indexx % 100 == 0) Wlst.Cr.Core.UtilityFunction.UiHelper.UiDoOtherUserEvent();
-                //}
 
-                ////  Remind = "数据已反馈完毕，请查看数据！";
-                //Remind = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " 查询成功，共" + errDic.Count + " 条记录. " + mtp.Count + "条数据";
             }
             else
             {
                 Records.Clear();
                 //添加区域筛选   lvf 2018年6月27日13:57:41
                 FilterAreaErrs(mtp);
-                //foreach (var f in mtp)
-                //{
-                //    indexx++;
-                //    Records.Add(f);
-                //    if (indexx%100 == 0) Wlst.Cr.Core.UtilityFunction.UiHelper.UiDoOtherUserEvent();
-                //}
-
-                ////  Remind = "数据已反馈完毕，请查看数据！";
-                //Remind = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " 查询成功，共" + list.FaultItems.Count + " 条数据.";
             }
 
         }
@@ -4219,13 +2949,13 @@ namespace Wlst.Ux.EquipemntLightFault.EquipmentFaultRecordQueryViewModel.ViewMod
             Records.Clear();
             Recordss.Clear();
             var obs = new ObservableCollection<EquipmentFaultViewModel>();
-           // var lst = new List<Tuple<int, int, int>>();
+            // var lst = new List<Tuple<int, int, int>>();
 
             var dic = new Dictionary<Tuple<int, int, int>, Tuple<int, long, long>>();
 
 
             var llll = (from t in list.FaultItems
-                        orderby t.DateCreate 
+                        orderby t.DateCreate
                         select t);
 
             foreach (var item in llll)    //todo 不算现存的最新的一条
@@ -4303,14 +3033,15 @@ namespace Wlst.Ux.EquipemntLightFault.EquipmentFaultRecordQueryViewModel.ViewMod
                 string rtuname = "";
 
 
-                
+
 
                 lastT = new DateTime(lastTime).ToString("yyyy-MM-dd HH:mm:ss");
-                
+
                 if (count == 1)
                 {
                     firstT = "---";
-                }else
+                }
+                else
                 {
                     firstT = new DateTime(firstTime).ToString("yyyy-MM-dd HH:mm:ss");
                 }
@@ -4398,16 +3129,16 @@ namespace Wlst.Ux.EquipemntLightFault.EquipmentFaultRecordQueryViewModel.ViewMod
 
 
 
-                    
+
                 });
-                if (count ==1)
+                if (count == 1)
                 {
-                  
+
                 }
                 // if (indexx % 100 == 0) Wlst.Cr.Core.UtilityFunction.UiHelper.UiDoOtherUserEvent(); //todo
             }
-            
-            
+
+
 
             var mtp = (from t in obs orderby t.DtRemoceTime descending select t).ToList();//t.IsShowAtTop descending,
 
@@ -4417,15 +3148,7 @@ namespace Wlst.Ux.EquipemntLightFault.EquipmentFaultRecordQueryViewModel.ViewMod
             //添加区域筛选   lvf 2018年6月27日13:57:41
             FilterAreaErrs(mtp);
 
-            //foreach (var f in mtp)
-            //{
-            //    indexx++;
-            //    Recordss.Add(f);
-            //    if (indexx % 100 == 0) Wlst.Cr.Core.UtilityFunction.UiHelper.UiDoOtherUserEvent();
-            //}
-
-            ////  Remind = "数据已反馈完毕，请查看数据！";
-            //Remind = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " 查询成功，共" + mtp.Count + " 条数据.";//list.FaultItems.Count + " 条数据.";
+ 
         }
 
 
@@ -4435,37 +3158,20 @@ namespace Wlst.Ux.EquipemntLightFault.EquipmentFaultRecordQueryViewModel.ViewMod
             var list = infos.WstFaultCurrForTimeCal;
             ArgsInfoVisi = false;//统计故障时，隐藏单条具体参数信息
 
-            //var list = obj as List<PreErrorItem>;
-            //if (list == null) return;
-            //  Records.Clear();
+
             var tmp = new Dictionary<Tuple<int, int, int>, int>();
 
 
 
-           Records.Clear();
-           Recordss.Clear();
-           var obs = new ObservableCollection<EquipmentFaultViewModel>();
+            Records.Clear();
+            Recordss.Clear();
+            var obs = new ObservableCollection<EquipmentFaultViewModel>();
 
             int indexx = 0;
             foreach (var item in list.FaultItems)
             {
                 int count;
-                //if (IsUseTimeLongQuery)
-                //{
 
-                //var tu = new Tuple<int, int, int>(item.RtuId, item.LoopId, item.FaultId);
-                //if (tmp.ContainsKey(tu)) count = tmp[tu];
-                //else
-                //{
-                //    count =
-                //        (from t in list.FaultItems
-                //         where
-                //             t.RtuId == item.RtuId && t.LoopId == item.LoopId &&
-                //             t.FaultId == item.FaultId
-                //         select t).Count();
-                //    tmp.Add(tu, count);
-
-                //}
                 indexx++;
                 var mtpsss = Sr.EquipmentInfoHolding.Services.EquipmentDataInfoHold.GetInfoById(item.RtuId);
                 int py = item.RtuId;
@@ -4487,13 +3193,10 @@ namespace Wlst.Ux.EquipemntLightFault.EquipmentFaultRecordQueryViewModel.ViewMod
                     else py = mtpsss.RtuPhyId;
                 }
 
-                //var loopName = mtpsss != null
-                //                                ? mtpsss.GetLoopName(item.LoopId)
-                //                                  : item.LoopId.ToString(CultureInfo.InvariantCulture);
-                //if (item.FaultId == 21 || item.FaultId == 20) loopName = "开关量输出K" + item.LoopId;
+
                 string loopName = "";
 
-                if (item.FaultId == 20 || item.FaultId == 21)
+                if (item.FaultId == 20 || item.FaultId == 21 || (item.FaultId >= 30 && item.FaultId <= 35))
                 {
                     var t =
                         Sr.EquipmentInfoHolding.Services.EquipmentDataInfoHold.InfoItems[item.RtuId]
@@ -4532,30 +3235,30 @@ namespace Wlst.Ux.EquipemntLightFault.EquipmentFaultRecordQueryViewModel.ViewMod
                 }
 
                 obs.Add(new EquipmentFaultViewModel
-                            {
-                                DtCreateTime = item.DtErrFirstAlarm < 1 ? "--" : new DateTime(item.DtErrFirstAlarm).ToString("yyyy-MM-dd HH:mm:ss"),
-                                DtRemoceTime = new DateTime(item.DateCreate).ToString("yyyy-MM-dd HH:mm:ss"),
-                                Index = indexx,
-                                FaultId = item.FaultId,
-                                RtuId = item.RtuId,
-                                PhyId = py,
-                                RtuLoopName = loopName,
-                                RtuLoops = item.LoopId,
-                                RtuName = rtuname,//mtpsss != null ? mtpsss.RtuName : GetRtuName(item.RtuId),
-                                FaultName = GetFaultName(item.FaultId).Item1,
-                                Color = GetFaultColor(item.FaultId),
-                                Count = item .AlarmCount,
-                                Remark = item.Remark,
-                                //DateCreateId = item.DateRemove,
-                                DateRemoveId = item.DateCreate,
-                                LampId = item.LampId,
-                                IsShowAtTop = GetFaultName(item.FaultId).Item2
-                            });
-               // if (indexx % 100 == 0) Wlst.Cr.Core.UtilityFunction.UiHelper.UiDoOtherUserEvent(); //todo
+                {
+                    DtCreateTime = item.DtErrFirstAlarm < 1 ? "--" : new DateTime(item.DtErrFirstAlarm).ToString("yyyy-MM-dd HH:mm:ss"),
+                    DtRemoceTime = new DateTime(item.DateCreate).ToString("yyyy-MM-dd HH:mm:ss"),
+                    Index = indexx,
+                    FaultId = item.FaultId,
+                    RtuId = item.RtuId,
+                    PhyId = py,
+                    RtuLoopName = loopName,
+                    RtuLoops = item.LoopId,
+                    RtuName = rtuname,//mtpsss != null ? mtpsss.RtuName : GetRtuName(item.RtuId),
+                    FaultName = GetFaultName(item.FaultId).Item1,
+                    Color = GetFaultColor(item.FaultId),
+                    Count = item.AlarmCount,
+                    Remark = item.Remark,
+                    //DateCreateId = item.DateRemove,
+                    DateRemoveId = item.DateCreate,
+                    LampId = item.LampId,
+                    IsShowAtTop = GetFaultName(item.FaultId).Item2
+                });
+                // if (indexx % 100 == 0) Wlst.Cr.Core.UtilityFunction.UiHelper.UiDoOtherUserEvent(); //todo
             }
 
             var mtp = (from t in obs orderby t.DateCreateId ascending select t).ToList();//t.IsShowAtTop descending,
-            
+
             Recordss.Clear();
             //添加区域筛选   lvf 2018年6月27日13:57:41
             FilterAreaErrs(mtp);
@@ -4565,9 +3268,8 @@ namespace Wlst.Ux.EquipemntLightFault.EquipmentFaultRecordQueryViewModel.ViewMod
             //    Recordss.Add(f);
             //    if (indexx % 100 == 0) Wlst.Cr.Core.UtilityFunction.UiHelper.UiDoOtherUserEvent();
             //}
-            CountNewErrs = false;
-            //  Remind = "数据已反馈完毕，请查看数据！";
-            //Remind = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " 查询成功，共" + list.FaultItems.Count + " 条数据.";
+            //CountNewErrs = false;
+  
         }
 
 
@@ -4576,10 +3278,10 @@ namespace Wlst.Ux.EquipemntLightFault.EquipmentFaultRecordQueryViewModel.ViewMod
             var list = infos.WstFaultPreForSingle;
             ArgsInfoVisi = false;//统计故障时，隐藏单条具体参数信息
             if (_thisViewActive == false) return;
-            if (list.FaultItems.Count ==0)
+            if (list.FaultItems.Count == 0)
             {
                 //CountLastPreErrs = true;
-                Remind = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " 查询成功，无数据.";
+                Remind = "查询成功，无数据.";
                 UMessageBox.Show("提醒", "无数据,这是最后一条数据！", UMessageBoxButton.Ok);
                 return;
             }
@@ -4588,9 +3290,9 @@ namespace Wlst.Ux.EquipemntLightFault.EquipmentFaultRecordQueryViewModel.ViewMod
             //  Records.Clear();
             var tmp = new Dictionary<Tuple<int, int, int>, int>();
 
-           Records.Clear();
-           Recordss.Clear();
-           var obs = new ObservableCollection<EquipmentFaultViewModel>();
+            Records.Clear();
+            Recordss.Clear();
+            var obs = new ObservableCollection<EquipmentFaultViewModel>();
             string dateRemove = "";
             int indexx = 0;
             foreach (var item in list.FaultItems)
@@ -4598,7 +3300,7 @@ namespace Wlst.Ux.EquipemntLightFault.EquipmentFaultRecordQueryViewModel.ViewMod
                 int count;
                 //if (IsUseTimeLongQuery)
                 //{
-                if (item.DateRemove>0)
+                if (item.DateRemove > 0)
                 {
                     dateRemove = new DateTime(item.DateRemove).ToString("yyyy-MM-dd HH:mm:ss");
                 }
@@ -4647,7 +3349,7 @@ namespace Wlst.Ux.EquipemntLightFault.EquipmentFaultRecordQueryViewModel.ViewMod
 
                 string loopName = "";
 
-                if (item.FaultId == 20 || item.FaultId == 21)
+                if (item.FaultId == 20 || item.FaultId == 21 || (item.FaultId >= 30 && item.FaultId <= 35))
                 {
                     var t =
                         Sr.EquipmentInfoHolding.Services.EquipmentDataInfoHold.InfoItems[item.RtuId]
@@ -4687,42 +3389,42 @@ namespace Wlst.Ux.EquipemntLightFault.EquipmentFaultRecordQueryViewModel.ViewMod
 
 
                 obs.Add(new EquipmentFaultViewModel
-                            {
-                                DtCreateTime = new DateTime(item.DateCreate).ToString("yyyy-MM-dd HH:mm:ss"),
-                                DtRemoceTime =dateRemove,// new DateTime(item.DateRemove).ToString("yyyy-MM-dd HH:mm:ss"),
-                                Index = indexx,
-                                FaultId = item.FaultId,
-                                RtuId = item.RtuId,
-                                PhyId = py,
-                                RtuLoopName = loopName,
-                                RtuLoops = item.LoopId,
-                                RtuName = rtuname,//mtpsss != null ? mtpsss.RtuName : GetRtuName(item.RtuId),
-                                FaultName = GetFaultName(item.FaultId).Item1,
-                                Color = GetFaultColor(item.FaultId),
-                                Count = count,
-                                Remark = item.Remark,
-                                DateCreateId = item.DateCreate,
-                                DateRemoveId = item.DateRemove,
-                                LampId = item.LampId,
-                                IsShowAtTop = GetFaultName(item.FaultId).Item2
-                            });
-               // if (indexx % 100 == 0) Wlst.Cr.Core.UtilityFunction.UiHelper.UiDoOtherUserEvent(); //todo
+                {
+                    DtCreateTime = new DateTime(item.DateCreate).ToString("yyyy-MM-dd HH:mm:ss"),
+                    DtRemoceTime = dateRemove,// new DateTime(item.DateRemove).ToString("yyyy-MM-dd HH:mm:ss"),
+                    Index = indexx,
+                    FaultId = item.FaultId,
+                    RtuId = item.RtuId,
+                    PhyId = py,
+                    RtuLoopName = loopName,
+                    RtuLoops = item.LoopId,
+                    RtuName = rtuname,//mtpsss != null ? mtpsss.RtuName : GetRtuName(item.RtuId),
+                    FaultName = GetFaultName(item.FaultId).Item1,
+                    Color = GetFaultColor(item.FaultId),
+                    Count = count,
+                    Remark = item.Remark,
+                    DateCreateId = item.DateCreate,
+                    DateRemoveId = item.DateRemove,
+                    LampId = item.LampId,
+                    IsShowAtTop = GetFaultName(item.FaultId).Item2
+                });
+                // if (indexx % 100 == 0) Wlst.Cr.Core.UtilityFunction.UiHelper.UiDoOtherUserEvent(); //todo
             }
 
             var mtp = (from t in obs orderby t.DateCreateId ascending select t).ToList();//t.IsShowAtTop descending,
-            
+
             Records.Clear();
             Recordss.Clear();
-            foreach (var f in mtp )
+            foreach (var f in mtp)
             {
                 indexx++;
                 Records.Add(f);
                 Recordss.Add(f);
                 if (indexx % 100 == 0) Wlst.Cr.Core.UtilityFunction.UiHelper.UiDoOtherUserEvent();
             }
-            
+
             //  Remind = "数据已反馈完毕，请查看数据！";
-            Remind = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " 查询成功，共" + list.FaultItems.Count + " 条数据.";
+            Remind =  "查询成功，共" + list.FaultItems.Count + " 条数据.";
         }
 
         private readonly List<NameIntBool> _faultName = new List<NameIntBool>();
@@ -4731,17 +3433,17 @@ namespace Wlst.Ux.EquipemntLightFault.EquipmentFaultRecordQueryViewModel.ViewMod
         {
             foreach (var item in Sr.EquipemntLightFault.Services.TmlFaultTypeInfoServices.InfoDictionary)
             {
-                _faultName.Add(new NameIntBool { Name = item.Value.FaultNameByDefine, Value = item.Value.FaultId ,AreaId = item.Value.PriorityLevel});
+                _faultName.Add(new NameIntBool { Name = item.Value.FaultNameByDefine, Value = item.Value.FaultId, AreaId = item.Value.PriorityLevel });
             }
         }
 
-        private Tuple<string,int> GetFaultName(int faultid)
+        private Tuple<string, int> GetFaultName(int faultid)
         {
             foreach (var item in _faultName.Where(item => faultid == item.Value))
             {
-                return new Tuple<string, int>(item.Name,item.AreaId);
+                return new Tuple<string, int>(item.Name, item.AreaId);
             }
-            return new Tuple<string, int>("no name", 0); 
+            return new Tuple<string, int>("no name", 0);
         }
 
 
@@ -4756,98 +3458,7 @@ namespace Wlst.Ux.EquipemntLightFault.EquipmentFaultRecordQueryViewModel.ViewMod
 
 
 
-    /// <summary>
-    /// 操作类型模型定义
-    /// </summary>
-    public class OperatorTypeItem : ObservableObject
-    {
 
-        public event EventHandler OnIsSelectedChanged;
-
-
-        private bool _check;
-        public bool IsSelected
-        {
-            get { return _check; }
-            set
-            {
-                if (_check != value)
-                {
-                    _check = value;
-                    this.RaisePropertyChanged(() => this.IsSelected);
-                    if (OnIsSelectedChanged != null)
-                    {
-                        OnIsSelectedChanged(this, EventArgs.Empty);
-                    }
-                }
-            }
-        }
-
-        private bool _isShow;
-
-        public bool IsShow
-        {
-            get { return _isShow; }
-            set
-            {
-                if (_isShow != value)
-                {
-                    _isShow = value;
-                    this.RaisePropertyChanged(() => this.IsShow);
-                }
-            }
-        }
-
-        private bool _checkall;
-
-        public bool IsSelectedAll
-        {
-            get { return _checkall; }
-            set
-            {
-                if (value == _checkall) return;
-                _checkall = value;
-                foreach (var item in Value)
-                {
-                    item.IsSelected = _checkall;
-                }
-
-                RaisePropertyChanged(() => IsSelectedAll);
-            }
-        }
-
-        private string _name;
-        /// <summary>
-        /// 
-        /// </summary>
-        public string Name
-        {
-            get { return _name; }
-            set
-            {
-                if (value != _name)
-                {
-                    _name = value;
-                    RaisePropertyChanged(() => Name);
-                }
-            }
-        }
-
-        private ObservableCollection<NameIntBool> _value;
-        /// <summary>
-        /// 
-        /// </summary>
-        public ObservableCollection<NameIntBool> Value
-        {
-            get { return _value ?? (_value = new ObservableCollection<NameIntBool>()); }
-            set
-            {
-                if (value == _value) return;
-                _value = value;
-                RaisePropertyChanged(() => Value);
-            }
-        }
-    }
 
 
 

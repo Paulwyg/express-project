@@ -122,7 +122,7 @@ namespace Wlst.Ux.StateBarModule.NewMsgViewBottom
                         if (args.EventId == Sr.EquipmentInfoHolding.Services.EventIdAssign.RunningInfoUpdate2)//EventId =EventIdAssign.PushErrNums
                         {
 
-                            if (args.GetParams().Count == 0) return;
+                             if (args.GetParams().Count == 0) return;
                             var rtuids = args.GetParams()[0] as List<int>;
                             if (rtuids == null || rtuids.Count == 0) return;
                             foreach (var g in rtuids)
