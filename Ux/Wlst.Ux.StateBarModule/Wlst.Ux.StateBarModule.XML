@@ -315,6 +315,11 @@
             
             </summary>
         </member>
+        <member name="P:Wlst.Ux.StateBarModule.OperatorDataQueryViewModel.ViewModel.OperatorTypeItem.MaxHeight">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="P:Wlst.Ux.StateBarModule.OperatorDataQueryViewModel.ViewModel.OperatorTypeItem.Value">
             <summary>
             

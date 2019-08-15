@@ -155,9 +155,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="UserControl1.xaml.cs">
-      <DependentUpon>UserControl1.xaml</DependentUpon>
-    </Compile>
     <Compile Include="UxAbout\NavToHelp.cs" />
     <Compile Include="UxAbout\NavToUxAbout.cs" />
     <Compile Include="UxAbout\Services\IIUxAboutModule.cs" />
@@ -190,10 +187,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Page Include="UserControl1.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="UxAbout\Views\About.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
