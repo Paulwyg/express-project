@@ -16,6 +16,7 @@
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
         <!-- 布局 -->
@@ -120,6 +121,7 @@
                 <RowDefinition Height="Auto"></RowDefinition>
                 <RowDefinition Height="Auto"></RowDefinition>
                 <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
             </Grid.RowDefinitions>
 
             <TextBlock Text="最新数据显示模式选择:" Grid.ColumnSpan="2"></TextBlock>
@@ -131,6 +133,12 @@
                 <TextBlock VerticalAlignment="Center" Text="选测失败判定,选测 " />
                 <TextBox   MinWidth="50" Text="{Binding MeasureOverTime}" VerticalAlignment="Center" ></TextBox>
                 <TextBlock Margin="5,0,0,0"  VerticalAlignment="Center" Text="秒后无数据应答判定失败 [重启有效]" />
+
+                    
+            </DockPanel>
+            <DockPanel  Margin="25,0,0,0" Height="25" VerticalAlignment="Center" Grid.Row="5" Grid.Column="1">
+                 <TextBlock HorizontalAlignment="Left"  VerticalAlignment="Center"  Text="最新数据显示宽度"></TextBlock>
+                <TextBox HorizontalAlignment="Left" VerticalAlignment="Center" MinWidth="50"  Margin="5,0,0,0" Text="{Binding NewDataWidth}"></TextBox>
             </DockPanel>
 
 
@@ -160,8 +168,8 @@
 
                 <TextBlock Margin="25,17,0,0" Height="18"  Text="最新数据显示选项:" ></TextBlock>
 
-                <CheckBox  Margin="25,0,0,0" Height="25" VerticalContentAlignment="Center" Grid.Row="1"    Content="屏蔽回路显示电流" IsChecked="{Binding Item[17].IsSelected}"></CheckBox>
-                <CheckBox  Margin="25,0,0,0" Height="25" VerticalContentAlignment="Center" Grid.Row="2"    Content="屏蔽回路显示电压" IsChecked="{Binding Item[19].IsSelected}"></CheckBox>
+                <CheckBox  Margin="50,0,0,0" Height="25" VerticalContentAlignment="Center" Grid.Row="1"    Content="屏蔽回路显示电流" IsChecked="{Binding Item[17].IsSelected}"></CheckBox>
+                <CheckBox  Margin="50,0,0,0" Height="25" VerticalContentAlignment="Center" Grid.Row="2"    Content="屏蔽回路显示电压" IsChecked="{Binding Item[19].IsSelected}"></CheckBox>
 
             <TextBlock  Margin="25,10,0,0" Height="25"  Grid.Row="3" VerticalAlignment="Center" Text="终端名称位置的后方追加显示额外信息:" ></TextBlock>
                 <RadioButton Margin="50,0,0,0" Height="25" VerticalContentAlignment="Center" Grid.Row="4" IsChecked="{Binding OpExtendShow, Converter={StaticResource RadioButtonIntConvert}, ConverterParameter=1}" Content="无" ></RadioButton>
@@ -213,11 +221,39 @@
 
         </Grid>
 
-            <!--<Button  Tag="11060007" Content="应用" Command="{Binding CmdApply}" Grid.ColumnSpan="2"  Margin="0,0,50,0"
+        <!-- 显示模式 -->
+        <Grid Grid.Row="3"  Margin="0,15,0,0" VerticalAlignment="Center">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
+
+
+            <TextBlock Margin="25,17,0,0" Height="18"  Text="历史数据查询显示选项:[重启有效]" ></TextBlock>
+            <CheckBox   Margin="50,0,0,0" Height="25" VerticalContentAlignment="Center" Grid.Row="1"  Content="显示数据选项 [指定时刻查询全部设备数据、对比时刻查询全部设备数据]" IsChecked="{Binding Item[16].IsSelected}"></CheckBox>
+            <!--<CheckBox IsChecked="{Binding IsShowReverseData}"   Margin="50,0,0,0" Height="25" VerticalContentAlignment="Center" Grid.Row="1"   Content="历史数据查询倒序显示" ></CheckBox>-->
+            <CheckBox IsChecked="{Binding IsShowSumPower}"    Margin="50,0,0,0" Height="25" VerticalContentAlignment="Center" Grid.Row="2"   Content="显示三相功率和总功率 [终端巡测及数据查询界面显示]" ToolTip="终端巡测及数据查询界面显示三相功率和总功率" ></CheckBox>
+         
+            
+ 
+                <TextBlock Margin="25,17,0,0" Height="18" Grid.Row="3" Text="系统选中终端设备时，在状态栏显示:"  VerticalAlignment="Center"></TextBlock>
+            <CheckBox IsChecked="{Binding IsStateBarShowPhyId }" Content="终端物理地址" Margin="50,0,0,0" Height="25" VerticalContentAlignment="Center" Grid.Row="4" ></CheckBox>
+            <CheckBox IsChecked="{Binding IsStateBarShowRtuName}" Content="终端名称" Margin="50,0,0,0" Height="25" VerticalContentAlignment="Center" Grid.Row="5" ></CheckBox>
+            <CheckBox IsChecked="{Binding IsStateBarShowGrpName}" Content="终端所属分组" Margin="50,0,0,0" Height="25" VerticalContentAlignment="Center" Grid.Row="6" ></CheckBox>
+            <CheckBox IsChecked="{Binding IsStateBarShowRemark}" Content="终端备注" Margin="50,0,0,0" Height="25" VerticalContentAlignment="Center" Grid.Row="7" ></CheckBox>
+             
+        </Grid>
+        <!--<Button  Tag="11060007" Content="应用" Command="{Binding CmdApply}" Grid.ColumnSpan="2"  Margin="0,0,50,0"
                      Width="100" Height="25"  Grid.Row="3"></Button>-->
 
             <Button  Tag="11060007" Content="应用" Command="{Binding CmdApply}" VerticalAlignment="Top" 
-                     Width="120" Height="25" Grid.Row="3"  HorizontalAlignment="Left" Margin="380,15,0,0"></Button>
+                     Width="120" Height="25" Grid.Row="4"  HorizontalAlignment="Left" Margin="380,15,0,0"></Button>
         </Grid>
  
 </UserControl>

@@ -63,7 +63,7 @@ namespace Wlst.Ux.WJ3005Module.ZDataQuery.SndWeekTimeQuery.ViewModel
             {
 
             }
-            Remind = "请通过点击左侧终端树来选择终端进行终端记录查询...";
+            Remind = "请选择终端...";
         }
 
         public void OnUserHideOrClosing()
@@ -548,14 +548,14 @@ namespace Wlst.Ux.WJ3005Module.ZDataQuery.SndWeekTimeQuery.ViewModel
                 ItemCount = infos.Head.PagingRecordTotal;
                 var count = ItemCount / PageSize + (ItemCount % PageSize > 0 ? 1 : 0);
                 PagerVisi = count < 2 ? Visibility.Collapsed : Visibility.Visible;
-                PageTotal = "页     " + ItemCount + " 条";
+                PageTotal = "页 " + ItemCount + " 条";
             }
 
             if(info.Info.Count==0)
             {
                 //Remind = "没有所需要查询记录！";
                 Record.Clear();
-                Remind = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " --" + phyid  + "-- 终端记录查询成功，共计" + ItemCount + " 条数据.";
+                Remind = "查询成功.";
      
                 return;
             }
@@ -568,7 +568,7 @@ namespace Wlst.Ux.WJ3005Module.ZDataQuery.SndWeekTimeQuery.ViewModel
             this.Record = tmpitems;
             //Remind = "数据已反馈！";
 
-            Remind = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " --" +phyid  + "-- 终端记录查询成功，共计" + ItemCount + " 条数据.";
+            Remind = "查询成功.";
         }
         //private void ResoloveRequestAnsData(object data)
         //{
@@ -641,8 +641,7 @@ namespace Wlst.Ux.WJ3005Module.ZDataQuery.SndWeekTimeQuery.ViewModel
             var phyid = tml ;
             if (Wlst.Sr.EquipmentInfoHolding.Services.EquipmentDataInfoHold.InfoItems.ContainsKey(tml ))
                 phyid = Wlst.Sr.EquipmentInfoHolding.Services.EquipmentDataInfoHold.InfoItems[tml ].RtuPhyId;
-            Remind = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " 正在查询：" +phyid  +
-                     " ...";
+            Remind = "正在查询...";
         }
 
         private bool GetCheckedInformation()

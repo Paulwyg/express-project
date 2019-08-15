@@ -50,6 +50,12 @@ namespace Wlst.Ux.TimeTableSystem.TimeInfoNew
         private int aareaId = 0;
         private int ggrpId = 0;
         private List<int> rrrtulst = new List<int>();
+
+        TimeInfoMnVm TimeInfoMnVmdata = null;
+        public void SetTimeInfoMnVm(TimeInfoMnVm data)
+        {
+            TimeInfoMnVmdata = data;
+        }
         public void NavOnLoad(params object[] parsObjects)
         {
             _isViewActive = true;
@@ -76,10 +82,12 @@ namespace Wlst.Ux.TimeTableSystem.TimeInfoNew
             if (AreaName.Count > 1) Visi = Visibility.Visible;
             else Visi = Visibility.Collapsed;
 
+
+            TimeInfoMnVmdata.NavOnLoadr();
             //grpid //areaid
             if (parsObjects.Count() > 1)
             {
-                
+
                 aareaId = (int)parsObjects[0];
                 ggrpId = (int)parsObjects[1];
                 AreaId = aareaId;
@@ -102,45 +110,49 @@ namespace Wlst.Ux.TimeTableSystem.TimeInfoNew
             }
             else if (parsObjects.Count() == 1)  //交叉分组
             {
-                
+
                 var rtulst = parsObjects[0] as List<int>;
-                if (rtulst == null || rtulst.Count == 0) return;
-
-                this.TreeItems.Clear();
-                Visi = Visibility.Collapsed;
-                AreaId = Wlst.Sr.EquipmentInfoHolding.Services.AreaInfoHold.MySlef.GetAreaThatRtuIn(rtulst[0]);
-
-                this.TreeItems.Clear();
-                rrrtulst.Clear();
-
-                isUserSelectGrp = true;
-
-                rrrtulst.AddRange(rtulst);
-
-                LoadTimeTableInfoFromSr();
-                var grpName = "";
-                var grpinfo = Wlst.Sr.EquipmentInfoHolding.Services.ServiceGrpRegionInfoHold.GetGrpRegionByRtuid(rtulst[0]);
-                if (grpinfo != null)
+                if (rtulst != null && rtulst.Count > 0)
                 {
-                    grpName = Wlst.Sr.EquipmentInfoHolding.Services.ServiceGrpRegionInfoHold.GetGrpName(1, grpinfo.Item1, grpinfo.Item3);
-                }
-                
-                //var tn = new TreeGrpNodes(grpName, rrrtulst);
-                var grpname2 = Wlst.Sr.EquipmentInfoHolding.Services.ServicesGrpSingleInfoHold.GetRtuBelongGrp(rtulst[0]) ;
-                if (grpname2 != null)
-                {
-                    var grpn = Wlst.Sr.EquipmentInfoHolding.Services.ServicesGrpSingleInfoHold.GetGroupInfomation(grpname2.Item1, grpname2.Item2);
-                    if (grpn != null) grpName = grpName+"-"+ grpn.GroupName;
-                }
 
-                var tn = new TreeGrpNodes(grpName, rtulst);
+                    this.TreeItems.Clear();
+                    Visi = Visibility.Collapsed;
+                    AreaId = Wlst.Sr.EquipmentInfoHolding.Services.AreaInfoHold.MySlef.GetAreaThatRtuIn(rtulst[0]);
 
-                this.TreeItems.Add(tn);
+                    this.TreeItems.Clear();
+                    rrrtulst.Clear();
+
+                    isUserSelectGrp = true;
+
+                    rrrtulst.AddRange(rtulst);
+
+                    LoadTimeTableInfoFromSr();
+                    var grpName = "";
+                    var grpinfo = Wlst.Sr.EquipmentInfoHolding.Services.ServiceGrpRegionInfoHold.GetGrpRegionByRtuid(rtulst[0]);
+                    if (grpinfo != null)
+                    {
+                        grpName = Wlst.Sr.EquipmentInfoHolding.Services.ServiceGrpRegionInfoHold.GetGrpName(1, grpinfo.Item1, grpinfo.Item3);
+                    }
+
+                    //var tn = new TreeGrpNodes(grpName, rrrtulst);
+                    var grpname2 = Wlst.Sr.EquipmentInfoHolding.Services.ServicesGrpSingleInfoHold.GetRtuBelongGrp(rtulst[0]);
+                    if (grpname2 != null)
+                    {
+                        var grpn = Wlst.Sr.EquipmentInfoHolding.Services.ServicesGrpSingleInfoHold.GetGroupInfomation(grpname2.Item1, grpname2.Item2);
+                        if (grpn != null) grpName = grpName + "-" + grpn.GroupName;
+                    }
+
+                    var tn = new TreeGrpNodes(grpName, rtulst);
+
+                    this.TreeItems.Add(tn);
+                }
             }
             if (OnNavOnLoadSelectdRtus != null)
             {
                 OnNavOnLoadSelectdRtus(isUserSelectGrp ? null : this, EventArgs.Empty);
             }
+
+
 
         }
 
@@ -268,9 +280,33 @@ namespace Wlst.Ux.TimeTableSystem.TimeInfoNew
                 {
                     _txtVisi = value;
                     this.RaisePropertyChanged(() => this.Visi);
+                    //if (value == Visibility.Visible)
+                    //{
+                    //    AreaHeight = 30;
+                    //}
+                    //else AreaHeight = 0;
                 }
             }
         }
+
+        //private int _txtAreaHeight;
+
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public int  AreaHeight
+        //{
+        //    get { return _txtAreaHeight; }
+        //    set
+        //    {
+        //        if (value != _txtAreaHeight)
+        //        {
+        //            _txtAreaHeight = value;
+        //            this.RaisePropertyChanged(() => this.AreaHeight);
+        //        }
+        //    }
+        //}
+         
 
 
         private string _msg;
@@ -604,13 +640,42 @@ namespace Wlst.Ux.TimeTableSystem.TimeInfoNew
 
         private void Ex()
         {
+
+            //时间表地址  是否为多段
+            var rtn = new Dictionary<int, bool >();
+            bool existdd = false;
+ 
+            foreach (var f in Items)
+            {
+                var lst1 = f.BackToWeekTimeTableInforemation();
+                var timetableitem = new TimeTableInfomationItem(lst1, AreaId);
+                var bdb = timetableitem.MainIsOverOne[0] && Sr.EquipmentInfoHolding.Services.Others.IsOldUseTwoOpenLightSection == false;
+                rtn.Add(f.TimeId, bdb);
+                if (bdb) existdd = true;
+ 
+            }
+
+            //把不支持多段的筛选出来
+            var rtu3005 = new List<int>();
+            if (existdd) //如果没有多段  那就不用检测了  
+            {
+                (from t in
+                Sr.EquipmentInfoHolding.Services.EquipmentDataInfoHold.InfoItems
+                 where t.Value.RtuModel == EnumRtuModel.Wj3005 || t.Value.RtuModel == EnumRtuModel.Wj30910 || t.Value.RtuModel == EnumRtuModel.Wj3090
+                 select t.Key).ToList();
+            }
+
+
+            //检查 绑定的时间表 是否存在不存在的时间表  
+
+
             dtSnd = DateTime.Now;
             var bandingRelation = new List<TimeTableBandingRtuInfoNew.RtuOrGrpBandingTimeTableItem>();
             var lst = new List<Tuple<int, int, int>>();
             foreach (var t in TreeItems)
             {
                 var grpBandingInfo = new List<TimeTableBandingRtuInfoNew.RtuOrGrpBandingTimeTableItem.RtuOrGrpBandingTimeTableSwitchOutItem>();
-                bool haveBanding = false;
+                // bool haveBanding = false;
                 //添加分组信息
                 for (int i = 0; i < t.Items.Count; i++)
                 {
@@ -622,11 +687,27 @@ namespace Wlst.Ux.TimeTableSystem.TimeInfoNew
                             LoopId = i + 1,
                             TimeTableId = t.Items[i].TimeTalbe
                         });
-                        haveBanding = true;
+
+
+                        //检查 绑定的时间表 是否存在不存在的时间表  
+
+                        if (rtn.ContainsKey(t.Items[i].TimeTalbe) == false)
+                        {
+                            WlstMessageBox.Show("时间表不存在:" + t.PhyIdMsg, t.RtuOrGrpName + " 绑定的时间表不存在，请确认！！！", WlstMessageBoxType.Ok);
+                            return;
+
+                            //  haveBanding = true;
+                        }
+                        if(rtu3005.Contains( t.RtuOrGrpId ) && rtn [t.Items[i].TimeTalbe] )
+                        {
+                            WlstMessageBox.Show("不支持多段：:" + t.PhyIdMsg, t.RtuOrGrpName + " 本终端不支持多段时间表，请确认！！！", WlstMessageBoxType.Ok);
+                            return;
+                        }
+                        // haveBanding = true;
                     };
 
                 }
-                if (haveBanding && t.RtuOrGrpId!=0)
+                if ( t.RtuOrGrpId!=0)
                 {
                     
                     bandingRelation.Add(new TimeTableBandingRtuInfoNew.RtuOrGrpBandingTimeTableItem()
@@ -640,54 +721,57 @@ namespace Wlst.Ux.TimeTableSystem.TimeInfoNew
                 //添加 子节点绑定信息
                 foreach (var g in t.ChildTreeItems)
                 {
-                    grpBandingInfo = new List<TimeTableBandingRtuInfoNew.RtuOrGrpBandingTimeTableItem.RtuOrGrpBandingTimeTableSwitchOutItem>();
-                    haveBanding = false;
+                   var grpBandingInfo1 = new List<TimeTableBandingRtuInfoNew.RtuOrGrpBandingTimeTableItem.RtuOrGrpBandingTimeTableSwitchOutItem>();
+                   // haveBanding = false;
                     for (int i = 0; i < g.Items.Count; i++)
                     {
                         if (g.Items[i].TimeTalbe > 0)
                         {
                             lst.Add(new Tuple<int, int, int>(g.RtuOrGrpId, i + 1, g.Items[i].TimeTalbe));
-                            grpBandingInfo.Add(new TimeTableBandingRtuInfoNew.RtuOrGrpBandingTimeTableItem.RtuOrGrpBandingTimeTableSwitchOutItem()
+                            grpBandingInfo1.Add(new TimeTableBandingRtuInfoNew.RtuOrGrpBandingTimeTableItem.RtuOrGrpBandingTimeTableSwitchOutItem()
                             {
                                 LoopId = i + 1,
                                 TimeTableId = g.Items[i].TimeTalbe
                             });
-                            haveBanding = true;
+
+
+                            if (rtn.ContainsKey(g.Items[i].TimeTalbe) == false)
+                            {
+                                WlstMessageBox.Show("时间表不存在:" + g.PhyIdMsg,g.RtuOrGrpName + " 绑定的时间表不存在，请确认！！！", WlstMessageBoxType.Ok);
+                                return;
+
+                                //  haveBanding = true;
+                            }
+                            if (rtu3005.Contains(g.RtuOrGrpId) && rtn[g.Items[i].TimeTalbe])
+                            {
+                                WlstMessageBox.Show("不支持多段：:" + g.PhyIdMsg, g.RtuOrGrpName + " 本终端不支持多段时间表，请确认！！！", WlstMessageBoxType.Ok);
+                                return;
+                            }
                         };
 
                     }
-                    if (haveBanding)
+                    //if (haveBanding)
                     {
                         bandingRelation.Add(new TimeTableBandingRtuInfoNew.RtuOrGrpBandingTimeTableItem()
                         {
                             RtuOrGrpId = g.RtuOrGrpId,
-                            SwitchOutBandingTimeTableInfo = grpBandingInfo,
+                            SwitchOutBandingTimeTableInfo = grpBandingInfo1,
                         });
                     }
                     
 
                 }
-
-
-
-
-
             }
+
+
             if (lst.Count == 0)
             {
                 Msg = "无任何终端的绑定信息，无法执行保存...";
                 return;
             }
 
-            var rtn = new Dictionary<int, TimeTableInfoWithRtuOrGrpBandingInfo.TimeTableItem>();
-            var rtn1 = new List<TimeTableInfoWithRtuOrGrpBandingInfo.TimeTableItem>();
-            foreach (var f in Items)
-            {
-                var lst1 = f.BackToWeekTimeTableInforemation();
-                rtn.Add(f.TimeId, lst1);
-                rtn1.Add(lst1);
-            }
-
+           
+          
 
             //if (rtn.Count == 0)
             //{
@@ -695,34 +779,34 @@ namespace Wlst.Ux.TimeTableSystem.TimeInfoNew
             //    return;
             //}
 
-            foreach (var t in lst)
-            {
-                var isgrp = new bool();
-                if (t.Item1 > 999999)
-                {
-                    isgrp = false;
-                }
-                else isgrp = true;
-                var rtuitem = new OneGrpOrRtuLoopsSet(AreaId, t.Item1, isgrp);
-                var timetableitem = new TimeTableInfomationItem();
+            //foreach (var t in lst)
+            //{
+            //    var isgrp = new bool();
+            //    if (t.Item1 > 999999)
+            //    {
+            //        isgrp = false;
+            //    }
+            //    else isgrp = true;
+            //    var rtuitem = new OneGrpOrRtuLoopsSet(AreaId, t.Item1, isgrp);
+            //    var timetableitem = new TimeTableInfomationItem();
 
-                if (rtn.ContainsKey(t.Item3))
-                {
-                    timetableitem = new TimeTableInfomationItem(rtn[t.Item3], AreaId);
-                }
-                else
-                {
-                    WlstMessageBox.Show("警告", "无时间表信息，无法保存！", WlstMessageBoxType.Ok);
-                    return;
-                }
+            //    if (rtn.ContainsKey(t.Item3))
+            //    {
+            //        timetableitem = new TimeTableInfomationItem(rtn[t.Item3], AreaId);
+            //    }
+            //    else
+            //    {
+            //        WlstMessageBox.Show("警告", "无时间表信息，无法保存！", WlstMessageBoxType.Ok);
+            //        return;
+            //    }
 
 
-                if (rtuitem.Has3005 && timetableitem.MainIsOverOne[0] && Sr.EquipmentInfoHolding.Services.Others.IsOldUseTwoOpenLightSection == false)
-                {
-                    WlstMessageBox.Show("警告", "有非3006设备绑定了多段时间表，无法保存！", WlstMessageBoxType.Ok);
-                    return;
-                }
-            }
+            //    if (rtuitem.Has3005 && timetableitem.MainIsOverOne[0] && Sr.EquipmentInfoHolding.Services.Others.IsOldUseTwoOpenLightSection == false)
+            //    {
+            //        WlstMessageBox.Show("警告", "有非3006设备绑定了多段时间表，无法保存！", WlstMessageBoxType.Ok);
+            //        return;
+            //    }
+            //}
 
             var infoss = WlstMessageBox.Show("确认保存", "即将保存信息，是 继续，否 退出.", WlstMessageBoxType.YesNo);
             if (infoss != WlstMessageBoxResults.Yes) return;

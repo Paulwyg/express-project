@@ -45,7 +45,7 @@
         <Setter Property="FontWeight" Value="{Binding RelativeSource={RelativeSource Self}, Path=(FontSet:FontAttriXaml.MyFontWeight), Mode=OneWay}" />
         <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisualStyle}" />
         <Setter Property="HorizontalContentAlignment" Value="Left" />
-        <Setter Property="VerticalContentAlignment" Value="Top" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
         <Setter Property="Padding" Value="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay, Converter={StaticResource DoubleToThicknessConverter}, ConverterParameter=Left}" />
         <Setter Property="OverridesDefaultStyle" Value="True" />
         <Setter Property="SnapsToDevicePixels" Value="True" />

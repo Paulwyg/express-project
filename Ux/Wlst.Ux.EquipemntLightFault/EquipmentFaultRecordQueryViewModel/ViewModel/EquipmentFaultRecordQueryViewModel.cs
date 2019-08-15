@@ -1690,7 +1690,7 @@ namespace Wlst.Ux.EquipemntLightFault.EquipmentFaultRecordQueryViewModel.ViewMod
 
         #region PagerVisi
 
-        private Visibility _pagerVisi = Visibility.Visible;
+        private Visibility _pagerVisi = Visibility.Collapsed;
         public Visibility PagerVisi
         {
             get { return _pagerVisi; }
@@ -1943,7 +1943,7 @@ namespace Wlst.Ux.EquipemntLightFault.EquipmentFaultRecordQueryViewModel.ViewMod
                 return;
             }
             //CmdDeleteVisi = Visibility.Collapsed; lvf 2018年3月28日17:58:05  取消  管理可配置选项呈现删除按钮
-            Remind = "删除命令已经发送，1秒后可重新查询...";
+            Remind = "正在删除,稍后查询...";
 
             this.DeleteQuery();
             Records.Clear();
@@ -2310,7 +2310,7 @@ namespace Wlst.Ux.EquipemntLightFault.EquipmentFaultRecordQueryViewModel.ViewMod
 
         private void FilterAreaErrs(ObservableCollection<EquipmentFaultViewModel> records, bool iscol = false)
         {
-            Remind = "查询成功，共计0条数据.";
+            Remind = "查询成功，共0条数据.";
 
 
             //lvf 苏州新区  过滤  晚上回路报警 2019年3月27日11:01:14
@@ -2373,12 +2373,12 @@ namespace Wlst.Ux.EquipemntLightFault.EquipmentFaultRecordQueryViewModel.ViewMod
             if (iscol == false)
             {
                 Records = records;
-                Remind =  "查询成功，共计" + (IsOldFaultQuery ? ItemCount : Records.Count) + " 条数据.";
+                Remind =  "查询成功，共" + (IsOldFaultQuery ? ItemCount : Records.Count) + " 条数据.";
             }
             else
             {
                 Recordss = records;
-                Remind =  "查询成功，共计" + (IsOldFaultQuery ? ItemCount : Recordss.Count) + " 条数据.";
+                Remind =  "查询成功，共" + (IsOldFaultQuery ? ItemCount : Recordss.Count) + " 条数据.";
             }
 
 

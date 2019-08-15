@@ -230,15 +230,24 @@
                 <RadioButton Margin="2"  GroupName="xx8" Grid.Row="1" Grid.Column="10" IsChecked="{Binding Path=Route, Converter={StaticResource RadioButtonBooleanConvert}, ConverterParameter=false}"  Content="启用"  Name="radioButton20" VerticalAlignment="Center" />-->
 
                 <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Grid.ColumnSpan="2" Margin="2" Grid.Row="2" Grid.Column="0" Name="textBlock24" Text="通信端口:" VerticalAlignment="Center" />
-                <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Grid.ColumnSpan="2" Margin="2" Grid.Row="2" Grid.Column="6" Name="textBlock26" Text="心跳周期[分]:" VerticalAlignment="Center" />
-                <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Grid.ColumnSpan="2" Margin="2" Grid.Row="3" Grid.Column="0" Name="textBlock27" Text="主报周期[分]:" VerticalAlignment="Center" />
-                <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Grid.ColumnSpan="2" Margin="2" Grid.Row="3" Grid.Column="6" Name="textBlock28" Text="延时报警[秒]:" VerticalAlignment="Center" />
+                <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Grid.ColumnSpan="2" Margin="2" Grid.Row="2" Grid.Column="6" Name="textBlock26" Text="心跳周期:" VerticalAlignment="Center" />
+                <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Grid.ColumnSpan="2" Margin="2" Grid.Row="3" Grid.Column="0" Name="textBlock27" Text="主报周期:" VerticalAlignment="Center" />
+                <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Grid.ColumnSpan="2" Margin="2" Grid.Row="3" Grid.Column="6" Name="textBlock28" Text="延时报警:" VerticalAlignment="Center" />
                 
-                <TextBox Margin="2" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" Text="{Binding Port}"   Name="textBox9" VerticalAlignment="Center"  />
-                <TestBoxWaterMarked:WaterMarkedTextBox WaterMark="默认40秒" Margin="2" Grid.Row="2" Grid.ColumnSpan="2" Grid.Column="8" Text="{Binding HeartBeatPeriod}"   Name="textBox14" VerticalAlignment="Center"  />
-                <TestBoxWaterMarked:WaterMarkedTextBox WaterMark="默认247分" Margin="2" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="2" Text="{Binding ReportDataPeriod}"   Name="textBox15" VerticalAlignment="Center"  />
-                <TestBoxWaterMarked:WaterMarkedTextBox WaterMark="默认15秒" Margin="2" Grid.Row="3" Grid.Column="8" Grid.ColumnSpan="2" Text="{Binding ErrorDelays}"   Name="textBox16" VerticalAlignment="Center"  />
-
+                <TextBox Margin="2" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding Port}"   Name="textBox9" VerticalAlignment="Center"  />
+                <DockPanel Margin="2" Grid.Row="2" Grid.ColumnSpan="2" Grid.Column="7" VerticalAlignment="Center">
+                    <TestBoxWaterMarked:WaterMarkedTextBox WaterMark="默认40秒" Margin="2" Width="80" Grid.Row="2" Grid.ColumnSpan="2" Grid.Column="8" Text="{Binding HeartBeatPeriod}"   Name="textBox14" VerticalAlignment="Center"  ></TestBoxWaterMarked:WaterMarkedTextBox>
+                                                           <TextBlock Text="(分钟)" VerticalAlignment="Center">                        </TextBlock>
+                </DockPanel>
+                <DockPanel Margin="2" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" VerticalAlignment="Center">
+                    <TestBoxWaterMarked:WaterMarkedTextBox WaterMark="默认247分" Margin="2" Width="80" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding ReportDataPeriod}"   Name="textBox15" VerticalAlignment="Center"  />
+                    <TextBlock Text="(分钟)"  VerticalAlignment="Center"></TextBlock>
+                </DockPanel>
+                <DockPanel Margin="2" Grid.Row="3" Grid.Column="7" Grid.ColumnSpan="2" VerticalAlignment="Center">
+                    <TestBoxWaterMarked:WaterMarkedTextBox WaterMark="默认15秒" Margin="2" Width="80" Grid.Row="3" Grid.Column="7" Grid.ColumnSpan="2" Text="{Binding ErrorDelays}"   Name="textBox16" VerticalAlignment="Center"  />
+                    <TextBlock Text="(秒)"  VerticalAlignment="Center"></TextBlock>
+                </DockPanel>
+               
                 <!--<DockPanel VerticalAlignment="Center" HorizontalAlignment="Left"  Grid.Row="4" Grid.ColumnSpan="11">-->
                 <CheckBox Margin="2" Grid.Row="4"  Grid.Column="0" Grid.ColumnSpan="3"  Foreground="{Binding ElementName=fg, Path=Foreground}"  VerticalAlignment="Center" Content="设备支持电能采集" IsChecked="{Binding IsHasElec}" Visibility="{Binding Visi}"></CheckBox>
 

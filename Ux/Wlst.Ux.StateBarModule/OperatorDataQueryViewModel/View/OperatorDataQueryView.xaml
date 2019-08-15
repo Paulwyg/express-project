@@ -11,7 +11,7 @@
              d:DesignHeight="500" d:DesignWidth="950">
     <UserControl.Resources>
         <converters:BoolToVisibleConverter x:Key="BoolToVisible"/>
-        <!-- Brushes: Close Button -->
+        
         <RadialGradientBrush x:Key="CloseButtonOnStateColor" RadiusX="0.35" RadiusY="0.35" GradientOrigin="0.4,0.4" Center="0.4,0.4">
             <GradientStop Color="#FFC20303" Offset="1" />
             <GradientStop Color="White" Offset="0" />
@@ -24,42 +24,45 @@
             <GradientStop Color="#FFB70000" Offset="1" />
         </RadialGradientBrush>
     </UserControl.Resources>
-    <Grid>
+    <Grid Margin="5">
         <Label x:Name="fg"/>
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" MinHeight="30"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height=" *"/>
-                <RowDefinition Height="Auto" MinHeight="30"/>
-                <RowDefinition Height="Auto" MinHeight="30"/>
-                <!--<RowDefinition Height="*"/>-->
-            </Grid.RowDefinitions>
-            <Grid >
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
-                    
-                </Grid.ColumnDefinitions>
-                <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Text="起始时间：" Margin="5,2,0,2" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                <!--<xctk:DateTimePicker Grid.Column="1" Margin="10,0,0,0" MinWidth="180" DefaultValue="{Binding BeginDate}"  Text="{Binding BeginDate}" HorizontalAlignment="Left" VerticalAlignment="Center"/>-->
-                <DatePicker SelectedDateFormat="Short"  Grid.Column="1" Margin="10,2,0,2" MinWidth="100" SelectedDate="{Binding BeginDate}" HorizontalAlignment="Left" VerticalAlignment="Center"></DatePicker>
-                <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Grid.Column="2" Margin="30,2,0,2" Text="结束时间：" HorizontalAlignment="Left" VerticalAlignment="Center" />
-                <!--<xctk:DateTimePicker Grid.Column="3" Margin="10,0,0,0" DefaultValue="{Binding EndDate}" Text="{Binding EndDate}" MinWidth="180" HorizontalAlignment="Left" VerticalAlignment="Center"/>-->
-                <DatePicker SelectedDateFormat="Short"  Grid.Column="3" Margin="10,2,0,2"  MinWidth="100" SelectedDate="{Binding EndDate}" HorizontalAlignment="Left" VerticalAlignment="Center"></DatePicker>
-                <Label Grid.Column="4" MinWidth=  "190" />
-                <CheckBox x:Name="AdvanceQuery" Content="高级搜索" IsChecked="{Binding IsAdvanceQueryChecked}" Grid.Column="5" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,2,0,2"/>
-                <Button Content="查 询" Command="{Binding CmdQuery}" Grid.Column="6" HorizontalAlignment="Left" Margin="35,2,70,2" MinWidth="120"  MinHeight="25"/>
-                
+                <RowDefinition Height="30"/>
+
                
-             
+            </Grid.RowDefinitions>
+
+            <Grid Width="960" HorizontalAlignment="Left">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="80"/>
+                    <ColumnDefinition Width="130"/>
+                    <ColumnDefinition Width="80"/>
+                    <ColumnDefinition Width="120"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="120"/>
+                    <ColumnDefinition Width="120"/>
+
+                </Grid.ColumnDefinitions>
+                <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Text="起始时间：" Width="80"  HorizontalAlignment="Left" VerticalAlignment="Center"/>
+
+                <DatePicker SelectedDateFormat="Short"  Grid.Column="1"  Width="120" SelectedDate="{Binding BeginDate}" HorizontalAlignment="Left" VerticalAlignment="Center"></DatePicker>
+
+                <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Grid.Column="2" Width="80" Text="结束时间：" HorizontalAlignment="Left" VerticalAlignment="Center" />
+
+                <DatePicker SelectedDateFormat="Short"  Grid.Column="3"  Width="120" SelectedDate="{Binding EndDate}" HorizontalAlignment="Left" VerticalAlignment="Center"></DatePicker>
+                <Label Grid.Column="4" MinWidth=  "190" />
+                <CheckBox x:Name="AdvanceQuery" Content="高级搜索"  IsChecked="{Binding IsAdvanceQueryChecked}" Grid.Column="5" VerticalAlignment="Center" HorizontalAlignment="Left"  Width="120"/>
+                <Button Content="查 询"  Command="{Binding CmdQuery}" Grid.Column="6" HorizontalAlignment="Right" Width="120"  Height="25"/>
+
+
+
             </Grid>
-            <Grid Margin="10,0,0,0" Grid.Row="1" Visibility="{Binding ElementName=AdvanceQuery, Path=IsChecked, Converter={StaticResource BoolToVisible}}">
+
+            <Grid  Grid.Row="1" Visibility="{Binding ElementName=AdvanceQuery, Path=IsChecked, Converter={StaticResource BoolToVisible}}">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="*"/>
@@ -71,23 +74,22 @@
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="80"/>
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
 
-                    <Grid Grid.Row="0" Grid.ColumnSpan="2">
+                    <Grid Grid.Row="0" Grid.ColumnSpan="2" VerticalAlignment="Center">
 
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="80"/>
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="Auto"/>
@@ -95,143 +97,174 @@
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Grid.Column="0" Text="启用终端："   VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,5,0,0"/>
-                        <CheckBox Grid.Column="1" Content="启用" x:Name="IsTmlTreeChecked" IsChecked="{Binding IsTmlChecked}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="15,5,0,0"/>
-                        <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Grid.Column="2" Text="终端:"  Visibility="{Binding ElementName=IsTmlTreeChecked, Path=IsChecked, Converter={StaticResource BoolToVisible}}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,5,0,0"/>
+                        <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Grid.Column="0" Text="启用终端：" Width="80"  VerticalAlignment="Center" HorizontalAlignment="Left"  />
+                        <CheckBox Grid.Column="1" Content="启用" x:Name="IsTmlTreeChecked"    IsChecked="{Binding IsTmlChecked}" VerticalAlignment="Center" HorizontalAlignment="Left"  />
+                        <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Grid.Column="2" Text="终端:"  Visibility="{Binding ElementName=IsTmlTreeChecked, Path=IsChecked, Converter={StaticResource BoolToVisible}}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0"/>
                         <!--<TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Grid.Column="3" Text="{Binding PhyId}" Visibility="{Binding ElementName=IsTmlTreeChecked, Path=IsChecked, Converter={StaticResource BoolToVisible}}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,5,0,0"/>-->
                         <!--<TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Grid.Column="5" Text="-" Visibility="{Binding ElementName=IsTmlTreeChecked, Path=IsChecked, Converter={StaticResource BoolToVisible}}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,5,0,0"/>-->
-                        <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Grid.Column="6" Text="{Binding RtuName}" Visibility="{Binding ElementName=IsTmlTreeChecked, Path=IsChecked, Converter={StaticResource BoolToVisible}}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,5,0,0"/>
+                        <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Grid.Column="6" Text="{Binding RtuName}" Visibility="{Binding ElementName=IsTmlTreeChecked, Path=IsChecked, Converter={StaticResource BoolToVisible}}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0"/>
                     </Grid>
 
-                    <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Text="指令类别：" Grid.Row="1"  Margin="0,15,0,0"  HorizontalAlignment="Left" VerticalAlignment="Top"/>
-                    <ListBox Background="Transparent" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" Margin="0,10,0,0"  MinWidth="400"  VerticalAlignment="Top" 
+
+                    <Grid Grid.Row="1" Grid.ColumnSpan="2" VerticalAlignment="Center">
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="80"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Text="指令类别："   Width="80"  HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                        <ItemsControl Background="Transparent" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left"      VerticalAlignment="Center" 
                              ItemsSource="{Binding OrderTransmissionTypeItems }">
-                        <ListBox.Template>
-                            <ControlTemplate TargetType="{x:Type ListBox}">
-                                <Border Background="{TemplateBinding Background}">
-                                    <!--<ScrollViewer Background="Transparent" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">-->
-                                        <WrapPanel Orientation="Horizontal" IsItemsHost="True" ScrollViewer.CanContentScroll="True"/>
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                             
+                                        <!--<ScrollViewer Background="Transparent" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">-->
+                                    <WrapPanel Orientation="Horizontal" IsItemsHost="True"  ScrollViewer.HorizontalScrollBarVisibility  ="Hidden" ScrollViewer.VerticalScrollBarVisibility="Hidden"/>
                                     <!--</ScrollViewer>-->
-                                </Border>
-                            </ControlTemplate>
-                        </ListBox.Template>
-                        <ListBox.ItemTemplate>
-                            <DataTemplate>
-                                <RadioButton   Width="140" Margin="10,5,0,0" GroupName="SetSndAns" IsChecked="{Binding IsSelected}" 
-                                           HorizontalAlignment="Left"  VerticalContentAlignment="Center" VerticalAlignment="Top" Content="{Binding Name}"/>
-                            </DataTemplate>
-                        </ListBox.ItemTemplate>
-                        <ListBox.ItemContainerStyle>
-                            <Style TargetType="ListBoxItem">
-                                <Setter Property="Background" Value="Transparent"/>
-                            </Style>
-                        </ListBox.ItemContainerStyle>
-                    </ListBox>
-                    <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Text="操作用户："  Margin="0,15,0,0" Grid.Row="2" HorizontalAlignment="Left"  VerticalAlignment="Top"/>
-                    <ComboBox  Grid.Column="1" Background="Transparent" Grid.Row="2"  Margin="10,15,0,0" Width="250" ItemsSource="{Binding UserItems}" SelectedItem="{Binding CurrentSelectUser}" 
-                      DisplayMemberPath="Name" HorizontalAlignment="Left" VerticalContentAlignment="Center"  MinHeight="25"></ComboBox>
-                    
-                    <!--<ListBox Grid.Column="1" Background="Transparent" Grid.Row="2"  Margin="0,15,0,0"   MinWidth="400"   MaxWidth="900" VerticalAlignment="Top" ItemsSource="{Binding UserItems }">
-                        <ListBox.Template>
-                            <ControlTemplate TargetType="{x:Type ListBox}">
-                                <Border Background="{TemplateBinding Background}">
-           
-                                    <WrapPanel Orientation="Horizontal" IsItemsHost="True" ScrollViewer.CanContentScroll="True"/>
-                          
-                                </Border>
-                            </ControlTemplate>
-                        </ListBox.Template>
-                        <ListBox.ItemTemplate>
-                            <DataTemplate>
-                                <RadioButton  Width="140" Margin="10,5,0,0" GroupName="Users" IsChecked="{Binding IsSelected}"
-                                           HorizontalAlignment="Left"    VerticalContentAlignment="Center" VerticalAlignment="Top" Content="{Binding Name}"/>
-                            </DataTemplate>
-                        </ListBox.ItemTemplate>
-                        <ListBox.ItemContainerStyle>
-                            <Style TargetType="ListBoxItem">
-                                <Setter Property="Background" Value="Transparent"/>
-                            </Style>
-                        </ListBox.ItemContainerStyle>
-                    </ListBox>-->
-                    <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Text="类别管理：" Margin="0,10,0,0" Grid.Row="3" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-                    <ListBox   Grid.Column="1" Grid.Row="3"   Margin="0,10,0,0" Grid.RowSpan="2" HorizontalAlignment="Left" MinWidth="400" MaxWidth="800" VerticalAlignment="Top" ItemsSource="{Binding TypeItems }">
-                        <ListBox.Template>
-                            <ControlTemplate TargetType="{x:Type ListBox}">
-                                <!--<ScrollViewer Background="Transparent" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">-->
-                                    <WrapPanel Orientation="Horizontal" IsItemsHost="True" ScrollViewer.CanContentScroll="True"/>
-                                <!--</ScrollViewer>-->
-                            </ControlTemplate>
-                        </ListBox.Template>
-                        <ListBox.ItemTemplate>
-                            <DataTemplate>
-                                <CheckBox Width="140" Margin="10,2,0,0" IsChecked="{Binding Key.IsSelected}" HorizontalAlignment="Left" VerticalAlignment="Top" Content="{Binding Key.Name}"></CheckBox>
-                            </DataTemplate>
-                        </ListBox.ItemTemplate>
-                        <ListBox.ItemContainerStyle>
-                            <Style TargetType="ListBoxItem">
-                                <Setter Property="Background" Value="Transparent"/>
-                            </Style>
-                        </ListBox.ItemContainerStyle>
-                    </ListBox>
-                    <ListBox  Name="father" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="5"   Margin="0,10,0,0" Grid.RowSpan="2"  MinWidth="400" MaxWidth="960" VerticalAlignment="Top" ItemsSource="{Binding TypeItems }">
-                        <ListBox.Template>
-                            <ControlTemplate TargetType="{x:Type ListBox}">
-                                <!--<ScrollViewer Background="Transparent" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">-->
-                                    <WrapPanel Orientation="Vertical" IsItemsHost="True" ScrollViewer.CanContentScroll="True"/>
-                                <!--</ScrollViewer>-->
-                            </ControlTemplate>
-                        </ListBox.Template>
-                        <ListBox.ItemTemplate>
-                            <DataTemplate>
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto"/>
-                                        <ColumnDefinition Width="Auto"/>
-                                        <ColumnDefinition Width="Auto"/>
-                                        <ColumnDefinition Width="Auto"/>
-                                    </Grid.ColumnDefinitions>
-                                    <Grid.RowDefinitions >
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="*"/>
-                                    </Grid.RowDefinitions>
-                                    <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}" Margin="20,0,0,0" Visibility="{Binding Key.IsSelected, Converter={StaticResource BoolToVisible }}" VerticalAlignment="Top" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" Text="{Binding Name}"/>
-                                    <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Margin="0,0,10,0" Visibility="{Binding Key.IsSelected, Converter={StaticResource BoolToVisible }}" VerticalAlignment="Top" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" Text="："/>
-                                    <CheckBox Name="children" Content="全选" IsChecked="{Binding IsSelectedAll}"  Visibility="{Binding Key.IsSelected, Converter={StaticResource BoolToVisible }}"  Grid.Row="1" Grid.Column="0" VerticalAlignment="Top" HorizontalAlignment="Right"   />
-                                    <TextBlock Text="{Binding TestText}" Grid.Column="3" Grid.Row="0"  Visibility="{Binding Key.IsSelected, Converter={StaticResource BoolToVisible }}"/>
-                                    <ListBox Visibility="{Binding Key.IsSelected, Converter={StaticResource BoolToVisible }}" Grid.Column="2" Grid.Row="0" Grid.RowSpan=" 2" Margin="0,0,0,10" VerticalAlignment="Top"   MinWidth="400" MaxWidth="960"  ItemsSource="{Binding Value }">
-                                        <ListBox.Template>
-                                            <ControlTemplate TargetType="{x:Type ListBox}">
-                                                <!--<ScrollViewer Background="Transparent" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">-->
-                                                    <WrapPanel Orientation="Horizontal" IsItemsHost="True" ScrollViewer.CanContentScroll="True"/>
-                                                <!--</ScrollViewer>-->
-                                            </ControlTemplate>
-                                        </ListBox.Template>
-                                        <ListBox.ItemTemplate>
-                                            <DataTemplate>
-                                                <CheckBox Name="checkbox_collection" Width="160" Margin="10,2,0,0"  IsChecked="{Binding IsSelected}" VerticalAlignment="Top" Content="{Binding Name}"></CheckBox>
-                                            </DataTemplate>
-                                        </ListBox.ItemTemplate>
-                                        <ListBox.ItemContainerStyle>
-                                            <Style TargetType="ListBoxItem">
-                                                <Setter Property="Background" Value="Transparent"/>
-                                            </Style>
-                                        </ListBox.ItemContainerStyle>
-                                    </ListBox>
-                                </Grid>
-                            </DataTemplate>
-                        </ListBox.ItemTemplate>
-                        <ListBox.ItemContainerStyle>
-                            <Style TargetType="ListBoxItem">
-                                <Setter Property="Background" Value="Transparent"/>
-                            </Style>
-                        </ListBox.ItemContainerStyle>
-                    </ListBox>
+                            
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <RadioButton   Width="140"    GroupName="SetSndAns" IsChecked="{Binding IsSelected}" 
+                                           HorizontalAlignment="Left"  VerticalContentAlignment="Center" VerticalAlignment="Center" Content="{Binding Name}"/>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                            <!--<ItemsControl.ItemContainerStyle>
+                                <Style TargetType="ListBoxItem">
+                                    <Setter Property="Background" Value="Transparent"/>
+                                </Style>
+                            </ItemsControl.ItemContainerStyle>-->
+                        </ItemsControl>
+                    </Grid>
+
+                    <Grid Grid.Row="2" Grid.ColumnSpan="2" VerticalAlignment="Center">
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="80"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Text="操作用户：" Width="80"  Grid.Row="2" HorizontalAlignment="Left"  VerticalAlignment="Center"/>
+                        <ComboBox  Grid.Column="1" Background="Transparent" Grid.Row="2"   Width="200"   ItemsSource="{Binding UserItems}" SelectedItem="{Binding CurrentSelectUser}" 
+                      DisplayMemberPath="Name" HorizontalAlignment="Left" VerticalContentAlignment="Center"  Height="25"></ComboBox>
+                    </Grid>
+
+
+                    <Grid Grid.Row="3" Grid.ColumnSpan="3" VerticalAlignment="Center" HorizontalAlignment="Left">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="80"/>
+                            <ColumnDefinition Width="*"/>
+                      
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Text="类别管理："  Width="80"   Margin="0,5,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                        <ItemsControl   Grid.Column="1"   Margin="0,5,0,0"   HorizontalAlignment="Left" VerticalAlignment="Top"  Width="880" ItemsSource="{Binding TypeItems }">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate  >
+
+                                    <WrapPanel Orientation="Horizontal" IsItemsHost="True"  ScrollViewer.HorizontalScrollBarVisibility  ="Hidden" ScrollViewer.VerticalScrollBarVisibility="Hidden"/>
+
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="140"/>
+                                        </Grid.ColumnDefinitions>
+                                        <CheckBox   Margin="0,2,0,2" IsChecked="{Binding Key.IsSelected}"  HorizontalAlignment="Left"  VerticalContentAlignment="Center" VerticalAlignment="Center" Content="{Binding Key.Name}"></CheckBox>
+                               
+                                    </Grid>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                            <!--<ItemsControl.ItemContainerStyle>
+                                <Style TargetType="ListBoxItem">
+                                    <Setter Property="Background" Value="Transparent"/>
+                         
+                                </Style>
+                            </ItemsControl.ItemContainerStyle>-->
+                        </ItemsControl>
+                    </Grid>
+
+                    <Grid Grid.Row="4" Grid.ColumnSpan="3" VerticalAlignment="Top" Margin="0,5,0,0" HorizontalAlignment="Left">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+ 
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <ItemsControl  Name="father"     Width="960"  HorizontalAlignment="Left" VerticalAlignment="Top" ItemsSource="{Binding TypeItems }">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+
+                                    <WrapPanel Orientation="Horizontal" IsItemsHost="True"  ScrollViewer.HorizontalScrollBarVisibility  ="Hidden" ScrollViewer.VerticalScrollBarVisibility="Hidden"/>
+
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid  >
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="80"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions >
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+                                      
+                                        <CheckBox Name="children" Content="{Binding Name}"  Width="70" Margin="10,2,0,0"  IsChecked="{Binding IsSelectedAll}"  Visibility="{Binding Key.IsSelected, Converter={StaticResource BoolToVisible }}"  Grid.Row="0" Grid.Column="0" VerticalAlignment="Top" HorizontalAlignment="Right"   />
+
+                                        <ItemsControl Visibility="{Binding Key.IsSelected, Converter={StaticResource BoolToVisible }}" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left"  VerticalAlignment="Top"    Width="880"  ItemsSource="{Binding Value }">
+                                            <ItemsControl.ItemsPanel>
+                                                <ItemsPanelTemplate >
+
+                                                    <WrapPanel Orientation="Horizontal"  IsItemsHost="True" ScrollViewer.HorizontalScrollBarVisibility  ="Hidden" ScrollViewer.VerticalScrollBarVisibility="Hidden"/>
+
+                                                </ItemsPanelTemplate>
+                                            </ItemsControl.ItemsPanel>
+                                            <ItemsControl.ItemTemplate>
+                                                <DataTemplate>
+                                                    <CheckBox Name="checkbox_collection" Width="140"  Margin="0,2,0,2" IsChecked="{Binding IsSelected}" VerticalAlignment="Top" VerticalContentAlignment="Center" Content="{Binding Name}"></CheckBox>
+                                                </DataTemplate>
+                                            </ItemsControl.ItemTemplate>
+                                            <!--<ItemsControl.ItemContainerStyle>
+                                                <Style TargetType="ListBoxItem">
+                                                    <Setter Property="Background" Value="Transparent"/>
+                                                </Style>
+                                            </ItemsControl.ItemContainerStyle>-->
+                                        </ItemsControl> 
+                                    </Grid>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                            <!--<ItemsControl.ItemContainerStyle>
+                                <Style TargetType="ListBoxItem">
+                                    <Setter Property="Background" Value="Transparent"/>
+                                </Style>
+                            </ItemsControl.ItemContainerStyle>-->
+                        </ItemsControl> 
+
+                    </Grid>
                 </Grid>
             </Grid>
-           
+
             <telerik:RadGridView x:Name="gridview"   AutoGenerateColumns="False" ItemsSource="{Binding Items}" Grid.Row="2"  
 								 ScrollMode="Deferred" IsReadOnly="True"  ShowGroupPanel="False" 
-                                 HorizontalAlignment="Left"  Width="960" Margin="5,0,0,0"
+                                 HorizontalAlignment="Left"  Width="960"  
                                   SnapsToDevicePixels="False" ShowColumnFooters="False" UseLayoutRounding="False" RowIndicatorVisibility="Collapsed">
              
                 <telerik:RadGridView.Columns>
@@ -244,22 +277,11 @@
                     <telerik:GridViewDataColumn Header="地址" IsFilterable="False" IsSortable="False"  DataMemberBinding="{Binding Addresses}"   IsReadOnly="True" Width="50">
                     </telerik:GridViewDataColumn>
                     <telerik:GridViewDataColumn Header="备注" IsFilterable="False" IsSortable="False" DataMemberBinding="{Binding Remark}"  IsReadOnly="True" Width="180"  />
-                        <!--<telerik:GridViewDataColumn.CellTemplate>
-                            <DataTemplate>
-                                <Grid >
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="Auto"/>
-                                    </Grid.ColumnDefinitions>
-                                    <TextBlock HorizontalAlignment="Left" MinWidth="100" Text="{Binding Path=Addresses, Mode=TwoWay}"/>
-                                    <Button Grid.Column="1" Content="详情" Visibility="{Binding BtnDetailVisible}" Command="{Binding CmdWatchDetailInfo}" MaxWidth="60" HorizontalAlignment="Center"/>
-                                </Grid>
-                            </DataTemplate>
-                        </telerik:GridViewDataColumn.CellTemplate>-->
+              
                     
                 </telerik:RadGridView.Columns>
             </telerik:RadGridView>
-            <Grid Grid.Row="3" Visibility="{Binding PagerVisi}" Margin="0,10,0,0">
+            <!--<Grid Grid.Row="3" Visibility="{Binding PagerVisi}" Margin="0,10,0,0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="2*"/>
                     <ColumnDefinition Width="*"/>
@@ -270,14 +292,25 @@
                             VerticalContentAlignment="Center" HorizontalContentAlignment="Right" HorizontalAlignment="Right"
                             DisplayMode="All" PageSize="100" ItemCount="{Binding ItemCount,Mode=TwoWay}" />
                 <TextBlock Grid.Column="1" Text="{Binding PageTotal,Mode=TwoWay}" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-            </Grid>
-            <Grid Grid.Row="4">
+            </Grid>-->
+            <Grid Grid.Row="3" Width="960" Margin="0,5,0,0" HorizontalAlignment="Left">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="600"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Text="{Binding Remind}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0"/>
-                <Button Content="导出" Click="BtnExportClick"   Visibility="{Binding ExportVisi}" Grid.Column="1"  Margin="150,2,0,2" MinWidth="120"  MinHeight="25" />
+                <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Text="{Binding Remind}" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0,0,0,1" Width="180"/>
+                <DockPanel Visibility="{Binding PagerVisi}"  Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <DockPanel>
+                        <telerik:RadDataPager x:Name="radDataPager"
+                             FontSize="12"  Background="Transparent" Opacity="1"  NumericButtonCount="7"
+                            BorderThickness="0"   PageIndex="{Binding PageIndex,Mode=TwoWay}"
+                            VerticalContentAlignment="Bottom" HorizontalContentAlignment="Left" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0,0,0,1" 
+                            DisplayMode="All" PageSize="100" ItemCount="{Binding ItemCount,Mode=TwoWay}" />
+                        <TextBlock Grid.Column="1" Text="{Binding PageTotal,Mode=TwoWay}" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0,0,0,2" />
+                    </DockPanel>
+                </DockPanel>
+                <Button Content="导出" Click="BtnExportClick"   Visibility="{Binding ExportVisi}" Grid.Column="2"   Width="120"  Height="25" />
             </Grid>
           
 

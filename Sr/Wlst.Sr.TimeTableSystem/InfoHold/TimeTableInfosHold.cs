@@ -849,10 +849,10 @@ namespace Wlst.Sr.TimeTableSystem.InfoHold
 
 
         //只保存  lvf 2019年6月20日10:11:04
-        public void UpdateTimeTableInfosNew(int areaId,
+        public bool UpdateTimeTableInfosNew(int areaId,
     List<TimeTableInfoWithRtuOrGrpBandingInfo.TimeTableItem> lstTimeTables)
         {
-            if (lstTimeTables.Count == 0 ) return;
+            if (lstTimeTables.Count == 0) return true ;
             var info = Wlst.Sr.ProtocolPhone.LxRtuTime.wst_timetable_set_new;
             info.WstRtutimeTimetableSetnew.Op = 2;
             var TimeTableItems = new List<TimeTableInfoWithRtuOrGrpBandingInfo.TimeTableItem>();
@@ -861,14 +861,18 @@ namespace Wlst.Sr.TimeTableSystem.InfoHold
             {
                 TimeTableItems.Add(f);
             }
-        
-            info.WstRtutimeTimetableSetnew.TimeTableItems =TimeTableItems;
-            SndOrderServer.OrderSnd(info, 10, 6);
+
+            info.WstRtutimeTimetableSetnew.TimeTableItems = TimeTableItems;
+
+            var rtnbackdata = Wlst.Cr.CoreMims.HttpGetPostforMsgWithMobile.OrderSndHttp(info);
+
+            // SndOrderServer.OrderSnd(info, 10, 6);
 
 
 
             Wlst.Cr.CoreMims.ShowMsgInfo.ShowNewMsg.AddNewShowMsg(
                 0, "周设置修改", Wlst.Cr.CoreMims.ShowMsgInfo.OperatrType.UserOperator, "更新周设置");
+            return rtnbackdata != null;
         }
 
 

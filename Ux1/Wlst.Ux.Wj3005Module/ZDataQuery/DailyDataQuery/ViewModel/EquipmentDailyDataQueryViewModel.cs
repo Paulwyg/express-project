@@ -56,7 +56,7 @@ namespace Wlst.Ux.WJ3005Module.ZDataQuery.DailyDataQuery.ViewModel
 
         public void NavOnLoad(params object[] parsObjects)
         {
-            Remind = "请通过点击左侧终端树选择终端进行终端数据查询,所有终端查询指定时刻，单个终端查询最多两个月";
+            Remind = "请选择终端...";
             int rtuId = 0;
            // RtuName = "所有终端";
             this.DtEndTime = DateTime.Now;
@@ -1925,7 +1925,7 @@ namespace Wlst.Ux.WJ3005Module.ZDataQuery.DailyDataQuery.ViewModel
 
         #region PagerVisi
 
-        private Visibility _pagerVisi = Visibility.Visible;
+        private Visibility _pagerVisi = Visibility.Collapsed;
         public Visibility PagerVisi
         {
             get { return _pagerVisi; }
@@ -2217,11 +2217,11 @@ namespace Wlst.Ux.WJ3005Module.ZDataQuery.DailyDataQuery.ViewModel
             }
             if (infos.Head.Scc == 0)
             {
-                Remind = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "--终端数据查询成功，共计" + ItemCount + "条数据.";
+                Remind = "查询成功，共" + ItemCount + "条数据.";
             }
             else
             {
-                Remind = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "--终端数据查询失败.";
+                Remind = "查询失败.";
             }
             var info = infos.WstRtuData;
 
@@ -2706,13 +2706,13 @@ namespace Wlst.Ux.WJ3005Module.ZDataQuery.DailyDataQuery.ViewModel
                 
                     Thread.Sleep(100);
                 }
-                Remind = "查询命令已发送...请等待数据反馈！";
+                Remind = "正在查询...";
             }
             else
             {
                 // info.WstRtuData.RtuId = i; //请求的包序号  当rtuid为0 时查询所有数据 当rtuid《1000的时候 查询的为 （rtuid-1）*100+1000000 开始的100个终端数据  当rtuid》1000的时候查询该终端的数据
                 SndOrderServer.OrderSnd(info);
-                Remind = "查询命令已发送...请等待数据反馈！";
+                Remind = "正在查询...";
 
 
 
@@ -2755,7 +2755,7 @@ namespace Wlst.Ux.WJ3005Module.ZDataQuery.DailyDataQuery.ViewModel
         //http请求
       private void RequestHttpData(DateTime dtstarttime, DateTime dtendtime, int tml, int pageIndex, int pagingFlag)
       {
-          Remind = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " 正在查询...";
+          Remind = "正在查询...";
           MsgWithMobile info;
           int type;
           if (IsCompare == true)

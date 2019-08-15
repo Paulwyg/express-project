@@ -6,17 +6,17 @@
              xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" mc:Ignorable="d" 
              xmlns:Views="clr-namespace:Wlst.Ux.TimeTableSystem.TimeInfoNew.Views"
              d:DesignHeight="600" d:DesignWidth="800">
-    <Grid>
+    <Grid >
         <TabControl Background="Transparent" x:Name="TabControl" Grid.Row="1" SelectedIndex="{Binding SelectIndex}">
             <TabItem x:Name="TimeBandingNewView" Header="终端与指令绑定">
                 <!--<Views:TimeInfoBandingNew HorizontalAlignment="Left"></Views:TimeInfoBandingNew>-->
                 <Grid Margin="5" HorizontalAlignment="Left">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="35"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
                         <RowDefinition Height="*"></RowDefinition>
-                        <RowDefinition Height="35"></RowDefinition>
+                        <RowDefinition Height="30"></RowDefinition>
                     </Grid.RowDefinitions>
-                    <DockPanel Grid.Row="0"  Margin="5,0,0,0"   Visibility="{Binding Visi}">
+                    <DockPanel Grid.Row="0" Visibility="{Binding Visi}">
                         <TextBlock Grid.Row="1" Text="当前区域为: " VerticalAlignment="Center"  HorizontalAlignment="Left"></TextBlock>
                         <ComboBox x:Name="AreaComboBox"  Width="150" Height="18" HorizontalAlignment="Left" Margin="6,0,0,0"
                       ItemsSource="{Binding AreaName}" DisplayMemberPath="Value" SelectedItem="{Binding AreaComboBoxSelected}" ></ComboBox>
@@ -24,7 +24,7 @@
 
                     <telerik:RadTreeListView RowIndicatorVisibility="Collapsed"  x:Name="rtl"  FilteringMode="Popup" AutoGenerateColumns="False" 
 							                Grid.Row="1"  ItemsSource="{Binding TreeItems}" 
-                                            Margin="5"  
+                                            
 								            HorizontalAlignment="Stretch" 
 								            VerticalAlignment="Stretch" 
                                             MouseDoubleClick="treeListView_MouseDoubleClick"
@@ -113,17 +113,18 @@
 
                     </telerik:RadTreeListView>
 
-                    <Grid Grid.Row="3">
+                    <Grid Grid.Row="3" Margin="0,5,0,0">
                         <TextBlock Text="{Binding Msg}" VerticalAlignment="Center" Width="350" HorizontalAlignment="Left"></TextBlock>
-                       <Button  HorizontalAlignment="Right"  Margin="0,0,170,0" Content="保存并发送" Width="120" Height="25" Command="{Binding CmdSave}"></Button>
+                        
+                       <Button  HorizontalAlignment="Right" Margin="0,0,150,0"  Content="保存并发送" Width="120" Height="25" Command="{Binding CmdSave}"></Button>
  
-                        <Button   HorizontalAlignment="Right" Margin="0,0,5,0" Content="导出终端设置" Width="120" Height="25" Command="{Binding CmdExport}"></Button>
+                        <Button   HorizontalAlignment="Right"   Content="导出终端设置" Width="120" Height="25" Command="{Binding CmdExport}"></Button>
                     </Grid>
 
                 </Grid>
             </TabItem>
 
-            <TabItem x:Name="TimeInfoSetNewView" Header="时间表设置">
+            <TabItem x:Name="TimeInfoSetNewView" Header="时间表设置" RenderTransformOrigin="2.079,30.857">
                 <Views:TimeInfoSetNew  HorizontalAlignment="Left"  ></Views:TimeInfoSetNew>
             </TabItem>
         </TabControl>

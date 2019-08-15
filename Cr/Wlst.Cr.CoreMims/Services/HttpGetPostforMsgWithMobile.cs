@@ -8,10 +8,12 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Wlst.mobile;
+using System.Collections.Concurrent;
+using System.Threading;
 
 namespace Wlst.Cr.CoreMims
 {
-    public class HttpGetPostforMsgWithMobile
+    public partial class HttpGetPostforMsgWithMobile
     {
         /// <summary>
         /// var infos = MsgWithMobile.Deserialize(data)
@@ -19,36 +21,36 @@ namespace Wlst.Cr.CoreMims
         /// <param name="cmd">instances.Head.Cmd</param>
         /// <param name="instances"> System.Convert.ToBase64String(MsgWithMobile.SerializeToBytes(instances))</param>
         /// <returns></returns>
-        public static byte[]  OrderSndHttp(string cmd, string instances)
+        public static byte[] OrderSndHttp(string cmd, string instances)
         {
-                try
-                {
-                    var data = HttpGetx(cmd ,instances );
+            try
+            {
+                var data = HttpGetx(cmd, instances);
 
-                    if (string.IsNullOrEmpty(data) || data.Equals("ok") || data.Equals("error")) return null  ;
+                if (string.IsNullOrEmpty(data) || data.Equals("ok") || data.Equals("error")) return null;
 
-                   var rtn= System.Convert.FromBase64String(data);
-                    return rtn;
-                    //var infos = MsgWithMobile.Deserialize(System.Convert.FromBase64String(data));
-                    //if (infos != null)
-                    //{
-                    //    return infos;
-                    //}
-                }
-                catch (Exception ex)
-                {
-                    Wlst.Cr.Coreb.Servers.WriteLog.WriteLogError(ex.ToString());
-                }
-            
+                var rtn = System.Convert.FromBase64String(data);
+                return rtn;
+                //var infos = MsgWithMobile.Deserialize(System.Convert.FromBase64String(data));
+                //if (infos != null)
+                //{
+                //    return infos;
+                //}
+            }
+            catch (Exception ex)
+            {
+                Wlst.Cr.Coreb.Servers.WriteLog.WriteLogError(ex.ToString());
+            }
 
-            return null  ;
+
+            return null;
         }
 
         public static byte[] OrderSndPostHttp(string cmd, string instances)
         {
             try
             {
-                var data = HttpPostxx(HttpUrl+cmd, "?pb2=" + instances);
+                var data = HttpPostxx(HttpUrl + cmd, "?pb2=" + instances);
 
                 if (string.IsNullOrEmpty(data) || data.Equals("ok") || data.Equals("error")) return null;
 
@@ -103,19 +105,34 @@ namespace Wlst.Cr.CoreMims
         /// </summary>
         public static string HttpUrl = "";
 
+        //是否异步获取服务器数据  
+        public static bool IsHttpGetAsync = true;
+
         private static string HttpGetx(string cmd, string data)
         {
-
-            var xr = HttpGetx1(cmd, data, Wlst.Cr.CoreMims.Services.UserInfo.UserLoginInfo.UserName);
-            return xr;
+            if (IsHttpGetAsync)
+            {
+                return HttpGetPostAsync(cmd, data,true );
+            }
+            else
+            {
+                var xr = HttpGetx1(cmd, data, Wlst.Cr.CoreMims.Services.UserInfo.UserLoginInfo.UserName);
+                return xr;
+            }
 
         }
 
         private static string HttpPostx(string cmd, string data)
         {
-
-            var xr = HttpPostx1(cmd, data, Wlst.Cr.CoreMims.Services.UserInfo.UserLoginInfo.UserName);
-            return xr;
+            if (IsHttpGetAsync)
+            {
+                return HttpGetPostAsync(cmd, data, false);
+            }
+            else
+            {
+                var xr = HttpPostx1(cmd, data, Wlst.Cr.CoreMims.Services.UserInfo.UserLoginInfo.UserName);
+                return xr;
+            }
 
         }
         private static string HttpGetx1(string cmd, string data, string username)
@@ -322,5 +339,107 @@ namespace Wlst.Cr.CoreMims
         //        return null;
         //    }
         //}
+    }
+
+    public partial class HttpGetPostforMsgWithMobile
+    {
+        private static long Idx = 1;
+        private static object lockobj = 1;
+        private static ConcurrentDictionary<long, Tuple<long, string>> DicIdx = new ConcurrentDictionary<long, Tuple<long, string>>();
+        //cmd data isGet Idx
+        private static ConcurrentQueue<Tuple<string, string,bool , long>> QueueIdx = new ConcurrentQueue<Tuple<string, string, bool, long>>();
+        private static bool RunningQtz = false;
+        private static void InitQtz()
+        {
+
+            if (RunningQtz)
+                return;
+
+            lock (lockobj)
+            {
+                if (RunningQtz)
+                    return;
+
+                //注册调度函数
+                Wlst.Cr.Coreb.AsyncTask.Qtz.AddQtz("nt", 0, DateTime.Now.AddSeconds(3).Ticks, OnHttpGetxAsync, 250);
+                //注册调度函数
+                Wlst.Cr.Coreb.AsyncTask.Qtz.AddQtz("nt", 0, DateTime.Now.AddSeconds(3).Ticks, OnHttpGetxAsync, 500);
+                //注册调度函数
+                Wlst.Cr.Coreb.AsyncTask.Qtz.AddQtz("nt", 0, DateTime.Now.AddSeconds(3).Ticks, OnHttpGetxAsync, 1000);
+                RunningQtz = true;
+            }
+
+        }
+
+
+        private static long  lastCleantime=0;
+        private static void OnHttpGetxAsync(object obj)
+        {
+            if (QueueIdx.Count > 0)
+            {
+                Tuple<string, string, bool, long> tmp = null;
+                if (QueueIdx.TryDequeue(out tmp))
+                {
+                    if (tmp != null)
+                    {
+                        if (tmp.Item3)
+                        {
+                            var xr = HttpGetx1(tmp.Item1, tmp.Item2, Wlst.Cr.CoreMims.Services.UserInfo.UserLoginInfo.UserName);
+                            if (DicIdx.ContainsKey(tmp.Item4) == false) DicIdx.TryAdd(tmp.Item4, new Tuple<long, string>(DateTime.Now.Ticks, xr));
+                        }
+                        else
+                        {
+                            var xr = HttpPostx1(tmp.Item1, tmp.Item2, Wlst.Cr.CoreMims.Services.UserInfo.UserLoginInfo.UserName);
+                            if (DicIdx.ContainsKey(tmp.Item4) == false) DicIdx.TryAdd(tmp.Item4, new Tuple<long, string>(DateTime.Now.Ticks, xr));
+                        }
+                    }
+                }
+            }
+
+          //  if (DateTime.Now.Second % 10 != 1) return;
+            if (DateTime.Now.Ticks - lastCleantime < 10000000) return;
+            lastCleantime = DateTime.Now.Ticks;
+
+            var dlt = DateTime.Now.AddMinutes(-5).Ticks;
+            var dlts = (from t in DicIdx where t.Value.Item1 < dlt select t.Key).ToList();
+            foreach (var f in dlts)
+            {
+                Tuple<long, string> trx;
+                if (DicIdx.ContainsKey(f))
+                {
+                    DicIdx.TryRemove(f, out trx);
+                }
+            }
+
+        }
+
+        private static string HttpGetPostAsync(string cmd, string data,bool isGet)
+        {
+            InitQtz();
+            var id = Interlocked.Increment(ref Idx);
+            QueueIdx.Enqueue(new Tuple<string, string,bool , long>(cmd, data,isGet , id));
+            var deadtime = DateTime.Now.AddSeconds(30).Ticks;
+
+            while (DateTime.Now.Ticks < deadtime)
+            {
+                Wlst.Cr.Core.UtilityFunction.UiHelper.UiDoOtherUserEvent();
+                Wlst.Cr.Core.UtilityFunction.UiHelper.UiDoOtherUserEvent();
+                Wlst.Cr.Core.UtilityFunction.UiHelper.UiDoOtherUserEvent();
+                Wlst.Cr.Core.UtilityFunction.UiHelper.UiDoOtherUserEvent();
+                Wlst.Cr.Core.UtilityFunction.UiHelper.UiDoOtherUserEvent();
+                Wlst.Cr.Core.UtilityFunction.UiHelper.UiDoOtherUserEvent();
+                Wlst.Cr.Core.UtilityFunction.UiHelper.UiDoOtherUserEvent();
+                Wlst.Cr.Core.UtilityFunction.UiHelper.UiDoOtherUserEvent();
+                Wlst.Cr.Core.UtilityFunction.UiHelper.UiDoOtherUserEvent();
+                Wlst.Cr.Core.UtilityFunction.UiHelper.UiDoOtherUserEvent();
+                if (DicIdx.ContainsKey(id))
+                {
+                    return DicIdx[id].Item2;
+                }
+            }
+            // var xr = HttpGetx1(cmd, data, Wlst.Cr.CoreMims.Services.UserInfo.UserLoginInfo.UserName);
+            return string.Empty;
+
+        }
     }
 }

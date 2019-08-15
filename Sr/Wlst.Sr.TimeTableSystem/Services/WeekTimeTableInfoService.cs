@@ -86,10 +86,10 @@ namespace Wlst.Sr.TimeTableSystem.Services
         /// </summary>
         /// <param name="lstTimeTables"></param>
         /// <param name="lstUpdateRtuOrGrpBanding">第一个参数为终端或组地址，第二个参数为终端或组回路，第三个参数为时间表地址</param>
-        public static void UpdateTimeTableNew(int areaid,
+        public static bool  UpdateTimeTableNew(int areaid,
             List<TimeTableInfoWithRtuOrGrpBandingInfo.TimeTableItem> lstTimeTables)
         {
-            info.UpdateTimeTableInfosNew(areaid, lstTimeTables);
+          return   info.UpdateTimeTableInfosNew(areaid, lstTimeTables);
         }
 
 

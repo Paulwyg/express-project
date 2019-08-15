@@ -2477,10 +2477,14 @@ namespace Wlst.Ux.TimeTableSystem.TimeInfoMn.ViewModel
             var infoss = WlstMessageBox.Show("确认保存", "即将保存信息，是 继续，否 退出.", WlstMessageBoxType.YesNo);
             if (infoss != WlstMessageBoxResults.Yes) return;
 
-            dtSnd = DateTime.Now;
-            Sr.TimeTableSystem.Services.WeekTimeTableInfoService.UpdateTimeTableNew(AreaId, rtn1);
-
             Msg = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " 正在保存 ...";
+            dtSnd = DateTime.Now;
+            bool rtnxxx = Sr.TimeTableSystem.Services.WeekTimeTableInfoService.UpdateTimeTableNew(AreaId, rtn1);
+
+            if (rtnxxx)
+                Msg = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " 保存成功 .";
+            else
+                Msg = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " 保存失败 .";
         }
 
 

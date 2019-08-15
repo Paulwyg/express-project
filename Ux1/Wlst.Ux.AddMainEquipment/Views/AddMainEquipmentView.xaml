@@ -9,11 +9,11 @@
              d:DesignHeight="380" d:DesignWidth="1000">
 
     <UserControl.Resources></UserControl.Resources>
-    <Grid >
+    <Grid  Margin="5">
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" MinHeight="30" />
-            <RowDefinition Height="Auto" MinHeight="30" />
+            <RowDefinition Height="Auto"  />
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -21,7 +21,7 @@
             <ColumnDefinition Width="*" MinWidth="300"/>
         </Grid.ColumnDefinitions>
 
-        <telerik:RadTreeListView  Grid.Row="0" Grid.RowSpan="2" Background="Transparent" HorizontalAlignment="Left"  Margin="5,5,10,0" AutoGenerateColumns="False" ShowGroupPanel="False"
+        <telerik:RadTreeListView  Grid.Row="0" Grid.RowSpan="2" Background="Transparent" HorizontalAlignment="Left"  Margin="0,0,5,0" AutoGenerateColumns="False" ShowGroupPanel="False"
                               Width="640" MinHeight="100" SelectedItem="{Binding CurrentSelectEquipmentMoudle}"  
                               ItemsSource="{Binding EquipmentModules}" Focusable="False" ShowColumnHeaders="True" RowIndicatorVisibility="Collapsed" >
             <telerik:RadTreeListView.Columns>
@@ -81,7 +81,7 @@
             <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Grid.Column="0" Grid.Row="2" VerticalAlignment="Top" FontWeight="Bold" Text="设备描述:"/>
             <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Grid.Column="1" Grid.Row="2" Grid.RowSpan="2" TextWrapping="Wrap" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,0,0,0" Width="200" Text="{Binding Path=CurrentSelectEquipmentMoudle.ModuleDes}"/>
         </Grid>
-        <Grid Grid.Row="2" Grid.Column="0" >
+        <Grid Grid.Row="2" Grid.Column="0" Margin="0,5,0,0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
@@ -97,23 +97,23 @@
             <TextBlock Grid.Column="2" Foreground="{Binding ElementName=fg, Path=Foreground}" Text="分组:" Margin="10,0,0,0" VerticalAlignment="Center" Visibility="{Binding GrpVisi}"></TextBlock>
             <ComboBox Grid.Column="3" x:Name="GroupComboBox"  Width="150" Height="25" HorizontalAlignment="Left"  Margin="10,0,0,0"    IsEnabled="{Binding IsShowArea}"   
                       ItemsSource="{Binding GroupName}" DisplayMemberPath="Value" SelectedItem="{Binding GroupComboBoxSelected}" Visibility="{Binding GrpVisi}"></ComboBox>
-            <DockPanel Grid.Column="4" Grid.ColumnSpan="2" HorizontalAlignment="Right" Margin="10,0,10,0">
-                <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Margin="0,3,0,3" Grid.Column="4"  HorizontalAlignment="Right"  Text="物理地址："   VerticalAlignment="Center" />
-                <TextBox Grid.Column="5" Margin="4,3,0,3" x:Name="tbphy" Text="{Binding PhyId}" Width="60" MouseDoubleClick="tbphy_MouseDoubleClick"  Height="25"/>
+            <DockPanel Grid.Column="4" Grid.ColumnSpan="2" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10,0,5,0">
+                <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}"  Grid.Column="4"  HorizontalAlignment="Right"  Text="物理地址："   VerticalAlignment="Center" />
+                <TextBox Grid.Column="5" Margin="4,0,0,0" x:Name="tbphy" Text="{Binding PhyId}" Width="60" MouseDoubleClick="tbphy_MouseDoubleClick"  Height="25"/>
 
             </DockPanel>
             
         </Grid>
 
-        <DockPanel Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left">
-            <Button  Command="{Binding AddNew}" MinWidth="120" Margin="5,3,10,3" Height="25" HorizontalAlignment="Left" Content="增 加" />
+        <DockPanel Grid.Row="2" Grid.Column="1" VerticalAlignment="Center"  Margin="0,5,0,0" HorizontalAlignment="Left">
+            <Button  Command="{Binding AddNew}" MinWidth="120" Margin="5,0,10,0" Height="25" HorizontalAlignment="Left" Content="增 加" />
             <Label Width="25" Height="25"  MouseDoubleClick="Label_MouseDoubleClick" HorizontalAlignment="Left"></Label>
             <!--<Button  x:Name="gtx" Visibility="Collapsed" Click="gtx_Click" Content="删除设备" Height="25" Width="120" Margin="45,0,0,0"></Button>-->
-            <CheckBox Content="填补缺失的物理地址"  Height="16" HorizontalAlignment="Left" Margin="15,8,0,0" Name="checkBox1" VerticalAlignment="Top" IsChecked="{Binding IsTBQS}" Grid.Column="1" />
+            <CheckBox Content="填补缺失的物理地址"  Height="16" HorizontalAlignment="Left" Margin="15,0,0,0"  Name="checkBox1" VerticalAlignment="Center" IsChecked="{Binding IsTBQS}" Grid.Column="1" />
         </DockPanel>
         <DockPanel Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left">
 
-            <Button  x:Name="gtx" Visibility="Collapsed" Click="gtx_Click" Content="删除设备" Height="25" Width="120" Margin="5,3,10,3"></Button>
+            <Button  x:Name="gtx" Visibility="Collapsed"  Click="gtx_Click" Content="删除设备" Height="25" Width="120" Margin="5,0,10,0"></Button>
 
         </DockPanel>
         <!--<Grid Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left">

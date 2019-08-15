@@ -8,17 +8,17 @@
                
              xmlns:RadTreeViewSet="clr-namespace:Elysium.ThemesSet.RadTreeViewSet;assembly=Elysium" mc:Ignorable="d" 
                  d:DesignHeight="500" d:DesignWidth="1000">
-        <Grid>
+        <Grid Margin="5">
     <Grid.ColumnDefinitions>
       <ColumnDefinition Width="350"></ColumnDefinition>
       <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
     <Grid.RowDefinitions>
       <RowDefinition Height="*"></RowDefinition>
-      <RowDefinition Height="40"></RowDefinition>
+      <RowDefinition Height="30"></RowDefinition>
       </Grid.RowDefinitions>
 
-        <Grid Grid.Row="1" Grid.Column="1" Width="600" HorizontalAlignment="Left">
+        <Grid Grid.Row="1" Grid.Column="1" Width="600" Margin="0,5,0,0" VerticalAlignment="Center" HorizontalAlignment="Left">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="150"/>
                 <ColumnDefinition Width="150"/>
@@ -28,21 +28,21 @@
             
             <!--<Button Content="全选" Command="{Binding CmdCleanSelected}" Margin="10,5,20,5" Grid.Column="0" MinWidth="120" MinHeight="25" ></Button>-->
             <Button Content="清除选择" Command="{Binding CmdCleanSelected}"   Grid.Column="1" Width="120" Height="25" HorizontalAlignment="Right" ></Button>
-            <Label  Margin="10,5,0,5" Width="200" Height="25" MouseDoubleClick="Label_MouseDoubleClick" VerticalAlignment="Center" HorizontalContentAlignment="Right" HorizontalAlignment="Right"></Label>
+            <Label    Width="200" Height="25" MouseDoubleClick="Label_MouseDoubleClick" VerticalAlignment="Center" HorizontalContentAlignment="Right" HorizontalAlignment="Right"></Label>
                 <Button Content="批量操作" Command="{Binding CmdSelectAll}"   Grid.Column="2" Width="120" Height="25" HorizontalAlignment="Right" ></Button>
 
                 <Button Content="保存" Command="{Binding CmdSave}" Width="120" Height="25" HorizontalAlignment="Left" Margin="30,0,0,0" Grid.Column="3"></Button>
         </Grid>
 
-        <Grid Grid.Row="1" Margin="10,0,10,0">
+        <Grid Grid.Row="1" Margin="0,5,0,0">
             <Grid.ColumnDefinitions >
                 <ColumnDefinition Width=" 1*"/>
                 <ColumnDefinition Width=" 1*"/>
                 <ColumnDefinition Width=" 1*"/>        
             </Grid.ColumnDefinitions>           
-            <Button Content="增加分组" Command="{Binding CmdAddGrp}"  Width="70" Height="25" HorizontalAlignment="Center"  Grid.Column="0"></Button>
-            <Button Content="编辑分组" Command="{Binding CmdEditGrp}"  Width="70" Height="25" HorizontalAlignment="Center"  Grid.Column="1"></Button>
-            <Button Content="删除分组" Command="{Binding CmdDelGrp}"  Width="70" Height="25" HorizontalAlignment="Center"  Grid.Column="2" IsEnabled="{Binding IsDelete}"></Button>
+            <Button Content="增加分组" Command="{Binding CmdAddGrp}"  Width="70" Height="25" HorizontalAlignment="Left"  Grid.Column="0"></Button>
+            <Button Content="编辑分组" Command="{Binding CmdEditGrp}"  Width="70" Height="25" HorizontalAlignment="Left"  Grid.Column="1"></Button>
+            <Button Content="删除分组" Command="{Binding CmdDelGrp}"  Width="70" Height="25" HorizontalAlignment="Left"  Grid.Column="2" IsEnabled="{Binding IsDelete}"></Button>
         </Grid>
             
         <Grid >
@@ -58,15 +58,15 @@
                 <RowDefinition Height="Auto"></RowDefinition>
             </Grid.RowDefinitions>
             <!--<TextBlock Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Text="  各区域仅剩一个分组时，默认不能删除该分组。"></TextBlock>-->
-            <DockPanel HorizontalAlignment="Left" VerticalAlignment="Center" Grid.ColumnSpan="3" Margin="0,5" Visibility="{Binding Visi}" Grid.Row="0">
+            <DockPanel HorizontalAlignment="Left" VerticalAlignment="Center" Grid.ColumnSpan="3"   Visibility="{Binding Visi}" Grid.Row="0">
                 <TextBlock Text="区域选择" VerticalAlignment="Center" Margin="15,0,10,0" ></TextBlock>
                 <ComboBox ItemsSource="{Binding ItemsArea}" VerticalAlignment="Center" DisplayMemberPath="Name" SelectedItem="{Binding CurrentSelectArea}" Height="25" Width="120" ></ComboBox>
             </DockPanel>
-            <TextBlock Text="{Binding Msg}" Margin="5,0,0,0" HorizontalAlignment="Left" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" VerticalAlignment="Bottom"></TextBlock>
+            <TextBlock Text="{Binding Msg}"  HorizontalAlignment="Left" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" VerticalAlignment="Bottom"></TextBlock>
            
                 <telerik:RadTreeView Grid.Row="1" ItemsSource="{Binding ChildTreeItems}" Width="Auto" Padding="0" BorderThickness="1" vm:DragDrop.IsDragSource="True" vm:DragDrop.DragHandler="{Binding DragSourceTree}"
                          vm:DragDrop.IsDropTarget="True" vm:DragDrop.DropHandler="{Binding DropTargetTree}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" SelectedItem="{Binding SelectedGrp}"
-                          Grid.ColumnSpan="3" Margin="0,2,0,0">
+                          Grid.ColumnSpan="3" Margin="0,2,5,0">
       <telerik:RadTreeView.ItemContainerStyle>
         <Style TargetType="{x:Type telerik:RadTreeViewItem}">
           <Setter Property="IsExpanded" Value="{Binding IsExpanded, Mode=TwoWay}" />
@@ -122,9 +122,9 @@
                 <TextBlock VerticalAlignment="Center" Text="然后拖动到该分组组名上或该分组下。" Width="310" Margin="0,0,0,0"></TextBlock>
 
 
-                <TextBox  Margin="0,0,10,0" VerticalAlignment="Center" Text="{Binding SearchText, Mode=TwoWay,  ValidatesOnExceptions=True, ValidatesOnDataErrors=True, NotifyOnValidationError=True}" HorizontalAlignment="Left"   Width="160"></TextBox>
+                <TextBox  Margin="0,0,10,0" VerticalAlignment="Center" Height="20" Text="{Binding SearchText, Mode=TwoWay,  ValidatesOnExceptions=True, ValidatesOnDataErrors=True, NotifyOnValidationError=True}" HorizontalAlignment="Left"   Width="160"></TextBox>
               
-                <Button   HorizontalAlignment="Right" VerticalAlignment="Center" Content="终端查询" Command="{Binding CmdFastSearch}" Grid.ColumnSpan="2" Width="120"></Button>
+                <Button   HorizontalAlignment="Right" VerticalAlignment="Center" Content="终端查询" Command="{Binding CmdFastSearch}" Height="20" Grid.ColumnSpan="2" Width="120"></Button>
             </StackPanel>
            
 

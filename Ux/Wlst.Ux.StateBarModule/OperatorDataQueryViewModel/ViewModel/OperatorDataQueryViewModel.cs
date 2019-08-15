@@ -44,7 +44,7 @@ namespace Wlst.Ux.StateBarModule.OperatorDataQueryViewModel.ViewModel
             EndDate = DateTime.Now;
             RequestAllUserInfomation();
             RequestAllOperatorTypeHttp();
-            Remind = "请设置好查询日期[最多一个月]以及高级查询条件进行查询...";
+            Remind = "";
         }
 
         public override void OnUserHideOrClosingr()
@@ -546,7 +546,7 @@ namespace Wlst.Ux.StateBarModule.OperatorDataQueryViewModel.ViewModel
         private void ExCmdQuery()
         {
             _dtQuery = DateTime.Now;
-            Remind = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + ",查询命令已发送...，请等待数据反馈！";
+            Remind = "正在查询...";
             Query();
             ExportVisi = Visibility.Visible;
         }
@@ -712,11 +712,11 @@ namespace Wlst.Ux.StateBarModule.OperatorDataQueryViewModel.ViewModel
             }
             if (infos.Head.Scc == 0)
             {
-                Remind = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "--操作数据查询成功，共计" + ItemCount + "条数据.";
+                Remind =   "查询成功，共" + ItemCount + "条数据.";
             }
             else
             {
-                Remind = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "--操作数据查询失败.";
+                Remind =  "查询失败.";
             }
             if (type == 1)
             {
@@ -953,7 +953,7 @@ namespace Wlst.Ux.StateBarModule.OperatorDataQueryViewModel.ViewModel
             info.WstSysOperatorRecord.IsClientSnd = setsndans;
             SndOrderServer.OrderSnd(info, 10, 6);
 
-            Remind = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " 正在查询，请等待...";
+            Remind =  "正在查询...";
         }
 
         //http请求
@@ -1042,6 +1042,12 @@ namespace Wlst.Ux.StateBarModule.OperatorDataQueryViewModel.ViewModel
             {
                 nameIntBool.IsSelected = _key.IsSelected;
             }
+
+            if (Key.IsSelected)
+            {
+                MaxHeight = 1000;
+            }
+            else MaxHeight = 0;
         }
 
         private string _name;
@@ -1061,7 +1067,23 @@ namespace Wlst.Ux.StateBarModule.OperatorDataQueryViewModel.ViewModel
             }
         }
 
-        
+
+        private int _namsdfsdfe;
+        /// <summary>
+        /// 
+        /// </summary>
+        public int  MaxHeight
+        {
+            get { return _namsdfsdfe; }
+            set
+            {
+                if (value != _namsdfsdfe)
+                {
+                    _namsdfsdfe = value;
+                    RaisePropertyChanged(() => MaxHeight);
+                }
+            }
+        }
 
         private ObservableCollection<NameIntBool> _value;
         /// <summary>

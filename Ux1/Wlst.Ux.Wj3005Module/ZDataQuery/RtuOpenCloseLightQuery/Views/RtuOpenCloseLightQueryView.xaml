@@ -5,108 +5,119 @@
              xmlns:converters="clr-namespace:Wlst.Ux.WJ3005Module.ZDataQuery.RtuOpenCloseLightQuery.Converters"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" mc:Ignorable="d" 
-             d:DesignHeight="600" d:DesignWidth="900">
+             d:DesignHeight="600" d:DesignWidth="1080">
     <UserControl.Resources>
         <converters:BoolToVisibleConverter x:Key="BoolToVisible"/>
     </UserControl.Resources>
     <Grid HorizontalAlignment="Left">
-        <TabControl>
+        <TabControl  Background="Transparent"  >
             <TabItem Header="时间表开关灯时间统计">
-                <Grid HorizontalAlignment="Left">
+                <Grid HorizontalAlignment="Left" Margin="5">
 
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" MinHeight="25"></RowDefinition>
+                        <RowDefinition Height="25"></RowDefinition>
                         <RowDefinition Height="*"></RowDefinition>
-                        <RowDefinition Height="Auto" MinHeight="30"/>
+                        <RowDefinition Height="30"/>
                     </Grid.RowDefinitions>
-                    <Grid Grid.ColumnSpan="2" VerticalAlignment="Center">
+                    <Grid Grid.ColumnSpan="5" VerticalAlignment="Center">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto"></ColumnDefinition>
                             <ColumnDefinition Width="Auto"></ColumnDefinition>
                             <ColumnDefinition Width="Auto"></ColumnDefinition>
-                            <ColumnDefinition Width="Auto"></ColumnDefinition>
-                            <ColumnDefinition Width="Auto"></ColumnDefinition>
-                            <ColumnDefinition Width="Auto"></ColumnDefinition>
-                            <ColumnDefinition Width="Auto"></ColumnDefinition>
-                            <ColumnDefinition Width="Auto"></ColumnDefinition>
-                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
                             <ColumnDefinition Width="Auto"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
-                        <Label Content="时间表选择: " VerticalAlignment="Center"/>
-                        <ComboBox Grid.Column="1"   MinWidth="90" MaxWidth="160" VerticalAlignment="Center"  
+
+                        <DockPanel Grid.Column="0">
+                            <Label   Content="起始时间: "  VerticalAlignment="Center"/>
+                            <DatePicker   SelectedDateFormat="Short" Text="{Binding DtStartTimeTime,Mode=TwoWay}"  Width="160"  VerticalAlignment="Center"></DatePicker>
+
+                        </DockPanel>
+                        <DockPanel Grid.Column="1" Margin="10,0,0,0">
+                            <Label Margin="10,0,0,0"  Content="结束时间: " Grid.Column="7" VerticalAlignment="Center"/>
+                            <DatePicker  SelectedDateFormat="Short"  Text="{Binding DtEndTimeTime,Mode=TwoWay}"   Width="160"  VerticalAlignment="Center"></DatePicker>
+
+                        </DockPanel>
+
+                        <DockPanel Grid.Column="2" Margin="20,0,0,0">
+                            <Label Content="时间表选择: " VerticalAlignment="Center"/>
+                            <ComboBox Grid.Column="1"   Width="160" VerticalAlignment="Center"  
                                  ItemsSource="{Binding TimeTableItems}" 
                                  SelectedItem="{Binding CurrentSelectTimeTableItem}">
-                            <ComboBox.ItemTemplate>
-                                <DataTemplate >
-                                    <TextBlock VerticalAlignment="Center" Text="{Binding Name}"/>
-                                </DataTemplate>
-                            </ComboBox.ItemTemplate>
-                        </ComboBox>
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate >
+                                        <TextBlock VerticalAlignment="Center" Text="{Binding Name}"/>
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                        </DockPanel>
 
-                        <Label Margin="10,0,0,0"  Content="起始时间: " Grid.Column="5" VerticalAlignment="Center"/>
-                        <DatePicker Grid.Column="6"  SelectedDateFormat="Short" Text="{Binding DtStartTimeTime,Mode=TwoWay}"  MinWidth="160"  VerticalAlignment="Center"></DatePicker>
-
-                        <Label Margin="10,0,0,0"  Content="结束时间: " Grid.Column="7" VerticalAlignment="Center"/>
-                        <DatePicker Grid.Column="8"  SelectedDateFormat="Short"  Text="{Binding DtEndTimeTime,Mode=TwoWay}"  MinWidth="160"  VerticalAlignment="Center"></DatePicker>
-
-                        <Button Content="查询" HorizontalAlignment="Left" Grid.Column="9" Margin="10,5,10,5" Command="{Binding CmdQueryTime}" MinHeight="25" MinWidth="120"></Button>
+                        <Button Content="查询" HorizontalAlignment="Left" Grid.Column="4"  Command="{Binding CmdQueryTime}" Height="25" Width="120"></Button>
                     </Grid>
 
-                    <telerik:RadGridView ShowGroupPanel="False" MinWidth="500" AutoGenerateColumns="False" ItemsSource="{Binding RecordTimes}" Grid.Row="1"  AllowDrop="True" 
-                             Grid.Column="0" SelectedItem="{Binding CurrentSelectItem}" Margin="0,0,5,0" x:Name="executerecord"        Width="1050"
-							ScrollViewer.VerticalScrollBarVisibility="Auto"	  RowIndicatorVisibility="Collapsed">
+                    <telerik:RadGridView ShowGroupPanel="False"   AutoGenerateColumns="False" ItemsSource="{Binding RecordTimes}" Grid.Row="1"  AllowDrop="True" 
+                             Grid.Column="0" SelectedItem="{Binding CurrentSelectItem}"   x:Name="executerecord"        Width="1050" Margin="0,5,0,0"
+							ScrollViewer.VerticalScrollBarVisibility="Auto"	  RowIndicatorVisibility="Collapsed" Grid.ColumnSpan="5">
                         <telerik:RadGridView.Columns>
-                            <telerik:GridViewDataColumn Header="序号" IsFilterable="False"  MinWidth="60" MaxWidth="80" DataMemberBinding="{Binding Id}" IsReadOnly="True" />
-                            <telerik:GridViewDataColumn Header="时间表地址" IsFilterable="False"  MinWidth="90" MaxWidth="120" DataMemberBinding="{Binding TimeTableId}"  IsReadOnly="True"/>
-                            <telerik:GridViewDataColumn Header="时间表名称" IsFilterable="True" ShowFieldFilters="False" ShowFilterButton="False"   MaxWidth="360" DataMemberBinding="{Binding TimeTableName}"  IsReadOnly="True" MinWidth="180"/>
+                            <telerik:GridViewDataColumn Header="序号" IsFilterable="False"   Width="80" DataMemberBinding="{Binding Id}" IsReadOnly="True" />
+                            <telerik:GridViewDataColumn Header="时间表地址" IsFilterable="False"   Width="100" DataMemberBinding="{Binding TimeTableId}"  IsReadOnly="True"/>
+                            <telerik:GridViewDataColumn Header="时间表名称" IsFilterable="True" ShowFieldFilters="False" ShowFilterButton="False"    Width="250" DataMemberBinding="{Binding TimeTableName}"  IsReadOnly="True" />
 
-                            <telerik:GridViewDataColumn Header="操作时间"  IsFilterable="False" MaxWidth="260" DataMemberBinding="{Binding DateTimeGet}"  IsReadOnly="True" MinWidth="160"/>
-                            <telerik:GridViewDataColumn Header="操作类型"  IsFilterable="True" ShowFieldFilters="False" ShowFilterButton="False"  IsSortable="False" MaxWidth="160" DataMemberBinding="{Binding IsOpenLight}"  IsReadOnly="True" MinWidth="90"/>
-                            <telerik:GridViewDataColumn Header="统计时间"  IsFilterable="False"  IsSortable="False" MaxWidth="160" DataMemberBinding="{Binding OneSum}"  IsReadOnly="True" MinWidth="90"/>
-                            <telerik:GridViewDataColumn Header="累计时间"  IsFilterable="False"  IsSortable="False" MaxWidth="160" DataMemberBinding="{Binding AllSum}"  IsReadOnly="True" MinWidth="90"/>
-                            <telerik:GridViewDataColumn Header="光控"  IsFilterable="False"  IsSortable="False" MaxWidth="120" DataMemberBinding="{Binding Lux}"  IsReadOnly="True" MinWidth="90"/>
+                            <telerik:GridViewDataColumn Header="操作时间"  IsFilterable="False"  DataMemberBinding="{Binding DateTimeGet}"  IsReadOnly="True" Width="200"/>
+                            <telerik:GridViewDataColumn Header="操作类型"  IsFilterable="True" ShowFieldFilters="False" ShowFilterButton="False"  IsSortable="False" Width="100" DataMemberBinding="{Binding IsOpenLight}"  IsReadOnly="True"/>
+                            <telerik:GridViewDataColumn Header="统计时间"  IsFilterable="False"  IsSortable="False"  Width="100" DataMemberBinding="{Binding OneSum}"  IsReadOnly="True"  />
+                            <telerik:GridViewDataColumn Header="累计时间"  IsFilterable="False"  IsSortable="False"  Width="100" DataMemberBinding="{Binding AllSum}"  IsReadOnly="True" />
+                            <telerik:GridViewDataColumn Header="光控"  IsFilterable="False"  IsSortable="False" Width="100" DataMemberBinding="{Binding Lux}"  IsReadOnly="True"  />
 
 
-                            
+
                         </telerik:RadGridView.Columns>
                     </telerik:RadGridView>
 
-                    <Label Grid.Row="2" Grid.ColumnSpan="2" Content="{Binding ShowOrderInfo}"/>
-                    <Button Grid.Row="2" Grid.ColumnSpan="2"  Content="导出" Width="120" Height="25" Margin="0,0,10,0" Click="Button_Click2" HorizontalAlignment="Right"></Button>
+                    <DockPanel Grid.Row="2" Margin="0,5,0,0">
+                        <Label  HorizontalAlignment="Left" Width="600" Content="{Binding ShowOrderInfo}"/>
+                        <Button    Content="导出" Width="120" Height="25"  Click="Button_Click2" HorizontalAlignment="Right"  />
+                    </DockPanel>
+
                 </Grid>
             </TabItem>
             <TabItem Header="终端开关灯时间统计">
-                <Grid HorizontalAlignment="Left">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="auto" /> 
-                        <!--419-->
-                        <ColumnDefinition Width="auto" /> 
-                        <!--475-->
-                    </Grid.ColumnDefinitions>
+                <Grid HorizontalAlignment="Left" Margin="5">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="30"></RowDefinition>
+                        <RowDefinition Height="25"></RowDefinition>
                         <RowDefinition Height="30"></RowDefinition>
                         <RowDefinition Height="*" ></RowDefinition>
                         <RowDefinition Height="30"></RowDefinition>
                     </Grid.RowDefinitions>
                     <Label x:Name="fg" Grid.ColumnSpan="2" />
-                    <DockPanel HorizontalAlignment="Left">
-                        <TextBlock Margin="10,0,0,0" Foreground="{Binding ElementName=fg, Path=Foreground}"  Text="当前选择终端为:" VerticalAlignment="Center"></TextBlock>
+                    <DockPanel Grid.Row="1" HorizontalAlignment="Left" Margin="0,5,0,0" Height="25" VerticalAlignment="Center">
+                        <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}"  Text="当前终端:" VerticalAlignment="Center"></TextBlock>
                         <TextBlock Margin="10,0,0,0" Foreground="{Binding ElementName=fg, Path=Foreground}" Text="{Binding PhyId}" VerticalAlignment="Center"></TextBlock>
-
                         <TextBlock Margin="10,0,0,0" Foreground="{Binding ElementName=fg, Path=Foreground}" Text="{Binding RtuName}" VerticalAlignment="Center"></TextBlock>
                         <TextBlock></TextBlock>
                     </DockPanel>
-                    <DockPanel HorizontalAlignment="Left" Grid.Row="1" Grid.ColumnSpan="2">
-                        <TextBlock Margin="10,0,0,0" Foreground="{Binding ElementName=fg, Path=Foreground}"  Text="起始时间:" VerticalAlignment="Center"></TextBlock>
-                        <DatePicker  HorizontalAlignment="Center" VerticalAlignment="Center" SelectedDateFormat="Short" Width="180" Height="25"  Margin="10,0,0,0" SelectedDate="{Binding DtStartTime}"></DatePicker>
+                    
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                          <DockPanel HorizontalAlignment="Left"  >
+                            <TextBlock   Foreground="{Binding ElementName=fg, Path=Foreground}"  Text="起始时间: " VerticalAlignment="Center"></TextBlock>
+                            <DatePicker  HorizontalAlignment="Center" VerticalAlignment="Center" SelectedDateFormat="Short" Width="180" Height="25"   SelectedDate="{Binding DtStartTime}"></DatePicker>
 
-                        <TextBlock Margin="50,0,0,0" Foreground="{Binding ElementName=fg, Path=Foreground}" Text=" 结束时间:" VerticalAlignment="Center"></TextBlock>
-                        <DatePicker  HorizontalAlignment="Center"  VerticalAlignment="Center"  SelectedDateFormat="Short" Width="180" Height="25"  Margin="10,0,0,0" SelectedDate="{Binding DtEndTime}"></DatePicker>
-                        <Button Content="查询" Width="120" Margin="150,0,0,0" Command="{Binding CmdQuery}" Height="23" ToolTip="查询时间为起始时间前一天的12：00开始，结束时间当天时间12：00结束。"></Button>
-                        <Button Content="查询全部" Width="120" Margin="20,0,0,0" Command="{Binding CmdQueryAll}" Height="23" ToolTip="查询时间为起始时间前一天的12：00开始，结束时间当天时间12：00结束。"></Button>
-                      
-                    </DockPanel>
+                            <TextBlock Margin="10,0,0,0" Foreground="{Binding ElementName=fg, Path=Foreground}" Text=" 结束时间: " VerticalAlignment="Center"></TextBlock>
+                            <DatePicker  HorizontalAlignment="Center"  VerticalAlignment="Center"  SelectedDateFormat="Short" Width="180" Height="25"    SelectedDate="{Binding DtEndTime}"></DatePicker>
+
+                        </DockPanel>
+                        <DockPanel HorizontalAlignment="Left"  Grid.Column="2">
+                                <Button Content="查询" Width="120"  HorizontalAlignment="Right" Command="{Binding CmdQuery}" Height="25" ToolTip="查询时间为起始时间前一天的12：00开始，结束时间当天时间12：00结束。"></Button>
+                            <Button Content="查询全部" Width="120" Margin="20,0,0,0" Command="{Binding CmdQueryAll}" HorizontalAlignment="Right" Height="25" ToolTip="查询时间为起始时间前一天的12：00开始，结束时间当天时间12：00结束。"></Button>
+
+                        </DockPanel>
+                    </Grid>
+                  
 
 
 
@@ -160,25 +171,32 @@
                         </telerik:RadGridView.Columns>
                     </telerik:RadGridView>
 
-                    <Label Grid.Row="3" HorizontalAlignment="Left" Margin="10,0,0,0" Content="{Binding Remind}"/>
-                    <Button Grid.Row="3" HorizontalAlignment="Right" Content="导出" Width="120" Margin="0,0,120,0" Click="Button_Click_1"  Height="23" Grid.Column="1"></Button>
+                    <DockPanel Grid.Row="3" Width="1050" Margin="0,5,0,0" Height="25" VerticalAlignment="Center">
+                        <Label Grid.Row="3" HorizontalAlignment="Left" Width="600" Content="{Binding Remind}"/>
+                        <Button Grid.Row="3" HorizontalAlignment="Right" Content="导出" Width="120"   Click="Button_Click_1"  Height="25" Grid.Column="1"></Button>
+                    </DockPanel>
+        
                 </Grid>
             </TabItem>
-      
+
             <TabItem Header="日出日落时间查看">
-                <Grid>
+                <Grid Margin="5">
+                    <!--<Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="97*"/>
+                        <ColumnDefinition Width="797*"/>
+                    </Grid.ColumnDefinitions>-->
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"></RowDefinition>
                         <RowDefinition Height="30"></RowDefinition>
                     </Grid.RowDefinitions>
                     <telerik:RadGridView AutoGenerateColumns="False" ItemsSource="{Binding RecordSun}" 
                                x:Name="SunRasieTable"
-								 Background="Transparent" Margin="0,5,0,0"                Width="1050"
+								 Background="Transparent"             Width="1050"
 								  HorizontalAlignment="Stretch" 
 								  VerticalAlignment="Stretch" 
                                   CanUserFreezeColumns="False" 
 								  CanUserReorderColumns="False" 
-								  RowIndicatorVisibility="Collapsed"   ShowGroupPanel="False" ShowColumnHeaders="True" SnapsToDevicePixels="True">
+								  RowIndicatorVisibility="Collapsed"   ShowGroupPanel="False" ShowColumnHeaders="True" SnapsToDevicePixels="True" Grid.ColumnSpan="2">
                         <telerik:RadGridView.Columns>
                             <telerik:GridViewDataColumn Header="日 期" IsFilterable="False" IsSortable="False" MinWidth="45" MaxWidth="60" DataMemberBinding="{Binding Records[0].Name}" IsReadOnly="True" />
                             <telerik:GridViewDataColumn Header="1 月" IsFilterable="False" IsSortable="False" DataMemberBinding="{Binding Records[1].Name}"  IsReadOnly="True" MinWidth="70" MaxWidth="120"/>
@@ -198,46 +216,67 @@
                         </telerik:RadGridView.Columns>
                     </telerik:RadGridView>
 
-                    <Button Grid.Row="1" Margin="0,0,70,0" HorizontalAlignment="Right" Click="Button_Click" Content="导 出" Width="120" Height="25"></Button>
-                    <Button Grid.Row="1" Margin="0,0,220,0" HorizontalAlignment="Right"  Content="开灯时长计算" Width="120" Height="25" Click="Button_Click_2"></Button>
-                
+                    <Grid HorizontalAlignment="Right" VerticalAlignment="Center"  Width="1050"  Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <DockPanel Grid.Column="1">
+                            <Button  Margin="0,0,10,0" HorizontalAlignment="Right"  Content="开灯时长计算" Width="120" Height="25" Click="Button_Click_2"  ></Button>
+                            <Button   HorizontalAlignment="Right" Click="Button_Click" Content="导 出" Width="120" Height="25"  ></Button>
+                        </DockPanel>
+                    </Grid>
+
+
+
                 </Grid>
             </TabItem>
-            
+
             <TabItem Header="终端日月年报表">
-                <Grid>
+                <Grid Margin="5">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="30"></RowDefinition>
+                        <RowDefinition Height="25"></RowDefinition>
                         <RowDefinition Height="30"></RowDefinition>
                         <RowDefinition Height="*"></RowDefinition>
                         <RowDefinition Height="30"></RowDefinition>
                     </Grid.RowDefinitions>
-                    <DockPanel HorizontalAlignment="Left">
-                        <!--<CheckBox  x:Name="Tml" Grid.Column="0" VerticalAlignment="Center"   Margin="0,0,0,0" IsChecked="{Binding IsCheckedRtu}" Content="查询单个终端故障 [通过点击左侧终端树进行终端选择]  "/> Visibility="{Binding ElementName=Tml, Path=IsChecked, Converter={StaticResource BoolToVisible} }"-->
+ 
 
-                        <!--<CheckBox Margin="0,5,0,0" IsChecked="{Binding IsCheckedRtu}"></CheckBox>-->
-                        <TextBlock Margin="10,0,0,0" Foreground="{Binding ElementName=fg, Path=Foreground}"  Text="当前选择终端为:" VerticalAlignment="Center"  ></TextBlock>
-                        <TextBlock Margin="10,0,0,0" Foreground="{Binding ElementName=fg, Path=Foreground}" Text="{Binding PhyId}" VerticalAlignment="Center"   ></TextBlock>
-                        <TextBlock Margin="10,0,0,0" Foreground="{Binding ElementName=fg, Path=Foreground}" Text="{Binding RtuName}" VerticalAlignment="Center"   ></TextBlock>
+                    <DockPanel Grid.Row="1" HorizontalAlignment="Left" Margin="0,5,0,0" Height="25" VerticalAlignment="Center">
+                        <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}"  Text="当前终端:" VerticalAlignment="Center"></TextBlock>
+                        <TextBlock Margin="10,0,0,0" Foreground="{Binding ElementName=fg, Path=Foreground}" Text="{Binding PhyId}" VerticalAlignment="Center"></TextBlock>
+                        <TextBlock Margin="10,0,0,0" Foreground="{Binding ElementName=fg, Path=Foreground}" Text="{Binding RtuName}" VerticalAlignment="Center"></TextBlock>
                         <TextBlock></TextBlock>
                     </DockPanel>
 
-                    <DockPanel HorizontalAlignment="Left" Grid.Row="1" >
-                        <TextBlock Margin="10,0,0,0" Foreground="{Binding ElementName=fg, Path=Foreground}"  Text="起始时间:" VerticalAlignment="Center"></TextBlock>
-                        <DatePicker  HorizontalAlignment="Center" VerticalAlignment="Center" SelectedDateFormat="Short" Width="180" Height="25"  Margin="10,0,0,0" SelectedDate="{Binding DtStartTime}"></DatePicker>
-                        <TextBlock Margin="50,0,0,0" Foreground="{Binding ElementName=fg, Path=Foreground}" Text=" 结束时间:" VerticalAlignment="Center"></TextBlock>
-                        <DatePicker  HorizontalAlignment="Center"  VerticalAlignment="Center"  SelectedDateFormat="Short" Width="180" Height="25"  Margin="10,0,0,0" SelectedDate="{Binding DtEndTime}"></DatePicker>
-                        <TextBlock Margin="10,0,0,0" Foreground="{Binding ElementName=fg, Path=Foreground}"  Text="报表类型:" VerticalAlignment="Center"></TextBlock>
-                        <ComboBox  HorizontalAlignment="Center" VerticalAlignment="Center" Width="60" Height="25" ItemsSource="{Binding IsItem}" DisplayMemberPath="Name" SelectedIndex="{Binding IsSelectIndex}" Margin="10,0,0,0" />
-                        <Button Content="查询" Width="120" Margin="50,0,0,0" Command="{Binding CmdQueryForDay}" Height="23"></Button>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <DockPanel HorizontalAlignment="Left"  >
+                            <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}"  Text="起始时间: " VerticalAlignment="Center"></TextBlock>
+                            <DatePicker  HorizontalAlignment="Center" VerticalAlignment="Center" SelectedDateFormat="Short" Width="180" Height="25"  SelectedDate="{Binding DtStartTime}"></DatePicker>
 
+                            <TextBlock Margin="10,0,0,0" Foreground="{Binding ElementName=fg, Path=Foreground}" Text=" 结束时间: " VerticalAlignment="Center"></TextBlock>
+                            <DatePicker  HorizontalAlignment="Center"  VerticalAlignment="Center"  SelectedDateFormat="Short" Width="180" Height="25"   SelectedDate="{Binding DtEndTime}"></DatePicker>
 
-                    </DockPanel>
+                            <TextBlock Margin="20,0,0,0" Foreground="{Binding ElementName=fg, Path=Foreground}"  Text="报表类型: " VerticalAlignment="Center"></TextBlock>
+                            <ComboBox  HorizontalAlignment="Center" VerticalAlignment="Center" Width="80" Height="25" ItemsSource="{Binding IsItem}" DisplayMemberPath="Name" SelectedIndex="{Binding IsSelectIndex}"/>
+                        </DockPanel>
+                        <DockPanel HorizontalAlignment="Left"  Grid.Column="2">
+
+                            <Button Content="查询" Width="120" Command="{Binding CmdQueryForDay}" Height="25"></Button>
+
+                            
+                        </DockPanel>
+                    </Grid>
 
 
                     <telerik:RadGridView AutoGenerateColumns="False" ItemsSource="{Binding RecordItem}" 
                                x:Name="daymonthyear" Grid.Row="2"
-								 Background="Transparent" Margin="0,5,0,0"                     Width="1050"
+								 Background="Transparent" Margin="0,5,0,0"     Width="1050"
 								  HorizontalAlignment="Stretch" 
 								  VerticalAlignment="Stretch" 
                                   CanUserFreezeColumns="False" 
@@ -275,8 +314,19 @@
 
                         </telerik:RadGridView.Columns>
                     </telerik:RadGridView>
-                    <Label Grid.Row="3" HorizontalAlignment="Left" Margin="10,0,0,0" Content="{Binding Remind}"/>
-                    <Button Grid.Row="3" Margin="0,0,70,0" HorizontalAlignment="Right"  Content="导 出" Width="120" Height="25" Click="Button_Click_3"></Button>
+
+                    <Grid  VerticalAlignment="Center"  Width="1050"  Grid.Row="3">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                   
+                            <Label  HorizontalAlignment="Left"   Content="{Binding Remind}"/>
+                            <Button   HorizontalAlignment="Right" Grid.Column="1" Content="导 出" Width="120" Height="25" Click="Button_Click_3"></Button>
+                     
+                    </Grid>
+                    
+ 
 
                 </Grid>
             </TabItem>

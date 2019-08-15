@@ -19,6 +19,10 @@ namespace Wlst.Ux.TimeTableSystem.TimeInfoNew.Services
         event EventHandler<EventArgsEx> OnUserWantSetGroupWeekSet;
 
         event EventHandler OnNavOnLoadSelectdRtus;
+
+        void SetTimeInfoMnVm(TimeInfoMnVm data);
+
+         ObservableCollection<TreeGrpNodes> TreeItems { get; set; }
     }
     public class EventArgsEx : EventArgs
     {
