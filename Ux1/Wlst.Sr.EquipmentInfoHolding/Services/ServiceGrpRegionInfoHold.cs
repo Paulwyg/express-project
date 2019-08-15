@@ -408,7 +408,8 @@ namespace Wlst.Sr.EquipmentInfoHolding.Services
             var arg = new PublishEventArgs()
             {
                 EventId = EventIdAssign.RegionNeedUpdate,
-                EventType = PublishEventType.Core
+                EventType = PublishEventType.Core,
+                EventAttachInfo = "ChangeStructure",
             };
             EventPublish.PublishEvent(arg);
         }
@@ -421,6 +422,9 @@ namespace Wlst.Sr.EquipmentInfoHolding.Services
           
 
             if (infos.WstAreagrpRegionInfo.RtuItems == null || infos.WstAreagrpRegionInfo.RtuItems.Count == 0) return;
+
+
+
 
             var rtulst = new List<int>();
             //
@@ -668,7 +672,8 @@ namespace Wlst.Sr.EquipmentInfoHolding.Services
             var arg = new PublishEventArgs()
             {
                 EventId = EventIdAssign.RegionNeedUpdate,
-                EventType = PublishEventType.Core
+                EventType = PublishEventType.Core,
+                EventAttachInfo = "ChangeStructure",
             };
             EventPublish.PublishEvent(arg);
 
@@ -782,7 +787,7 @@ namespace Wlst.Sr.EquipmentInfoHolding.Services
 
                     // 记录终端属于哪个地区
 
-                    if(RtuRegionInfo.ContainsKey(k.RtuId)==false)
+                   if(RtuRegionInfo.ContainsKey(k.RtuId)==false)
                     {
                         RtuRegionInfo.Add(k.RtuId, new Tuple<int,int, int,int>(k.AreaId,k.GroupId, k.RegionId,k.ImageType));
                     }else

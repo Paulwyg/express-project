@@ -501,16 +501,52 @@ namespace Wlst.Ux.CrissCrossEquipemntTree.GrpSingleTabShowViewModel.ViewModels
             foreach (var f in ChildTreeItems)
                 f.GetChildRtuCount();
 
+
+            //删除0子节点的父节点
             for (int i = this.ChildTreeItems.Count - 1; i >= 0; i--)
             {
                 if (this.ChildTreeItems[i].RtuCount == 0 || this.ChildTreeItems[i].ChildTreeItems.Count == 0)
                 {
                     this.ChildTreeItems.RemoveAt(i);
                 }
+                else
+                {
+                    if (!IsLoadOnlyOneArea)
+                    {
+                        for (int j = this.ChildTreeItems[i].ChildTreeItems.Count - 1; j >= 0; j--)
+                        {
+                            if (this.ChildTreeItems[i].ChildTreeItems[j].RtuCount == 0)
+                            {
+                                this.ChildTreeItems[i].DeleteChild(j);
+                                continue;
+                            }
+                            for (int k = this.ChildTreeItems[i].ChildTreeItems[j].ChildTreeItems.Count - 1; k >= 0; k--)
+                            {
+                                if (this.ChildTreeItems[i].ChildTreeItems[j].NodeType == TypeOfTabTreeNode.IsAll) continue;
+                                if (this.ChildTreeItems[i].ChildTreeItems[j].ChildTreeItems[k].RtuCount == 0)
+                                {
+                                    if (this.ChildTreeItems[i].ChildTreeItems[j].ChildTreeItems[k].NodeType == TypeOfTabTreeNode.IsTml) continue;
+                                    this.ChildTreeItems[i].ChildTreeItems[j].DeleteChild(k);
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if (this.ChildTreeItems[i].NodeType == TypeOfTabTreeNode.IsAll) continue;
+                        for (int j = this.ChildTreeItems[i].ChildTreeItems.Count - 1; j >= 0; j--)
+                        {
+                            if (this.ChildTreeItems[i].ChildTreeItems[j].NodeType == TypeOfTabTreeNode.IsTml) continue;
+                            if (this.ChildTreeItems[i].ChildTreeItems[j].RtuCount == 0)
+                            {
+                                this.ChildTreeItems[i].DeleteChild(j);
+                            }
+
+                        }
+
+                    }
+                }
             }
-
-            //Update();
-
 
 
 

@@ -12,6 +12,7 @@ using Wlst.Cr.CoreOne.Services;
  
 using Wlst.client;
 using System.Collections.Generic;
+using Wlst.Sr.EquipmentInfoHolding.Model;
 
 namespace Wlst.Ux.WJ3005Module.ZOrders.AsynTime
 {
@@ -148,7 +149,19 @@ namespace Wlst.Ux.WJ3005Module.ZOrders.AsynTime
                 if (grpId < 1) return;
 
                 if (grpId < 1) return;
-                lst = grpInfo.LstTml;// Wlst.Sr.EquipmentGroupInfoHolding.Services.ServicesGrpSingleInfoHold.GetGrpTmlList(gprId);
+                //lst = grpInfo.LstTml;// Wlst.Sr.EquipmentGroupInfoHolding.Services.ServicesGrpSingleInfoHold.GetGrpTmlList(gprId);
+
+                if (grpInfo.LstTml.Count == 0) return;
+
+                foreach (var t in grpInfo.LstTml)
+                {
+                    if (Wlst.Sr.EquipmentInfoHolding.Services.EquipmentDataInfoHold.InfoItems.ContainsKey(t) &&
+                        //Wlst.Sr.EquipmentInfoHolding.Services.EquipmentDataInfoHold.InfoItems[t].RtuStateCode == 2 &&
+                        Wlst.Sr.EquipmentInfoHolding.Services.EquipmentDataInfoHold.InfoItems[t].EquipmentType == WjParaBase.EquType.Rtu
+                        ) lst.Add(t);
+                }
+
+
             }
             else
             {

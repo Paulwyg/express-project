@@ -140,7 +140,7 @@
             
             </Grid>
         </GroupBox>
-        <GroupBox Header="高级设置"  Margin="2" Grid.ColumnSpan="3"  Grid.Column="0"  Grid.Row="3" Name="groupBox3" HorizontalAlignment="Left" VerticalAlignment="Top" Width="800" >
+        <GroupBox Header="高级设置"  Margin="2" Grid.ColumnSpan="3"  Grid.Column="0"  Grid.Row="3" Name="groupBox3" HorizontalAlignment="Left" VerticalAlignment="Top" Width="800" Visibility="{Binding ElementName=IsCheckedMore,Path=IsChecked, Converter={StaticResource BoolToVisible}}" >
             <!--Visibility="{Binding ElementName=IsCheckedMore,Path=IsChecked, Converter={StaticResource BoolToVisible}}"-->
             <Grid>
                 <Grid.RowDefinitions>

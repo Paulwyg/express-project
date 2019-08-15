@@ -7,7 +7,7 @@ using Wlst.Cr.CoreOne.Services;
 using Wlst.Cr.MessageBoxOverride.MessageBoxOverride;
 using Wlst.Cr.MessageBoxOverride.MessageBoxOverride.WlstMessageBox.ViewModel;
 using Wlst.client;
-
+using Wlst.Sr.EquipmentInfoHolding.Model;
 
 namespace Wlst.Ux.WJ3005Module.ZOrders.OpenCloseLight.ForSingleTreeGrpMenu
 {
@@ -101,7 +101,8 @@ namespace Wlst.Ux.WJ3005Module.ZOrders.OpenCloseLight.ForSingleTreeGrpMenu
                 foreach (var t in lst)
                 {
                     if (Wlst.Sr.EquipmentInfoHolding.Services.EquipmentDataInfoHold.InfoItems.ContainsKey(t) &&
-                        Wlst.Sr.EquipmentInfoHolding.Services.EquipmentDataInfoHold.InfoItems[t].RtuStateCode == 2
+                        Wlst.Sr.EquipmentInfoHolding.Services.EquipmentDataInfoHold.InfoItems[t].RtuStateCode == 2 &&
+                        Wlst.Sr.EquipmentInfoHolding.Services.EquipmentDataInfoHold.InfoItems[t].EquipmentType == WjParaBase.EquType.Rtu
                         ) lstslt.Add(t);
                 }
                 //var data = new OpenCloseLightData();
