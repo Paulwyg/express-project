@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows;
 using Wlst.Cr.Core.CoreServices;
 
 namespace Wlst.Cr.CoreOne.Models
@@ -67,7 +68,7 @@ namespace Wlst.Cr.CoreOne.Models
         }
     }
 
-   
+
 
     public class NameIntBool : ObservableObject
     {
@@ -139,9 +140,9 @@ namespace Wlst.Cr.CoreOne.Models
             }
         }
 
-        private bool  _isEnable;
+        private bool _isEnable;
 
-        public bool  IsEnable
+        public bool IsEnable
         {
             get { return _isEnable; }
             set
@@ -176,5 +177,120 @@ namespace Wlst.Cr.CoreOne.Models
     }
 
 
+    public class IntStringBoolDoubleKey : ObservableObject
+    {
 
+
+        private string _name;
+
+        public string ValueString
+        {
+            get { return _name; }
+            set
+            {
+                if (_name != value)
+                {
+                    _name = value;
+                    this.RaisePropertyChanged(() => this.ValueString);
+                }
+            }
+        }
+
+        private int _areaid;
+
+        public int Key
+        {
+            get { return _areaid; }
+            set
+            {
+                if (_areaid != value)
+                {
+                    _areaid = value;
+                    this.RaisePropertyChanged(() => this.Key);
+                }
+            }
+        }
+
+        private int _value;
+
+        public int ValueInt
+        {
+            get { return _value; }
+            set
+            {
+                if (_value != value)
+                {
+                    _value = value;
+                    this.RaisePropertyChanged(() => this.ValueInt);
+                }
+            }
+        }
+
+
+        private double _valuedouble;
+
+        public double ValueDouble
+        {
+            get { return _valuedouble; }
+            set
+            {
+                if (_valuedouble != value)
+                {
+                    _valuedouble = value;
+                    this.RaisePropertyChanged(() => this.ValueDouble);
+                }
+            }
+        }
+
+        private bool _check;
+
+        public bool ValueBool
+        {
+            get { return _check; }
+            set
+            {
+                if (_check != value)
+                {
+                    _check = value;
+                    this.RaisePropertyChanged(() => this.ValueBool);
+                }
+            }
+        }
+
+        private bool _isEnable;
+
+        /// <summary>
+        /// 是否可用
+        /// </summary>
+        public bool IsEnable
+        {
+            get { return _isEnable; }
+            set
+            {
+                if (_isEnable != value)
+                {
+                    _isEnable = value;
+                    this.RaisePropertyChanged(() => this.IsEnable);
+                }
+            }
+        }
+
+        private Visibility _isShow;
+        /// <summary>
+        /// 是否显示
+        /// </summary>
+        public Visibility IsVisi
+        {
+            get { return _isShow; }
+            set
+            {
+                if (_isShow != value)
+                {
+                    _isShow = value;
+                    this.RaisePropertyChanged(() => this.IsVisi);
+                }
+            }
+        }
+
+    }
 }

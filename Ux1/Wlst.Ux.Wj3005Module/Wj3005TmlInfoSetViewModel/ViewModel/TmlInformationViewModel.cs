@@ -300,7 +300,7 @@ namespace Wlst.Ux.WJ3005Module.Wj3005TmlInfoSetViewModel.ViewModel
         public void RequestHttpData()
         {
 
-            if (Wlst.Sr.EquipmentInfoHolding.Services.Others.SeverHttpPort == "0") return;
+            //if (Wlst.Sr.EquipmentInfoHolding.Services.Others.SeverHttpPort == "0") return;
             for (int i = 0; i < 7; i++)
             {
                 RtuRemarks[i]="";
@@ -316,8 +316,9 @@ namespace Wlst.Ux.WJ3005Module.Wj3005TmlInfoSetViewModel.ViewModel
             var base64data = System.Convert.ToBase64String(EquimentRemarkRead.SerializeToBytes(nt));
 
             //http get
-            var url ="http://"+ Wlst.Sr.EquipmentInfoHolding.Services.Others.SeverIpAddr + ":" + Wlst.Sr.EquipmentInfoHolding.Services.Others.SeverHttpPort + "/mims/get10010";//"http://10.3.9.8:18080/mims/get10010"
-            var data = wlst.sr.iif.HttpGetPost.HttpGet(url, "?pb2=" + base64data);
+            //var url ="http://"+ Wlst.Sr.EquipmentInfoHolding.Services.Others.SeverIpAddr + ":" + Wlst.Sr.EquipmentInfoHolding.Services.Others.SeverHttpPort + "/mims/get10010";//"http://10.3.9.8:18080/mims/get10010"
+            var url = Wlst.Cr.CoreMims.HttpGetPostforMsgWithMobile.HttpUrl + "get10010";
+          var data = wlst.sr.iif.HttpGetPost.HttpGet(url, "?pb2=" + base64data);
             if (data == null) return;
             // 反序列化get到的数据
             var databk = Wlst.iif.EquimentRemarkReturn.Deserialize(System.Convert.FromBase64String(data));
@@ -333,13 +334,14 @@ namespace Wlst.Ux.WJ3005Module.Wj3005TmlInfoSetViewModel.ViewModel
                 RtuRemarks.Add(g.Remark6);
                 RtuRemarks.Add(g.Remark7);
             }
+            this.RaisePropertyChanged(() => this.RtuRemarks);
 
         }
 
         public void PostHttpData(int rtuid)
         {
 
-            if (Wlst.Sr.EquipmentInfoHolding.Services.Others.SeverHttpPort == "0") return;
+            //if (Wlst.Sr.EquipmentInfoHolding.Services.Others.SeverHttpPort == "0") return;
             //请求数据协议格式，详见Sr\wlst.sr.iif\GoogleBuf\proto
             var nt = new Wlst.iif.EquimentRemarkSave();
             var datat = new List<EquimentRemarkSave.SingleEquimentRemark>();
@@ -363,8 +365,8 @@ namespace Wlst.Ux.WJ3005Module.Wj3005TmlInfoSetViewModel.ViewModel
             var base64data = System.Convert.ToBase64String(EquimentRemarkSave.SerializeToBytes(nt));
 
             //http get
-            var url ="http://"+ Wlst.Sr.EquipmentInfoHolding.Services.Others.SeverIpAddr + ":" + Wlst.Sr.EquipmentInfoHolding.Services.Others.SeverHttpPort + "/mims/post10011";//"http://10.3.9.8:18080/mims/get10010"
-
+            //var url ="http://"+ Wlst.Sr.EquipmentInfoHolding.Services.Others.SeverIpAddr + ":" + Wlst.Sr.EquipmentInfoHolding.Services.Others.SeverHttpPort + "/mims/post10011";//"http://10.3.9.8:18080/mims/get10010"
+            var url = Wlst.Cr.CoreMims.HttpGetPostforMsgWithMobile.HttpUrl + "post10011";
             var data = wlst.sr.iif.HttpGetPost.HttpPost(url, "?pb2=" + base64data);
             if (data == null) return;
             // 反序列化get到的数据

@@ -3672,8 +3672,9 @@ namespace Wlst.Ux.WJ3005Module.ZPartol.PartolViewMoel.ViewModels
             var base64data = System.Convert.ToBase64String(EquimentRemarkRead.SerializeToBytes(nt));
 
             //http get
-            var url = "http://" + Wlst.Sr.EquipmentInfoHolding.Services.Others.SeverIpAddr + ":" + Wlst.Sr.EquipmentInfoHolding.Services.Others.SeverHttpPort + "/mims/get10010";//"http://10.3.9.8:18080/mims/get10010"
-            var data = wlst.sr.iif.HttpGetPost.HttpGet(url, "?pb2=" + base64data);
+            //var url = "http://" + Wlst.Sr.EquipmentInfoHolding.Services.Others.SeverIpAddr + ":" + Wlst.Sr.EquipmentInfoHolding.Services.Others.SeverHttpPort + "/mims/get10010";//"http://10.3.9.8:18080/mims/get10010"
+            var url = Wlst.Cr.CoreMims.HttpGetPostforMsgWithMobile.HttpUrl + "get10010";
+           var data = wlst.sr.iif.HttpGetPost.HttpGet(url, "?pb2=" + base64data);
             if (data == null) return;
             // 反序列化get到的数据
             var databk = Wlst.iif.EquimentRemarkReturn.Deserialize(System.Convert.FromBase64String(data));

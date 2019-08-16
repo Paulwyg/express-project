@@ -622,7 +622,9 @@ namespace Wlst.Ux.StateBarModule.SendFailOperation.ViewModel
             var base64data = System.Convert.ToBase64String(MsgWithMobile.SerializeToBytes(info));
 
             //http get
-            var url = "http://" + Wlst.Sr.EquipmentInfoHolding.Services.Others.SeverIpAddr + ":" + Wlst.Sr.EquipmentInfoHolding.Services.Others.SeverHttpPort + "/mims/getparasnd";
+            //var url = "http://" + Wlst.Sr.EquipmentInfoHolding.Services.Others.SeverIpAddr + ":" + Wlst.Sr.EquipmentInfoHolding.Services.Others.SeverHttpPort + "/mims/getparasnd";
+
+            var url = Wlst.Cr.CoreMims.HttpGetPostforMsgWithMobile.HttpUrl + "getparasnd";
             var data = wlst.sr.iif.HttpGetPost.HttpGet(url, "?pb2=" + base64data);
             //var data1 = wlst.sr.iif.HttpGetPost.HttpPost(url , "pb2=" + base64data);
 
@@ -697,7 +699,9 @@ namespace Wlst.Ux.StateBarModule.SendFailOperation.ViewModel
             var base64data = System.Convert.ToBase64String(MsgWithMobile.SerializeToBytes(info));
 
             //http get
-            var url = "http://" + Wlst.Sr.EquipmentInfoHolding.Services.Others.SeverIpAddr + ":" + Wlst.Sr.EquipmentInfoHolding.Services.Others.SeverHttpPort + "/mims/getparasnd";
+           // var url = "http://" + Wlst.Sr.EquipmentInfoHolding.Services.Others.SeverIpAddr + ":" + Wlst.Sr.EquipmentInfoHolding.Services.Others.SeverHttpPort + "/mims/getparasnd";
+
+            var url = Wlst.Cr.CoreMims.HttpGetPostforMsgWithMobile.HttpUrl + "getparasnd";
             var data = wlst.sr.iif.HttpGetPost.HttpGet(url, "?pb2=" + base64data);
             //var data1 = wlst.sr.iif.HttpGetPost.HttpPost(url , "pb2=" + base64data);
 
@@ -745,7 +749,9 @@ namespace Wlst.Ux.StateBarModule.SendFailOperation.ViewModel
             var base64data = System.Convert.ToBase64String(MsgWithMobile.SerializeToBytes(info));
 
             //http get
-            var url = "http://" + Wlst.Sr.EquipmentInfoHolding.Services.Others.SeverIpAddr + ":" + Wlst.Sr.EquipmentInfoHolding.Services.Others.SeverHttpPort + "/mims/getparasnd";
+            //var url = "http://" + Wlst.Sr.EquipmentInfoHolding.Services.Others.SeverIpAddr + ":" + Wlst.Sr.EquipmentInfoHolding.Services.Others.SeverHttpPort + "/mims/getparasnd";
+
+            var url = Wlst.Cr.CoreMims.HttpGetPostforMsgWithMobile.HttpUrl + "getparasnd";
             var data = wlst.sr.iif.HttpGetPost.HttpGet(url, "?pb2=" + base64data);
             //var data1 = wlst.sr.iif.HttpGetPost.HttpPost(url , "pb2=" + base64data);
 

@@ -27,7 +27,7 @@ namespace Wlst.Sr.EquipmentInfoHolding.Services
         public static void InitLoad()
         {
             GrpSingle.InitLoad();
-            Wlst.Sr.EquipmentInfoHolding.Services.Others.SeverHttpPort = Wlst.Cr.CoreMims.SystemOption.GetOptionInt(1001) == -1 ? "8182" : Wlst.Cr.CoreMims.SystemOption.GetOptionInt(1001)+"";
+           // Wlst.Sr.EquipmentInfoHolding.Services.Others.SeverHttpPort = Wlst.Cr.CoreMims.SystemOption.GetOptionInt(1001) == -1 ? "8182" : Wlst.Cr.CoreMims.SystemOption.GetOptionInt(1001)+"";
         }
 
 
@@ -650,7 +650,8 @@ namespace Wlst.Sr.EquipmentInfoHolding.Services
             var base64data = System.Convert.ToBase64String(MsgWithMobile.SerializeToBytes(info));
 
             //http get
-            var url = "http://" + Wlst.Sr.EquipmentInfoHolding.Services.Others.SeverIpAddr + ":" + Wlst.Sr.EquipmentInfoHolding.Services.Others.SeverHttpPort + "/mims/wls_area_region_id_name_info_http";
+            //var url = "http://" + Wlst.Sr.EquipmentInfoHolding.Services.Others.SeverIpAddr + ":" + Wlst.Sr.EquipmentInfoHolding.Services.Others.SeverHttpPort + "/mims/wls_area_region_id_name_info_http";
+            var url = Wlst.Cr.CoreMims.HttpGetPostforMsgWithMobile.HttpUrl + "wls_area_region_id_name_info_http";
             var data = wlst.sr.iif.HttpGetPost.HttpGet(url, "?pb2=" + base64data);
             //var data1 = wlst.sr.iif.HttpGetPost.HttpPost(url , "pb2=" + base64data);
 
@@ -703,7 +704,8 @@ namespace Wlst.Sr.EquipmentInfoHolding.Services
             var base64data = System.Convert.ToBase64String(MsgWithMobile.SerializeToBytes(info));
 
             //http get
-            var url = "http://" + Wlst.Sr.EquipmentInfoHolding.Services.Others.SeverIpAddr + ":" + Wlst.Sr.EquipmentInfoHolding.Services.Others.SeverHttpPort + "/mims/wls_area_region_info_http";//"http://10.3.9.8:18080/mims/get10010"
+            //var url = "http://" + Wlst.Sr.EquipmentInfoHolding.Services.Others.SeverIpAddr + ":" + Wlst.Sr.EquipmentInfoHolding.Services.Others.SeverHttpPort + "/mims/wls_area_region_info_http";//"http://10.3.9.8:18080/mims/get10010"
+            var url = Wlst.Cr.CoreMims.HttpGetPostforMsgWithMobile.HttpUrl + "wls_area_region_info_http";
             var data = wlst.sr.iif.HttpGetPost.HttpGet(url, "?pb2=" + base64data);
             //var data1 = wlst.sr.iif.HttpGetPost.HttpPost(url , "pb2=" + base64data);
 
@@ -757,7 +759,9 @@ namespace Wlst.Sr.EquipmentInfoHolding.Services
                 var base64datas = System.Convert.ToBase64String(MsgWithMobile.SerializeToBytes(infos));
 
                 //http get
-                var urls = "http://" + Wlst.Sr.EquipmentInfoHolding.Services.Others.SeverIpAddr + ":" + Wlst.Sr.EquipmentInfoHolding.Services.Others.SeverHttpPort + "/mims/wls_area_region_info_http";//"http://10.3.9.8:18080/mims/get10010"
+                //var urls = "http://" + Wlst.Sr.EquipmentInfoHolding.Services.Others.SeverIpAddr + ":" + Wlst.Sr.EquipmentInfoHolding.Services.Others.SeverHttpPort + "/mims/wls_area_region_info_http";//"http://10.3.9.8:18080/mims/get10010"
+
+                var urls = Wlst.Cr.CoreMims.HttpGetPostforMsgWithMobile.HttpUrl + "wls_area_region_info_http";
                 var datas = wlst.sr.iif.HttpGetPost.HttpGet(urls, "?pb2=" + base64datas);
                 //var data1 = wlst.sr.iif.HttpGetPost.HttpPost(url , "pb2=" + base64data);
 

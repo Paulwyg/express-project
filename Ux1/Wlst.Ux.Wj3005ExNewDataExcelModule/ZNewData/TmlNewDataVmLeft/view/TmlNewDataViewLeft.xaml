@@ -238,6 +238,7 @@
                                 </DataTemplate>
                             </telerik:GridViewDataColumn.CellTemplate>
                         </telerik:GridViewDataColumn>
+                        <telerik:GridViewDataColumn Header="相位"   IsFilterable="False" IsSortable="False" DataMemberBinding="{Binding Phase}"   IsVisible="{Binding IsPhaseVisible}"  IsReadOnly="True" Width="60"/>
                         <telerik:GridViewDataColumn Header="电压"  IsFilterable="False" IsGroupable="False" IsSortable="False"  DataMemberBinding="{Binding V}"  IsReadOnly="True" />
                         <telerik:GridViewDataColumn Header="参考电流"  x:Name="xh2"   IsFilterable="False" IsGroupable="False" IsSortable="False"  DataMemberBinding="{Binding RefA}" IsReadOnly="True"/>
                         <telerik:GridViewDataColumn Header="电流"    IsFilterable="False" IsGroupable="False" IsSortable="False"  DataMemberBinding="{Binding A}"  IsReadOnly="True"/>

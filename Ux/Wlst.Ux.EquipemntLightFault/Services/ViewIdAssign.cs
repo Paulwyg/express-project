@@ -73,5 +73,8 @@ namespace Wlst.Ux.EquipemntLightFault.Services
         //sb武汉火零不平衡故障设置界面  lvf 2018年6月28日10:46:21
         public const int EquipmentFaultManageSettingLnViewId = ViewIdAssignBaseId + 28;
 
+
+        
+
     }
 }

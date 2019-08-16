@@ -1212,7 +1212,15 @@ namespace Wlst.Sr.EquipmentInfoHolding.Services
             //  info.Args.Addr.Add(-1);
             info.WstRtuOrders.Op = 32;
             info.WstRtuOrders.RtuIds.Add(0);
-            SndOrderServer.OrderSnd(info);
+            // SndOrderServer.OrderSnd(info);
+
+            var md5 = Wlst.Cr.CoreMims.HttpGetPostforMsgWithMobile.OrderSndHttp(info);
+            if (md5 != null)
+            {
+                OrderRtuMeasureOrder(null, md5);
+                //  step1Md5back(md5);
+            }
+
         }
 
 

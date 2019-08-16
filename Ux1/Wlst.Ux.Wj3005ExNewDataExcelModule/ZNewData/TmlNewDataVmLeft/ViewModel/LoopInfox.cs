@@ -146,9 +146,25 @@ namespace Wlst.Ux.Wj3005ExNewDataExcelModule.ZNewData.TmlNewDataVmLeft.ViewModel
            }
        }
 
-       
+        private string _vPhase;
+        /// <summary>
+        /// 回路电压相位
+        /// </summary>
+        public string Phase
+        {
+            get { return _vPhase; }
+            set
+            {
+                if (value != _vPhase)
+                {
+                    _vPhase = value;
+                    this.RaisePropertyChanged(() => this.Phase);
+                }
+            }
+        }
 
-       private string _v;
+
+        private string _v;
        /// <summary>
        /// 回路电压  或 所代表的门啥的状态
        /// </summary>
