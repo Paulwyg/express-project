@@ -13,25 +13,265 @@ using Wlst.Cr.Coreb.EventHelper;
 using Wlst.Cr.Coreb.Servers;
 using Wlst.Sr.EquipmentInfoHolding.Services;
 using Wlst.Ux.EquipemntLightFault.EquipmentFaultManageSettingViewModel.Services;
+using System.Collections.ObjectModel;
 
 namespace Wlst.Ux.EquipemntLightFault.EquipmentFaultManageSettingViewModel.ViewModel
 {
+
+
+    /// <summary>
+    /// key：
+    /// Int ：  1-99  ，
+    /// string  101-199 ，
+    /// boolean 201-299 （1、false，2、true ，其他 false），
+    /// double  301-399 
+    /// value:
+    /// 值当中 [[1]] 标记为本次设置的默认值，且必须放在最开始处 ,外部为 [[默认值]]
+    /// </summary>
+    internal partial class SettingDesc
+    {
+        static int Moduleid = EquipmentFaultManageSettingViewModel.Moduleid;// Ux.EquipemntLightFault.Services.ViewIdAssign.ViewIdAssignBaseId + 1;
+        private static bool IsInitDesc = false;
+        internal static Dictionary<int, string> dicDesc = new Dictionary<int, string>();
+        internal static void InitDesc()
+        {
+            if (IsInitDesc) return;
+            IsInitDesc = true;
+
+            dicDesc.Add(0, "本文档为故障自定义存储文档.");
+            GetInitInt(ref dicDesc);
+            GetInitString(ref dicDesc);
+            GetInitBoolean(ref dicDesc);
+            GetInitDouble(ref dicDesc);
+            Wlst.Cr.CoreMims.Services.SystemOptionSvr.SaveModuleXml(Moduleid, dicDesc, true);
+        }
+
+
+        /// <summary>
+        /// 未设置默认值则未 0
+        /// </summary>
+        /// <param name="dicDesc"></param>
+        static void GetInitInt(ref Dictionary<int, string> dicDesc)
+        {
+
+        }
+
+        /// <summary>
+        /// 未设置默认值则为 empty
+        /// </summary>
+        /// <param name="dicDesc"></param>
+        static void GetInitString(ref Dictionary<int, string> dicDesc)
+        {
+            int baseid = 100;
+            dicDesc.Add(101, "亮化终端判定1-终端名称包含:");
+            dicDesc.Add(102, "亮化终端判定2-终端名称包含:");
+            dicDesc.Add(103, "亮化终端判定3-终端名称包含:");
+            dicDesc.Add(104, "亮化终端判定4-终端名称包含:");
+            dicDesc.Add(105, "亮化终端判定5-终端名称包含:");
+
+        }
+
+        /// <summary>
+        /// 未设置默认值 则为false
+        /// </summary>
+        /// <param name="dicDesc"></param>
+        static void GetInitBoolean(ref Dictionary<int, string> dicDesc)
+        {
+            int baseid = 200;
+            dicDesc.Add(201, "[[1]]现存故障查询显示路灯、亮化筛选功能 [101-105]");
+            //dicDesc.Add(202, "是否启用派单功能");
+            //dicDesc.Add(202, "分组显示是否显示城区局和灯杆号");
+            //dicDesc.Add(202, "分组终端是否显示电压电流上限下限");
+            //dicDesc.Add(202, "最新故障界面显示背景色");
+
+
+            //dicDesc.Add(202, "最新故障界面显示背景色");
+            //dicDesc.Add(202, "显示删除故障按钮");
+            //dicDesc.Add(202, "历史故障下方显示详细故障数据  lvf 2018年5月9日09:37:13");
+            //dicDesc.Add(202, "双击故障复制信息到剪贴板  lvf 2018年10月8日09:03:35");
+            //dicDesc.Add(202, "历史故障显示统计数据  lvf 2018年5月9日09:37:13");
+        }
+
+        /// <summary>
+        /// 未设置默认值则未 0
+        /// </summary>
+        /// <param name="dicDesc"></param>
+        static void GetInitDouble(ref Dictionary<int, string> dicDesc)
+        {
+            int baseid = 300;
+        }
+    }
+    internal partial class SettingDesc
+    {
+
+        static string GetDefautString(int key)
+        {
+            if (dicDesc.ContainsKey(key) == false) return string.Empty;
+            if (dicDesc[key].Contains("[[") && dicDesc[key].Contains("]]"))
+            {
+                var tmp = dicDesc[key].Substring(0, dicDesc[key].IndexOf("]]"));
+                var rtn = tmp.Replace("[[", "");
+                return rtn;
+            }
+
+            return string.Empty;
+
+        }
+
+        static int GetDefautInt(int key)
+        {
+            var tmp = GetDefautString(key);
+            int rtn = 0;
+            if (String.IsNullOrEmpty(tmp) == false)
+                Int32.TryParse(tmp, out rtn);
+            return rtn;
+        }
+
+
+        static double GetDefautDoubel(int key)
+        {
+            var tmp = GetDefautString(key);
+            double rtn = 0;
+            if (String.IsNullOrEmpty(tmp) == false)
+                Double.TryParse(tmp, out rtn);
+            return rtn;
+        }
+
+
+        static bool GetDefautBooelan(int key)
+        {
+            var tmp = GetDefautInt(key);
+            return tmp == 2;
+        }
+
+        internal static ObservableDictionary<int, Wlst.Cr.CoreOne.Models.IntStringBoolDoubleKey> GetItems()
+        {
+            var _items = new ObservableDictionary<int, Wlst.Cr.CoreOne.Models.IntStringBoolDoubleKey>();
+
+            /// Int ：  1-99  ，
+            /// string  101-199 ，
+            /// boolean 201-299 （1、false，2、true ，其他 false），
+            /// double  301-399 
+            InitDesc();
+            var keys = SettingDesc.dicDesc.Keys.ToList();
+            foreach (var f in keys)
+            {
+                if (f < 1) continue; //特殊定义
+                if (f < 100)
+                {
+                    var def = SettingDesc.GetDefautInt(f);
+
+                    _items.Add(f, new Cr.CoreOne.Models.IntStringBoolDoubleKey()
+                    {
+                        Key = f,
+                        ValueInt = Wlst.Cr.CoreMims.Services.SystemOptionSvr.GetInt(Moduleid, f, def),
+                    });
+                }
+                if (100 < f && f < 200)
+                {
+                    var def = SettingDesc.GetDefautString(f);
+                    _items.Add(f, new Cr.CoreOne.Models.IntStringBoolDoubleKey()
+                    {
+                        Key = f,
+                        ValueString = Wlst.Cr.CoreMims.Services.SystemOptionSvr.GetString(Moduleid, f, def),
+                    });
+                }
+                if (200 < f && f < 300)
+                {
+                    var def = SettingDesc.GetDefautBooelan(f);
+                    _items.Add(f, new Cr.CoreOne.Models.IntStringBoolDoubleKey()
+                    {
+                        Key = f,
+                        ValueBool = Wlst.Cr.CoreMims.Services.SystemOptionSvr.GetBoolean(Moduleid, f, def),
+                    });
+                }
+                if (300 < f && f < 400)
+                {
+                    var def = SettingDesc.GetDefautDoubel(f);
+                    _items.Add(f, new Cr.CoreOne.Models.IntStringBoolDoubleKey()
+                    {
+                        Key = f,
+                        ValueDouble = Wlst.Cr.CoreMims.Services.SystemOptionSvr.GetDouble(Moduleid, f, def),
+                    });
+                }
+            }
+            return _items;
+        }
+
+        internal static void SaveItems(ObservableDictionary<int, Wlst.Cr.CoreOne.Models.IntStringBoolDoubleKey> items)
+        {
+            var dic = new Dictionary<int, string>();
+            foreach (var f in items)
+            {
+                if (f.Key < 100)
+                {
+                    dic.Add(f.Key, f.Value.ValueInt + "");
+                }
+                if (100 < f.Key && f.Key < 200)
+                {
+                    dic.Add(f.Key, f.Value.ValueString + "");
+                }
+                if (200 < f.Key && f.Key < 300)
+                {
+                    dic.Add(f.Key, (f.Value.ValueBool ? 2 : 1) + "");
+                }
+                if (300 < f.Key && f.Key < 400)
+                {
+                    dic.Add(f.Key, f.Value.ValueDouble + "");
+                }
+            }
+
+            Wlst.Cr.CoreMims.Services.SystemOptionSvr.SaveModuleXml(Moduleid, dic, false);
+        }
+    }
+
+    public partial class EquipmentFaultManageSettingViewModel
+    {
+        internal static int Moduleid =  Ux.EquipemntLightFault.Services.ViewIdAssign.ViewIdAssignBaseId + 1;
+        private ObservableDictionary<int, Wlst.Cr.CoreOne.Models.IntStringBoolDoubleKey> _items = null;
+
+        public ObservableDictionary<int, Wlst.Cr.CoreOne.Models.IntStringBoolDoubleKey> Items
+        {
+            get
+            {
+                if (_items == null || _items.Count == 0)
+                {
+                    if (_items == null)
+                        _items = new ObservableDictionary<int, Wlst.Cr.CoreOne.Models.IntStringBoolDoubleKey>();
+
+                    var tmpDadta = SettingDesc.GetItems();
+                    foreach (var f in tmpDadta)
+                    {
+                        if (_items.ContainsKey(f.Key) == false) _items.Add(f.Key, f.Value);
+                    }
+                }
+                return _items;
+            }
+
+        }
+
+    }
+
+
     [Export(typeof(IIEquipmentFaultManageSettingViewModel))]
     [PartCreationPolicy(CreationPolicy.Shared)]
-    public class EquipmentFaultManageSettingViewModel : ObservableObject, IIEquipmentFaultManageSettingViewModel
+    public partial class EquipmentFaultManageSettingViewModel : ObservableObject, IIEquipmentFaultManageSettingViewModel
     {
+        
         public EquipmentFaultManageSettingViewModel()
         {
 
             this.NavOnLoad();
-
+            
         }
+
 
 
         public const string XmlConfigName = "EquipmentFaultSetting";
 
         public void NavOnLoad(params object[] parsObjects)
         {
+            if (Items == null) return;
 
             var info = Wlst.Cr.CoreOne.Services.SystemXmlConfig.Read(XmlConfigName);
 
@@ -56,7 +296,7 @@ namespace Wlst.Ux.EquipemntLightFault.EquipmentFaultManageSettingViewModel.ViewM
             EquipemntLightFaultSetting.IsShowCQJandDGGH = IsShowCQJandDGGH;
             EquipemntLightFaultSetting.IsShowVAPHL = IsShowVAPHL;
 
-            IsShowBlackground = Wlst.Cr.CoreOne.Services.OptionXmlSvr.GetOptionBool(3101, 1, false,"\\SystemColorAndFont");
+            IsShowBlackground = Wlst.Cr.CoreOne.Services.OptionXmlSvr.GetOptionBool(3101, 1, false, "\\SystemColorAndFont");
 
             IsShowDelFault = Wlst.Cr.CoreOne.Services.OptionXmlSvr.GetOptionBool(3102, 1, false);
 
@@ -70,6 +310,55 @@ namespace Wlst.Ux.EquipemntLightFault.EquipmentFaultManageSettingViewModel.ViewM
 
 
         }
+
+
+
+        //private ObservableCollection<Wlst.Cr.CoreOne.Models.IntStringBoolDoubleKey> _record = null;
+
+        //public ObservableCollection<Wlst.Cr.CoreOne.Models.IntStringBoolDoubleKey> LhRtu
+        //{
+        //    get
+        //    {
+        //        if (_record == null)
+        //        {
+        //            //dicDesc.Add(10001, "亮化终端判定1-终端名称包含:");
+        //            //dicDesc.Add(10002, "亮化终端判定2-终端名称包含:");
+        //            //dicDesc.Add(10003, "亮化终端判定3-终端名称包含:");
+        //            //dicDesc.Add(10004, "亮化终端判定4-终端名称包含:");
+        //            //dicDesc.Add(10005, "亮化终端判定5-终端名称包含:");
+        //            _record = new ObservableCollection<Wlst.Cr.CoreOne.Models.IntStringBoolDoubleKey>();
+        //            for (int i = 1; i < 6; i++)
+        //            {
+        //                var setinfo = Wlst.Cr.CoreMims.Services.SystemOptionSvr.GetString(Moduleid, 10000 + i, string.Empty);
+        //                _record.Add(new Cr.CoreOne.Models.IntStringBoolDoubleKey()
+        //                {
+        //                    Key = 10000 + i,
+        //                    ValueString = setinfo,
+        //                });
+        //            }
+
+        //            //dicDesc.Add(20001, "现存故障查询显示路灯、亮化筛选功能 [10001-10005]");
+        //            var isuseld = Wlst.Cr.CoreMims.Services.SystemOptionSvr.GetString(Moduleid, 20001, "1");
+        //            _record.Add(new Cr.CoreOne.Models.IntStringBoolDoubleKey()
+        //            {
+        //                Key = 20000 + 1,
+        //                ValueBool = isuseld.Contains("2"),
+        //            });
+
+
+
+        //        }
+        //        return _record;
+        //    }
+        //    set
+        //    {
+        //        if (_record != value)
+        //        {
+        //            _record = value;
+        //            this.RaisePropertyChanged(() => this.LhRtu);
+        //        }
+        //    }
+        //}
 
         private bool _enablePaidan;
 
@@ -312,7 +601,7 @@ namespace Wlst.Ux.EquipemntLightFault.EquipmentFaultManageSettingViewModel.ViewM
             var dicDesc = new Dictionary<int, string>();
             dicOp.Add(1, IsShowBlackground ? "1" : "0");
             dicDesc.Add(1, "最新故障界面显示背景色");
-            Wlst.Cr.CoreOne.Services.OptionXmlSvr.SaveXml(3101, dicOp, dicDesc, "\\SystemColorAndFont"); 
+            Wlst.Cr.CoreOne.Services.OptionXmlSvr.SaveXml(3101, dicOp, dicDesc, "\\SystemColorAndFont");
 
             var dicOp1 = new Dictionary<int, string>();
             var dicDesc1 = new Dictionary<int, string>();
@@ -329,6 +618,25 @@ namespace Wlst.Ux.EquipemntLightFault.EquipmentFaultManageSettingViewModel.ViewM
             dicDesc1.Add(4, "双击复制故障信息至剪贴板");
 
             Wlst.Cr.CoreOne.Services.OptionXmlSvr.SaveXml(3102, dicOp1, dicDesc1);
+
+            //var dic = new Dictionary<int, string>();
+
+            //if (LhRtu[5].IsSelected)
+            //{
+            //    dic.Add(20001, "2");
+            //}
+            //else
+            //{
+            //    dic.Add(20001, "1");
+            //}
+            //for (int i = 0; i < 5; i++)
+            //{
+            //    dic.Add(10001 + i, LhRtu[i].Name);
+            //}
+            //Wlst.Cr.CoreMims.Services.SystemOptionSvr.SaveModuleXml(Moduleid, dic, false);
+
+            SettingDesc.SaveItems(Items);
+
 
         }
 

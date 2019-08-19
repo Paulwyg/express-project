@@ -179,6 +179,25 @@ namespace Wlst.Ux.Wj3005ExNewDataExcelModule.ZNewData.TmlNewDataViewModel.ViewMo
            }
        }
 
+        private string _vPhase;
+        /// <summary>
+        /// 回路电压相位
+        /// </summary>
+        public string Phase
+        {
+            get { return _vPhase; }
+            set
+            {
+                if (value != _vPhase)
+                {
+                    _vPhase = value;
+                    this.RaisePropertyChanged(() => this.Phase);
+                }
+            }
+        }
+
+         
+
        private string _a;
        /// <summary>
        /// 回路电流

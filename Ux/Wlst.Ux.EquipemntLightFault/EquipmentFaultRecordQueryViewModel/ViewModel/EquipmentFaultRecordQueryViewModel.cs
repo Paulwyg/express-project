@@ -146,6 +146,7 @@ namespace Wlst.Ux.EquipemntLightFault.EquipmentFaultRecordQueryViewModel.ViewMod
         /// </summary>
         private static List<int> Sh = new List<int>();
         private bool _thisViewActive;
+        
         public void NavOnLoad(params object[] parsObjects)
         {
 
@@ -164,6 +165,29 @@ namespace Wlst.Ux.EquipemntLightFault.EquipmentFaultRecordQueryViewModel.ViewMod
             {
                 RequestTmlExistFaultsInfos();
             }
+
+            //dicDesc.Add(201, "现存故障查询显示路灯、亮化筛选功能 [101-105]");
+            IsShowLhLd = Wlst.Cr.CoreMims.Services.SystemOptionSvr.GetBoolean(Wlst.Ux.EquipemntLightFault.EquipmentFaultManageSettingViewModel.ViewModel.EquipmentFaultManageSettingViewModel.Moduleid, 201,false)? Visibility.Visible : Visibility.Collapsed;
+
+            if (IsShowLhLd == Visibility.Visible)
+            {   LstShowLhLd.Clear();
+                for (int i = 1; i < 5; i++)
+                {
+                    //dicDesc.Add(101, "亮化终端判定1-终端名称包含:");
+                    //dicDesc.Add(102, "亮化终端判定2-终端名称包含:");
+                    //dicDesc.Add(103, "亮化终端判定3-终端名称包含:");
+                    //dicDesc.Add(104, "亮化终端判定4-终端名称包含:");
+                    //dicDesc.Add(105, "亮化终端判定5-终端名称包含:");
+                    var data = Wlst.Cr.CoreMims.Services.SystemOptionSvr.GetString(Wlst.Ux.EquipemntLightFault.EquipmentFaultManageSettingViewModel.ViewModel.EquipmentFaultManageSettingViewModel.Moduleid, 100+i, string.Empty);
+                    if (string.IsNullOrEmpty(data) == false)
+                    {
+                        LstShowLhLd.Add(data);
+                    }
+                    if (LstShowLhLd.Count == 0) IsShowLhLd = Visibility.Collapsed;
+                }
+            }
+            IsFilterLh = false;
+            IsFilterLd = false;
 
 
             LoadXml();
@@ -1000,6 +1024,16 @@ namespace Wlst.Ux.EquipemntLightFault.EquipmentFaultRecordQueryViewModel.ViewMod
                 {
                     IsShowChkHideLoopErrs = Sr.EquipmentInfoHolding.Services.Others.CityNum == 7;
                 }
+
+                if(value)
+                {
+                    IsShowLhLd = Visibility.Collapsed;
+                }
+                else
+                {
+                    if(LstShowLhLd .Count >0 ) IsShowLhLd = Visibility.Visible;
+                    else IsShowLhLd = Visibility.Collapsed;
+                }
             }
         }
 
@@ -1017,6 +1051,56 @@ namespace Wlst.Ux.EquipemntLightFault.EquipmentFaultRecordQueryViewModel.ViewMod
                 RaisePropertyChanged(() => CountPreErrs);
             }
         }
+
+        private Visibility _isCaIsShowLhLdlcFault =Visibility.Collapsed ;
+        private List<string> LstShowLhLd = new List<string>();
+        /// <summary>
+        /// 是否  显示亮化 、路灯高级筛选条件 
+        /// </summary>
+        public Visibility  IsShowLhLd
+        {
+            get { return _isCaIsShowLhLdlcFault; }
+            set
+            {
+                if (_isCaIsShowLhLdlcFault == value) return;
+                _isCaIsShowLhLdlcFault = value;
+                RaisePropertyChanged(() => IsShowLhLd);
+            }
+        }
+
+
+        private bool _isCaIIsShowLhult = false ;
+        /// <summary>
+        /// 是否 亮化过滤查询  
+        /// </summary>
+        public bool IsFilterLh
+        {
+            get { return _isCaIIsShowLhult; }
+            set
+            {
+                if (_isCaIIsShowLhult == value) return;
+                _isCaIIsShowLhult = value;
+                RaisePropertyChanged(() => IsFilterLh);
+            }
+        }
+
+
+        private bool _isCaIIsShowLdlt = false ;
+        /// <summary>
+        /// 是否  路灯过滤查询
+        /// </summary>
+        public bool IsFilterLd
+        {
+            get { return _isCaIIsShowLdlt; }
+            set
+            {
+                if (_isCaIIsShowLdlt == value) return;
+                _isCaIIsShowLdlt = value;
+                RaisePropertyChanged(() => IsFilterLd);
+            }
+        }
+
+
 
         private bool _isCalcFault;
         /// <summary>
@@ -2156,6 +2240,31 @@ namespace Wlst.Ux.EquipemntLightFault.EquipmentFaultRecordQueryViewModel.ViewMod
                 var error = Sr.EquipemntLightFault.Services.TmlExistFaultsInfoServices.GetFaultInfoById(t.Id);
                 if (error == null) continue;
 
+                if (LstShowLhLd.Count > 0)
+                {
+                    bool isLhRtu = false;
+                    foreach (var l in LstShowLhLd)
+                    {
+                        if (string.IsNullOrEmpty(l) == false && error.RtuName.Contains(l))
+                        {
+                            isLhRtu = true;
+                            break;
+                        }
+                    }
+
+                    //过滤 显示路灯
+                    if (IsFilterLd && IsFilterLh == false)
+                    {
+                        if (isLhRtu) continue;
+                    }
+
+                    //过滤显示 亮化
+                    if (IsFilterLd == false && IsFilterLh)
+                    {
+                        if (isLhRtu == false) continue;
+                    }
+                }
+
                 //如果 终端类型 需要判断 lvf 2018年12月11日13:48:19
                 if (RtuTypeSelected.Value != -1)
                 {
@@ -2253,7 +2362,7 @@ namespace Wlst.Ux.EquipemntLightFault.EquipmentFaultRecordQueryViewModel.ViewMod
             }
         }
 
-
+ 
 
         private void QueryPreErrorAllRtuFault(List<int> rtus, List<int> faultIds, int pageIndex, int pagingFlag)
         {

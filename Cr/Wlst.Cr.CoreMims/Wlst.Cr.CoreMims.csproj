@@ -125,6 +125,7 @@
     <Compile Include="Services\ProtocolServer.cs" />
     <Compile Include="Services\ShowNewDataServices.cs" />
     <Compile Include="Services\SndOrderServer.cs" />
+    <Compile Include="Services\SystemOptionSvr.cs" />
     <Compile Include="Services\UserInfo.cs" />
     <Compile Include="Services\VmEventActionProperyChangedBase.cs" />
     <Compile Include="ShowMsgInfo\ShowNewMsg.cs" />

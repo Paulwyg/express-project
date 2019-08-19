@@ -122,7 +122,10 @@
                 </DockPanel>
 
                 <DockPanel Grid.Column="6" Margin="0,0,0,0" VerticalAlignment="Center" Visibility="{Binding IsShowChkHideLoopErrs, Converter={StaticResource BoolToVisible}}">
-                    <CheckBox Content="隐藏晚上回路报警"  IsChecked="{Binding IsHideLoopErrInNight}"  VerticalAlignment="Center" Margin="10,0,0,0" />
+                    <CheckBox Content="隐藏晚上回路报警"   IsChecked="{Binding IsHideLoopErrInNight}"  VerticalAlignment="Center" Margin="10,0,0,0" />
+                    <CheckBox Content="过滤显示路灯" Visibility="{Binding IsShowLhLd}"  IsChecked="{Binding IsFilterLd}"  VerticalAlignment="Center" Margin="10,0,0,0" />
+                    <CheckBox Content="过滤显示亮化" Visibility="{Binding IsShowLhLd}"   IsChecked="{Binding IsFilterLh}"  VerticalAlignment="Center" Margin="10,0,0,0" />
+                  
                 </DockPanel>
 
 
