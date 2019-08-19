@@ -3158,7 +3158,7 @@ namespace Wlst.Ux.EquipemntTree.GrpSingleTabShowViewModel.ViewModels
                             if (id == 0) continue;
 
                             if (RtuImsgIconTmp.ContainsKey(t))
-                            {
+                            { 
                                 if (RtuImsgIconTmp[t] == id) continue;
                                 RtuImsgIconTmp[t] = id;
                             }
@@ -3227,6 +3227,11 @@ namespace Wlst.Ux.EquipemntTree.GrpSingleTabShowViewModel.ViewModels
                     var xg = f.Target as TreeNodeBaseNode;
                     //if (xg != null) xg.ReUpdate(2);
                     if (xg != null) xg.ReUpdate(tu.Item2);
+
+                    if (xg.NodeId == 1000002)
+                    {
+                        WriteLog.WriteInfo("1000002终端树更新图标："+ tu.Item2 +"  "+DateTime.Now);
+                    }
                 }
 
             }

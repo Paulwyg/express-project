@@ -364,6 +364,12 @@ namespace Wlst.Ux.EquipemntTree.GrpComSingleMuliViewModel
                 if (!haserror && !lighton) errorindex = 0;
 
                 PicIndex = 3005 + errorindex;
+
+
+                //todo  test
+                if (this.NodeId == 1000002) {
+                    WriteLog.WriteInfo("1000002终端树图标为：" + PicIndex  +"     "+DateTime.Now);
+                }
             }
             else if (TerInfo.EquipmentType == WjParaBase.EquType.Slu)
             {

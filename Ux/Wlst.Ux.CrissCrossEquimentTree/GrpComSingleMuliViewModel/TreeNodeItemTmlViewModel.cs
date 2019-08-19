@@ -202,6 +202,12 @@ namespace Wlst.Ux.CrissCrossEquipemntTree.GrpComSingleMuliViewModel
                 this.UpdateTmlInfomation();
                 UpdateTmlStateInfomation();
             }
+            else
+            {
+                PicIndex = updateArgu;
+            }
+            return;
+
             if (updateArgu == 2)
             {
                 this.UpdateTmlStateInfomation();
@@ -315,7 +321,13 @@ namespace Wlst.Ux.CrissCrossEquipemntTree.GrpComSingleMuliViewModel
                     if (!haserror && !lighton) errorindex = 0;
 
                     PicIndex = 3005 + errorindex;
+                //todo  test
+                if (this.NodeId == 1000002)
+                {
+                    WriteLog.WriteInfo("1000002交叉分组初始化图标为：" + PicIndex + "     " + DateTime.Now);
                 }
+
+            }
                 else if (TerInfo .EquipmentType  == WjParaBase.EquType.Slu )
                 {
                     if (TerInfo .RtuStateCode  != 2)
@@ -480,6 +492,98 @@ namespace Wlst.Ux.CrissCrossEquipemntTree.GrpComSingleMuliViewModel
         public override void ResetContextMenu()
         {
             UpdateCm(NodeId);
+        }
+        /// <summary>
+        /// 获取终端故障编号
+        /// </summary>
+        /// <param name="rtuid"></param>
+        /// <returns></returns>
+        public static int GetImageIconByState(int rtuid)
+        {
+
+            var TerInfo = Wlst.Sr.EquipmentInfoHolding.Services.EquipmentDataInfoHold.GetInfoById(rtuid);
+            if (TerInfo == null) return 0;
+            var runninfo = Wlst.Sr.EquipmentInfoHolding.Services.RunningInfoHold.GetRunInfo(rtuid);
+
+            // int modelId = (int) TerInfo.EquipmentType;
+            if (TerInfo.EquipmentType == WjParaBase.EquType.Rtu)
+            {
+                var s = TerInfo.RtuStateCode;
+                if (s == 0)
+                {
+                    return 3001;
+
+                }
+                if (s == 1)
+                {
+                    return 3002;
+
+                }
+
+                var online = runninfo != null && runninfo.IsOnLine;
+                if (online == false)
+                {
+                    return 3003;
+
+                }
+                var haserror = false;
+                if (UxTreeSetting.IsRutsNotShowError == false)
+                    haserror = runninfo.ErrorCount > 0;
+                var lighton = runninfo.IsLightHasElectric; // RtuNewDataService.IsRtuHasElectric(this.NodeId);
+                int errorindex = 0;
+                // var ShieldAList = new Dictionary<int, Tuple<double, double>>();
+                if (haserror && lighton) errorindex = 3;
+                if (haserror && !lighton) errorindex = 1;
+                if (!haserror && lighton)
+                {
+                    //foreach(var t in runninfo.RtuNewData.LstNewLoopsData   )
+                    //{
+                    //    ShieldAList.Add(t.LoopId, new Tuple<double, double>(t.A, t.ShieldLittleA));
+                    //}
+                    //foreach(var t in ShieldAList )
+                    //{
+                    //    int count = 0;
+                    //    if (t.Value.Item1 < t.Value.Item2 || t.Value.Item1 == 0.0) count++;
+                    //}
+
+                    errorindex = 2;
+                }
+                if (!haserror && !lighton) errorindex = 0;
+
+                return 3005 + errorindex;
+            }
+            else if (TerInfo.EquipmentType == WjParaBase.EquType.Slu)
+            {
+                if (TerInfo.RtuStateCode != 2)
+                {
+                    return (int)WjParaBase.EquType.Slu + 2;
+
+                }
+                var online = runninfo != null && runninfo.IsOnLine;
+                if (online == false)
+                {
+                    return (int)WjParaBase.EquType.Slu + 3;
+
+                }
+                var haserror = false;
+                if (UxTreeSetting.IsRutsNotShowError == false)
+                    haserror = runninfo.ErrorCount > 0;
+                if (haserror)
+                {
+                    return (int)WjParaBase.EquType.Slu + 1;
+                }
+                else
+                {
+                    return (int)WjParaBase.EquType.Slu;
+                }
+
+            }
+            else
+            {
+                var tmp = runninfo != null && runninfo.ErrorCount > 0;
+                ;
+                return (int)TerInfo.EquipmentType + (tmp ? 1 : 0);
+            }
         }
 
 
