@@ -353,9 +353,11 @@ namespace Wlst.Sr.EquipmentInfoHolding.Services
             //获取区域信息
             Wlst.Cr.Core.ModuleServices.DelayEvent.RegisterDelayEvent(RequestHttpRegionInfo, 1);
             Wlst.Cr.Core.ModuleServices.DelayEvent.RegisterDelayEvent(RequestHttpRtuRegion, 1);
+            //RequestHttpRegionInfo();
+
+            //RequestHttpRtuRegion();
 
 
-       
 
         }
 
@@ -698,7 +700,7 @@ namespace Wlst.Sr.EquipmentInfoHolding.Services
             var info = Wlst.Sr.ProtocolPhone.LxAreaGrp.wls_area_region_info;
             //1. 请求所有设备列表
             info.WstAreagrpRegionInfo.Op = 4;
-            info.WstAreagrpRegionInfo.DtUpdate = lastdatatime;
+            info.WstAreagrpRegionInfo.DtUpdate = 0;//lastdatatime;
 
             //序列化，请求数据结构
             var base64data = System.Convert.ToBase64String(MsgWithMobile.SerializeToBytes(info));
@@ -771,7 +773,8 @@ namespace Wlst.Sr.EquipmentInfoHolding.Services
                 if (databks == null || databks.WstAreagrpRegionInfo == null) return;
                 lastdatatime = databks.WstAreagrpRegionInfo.DtUpdate;
                 var rtuinfos = databks.WstAreagrpRegionInfo.RtuItems;
-                foreach(var k in rtuinfos)
+
+                foreach (var k in rtuinfos)
                 {
                     var grptu = new Tuple<int,int, int>(k.AreaId,k.GroupId,k.RegionId);
 
