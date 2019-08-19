@@ -25,10 +25,10 @@ namespace Wlst.Cr.CoreMims.Services
         /// <summary>
         /// mid: 文件id，模块id +1 
         /// key：
-        /// Int ：  1-9999  ，
-        /// string  10000-19999 ，
-        /// boolean 20000-29999 （1、false，2、true ，其他 false），
-        /// double  30000-39999 
+        /// Int ：  1-99  ，
+        /// string  100-199 ，
+        /// boolean 200-299 （1、false，2、true ，其他 false），
+        /// double  300-399 
         /// </summary>
         /// <param name="mid"></param>
         /// <param name="key"></param>
@@ -50,10 +50,10 @@ namespace Wlst.Cr.CoreMims.Services
         /// <summary>
         /// mid: 文件id，模块id +1 
         /// key：
-        /// Int ：  1-9999  ，
-        /// string  10000-19999 ，
-        /// boolean 20000-29999 （1、false，2、true ，其他 false），
-        /// double  30000-39999 
+        /// Int ：  1-99  ，
+        /// string  100-199 ，
+        /// boolean 200-299 （1、false，2、true ，其他 false），
+        /// double  300-399 
         /// </summary>
         /// <param name="mid"></param>
         /// <param name="key"></param>
