@@ -34,8 +34,22 @@ namespace Wlst.Ux.WJ3005Module.ZOrders.OpenCloseLight.ForSingleTreeGrpMenu
             if (Wlst.Cr.CoreMims.Services.UserInfo.UserLoginInfo.D) return true;
             //return Wlst.Cr.CoreMims.Services.UserInfo.CanX();
             var equipment = this.Argu as Wlst .Sr .EquipmentInfoHolding .Model .GroupInformation ;
-            if (equipment == null ) return false;
-            return Wlst.Cr.CoreMims.Services.UserInfo.CanX(equipment.AreaId);
+            //交叉分组判断
+            if (equipment == null)
+            {
+                var lst = this.Argu as List<int>;
+                if (lst == null || lst.Count == 0)
+                {
+                    return false;
+                }
+                var areaid = Wlst.Sr.EquipmentInfoHolding.Services.AreaInfoHold.MySlef.GetRtuBelongArea(lst[0]);
+                return Wlst.Cr.CoreMims.Services.UserInfo.CanX(areaid);
+            }
+            else
+            {
+                return Wlst.Cr.CoreMims.Services.UserInfo.CanX(equipment.AreaId);
+            }
+
         }
         bool CanEx()
         {
