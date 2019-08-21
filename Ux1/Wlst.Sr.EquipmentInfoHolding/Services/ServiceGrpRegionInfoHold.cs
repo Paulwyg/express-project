@@ -700,7 +700,7 @@ namespace Wlst.Sr.EquipmentInfoHolding.Services
             var info = Wlst.Sr.ProtocolPhone.LxAreaGrp.wls_area_region_info;
             //1. 请求所有设备列表
             info.WstAreagrpRegionInfo.Op = 4;
-            info.WstAreagrpRegionInfo.DtUpdate = 0;//lastdatatime;
+            info.WstAreagrpRegionInfo.DtUpdate = lastdatatime;
 
             //序列化，请求数据结构
             var base64data = System.Convert.ToBase64String(MsgWithMobile.SerializeToBytes(info));
@@ -788,6 +788,15 @@ namespace Wlst.Sr.EquipmentInfoHolding.Services
                     }else
                     {
                         var rtulsttmp = RegionRtuInfo[grptu];
+
+                        //如果有这终端，先删掉
+                        for (int i = rtulsttmp.Count - 1; i >= 0; i--) {
+
+                            if (rtulsttmp[i].Item1 == k.RtuId) rtulsttmp.RemoveAt(i);
+
+                        }
+
+                        //添加新的
                         rtulsttmp.Add(new Tuple<int, int>(k.RtuId, k.ImageType));
                         RegionRtuInfo[grptu] =rtulsttmp;
                     }

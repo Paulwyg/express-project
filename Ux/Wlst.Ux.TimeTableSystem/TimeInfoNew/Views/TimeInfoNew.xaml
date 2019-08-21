@@ -49,7 +49,7 @@
                             <telerik:GridViewDataColumn  Header="地址及类型"     IsFilterable="False"  DataMemberBinding="{Binding PhyIdMsg}" IsReadOnly="True" Width="90"/>
 
 
-                            <telerik:GridViewDataColumn  Header="组、终端名称"   DataMemberBinding="{Binding RtuOrGrpName}" IsReadOnly="True"  Width="150" />
+                            <telerik:GridViewDataColumn  Header="组、终端名称"   IsFilterable="False"   DataMemberBinding="{Binding RtuOrGrpName}" IsReadOnly="True"  Width="150" />
 
 
                             <telerik:GridViewDataColumn Header="K1时间表"  IsReadOnly="True" 

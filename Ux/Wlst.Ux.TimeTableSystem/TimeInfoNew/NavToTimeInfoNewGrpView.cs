@@ -39,10 +39,29 @@ namespace Wlst.Ux.TimeTableSystem.TimeInfoNew
             if (Wlst.Cr.CoreMims.Services.UserInfo.UserLoginInfo.D) return true;
 
             var grpInfo = this.Argu as Wlst.client.GroupItemsInfo.GroupItem;
-            if (grpInfo == null) return false;
-            var areaid = grpInfo.AreaId;
+            //if (grpInfo == null) return false;
+            //var areaid = grpInfo.AreaId;
 
-            return Wlst.Cr.CoreMims.Services.UserInfo.CanR(areaid);
+            //return Wlst.Cr.CoreMims.Services.UserInfo.CanR(areaid);
+
+            //交叉分组右键判断
+            if (grpInfo == null)
+            {
+                var lst = this.Argu as List<int>;
+                if (lst == null || lst.Count == 0)
+                {
+                    return false;
+                }
+                var areaid = Wlst.Sr.EquipmentInfoHolding.Services.AreaInfoHold.MySlef.GetRtuBelongArea(lst[0]);
+                return Wlst.Cr.CoreMims.Services.UserInfo.CanX(areaid);
+            }
+            else
+            {
+                var areaid = grpInfo.AreaId;
+
+                return Wlst.Cr.CoreMims.Services.UserInfo.CanR(areaid);
+
+            }
         }
 
         private bool CanEx()

@@ -36,47 +36,47 @@ namespace Wlst.Ux.CrissCrossEquipemntTree.GrpSingleTabShowViewModel.ViewModels
         public static TreeNodeBaseNode CurrentSelectGroupNode
         {
             get { return _currentSelectGroupNode; }
-            set
-            {
-                if (_currentSelectGroupNode == value) return;
-                if (value == null) return;
-                if (value.NodeType == TypeOfTabTreeNode.IsGrp ||
-                    value.NodeType == TypeOfTabTreeNode.IsGrpSpecial ||
-                    value.NodeType == TypeOfTabTreeNode.IsArea ||
-                    value.NodeType == TypeOfTabTreeNode.IsAll)
-                {
-                    if (_currentSelectGroupNode != null)
-                        _currentSelectGroupNode.IsSelected = false;
-                    _currentSelectGroupNode = value;
+            //set
+            //{
+            //    if (_currentSelectGroupNode == value) return;
+            //    if (value == null) return;
+            //    if (value.NodeType == TypeOfTabTreeNode.IsGrp ||
+            //        value.NodeType == TypeOfTabTreeNode.IsGrpSpecial ||
+            //        value.NodeType == TypeOfTabTreeNode.IsArea ||
+            //        value.NodeType == TypeOfTabTreeNode.IsAll)
+            //    {
+            //        if (_currentSelectGroupNode != null)
+            //            _currentSelectGroupNode.IsSelected = false;
+            //        _currentSelectGroupNode = value;
 
 
-                    if (UxTreeSetting.IsSelectGrpMapOnlyShow == false) return;
-                    var ins = new PublishEventArgs()
-                                  {
-                                      EventType = PublishEventType.Core,
-                                      EventId =
-                                          Wlst.Sr.EquipmentInfoHolding.Services.EventIdAssign.RtuGroupSelectdWantedMapUp
-                                  };
+            //        if (UxTreeSetting.IsSelectGrpMapOnlyShow == false) return;
+            //        var ins = new PublishEventArgs()
+            //                      {
+            //                          EventType = PublishEventType.Core,
+            //                          EventId =
+            //                              Wlst.Sr.EquipmentInfoHolding.Services.EventIdAssign.RtuGroupSelectdWantedMapUp
+            //                      };
 
-                    var info = new List<int>();
-                    //if (value.NodeType == TypeOfTabTreeNode.IsAll || value.NodeType == TypeOfTabTreeNode.IsArea)
-                    //{
+            //        var info = new List<int>();
+            //        //if (value.NodeType == TypeOfTabTreeNode.IsAll || value.NodeType == TypeOfTabTreeNode.IsArea)
+            //        //{
 
-                    //    info.Add(-1);
-                    //    ins.AddParams(info);
-                    //}
-                    //else
-                    {
-                        info = (from t in value.ChildTreeItems select t.NodeId).ToList();
-                        ins.AddParams(info);
-                    }
+            //        //    info.Add(-1);
+            //        //    ins.AddParams(info);
+            //        //}
+            //        //else
+            //        {
+            //            info = (from t in value.ChildTreeItems select t.NodeId).ToList();
+            //            ins.AddParams(info);
+            //        }
 
-                    if (info.Count == 0) return;
-                    if (info.Count == 1 && info[0] == -1) info.Clear();
-                    EventPublish.PublishEvent(ins);
-                }
+            //        if (info.Count == 0) return;
+            //        if (info.Count == 1 && info[0] == -1) info.Clear();
+            //        EventPublish.PublishEvent(ins);
+            //    }
 
-            }
+            //}
         }
 
         //public TreeNodeItemRegionGroupViewModel()
@@ -820,31 +820,76 @@ namespace Wlst.Ux.CrissCrossEquipemntTree.GrpSingleTabShowViewModel.ViewModels
         /// </summary>
         public override void OnNodeSelectActive()
         {
-            if (NodeType != TypeOfTabTreeNode.IsGrp && NodeType != TypeOfTabTreeNode.IsAll) return;
-            if (NodeType == TypeOfTabTreeNode.IsGrp)
+            if (NodeType != TypeOfTabTreeNode.IsGrp && NodeType != TypeOfTabTreeNode.IsAll && NodeType != TypeOfTabTreeNode.IsRegion) return;
+            if (NodeType == TypeOfTabTreeNode.IsRegion)
             {
-                var info = Wlst.Sr.EquipmentInfoHolding.Services.ServicesGrpSingleInfoHold.GetGroupInfomation(AreaId,
-                                                                                                              NodeId);
-                if (info == null) return;
-            }
+                //var info = Wlst.Sr.EquipmentInfoHolding.Services.ServicesGrpSingleInfoHold.GetGroupInfomation(AreaId,
+                //                                                                                              NodeId);
+                //if (info == null) return;
 
-            //base.OnNodeSelect();
+                var info = Wlst.Sr.EquipmentInfoHolding.Services.ServiceGrpRegionInfoHold.GetRtulstByGrpRegionId(AreaId, -1, NodeId);
+
+                if (info == null) return;
+
+
+
+                //base.OnNodeSelect();
                 //发布事件  选中当前节点
                 var args = new PublishEventArgs
-                               {
-                                   EventType = PublishEventType.Core,
-                                   EventId = Sr.EquipmentInfoHolding.Services.EventIdAssign.GroupSelected,
-                               };
+                {
+                    EventType = PublishEventType.Core,
+                    EventId = Sr.EquipmentInfoHolding.Services.EventIdAssign.GroupSelected,
+                };
 
                 args.AddParams(new Wlst.Sr.EquipmentInfoHolding.Model.SelectedInfo(AreaId, NodeId,
                                                                                    SelectedInfo.SelectType.SingleGrp));
 
                 EventPublish.PublishEvent(args);
 
-                //  base.OnNodeSelectActive();
-                TreeNodeItemRegionGroupViewModel.CurrentSelectGroupNode = this;
+                //TreeNodeItemSingleGroupViewModel.CurrentSelectGroupNode = this;
 
-                // ResetContextMenu();
+
+                if (info.Count > 0)
+                {
+                    var rtus = new List<int>();
+                    rtus = (from t in info where t.Item1 > 1000000 && t.Item2 < 1100000 select t.Item1).ToList();
+
+
+                    var ins = new PublishEventArgs()
+                    {
+                        EventType = PublishEventType.Core,
+                        EventId =
+                                    Wlst.Sr.EquipmentInfoHolding.Services.EventIdAssign.RtuGroupSelectdWantedMapUp
+                    };
+                    ins.AddParams(rtus);
+                    EventPublish.PublishEvent(ins);
+                }
+
+            }
+
+
+
+
+
+
+
+            if (NodeType == TypeOfTabTreeNode.IsAll || NodeType == TypeOfTabTreeNode.IsGrp)
+            {
+                if (UxTreeSetting.IsSelectGrpMapOnlyShow == false) return;
+                var ins = new PublishEventArgs()
+                {
+                    EventType = PublishEventType.Core,
+                    EventId =
+                                      Wlst.Sr.EquipmentInfoHolding.Services.EventIdAssign.RtuGroupSelectdWantedMapUp
+                };
+
+                var info = new List<int>();
+
+
+                info = (from t in ChildTreeItems select t.NodeId).ToList();
+                ins.AddParams(info);
+                EventPublish.PublishEvent(ins);
+            }
 
         }
 

@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" mc:Ignorable="d" 
            Topmost="True"   Height="500" Width="750">
-    <Grid Margin="10">
+    <Grid Margin="5">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="160"></RowDefinition>
@@ -36,7 +36,7 @@
 
 
 
-                <telerik:GridViewDataColumn Width="90" Header="上限">
+                <telerik:GridViewDataColumn Width="90" Header="上限" IsVisible="{Binding IsShowChkHideLoopErrs}">
 
                     <telerik:GridViewDataColumn.CellTemplate>
                         <DataTemplate>
@@ -45,7 +45,7 @@
                     </telerik:GridViewDataColumn.CellTemplate>
                 </telerik:GridViewDataColumn>
 
-                <telerik:GridViewDataColumn Width="90"  Header="下限"  >
+                <telerik:GridViewDataColumn Width="90"  Header="下限" IsVisible="{Binding IsShowChkHideLoopErrs}" >
 
                     <telerik:GridViewDataColumn.CellTemplate>
                         <DataTemplate>

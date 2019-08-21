@@ -620,7 +620,7 @@ namespace Wlst.Ux.EquipemntTree.GrpSingleTabShowViewModel.ViewModels
             }
             else
             {
-                if(NodeType != TypeOfTabTreeNode.IsTml && NodeType != TypeOfTabTreeNode.IsTmlParts)
+                if (NodeType != TypeOfTabTreeNode.IsTml && NodeType != TypeOfTabTreeNode.IsTmlParts)
                 {
                     var info = new List<int>();
                     info = (from t in ChildTreeItems select t.NodeId).ToList();
@@ -632,10 +632,31 @@ namespace Wlst.Ux.EquipemntTree.GrpSingleTabShowViewModel.ViewModels
                         EventId = Sr.EquipmentInfoHolding.Services.EventIdAssign.TargetSelected,
                     };
 
-            
-                        argsx1.AddParams(NodeName);
+
+                    argsx1.AddParams(NodeName);
                     argsx1.AddParams(info);
                     EventPublish.PublishEvent(argsx1);
+
+
+
+                    if (UxTreeSetting.IsSelectGrpMapOnlyShow == false) return;
+                    var ins = new PublishEventArgs()
+                    {
+                        EventType = PublishEventType.Core,
+                        EventId =
+                                          Wlst.Sr.EquipmentInfoHolding.Services.EventIdAssign.RtuGroupSelectdWantedMapUp
+                    };
+                    ins.AddParams(info);
+
+
+
+                    if (info.Count == 1 && info[0] == -1) info.Clear();
+                    EventPublish.PublishEvent(ins);
+
+
+
+
+
                 }
             }
         }
