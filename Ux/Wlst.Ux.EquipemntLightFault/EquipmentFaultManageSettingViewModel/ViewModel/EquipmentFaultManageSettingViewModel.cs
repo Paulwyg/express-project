@@ -258,6 +258,7 @@ namespace Wlst.Ux.EquipemntLightFault.EquipmentFaultManageSettingViewModel.ViewM
         private bool IsInitDesc = false;
         private void InitDesc()
         {
+
             if (IsInitDesc) return;
             IsInitDesc = true;
             this.AddBoolean(0, "本文档为故障自定义设置文档。");
@@ -267,7 +268,8 @@ namespace Wlst.Ux.EquipemntLightFault.EquipmentFaultManageSettingViewModel.ViewM
             this.AddString(103, "亮化终端判定3-终端名称包含:");
             this.AddString(104, "亮化终端判定4-终端名称包含:");
             this.AddString(105, "亮化终端判定5-终端名称包含:");
-
+            this.AddBoolean(202, "[[1]]全局树晚上不显示白天报警图标");
+            this.AddBoolean(203, "[[1]]全局树白天不显示晚上报警图标");
             this.SaveDesc();
         }
 

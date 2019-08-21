@@ -180,7 +180,7 @@ namespace Wlst.Ux.WJ3005Module.ZDataQuery.SndWeekTimeQuery.ViewModel
 
         #region PagerVisi
 
-        private Visibility _pagerVisi = Visibility.Visible;
+        private Visibility _pagerVisi = Visibility.Collapsed;
         public Visibility PagerVisi
         {
             get { return _pagerVisi; }

@@ -16,9 +16,9 @@
 
         <Grid  HorizontalAlignment="Left" Visibility="{Binding Patrol}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" MinHeight="30"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="Auto" MinHeight="30"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0">
@@ -43,7 +43,7 @@
                     <Button  Command="{Binding CmdRePartol}" Margin="10,5,10,5" Width="120" Height="25" Content="补测"/>
                     <!--<Button  Grid.Column="7"  Command="{Binding CmdTongji}" Margin="10,5,10,5" MinWidth="50" MinHeight="25" Content="统计"/>-->
 
-                    <Button  Command="{Binding CmdOnLine}" Margin="10,5,10,5" Width="120" Height="25" Content="请求在线列表"/>
+                    <Button  Command="{Binding CmdOnLine}" Margin="10,5,5,5" Width="120" Height="25" Content="请求在线列表"/>
 
                 </StackPanel>
                    
@@ -51,7 +51,7 @@
         </Grid>
 
             <telerik:RadTreeListView x:Name="RadGridView1" ScrollMode="Deferred" ShowGroupPanel="False" SelectedItem="{Binding CurrentSelectedItem}"
-                             MinWidth="600"  Grid.Row="1" HorizontalAlignment="Left" Margin="5,0,0,0"
+                             MinWidth="600"  Grid.Row="1" HorizontalAlignment="Left" Margin="5,0,5,0"
                              ItemsSource="{Binding MeasurePatrolData}"   RowIndicatorVisibility="Collapsed"
                    IsReadOnly="True"  AutoGenerateColumns="False" ShowColumnHeaders="True" ColumnReordered="RadGridView1_ColumnReordered">
                 <telerik:RadTreeListView.Columns>
@@ -141,9 +141,9 @@
             <!--<Label  Content="在线列表更新时间: "/>-->
             <Label Grid.Column="1" VerticalAlignment="Center"  Content="{Binding OnLineDataUpdateTime}" ToolTip="在线数量包含停运终端"/>
                 <StackPanel Orientation="Horizontal" Grid.Column="2" HorizontalAlignment="Right">
-                    <Button Width="140" Height="25"  Margin="10,0,10,0"  Content="查看屏蔽回路数据" Command="{Binding CmdShieldData}"></Button>
-                    <Button Width="120" Height="25" Margin="10,0,10,0"  Command="{Binding CmdReportx}" Content="导出数据"/>
-                    <Button Width="120" Height="25"  Margin="10,0,10,0"  Command="{Binding CmdReport}" Content="导出终端参数"></Button>
+                    <Button Width="140" Height="25"  Margin="10,5,10,5"  Content="查看屏蔽回路数据" Command="{Binding CmdShieldData}"></Button>
+                    <Button Width="120" Height="25" Margin="10,5,10,5"  Command="{Binding CmdReportx}" Content="导出数据"/>
+                    <Button Width="120" Height="25"  Margin="10,5,5,5"  Command="{Binding CmdReport}" Content="导出终端参数"></Button>
                 </StackPanel>
             </Grid>
     </Grid>
@@ -170,7 +170,7 @@
 
                 </telerik:RadGridView.Columns>
             </telerik:RadGridView>
-            <Button Grid.Row="2" Width=" 100" Height="25" HorizontalAlignment="Right" Margin="10,0,10,0" Content="返回" Command="{Binding CmdReturn}" />
+            <Button Grid.Row="2" Width=" 100" Height="25" HorizontalAlignment="Right" Margin="10,0,10,5" Content="返回" Command="{Binding CmdReturn}" />
         </Grid>
     </Grid>
 </UserControl>

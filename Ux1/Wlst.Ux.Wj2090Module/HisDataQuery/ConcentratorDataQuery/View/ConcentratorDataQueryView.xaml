@@ -37,16 +37,16 @@
                 <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
             <DockPanel>
-                  <TextBlock Text="起始时间：" VerticalAlignment="Center" Margin="5,0,0,0"/>
-                <DatePicker SelectedDateFormat="Short" SelectedDate="{Binding BeginTime}"  VerticalAlignment="Center" Margin="5,0,0,0" MinWidth="120"/>
+                  <TextBlock Text="起始时间：" VerticalAlignment="Center" Margin="5,5,0,0"/>
+                <DatePicker SelectedDateFormat="Short" SelectedDate="{Binding BeginTime}"  VerticalAlignment="Center" Margin="5,5,0,0" Width="120"/>
             </DockPanel>
-            <DockPanel Grid.Column="1"  Margin="25,0,0,0">
+            <DockPanel Grid.Column="1"  Margin="25,5,0,0">
                              <TextBlock Text="结束时间：" Grid.Column="2" VerticalAlignment="Center" Margin="10,0,0,0"/>
-                <DatePicker SelectedDateFormat="Short"  SelectedDate="{Binding EndTime}" Grid.Column="3" VerticalAlignment="Center" Margin="5,0,0,0" MinWidth="120"/>
+                <DatePicker SelectedDateFormat="Short"  SelectedDate="{Binding EndTime}" Grid.Column="3" VerticalAlignment="Center" Margin="5,0,0,0" Width="120"/>
             </DockPanel>
 
-            <CheckBox IsChecked="{Binding IsPhy}" Content="物理信息"  Margin="0,0,15,0"  Grid.Column="2" HorizontalAlignment="Right"  VerticalAlignment="Center"/>
-            <Button  Margin="0,0,50,0"  Command="{Binding CmdQuery}" Width="120" Height="25" Content="查询" Grid.Column="3" HorizontalAlignment="Right"  VerticalAlignment="Center"></Button>
+            <CheckBox IsChecked="{Binding IsPhy}" Content="物理信息"  Margin="0,5,15,0"  Grid.Column="2" HorizontalAlignment="Right"  VerticalAlignment="Center" Height="25"/>
+            <Button  Margin="0,5,0,0"  Command="{Binding CmdQuery}" Width="120" Height="25" Content="查询" Grid.Column="3" HorizontalAlignment="Right"  VerticalAlignment="Center"></Button>
 
             <!--<DockPanel Grid.Column="2"  Margin="25,0,0,0" Grid.ColumnSpan="2">
                 <RadioButton Margin="10,0,0,0"  IsChecked="{Binding Path=FlagDataType, Converter={StaticResource RadioMultiIntConverter}, ConverterParameter=1}"  Content="查询集中器数据" VerticalAlignment="Center"></RadioButton>
@@ -88,7 +88,7 @@
                 <RadioButton Margin="10,0,0,0" IsChecked="{Binding Path=FlagLampId, Converter={StaticResource RadioMultiIntConverter}, ConverterParameter=4}" IsEnabled="{Binding FlagLampIdEnable}" Content="灯具四数据" VerticalAlignment="Center"></RadioButton>
             </DockPanel>-->
 
-           <DockPanel  Grid.Row="3" Margin="15,5,0,5" Grid.ColumnSpan="3" VerticalAlignment="Center">
+           <DockPanel  Grid.Row="3" Margin="5,5,0,5" Grid.ColumnSpan="3" VerticalAlignment="Center">
                 <TextBlock Text="即将执行-"></TextBlock>
                 <TextBlock Text="{Binding QueryStrinInfo}"></TextBlock>
 
@@ -233,8 +233,8 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="Auto" MinWidth="120"/>
             </Grid.ColumnDefinitions>
-            <TextBlock Text="{Binding Remind}" VerticalAlignment="Center" Margin="20,3,3,3"/>
-            <Button Content="数据导出" IsEnabled="{Binding IsHasData}" Click="BtnExport" Grid.Column="1" Margin="20,3,50,3" Width="120" HorizontalAlignment="Right"/>
+            <TextBlock Text="{Binding Remind}" VerticalAlignment="Center" Margin="20,5,3,5"/>
+            <Button Content="数据导出" IsEnabled="{Binding IsHasData}" Click="BtnExport" Grid.Column="1" Margin="20,5,0,5" Width="120" Height="25" HorizontalAlignment="Right"/>
         </Grid>
     </Grid>
 </UserControl>

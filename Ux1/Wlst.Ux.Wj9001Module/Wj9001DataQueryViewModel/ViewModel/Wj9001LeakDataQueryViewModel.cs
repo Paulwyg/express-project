@@ -425,7 +425,7 @@ namespace Wlst.Ux.Wj9001Module.Wj9001DataQueryViewModel.ViewModel
 
         #region PagerVisi
 
-        private Visibility _pagerVisi = Visibility.Visible;
+        private Visibility _pagerVisi = Visibility.Collapsed;
         public Visibility PagerVisi
         {
             get { return _pagerVisi; }

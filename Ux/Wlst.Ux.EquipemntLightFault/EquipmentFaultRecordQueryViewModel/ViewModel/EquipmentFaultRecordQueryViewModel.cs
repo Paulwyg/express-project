@@ -167,7 +167,7 @@ namespace Wlst.Ux.EquipemntLightFault.EquipmentFaultRecordQueryViewModel.ViewMod
             }
 
             //dicDesc.Add(201, "现存故障查询显示路灯、亮化筛选功能 [101-105]");
-            IsShowLhLd = Wlst.Cr.CoreMims.Services.SystemOptionSvr.GetBoolean(Wlst.Ux.EquipemntLightFault.EquipmentFaultManageSettingViewModel.ViewModel.EquipmentFaultManageSettingViewModel.Moduleid, 201,false)? Visibility.Visible : Visibility.Collapsed;
+            IsShowLhLd = Wlst.Cr.CoreMims.Services.SystemOptionSvr.GetBoolean(Wlst.Ux.EquipemntLightFault.EquipmentFaultManageSettingViewModel.ViewModel.EquipmentFaultManageSettingViewModel.ModuleId, 201,false)? Visibility.Visible : Visibility.Collapsed;
 
             if (IsShowLhLd == Visibility.Visible)
             {   LstShowLhLd.Clear();
@@ -178,7 +178,7 @@ namespace Wlst.Ux.EquipemntLightFault.EquipmentFaultRecordQueryViewModel.ViewMod
                     //dicDesc.Add(103, "亮化终端判定3-终端名称包含:");
                     //dicDesc.Add(104, "亮化终端判定4-终端名称包含:");
                     //dicDesc.Add(105, "亮化终端判定5-终端名称包含:");
-                    var data = Wlst.Cr.CoreMims.Services.SystemOptionSvr.GetString(Wlst.Ux.EquipemntLightFault.EquipmentFaultManageSettingViewModel.ViewModel.EquipmentFaultManageSettingViewModel.Moduleid, 100+i, string.Empty);
+                    var data = Wlst.Cr.CoreMims.Services.SystemOptionSvr.GetString(Wlst.Ux.EquipemntLightFault.EquipmentFaultManageSettingViewModel.ViewModel.EquipmentFaultManageSettingViewModel.ModuleId, 100+i, string.Empty);
                     if (string.IsNullOrEmpty(data) == false)
                     {
                         LstShowLhLd.Add(data);
@@ -2428,14 +2428,16 @@ namespace Wlst.Ux.EquipemntLightFault.EquipmentFaultRecordQueryViewModel.ViewMod
 
                 if(LstLoopError .Count ==0)
                 {
-                    for (int i = 6; i < 18; i++)
-                    {
-                        LstLoopError.Add(i);
-                    }
-                    for (int i = 6; i < 35; i++)
-                    {
-                        LstLoopError.Add(i);
-                    }
+                    //for (int i = 6; i < 18; i++)
+                    //{
+                    //    LstLoopError.Add(i);
+                    //}
+                    //for (int i = 30; i < 35; i++)
+                    //{
+                    //    LstLoopError.Add(i);
+                    //}
+                    int[] list = { 15, 16, 17, 20, 33, 34 };
+                    LstLoopError.AddRange(list);
                 }
                 var recordtmp = new ObservableCollection<EquipmentFaultViewModel>();
 
@@ -2458,19 +2460,19 @@ namespace Wlst.Ux.EquipemntLightFault.EquipmentFaultRecordQueryViewModel.ViewMod
                         {
                             recordtmp.Add(g);
                         }
-                        else
-                        {
+                        //else
+                        //{
 
-                            var dt = new DateTime(g.DateCreateId);
-                            int dtt = dt.Hour * 60 + dt.Minute;
-                            //如果报警为白天的呈现；如果是晚上的不呈现
-                            if (dtt > Wlst.Sr.EquipmentInfoHolding.Services.Others.Sunrise && dtt < Wlst.Sr.EquipmentInfoHolding.Services.Others.Sunset)
-                            {
-                                recordtmp.Add(g);
+                        //    var dt = new DateTime(g.DateCreateId);
+                        //    int dtt = dt.Hour * 60 + dt.Minute;
+                        //    //如果报警为白天的呈现；如果是晚上的不呈现
+                        //    if (dtt > Wlst.Sr.EquipmentInfoHolding.Services.Others.Sunrise && dtt < Wlst.Sr.EquipmentInfoHolding.Services.Others.Sunset)
+                        //    {
+                        //        recordtmp.Add(g);
 
-                            }
+                        //    }
 
-                        }
+                        //}
 
                     }
 
@@ -2760,7 +2762,7 @@ namespace Wlst.Ux.EquipemntLightFault.EquipmentFaultRecordQueryViewModel.ViewMod
             }
         }
 
-        private Visibility middleVisi;
+        private Visibility middleVisi = Visibility.Collapsed;
         public void OnRequestFaultPre(Wlst.mobile.MsgWithMobile infos, int pagingFlag)
         {
 

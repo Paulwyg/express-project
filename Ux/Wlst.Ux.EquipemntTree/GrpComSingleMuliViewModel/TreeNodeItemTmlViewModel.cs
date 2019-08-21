@@ -303,6 +303,7 @@ namespace Wlst.Ux.EquipemntTree.GrpComSingleMuliViewModel
             }
         }
 
+        List<int> LstLoopError = new List<int>();
         private void UpdateTmlStateInfomation()
         {
             var TerInfo = Wlst.Sr.EquipmentInfoHolding.Services.EquipmentDataInfoHold.GetInfoById(NodeId);
@@ -342,6 +343,65 @@ namespace Wlst.Ux.EquipemntTree.GrpComSingleMuliViewModel
                 var haserror = false;
                 if (UxTreeSetting.IsRutsNotShowError == false)
                     haserror = runninfo.ErrorCount > 0;
+
+                //全局树晚上不显示白天报警图标   全局树白天不显示晚上报警图标
+                if (LstLoopError.Count == 0)
+                {
+                    int[] list = { 15, 16, 17, 20, 33, 34 };
+                    //int[] list = { 13, 19 };
+                    LstLoopError.AddRange(list);
+                }
+                var err = Wlst.Sr.EquipemntLightFault.Services.TmlExistFaultsInfoServices.GetFaultLstInfoByRtuId(NodeId);  //获取终端现存故障
+                bool isAtDay = true;
+                var dt = DateTime.Now;
+                int dtt = dt.Hour * 60 + dt.Minute;
+                if (dtt > Wlst.Sr.EquipmentInfoHolding.Services.Others.Sunrise && dtt < Wlst.Sr.EquipmentInfoHolding.Services.Others.Sunset)
+                {
+                    isAtDay = true;
+
+                }
+                else
+                {
+                    isAtDay = false;
+                }
+                if(isAtDay)
+                {
+                    //geterror 1
+                    if (Wlst.Cr.CoreMims.Services.SystemOptionSvr.GetBoolean(1103601, 203, false) && err != null)
+                    {
+                        var dayfault = false;
+                        for (int i = 0; i < err.Count; i++)
+                        {
+                            if (!LstLoopError.Contains(err[i].FaultId))
+                            {
+                                dayfault = true;
+                            }
+                            
+                        }
+                        if (err.Count == 0) dayfault = true;
+                        if (!dayfault) haserror = false;
+                    }
+                }
+                else
+                {
+                    //geterror 2
+                    if (Wlst.Cr.CoreMims.Services.SystemOptionSvr.GetBoolean(1103600, 202, false) && err != null)
+                    {
+                        var nightfault = false;
+                        for (int i = 0; i < err.Count; i++)
+                        {
+                            if (LstLoopError.Contains(err[i].FaultId))
+                            {
+                                nightfault = true;
+                            }
+
+                        }
+                        if (err.Count == 0) nightfault = true;
+                        if (!nightfault) haserror = false;
+                    }
+
+                }
+
                 var lighton = runninfo.IsLightHasElectric;// RtuNewDataService.IsRtuHasElectric(this.NodeId);
                 int errorindex = 0;
                 var ShieldAList = new Dictionary<int, Tuple<double, double>>();

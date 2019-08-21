@@ -158,7 +158,7 @@
             </Grid>
 
             <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}"  Text="设备故障：" Width="85" Margin="0,10,0,0" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-            <ListBox  HorizontalAlignment="Left" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2"   Margin="-5,10,0,0"  MinWidth="100" MaxWidth="960" VerticalAlignment="Top" ItemsSource="{Binding TypeItems }">
+            <ListBox  HorizontalAlignment="Left" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2"   Margin="0,10,0,0"  MinWidth="100" MaxWidth="960" VerticalAlignment="Top" ItemsSource="{Binding TypeItems }">
                 <ListBox.Template>
                     <ControlTemplate TargetType="{x:Type ListBox}">
                         <!--<ScrollViewer Background="Transparent" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">-->
@@ -398,7 +398,7 @@
 
             <DockPanel Grid.Column="1"  Visibility="{Binding PagerVisi}"  HorizontalAlignment="Center"   >
                 <DockPanel>
-                    <telerik:RadDataPager x:Name="radDataPager"   Visibility="{Binding PagerVisi}"   
+                    <telerik:RadDataPager x:Name="radDataPager"  
                                  FontSize="12"  Background="Transparent" Opacity="1"  NumericButtonCount="7"
                                 BorderThickness="0"   PageIndex="{Binding PageIndex,Mode=TwoWay}"  VerticalContentAlignment="Bottom"
                                 HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,2"

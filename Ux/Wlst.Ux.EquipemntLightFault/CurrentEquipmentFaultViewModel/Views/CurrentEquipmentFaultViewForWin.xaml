@@ -80,10 +80,10 @@
     </WindowForWlst:CustomChromeWindow.Resources>
     <Grid>
         <Grid.RowDefinitions >
-            <RowDefinition Height="30"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="40"/>
+            <RowDefinition Height="Auto"/>
 
         </Grid.RowDefinitions>
         <DockPanel Grid.Row="0">
@@ -98,8 +98,8 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <DockPanel Grid.ColumnSpan="6">
-                    <TextBlock  Margin="15,0,0,0" Text="当前查看故障时间:  " VerticalAlignment="Center" HorizontalAlignment="Left" />
-                    <TextBlock   Name="txttime" VerticalAlignment="Center" HorizontalAlignment="Left" Text="{Binding FaultTypeText}"/>
+                    <TextBlock  Margin="5,5,0,5" Text="当前查看故障时间:  " VerticalAlignment="Center" HorizontalAlignment="Left" />
+                    <TextBlock  Margin="0,5,0,5"  Name="txttime" VerticalAlignment="Center" HorizontalAlignment="Left" Text="{Binding FaultTypeText}"/>
                 </DockPanel>
 
                 <CheckBox  Content="显示在最前方       " Grid.Column="5" Grid.ColumnSpan="2"  HorizontalAlignment="Right" VerticalAlignment="Center" Click="CheckBox_Click"  Margin="10,0,0,0" />
@@ -280,13 +280,13 @@
                         <RowDefinition Height="30"></RowDefinition>
                         <RowDefinition Height="*"></RowDefinition>
                     </Grid.RowDefinitions>
-                    <DockPanel>
-                        <TextBlock Text="{Binding Records[0].FaultName}" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="15,2,2,0"  />
-                        <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Left" Text="        当前报警总数: "></TextBlock>
-                        <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Left" Text="{Binding  Records[0].FaultCountOld}"></TextBlock>
+                    <DockPanel Margin="5,0,0,0">
+                        <TextBlock Text="{Binding Records[0].FaultName}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,0,2,0"  />
+                        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Left" Text="        当前报警总数: "></TextBlock>
+                        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Left" Text="{Binding  Records[0].FaultCountOld}"></TextBlock>
 
-                        <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Left" Visibility="{Binding  Records[0].FaultCountNewShow}" Text="   最新报警: "></TextBlock>
-                        <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Left"  Visibility="{Binding  Records[0].FaultCountNewShow}"  Foreground="Red" FontSize="18" Text="{Binding  Records[0].FaultCountNew}"></TextBlock>
+                        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Left" Visibility="{Binding  Records[0].FaultCountNewShow}" Text="   最新报警: "></TextBlock>
+                        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Left"  Visibility="{Binding  Records[0].FaultCountNewShow}"  Foreground="Red" FontSize="18" Text="{Binding  Records[0].FaultCountNew}"></TextBlock>
 
                     </DockPanel>
                    
@@ -333,13 +333,13 @@
                         <RowDefinition Height="30"></RowDefinition>
                         <RowDefinition Height="*"></RowDefinition>
                     </Grid.RowDefinitions>
-                    <DockPanel>
-                        <TextBlock Text="{Binding Records[1].FaultName}" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="15,2,2,0"  />
-                        <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Left" Text="        当前报警总数: "></TextBlock>
-                        <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Left" Text="{Binding  Records[1].FaultCountOld}"></TextBlock>
+                    <DockPanel Margin="5,0,0,0">
+                        <TextBlock Text="{Binding Records[1].FaultName}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,0,2,0"  />
+                        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Left" Text="        当前报警总数: "></TextBlock>
+                        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Left" Text="{Binding  Records[1].FaultCountOld}"></TextBlock>
 
-                        <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Left" Visibility="{Binding  Records[1].FaultCountNewShow}" Text="   最新报警: "></TextBlock>
-                        <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Left"  Visibility="{Binding  Records[1].FaultCountNewShow}"  Foreground="Red" FontSize="18" Text="{Binding  Records[1].FaultCountNew}"></TextBlock>
+                        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Left" Visibility="{Binding  Records[1].FaultCountNewShow}" Text="   最新报警: "></TextBlock>
+                        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Left"  Visibility="{Binding  Records[1].FaultCountNewShow}"  Foreground="Red" FontSize="18" Text="{Binding  Records[1].FaultCountNew}"></TextBlock>
 
                     </DockPanel>
 
@@ -384,13 +384,13 @@
                             <RowDefinition Height="30"></RowDefinition>
                         <RowDefinition Height="*"></RowDefinition>
                     </Grid.RowDefinitions>
-                    <DockPanel>
-                        <TextBlock Text="{Binding Records[2].FaultName}" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="15,2,2,0"  />
-                        <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Left" Text="        当前报警总数: "></TextBlock>
-                        <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Left" Text="{Binding  Records[2].FaultCountOld}"></TextBlock>
+                    <DockPanel Margin="5,0,0,0">
+                        <TextBlock Text="{Binding Records[2].FaultName}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,0,2,0"  />
+                        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Left" Text="        当前报警总数: "></TextBlock>
+                        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Left" Text="{Binding  Records[2].FaultCountOld}"></TextBlock>
 
-                        <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Left" Visibility="{Binding  Records[2].FaultCountNewShow}" Text="   最新报警: "></TextBlock>
-                        <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Left"  Visibility="{Binding  Records[2].FaultCountNewShow}"  Foreground="Red" FontSize="18" Text="{Binding  Records[2].FaultCountNew}"></TextBlock>
+                        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Left" Visibility="{Binding  Records[2].FaultCountNewShow}" Text="   最新报警: "></TextBlock>
+                        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Left"  Visibility="{Binding  Records[2].FaultCountNewShow}"  Foreground="Red" FontSize="18" Text="{Binding  Records[2].FaultCountNew}"></TextBlock>
 
                     </DockPanel>
 
@@ -437,13 +437,13 @@
                                 <RowDefinition Height="30"></RowDefinition>
                         <RowDefinition Height="*"></RowDefinition>
                     </Grid.RowDefinitions>
-                    <DockPanel>
-                        <TextBlock Text="{Binding Records[3].FaultName}" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="15,2,2,0"  />
-                        <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Left" Text="        当前报警总数: "></TextBlock>
-                        <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Left" Text="{Binding  Records[3].FaultCountOld}"></TextBlock>
+                    <DockPanel Margin="5,0,0,0">
+                        <TextBlock Text="{Binding Records[3].FaultName}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,0,2,0"  />
+                        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Left" Text="        当前报警总数: "></TextBlock>
+                        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Left" Text="{Binding  Records[3].FaultCountOld}"></TextBlock>
 
-                        <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Left" Visibility="{Binding  Records[3].FaultCountNewShow}" Text="   最新报警: "></TextBlock>
-                        <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Left"  Visibility="{Binding  Records[3].FaultCountNewShow}"  Foreground="Red" FontSize="18" Text="{Binding  Records[3].FaultCountNew}"></TextBlock>
+                        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Left" Visibility="{Binding  Records[3].FaultCountNewShow}" Text="   最新报警: "></TextBlock>
+                        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Left"  Visibility="{Binding  Records[3].FaultCountNewShow}"  Foreground="Red" FontSize="18" Text="{Binding  Records[3].FaultCountNew}"></TextBlock>
 
                     </DockPanel>
 
@@ -490,13 +490,13 @@
                                     <RowDefinition Height="30"></RowDefinition>
                         <RowDefinition Height="*"></RowDefinition>
                     </Grid.RowDefinitions>
-                    <DockPanel>
-                        <TextBlock Text="{Binding Records[4].FaultName}" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="15,2,2,0"  />
-                        <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Left" Text="        当前报警总数: "></TextBlock>
-                        <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Left" Text="{Binding  Records[4].FaultCountOld}"></TextBlock>
+                    <DockPanel Margin="5,0,0,0">
+                        <TextBlock Text="{Binding Records[4].FaultName}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,0,2,0"  />
+                        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Left" Text="        当前报警总数: "></TextBlock>
+                        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Left" Text="{Binding  Records[4].FaultCountOld}"></TextBlock>
 
-                        <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Left" Visibility="{Binding  Records[4].FaultCountNewShow}" Text="   最新报警: "></TextBlock>
-                        <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Left"  Visibility="{Binding  Records[4].FaultCountNewShow}"  Foreground="Red" FontSize="18" Text="{Binding  Records[4].FaultCountNew}"></TextBlock>
+                        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Left" Visibility="{Binding  Records[4].FaultCountNewShow}" Text="   最新报警: "></TextBlock>
+                        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Left"  Visibility="{Binding  Records[4].FaultCountNewShow}"  Foreground="Red" FontSize="18" Text="{Binding  Records[4].FaultCountNew}"></TextBlock>
 
                     </DockPanel>
 
@@ -543,13 +543,13 @@
                                         <RowDefinition Height="30"></RowDefinition>
                                         <RowDefinition Height="*"></RowDefinition>
                     </Grid.RowDefinitions>
-                    <DockPanel>
-                        <TextBlock Text="{Binding Records[5].FaultName}" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="15,2,2,0"  />
-                        <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Left" Text="        当前报警总数: "></TextBlock>
-                        <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Left" Text="{Binding  Records[5].FaultCountOld}"></TextBlock>
+                    <DockPanel Margin="5,0,0,0">
+                        <TextBlock Text="{Binding Records[5].FaultName}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,0,2,0"  />
+                        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Left" Text="        当前报警总数: "></TextBlock>
+                        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Left" Text="{Binding  Records[5].FaultCountOld}"></TextBlock>
 
-                        <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Left" Visibility="{Binding  Records[5].FaultCountNewShow}" Text="   最新报警: "></TextBlock>
-                        <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Left"  Visibility="{Binding  Records[5].FaultCountNewShow}"  Foreground="Red" FontSize="18" Text="{Binding  Records[5].FaultCountNew}"></TextBlock>
+                        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Left" Visibility="{Binding  Records[5].FaultCountNewShow}" Text="   最新报警: "></TextBlock>
+                        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Left"  Visibility="{Binding  Records[5].FaultCountNewShow}"  Foreground="Red" FontSize="18" Text="{Binding  Records[5].FaultCountNew}"></TextBlock>
                     </DockPanel>
 
                     <telerik:RadGridView Grid.Row="5" Grid.Column="1" Margin="5"  MouseDoubleClick="RadGridView_MouseDoubleClick"  PreviewMouseUp="RadGridView_MouseLeftButtonUp"  x:Name="gv6"  AlternationCount="0"

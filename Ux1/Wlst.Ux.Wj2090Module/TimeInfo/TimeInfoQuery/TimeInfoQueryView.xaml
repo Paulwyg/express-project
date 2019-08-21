@@ -17,22 +17,22 @@
     <Grid>
         <Grid x:Name="One" HorizontalAlignment="Left"  Margin="10,0,0,0">
             <Grid.RowDefinitions>
-                <RowDefinition Height="35"></RowDefinition>
-                <RowDefinition Height="*" MinHeight="45"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
                 <RowDefinition Height="Auto"></RowDefinition>
             </Grid.RowDefinitions>
 
-            <DockPanel VerticalAlignment="Center" Margin="8,0,0,0">
-                <TextBlock Text="集中器地址:"></TextBlock>
-                <TextBlock Margin="10,0,0,0" Text="{Binding PhyId}"></TextBlock>
+            <DockPanel VerticalAlignment="Center" Margin="5,5,0,0">
+                <TextBlock Text="集中器地址:" VerticalAlignment="Center"></TextBlock>
+                <TextBlock Margin="10,0,0,0" Text="{Binding PhyId}" VerticalAlignment="Center"></TextBlock>
 
                 <!--<TextBlock Margin="35,0,0,0" Text="物理地址:"></TextBlock>
                 <TextBlock Text="{Binding PhyId}"></TextBlock>-->
 
-                <TextBlock Margin="35,0,0,0" Text="集中器名称:"></TextBlock>
-                <TextBlock  Margin="10,0,0,0" Text="{Binding SluName}"></TextBlock>
+                <TextBlock Margin="35,0,0,0" Text="集中器名称:" VerticalAlignment="Center"></TextBlock>
+                <TextBlock  Margin="10,0,0,0" Text="{Binding SluName}" VerticalAlignment="Center"></TextBlock>
 
-                <Button Content="重发集中器方案" Command="{Binding CmdClearSluTime}" Height="25" Width=" 120" Margin="200,0,0,0"></Button>
+                <Button Content="重发集中器方案" Command="{Binding CmdClearSluTime}" Height="25" Width=" 120" Margin="200,5,0,0" VerticalAlignment="Center"></Button>
                 <!--<TextBlock  Margin="35,0,0,0" Text="通信方式:"></TextBlock>
                 <TextBlock  Margin="10,0,0,0" Text="{Binding Is485}"></TextBlock>-->
                 
@@ -40,7 +40,7 @@
             
             <telerik:RadGridView  IsFilteringAllowed="False" AutoGenerateColumns="False"    AllowDrop="True"   HorizontalAlignment="Left" BorderThickness="0"
                               ItemsSource="{Binding Path=Items}" ShowGroupPanel="False"  SelectedItem="{Binding CurrentSelectedTimeItem}"  Grid.Row="1"
-                             x:Name="gridview" ShowColumnHeaders="True"   RowIndicatorVisibility="Collapsed" Margin="0,7,0,7">
+                             x:Name="gridview" ShowColumnHeaders="True"   RowIndicatorVisibility="Collapsed" Margin="5,5,0,5">
                 <telerik:RadGridView.Columns>
                     <telerik:GridViewDataColumn  Header="编号"    DataMemberBinding="{Binding Path=SchemeId,Mode=TwoWay}"  Width="60" />
                     <telerik:GridViewDataColumn  Header="方案名称"   DataMemberBinding="{Binding  Path=SchemeName,Mode=TwoWay}" Width="140" />
@@ -61,7 +61,7 @@
 
 
 
-                <Grid Margin="0,7,0,7" Grid.Row="0">
+                <Grid Margin="0,5,0,5" Grid.Row="0">
                     <GroupBox VerticalAlignment="Top" Header="召测方案详细信息" >
                         <Grid>
                             <Grid.RowDefinitions>

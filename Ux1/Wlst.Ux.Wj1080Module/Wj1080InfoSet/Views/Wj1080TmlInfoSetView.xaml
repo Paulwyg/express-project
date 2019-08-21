@@ -150,10 +150,10 @@
             <TabItem Header="数据查询">
                 <Grid>
                     <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" MinHeight="30"/>
+                            <RowDefinition Height="Auto"/>
                             <RowDefinition Height="*"/>
                         <RowDefinition Height="Auto"></RowDefinition>
-                        <RowDefinition Height="30"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
                     </Grid.RowDefinitions>
                     <Grid >
                         <Grid.ColumnDefinitions>
@@ -164,13 +164,13 @@
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
-                        <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}" Margin="5,2,5,2" Name="textBlock12" Text="起始时间:" VerticalAlignment="Center" />
-                        <DatePicker  HorizontalAlignment="Center" Margin="5,2,5,2" Grid.Column="1" SelectedDateFormat="Short" SelectedDate="{Binding DtStartTime}"    Name="datePicker1" VerticalAlignment="Center" MinWidth="160" />
-                        <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}" Margin="50,2,5,2"  Grid.Column="2"  Name="textBlock13" Text="结束时间:" VerticalAlignment="Center" />
-                        <DatePicker  HorizontalAlignment="Center" Margin="5,2,5,2" Grid.Column="3" SelectedDateFormat="Short" SelectedDate="{Binding DtEndTime}"     Name="datePicker2" VerticalAlignment="Center" MinWidth="160" />
-                        <Button Margin="50,2,30,2" Grid.Column="5" Command="{Binding CmdQueryLuxData}" Content="查询" MinHeight="25"  Name="button7" VerticalAlignment="Center" MinWidth="120" />
+                        <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}" Margin="5" Name="textBlock12" Text="起始时间:" VerticalAlignment="Center" />
+                        <DatePicker  HorizontalAlignment="Center" Margin="5" Grid.Column="1" SelectedDateFormat="Short" SelectedDate="{Binding DtStartTime}"    Name="datePicker1" VerticalAlignment="Center" Width="160" Height="25" />
+                        <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}" Margin="50,5,5,5"  Grid.Column="2"  Name="textBlock13" Text="结束时间:" VerticalAlignment="Center" />
+                        <DatePicker  HorizontalAlignment="Center" Margin="5,5,5,5" Grid.Column="3" SelectedDateFormat="Short" SelectedDate="{Binding DtEndTime}"     Name="datePicker2" VerticalAlignment="Center" Width="160" Height="25" />
+                        <Button Margin="0,5,0,5" Grid.Column="5" Command="{Binding CmdQueryLuxData}" Content="查询"  Name="button7" VerticalAlignment="Center" HorizontalAlignment="Right" Width="120" Height="25" />
                     </Grid>
-                    <telerik:RadGridView  RowIndicatorVisibility="Collapsed" ShowGroupPanel="False" AutoGenerateColumns="False" Grid.Row="1" AllowDrop="True"   ItemsSource="{Binding Items}" >
+                    <telerik:RadGridView  RowIndicatorVisibility="Collapsed" ShowGroupPanel="False" AutoGenerateColumns="False" Grid.Row="1" AllowDrop="True"   ItemsSource="{Binding Items}" Margin="5,0,0,0">
                         <telerik:RadGridView.Columns>
                             <telerik:GridViewDataColumn  Header="记录序号" IsFilterable="False"  DataMemberBinding="{Binding Path=Id}" Width="90"/>
                             <telerik:GridViewDataColumn Header="设备地址"  IsFilterable="False"   DataMemberBinding="{Binding Path=RtuId}"  Width=" 160"/>

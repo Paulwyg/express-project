@@ -122,9 +122,9 @@
                 <TextBlock VerticalAlignment="Center" Text="然后拖动到该分组组名上或该分组下。" Width="310" Margin="0,0,0,0"></TextBlock>
 
 
-                <TextBox  Margin="0,0,10,0" VerticalAlignment="Center" Height="20" Text="{Binding SearchText, Mode=TwoWay,  ValidatesOnExceptions=True, ValidatesOnDataErrors=True, NotifyOnValidationError=True}" HorizontalAlignment="Left"   Width="160"></TextBox>
+                <TextBox  Margin="0,0,10,0" VerticalAlignment="Center" Height="25" Text="{Binding SearchText, Mode=TwoWay,  ValidatesOnExceptions=True, ValidatesOnDataErrors=True, NotifyOnValidationError=True}" HorizontalAlignment="Left"   Width="160"></TextBox>
               
-                <Button   HorizontalAlignment="Right" VerticalAlignment="Center" Content="终端查询" Command="{Binding CmdFastSearch}" Height="20" Grid.ColumnSpan="2" Width="120"></Button>
+                <Button   HorizontalAlignment="Right" VerticalAlignment="Center" Content="终端查询" Command="{Binding CmdFastSearch}" Height="25" Grid.ColumnSpan="2" Width="120"></Button>
             </StackPanel>
            
 

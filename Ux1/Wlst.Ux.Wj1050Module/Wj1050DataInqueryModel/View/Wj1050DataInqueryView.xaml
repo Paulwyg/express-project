@@ -8,10 +8,10 @@
 
     <Grid HorizontalAlignment="Left">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" MinHeight="60"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto" MinHeight="30"/>
-            <RowDefinition Height="Auto" MinHeight="30"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Grid >
             <Grid.ColumnDefinitions>
@@ -24,39 +24,39 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" MinHeight="30"/>
-                <RowDefinition Height="Auto" MinHeight="30"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            <DockPanel >
-                <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Margin="5,2,5,2" Name="textBlock1" Text="起始时间: " VerticalAlignment="Center"  />
-                <DatePicker  HorizontalAlignment="Center" Margin="10,2,10,2"  SelectedDateFormat="Short"  SelectedDate="{Binding BegTime}"  Name="datePicker1" VerticalAlignment="Center" Width="150" />
+            <DockPanel Margin="5,5,0,0">
+                <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Margin="0,0,5,0" Name="textBlock1" Text="起始时间: " VerticalAlignment="Center"  />
+                <DatePicker  HorizontalAlignment="Center" Margin="10,0,10,0"  SelectedDateFormat="Short"  SelectedDate="{Binding BegTime}"  Name="datePicker1" VerticalAlignment="Center" Width="150" Height="25" />
 
-                <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Margin="5,2,5,2"  Grid.Column="2" Name="textBlock2" Text="结束时间:" VerticalAlignment="Center"  />
-                <DatePicker  HorizontalAlignment="Center" Margin="10,2,10,2"  SelectedDateFormat="Short" SelectedDate="{Binding EndTime}"  Name="datePicker2" VerticalAlignment="Center" Width="150"/>
+                <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Margin="5,0,5,0"  Grid.Column="2" Name="textBlock2" Text="结束时间:" VerticalAlignment="Center"  />
+                <DatePicker  HorizontalAlignment="Center" Margin="10,0,10,0"  SelectedDateFormat="Short" SelectedDate="{Binding EndTime}"  Name="datePicker2" VerticalAlignment="Center" Width="150" Height="25"/>
 
-                <ComboBox  HorizontalAlignment="Right"  VerticalAlignment="Center" Width="60" Height="25" ItemsSource="{Binding IsItem}" DisplayMemberPath="Name" SelectedIndex="{Binding IsSelectIndex}" />
+                <ComboBox  HorizontalAlignment="Right"  VerticalAlignment="Center" Width="100" Height="25" ItemsSource="{Binding IsItem}" DisplayMemberPath="Name" SelectedIndex="{Binding IsSelectIndex}" />
             </DockPanel>
 
 
-            <Button Margin="20,2,5,2" Grid.Column="1" Content="查询" Command="{Binding CmdQueryHistoryData}" MinHeight="25" Name="button3" VerticalAlignment="Center" Width="120"  />
-            <Button Margin="10,2,5,2" Grid.Column="2"  Content="立即抄表"  MinHeight="25" HorizontalAlignment="Left" VerticalAlignment="Center" Width="120"  Command="{Binding CmdCb}" />
+            <Button Margin="20,5,5,0" Grid.Column="1" Content="查询" Command="{Binding CmdQueryHistoryData}" Height="25" Name="button3" VerticalAlignment="Center" Width="120"  />
+            <Button Margin="10,5,5,0" Grid.Column="2"  Content="立即抄表"  MinHeight="25" HorizontalAlignment="Left" VerticalAlignment="Center" Height="25" Width="120"  Command="{Binding CmdCb}" />
 
 
 
 
-            <Button Margin="20,2,5,2" Grid.Column="1" Grid.Row="1" Content="最新数据" Command="{Binding CmdQueryNewData}" MinHeight="25" Name="button4" VerticalAlignment="Center" Width="120"  />
+            <Button Margin="20,5,5,5" Grid.Column="1" Grid.Row="1" Content="最新数据" Command="{Binding CmdQueryNewData}" Height="25" Name="button4" VerticalAlignment="Center" Width="120"  />
 
-            <Button Margin="10,2,5,2" Grid.Column="2" Grid.Row="1"  Content="查询抄表失败"  MinHeight="25" Name="button5" HorizontalAlignment="Left" VerticalAlignment="Center" Width="120" Command="{Binding CmdQueryFailureData}" />
+            <Button Margin="10,5,5,5" Grid.Column="2" Grid.Row="1"  Content="查询抄表失败"  MinHeight="25" Name="button5" Height="25" HorizontalAlignment="Left" VerticalAlignment="Center" Width="120" Command="{Binding CmdQueryFailureData}" />
             <!--Click="Button_Click"-->
 
-            <DockPanel Grid.Row="1">
+            <DockPanel Grid.Row="1" Margin="5,5,0,5">
                 <DockPanel Grid.Row="1" Grid.ColumnSpan="2">
-                    <CheckBox IsChecked="{Binding IsRtuSelected}" Margin="5,2,5,2"  HorizontalAlignment="Left" VerticalAlignment="Center" Content="主设备名称："></CheckBox>
-                    <TextBlock  Margin="0,2,2,2"  Text="{Binding AttachRtuName}" Width="220" VerticalAlignment="Center"/>
+                    <CheckBox IsChecked="{Binding IsRtuSelected}" Margin="0,0,5,0"  HorizontalAlignment="Left" VerticalAlignment="Center"  Content="主设备名称："></CheckBox>
+                    <TextBlock  Margin="0,0,2,0"  Text="{Binding AttachRtuName}" Width="220" VerticalAlignment="Center"/>
                 </DockPanel>
                 <DockPanel Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2">
-                    <TextBlock  Margin="5,2,5,2"  Text="电表名称："  VerticalAlignment="Center"/>
-                    <TextBlock  Margin="0,2,2,2" Text="{Binding RtuName}" Width="180" VerticalAlignment="Center"/>
+                    <TextBlock  Margin="5,0,5,0"  Text="电表名称："  VerticalAlignment="Center"/>
+                    <TextBlock  Margin="0,0,2,0" Text="{Binding RtuName}" Width="180" VerticalAlignment="Center"/>
                 </DockPanel>
             </DockPanel>
         </Grid>
@@ -135,9 +135,9 @@
 
             </telerik:RadGridView.Columns>
         </telerik:RadGridView>
-        <Button Margin="10,2,5,2"  Grid.Row="2"  Content="导出"  MinHeight="25" HorizontalAlignment="Right" VerticalAlignment="Center" Width="120" Command="{Binding CmdDaoChu}" />
+        <Button Margin="10,5,0,2"  Grid.Row="2"  Content="导出"  MinHeight="25" HorizontalAlignment="Right" VerticalAlignment="Center" Width="120" Command="{Binding CmdDaoChu}" />
         <!--Click="Button_Click"-->
-        <Label x:Name="fg" Width="0" Grid.Row="3" HorizontalAlignment="Left"/>
-        <TextBlock  Text="{Binding Remind}" Foreground="{Binding ElementName=fg, Path=Foreground}" Margin="20,5,10,5" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="3" />
+        <!--<Label x:Name="fg" Width="0" Grid.Row="3" HorizontalAlignment="Left"/>-->
+        <TextBlock  Text="{Binding Remind}" Foreground="{Binding ElementName=fg, Path=Foreground}" Margin="20,5,10,5" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="2" />
     </Grid>
 </UserControl>

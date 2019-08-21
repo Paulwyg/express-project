@@ -17,7 +17,7 @@
         </Grid.ColumnDefinitions>
         <telerik:RadGridView  AutoGenerateColumns="False" ItemsSource="{Binding Items}"   Grid.ColumnSpan="2" 
 								  HorizontalAlignment="Left"  
-
+                                    MouseDoubleClick="rapidSetAmp_MouseDoubleClick"
                                     Name="rapidSetAmp"
                                   CanUserFreezeColumns="False"   
 								  CanUserReorderColumns="True"  ColumnReordered="RadGridView_ColumnReordered"
@@ -32,7 +32,7 @@
 
                 <telerik:GridViewDataColumn Header="电压"  IsFilterable="False" IsGroupable="False" IsSortable="False"   Width="75"  DataMemberBinding="{Binding V}"  IsReadOnly="True" />
 
-                <telerik:GridViewDataColumn Header="电流"    IsFilterable="False" IsGroupable="False" IsSortable="False"   Width="75"  DataMemberBinding="{Binding A}"  IsReadOnly="True"/>
+                <telerik:GridViewDataColumn Header="电流"    IsFilterable="False" IsGroupable="False" IsSortable="False"   Width="75"  DataMemberBinding="{Binding A}"  IsReadOnly="True" />
 
 
 

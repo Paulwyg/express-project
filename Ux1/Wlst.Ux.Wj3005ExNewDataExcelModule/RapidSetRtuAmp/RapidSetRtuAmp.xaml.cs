@@ -654,7 +654,19 @@ namespace Wlst.Ux.Wj3005ExNewDataExcelModule.RapidSetRtuAmp
             Wlst.Cr.CoreOne.Services.SystemXmlConfig.Save(_newDataColumnsDisplayIndex, XmlConfigName);
         }
 
-     
+        private void rapidSetAmp_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            var sdr = sender as Telerik.Windows.Controls.RadGridView;
+            if (sdr == null) return;
+            var item = sdr.SelectedItem as Loop;
+            if (item == null) return;
+            foreach (var t in Items)
+            {
+                if (item.LoopId != t.LoopId) continue;
+                if (t.A == "----") continue;
+                t.RefA = Convert.ToDouble(t.A);
+            }
+        }
     }
 
 
