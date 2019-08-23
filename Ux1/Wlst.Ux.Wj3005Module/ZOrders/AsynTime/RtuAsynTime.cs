@@ -12,6 +12,7 @@ using Wlst.Cr.CoreOne.Services;
  
 using Wlst.client;
 using System.Collections.Generic;
+using Wlst.Sr.EquipmentInfoHolding.Model;
 
 namespace Wlst.Ux.WJ3005Module.ZOrders.AsynTime
 {
@@ -38,8 +39,27 @@ namespace Wlst.Ux.WJ3005Module.ZOrders.AsynTime
             if (Wlst.Cr.CoreMims.Services.UserInfo.UserLoginInfo.D) return true;
             var equipment = this.Argu as Wlst.Sr.EquipmentInfoHolding.Model.WjParaBase;
             if (equipment == null || equipment.RtuStateCode  == 0) return false;
-            var areaId = Sr.EquipmentInfoHolding.Services.AreaInfoHold.MySlef.GetRtuBelongArea(equipment.RtuId);
-            return Wlst.Cr.CoreMims.Services.UserInfo.CanX(areaId);
+           
+            //交叉分组判断
+            if (equipment == null)
+            {
+                var lst = this.Argu as List<int>;
+                if (lst == null || lst.Count == 0)
+                {
+                    return false;
+                }
+                var areaid = Wlst.Sr.EquipmentInfoHolding.Services.AreaInfoHold.MySlef.GetRtuBelongArea(lst[0]);
+                return Wlst.Cr.CoreMims.Services.UserInfo.CanX(areaid);
+            }
+            else
+            {
+                var areaId = Sr.EquipmentInfoHolding.Services.AreaInfoHold.MySlef.GetRtuBelongArea(equipment.RtuId);
+                return Wlst.Cr.CoreMims.Services.UserInfo.CanX(areaId);
+
+            }
+
+
+
         }
         private bool CanEx()
         {
@@ -148,7 +168,19 @@ namespace Wlst.Ux.WJ3005Module.ZOrders.AsynTime
                 if (grpId < 1) return;
 
                 if (grpId < 1) return;
-                lst = grpInfo.LstTml;// Wlst.Sr.EquipmentGroupInfoHolding.Services.ServicesGrpSingleInfoHold.GetGrpTmlList(gprId);
+                //lst = grpInfo.LstTml;// Wlst.Sr.EquipmentGroupInfoHolding.Services.ServicesGrpSingleInfoHold.GetGrpTmlList(gprId);
+
+                if (grpInfo.LstTml.Count == 0) return;
+
+                foreach (var t in grpInfo.LstTml)
+                {
+                    if (Wlst.Sr.EquipmentInfoHolding.Services.EquipmentDataInfoHold.InfoItems.ContainsKey(t) &&
+                        //Wlst.Sr.EquipmentInfoHolding.Services.EquipmentDataInfoHold.InfoItems[t].RtuStateCode == 2 &&
+                        Wlst.Sr.EquipmentInfoHolding.Services.EquipmentDataInfoHold.InfoItems[t].EquipmentType == WjParaBase.EquType.Rtu
+                        ) lst.Add(t);
+                }
+
+
             }
             else
             {

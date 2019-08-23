@@ -179,27 +179,30 @@
         </telerik:RadTreeView>
 
         <StackPanel Background="#FFAAAAAA" Margin="5,0,5,3" VerticalAlignment="Center" Orientation="Horizontal" MaxHeight="33" Grid.Row="3">
-            <Label Name="lblShow">快速查询</Label>
-            <TextBox Name="SearchTextBox" Width="100" Margin="0,1,5,1" IsEnabled="{Binding IsNotMuliChk}"
-                     MinHeight="23"
-                     MaxHeight="25"
-                     Text="{Binding SearchText,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-                     MouseDoubleClick="SearchTextBox_MouseDoubleClick"
-                     AutomationProperties.AutomationId="SearchTextBoxBlock"
-                     KeyUp="SearchTextBox_KeyUp"/>
-            <Button Margin="0,1,0,1" Content="清除" Width="45" Height="23" Command="{Binding CmdClearUpSearchText}"></Button>
-            <Button Margin="3,1,0,1" Content="控制" Width="45" Height="{Binding IsNotShowFastControlToCenter}" Command="{Binding CmdControl}" Visibility="{Binding IsUserX}" ToolTip="请将控制中心界面关闭后再点击该按钮。" ></Button>
+            <DockPanel Width="160">
+                 <Label Margin="3,0,0,0" Name="lblShow">快速查询</Label>
+                <TextBox Name="SearchTextBox"   Margin="1,1,0,1" IsEnabled="{Binding IsNotMuliChk}"
+                         MinHeight="23"
+                         MaxHeight="25"
+                         Text="{Binding SearchText,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                         MouseDoubleClick="SearchTextBox_MouseDoubleClick"
+                         AutomationProperties.AutomationId="SearchTextBoxBlock"
+                         KeyUp="SearchTextBox_KeyUp"/>
+            </DockPanel>
+           
+            <Button Margin="10,1,0,1" Content="清除" Width="45" Height="23" Command="{Binding CmdClearUpSearchText}"></Button>
+            <Button Margin="10,1,0,1" Content="控制" Width="45" Height="{Binding IsNotShowFastControlToCenter}" Command="{Binding CmdControl}" Visibility="{Binding IsUserX}" ToolTip="请将控制中心界面关闭后再点击该按钮。" ></Button>
 
 
         </StackPanel>
-        <StackPanel Background="#FFAAAAAA" Margin="5,0,5,3" VerticalAlignment="Center"  Orientation="Horizontal"  Grid.Row="4" x:Name="QueryKeywords">
+        <StackPanel Background="#FFAAAAAA" Margin="5,0,5,3" VerticalAlignment="Center"   Orientation="Horizontal"  Grid.Row="4" x:Name="QueryKeywords">
+           
+            <Button Margin="5,1,0,1" Content="离线" Width="45" Height="23" Command="{Binding CmdQuickQuery}" CommandParameter="1" ></Button>
+            <Button Margin="10,1,0,1" Content="亮灯" Width="45" Height="23" Command="{Binding CmdQuickQuery}" CommandParameter="2"  ></Button>
+            <Button Margin="10,1,0,1" Content="灭灯" Width="45" Height="23" Command="{Binding CmdQuickQuery}" CommandParameter="3" ></Button>
+            <Button Margin="10,1,0,1" Content="停电" Width="45" Height="23" Command="{Binding CmdQuickQuery}" CommandParameter="4" ></Button>
+            <Button Margin="10,1,0,1" Content="不用" Width="45" Height="23" Command="{Binding CmdQuickQuery}" CommandParameter="5" ></Button>
             <Label Name="lblShoww"></Label>
-            <Button Margin="0,1,0,1" Content="离线" Width="45" Height="23" Command="{Binding CmdQuickQuery}" CommandParameter="1" ></Button>
-            <Button Margin="3,1,0,1" Content="亮灯" Width="45" Height="23" Command="{Binding CmdQuickQuery}" CommandParameter="2"  ></Button>
-            <Button Margin="3,1,0,1" Content="灭灯" Width="45" Height="23" Command="{Binding CmdQuickQuery}" CommandParameter="3" ></Button>
-            <Button Margin="3,1,0,1" Content="停电" Width="45" Height="23" Command="{Binding CmdQuickQuery}" CommandParameter="4" ></Button>
-            <Button Margin="3,1,0,1" Content="不用" Width="45" Height="23" Command="{Binding CmdQuickQuery}" CommandParameter="5" ></Button>
-
         </StackPanel>
 
         <Grid Background="#FFAAAAAA" Height="2" VerticalAlignment="Top" Margin="5,3,5,0" Grid.Row="1" Visibility="{Binding IsSearchTreeVisi}"/>
@@ -233,7 +236,7 @@
 
                 <DockPanel Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0,0,0">
                    
-                    <Button Margin="15,1,0,1"  Content="开灯" Width="45" Height="23" Command="{Binding CmdOpenCloselight}" CommandParameter="1" ></Button>
+                    <Button Margin="0,1,0,1"  Content="开灯" Width="45" Height="23" Command="{Binding CmdOpenCloselight}" CommandParameter="1" ></Button>
 
                     <Button Margin="10,1,0,1"  Content="关灯" Width="45" Height="23" Command="{Binding CmdOpenCloselight}"  CommandParameter="2" ></Button>
                     <Button Margin="10,1,0,1"  Content="清空" Width="45" Height="23" Command="{Binding CmdClear}"  CommandParameter="2" ></Button>

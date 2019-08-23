@@ -55,10 +55,10 @@ namespace Wlst.Ux.WJ3005Module.ZOrders.OpenCloseLight.ForTmlRightMenu
    
             if(ter ==null ) return;
             var rtuIdOrGrpId = ter.RtuId;
-                  var tmp=    Wlst.Sr.EquipmentInfoHolding .Services.ServicesGrpSingleInfoHold.GetRtuBelongGrp(ter.RtuId);
-            //Wlst.Sr.EquipmentGroupInfoHolding.Services.ServicesGrpSingleInfoHold.GetRtuBelongGrp(ter.RtuId);
+            //var tmp=    Wlst.Sr.EquipmentInfoHolding .Services.ServicesGrpSingleInfoHold.GetRtuBelongGrp(ter.RtuId);
 
-            if (tmp  !=null  ) rtuIdOrGrpId = tmp .Item2 ;
+
+            //if (tmp  !=null  ) rtuIdOrGrpId = tmp .Item2 ;
             var areaId = Sr.EquipmentInfoHolding.Services.AreaInfoHold.MySlef.GetRtuBelongArea(ter.RtuId);
             string extmp = "";
             if (Wlst.Cr.CoreOne.Services.OptionXmlSvr.GetOptionBool(4001, 3, false))

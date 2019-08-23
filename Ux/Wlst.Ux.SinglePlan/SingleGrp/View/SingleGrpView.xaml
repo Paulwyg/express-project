@@ -65,6 +65,7 @@
                         <HierarchicalDataTemplate DataType="{x:Type telerik:RadTreeViewItem}" ItemsSource="{Binding Path=ChildItems}">
                         <StackPanel Orientation="Horizontal" >
                             <CheckBox  Margin="10,2,0,0" IsChecked="{Binding IsB}" HorizontalAlignment="Left" VerticalAlignment="Top" Content="{Binding NodeName1B}"></CheckBox>
+                            <TextBlock Margin="10,2,0,0" Text="{Binding NodeName2B}" HorizontalAlignment="Left" VerticalAlignment="Top"/>
                         </StackPanel>
                     </HierarchicalDataTemplate>
                 </telerik:RadTreeView.ItemTemplate>

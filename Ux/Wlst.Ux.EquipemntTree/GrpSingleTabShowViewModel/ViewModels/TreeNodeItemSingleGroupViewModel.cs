@@ -46,31 +46,46 @@ namespace Wlst.Ux.EquipemntTree.GrpSingleTabShowViewModel.ViewModels
                         _currentSelectGroupNode.IsSelected = false;
                     _currentSelectGroupNode = value;
 
+                    var info = new List<int>();
+                    info = (from t in value.ChildTreeItems select t.NodeId).ToList();
+                    if (info.Count == 0) return;
+
+                    var argsx1 = new PublishEventArgs
+                    {
+                        EventType = PublishEventType.Core,
+                        EventId = Sr.EquipmentInfoHolding.Services.EventIdAssign.TargetSelected,
+                    };
+
+                    if (value.NodeId < 1)
+                    {
+                        argsx1.AddParams(value.NodeName);
+                    }
+                    else
+                    {
+                        argsx1.AddParams(value.NodeId + " - " + value.NodeName);
+                    }
+
+                    argsx1.AddParams(info);
+                    EventPublish.PublishEvent(argsx1);
 
                     if (UxTreeSetting.IsSelectGrpMapOnlyShow == false) return;
                     var ins = new PublishEventArgs()
-                                  {
-                                      EventType = PublishEventType.Core,
-                                      EventId =
-                                          Wlst.Sr.EquipmentInfoHolding.Services.EventIdAssign.RtuGroupSelectdWantedMapUp
-                                  };
-
-                    var info = new List<int>();
-                    //if (value.NodeType == TypeOfTabTreeNode.IsAll || value.NodeType == TypeOfTabTreeNode.IsArea)
-                    //{
-
-                    //    info.Add(-1);
-                    //    ins.AddParams(info);
-                    //}
-                    //else
                     {
-                        info = (from t in value.ChildTreeItems select t.NodeId).ToList();
-                        ins.AddParams(info);
-                    }
+                        EventType = PublishEventType.Core,
+                        EventId =
+                                          Wlst.Sr.EquipmentInfoHolding.Services.EventIdAssign.RtuGroupSelectdWantedMapUp
+                    };
+                    ins.AddParams(info);
 
-                    if (info.Count == 0) return;
+
+
                     if (info.Count == 1 && info[0] == -1) info.Clear();
                     EventPublish.PublishEvent(ins);
+
+
+
+
+
                 }
 
             }
@@ -582,15 +597,15 @@ namespace Wlst.Ux.EquipemntTree.GrpSingleTabShowViewModel.ViewModels
                 var info = Wlst.Sr.EquipmentInfoHolding.Services.ServicesGrpSingleInfoHold.GetGroupInfomation(AreaId,
                                                                                                               NodeId);
                 if (info == null) return;
-            }
 
-            //base.OnNodeSelect();
+
+                //base.OnNodeSelect();
                 //发布事件  选中当前节点
                 var args = new PublishEventArgs
-                               {
-                                   EventType = PublishEventType.Core,
-                                   EventId = Sr.EquipmentInfoHolding.Services.EventIdAssign.GroupSelected,
-                               };
+                {
+                    EventType = PublishEventType.Core,
+                    EventId = Sr.EquipmentInfoHolding.Services.EventIdAssign.GroupSelected,
+                };
 
                 args.AddParams(new Wlst.Sr.EquipmentInfoHolding.Model.SelectedInfo(AreaId, NodeId,
                                                                                    SelectedInfo.SelectType.SingleGrp));
@@ -602,6 +617,48 @@ namespace Wlst.Ux.EquipemntTree.GrpSingleTabShowViewModel.ViewModels
 
                 // ResetContextMenu();
 
+            }
+            else
+            {
+                if (NodeType != TypeOfTabTreeNode.IsTml && NodeType != TypeOfTabTreeNode.IsTmlParts)
+                {
+                    var info = new List<int>();
+                    info = (from t in ChildTreeItems select t.NodeId).ToList();
+                    if (info.Count == 0) return;
+
+                    var argsx1 = new PublishEventArgs
+                    {
+                        EventType = PublishEventType.Core,
+                        EventId = Sr.EquipmentInfoHolding.Services.EventIdAssign.TargetSelected,
+                    };
+
+
+                    argsx1.AddParams(NodeName);
+                    argsx1.AddParams(info);
+                    EventPublish.PublishEvent(argsx1);
+
+
+
+                    if (UxTreeSetting.IsSelectGrpMapOnlyShow == false) return;
+                    var ins = new PublishEventArgs()
+                    {
+                        EventType = PublishEventType.Core,
+                        EventId =
+                                          Wlst.Sr.EquipmentInfoHolding.Services.EventIdAssign.RtuGroupSelectdWantedMapUp
+                    };
+                    ins.AddParams(info);
+
+
+
+                    if (info.Count == 1 && info[0] == -1) info.Clear();
+                    EventPublish.PublishEvent(ins);
+
+
+
+
+
+                }
+            }
         }
 
 

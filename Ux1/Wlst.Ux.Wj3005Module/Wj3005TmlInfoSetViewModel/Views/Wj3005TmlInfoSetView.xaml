@@ -15,7 +15,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="25"></RowDefinition>
+            <RowDefinition Height="35"></RowDefinition>
         </Grid.RowDefinitions>
         <Label x:Name="fg"/>
         <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Grid.Row="0" Text="{Binding TabOneTitle}" VerticalAlignment="Center" ></TextBlock>
@@ -209,7 +209,7 @@
         </TabItem>
            
     </TabControl>
-        <Grid Grid.Row="2" >
+        <Grid Grid.Row="2" Margin="0,5,0,5">
             <Grid.ColumnDefinitions >
                 <ColumnDefinition Width="340"></ColumnDefinition>
                 <ColumnDefinition Width="140"></ColumnDefinition>

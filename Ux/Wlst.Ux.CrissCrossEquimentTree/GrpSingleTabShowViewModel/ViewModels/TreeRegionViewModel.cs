@@ -27,6 +27,8 @@ using Wlst.Ux.CrissCrossEquipemntTree.Resources;
 using Wlst.client;
 using Wlst.Sr.EquipmentInfoHolding.Model;
 using Wlst.Ux.CrissCrossEquipmentTree.GrpSingleTabShowViewModel.Services;
+using System.IO;
+using System.Text;
 
 namespace Wlst.Ux.CrissCrossEquipemntTree.GrpSingleTabShowViewModel.ViewModels
 {
@@ -64,10 +66,14 @@ namespace Wlst.Ux.CrissCrossEquipemntTree.GrpSingleTabShowViewModel.ViewModels
             EventPublish.AddEventTokener(
                  Assembly.GetExecutingAssembly().GetName().ToString(), FundEventHandlers, FundOrderFilters);
 
-            LoadNodeOther();
+            Wlst.Cr.Core.ModuleServices.DelayEvent.RegisterDelayEvent(LoadNodeOther,1);
+            //LoadNodeOther();
             LoadXml();
             IsSearchTreeVisi = Visibility.Collapsed;
             Wlst.Cr.Core.ModuleServices.DelayEvent.RegisterDelayEvent(Update, 1, DelayEventHappen.EventOne);
+
+
+
 
             IsVir = true;
 
@@ -106,6 +112,42 @@ namespace Wlst.Ux.CrissCrossEquipemntTree.GrpSingleTabShowViewModel.ViewModels
             }
             else SearchLimit = 0;
 
+
+            var infoss = Wlst.Cr.CoreOne.Services.SystemXmlConfig.Read("AreaIndex");
+            if (infoss.ContainsKey("AreaIndex"))
+            {
+                areaIndex.Clear();
+                //var areaCount = Wlst.Sr.EquipmentInfoHolding.Services.AreaInfoHold.MySlef.AreaInfo.Count;
+                var areatmp = infoss["AreaIndex"];
+                string[] areaLstt = areatmp.Split('-');
+                if (areaLstt.Count() == 0) return;
+                foreach (var g in areaLstt)
+                {
+
+                    if (string.IsNullOrEmpty(g) || areaIndex.Contains(Convert.ToInt32(g))) continue;
+                    areaIndex.Add(Convert.ToInt32(g));
+
+                }
+            }
+            else
+            {
+                var info = new Dictionary<string, string>();
+                info.Add("AreaIndex", "0-1-2-3");
+                Wlst.Cr.CoreOne.Services.SystemXmlConfig.Save(info, "AreaIndex");
+            }
+
+
+            string path = Directory.GetCurrentDirectory() + "\\Config" + "\\" + "City.txt";
+            string rrr = "";
+            if (File.Exists(path))
+            {
+                var sr = new StreamReader(path, Encoding.Default);
+
+                rrr = sr.ReadLine();
+
+                sr.Close();
+            }
+            Wlst.Sr.EquipmentInfoHolding.Services.Others.CityNum = Convert.ToInt16(rrr);
         }
         private bool LoadXmldata() //crc
         {
@@ -501,16 +543,52 @@ namespace Wlst.Ux.CrissCrossEquipemntTree.GrpSingleTabShowViewModel.ViewModels
             foreach (var f in ChildTreeItems)
                 f.GetChildRtuCount();
 
+
+            //删除0子节点的父节点
             for (int i = this.ChildTreeItems.Count - 1; i >= 0; i--)
             {
                 if (this.ChildTreeItems[i].RtuCount == 0 || this.ChildTreeItems[i].ChildTreeItems.Count == 0)
                 {
                     this.ChildTreeItems.RemoveAt(i);
                 }
+                else
+                {
+                    if (!IsLoadOnlyOneArea)
+                    {
+                        for (int j = this.ChildTreeItems[i].ChildTreeItems.Count - 1; j >= 0; j--)
+                        {
+                            if (this.ChildTreeItems[i].ChildTreeItems[j].RtuCount == 0)
+                            {
+                                this.ChildTreeItems[i].DeleteChild(j);
+                                continue;
+                            }
+                            for (int k = this.ChildTreeItems[i].ChildTreeItems[j].ChildTreeItems.Count - 1; k >= 0; k--)
+                            {
+                                if (this.ChildTreeItems[i].ChildTreeItems[j].NodeType == TypeOfTabTreeNode.IsAll) continue;
+                                if (this.ChildTreeItems[i].ChildTreeItems[j].ChildTreeItems[k].RtuCount == 0)
+                                {
+                                    if (this.ChildTreeItems[i].ChildTreeItems[j].ChildTreeItems[k].NodeType == TypeOfTabTreeNode.IsTml) continue;
+                                    this.ChildTreeItems[i].ChildTreeItems[j].DeleteChild(k);
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if (this.ChildTreeItems[i].NodeType == TypeOfTabTreeNode.IsAll) continue;
+                        for (int j = this.ChildTreeItems[i].ChildTreeItems.Count - 1; j >= 0; j--)
+                        {
+                            if (this.ChildTreeItems[i].ChildTreeItems[j].NodeType == TypeOfTabTreeNode.IsTml) continue;
+                            if (this.ChildTreeItems[i].ChildTreeItems[j].RtuCount == 0)
+                            {
+                                this.ChildTreeItems[i].DeleteChild(j);
+                            }
+
+                        }
+
+                    }
+                }
             }
-
-            //Update();
-
 
 
 
@@ -640,7 +718,7 @@ namespace Wlst.Ux.CrissCrossEquipemntTree.GrpSingleTabShowViewModel.ViewModels
         {
             if (this.ChildTreeItems.Count == 0)
             {
-                this.LoadNode();
+                //this.LoadNode();
                 this.LoadNodeOther();
                 return;
             }
@@ -3274,6 +3352,10 @@ namespace Wlst.Ux.CrissCrossEquipemntTree.GrpSingleTabShowViewModel.ViewModels
                         return true;
                     if (args.EventId == Sr.EquipmentInfoHolding.Services.EventIdAssign.EquipmentSelected)
                         return true;
+                    if (args.EventId == Sr.EquipmentInfoHolding.Services.EventIdAssign.RunningInfoUpdate1)
+                        return true;
+                    if (args.EventId == Sr.EquipmentInfoHolding.Services.EventIdAssign.RunningInfoUpdate2)
+                        return true;
 
                 }
             }
@@ -3284,6 +3366,9 @@ namespace Wlst.Ux.CrissCrossEquipemntTree.GrpSingleTabShowViewModel.ViewModels
             return false;
         }
 
+
+
+        private Dictionary<int, int> RtuImsgIconTmp = new Dictionary<int, int>();
         private void FundEventHandlers(PublishEventArgs args)
         {
             try
@@ -3300,7 +3385,7 @@ namespace Wlst.Ux.CrissCrossEquipemntTree.GrpSingleTabShowViewModel.ViewModels
 
                     if (args.EventId == EventIdAssign.RegionNeedUpdate)
                     {
-                        LoadNode();
+                        //LoadNode();
                         LoadNodeOther();
 
                         Update();
@@ -3308,13 +3393,17 @@ namespace Wlst.Ux.CrissCrossEquipemntTree.GrpSingleTabShowViewModel.ViewModels
                     if (args.EventId == EventIdAssign.RtuRegionNeedUpdate)
                     {
 
-                        var lst = args.GetParams()[0] as IEnumerable<int>;
+                        var lst = args.GetParams()[0] as List<int>;
                         if (lst == null) return;
                         foreach (var g in lst)
                         {
                             //变图标
                             if (args.EventAttachInfo == "ChangeImage")
                             {
+                                return;
+
+
+
                                 if (TreeNodeItemTmlViewModel.RtuItems.ContainsKey(g))
                                 {
                                     foreach (var f in TreeNodeItemTmlViewModel.RtuItems[g])
@@ -3324,6 +3413,7 @@ namespace Wlst.Ux.CrissCrossEquipemntTree.GrpSingleTabShowViewModel.ViewModels
                                             var xg = f.Target as TreeNodeBaseNode;
                                             if (xg != null)
                                             {
+                                                //停运3002，  不用3001，  关灯正常3005，  关灯故障3006 ， 开灯正常3007  ，开灯故障3008 ， 离线3003  ，默认 正常关灯3005
                                                 var imageId = Wlst.Sr.EquipmentInfoHolding.Services.ServiceGrpRegionInfoHold.GetImageIdByRtuid(g);
 
                                                 xg.ImagesIcon = ImageResources.GetEquipmentIcon(imageId);
@@ -3339,7 +3429,7 @@ namespace Wlst.Ux.CrissCrossEquipemntTree.GrpSingleTabShowViewModel.ViewModels
                             {
 
 
-                                LoadNode();
+                                //LoadNode();
                                 LoadNodeOther();
                                 return;
                                 if (TreeNodeItemTmlViewModel.RtuItems.ContainsKey(g))
@@ -3397,6 +3487,38 @@ namespace Wlst.Ux.CrissCrossEquipemntTree.GrpSingleTabShowViewModel.ViewModels
                         }
 
                         Update();
+                    }
+
+                    if (args.EventId == EventIdAssign.RunningInfoUpdate1 || args.EventId == EventIdAssign.RunningInfoUpdate2)
+                    {
+
+
+                        var lst = args.GetParams()[0] as IEnumerable<int>;
+                        if (lst == null) return;
+
+                        foreach (var t in lst)
+                        {
+                            var id = GrpComSingleMuliViewModel.TreeNodeItemTmlViewModel.GetImageIconByState(t);
+                            if (id == 0) continue;
+
+                            if (RtuImsgIconTmp.ContainsKey(t))
+                            {
+                                if (RtuImsgIconTmp[t] == id) continue;
+                                RtuImsgIconTmp[t] = id;
+                            }
+                            else
+                            {
+                                RtuImsgIconTmp.Add(t, id);
+                            }
+
+                            if (TreeNodeItemTmlViewModel.RtuItems.ContainsKey(t) == false) continue;
+                            Wlst.Cr.Core.CoreServices.RegionManage.DispatcherInvoke(Ac, new Tuple<int, int>(t, id));
+
+
+
+
+
+                        }
                     }
 
 
@@ -3498,6 +3620,27 @@ namespace Wlst.Ux.CrissCrossEquipemntTree.GrpSingleTabShowViewModel.ViewModels
 
 
 
+        void Ac(object obj)
+        {
+            var tu = obj as Tuple<int, int>;
+            if (tu == null) return;
+
+            foreach (var f in TreeNodeItemTmlViewModel.RtuItems[tu.Item1])
+            {
+                if (f.Target != null)
+                {
+                    var xg = f.Target as TreeNodeBaseNode;
+                    //if (xg != null) xg.ReUpdate(2);
+                    if (xg != null) xg.ReUpdate(tu.Item2);
+
+                    if (xg.NodeId == 1000002)
+                    {
+                        WriteLog.WriteInfo("1000002交叉分组更新图标：" + tu.Item2 + "  " + DateTime.Now);
+                    }
+                }
+
+            }
+        }
 
 
 

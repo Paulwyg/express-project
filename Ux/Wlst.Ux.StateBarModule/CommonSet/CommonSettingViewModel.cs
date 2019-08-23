@@ -122,21 +122,21 @@ namespace Wlst.Ux.StateBarModule.CommonSet
                         var tu = new Tuple<int,string>(g.Id,g.RegionName);
                         Sr.EquipmentInfoHolding.Services.Others.RegionItems.Add(tu);
                     }
-                    RegionRemarks = "共有" + this.RegionItems.Count + "个地区";
-                    //todo test
-                    //for (int i = 0; i < 3; i++)
-                    //{
-                    //    RegionItems.Add(new RegionItem()
-                    //    {
-                    //        RegionId = i,
-                    //        RegionName = "新地区"+i
-                    //    });
 
-                    //    //Wlst.Sr.EquipmentInfoHolding.Services.Others.RegionItems.Clear();
-                    //    //var tu = new Tuple<int, string>(i, );
-                    //    //Sr.EquipmentInfoHolding.Services.Others.RegionItems.Add(tu);
-                    //}
 
+                    var namelist = "";
+                    for (var i = 0; i < RegionItems.Count; i++)
+                    {
+                        if (i > 4)
+                        {
+                            namelist = namelist + "等" + RegionItems.Count + "个区域";
+                            break;
+                        }
+                        namelist = namelist + (namelist == "" ? "" : "，") + RegionItems[i].RegionName;
+                    }
+                    this.RegionRemarks = namelist;
+                    //RegionRemarks = "共有" + this.RegionItems.Count + "个地区";
+                
 
 
                     Elysium.ThemesSet.Common.ReadSave.Save(dir, TitleSetPath,TitleFilePath);

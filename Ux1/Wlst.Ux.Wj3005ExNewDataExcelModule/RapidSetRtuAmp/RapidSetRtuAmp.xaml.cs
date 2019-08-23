@@ -108,7 +108,7 @@ namespace Wlst.Ux.Wj3005ExNewDataExcelModule.RapidSetRtuAmp
             if (index < 0) index = 0;
             if (rapidSetAmp.Items.Count < 1) return;
             rapidSetAmp.SelectedItem = Items[index];
-
+            IsShowChkHideLoopErrs = Wlst.Sr.EquipmentInfoHolding.Services.Others.CityNum == 7;
             UpdateRules();
         }
 
@@ -320,6 +320,24 @@ namespace Wlst.Ux.Wj3005ExNewDataExcelModule.RapidSetRtuAmp
             {
                 if (_item == null) _item = new ObservableCollection<Loop>();
                 return _item;
+            }
+        }
+
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private bool _isShowChkHideLoopErrs;
+        /// <summary>
+        /// 苏州新区 需要屏蔽晚上回路报警 谁吃得消  lvf 2019年3月27日10:35:30   一塌糊涂 是否呈现单选框
+        /// </summary>
+        public bool IsShowChkHideLoopErrs
+        {
+            get { return _isShowChkHideLoopErrs; }
+            set
+            {
+                if (_isShowChkHideLoopErrs == value) return;
+                _isShowChkHideLoopErrs = value;
+                PropertyChanged(this, new PropertyChangedEventArgs("IsShowChkHideLoopErrs"));
             }
         }
 
@@ -654,7 +672,19 @@ namespace Wlst.Ux.Wj3005ExNewDataExcelModule.RapidSetRtuAmp
             Wlst.Cr.CoreOne.Services.SystemXmlConfig.Save(_newDataColumnsDisplayIndex, XmlConfigName);
         }
 
-     
+        private void rapidSetAmp_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            var sdr = sender as Telerik.Windows.Controls.RadGridView;
+            if (sdr == null) return;
+            var item = sdr.SelectedItem as Loop;
+            if (item == null) return;
+            foreach (var t in Items)
+            {
+                if (item.LoopId != t.LoopId) continue;
+                if (t.A == "----") continue;
+                t.RefA = Convert.ToDouble(t.A);
+            }
+        }
     }
 
 
@@ -740,6 +770,9 @@ namespace Wlst.Ux.Wj3005ExNewDataExcelModule.RapidSetRtuAmp
                 return _itemItemsRuless;
             }
         }
+
+
+
     }
 
     public class RultItem : Wlst.Cr.Core.CoreServices.ObservableObject

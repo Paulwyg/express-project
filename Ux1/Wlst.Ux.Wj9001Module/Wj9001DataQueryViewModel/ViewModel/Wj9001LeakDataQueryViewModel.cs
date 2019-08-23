@@ -47,7 +47,7 @@ namespace Wlst.Ux.Wj9001Module.Wj9001DataQueryViewModel.ViewModel
             {
 
             }
-            Remind =DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " --"+ "通过左侧终端树选择几种光控来进行数据查询.";
+            Remind = "请选择设备...";
         }
 
         public void OnUserHideOrClosing()
@@ -425,7 +425,7 @@ namespace Wlst.Ux.Wj9001Module.Wj9001DataQueryViewModel.ViewModel
 
         #region PagerVisi
 
-        private Visibility _pagerVisi = Visibility.Visible;
+        private Visibility _pagerVisi = Visibility.Collapsed;
         public Visibility PagerVisi
         {
             get { return _pagerVisi; }
@@ -767,12 +767,12 @@ namespace Wlst.Ux.Wj9001Module.Wj9001DataQueryViewModel.ViewModel
                 }
             }
             FilterErrs(obs);
-            Remind = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " --" + "数据已反馈...";
-            Remind = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") +"  光控数据查询成功，共计" + ItemCount + " 条数据.";
+            Remind = "查询成功.";
+            Remind =  "查询成功，共" + ItemCount + " 条数据.";
         }
         private void FilterErrs(ObservableCollection<Wj9001DataQueryoneItemViewModel> records)
         {
-            Remind = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " --" + "数据已反馈...";
+            Remind = "查询成功.";
             //var obs = new ObservableCollection<Wj9001DataQueryoneItemViewModel>();
             //foreach (var g in records)
             //{
@@ -809,7 +809,7 @@ namespace Wlst.Ux.Wj9001Module.Wj9001DataQueryViewModel.ViewModel
             }
 
 
-            Remind = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " 光控数据查询成功，共计" + ItemCount + " 条数据.";
+            Remind = " 查询成功，共" + ItemCount + " 条数据.";
         }
         private void InitEvent()
         {
@@ -894,7 +894,7 @@ namespace Wlst.Ux.Wj9001Module.Wj9001DataQueryViewModel.ViewModel
             }
 
             SndOrderServer.OrderSnd(info, 10, 6);
-            Remind = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "  正在查询 ...";
+            Remind =  "正在查询 ...";
         }
 
         //http请求
@@ -933,7 +933,7 @@ namespace Wlst.Ux.Wj9001Module.Wj9001DataQueryViewModel.ViewModel
             info.Head.PagingFlag = pagingFlag;
             var data = Wlst.Cr.CoreMims.HttpGetPostforMsgWithMobile.OrderSndHttp(info);
             if (data == null) return;
-            Remind = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "  正在查询 ...";
+            Remind = "正在查询 ...";
             ResolveRequestData(data, pagingFlag);
         }
     }

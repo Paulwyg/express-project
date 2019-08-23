@@ -2518,6 +2518,47 @@ namespace Wlst.Ux.Wj3005ExNewDataExcelModule.ZNewData.TmlNewDataVmLeft.ViewModel
                 }
             }
 
+
+
+
+            //dicDesc.Add(201, "[[1]]最新数据显示电压相位");
+            //dicDesc.Add(202, "[[1]]最新数据模式1下不显示无回路的开关量输出");
+            //dicDesc.Add(203, "[[1]]最新数据模式1下不显示未绑定时间表的输出");
+            IsPhaseVisible = false;
+            if (Wlst.Cr.CoreMims.Services.SystemOptionSvr.GetBoolean(Wlst.Ux.Wj3005ExNewDataExcelModule.ZNewData.NewDataSetting.NewDataSettingViewModel.Moduleid, 201, false))
+            {
+                int rtuid = this.RtuId;
+                var para = Wlst.Sr.EquipmentInfoHolding.Services.EquipmentDataInfoHold.GetInfoById(rtuid);
+                if (para != null)
+                {
+
+                    var rtupara = para as Wj3005Rtu;
+                    if (rtupara != null)
+                    {
+                        var looppara = rtupara.WjLoops;
+                        foreach (var l in _datar)
+                        {
+                            IsPhaseVisible = true;
+                            if (looppara.ContainsKey(l.Value .LoopId) && looppara[l.Value.LoopId].SwitchOutputId > 0)
+                            {
+                                var p = "未知";
+                                var tmp = looppara[l.Value.LoopId].VoltagePhaseCode;
+                                if (tmp == EnumVoltagePhase.Aphase) p = "A相";
+                                if (tmp == EnumVoltagePhase.Bphase) p = "B相";
+                                if (tmp == EnumVoltagePhase.Cphase) p = "C相";
+                                l.Value.Phase = p;
+
+                            }
+                            else
+                            {
+                                l.Value.Phase = "";
+                            }
+                        }
+                    }
+                }
+            }
+
+
             if (LoopCountChanged != null)
             {
                 LoopCountChanged(this, new EventArsgLoopCount()
@@ -3044,6 +3085,22 @@ namespace Wlst.Ux.Wj3005ExNewDataExcelModule.ZNewData.TmlNewDataVmLeft.ViewModel
                 if (value == _switchOutInfo) return;
                 _switchOutInfo = value;
                 this.RaisePropertyChanged(() => this.SwitchOutInfo);
+            }
+        }
+
+        private bool _iIsPhaseVisiblesCompare;
+
+        public bool IsPhaseVisible
+        {
+            get { return _iIsPhaseVisiblesCompare; }
+            set
+            {
+                if (_iIsPhaseVisiblesCompare != value)
+                {
+                    _iIsPhaseVisiblesCompare = value;
+                    this.RaisePropertyChanged(() => this.IsPhaseVisible);
+
+                }
             }
         }
 

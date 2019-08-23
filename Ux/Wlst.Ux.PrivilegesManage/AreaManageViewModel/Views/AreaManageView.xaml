@@ -7,7 +7,7 @@
                  xmlns:vm="clr-namespace:DragDropExtend.DragAndDrop;assembly=DragDropExtend"              
              xmlns:RadTreeViewSet="clr-namespace:Elysium.ThemesSet.RadTreeViewSet;assembly=Elysium" mc:Ignorable="d" 
                  d:DesignHeight="500" d:DesignWidth="1000">
-    <Grid HorizontalAlignment="Left">
+    <Grid HorizontalAlignment="Left" Margin="5,5,5,5">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="330"></ColumnDefinition>
             <ColumnDefinition Width="*"></ColumnDefinition>
@@ -15,7 +15,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="30"></RowDefinition>
-            <RowDefinition Height="40"></RowDefinition>
+            <RowDefinition Height="30"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid Grid.Row="1" Grid.Column="0">
             <Grid.RowDefinitions>
@@ -24,7 +24,7 @@
             </Grid.RowDefinitions>
                 <!--<TextBlock Grid.Row="0" Text=" 单击想要修改的区域标题，再点击下方相对应"></TextBlock>
             <TextBlock Grid.Row="1" Text="的按钮来对此区域进行编辑(名称小于15个字符)"></TextBlock>-->
-            <TextBlock Text="{Binding Msg}" Margin="5,0,0,0" HorizontalAlignment="Left" Grid.Row="0" Grid.Column="0" VerticalAlignment="Bottom" ></TextBlock>
+            <TextBlock Text="{Binding Msg}"   HorizontalAlignment="Left" Grid.Row="0" Grid.Column="0" VerticalAlignment="Bottom" ></TextBlock>
         </Grid>
         <Grid Grid.Row="2" Grid.Column="0">
             <Grid.ColumnDefinitions>
@@ -33,27 +33,26 @@
                 <ColumnDefinition Width="1*"/>
                 <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
-            <Button Content="添加" Command="{Binding CmdAddTree}" Margin="10,6,10,6" Grid.Column="0" MinWidth="45" MinHeight="25"></Button>
-            <Button Content="删除" Command="{Binding CmdDeleteTree}" Margin="10,6,10,6" Grid.Column="2" MinWidth="45" MinHeight="25"></Button>
-            <Button Content="编辑" Command="{Binding CmdEditTree}" Margin="10,6,10,6" Grid.Column="1" MinWidth="45" MinHeight="25"></Button>
+            <Button Content="添加" Command="{Binding CmdAddTree}" Margin="0,5,10,0" HorizontalAlignment="Left" Grid.Column="0" Width="60" Height="25"></Button>
+            <Button Content="删除" Command="{Binding CmdDeleteTree}" Margin="0,5,10,0"  HorizontalAlignment="Left"  Grid.Column="2" Width="60" Height="25"></Button>
+            <Button Content="编辑" Command="{Binding CmdEditTree}" Margin="0,5,10,0"   HorizontalAlignment="Left" Grid.Column="1" Width="60" Height="25"></Button>
            
         </Grid>
 
-        <Grid Grid.Row="2" Grid.Column="1">
+        <Grid Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="290"/>
+                <ColumnDefinition Width="280"/>
                 <ColumnDefinition Width="150"/>
-                <ColumnDefinition Width="10"/>
                 <ColumnDefinition Width="150"/>
             </Grid.ColumnDefinitions>
-            <Button Content="清除选择" Command="{Binding CmdClearSelectAll}" Margin="10,5,20,5" Grid.Column="1" Width="120" Height="25" ></Button>
+            <Button Content="清除选择" Command="{Binding CmdClearSelectAll}"  Margin="0,5,0,0" HorizontalAlignment="Right" Grid.Column="1" Width="120" Height="25" ></Button>
 
             <!--<Button Content="批量操作" Command="{Binding CmdSelectAll}" Margin="10,5,20,5" Grid.Column="2" MinWidth="120" MinHeight="25" ></Button>-->
 
-            <Button Content="保存" Command="{Binding CmdSave}" Width="120" Height="25" Margin="10,5,20,5" Grid.Column="3"></Button>
+                <Button Content="保存" Command="{Binding CmdSave}" Width="120" Height="25" Margin="0,5,0,0" HorizontalAlignment="Right" Grid.Column="2"></Button>
         </Grid>
 
-        <telerik:RadTreeView Grid.Row="0" ItemsSource="{Binding AreaTreeItem}" Width="Auto" Padding="0" Margin="0" SelectedItem="{Binding SelectedTreeItem}"
+        <telerik:RadTreeView Grid.Row="0" ItemsSource="{Binding AreaTreeItem}" Width="Auto" Padding="0" Margin="0,0,5,0" SelectedItem="{Binding SelectedTreeItem}"
                          BorderThickness="1" vm:DragDrop.IsDragSource="True" vm:DragDrop.DragHandler="{Binding DragSourceTree}" IsVirtualizing="True"
                          vm:DragDrop.IsDropTarget="True" vm:DragDrop.DropHandler="{Binding DropTargetTree}" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                          >          
@@ -113,14 +112,14 @@
             </Grid.RowDefinitions>
             <Label x:Name="fg" Grid.ColumnSpan="5" Grid.RowSpan="2" />
             <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" VerticalAlignment="Center" Text="为分组增加终端:在右侧终端列表中勾选终端并拖动到该分组组名上或该分组下。"  Margin="0,1,0,7" Grid.Row="1"></TextBlock>
-            <StackPanel Orientation ="Horizontal"  Grid.Row="2" Width="562" HorizontalAlignment="Left">
-            <Label Width="300" Grid.Row="2"  HorizontalAlignment="Left" />
-            <TextBox Grid.Row="2"  Text="{Binding SearchText, Mode=TwoWay,  ValidatesOnExceptions=True, ValidatesOnDataErrors=True, NotifyOnValidationError=True}" HorizontalAlignment="Left"  
+            <StackPanel Orientation ="Horizontal"  Grid.Row="2" Width="580" HorizontalAlignment="Left">
+                <Label Width="320" Grid.Row="2"  HorizontalAlignment="Left" />
+                <TextBox Grid.Row="2"  Text="{Binding SearchText, Mode=TwoWay,  ValidatesOnExceptions=True, ValidatesOnDataErrors=True, NotifyOnValidationError=True}" HorizontalAlignment="Left"  
                      Height="25" Width="120"></TextBox>
                 <Button Grid.Row="2"  Margin="20,3,0,3" Content="终端查询" Command="{Binding CmdFastSearch}" Height="25"  Width="120"></Button>
             </StackPanel>
             
-            <telerik:RadGridView  Grid.Row="3" Grid.ColumnSpan="5" x:Name="lv" ItemsSource="{Binding TmlData}" vm:DragDrop.IsDragSource="True" ShowGroupPanel="False" HorizontalAlignment="Left"
+            <telerik:RadGridView  Grid.Row="3" Grid.ColumnSpan="5" x:Name="lv" ItemsSource="{Binding TmlData}" Width="580" vm:DragDrop.IsDragSource="True" ShowGroupPanel="False" HorizontalAlignment="Left"
                 vm:DragDrop.DragHandler="{Binding DragSourceListView}" vm:DragDrop.IsDropTarget="True" AutoGenerateColumns="False" RowIndicatorVisibility="Collapsed"
                 vm:DragDrop.DropHandler="{Binding DropTargetListView}" SelectedItem="{Binding SelectedTmlData}" Grid.RowSpan="2" >
                 <telerik:RadGridView.Columns>

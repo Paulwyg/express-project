@@ -1014,6 +1014,23 @@ namespace Wlst.Ux.SinglePlan.SingleGrp.ViewModel
                 var lst4 = LoadNode4GetLampByCtrl(t);
                 rtn.AddRange(lst4);
             }
+            foreach (var f in rtn)
+            {
+                if (f.Key1TypeN == 1) continue;
+                else if (f.Key1TypeN == 2)
+                {
+                    f.FatherInputInfo.Id1B++;
+                    f.FatherInputInfo.NodeName2B = "[集：" + f.FatherInputInfo.Id1B + ", 控：" + f.FatherInputInfo.Id2B + "]";
+                }
+                else if (f.Key1TypeN == 3)
+                {
+                    f.FatherInputInfo.Id2B++;
+                    f.FatherInputInfo.FatherInputInfo.Id2B++;
+                    f.FatherInputInfo.NodeName2B = "[" + f.FatherInputInfo.Id2B + "个]";
+                    f.FatherInputInfo.FatherInputInfo.NodeName2B = "[集：" + f.FatherInputInfo.FatherInputInfo.Id1B + ", 控：" + f.FatherInputInfo.FatherInputInfo.Id2B + "]";
+                }
+
+            }
             InitNode(rtn);
         }
 

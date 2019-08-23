@@ -204,7 +204,7 @@ namespace Wlst.Sr.EquipmentInfoHolding.Services
         /// <summary>
         /// 服务器http服务端口号 lvf  2018年8月6日15:21:13
         /// </summary>
-        public static string SeverHttpPort = "0";
+        //public static string SeverHttpPort = "0";
 
         ///// <summary>
         ///// 记录召测终端 lvf  2018年8月7日15:21:13

@@ -6,33 +6,33 @@
                           
              xmlns:AppleWindowSet="clr-namespace:Elysium.ThemesSet.AppleWindowSet;assembly=Elysium"
              xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" mc:Ignorable="d" 
-             d:DesignHeight="400" d:DesignWidth="1024">
-    <Grid>
+             d:DesignHeight="400" d:DesignWidth="970">
+    <Grid HorizontalAlignment="Left">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" MinHeight="30"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto" MinHeight="30"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <Grid>
+        <Grid  Width="960">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" MinWidth="240"></ColumnDefinition>
-                <ColumnDefinition Width="Auto"  MinWidth="240"></ColumnDefinition>
-                <ColumnDefinition Width="Auto"  MinWidth="240"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
                 <ColumnDefinition ></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <DockPanel  >
-                <Label Margin="0,5,0,5"  Content="起始时间:" VerticalAlignment="Center"/>
-                <DatePicker  Margin="0,5,0,5"  HorizontalAlignment="Center" VerticalAlignment="Center" SelectedDateFormat="Short" Width="150"  SelectedDate="{Binding DtStartTime}"></DatePicker>
+                <Label Margin="5,5,0,5"  Content="起始时间:" VerticalAlignment="Center"/>
+                <DatePicker  Margin="0,5,0,5"  HorizontalAlignment="Center" VerticalAlignment="Center" SelectedDateFormat="Short" Width="150" Height="25"  SelectedDate="{Binding DtStartTime}"></DatePicker>
             </DockPanel>
 
             <DockPanel  Grid.Column="1">
-                <Label Margin="0,5,0,5"  Content="结束时间:" VerticalAlignment="Center"/>
-                <DatePicker Margin="0,5,0,5"  HorizontalAlignment="Center"   VerticalAlignment="Center" SelectedDateFormat="Short" Width="150"  SelectedDate="{Binding DtEndTime}"></DatePicker>
+                <Label Margin="10,5,0,5"  Content="结束时间:" VerticalAlignment="Center"/>
+                <DatePicker Margin="0,5,0,5"  HorizontalAlignment="Center"   VerticalAlignment="Center" SelectedDateFormat="Short" Width="150" Height="25"  SelectedDate="{Binding DtEndTime}"></DatePicker>
             </DockPanel>
 
             <DockPanel  Grid.Column="2">
-                <Label Margin="0,5,0,5"  Content="选择用户:" VerticalAlignment="Center"/>
-                <ComboBox Grid.Column="1" Margin="0,5,0,5"  IsEnabled="{Binding IsComboUserEnable}" ItemsSource="{Binding UserItems}" Width="180" MinHeight="25" HorizontalAlignment="Left" SelectedItem="{Binding CurrentSelectUser}">
+                <Label Margin="10,5,0,5"  Content="选择用户:" VerticalAlignment="Center"/>
+                <ComboBox Grid.Column="1" Margin="0,5,0,5"  IsEnabled="{Binding IsComboUserEnable}" ItemsSource="{Binding UserItems}" Width="180" Height="25" HorizontalAlignment="Left" SelectedItem="{Binding CurrentSelectUser}">
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
                             <DockPanel>
@@ -46,7 +46,7 @@
                 </ComboBox>
             </DockPanel>
 
-            <Button MinHeight="25" MinWidth="120" Grid.Column="3" Margin="0,5,20,5" HorizontalAlignment="Right" Content="查询" Command="{Binding CmdQuery}"></Button>
+            <Button Width="120" Height="25" Grid.Column="3" Margin="0,5,0,5" HorizontalAlignment="Right" Content="查询" Command="{Binding CmdQuery}"></Button>
         </Grid>
 
         <!--<ListView ItemsSource="{Binding RecordItems}" Grid.Row="1">
@@ -69,7 +69,7 @@
             </ListView.View>
         </ListView>-->
         <telerik:RadGridView x:Name="exportgridview" Grid.Row="1"  AutoGenerateColumns="False" RowIndicatorVisibility="Collapsed"
-              ShowGroupPanel="False"    AllowDrop="True" ItemsSource="{Binding Path=RecordItems}">
+              ShowGroupPanel="False"    AllowDrop="True" ItemsSource="{Binding Path=RecordItems}" Width="960" Margin="5,0,0,0">
             <telerik:RadGridView.Columns>
                 <telerik:GridViewDataColumn Header="记录序号" IsFilterable="False" Width="80" DataMemberBinding="{Binding Path=RecordId,Mode=TwoWay }" IsReadOnly="True" />
                 <telerik:GridViewDataColumn Header="发生时间" IsFilterable="False" Width="180" DataMemberBinding="{Binding Path=CreateTime,Mode=TwoWay, StringFormat={}\{0:yyyy-MM-dd HH:mm:ss\}}" IsReadOnly="True" />
@@ -83,13 +83,13 @@
                 <telerik:GridViewDataColumn Header="备注" MinWidth="100" DataMemberBinding="{Binding Path=Remark,Mode=TwoWay}" IsReadOnly="True" />-->
             </telerik:RadGridView.Columns>
         </telerik:RadGridView>
-        <Grid Grid.Row="2">
+        <Grid Grid.Row="2"  Width="960">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            <Label  Content="{Binding ShowDetailMsg}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0"/>
-            <Button Content="导出" Click="BtnExportClick" Visibility="{Binding ExportVisi}" Grid.Column="1" HorizontalAlignment="Right" Margin="20,2,20,2" MinWidth="120"  MinHeight="25"/>
+            <TextBlock  Text="{Binding ShowDetailMsg}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5,5,0,5"/>
+            <Button Content="导出" Click="BtnExportClick" Visibility="{Binding ExportVisi}" Grid.Column="1" HorizontalAlignment="Right" Margin="20,5,0,5" Width="120"  Height="25"/>
         </Grid>
     </Grid>
 </UserControl>

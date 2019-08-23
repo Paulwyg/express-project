@@ -29,6 +29,7 @@ using Wlst.Ux.Wj3005ExNewDataExcelModule.ZNewData.TmlNewDataVmLeft.Services;
 using Wlst.Ux.Wj3005ExNewDataExcelModule.ZNewData.TmlNewDataVmLeft.ViewModel;
 using Wlst.client;
 using WriteLog = Wlst.Cr.Core.UtilityFunction.WriteLog;
+using Wlst.Sr.TimeTableSystem.Services;
 
 namespace Wlst.Ux.Wj3005ExNewDataExcelModule.ZNewData.TmlNewDataViewModel.ViewModel
 {
@@ -1824,7 +1825,7 @@ namespace Wlst.Ux.Wj3005ExNewDataExcelModule.ZNewData.TmlNewDataViewModel.ViewMo
              //    RunDispatch(new Tuple<int, Action<Tuple<ObservableCollection<MenuItem>, string>>>(rtuId, UpdateMenu));
          }
 
-        void updateloopinfo(ObservableCollection<LoopInfox>data )
+        void updateloopinfo(ObservableCollection<LoopInfox> data)
         {
             LoopxInfo.Clear();
             if (data.Count <= 7) LoopxInfo = data;
@@ -1832,10 +1833,46 @@ namespace Wlst.Ux.Wj3005ExNewDataExcelModule.ZNewData.TmlNewDataViewModel.ViewMo
             {
                 foreach (var f in data)
                 {
+
                     LoopxInfo.Add(f);
-                   // Cr.CoreOne.OtherHelper.Delay.DelayEvent();
+                    // Cr.CoreOne.OtherHelper.Delay.DelayEvent();
                 }
             }
+
+
+            //dicDesc.Add(201, "[[1]]最新数据显示电压相位");
+            //dicDesc.Add(202, "[[1]]最新数据模式1下不显示无回路的开关量输出");
+            //dicDesc.Add(203, "[[1]]最新数据模式1下不显示未绑定时间表的输出");
+            IsPhaseVisible = false;
+            if (Wlst.Cr.CoreMims.Services.SystemOptionSvr.GetBoolean(Wlst.Ux.Wj3005ExNewDataExcelModule.ZNewData.NewDataSetting.NewDataSettingViewModel.Moduleid, 201, false))
+            {
+                int rtuid = this.RtuId;
+                var para = Wlst.Sr.EquipmentInfoHolding.Services.EquipmentDataInfoHold.GetInfoById(rtuid);
+                if (para != null)
+                {
+
+                    var rtupara = para as Wj3005Rtu;
+                    if (rtupara != null)
+                    {
+                        var looppara = rtupara.WjLoops;
+                        foreach (var l in LoopxInfo)
+                        {
+                            IsPhaseVisible = true;
+                            if (looppara.ContainsKey(l.LoopId) && looppara[l.LoopId].SwitchOutputId > 0)
+                            {
+                                var p = "未知";
+                                var tmp = looppara[l.LoopId].VoltagePhaseCode;
+                                if (tmp == EnumVoltagePhase.Aphase) p = "A相";
+                                if (tmp == EnumVoltagePhase.Bphase) p = "B相";
+                                if (tmp == EnumVoltagePhase.Cphase) p = "C相";
+                                l.Phase = p;
+
+                            }
+                        }
+                    }
+                }
+            }
+
         }
 
          private bool LoadXmldata() //crc
@@ -2741,6 +2778,23 @@ namespace Wlst.Ux.Wj3005ExNewDataExcelModule.ZNewData.TmlNewDataViewModel.ViewMo
         }
 
 
+
+        private bool _iIsPhaseVisiblesCompare;
+
+        public bool  IsPhaseVisible
+        {
+            get { return _iIsPhaseVisiblesCompare; }
+            set
+            {
+                if (_iIsPhaseVisiblesCompare != value)
+                {
+                    _iIsPhaseVisiblesCompare = value;
+                    this.RaisePropertyChanged(() => this.IsPhaseVisible);
+ 
+                }
+            }
+        }
+         
         private Visibility _isDetail;
 
         public Visibility IsDetailCheck
@@ -2979,10 +3033,53 @@ namespace Wlst.Ux.Wj3005ExNewDataExcelModule.ZNewData.TmlNewDataViewModel.ViewMo
                         GetRtuSwitchOutOpenCloseTimeInholiday(areaid,rtuId);
 
 
+            int max = 100;
+
+
+            //dicDesc.Add(202, "[[1]]最新数据模式1下不显示无回路的开关量输出");
+            //dicDesc.Add(203, "[[1]]最新数据模式1下不显示未绑定时间表的输出");
+            if (Wlst.Cr.CoreMims.Services.SystemOptionSvr.GetBoolean(Wlst.Ux.Wj3005ExNewDataExcelModule.ZNewData.NewDataSetting.NewDataSettingViewModel.Moduleid, 203, false))
+            {
+                max = 2;
+                for (int i = 0; i < swout.Count; i++)
+                {
+
+                    var areaId = Sr.EquipmentInfoHolding.Services.AreaInfoHold.MySlef.GetRtuBelongArea(rtuId);
+                    var tmp =
+                        Wlst.Sr.TimeTableSystem.Services.WeekTimeTableInfoService.
+                            GetTmlLoopBandTimeTableTodayOpenCloseTimex(areaId,
+                                                                       rtuId, swout[i].Item1);
+                    //采用新协议 细化到终端
+                    int timetableid = RtuOrGprBandingTimeTableInfoService.GetBandingInfoNew(areaid, rtuId, swout[i].Item1);
+
+                    if (timetableid == -1)
+                    {
+                        continue;
+                    }
+                    if (swout[i].Item1 > max) max = swout[i].Item1;
+                }
+            }
+
+            if (Wlst.Cr.CoreMims.Services.SystemOptionSvr.GetBoolean(Wlst.Ux.Wj3005ExNewDataExcelModule.ZNewData.NewDataSetting.NewDataSettingViewModel.Moduleid, 202, false))
+            {
+                max = 2;
+                var para = Wlst.Sr.EquipmentInfoHolding.Services.EquipmentDataInfoHold.GetInfoById(rtuId);
+                if(para !=null)
+                {
+                    var rtupara = para as Wj3005Rtu;
+                    if(rtupara!=null)
+                    {
+                        int sw = (from t in rtupara.WjLoops select t.Value.SwitchOutputId).ToList().Max();
+                        if (sw > max) max = sw;
+                    }
+                }
+            }
 
 
             for (int i = 0; i < swout.Count; i++)
             {
+                if (swout[i].Item1 > max) continue;
+
                 if (swout[i].Item1 == 1)
                 {
                     color = K1BackgroundColor;

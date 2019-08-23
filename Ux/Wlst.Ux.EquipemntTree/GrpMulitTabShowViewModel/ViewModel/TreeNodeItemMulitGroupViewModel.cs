@@ -60,6 +60,18 @@ namespace Wlst.Ux.EquipemntTree.GrpMulitTabShowViewModel.ViewModel
                     ins.AddParams(info);
 
                     EventPublish.PublishEvent(ins);
+
+
+                    var argsx1 = new PublishEventArgs
+                    {
+                        EventType = PublishEventType.Core,
+                        EventId = Sr.EquipmentInfoHolding.Services.EventIdAssign.TargetSelected,
+                    };
+
+                    argsx1.AddParams(value .NodeId  + " - " + value .NodeName );
+                    argsx1.AddParams(info);
+
+                    EventPublish.PublishEvent(argsx1);
                 }
 
             }
@@ -197,6 +209,11 @@ namespace Wlst.Ux.EquipemntTree.GrpMulitTabShowViewModel.ViewModel
         {
             base.OnNodeSelectActive();
             CurrentSelectGroupNode = this;
+
+
+
+          
+
         }
 
 

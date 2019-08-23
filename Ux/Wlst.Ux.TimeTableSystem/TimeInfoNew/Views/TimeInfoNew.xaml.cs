@@ -30,12 +30,15 @@ namespace Wlst.Ux.TimeTableSystem.TimeInfoNew.Views
     [PartCreationPolicy(CreationPolicy.Shared)]
     public partial class TimeInfoNew : UserControl
     {
+        TimeInfoMnVm timeVm = null;
+
         public TimeInfoNew()
         {
             InitializeComponent();
 
-            TimeInfoSetNewView.DataContext = new TimeInfoMnVm();
-             
+            timeVm = new TimeInfoMnVm();
+            TimeInfoSetNewView.DataContext = timeVm;
+
         }
 
 
@@ -47,6 +50,7 @@ namespace Wlst.Ux.TimeTableSystem.TimeInfoNew.Views
             set
             {
                 DataContext = value;
+                value.SetTimeInfoMnVm(timeVm);
                 value.OnUserWantSetGroupWeekSet += new EventHandler<EventArgsEx>(value_OnUserWantSetGroupWeekSet);
                 value.OnNavOnLoadSelectdRtus += new EventHandler(value_OnNavOnLoadSelectdRtus);
             }
@@ -57,16 +61,48 @@ namespace Wlst.Ux.TimeTableSystem.TimeInfoNew.Views
             func(e.Info);
         }
 
-
+     
         private void treeListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
 
             var listView = sender as Telerik.Windows.Controls.RadTreeListView;
             if (listView == null) return;
             var ggg = listView.CurrentCellInfo;
+            if (ggg == null) return;
+
+          
+          
+            if(ggg.Column == null)
+            {
+                var rx = e.OriginalSource as TextBlock;
+                if (rx == null) return;
+
+                var para = rx.Parent as Telerik.Windows.Controls.GridView.GridViewHeaderCell;
+                if (para == null) return;
+                var con = para.ToString();
+                if (con == null) return;
+                if(con.Contains("选择"))
+                {
+                    bool first = true;
+                    if (Model.TreeItems.Count > 0) first = !Model.TreeItems[0].IsChecked;
+                    foreach (var f in Model.TreeItems)
+                    {
+                        f.IsChecked = first;
+                    }
+                }
+                return;
+
+            }
+
+
             var mvvm = ggg.Item as TreeGrpNodes;
-            if (mvvm == null) return;
+            if (mvvm == null)
+            {
+                return;
+            }
+
             var cellIndex = ggg.Column.DisplayIndex;
+
             var nodeId = mvvm.RtuOrGrpId;
             //if (nodeId == 0) return; // special terminal
             if (mvvm.Items.Count + 2 < cellIndex) return;
@@ -77,7 +113,8 @@ namespace Wlst.Ux.TimeTableSystem.TimeInfoNew.Views
 
             if (cellIndex < 3) //3 is K1;
             {
-                func(mvvm);
+               //不显示分组的界面设置了  没什么意义  我们自己都不看 更何况是业主 
+               // func(mvvm);
             }
             else if (cellIndex < typeloop + 3)
             {

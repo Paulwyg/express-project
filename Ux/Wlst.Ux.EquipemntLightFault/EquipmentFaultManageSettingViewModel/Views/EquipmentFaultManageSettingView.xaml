@@ -4,10 +4,21 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="400" d:DesignWidth="300">
+             d:DesignHeight="450" d:DesignWidth="300">
     <Grid  MinWidth="200">
         <Grid >
             <Grid.RowDefinitions>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
                 <RowDefinition Height="30"></RowDefinition>
                 <RowDefinition Height="30"></RowDefinition>
                 <RowDefinition Height="30"></RowDefinition>
@@ -70,8 +81,59 @@
              </DockPanel>
 
 
+            <!--<CheckBox Grid.Row="7" HorizontalAlignment="Left" IsChecked ="{Binding LhRtu[5].IsSelected}"  VerticalAlignment="Center" Content="现存故障查询显示路灯、亮化筛选功能"></CheckBox>
+           
+      
+            <DockPanel Margin="25,0,0,0" Grid.Row="8" HorizontalAlignment="Left" VerticalAlignment="Center">
+                <TextBlock    Text="亮化终端判定1-终端名称包含:" VerticalAlignment="Center"></TextBlock>
+                <TextBox Height="23" Width="80" IsEnabled="{Binding LhRtu[5].IsSelected}" Text="{Binding LhRtu[0].Name}"></TextBox>
+            </DockPanel>
+            <DockPanel Margin="25,0,0,0" Grid.Row="9" HorizontalAlignment="Left" VerticalAlignment="Center">
+                <TextBlock   Text="亮化终端判定2-终端名称包含:" VerticalAlignment="Center"></TextBlock>
+                <TextBox Height="23" Width="80" IsEnabled="{Binding LhRtu[5].IsSelected}" Text="{Binding LhRtu[1].Name}"></TextBox>
+            </DockPanel>
+            <DockPanel Margin="25,0,0,0" Grid.Row="10" HorizontalAlignment="Left" VerticalAlignment="Center">
+                <TextBlock  Text ="亮化终端判定3-终端名称包含:" VerticalAlignment="Center"></TextBlock>
+                <TextBox Height="23" Width="80" IsEnabled="{Binding LhRtu[5].IsSelected}" Text="{Binding LhRtu[2].Name}"></TextBox>
+            </DockPanel>
+            <DockPanel Margin="25,0,0,0" Grid.Row="11" HorizontalAlignment="Left" VerticalAlignment="Center">
+                <TextBlock   Text="亮化终端判定4-终端名称包含:" VerticalAlignment="Center"></TextBlock>
+                <TextBox Height="23" Width="80" IsEnabled="{Binding LhRtu[5].IsSelected}" Text="{Binding LhRtu[3].Name}"></TextBox>
+            </DockPanel>
+            <DockPanel Margin="25,0,0,0" Grid.Row="12" HorizontalAlignment="Left" VerticalAlignment="Center">
+                <TextBlock   Text="亮化终端判定5-终端名称包含:" VerticalAlignment="Center"></TextBlock>
+                <TextBox Height="23" Width="80" IsEnabled="{Binding LhRtu[5].IsSelected}" Text="{Binding LhRtu[4].Name}"></TextBox>
+            </DockPanel>-->
+
+
+
+            <CheckBox Grid.Row="7" HorizontalAlignment="Left" IsChecked ="{Binding Items[201].ValueBool}"  VerticalAlignment="Center" Content="现存故障查询显示路灯、亮化筛选功能"></CheckBox>
+
+
+            <DockPanel Margin="25,0,0,0" Grid.Row="8" HorizontalAlignment="Left" VerticalAlignment="Center">
+                <TextBlock    Text="亮化终端判定1-终端名称包含:" VerticalAlignment="Center"></TextBlock>
+                <TextBox Height="23" Width="80" IsEnabled="{Binding Items[201].ValueBool}" Text="{Binding Items[101].ValueString}"></TextBox>
+            </DockPanel>
+            <DockPanel Margin="25,0,0,0" Grid.Row="9" HorizontalAlignment="Left" VerticalAlignment="Center">
+                <TextBlock   Text="亮化终端判定2-终端名称包含:" VerticalAlignment="Center"></TextBlock>
+                <TextBox Height="23" Width="80" IsEnabled="{Binding Items[201].ValueBool}" Text="{Binding Items[102].ValueString}"></TextBox>
+            </DockPanel>
+            <DockPanel Margin="25,0,0,0" Grid.Row="10" HorizontalAlignment="Left" VerticalAlignment="Center">
+                <TextBlock  Text ="亮化终端判定3-终端名称包含:" VerticalAlignment="Center"></TextBlock>
+                <TextBox Height="23" Width="80" IsEnabled="{Binding Items[201].ValueBool}" Text="{Binding Items[103].ValueString}"></TextBox>
+            </DockPanel>
+            <DockPanel Margin="25,0,0,0" Grid.Row="11" HorizontalAlignment="Left" VerticalAlignment="Center">
+                <TextBlock   Text="亮化终端判定4-终端名称包含:" VerticalAlignment="Center"></TextBlock>
+                <TextBox Height="23" Width="80" IsEnabled="{Binding Items[201].ValueBool}" Text="{Binding Items[104].ValueString}"></TextBox>
+            </DockPanel>
+            <DockPanel Margin="25,0,0,0" Grid.Row="12" HorizontalAlignment="Left" VerticalAlignment="Center">
+                <TextBlock   Text="亮化终端判定5-终端名称包含:" VerticalAlignment="Center"></TextBlock>
+                <TextBox Height="23" Width="80" IsEnabled="{Binding Items[201].ValueBool}" Text="{Binding Items[105].ValueString}"></TextBox>
+            </DockPanel>
+            <CheckBox Grid.Row="13" HorizontalAlignment="Left" IsChecked ="{Binding Items[202].ValueBool}"  VerticalAlignment="Center" Content="全局树晚上不显示白天报警图标"></CheckBox>
+            <CheckBox Grid.Row="14" HorizontalAlignment="Left" IsChecked ="{Binding Items[203].ValueBool}"  VerticalAlignment="Center" Content="全局树白天不显示晚上报警图标"></CheckBox>
             <Button  Tag="11060007" Content="应用" Command="{Binding CmdApply}" 
-                     Width="120" Height="25" Grid.Row="7"  HorizontalAlignment="Right" Margin="0,0,30,0"></Button>
+                     Width="120" Height="25" Grid.Row="15"  HorizontalAlignment="Right" Margin="0,0,0,0"></Button>
         </Grid>
     </Grid>
 </UserControl>

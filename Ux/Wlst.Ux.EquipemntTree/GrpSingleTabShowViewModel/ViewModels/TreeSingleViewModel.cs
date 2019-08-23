@@ -29,6 +29,7 @@ using Wlst.Ux.EquipemntTree.Models;
 using Wlst.Ux.EquipemntTree.Resources;
 using Wlst.Sr.EquipemntLightFault.Model;
 using Wlst.client;
+using System.Threading;
 
 namespace Wlst.Ux.EquipemntTree.GrpSingleTabShowViewModel.ViewModels
 {
@@ -84,8 +85,29 @@ namespace Wlst.Ux.EquipemntTree.GrpSingleTabShowViewModel.ViewModels
 
             this.IsFastControl = Wlst.Cr.CoreOne.Services.OptionXmlSvr.GetOptionBool(4001, 5, false);
 
+            if (Wlst.Sr.EquipmentInfoHolding.Services.Others.CityNum == 7)
+            {
+                //System.Timers.Timer timer = new System.Timers.Timer();
+                //timer.Enabled = true;
+                //timer.Interval = 60000;//执行间隔时间,单位为毫秒;此时时间间隔为1分钟  
+                //timer.Start();
+                //timer.Elapsed += new System.Timers.ElapsedEventHandler(Request);
+            Wlst.Cr.Coreb.AsyncTask.Qtz.AddQtz("null", 8888, DateTime.Now.AddSeconds(30).Ticks, 60, Request);
+            }
 
-    
+        }
+
+        void Request(object source)
+        {
+            var dt = DateTime.Now;
+            var dtt = dt.Hour * 60 + dt.Minute;
+            if (dtt == Wlst.Sr.EquipmentInfoHolding.Services.Others.Sunrise + 10 || dtt == Wlst.Sr.EquipmentInfoHolding.Services.Others.Sunset + 10)
+            {
+                Application.Current.Dispatcher.Invoke(new Action(delegate
+                {
+                    LoadNode();
+                }));
+            }
         }
 
         public int timer_count = 0;
@@ -3158,7 +3180,7 @@ namespace Wlst.Ux.EquipemntTree.GrpSingleTabShowViewModel.ViewModels
                             if (id == 0) continue;
 
                             if (RtuImsgIconTmp.ContainsKey(t))
-                            {
+                            { 
                                 if (RtuImsgIconTmp[t] == id) continue;
                                 RtuImsgIconTmp[t] = id;
                             }
@@ -3227,6 +3249,11 @@ namespace Wlst.Ux.EquipemntTree.GrpSingleTabShowViewModel.ViewModels
                     var xg = f.Target as TreeNodeBaseNode;
                     //if (xg != null) xg.ReUpdate(2);
                     if (xg != null) xg.ReUpdate(tu.Item2);
+
+                    if (xg.NodeId == 1000002)
+                    {
+                        WriteLog.WriteInfo("1000002终端树更新图标："+ tu.Item2 +"  "+DateTime.Now);
+                    }
                 }
 
             }

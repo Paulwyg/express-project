@@ -203,5 +203,12 @@
         /// </summary>
         public const int RegionNeedUpdate = EventIdAssignBaseId + 45;
 
+
+        /// <summary>
+        /// 组、设备被选中 para1、显示的地址，para2、List《int》 （选中的设备清单）
+        /// </summary>
+        public const int TargetSelected = EventIdAssignBaseId + 46;
+
+   
     }
 }

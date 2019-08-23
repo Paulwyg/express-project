@@ -7,7 +7,7 @@ using Wlst.Cr.CoreOne.Services;
 using Wlst.Cr.MessageBoxOverride.MessageBoxOverride;
 using Wlst.Cr.MessageBoxOverride.MessageBoxOverride.WlstMessageBox.ViewModel;
 using Wlst.client;
-
+using Wlst.Sr.EquipmentInfoHolding.Model;
 
 namespace Wlst.Ux.WJ3005Module.ZOrders.OpenCloseLight.ForSingleTreeGrpMenu
 {
@@ -34,8 +34,22 @@ namespace Wlst.Ux.WJ3005Module.ZOrders.OpenCloseLight.ForSingleTreeGrpMenu
             if (Wlst.Cr.CoreMims.Services.UserInfo.UserLoginInfo.D) return true;
             //return Wlst.Cr.CoreMims.Services.UserInfo.CanX();
             var equipment = this.Argu as Wlst .Sr .EquipmentInfoHolding .Model .GroupInformation ;
-            if (equipment == null ) return false;
-            return Wlst.Cr.CoreMims.Services.UserInfo.CanX(equipment.AreaId);
+            //交叉分组判断
+            if (equipment == null)
+            {
+                var lst = this.Argu as List<int>;
+                if (lst == null || lst.Count == 0)
+                {
+                    return false;
+                }
+                var areaid = Wlst.Sr.EquipmentInfoHolding.Services.AreaInfoHold.MySlef.GetRtuBelongArea(lst[0]);
+                return Wlst.Cr.CoreMims.Services.UserInfo.CanX(areaid);
+            }
+            else
+            {
+                return Wlst.Cr.CoreMims.Services.UserInfo.CanX(equipment.AreaId);
+            }
+
         }
         bool CanEx()
         {
@@ -51,8 +65,8 @@ namespace Wlst.Ux.WJ3005Module.ZOrders.OpenCloseLight.ForSingleTreeGrpMenu
 
             if (ter == null) return;
 
-            this.ExText = "-" +
-                Wlst.Sr.TimeTableSystem.Services.WeekTimeTableInfoService.GetTmlLoopBandTimeTableNamex(ter.AreaId,ter.GroupId, LoopId);
+            //this.ExText = "-" +
+            //    Wlst.Sr.TimeTableSystem.Services.WeekTimeTableInfoService.GetTmlLoopBandTimeTableNamex(ter.AreaId,ter.GroupId, LoopId);
         }
 
         public int LoopId;
@@ -101,7 +115,8 @@ namespace Wlst.Ux.WJ3005Module.ZOrders.OpenCloseLight.ForSingleTreeGrpMenu
                 foreach (var t in lst)
                 {
                     if (Wlst.Sr.EquipmentInfoHolding.Services.EquipmentDataInfoHold.InfoItems.ContainsKey(t) &&
-                        Wlst.Sr.EquipmentInfoHolding.Services.EquipmentDataInfoHold.InfoItems[t].RtuStateCode == 2
+                        Wlst.Sr.EquipmentInfoHolding.Services.EquipmentDataInfoHold.InfoItems[t].RtuStateCode == 2 &&
+                        Wlst.Sr.EquipmentInfoHolding.Services.EquipmentDataInfoHold.InfoItems[t].EquipmentType == WjParaBase.EquType.Rtu
                         ) lstslt.Add(t);
                 }
                 //var data = new OpenCloseLightData();

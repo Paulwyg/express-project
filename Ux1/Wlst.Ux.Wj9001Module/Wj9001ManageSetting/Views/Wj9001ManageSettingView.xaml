@@ -5,24 +5,24 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="600">
-    <Grid Margin="10">
+    <Grid  >
         <Grid >
             <Grid.RowDefinitions>
-                <RowDefinition Height="30"></RowDefinition>
-                <RowDefinition Height="30"></RowDefinition>
-                <RowDefinition Height="30"></RowDefinition>
-                <RowDefinition Height="30"></RowDefinition>
-                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="25"></RowDefinition>
+                <RowDefinition Height="25"></RowDefinition>
+                <RowDefinition Height="25"></RowDefinition>
+            
+                <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
 
-            <CheckBox Grid.Row="1" IsChecked="{Binding IsShowGrpInTreeModelShowId}" Content="分组显示组地址" VerticalAlignment="Center" ></CheckBox>
+            <CheckBox Grid.Row="1" IsChecked="{Binding IsShowGrpInTreeModelShowId}" Margin="25,0,0,0" VerticalContentAlignment="Center" Content="分组显示组地址" VerticalAlignment="Center" ></CheckBox>
 
-            <CheckBox IsChecked="{Binding IsShowTreeOnTab}" Content="在主界面树区域显示漏电设备面板" VerticalAlignment="Center" ></CheckBox>
+            <CheckBox IsChecked="{Binding IsShowTreeOnTab}"  Content="在主界面树区域显示漏电设备面板" VerticalAlignment="Center" ></CheckBox>
 
-            <CheckBox Grid.Row="2" IsChecked="{Binding IsOnSelectNodeNavToParsSetView}" Content="在选中漏电设备时立即弹出该漏电设备的设置界面" VerticalAlignment="Center" ></CheckBox>
+            <CheckBox Grid.Row="2" Margin="25,0,0,0" VerticalContentAlignment="Center" IsChecked="{Binding IsOnSelectNodeNavToParsSetView}" Content="在选中漏电设备时立即弹出该漏电设备的设置界面" VerticalAlignment="Center" ></CheckBox>
 
-            <Button  Tag="11066007" Content="应用" Command="{Binding CmdApply}" 
-                     Width="120" Height="30" Grid.Row="4"></Button>
+            <Button  Tag="11066007" Content="应用" Command="{Binding CmdApply}"   Margin="200,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"
+                     Width="120" Height="25" Grid.Row="3"></Button>
         </Grid>
     </Grid>
 </UserControl>

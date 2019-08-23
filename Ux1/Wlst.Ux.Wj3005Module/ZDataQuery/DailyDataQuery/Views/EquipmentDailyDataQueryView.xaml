@@ -20,7 +20,7 @@
         <RadioButtonConverter:RadioButtonIntConverter x:Key="RadioMultiIntConverter">
         </RadioButtonConverter:RadioButtonIntConverter>
     </UserControl.Resources>
-    <Grid>
+    <Grid Margin="5">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="*"/>
@@ -28,8 +28,8 @@
    
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="30"></RowDefinition>
             <RowDefinition Height="25"></RowDefinition>
+            <RowDefinition Height="30"></RowDefinition>
             <RowDefinition Height="0"></RowDefinition>
             <RowDefinition Height="*" ></RowDefinition>
             <RowDefinition Height="30"></RowDefinition>
@@ -37,58 +37,68 @@
         </Grid.RowDefinitions>
 
             <Label x:Name="fg"/>
-            <Grid Grid.Row="0">
+            <Grid Grid.Row="0" HorizontalAlignment="Left" Width="1180">
                 <Grid.ColumnDefinitions >
-                    <ColumnDefinition Width="90"/>
-                    <ColumnDefinition Width="160"/>
-                    <ColumnDefinition Width="280" />
-                    <ColumnDefinition Width="200"/>
-                    <ColumnDefinition Width="130"/>
-                    <ColumnDefinition Width="100" />
+                    <ColumnDefinition Width="270"/>
+                    <ColumnDefinition Width="270"/>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
-                
 
-                <DockPanel HorizontalAlignment="Left" Grid.ColumnSpan ="3">
-                    <TextBlock Margin="5,0,0,0" Foreground="{Binding ElementName=fg, Path=Foreground}"  Text="起始时间:" VerticalAlignment="Center"></TextBlock>
-                    <DatePicker SelectedDateFormat="Short"  VerticalAlignment="Center" Width="120"   Margin="10,0,0,0"  HorizontalAlignment="Center" SelectedDate="{Binding DtStartTime}"></DatePicker>
-                    <TextBox HorizontalAlignment="Center" Width="50" Text="{Binding StTime,Converter={StaticResource TimeConverterIntToString}}" Margin="10,3,10,3"/>   
+
+                <DockPanel HorizontalAlignment="Left">
+                    <TextBlock   Foreground="{Binding ElementName=fg, Path=Foreground}"  Text="起始时间:" VerticalAlignment="Center"></TextBlock>
+                    <DatePicker SelectedDateFormat="Short"  VerticalAlignment="Center" Width="120" Height="25"  Margin="10,0,0,0"  HorizontalAlignment="Center" SelectedDate="{Binding DtStartTime}"></DatePicker>
+                    <TextBox HorizontalAlignment="Center" Width="50" Height="23" Text="{Binding StTime,Converter={StaticResource TimeConverterIntToString}}" Margin="10,0,0,0"/>
                 </DockPanel>
-                <DockPanel HorizontalAlignment="Left" Grid.Column="2" Visibility="{Binding IsOneCheck}" Margin="6,0,0,0">
-                    <!--<TextBlock Margin="10,0,0,0" Foreground="{Binding ElementName=fg, Path=Foreground}"  Text="结束时间:" VerticalAlignment="Center"></TextBlock>-->
-                    <TextBlock Margin="5,0,0,0" Foreground="{Binding ElementName=fg, Path=Foreground}" Text="{Binding SndTimeName}" VerticalAlignment="Center"></TextBlock>
-                    <DatePicker SelectedDateFormat="Short"  VerticalAlignment="Center" Width="120"  Margin="10,0,0,0" HorizontalAlignment="Center" SelectedDate="{Binding DtEndTime}"></DatePicker>
-                    <TextBox HorizontalAlignment="Center" Width="50" Text="{Binding EndTime,Converter={StaticResource TimeConverterIntToString}}" Margin="10,3,10,3"/>
+                <DockPanel HorizontalAlignment="Left" Grid.Column="1" Visibility="{Binding IsOneCheck}" Margin="20,0,0,0">
+
+                    <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Text="{Binding SndTimeName}" VerticalAlignment="Center"></TextBlock>
+                    <DatePicker SelectedDateFormat="Short"  VerticalAlignment="Center" Width="120"  Margin="10,0,0,0" Height="25" HorizontalAlignment="Center" SelectedDate="{Binding DtEndTime}"></DatePicker>
+                    <TextBox HorizontalAlignment="Center" Width="50" Height="23" Text="{Binding EndTime,Converter={StaticResource TimeConverterIntToString}}" Margin="10,0,0,0"/>
+                </DockPanel>
+
+                <DockPanel Grid.Column="2" Margin="10,0,0,0">
+                    <CheckBox Content="指定时刻"  Visibility="{Binding IsGjVisi}" IsChecked="{Binding IsOneTime}"  VerticalAlignment="Center" IsEnabled="{Binding OneTimeEnable}"  HorizontalAlignment="Left"></CheckBox>
+                    <CheckBox Content="比对数据"  Visibility="{Binding IsGjVisi}" IsChecked="{Binding IsCompare}"  VerticalAlignment="Center"  IsEnabled="{Binding CompareEnable}" HorizontalAlignment="Left" Margin="10,0,0,0"></CheckBox>
+
                 </DockPanel>
                 <DockPanel Grid.Column="3" >
-                    <Button Content="&lt;&lt;&lt;" HorizontalAlignment="Right"   Width="80"   Margin="5,0,10,0" Command="{Binding CmdLeft}" ToolTip="点击查询起始时间前一天的数据" Height="23"></Button>
-                    <Button Content=">>>" HorizontalAlignment="Right"   Width="80"  Margin="10,0,10,0" Command="{Binding CmdRight}" ToolTip="点击查询结束时间后一天的数据" Height="23"></Button>
+                    <Button Content="&lt;&lt;&lt;" HorizontalAlignment="Right"   Width="80"   Margin="5,0,0,0" Command="{Binding CmdLeft}" ToolTip="点击查询起始时间前一天的数据" Height="25"></Button>
+                    <Button Content=">>>" HorizontalAlignment="Right"   Width="80"  Margin="20,0,0,0" Command="{Binding CmdRight}" ToolTip="点击查询结束时间后一天的数据" Height="25"></Button>
                 </DockPanel>
-                <DockPanel Grid.Column="4" Visibility="{Binding CompCheck}">
-                <TextBlock Text="电流偏差：" HorizontalAlignment="Left" VerticalAlignment="Center"   Margin="0,0,0,0"></TextBlock>
+                <!--<DockPanel Grid.Column="4" Visibility="{Binding CompCheck}">
+                    <TextBlock Text="电流偏差：" HorizontalAlignment="Left" VerticalAlignment="Center"   Margin="0,0,0,0"></TextBlock>
                     <TextBox Width="40" Text="{Binding DeviationValue,Mode=TwoWay, ValidatesOnExceptions=True, ValidatesOnDataErrors=True, NotifyOnValidationError=True}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,3,10,3" MaxLength="4"></TextBox>
-                </DockPanel>
-                    <Button Content="查询" HorizontalAlignment="Right"   Width="80"  Grid.Column="5" Margin="0,0,12,0" Command="{Binding CmdQuery}" ToolTip="点击左侧终端树中的终端来改变选择的终端，查询完成后请关闭本页面，避免不必要的数据流量。查看详细数据信息请点击该数据并在下侧的最新数据面板查看,面板将强制显示该数据。" Height="23"></Button>
+                </DockPanel>-->
+                <Button Content="查询" HorizontalAlignment="Right"   Width="120" Height="25" Grid.Column="5" Margin="20,0,0,0" Command="{Binding CmdQuery}" ToolTip="点击左侧终端树中的终端来改变选择的终端，查询完成后请关闭本页面，避免不必要的数据流量。查看详细数据信息请点击该数据并在下侧的最新数据面板查看,面板将强制显示该数据。" ></Button>
             </Grid>
-                <DockPanel  Grid.Row="1"  VerticalAlignment="Center" >
 
-            <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Margin="5,0,0,0" Text="终端地址: "></TextBlock>
-            <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Text="{Binding PhyId}"></TextBlock>
-            <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Text="      终端名称: "></TextBlock>
-            <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Width="200" Text="{Binding RtuName}"></TextBlock>
-                
+            <DockPanel  Grid.Row="1" Margin="0,5,0,0" Width="1180" VerticalAlignment="Center" HorizontalAlignment="Left" >
+
+                <DockPanel Width="530">
+                    <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}"    Text="终端地址:"></TextBlock>
+                    <TextBlock Width="65" Margin="10,0,0,0" Foreground="{Binding ElementName=fg, Path=Foreground}" Text="{Binding PhyId}"></TextBlock>
+                    <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Text="终端名称: "></TextBlock>
+                    <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Width="300" Text="{Binding RtuName}"></TextBlock>
+                </DockPanel>
                 <CheckBox Content="所有终端" Visibility="{Binding IsGjVisi}" IsChecked="{Binding IsAllRtu}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="20,0,0,0"></CheckBox>
-                <CheckBox Content="指定时刻"  Visibility="{Binding IsGjVisi}" IsChecked="{Binding IsOneTime}"  VerticalAlignment="Center" IsEnabled="{Binding OneTimeEnable}"  HorizontalAlignment="Left" Margin="20,0,0,0"></CheckBox>
-                <CheckBox Content="比对数据"  Visibility="{Binding IsGjVisi}" IsChecked="{Binding IsCompare}"  VerticalAlignment="Center"  IsEnabled="{Binding CompareEnable}" HorizontalAlignment="Left" Margin="20,0,0,0"></CheckBox>
-            <DockPanel HorizontalAlignment="Right">
-            <CheckBox Content="界面内显示"  Visibility="{Binding IsGjVisi}" IsChecked="{Binding IsInView}"  VerticalAlignment="Center" HorizontalAlignment="Left" Margin="20,0,0,0" Name="tableview"></CheckBox>
-                <CheckBox Content="锁定数据"    IsChecked="{Binding IsLocked}"   VerticalAlignment="Center"  Margin="20,0,30,0"></CheckBox>
+               <DockPanel Margin="10,0,0,0" Visibility="{Binding CompCheck}">
+                    <TextBlock Text="电流偏差：" HorizontalAlignment="Left" VerticalAlignment="Center"   Margin="0,0,0,0"></TextBlock>
+                    <TextBox Width="40" Height="20" Text="{Binding DeviationValue,Mode=TwoWay, ValidatesOnExceptions=True, ValidatesOnDataErrors=True, NotifyOnValidationError=True}" VerticalAlignment="Center" HorizontalAlignment="Left"   MaxLength="4"></TextBox>
+                    <TextBlock Text="(A)" HorizontalAlignment="Left" VerticalAlignment="Center"></TextBlock>
+                </DockPanel>
+                
+                <DockPanel HorizontalAlignment="Right">
+                    <CheckBox Content="界面内显示"  Visibility="{Binding IsGjVisi}" IsChecked="{Binding IsInView}"  VerticalAlignment="Center" HorizontalAlignment="Left" Margin="20,0,0,0" Name="tableview"></CheckBox>
+                    <CheckBox Content="锁定数据"    IsChecked="{Binding IsLocked}"   VerticalAlignment="Center"  HorizontalAlignment="Right" Margin="20,0,0,0"></CheckBox>
+                </DockPanel>
             </DockPanel>
-            </DockPanel>
-        <!--<StackPanel  Grid.Row="2"  VerticalAlignment="Center">
-                <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Margin="10,0,0,0" Text="点击左侧终端树中的终端来改变选择的终端，查询完成后请关闭本页面，避免不必要的数据流量。查看详细数据信息请点击该数据并在下侧的最新数据面板查看,面板将强制显示该数据。"></TextBlock>
-            <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Margin="10,0,0,0"  Text="查看详细数据信息请点击该数据并在下侧的最新数据面板查看,面板将强制显示该数据。"></TextBlock>
-        </StackPanel>-->
-        <Grid  Grid.Row="3">
+
+
+            <Grid  Grid.Row="3">
             <Grid.ColumnDefinitions >
                     <ColumnDefinition Width="1180"/>
                 <ColumnDefinition Width="10"/>
@@ -102,9 +112,9 @@
                 <TextBlock   Width="{Binding Hightxx}" Height="0" x:Name="txb"/>
                 <telerik:RadGridView x:Name="exportgridview" ItemsSource="{Binding Records}" 
                                  SelectedItem="{Binding CurrentSelectRecord}" AutoGenerateColumns="False"
-								 Background="Transparent" Margin="5,5,0,0"
+								 Background="Transparent" Margin="0,5,0,0"
                                   FrozenColumnCount="4"  Visibility="{Binding IsVisiTerminalInfo}"
-								  RowIndicatorVisibility="Collapsed" 
+								  RowIndicatorVisibility="Collapsed" Width="1180"
                                      ColumnReordered="exportgridview_ColumnReordered" VerticalAlignment="Top">
                     <telerik:RadGridView.Columns >
                     <telerik:GridViewDataColumn Header="序号" IsFilterable="False" MinWidth="35" MaxWidth="95" DataMemberBinding="{Binding Index}" IsReadOnly="True" />
@@ -184,19 +194,9 @@
                         <telerik:GridViewDataColumn Header="总功率因数" IsFilterable="False" IsSortable="False" DataMemberBinding="{Binding RtuTotalPowerFactor}"  IsReadOnly="True"  MinWidth="55" MaxWidth="105" IsVisible="False"/>
                     </telerik:RadGridView.Columns>
                 </telerik:RadGridView>
-                    <!--<Controls:DataPager Grid.Row="1" Visibility="{Binding IsVisiTerminalInfo}" HorizontalAlignment="Center" Margin="5,0,5,0"></Controls:DataPager>-->
-                <Grid Grid.Row="1" Visibility="{Binding PagerVisi}" Margin="0,10,0,0">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="2*"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <telerik:RadDataPager x:Name="radDataPager"
-                             FontSize="12"  Background="Transparent" Opacity="1"  NumericButtonCount="7"
-                            BorderThickness="0" Width="550" PageIndex="{Binding PageIndex,Mode=TwoWay}"
-                            VerticalContentAlignment="Center" HorizontalContentAlignment="Right" HorizontalAlignment="Right"
-                            DisplayMode="All" PageSize="100" ItemCount="{Binding ItemCount,Mode=TwoWay}" />
-                    <TextBlock Grid.Column="1" Text="{Binding PageTotal,Mode=TwoWay}" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                </Grid>
+                    
+            
+             
                 <telerik:RadGridView x:Name="viewloop" AutoGenerateColumns="False" ItemsSource="{Binding CurrentSelectDataInfo}" ScrollViewer.HorizontalScrollBarVisibility="Auto" 
                                  Grid.Row="2"  Height="{Binding ViewHeight}"  Visibility="{Binding IsVisiTerminalInfo}"
 								 Background="Transparent" Margin="5,5,0,0"
@@ -315,7 +315,7 @@
 
                 <telerik:RadGridView x:Name="loop" AutoGenerateColumns="False" ItemsSource="{Binding RecordsLoops}" ScrollViewer.HorizontalScrollBarVisibility="Auto" 
                                  Visibility="{Binding IsVisiForm}"
-								 Background="Transparent" Margin="5,5,0,0"
+								 Background="Transparent" Margin="0,5,0,0"
 								  HorizontalAlignment="Stretch" 
 								  VerticalAlignment="Stretch" 
                                   CanUserFreezeColumns="False" 
@@ -346,37 +346,32 @@
                 </DockPanel>
             
 
-                <!--<ListView  VerticalAlignment="Top"
-            AllowDrop="True"   ItemsSource="{Binding Path=Records}" SelectedItem="{Binding CurrentSelectRecord}" >
-            <ListView.View>
-                    <GridView  AllowsColumnReorder="true" ColumnHeaderToolTip="All Record Here">
-                        <GridViewColumn Header="序号"    DisplayMemberBinding="{Binding Path=Index,Mode=TwoWay}"  Width="50" />
-                        <GridViewColumn Header="采集时间"    DisplayMemberBinding="{Binding Path=DtGetDataTime,Mode=TwoWay}"  Width="120" />
-                        <GridViewColumn Header="A相电压"   DisplayMemberBinding="{Binding  Path=RtuVoltageA,Mode=TwoWay}" Width="60" />
-                    <GridViewColumn Header="B相电压"   DisplayMemberBinding="{Binding  Path=RtuVoltageB,Mode=TwoWay}" Width="60" />
-
-                    <GridViewColumn Header="C相电压"    DisplayMemberBinding="{Binding Path=RtuVoltageC,Mode=TwoWay}"  Width="60" />
-                    <GridViewColumn Header="A相电流"   DisplayMemberBinding="{Binding  Path=RtuCurrentSumA,Mode=TwoWay}" Width="60" />
-                    <GridViewColumn Header="B相电流"   DisplayMemberBinding="{Binding  Path=RtuCurrentSumB,Mode=TwoWay}" Width="60" />
-                    <GridViewColumn Header="C相电流"   DisplayMemberBinding="{Binding  Path=RtuCurrentSumC,Mode=TwoWay}" Width="60" />
-                </GridView>
-            </ListView.View>
-        </ListView>-->
-
-
-
         </Grid>
             <TextBlock Name="textb" IsEnabled="{Binding IsAreaOverOne}" Width="0" Height="0" Visibility="Hidden"/>
 
-        <Grid Grid.Row="4">
+        <Grid Grid.Row="4" Margin="0,5,0,0" Width="1180" HorizontalAlignment="Left" Height="25">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="250"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}"  Text="{Binding Remind}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5,0,0,0"/>
-            <CheckBox  Grid.Column="1" Margin="20,0,0,0"  Content="回路数据" IsChecked="{Binding IsCheckedLoop}"  VerticalAlignment="Center" />
-                <Button Content="导出" Command="{Binding CmdExport}"  Grid.Column="2"  Margin="20,2,50,2" MinWidth="120"  MinHeight="25"/>
+                <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}"  Width="250" Text="{Binding Remind}" VerticalAlignment="Bottom"  Margin="0,0,0,1" HorizontalAlignment="Left" />
+
+                <DockPanel Grid.Column="1"   Visibility="{Binding PagerVisi}"  HorizontalAlignment="Center"   >
+                    <DockPanel>
+                       <telerik:RadDataPager x:Name="radDataPager"
+                             FontSize="12"  Background="Transparent" Opacity="1"  NumericButtonCount="7"
+                            BorderThickness="0"   PageIndex="{Binding PageIndex,Mode=TwoWay}"
+                            VerticalContentAlignment="Bottom" HorizontalContentAlignment="Center" HorizontalAlignment="Left" VerticalAlignment="Bottom"  Margin="0,0,0,1"
+                            DisplayMode="All" PageSize="100" ItemCount="{Binding ItemCount,Mode=TwoWay}" />
+                            <TextBlock Grid.Column="1" Text="{Binding PageTotal,Mode=TwoWay}" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0,0,0,1"/>
+                    </DockPanel>
+                </DockPanel>
+
+
+                <CheckBox  Grid.Column="2"   Content="回路数据" IsChecked="{Binding IsCheckedLoop}" Margin="0,0,10,0"  VerticalAlignment="Center" />
+                <Button Content="导出" Command="{Binding CmdExport}"  Grid.Column="3"  Width="120"  Height="25"/>
         </Grid>
      
 

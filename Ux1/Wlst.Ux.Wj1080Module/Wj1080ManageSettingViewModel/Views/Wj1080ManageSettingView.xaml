@@ -4,93 +4,143 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
               xmlns:Service="clr-namespace:Wlst.Ux.Wj1080Module.Wj1080ManageSettingViewModel.Services"
+             xmlns:RadioButtonConverter="clr-namespace:Wlst.Cr.CoreOne.RadioButtonConverter;assembly=Wlst.Cr.CoreOne"
              mc:Ignorable="d" 
-                 d:DesignHeight="600" d:DesignWidth="600">
+                 d:DesignHeight="700" d:DesignWidth="600">
     <UserControl.Resources>
         <Service:TimeConverterIntToString x:Key="TimeConverterIntToString"/>
+        <RadioButtonConverter:RadioButtonBooleanConverter x:Key="RadioButtonBooleanConverter" />
     </UserControl.Resources>
 
-    <Grid >
-        <Grid Margin="10">
+    <Grid>
+        <Grid>
             <Grid.RowDefinitions>
+                <RowDefinition Height="25"></RowDefinition>
+                <RowDefinition Height="25"></RowDefinition>
+                <RowDefinition Height="0"></RowDefinition>
+                <RowDefinition Height="25"></RowDefinition>
+                <RowDefinition Height="25"></RowDefinition>
+                <RowDefinition Height="25"></RowDefinition>
+                <RowDefinition Height="25"></RowDefinition>
+                <RowDefinition Height="25"></RowDefinition>
+                <RowDefinition Height="25"></RowDefinition>
+                <RowDefinition Height="25"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <!--<RowDefinition Height="30"></RowDefinition>
                 <RowDefinition Height="30"></RowDefinition>
                 <RowDefinition Height="30"></RowDefinition>
                 <RowDefinition Height="30"></RowDefinition>
-                <RowDefinition Height="30"></RowDefinition>
-                <RowDefinition Height="30"></RowDefinition>
-                <RowDefinition Height="30"></RowDefinition>
-                <RowDefinition Height="30"></RowDefinition>
-                <RowDefinition Height="30"></RowDefinition>
-                <RowDefinition Height="30"></RowDefinition>
-                <RowDefinition Height="30"></RowDefinition>
-                <RowDefinition Height="30"></RowDefinition>
-                <RowDefinition Height="30"></RowDefinition>
-                <RowDefinition Height="30"></RowDefinition>
-                <RowDefinition Height="30"></RowDefinition>
-                <RowDefinition Height="30"></RowDefinition>
-                <RowDefinition Height="30"></RowDefinition>
-                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>-->
+                <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
 
-            <CheckBox Grid.Row="1" IsChecked="{Binding IsShowGrpInTreeModelShowId}" Content="分组显示组地址" VerticalAlignment="Center" ></CheckBox>
+            <!--<CheckBox Grid.Row="1" IsChecked="{Binding IsShowGrpInTreeModelShowId}" Content="分组显示组地址" VerticalAlignment="Center" ></CheckBox>-->
 
-            <CheckBox IsChecked="{Binding IsShowTreeOnTab}" Content="在主界面树区域显示光控设备面板" VerticalAlignment="Center" ></CheckBox>
+            <CheckBox VerticalContentAlignment="Center"  IsChecked="{Binding IsShowTreeOnTab}" Content="显示光控设备树 [主界面树区域将显示光控设备树]" VerticalAlignment="Center" ></CheckBox>
 
-            <CheckBox Grid.Row="2" IsChecked="{Binding IsOnSelectNodeNavToParsSetView}" Content="选中光控设备时立即弹出设置界面  " VerticalAlignment="Center" ></CheckBox>
+            <TextBlock Grid.Row="1" VerticalAlignment="Center" Text="光控设备树显示设置: [重启或刷新设备树有效]"></TextBlock>
 
-            <CheckBox Grid.Row="3" IsChecked="{Binding IsShowArea}" Content="是否显示区域" VerticalAlignment="Center" ></CheckBox>
+            <!--<CheckBox Grid.Row="2"  Margin="25,0,0,0" IsChecked="{Binding IsOnSelectNodeNavToParsSetView}" Content="选中光控设备时立即弹出设置界面  " VerticalAlignment="Center" ></CheckBox>-->
 
-            <CheckBox Grid.Row="4" IsChecked="{Binding IsShowGrp}" Content="是否显示分组" VerticalAlignment="Center" ></CheckBox>
+            <CheckBox Grid.Row="3" VerticalContentAlignment="Center"  Margin="25,0,0,0" IsChecked="{Binding IsShowArea}" Content="显示区域节点" VerticalAlignment="Center" ></CheckBox>
 
-            <CheckBox Grid.Row="5" IsChecked="{Binding IsShowFid}" Content="是否显示主设备名称" VerticalAlignment="Center" ></CheckBox>
+            <CheckBox Grid.Row="4" VerticalContentAlignment="Center"  Margin="25,0,0,0" IsChecked="{Binding IsShowGrp}" Content="显示分组节点" VerticalAlignment="Center" ></CheckBox>
+
+            <CheckBox Grid.Row="5" VerticalContentAlignment="Center"  Margin="25,0,0,0" IsChecked="{Binding IsShowFid}" Content="显示光控连接的终端信息 [终端地址-终端名称]" VerticalAlignment="Center" ></CheckBox>
 
             <DockPanel Grid.Row="6" VerticalAlignment="Center" >
-                <Label Content="界面上显示的光控"> </Label >
-                <ComboBox Margin=" 20,0,0,0"  VerticalAlignment="Center" Visibility="Visible"  Width="150" HorizontalAlignment="Left"
+                <TextBlock VerticalAlignment="Center"  Text="主界面显示的光控为:"></TextBlock >
+                <ComboBox Margin=" 10,0,0,0"  VerticalAlignment="Center" Visibility="Visible"  Width="150" HorizontalAlignment="Left"
                           ItemsSource="{Binding LuxCollection}" SelectedItem="{Binding CurrentSelectLux}" DisplayMemberPath="Name" IsEditable="False" ></ComboBox>
             </DockPanel>
 
-
-            <DockPanel Grid.Row="7" VerticalAlignment="Center" >
-                <CheckBox IsChecked="{Binding IsShowWarning}" Content="光照度值过低时提醒 （以下内容所使用的光控为界面上显示的光控）" VerticalAlignment="Center" ></CheckBox>
-            </DockPanel>
-
-            <DockPanel Grid.Row="8" VerticalAlignment="Center" Visibility="{Binding ShowWarning}" >
-                <!--<TextBox   MinWidth="50" Text="{Binding StTime,Converter={StaticResource TimeConverterIntToString}}" Margin="1,1,5,1"></TextBox>-->
-                <!--<TextBlock Text="日落偏移值：" VerticalAlignment="Center"/>
+            <TextBlock Grid.Row="7"  VerticalAlignment="Center" Text="主界面光控显示位置:"></TextBlock >
+            <RadioButton  Grid.Row="8" Margin="25,0,0,0" Content="主界面左侧日出日落信息上方"  IsChecked="{Binding Path=Is1080ShowTopRight, Converter={StaticResource RadioButtonBooleanConverter}, ConverterParameter=false}" Name="radioButton1" VerticalAlignment="Center" />
+            <RadioButton Grid.Row="9" Margin="25,0,0,0" Content="主界面右上角用户登录信息左侧"  IsChecked="{Binding Path=Is1080ShowTopRight, Converter={StaticResource RadioButtonBooleanConverter}, ConverterParameter=true}" Name="radioButton2" VerticalAlignment="Center" />
+            <Grid Grid.Row="10" VerticalAlignment="Center"  Visibility="{Binding ShowWarning}" >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="25"></RowDefinition>
+                    <RowDefinition Height="25"></RowDefinition>
+                    <RowDefinition Height="25"></RowDefinition>
+                </Grid.RowDefinitions>
+                <DockPanel>
+                    <CheckBox IsChecked="{Binding IsShowWarning}" VerticalContentAlignment="Center" Content="光照度值过低时提醒 [光控值低提醒使用主界面显示的光控]" VerticalAlignment="Center" ></CheckBox>
+                </DockPanel>
+                <DockPanel Grid.Row="1" VerticalAlignment="Center">
+                    <!--<TextBox   MinWidth="50" Text="{Binding StTime,Converter={StaticResource TimeConverterIntToString}}" Margin="1,1,5,1"></TextBox>-->
+                    <!--<TextBlock Text="日落偏移值：" VerticalAlignment="Center"/>
                 <TextBox   MinWidth="50" Text="{Binding SunSetOffset}" Margin="1,1,1,1"></TextBox>
                 <Label Margin=" 0,0,0,0">分钟</Label>-->
-                <Label Margin=" 15,0,0,0">白天低于</Label>
-                <TextBox MinWidth="50" Text="{Binding SunSetAlarmValue}" Margin="1,1,5,1" MaxLength="5"></TextBox>
-                <Label >lux</Label>
-                <CheckBox Margin=" 25,0,0,0" IsChecked="{Binding IsSunSetSpeechWarning}" Content="语音提醒" VerticalAlignment="Center" ToolTip="\\AlarmSound\\LuxLowAlarm.WAV" ></CheckBox>
-                <!--<CheckBox Margin=" 5,0,0,0" IsChecked="{Binding IsTrunOnWarning}" Content="开灯语音提醒" VerticalAlignment="Center" ></CheckBox>-->
-            </DockPanel>
+                    <TextBlock Margin=" 25,0,0,0" VerticalAlignment="Center" Text="日出日落时间段，光控值低于" />
+                    <TextBox MinWidth="50" Text="{Binding SunSetAlarmValue}" MaxLength="5" Height="20"></TextBox>
+                    <TextBlock Text="[Lux]语音提醒" VerticalAlignment="Center" />
+                    <!--<CheckBox Margin=" 25,0,0,0" IsChecked="{Binding IsSunSetSpeechWarning}" Content="语音提醒" VerticalAlignment="Center" ToolTip="\\AlarmSound\\LuxLowAlarm.WAV" ></CheckBox>-->
+                    <!--<CheckBox Margin=" 5,0,0,0" IsChecked="{Binding IsTrunOnWarning}" Content="开灯语音提醒" VerticalAlignment="Center" ></CheckBox>-->
+                </DockPanel>
+                <DockPanel Grid.Row="2" Margin=" 25,0,0,0" VerticalAlignment="Center">
+                    <CheckBox VerticalContentAlignment="Center" IsChecked="{Binding IsSunSetSpeechWarning}" Content="语音提醒 [wav格式，位置为运行目录下：AlarmSound\\LuxLowAlarm.WAV]" VerticalAlignment="Center"></CheckBox>
+                </DockPanel>
+            </Grid>
+
+            <Grid Grid.Row="11" VerticalAlignment="Center"   Visibility="{Binding ShowOpenClose}" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="29*"/>
+                    <ColumnDefinition Width="271*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="25"></RowDefinition>
+                    <RowDefinition Height="25"></RowDefinition>
+                    <RowDefinition Height="25"></RowDefinition>
+                    <RowDefinition Height="25"></RowDefinition>
+                    <RowDefinition Height="25"></RowDefinition>
+                </Grid.RowDefinitions>
+                <DockPanel Grid.ColumnSpan="2">
+                    <CheckBox IsChecked="{Binding IsShowOpenClose}" VerticalContentAlignment="Center" Content="光控开关灯语音提醒[光控开关灯提醒使用主界面显示的光控]" VerticalAlignment="Center" ></CheckBox>
+                </DockPanel>
+                <DockPanel Grid.Row="1" VerticalAlignment="Center" Grid.ColumnSpan="2">
+                    <TextBlock Margin=" 25,0,0,0" Width="250">光控开关灯,在光控小于时间表光控设置</TextBlock>
+                    <TextBox MinWidth="50" Text="{Binding SunBefore}" Height="20"  MaxLength="5"></TextBox>
+                    <TextBlock >[Lux]语音提醒</TextBlock>
+                </DockPanel>
+                <DockPanel Grid.Row="2" VerticalAlignment="Center" Grid.ColumnSpan="2" >
+                    <TextBlock FontWeight="Normal" FontStretch="Normal" Margin=" 25,0,0,0" Width="250">时控开关灯,在时控开关灯前</TextBlock>
+                    <TextBox MinWidth="50" Text="{Binding TimeBefore}"   Height="20" MaxLength="5"></TextBox>
+                    <TextBlock  FontWeight="Normal" >[分钟]语音提醒</TextBlock>
+                </DockPanel>
+                <DockPanel Grid.Row="3" Margin="25,0,0,0" VerticalAlignment="Center" Grid.ColumnSpan="2">
+                    <CheckBox IsChecked="{Binding IsTrunOnWarning}" VerticalContentAlignment="Center" Content="光控开灯语音提醒 [wav格式,位置为运行目录下:AlarmSound\\TurnOn.WAV]" VerticalAlignment="Center" ToolTip="\\AlarmSound\\TurnOn.WAV"></CheckBox>
+                </DockPanel>
+                <CheckBox Grid.Row="4" Margin="25,0,0,0" VerticalContentAlignment="Center" IsChecked="{Binding IsTrunOffWarning}" Content="光控关灯语音提醒 [wav格式,位置为运行目录下:AlarmSound\\TurnOff.WAV]" VerticalAlignment="Center" ToolTip="\\AlarmSound\\TurnOff.WAV" Grid.ColumnSpan="2"></CheckBox>
+
+            </Grid>
             <!--<DockPanel Grid.Row="9" VerticalAlignment="Center" Visibility="{Binding ShowWarning}" >-->
-                <!--<TextBlock Text="日出偏移值：" VerticalAlignment="Center"/>
+            <!--<TextBlock Text="日出偏移值：" VerticalAlignment="Center"/>
                 <TextBox   MinWidth="50" Text="{Binding SunRiseOffSet}" Margin="1,1,1,1"></TextBox>
                 <Label Margin=" 0,0,0,0">分钟</Label>-->
-                <!--<Label Margin=" 5,0,0,0">夜晚高于</Label>
+            <!--<Label Margin=" 5,0,0,0">夜晚高于</Label>
                 <TextBox   MinWidth="50" Text="{Binding SunRiseAlarmValue}" Margin="1,1,5,1"></TextBox>
                 <Label >lux</Label>
                 <CheckBox Margin=" 5,0,0,0" IsChecked="{Binding IsSunRiseSpeechWarning}" Content="语音提醒" VerticalAlignment="Center" ></CheckBox>-->
-                <!--<CheckBox Margin=" 5,0,0,0" IsChecked="{Binding IsTrunOffWarning}" Content="关灯语音提醒" VerticalAlignment="Center" ></CheckBox>-->
+            <!--<CheckBox Margin=" 5,0,0,0" IsChecked="{Binding IsTrunOffWarning}" Content="关灯语音提醒" VerticalAlignment="Center" ></CheckBox>-->
 
             <!--</DockPanel>-->
 
-            <DockPanel Grid.Row="9" VerticalAlignment="Center" >
+            <!--<DockPanel Grid.Row="11" VerticalAlignment="Center" >
                 <CheckBox IsChecked="{Binding IsShowOpenClose}" Content="光控开关灯语音提醒（以下内容所使用的光控为界面上显示的光控）" VerticalAlignment="Center" ></CheckBox>
-            </DockPanel>
+            </DockPanel>-->
 
-            <DockPanel Grid.Row="10" VerticalAlignment="Center" Visibility="{Binding ShowOpenClose}" >
-                <!--<TextBox   MinWidth="50" Text="{Binding StTime,Converter={StaticResource TimeConverterIntToString}}" Margin="1,1,5,1"></TextBox>-->
-                <!--<TextBlock Text="日落偏移值：" VerticalAlignment="Center"/>
+            <!--<DockPanel Grid.Row="12" VerticalAlignment="Center" Visibility="{Binding ShowOpenClose}" >
+                -->
+            <!--<TextBox   MinWidth="50" Text="{Binding StTime,Converter={StaticResource TimeConverterIntToString}}" Margin="1,1,5,1"></TextBox>-->
+            <!--<TextBlock Text="日落偏移值：" VerticalAlignment="Center"/>
                 <TextBox   MinWidth="50" Text="{Binding SunSetOffset}" Margin="1,1,1,1"></TextBox>
                 <Label Margin=" 0,0,0,0">分钟</Label>-->
-                <!--<Label Margin=" 5,0,0,0">低于</Label>
+            <!--<Label Margin=" 5,0,0,0">低于</Label>
                 <TextBox MinWidth="50" Text="{Binding SunOpenValue}" Margin="1,1,5,1"></TextBox>
                 <Label >lux</Label>-->
-                <!--<CheckBox Margin=" 5,0,0,0" IsChecked="{Binding IsSunSetSpeechWarning}" Content="语音提醒" VerticalAlignment="Center" ></CheckBox>-->
+            <!--<CheckBox Margin=" 5,0,0,0" IsChecked="{Binding IsSunSetSpeechWarning}" Content="语音提醒" VerticalAlignment="Center" ></CheckBox>-->
+            <!--
 
                 <Label Margin=" 15,0,0,0">光控提前</Label>
                 <TextBox MinWidth="50" Text="{Binding SunBefore}" Margin="1,1,5,1" MaxLength="2" ></TextBox>
@@ -100,20 +150,22 @@
                 <Label >分钟</Label>
 
 
-            </DockPanel>
-            <DockPanel Grid.Row="11" VerticalAlignment="Center" Visibility="{Binding ShowOpenClose}" >
-                <!--<TextBlock Text="日出偏移值：" VerticalAlignment="Center"/>
+            </DockPanel>-->
+            <!--<DockPanel Grid.Row="11" VerticalAlignment="Center" Visibility="{Binding ShowOpenClose}" >
+                -->
+            <!--<TextBlock Text="日出偏移值：" VerticalAlignment="Center"/>
                 <TextBox   MinWidth="50" Text="{Binding SunRiseOffSet}" Margin="1,1,1,1"></TextBox>
                 <Label Margin=" 0,0,0,0">分钟</Label>-->
-                <!--<Label Margin=" 5,0,0,0">高于</Label>
+            <!--<Label Margin=" 5,0,0,0">高于</Label>
                 <TextBox   MinWidth="50" Text="{Binding SunCloseValue}" Margin="1,1,5,1"></TextBox>
                 <Label >lux</Label>-->
-                <!--<CheckBox Margin=" 5,0,0,0" IsChecked="{Binding IsSunRiseSpeechWarning}" Content="语音提醒" VerticalAlignment="Center" ></CheckBox>-->
-                <!--<CheckBox Margin=" 5,0,0,0" IsChecked="{Binding IsTrunOffWarning}" Content="关灯语音提醒" VerticalAlignment="Center" ></CheckBox>-->
+            <!--<CheckBox Margin=" 5,0,0,0" IsChecked="{Binding IsSunRiseSpeechWarning}" Content="语音提醒" VerticalAlignment="Center" ></CheckBox>-->
+            <!--<CheckBox Margin=" 5,0,0,0" IsChecked="{Binding IsTrunOffWarning}" Content="关灯语音提醒" VerticalAlignment="Center" ></CheckBox>-->
+            <!--
                 <CheckBox Margin=" 20,0,0,0" IsChecked="{Binding IsTrunOnWarning}" Content="按光控开灯语音提醒" VerticalAlignment="Center" ToolTip="\\AlarmSound\\TurnOn.WAV"></CheckBox>
                 <CheckBox Margin=" 20,0,0,0" IsChecked="{Binding IsTrunOffWarning}" Content="按光控关灯语音提醒" VerticalAlignment="Center" ToolTip="\\AlarmSound\\TurnOff.WAV"></CheckBox>
 
-            </DockPanel>
+            </DockPanel>-->
 
 
             <!--<DockPanel Grid.Row="12" VerticalAlignment="Center" Visibility="{Binding ShowWarning}" >
@@ -129,10 +181,10 @@
                 <TextBlock Margin="10,0,0,0"  Grid.Column="1" Visibility="{Binding IsLuxLowTurnOnVisi}" Text="报警值:" VerticalAlignment="Center" />
                 <TextBox Margin="10,0,0,0" Grid.Column="2" Visibility="{Binding IsLuxLowTurnOnVisi}"  Text="{Binding AlarmValue,Mode=TwoWay}" VerticalAlignment="Center"/>-->
             <!--</Grid>-->
-            <CheckBox Grid.Row="12" IsChecked="{Binding Is1080ShowTopRight}" Content="光控是否显示在右上角" VerticalAlignment="Center" ></CheckBox>
+            <!--<CheckBox Grid.Row="12" IsChecked="{Binding Is1080ShowTopRight}" Content="光控是否显示在右上角" VerticalAlignment="Center" ></CheckBox>-->
 
-            <Button  Tag="11060007" Content="应用" Command="{Binding CmdApply}" 
-                     Width="120" Height="25" Grid.Row="15"></Button>
+            <Button  Tag="11060007" Content="应用" Command="{Binding CmdApply}" Margin="255,10,0,0" VerticalAlignment="Top"
+                     Width="120" Height="25" Grid.Row="12"></Button>
         </Grid>
     </Grid>
 </UserControl>

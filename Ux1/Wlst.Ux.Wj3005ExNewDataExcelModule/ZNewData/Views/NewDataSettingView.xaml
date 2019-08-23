@@ -10,202 +10,274 @@
         <RadioButtonConverter:RadioButtonIntConverter x:Key="RadioButtonIntConvert"></RadioButtonConverter:RadioButtonIntConverter>
     </UserControl.Resources>
 
-    <Grid >
-        <Grid >
+   
+        <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <!-- 布局 -->
+        <Grid>
+            <Grid >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" MinHeight="30"></RowDefinition>
+                    <RowDefinition Height="Auto" MinHeight="30"></RowDefinition>
+                    <RowDefinition Height="Auto" MinHeight="30"></RowDefinition>
+                    <RowDefinition Height="Auto" MinHeight="30"></RowDefinition>
+                    <RowDefinition Height="Auto" MinHeight="30"></RowDefinition>
+                    <RowDefinition Height="Auto" MinHeight="30"></RowDefinition>
+                    <RowDefinition Height="Auto" MinHeight="30"></RowDefinition>
+                    <RowDefinition Height="Auto" MinHeight="30"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <DockPanel Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center">
+
+                    <TextBlock  Text ="回路行数据高度 :  " VerticalAlignment="Center" HorizontalAlignment="Left" ></TextBlock>
+                    <TextBox Width="120" Height="23" VerticalAlignment="Center"  Text="{Binding RowHeight,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+
+                </DockPanel>
+
+                <DockPanel Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center">
+
+                    <TextBlock  Text ="开关灯时间长度 :  " VerticalAlignment="Center" HorizontalAlignment="Left" ></TextBlock>
+                    <TextBox Width="120" Height="23" VerticalAlignment="Center"  Text="{Binding TimeNameLength,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+                </DockPanel>
+
+                <DockPanel Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Center">
+                    <TextBlock  Text ="显示终端名长度 :  " VerticalAlignment="Center" HorizontalAlignment="Left" ></TextBlock>
+                    <TextBox Width="120" Height="23" VerticalAlignment="Center"  Text="{Binding RtuNameLength,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+                </DockPanel>
+                <DockPanel Grid.Row="3" HorizontalAlignment="Left" VerticalAlignment="Center">
+                    <TextBlock  Text ="显示回路名长度 :  " VerticalAlignment="Center" HorizontalAlignment="Left" ></TextBlock>
+                    <TextBox Width="120" Height="23" VerticalAlignment="Center"  Text="{Binding LoopNameLength,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+                </DockPanel>
+
+                <DockPanel Grid.Row="4" HorizontalAlignment="Left" VerticalAlignment="Center">
+                    <TextBlock  Text ="采样数据的长度 :  " VerticalAlignment="Center" HorizontalAlignment="Left" ></TextBlock>
+                    <TextBox Width="120" Height="23" VerticalAlignment="Center"  Text="{Binding VaNameLength,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+                </DockPanel>
+                <DockPanel Grid.Row="5" HorizontalAlignment="Left" VerticalAlignment="Center">
+                    <TextBlock  Text ="开关量名称长度 :  " VerticalAlignment="Center" HorizontalAlignment="Left" ></TextBlock>
+                    <TextBox Width="120" Height="23" VerticalAlignment="Center"  Text="{Binding KxNameLength,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True, ValidatesOnDataErrors=True, NotifyOnValidationError=True}" ></TextBox>
+                </DockPanel>
+                <DockPanel Grid.Row="6" HorizontalAlignment="Left" VerticalAlignment="Center">
+                    <TextBlock  Text ="开关闭合颜色    :  " VerticalAlignment="Center" HorizontalAlignment="Left" ></TextBlock>
+                    <xctk:ColorPicker Width="120"  Height="23"  VerticalAlignment="Center" SelectedColor="{Binding BackgroundColor}"/>
+
+                </DockPanel>
+
+
+                <DockPanel Margin="20,0,0,0" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center">
+                    <TextBlock  Text ="开关量输出K1下回路颜色    :  " VerticalAlignment="Center" HorizontalAlignment="Left" ></TextBlock>
+                    <xctk:ColorPicker Width="120"  Height="23"  VerticalAlignment="Center" SelectedColor="{Binding K1BackgroundColor}"/>
+                </DockPanel>
+                <DockPanel Margin="20,0,0,0" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center">
+                    <TextBlock  Text ="开关量输出K2下回路颜色    :  " VerticalAlignment="Center" HorizontalAlignment="Left" ></TextBlock>
+                    <xctk:ColorPicker Width="120"  Height="23"  VerticalAlignment="Center" SelectedColor="{Binding K2BackgroundColor}"/>
+                </DockPanel>
+                <DockPanel Margin="20,0,0,0" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center">
+                    <TextBlock  Text ="开关量输出k3下回路颜色    :  " VerticalAlignment="Center" HorizontalAlignment="Left" ></TextBlock>
+                    <xctk:ColorPicker Width="120"  Height="23"  VerticalAlignment="Center" SelectedColor="{Binding K3BackgroundColor}"/>
+                </DockPanel>
+                <DockPanel Margin="20,0,0,0" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center">
+                    <TextBlock  Text ="开关量输出K4下回路颜色    :  " VerticalAlignment="Center" HorizontalAlignment="Left" ></TextBlock>
+                    <xctk:ColorPicker Width="120"  Height="23"  VerticalAlignment="Center" SelectedColor="{Binding K4BackgroundColor}"/>
+                </DockPanel>
+                <DockPanel Margin="20,0,0,0" Grid.Row="4" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center">
+                    <TextBlock  Text ="开关量输出K5下回路颜色    :  " VerticalAlignment="Center" HorizontalAlignment="Left" ></TextBlock>
+                    <xctk:ColorPicker Width="120"  Height="23"  VerticalAlignment="Center" SelectedColor="{Binding K5BackgroundColor}"/>
+                </DockPanel>
+                <DockPanel Margin="20,0,0,0" Grid.Row="5" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center">
+                    <TextBlock  Text ="开关量输出K6下回路颜色    :  " VerticalAlignment="Center" HorizontalAlignment="Left" ></TextBlock>
+                    <xctk:ColorPicker Width="120"  Height="23"  VerticalAlignment="Center" SelectedColor="{Binding K6BackgroundColor}"/>
+                </DockPanel>
+                <DockPanel Margin="20,0,0,0" Grid.Row="6" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center">
+                    <TextBlock  Text ="开关量输出K7下回路颜色    :  " VerticalAlignment="Center" HorizontalAlignment="Left" ></TextBlock>
+                    <xctk:ColorPicker Width="120"  Height="23"  VerticalAlignment="Center" SelectedColor="{Binding K7BackgroundColor}"/>
+                </DockPanel>
+                <DockPanel Margin="20,0,0,0" Grid.Row="7" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center">
+                    <TextBlock  Text ="开关量输出K8下回路颜色    :  " VerticalAlignment="Center" HorizontalAlignment="Left" ></TextBlock>
+                    <xctk:ColorPicker Width="120"  Height="23"  VerticalAlignment="Center" SelectedColor="{Binding K8BackgroundColor}"/>
+                </DockPanel>
+
+
+            </Grid>
+        </Grid>
+
+        <!-- 显示模式 -->
+        <Grid Grid.Row="1" Margin="0,15,0,0">
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" MinHeight="30"></RowDefinition>
-                <RowDefinition Height="Auto" MinHeight="30"></RowDefinition>
-                <RowDefinition Height="Auto" MinHeight="30"></RowDefinition>
-                <RowDefinition Height="Auto" MinHeight="30"></RowDefinition>
-                <RowDefinition Height="Auto" MinHeight="30"></RowDefinition>
-                <RowDefinition Height="Auto" MinHeight="30"></RowDefinition>
-                <RowDefinition Height="Auto" MinHeight="30"></RowDefinition>
-                <RowDefinition Height="Auto" MinHeight="30"></RowDefinition>
-                <RowDefinition Height="Auto" MinHeight="30"></RowDefinition>
-                <RowDefinition Height="Auto" MinHeight="30"></RowDefinition>
-                <RowDefinition Height="Auto" MinHeight="30"></RowDefinition>
-                <RowDefinition Height="Auto" MinHeight="30"></RowDefinition>
-                <RowDefinition Height="Auto" MinHeight="30"></RowDefinition>
-                <RowDefinition Height="Auto" MinHeight="30"></RowDefinition>
-                <RowDefinition Height="Auto" MinHeight="30"></RowDefinition>
-                <RowDefinition Height="Auto" MinHeight="30"></RowDefinition>
-                <RowDefinition Height="Auto" MinHeight="30"></RowDefinition>
-                <RowDefinition Height="Auto" MinHeight="30"></RowDefinition>
-                <RowDefinition Height="Auto" MinHeight="30"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
             </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
+
+            <TextBlock Text="最新数据显示模式选择:" Grid.ColumnSpan="2"></TextBlock>
+            <RadioButton Margin="25,0,0,0" Height="25" VerticalContentAlignment="Center" Grid.Row="1" Grid.Column="1" IsChecked="{Binding Path=NewDataShowMode, Converter={StaticResource RadioButtonIntConvert}, ConverterParameter=1}"   Content="模式1,左侧显示开关量输出信息，右侧显示模拟量数据表格"  Name="radioButton1" VerticalAlignment="Center" />
+                <RadioButton  Margin="25,0,0,0" Height="25" VerticalContentAlignment="Center"  Grid.Row="2" Grid.Column="1"  IsChecked="{Binding Path=NewDataShowMode, Converter={StaticResource RadioButtonIntConvert}, ConverterParameter=2}"  Content="模式2,上方显示开关量输出信息，下方显示模拟量数据表格" Name="radioButton2" />
+
+                <CheckBox   Margin="25,0,0,0" Height="25" VerticalContentAlignment="Center" Grid.Row="3" Grid.Column="1"  IsChecked="{Binding IsCloseMeasureNewData}" Content="手动选测后,自动关闭最新数据界面[选测数据达到时自动弹出显示]"></CheckBox>
+                <DockPanel  Margin="25,0,0,0" Height="25" VerticalAlignment="Center" Grid.Row="4" Grid.Column="1">
+                <TextBlock VerticalAlignment="Center" Text="选测失败判定,选测 " />
+                <TextBox   MinWidth="50" Text="{Binding MeasureOverTime}" VerticalAlignment="Center" ></TextBox>
+                <TextBlock Margin="5,0,0,0"  VerticalAlignment="Center" Text="秒后无数据应答判定失败 [重启有效]" />
+
+                    
+            </DockPanel>
+            <DockPanel  Margin="25,0,0,0" Height="25" VerticalAlignment="Center" Grid.Row="5" Grid.Column="1">
+                 <TextBlock HorizontalAlignment="Left"  VerticalAlignment="Center"  Text="最新数据显示宽度"></TextBlock>
+                <TextBox HorizontalAlignment="Left" VerticalAlignment="Center" MinWidth="50"  Margin="5,0,0,0" Text="{Binding NewDataWidth}"></TextBox>
+            </DockPanel>
 
 
-            <DockPanel Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center">
+        </Grid>
 
-                <TextBlock  Text ="回路行数据高度 :  " VerticalAlignment="Center" HorizontalAlignment="Left" ></TextBlock>
-                <TextBox Width="120" Height="23" VerticalAlignment="Center"  Text="{Binding RowHeight,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+        <!-- 显示模式 -->
+        <Grid Grid.Row="2"  Margin="0,15,0,0" VerticalAlignment="Center">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
 
-            </DockPanel>
+                <TextBlock Margin="25,17,0,0" Height="18"  Text="最新数据显示选项:" ></TextBlock>
 
-            <DockPanel Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center">
+                <CheckBox  Margin="50,0,0,0" Height="25" VerticalContentAlignment="Center" Grid.Row="1"    Content="屏蔽回路显示电流" IsChecked="{Binding Item[17].IsSelected}"></CheckBox>
+                <CheckBox  Margin="50,0,0,0" Height="25" VerticalContentAlignment="Center" Grid.Row="2"    Content="屏蔽回路显示电压" IsChecked="{Binding Item[19].IsSelected}"></CheckBox>
 
-                <TextBlock  Text ="开关灯时间长度 :  " VerticalAlignment="Center" HorizontalAlignment="Left" ></TextBlock>
-                <TextBox Width="120" Height="23" VerticalAlignment="Center"  Text="{Binding TimeNameLength,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
-            </DockPanel>
-
-            <DockPanel Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Center">
-                <TextBlock  Text ="显示终端名长度 :  " VerticalAlignment="Center" HorizontalAlignment="Left" ></TextBlock>
-                <TextBox Width="120" Height="23" VerticalAlignment="Center"  Text="{Binding RtuNameLength,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
-            </DockPanel>
-            <DockPanel Grid.Row="3" HorizontalAlignment="Left" VerticalAlignment="Center">
-                <TextBlock  Text ="显示回路名长度 :  " VerticalAlignment="Center" HorizontalAlignment="Left" ></TextBlock>
-                <TextBox Width="120" Height="23" VerticalAlignment="Center"  Text="{Binding LoopNameLength,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
-            </DockPanel>
-
-            <DockPanel Grid.Row="4" HorizontalAlignment="Left" VerticalAlignment="Center">
-                <TextBlock  Text ="采样数据的长度 :  " VerticalAlignment="Center" HorizontalAlignment="Left" ></TextBlock>
-                <TextBox Width="120" Height="23" VerticalAlignment="Center"  Text="{Binding VaNameLength,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
-            </DockPanel>
-            <DockPanel Grid.Row="5" HorizontalAlignment="Left" VerticalAlignment="Center">
-                <TextBlock  Text ="开关量名称长度 :  " VerticalAlignment="Center" HorizontalAlignment="Left" ></TextBlock>
-                <TextBox Width="120" Height="23" VerticalAlignment="Center"  Text="{Binding KxNameLength,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True, ValidatesOnDataErrors=True, NotifyOnValidationError=True}" ></TextBox>
-            </DockPanel>
-            <DockPanel Grid.Row="6" HorizontalAlignment="Left" VerticalAlignment="Center">
-                <TextBlock  Text ="开关闭合颜色    :  " VerticalAlignment="Center" HorizontalAlignment="Left" ></TextBlock>
-                <xctk:ColorPicker Width="120"  Height="23"  VerticalAlignment="Center" SelectedColor="{Binding BackgroundColor}"/>
-               
-            </DockPanel>
-            <!--<DockPanel Margin="20,0,0,0" Grid.Row=" 8" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column=" 1" >
-                <CheckBox Content="显示互感器比" VerticalAlignment="Center" IsChecked="{Binding IsOnlineRate}"/>
-            </DockPanel>-->
-           
-            <DockPanel Grid.Row="8" HorizontalAlignment="Left" VerticalAlignment="Center">
-
-                <!--<CheckBox VerticalAlignment="Center" Content="显示回路的序号" IsChecked="{Binding IsShowLoopId}" Width="200"></CheckBox>-->
-            </DockPanel>
-            <DockPanel Grid.Row=" 11" HorizontalAlignment="Left" Grid.ColumnSpan="2" VerticalAlignment="Center" >
-                <CheckBox x:Name="cbx1" Content="显示昨日数据" VerticalAlignment="Center" IsChecked="{Binding Item[9].IsSelected}"/>
-                <CheckBox Margin="15,0,0,0" IsEnabled="{Binding Item[9].IsSelected}"  Content="接触器状态1" VerticalAlignment="Center" IsChecked="{Binding Item[10].IsSelected}"/>
-                <CheckBox  Margin="15,0,0,0" IsEnabled="{Binding Item[9].IsSelected}" Content="电压1" VerticalAlignment="Center" IsChecked="{Binding Item[11].IsSelected}"/>
-                <CheckBox  Margin="15,0,0,0"  IsEnabled="{Binding Item[9].IsSelected}" Content="电流1" VerticalAlignment="Center" IsChecked="{Binding Item[12].IsSelected}"/>
-                <CheckBox  Margin="15,0,0,0"  IsEnabled="{Binding Item[9].IsSelected}" Content="功率1" VerticalAlignment="Center" IsChecked="{Binding Item[13].IsSelected}"/>
-                <CheckBox  Margin="15,0,0,0"  IsEnabled="{Binding Item[9].IsSelected}" Content="下拉框显示" VerticalAlignment="Center" IsChecked="{Binding IsShowComboBox}"/>
-            </DockPanel>
-
-            <DockPanel Grid.Row=" 10" HorizontalAlignment="Left" Grid.ColumnSpan="2" VerticalAlignment="Center" >
-                <CheckBox   Content="显示互感器比" VerticalAlignment="Center" IsChecked="{Binding Item[5].IsSelected}"/>
-                <CheckBox Margin="15,0,0,0" Content="电流上限" VerticalAlignment="Center" IsChecked="{Binding Item[6].IsSelected}"/>
-                <CheckBox  Margin="15,0,0,0"  Content="电流下限" VerticalAlignment="Center" IsChecked="{Binding Item[7].IsSelected}"/>
-                <CheckBox  Margin="15,0,0,0"  Content="线路状态" VerticalAlignment="Center" IsChecked="{Binding Item[8].IsSelected}"/>
-                <CheckBox  Margin="15,0,0,0"  Content="线路方向" VerticalAlignment="Center" IsChecked="{Binding Item[20].IsSelected}"/>
-                <CheckBox  Margin="15,0,0,0"  Content="显示ABC总电流" VerticalAlignment="Center" IsChecked="{Binding IsShowAbc}"/>
-            </DockPanel>
-            <DockPanel Grid.Row=" 9" HorizontalAlignment="Left" Grid.ColumnSpan="2" VerticalAlignment="Center" >
-                <CheckBox   Content="显示回路序号" VerticalAlignment="Center" IsChecked="{Binding Item[0].IsSelected}"/>
-                <CheckBox Margin="15,0,0,0" Content="回路名称" VerticalAlignment="Center" IsChecked="{Binding Item[1].IsSelected}"/>
-                <CheckBox  Margin="15,0,0,0"  Content="参考电流" VerticalAlignment="Center" IsChecked="{Binding Item[2].IsSelected}"/>
-                <CheckBox  Margin="15,0,0,0"   Content="亮灯率" VerticalAlignment="Center" IsChecked="{Binding Item[3].IsSelected}"/>
-                <CheckBox  Margin="15,0,0,0"   Content="功率因数" VerticalAlignment="Center" IsChecked="{Binding Item[4].IsSelected}"/>
-                <CheckBox  Margin="15,0,0,0"   Content="功率" VerticalAlignment="Center" IsChecked="{Binding Item[18].IsSelected}"/>
-                <CheckBox  Margin="15,0,0,0"   Content="实际状态" VerticalAlignment="Center" IsChecked="{Binding IsShowRealState}"/>
-            </DockPanel>
-
-            <DockPanel Margin="20,0,0,0" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center">
-                <TextBlock  Text ="开关量输出K1下回路颜色    :  " VerticalAlignment="Center" HorizontalAlignment="Left" ></TextBlock>
-                <xctk:ColorPicker Width="120"  Height="23"  VerticalAlignment="Center" SelectedColor="{Binding K1BackgroundColor}"/>
-            </DockPanel>
-            <DockPanel Margin="20,0,0,0" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center">
-                <TextBlock  Text ="开关量输出K2下回路颜色    :  " VerticalAlignment="Center" HorizontalAlignment="Left" ></TextBlock>
-                <xctk:ColorPicker Width="120"  Height="23"  VerticalAlignment="Center" SelectedColor="{Binding K2BackgroundColor}"/>
-            </DockPanel>
-            <DockPanel Margin="20,0,0,0" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center">
-                <TextBlock  Text ="开关量输出k3下回路颜色    :  " VerticalAlignment="Center" HorizontalAlignment="Left" ></TextBlock>
-                <xctk:ColorPicker Width="120"  Height="23"  VerticalAlignment="Center" SelectedColor="{Binding K3BackgroundColor}"/>
-            </DockPanel>
-            <DockPanel Margin="20,0,0,0" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center">
-                <TextBlock  Text ="开关量输出K4下回路颜色    :  " VerticalAlignment="Center" HorizontalAlignment="Left" ></TextBlock>
-                <xctk:ColorPicker Width="120"  Height="23"  VerticalAlignment="Center" SelectedColor="{Binding K4BackgroundColor}"/>
-            </DockPanel>
-            <DockPanel Margin="20,0,0,0" Grid.Row="4" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center">
-                <TextBlock  Text ="开关量输出K5下回路颜色    :  " VerticalAlignment="Center" HorizontalAlignment="Left" ></TextBlock>
-                <xctk:ColorPicker Width="120"  Height="23"  VerticalAlignment="Center" SelectedColor="{Binding K5BackgroundColor}"/>
-            </DockPanel>
-            <DockPanel Margin="20,0,0,0" Grid.Row="5" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center">
-                <TextBlock  Text ="开关量输出K6下回路颜色    :  " VerticalAlignment="Center" HorizontalAlignment="Left" ></TextBlock>
-                <xctk:ColorPicker Width="120"  Height="23"  VerticalAlignment="Center" SelectedColor="{Binding K6BackgroundColor}"/>
-            </DockPanel>
-            <DockPanel Margin="20,0,0,0" Grid.Row="6" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center">
-                <TextBlock  Text ="开关量输出K7下回路颜色    :  " VerticalAlignment="Center" HorizontalAlignment="Left" ></TextBlock>
-                <xctk:ColorPicker Width="120"  Height="23"  VerticalAlignment="Center" SelectedColor="{Binding K7BackgroundColor}"/>
-            </DockPanel>
-            <DockPanel Margin="20,0,0,0" Grid.Row="7" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center">
-                <TextBlock  Text ="开关量输出K8下回路颜色    :  " VerticalAlignment="Center" HorizontalAlignment="Left" ></TextBlock>
-                <xctk:ColorPicker Width="120"  Height="23"  VerticalAlignment="Center" SelectedColor="{Binding K8BackgroundColor}"/>
-            </DockPanel>
-            
-            
-           
-            <!--<DockPanel Margin="20,0,0,0" Grid.Row="9" Grid.Column="1"  VerticalAlignment="Center">
-                <CheckBox Content="显示上下限设置信息             " VerticalAlignment="Center" IsChecked="{Binding IsDetailed}"/>
-                
-            </DockPanel>-->
+            <TextBlock  Margin="25,10,0,0" Height="25"  Grid.Row="3" VerticalAlignment="Center" Text="终端名称位置的后方追加显示额外信息:" ></TextBlock>
+                <RadioButton Margin="50,0,0,0" Height="25" VerticalContentAlignment="Center" Grid.Row="4" IsChecked="{Binding OpExtendShow, Converter={StaticResource RadioButtonIntConvert}, ConverterParameter=1}" Content="无" ></RadioButton>
+                <RadioButton Margin="50,0,0,0" Height="25" VerticalContentAlignment="Center" Grid.Row="5" IsChecked="{Binding OpExtendShow, Converter={StaticResource RadioButtonIntConvert}, ConverterParameter=2}" Content="该终端查询的第一条故障信息"></RadioButton>
+                <RadioButton Margin="50,0,0,0" Height="25" VerticalContentAlignment="Center" Grid.Row="6" IsChecked="{Binding OpExtendShow, Converter={StaticResource RadioButtonIntConvert}, ConverterParameter=3}" Content="该终端的备注信息"></RadioButton>
 
 
-            <DockPanel Margin="0,0,0,0" Grid.Row="8" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center">
-                <CheckBox HorizontalAlignment="Left" VerticalAlignment="Center" Content="手动选测自动显示数据" IsChecked="{Binding Item[14].IsSelected}"></CheckBox>
-            </DockPanel>
-            <DockPanel Margin="0,0,0,0" Grid.Row="8" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center">
-                <CheckBox HorizontalAlignment="Left" VerticalAlignment="Center" Content="显示回路数据电压电流等单位" IsChecked="{Binding Item[15].IsSelected}"></CheckBox>
-            </DockPanel>
-            <DockPanel Margin="0,0,0,0" Grid.Row="15"  Grid.ColumnSpan="2" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center">
-                <CheckBox HorizontalAlignment="Left" VerticalAlignment="Center" Content="历史数据查询显示高级选项" IsChecked="{Binding Item[16].IsSelected}"></CheckBox>
-                <CheckBox IsChecked="{Binding IsShowReverseData}" Margin="20,0,0,0" Content="历史数据查询倒序显示" ></CheckBox>
-                <CheckBox IsChecked="{Binding IsShowSumPower}"  Margin="20,0,0,0" Content="显示三相功率和总功率" ToolTip="终端巡测及数据查询界面显示三相功率和总功率" ></CheckBox>
-            </DockPanel>
-            <DockPanel Margin="0,0,0,0" Grid.Row="12" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Center">
-                <CheckBox HorizontalAlignment="Left" VerticalAlignment="Center" Content="屏蔽回路显示电流数据" IsChecked="{Binding Item[17].IsSelected}"></CheckBox>
-                <CheckBox HorizontalAlignment="Left" VerticalAlignment="Center" Content="屏蔽回路显示电压数据" IsChecked="{Binding Item[19].IsSelected}" Margin="30,0,0,0"></CheckBox>
-                <CheckBox HorizontalAlignment="Left" VerticalAlignment="Center" Content="最新数据显示屏蔽列" IsChecked="{Binding IsShowShieldMark}" Margin="30,0,0,0"></CheckBox>
-            </DockPanel>
-            <DockPanel Grid.Row="13" HorizontalAlignment="Left" Grid.ColumnSpan="2" VerticalAlignment="Center">
-                
-                
+            <!--<DockPanel Grid.Row="13" HorizontalAlignment="Left" Grid.ColumnSpan="2" VerticalAlignment="Center">
+
+
                 <TextBlock Text="最新数据额外显示信息" Margin="0,0,0,0" VerticalAlignment="Center"></TextBlock>
                 <RadioButton IsChecked="{Binding OpExtendShow, Converter={StaticResource RadioButtonIntConvert}, ConverterParameter=1}" Content="无" Margin="25,0,0,0"></RadioButton>
                 <RadioButton IsChecked="{Binding OpExtendShow, Converter={StaticResource RadioButtonIntConvert}, ConverterParameter=2}" Content="该终端查询到的第一条故障" Margin="5,0,0,0"></RadioButton>
                 <RadioButton IsChecked="{Binding OpExtendShow, Converter={StaticResource RadioButtonIntConvert}, ConverterParameter=3}" Content="备注信息" Margin="5,0,0,0"></RadioButton>
+            </DockPanel>-->
+            <TextBlock  Margin="25,17,0,0" Height="18"  Grid.Row="7" VerticalAlignment="Center" Text="回路数据列显示:" ></TextBlock>
+                <DockPanel Margin="50,0,0,0" Height="25"  Grid.Row="8" VerticalAlignment="Center"  >
+                <CheckBox  Width="85" Content="序号" VerticalAlignment="Center" IsChecked="{Binding Item[0].IsSelected}"/>
+                <CheckBox  Width="85"  Content="回路名称" VerticalAlignment="Center" IsChecked="{Binding Item[1].IsSelected}"/>
+                <CheckBox   Width="85"   Content="参考电流" VerticalAlignment="Center" IsChecked="{Binding Item[2].IsSelected}"/>
+                <CheckBox   Width="85"    Content="亮灯率" VerticalAlignment="Center" IsChecked="{Binding Item[3].IsSelected}"/>
+                <CheckBox Width="85" HorizontalAlignment="Center" IsChecked ="{Binding Items[201].ValueBool}"  VerticalAlignment="Center" Content="相位"></CheckBox>
+
+                <CheckBox  Width="120"  Content="ABC各相总电流" VerticalAlignment="Center" HorizontalAlignment="Left" IsChecked="{Binding IsShowAbc}"/>
             </DockPanel>
 
-            <DockPanel Grid.Row="14" HorizontalAlignment="Left" Grid.ColumnSpan="2" VerticalAlignment="Center">
-                <TextBlock  Text ="最新数据呈现模式:" VerticalAlignment="Center" HorizontalAlignment="Left" ></TextBlock>
-                <RadioButton IsChecked="{Binding Path=NewDataShowMode, Converter={StaticResource RadioButtonIntConvert}, ConverterParameter=1}"  Margin="15,0,0,0" Content="模式1"  Name="radioButton1" VerticalAlignment="Center" />
-                <RadioButton  IsChecked="{Binding Path=NewDataShowMode, Converter={StaticResource RadioButtonIntConvert}, ConverterParameter=2}"  Content="模式2" Name="radioButton2" VerticalAlignment="Center" />
+            <DockPanel Margin="50,0,0,0" Height="25"  Grid.Row="9" VerticalAlignment="Center"  >
+                <CheckBox   Width="85"   VerticalAlignment="Center" Content="屏蔽列" IsChecked="{Binding IsShowShieldMark}"></CheckBox>
+                <CheckBox   Width="85"  Content="互感器比" VerticalAlignment="Center" IsChecked="{Binding Item[5].IsSelected}"/>
+                <CheckBox Width="85" Content="电流上限" VerticalAlignment="Center" IsChecked="{Binding Item[6].IsSelected}"/>
+                <CheckBox  Width="230"  Content="线路方向 [附属线路检测名称][线路]" VerticalAlignment="Center" HorizontalAlignment="Left" IsChecked="{Binding Item[20].IsSelected}"/>
+            </DockPanel>
+
+            <DockPanel Margin="50,0,0,0" Height="25"  Grid.Row="10" VerticalAlignment="Center"  >
+                <CheckBox   Width="85"    Content="功率" VerticalAlignment="Center" IsChecked="{Binding Item[18].IsSelected}"/>
+                <CheckBox   Width="85"    Content="功率因数"   VerticalAlignment="Center" IsChecked="{Binding Item[4].IsSelected}"/>
+                <CheckBox Width="85"  Content="电流下限" VerticalAlignment="Center" IsChecked="{Binding Item[7].IsSelected}"/>
+                <CheckBox Width="230"  Content="线路状态 [附属线路检测状态][检测]" VerticalAlignment="Center" HorizontalAlignment="Left" IsChecked="{Binding Item[8].IsSelected}"/>
+
+            </DockPanel>
 
 
-                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" Margin="30,0,0,0" Text="最新数据宽度"></TextBlock>
-                <TextBox HorizontalAlignment="Left" VerticalAlignment="Center" Height="25" Width="60" Margin="10,0,0,0" Text="{Binding NewDataWidth}"></TextBox>
-            </DockPanel>
-            <DockPanel Grid.Row="16" HorizontalAlignment="Left" Grid.ColumnSpan="2" VerticalAlignment="Center">
 
+            <CheckBox x:Name="cbx1"  Margin="25,10,0,0" IsEnabled="{Binding IsChecked ,ElementName=radioButton2}" Grid.Row="11" Height="25" VerticalContentAlignment="Center"  Content="模式2下显示昨日数据 [系统查询昨日所有数据，并将最匹配数据呈现在列表]"  VerticalAlignment="Center" IsChecked="{Binding Item[9].IsSelected}"/>
 
-                <TextBlock Text="状态栏显示" Margin="0,0,0,0" VerticalAlignment="Center"></TextBlock>
-                <CheckBox IsChecked="{Binding IsStateBarShowPhyId }" Content="终端物理地址" Margin="25,0,0,0"></CheckBox>
-                <CheckBox IsChecked="{Binding IsStateBarShowRtuName}" Content="终端名称" Margin="5,0,0,0"></CheckBox>
-                <CheckBox IsChecked="{Binding IsStateBarShowGrpName}" Content="终端所属分组" Margin="5,0,0,0"></CheckBox>
-                <CheckBox IsChecked="{Binding IsStateBarShowRemark}" Content="终端备注" Margin="5,0,0,0"></CheckBox>
-            </DockPanel>
-            <DockPanel Grid.Row="17" HorizontalAlignment="Left" Grid.ColumnSpan="2" VerticalAlignment="Center" >
-                <CheckBox  Margin="1,4,1,1" IsChecked="{Binding IsCloseMeasureNewData}" Content="选测后,关闭最新数据框" VerticalAlignment="Center" ></CheckBox>
-                <TextBlock Margin="15,0,0,0"  VerticalAlignment="Center" Text="选测,超过" />
-                <TextBox   MinWidth="50" Text="{Binding MeasureOverTime}" VerticalAlignment="Center" ></TextBox>
-                <TextBlock Margin="5,0,0,0"  VerticalAlignment="Center" Text="秒,判定为选测失败" />
-                <TextBlock Margin="15,0,0,0" Text="[重启有效]" VerticalAlignment="Center" />
-            </DockPanel>
-            
-            <DockPanel Margin="20,0,0,0" Grid.Row="18" Grid.Column="1"  VerticalAlignment="Center">
-                <Button  Tag="11060007" Content="应用" Command="{Binding CmdApply}" Grid.ColumnSpan="2"  Margin="0,0,50,0"
-                     Width="100" Height="25"  Grid.Row="10"></Button>
-            </DockPanel>
+                <CheckBox  Margin="50,0,0,0" Grid.Row="12" Height="25"  IsEnabled="{Binding IsChecked ,ElementName=radioButton2}"  Content="显示昨日数据接触器状态 [状态1]" VerticalAlignment="Center"   IsChecked="{Binding Item[10].IsSelected}"/>
+                <CheckBox   Margin="50,0,0,0" Grid.Row="13" Height="25"  IsEnabled="{Binding IsChecked ,ElementName=radioButton2}"  Content="显示昨日数据电压 [电压1]" VerticalAlignment="Center" IsChecked="{Binding Item[11].IsSelected}"/>
+                <CheckBox   Margin="50,0,0,0" Grid.Row="14" Height="25"   IsEnabled="{Binding IsChecked ,ElementName=radioButton2}"  Content="显示昨日数据电流 [电流1]" VerticalAlignment="Center" IsChecked="{Binding Item[12].IsSelected}"/>
+                <CheckBox   Margin="50,0,0,0" Grid.Row="15" Height="25"   IsEnabled="{Binding IsChecked ,ElementName=radioButton2}"  Content="显示昨日数据功率 [功率1]" VerticalAlignment="Center" IsChecked="{Binding Item[13].IsSelected}"/>
+                <CheckBox  Margin="50,0,0,0" Grid.Row="16" Height="25"   IsEnabled="{Binding IsChecked ,ElementName=radioButton2}"  Content="昨日所有数据使用下拉列表显示 [否则列表框显示]" VerticalAlignment="Center" IsChecked="{Binding IsShowComboBox}"/>
+
         </Grid>
-    </Grid>
+
+        <!-- 显示模式 -->
+        <Grid Grid.Row="3"  Margin="0,15,0,0" VerticalAlignment="Center">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
+
+
+            <TextBlock Margin="25,17,0,0" Height="18"  Text="历史数据查询显示选项:[重启有效]" ></TextBlock>
+            <CheckBox   Margin="50,0,0,0" Height="25" VerticalContentAlignment="Center" Grid.Row="1"  Content="显示数据选项 [指定时刻查询全部设备数据、对比时刻查询全部设备数据]" IsChecked="{Binding Item[16].IsSelected}"></CheckBox>
+            <!--<CheckBox IsChecked="{Binding IsShowReverseData}"   Margin="50,0,0,0" Height="25" VerticalContentAlignment="Center" Grid.Row="1"   Content="历史数据查询倒序显示" ></CheckBox>-->
+            <CheckBox IsChecked="{Binding IsShowSumPower}"    Margin="50,0,0,0" Height="25" VerticalContentAlignment="Center" Grid.Row="2"   Content="显示三相功率和总功率 [终端巡测及数据查询界面显示]" ToolTip="终端巡测及数据查询界面显示三相功率和总功率" ></CheckBox>
+         
+            
+ 
+                <TextBlock Margin="25,17,0,0" Height="18" Grid.Row="3" Text="系统选中终端设备时，在状态栏显示:"  VerticalAlignment="Center"></TextBlock>
+            <CheckBox IsChecked="{Binding IsStateBarShowPhyId }" Content="终端物理地址" Margin="50,0,0,0" Height="25" VerticalContentAlignment="Center" Grid.Row="4" ></CheckBox>
+            <CheckBox IsChecked="{Binding IsStateBarShowRtuName}" Content="终端名称" Margin="50,0,0,0" Height="25" VerticalContentAlignment="Center" Grid.Row="5" ></CheckBox>
+            <CheckBox IsChecked="{Binding IsStateBarShowGrpName}" Content="终端所属分组" Margin="50,0,0,0" Height="25" VerticalContentAlignment="Center" Grid.Row="6" ></CheckBox>
+            <CheckBox IsChecked="{Binding IsStateBarShowRemark}" Content="终端备注" Margin="50,0,0,0" Height="25" VerticalContentAlignment="Center" Grid.Row="7" ></CheckBox>
+             
+            
+        </Grid>
+        <!--<Button  Tag="11060007" Content="应用" Command="{Binding CmdApply}" Grid.ColumnSpan="2"  Margin="0,0,50,0"
+                     Width="100" Height="25"  Grid.Row="3"></Button>-->
+
+        <Grid Grid.Row="4"  Margin="0,15,0,0" VerticalAlignment="Center">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
+
+
+            <TextBlock  Margin="25,3,0,5"   Height="18"  Text="模式1下开关量输出显示选项:" ></TextBlock>
+            <CheckBox Margin="50,0,0,0"  Height="25"  Grid.Row="1" HorizontalAlignment="Left" IsChecked ="{Binding Items[202].ValueBool}"  VerticalAlignment="Center" Content="不显示无回路的开关量输出"></CheckBox>
+
+            <CheckBox Margin="50,0,0,0"   Height="25"   Grid.Row="2" HorizontalAlignment="Left" IsChecked ="{Binding Items[203].ValueBool}"  VerticalAlignment="Center" Content="不显示未绑定时间表的开关量输出"></CheckBox>
+
+        </Grid>
+            
+        <Button  Tag="11060007" Content="应用" Command="{Binding CmdApply}" VerticalAlignment="Top" 
+                     Width="120" Height="25" Grid.Row="5"  HorizontalAlignment="Left" Margin="380,15,0,0"></Button>
+        </Grid>
+ 
 </UserControl>

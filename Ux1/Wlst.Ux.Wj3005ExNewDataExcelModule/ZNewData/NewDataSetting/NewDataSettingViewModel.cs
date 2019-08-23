@@ -12,6 +12,229 @@ using Wlst.Ux.Wj3005ExNewDataExcelModule.ZNewData.TmlNewDataViewModel.ViewModel;
 
 namespace Wlst.Ux.Wj3005ExNewDataExcelModule.ZNewData.NewDataSetting
 {
+
+
+    /// <summary>
+    /// key：
+    /// Int ：  1-99  ，
+    /// string  101-199 ，
+    /// boolean 201-299 （1、false，2、true ，其他 false），
+    /// double  301-399 
+    /// value:
+    /// 值当中 [[1]] 标记为本次设置的默认值，且必须放在最开始处 ,外部为 [[默认值]]
+    /// </summary>
+    internal partial class SettingDesc
+    {
+        static int Moduleid = NewDataSettingViewModel.Moduleid;// Ux.EquipemntLightFault.Services.ViewIdAssign.ViewIdAssignBaseId + 1;
+        private static bool IsInitDesc = false;
+        internal static Dictionary<int, string> dicDesc = new Dictionary<int, string>();
+        internal static void InitDesc()
+        {
+            if (IsInitDesc) return;
+            IsInitDesc = true;
+
+            dicDesc.Add(0, "本文档为最新数据自定义存储文档.");
+            GetInitInt(ref dicDesc);
+            GetInitString(ref dicDesc);
+            GetInitBoolean(ref dicDesc);
+            GetInitDouble(ref dicDesc);
+            Wlst.Cr.CoreMims.Services.SystemOptionSvr.SaveModuleXml(Moduleid, dicDesc, true);
+        }
+
+
+        /// <summary>
+        /// 未设置默认值则未 0
+        /// </summary>
+        /// <param name="dicDesc"></param>
+        static void GetInitInt(ref Dictionary<int, string> dicDesc)
+        {
+
+        }
+
+        /// <summary>
+        /// 未设置默认值则为 empty
+        /// </summary>
+        /// <param name="dicDesc"></param>
+        static void GetInitString(ref Dictionary<int, string> dicDesc)
+        {
+            int baseid = 100;
+ 
+
+        }
+
+        /// <summary>
+        /// 未设置默认值 则为false
+        /// </summary>
+        /// <param name="dicDesc"></param>
+        static void GetInitBoolean(ref Dictionary<int, string> dicDesc)
+        {
+            int baseid = 200;
+            dicDesc.Add(201, "[[1]]最新数据显示电压相位");
+            dicDesc.Add(202, "[[1]]最新数据模式1下不显示无回路的开关量输出");
+            dicDesc.Add(203, "[[1]]最新数据模式1下不显示未绑定时间表的输出");
+        }
+
+        /// <summary>
+        /// 未设置默认值则未 0
+        /// </summary>
+        /// <param name="dicDesc"></param>
+        static void GetInitDouble(ref Dictionary<int, string> dicDesc)
+        {
+            int baseid = 300;
+        }
+    }
+    internal partial class SettingDesc
+    {
+
+        static string GetDefautString(int key)
+        {
+            if (dicDesc.ContainsKey(key) == false) return string.Empty;
+            if (dicDesc[key].Contains("[[") && dicDesc[key].Contains("]]"))
+            {
+                var tmp = dicDesc[key].Substring(0, dicDesc[key].IndexOf("]]"));
+                var rtn = tmp.Replace("[[", "");
+                return rtn;
+            }
+
+            return string.Empty;
+
+        }
+
+        static int GetDefautInt(int key)
+        {
+            var tmp = GetDefautString(key);
+            int rtn = 0;
+            if (String.IsNullOrEmpty(tmp) == false)
+                Int32.TryParse(tmp, out rtn);
+            return rtn;
+        }
+
+
+        static double GetDefautDoubel(int key)
+        {
+            var tmp = GetDefautString(key);
+            double rtn = 0;
+            if (String.IsNullOrEmpty(tmp) == false)
+                Double.TryParse(tmp, out rtn);
+            return rtn;
+        }
+
+
+        static bool GetDefautBooelan(int key)
+        {
+            var tmp = GetDefautInt(key);
+            return tmp == 2;
+        }
+
+        internal static ObservableDictionary<int, Wlst.Cr.CoreOne.Models.IntStringBoolDoubleKey> GetItems()
+        {
+            var _items = new ObservableDictionary<int, Wlst.Cr.CoreOne.Models.IntStringBoolDoubleKey>();
+
+            /// Int ：  1-99  ，
+            /// string  101-199 ，
+            /// boolean 201-299 （1、false，2、true ，其他 false），
+            /// double  301-399 
+            InitDesc();
+            var keys = SettingDesc.dicDesc.Keys.ToList();
+            foreach (var f in keys)
+            {
+                if (f < 1) continue; //特殊定义
+                if (f < 100)
+                {
+                    var def = SettingDesc.GetDefautInt(f);
+
+                    _items.Add(f, new Cr.CoreOne.Models.IntStringBoolDoubleKey()
+                    {
+                        Key = f,
+                        ValueInt = Wlst.Cr.CoreMims.Services.SystemOptionSvr.GetInt(Moduleid, f, def),
+                    });
+                }
+                if (100 < f && f < 200)
+                {
+                    var def = SettingDesc.GetDefautString(f);
+                    _items.Add(f, new Cr.CoreOne.Models.IntStringBoolDoubleKey()
+                    {
+                        Key = f,
+                        ValueString = Wlst.Cr.CoreMims.Services.SystemOptionSvr.GetString(Moduleid, f, def),
+                    });
+                }
+                if (200 < f && f < 300)
+                {
+                    var def = SettingDesc.GetDefautBooelan(f);
+                    _items.Add(f, new Cr.CoreOne.Models.IntStringBoolDoubleKey()
+                    {
+                        Key = f,
+                        ValueBool = Wlst.Cr.CoreMims.Services.SystemOptionSvr.GetBoolean(Moduleid, f, def),
+                    });
+                }
+                if (300 < f && f < 400)
+                {
+                    var def = SettingDesc.GetDefautDoubel(f);
+                    _items.Add(f, new Cr.CoreOne.Models.IntStringBoolDoubleKey()
+                    {
+                        Key = f,
+                        ValueDouble = Wlst.Cr.CoreMims.Services.SystemOptionSvr.GetDouble(Moduleid, f, def),
+                    });
+                }
+            }
+            return _items;
+        }
+
+        internal static void SaveItems(ObservableDictionary<int, Wlst.Cr.CoreOne.Models.IntStringBoolDoubleKey> items)
+        {
+            var dic = new Dictionary<int, string>();
+            foreach (var f in items)
+            {
+                if (f.Key < 100)
+                {
+                    dic.Add(f.Key, f.Value.ValueInt + "");
+                }
+                if (100 < f.Key && f.Key < 200)
+                {
+                    dic.Add(f.Key, f.Value.ValueString + "");
+                }
+                if (200 < f.Key && f.Key < 300)
+                {
+                    dic.Add(f.Key, (f.Value.ValueBool ? 2 : 1) + "");
+                }
+                if (300 < f.Key && f.Key < 400)
+                {
+                    dic.Add(f.Key, f.Value.ValueDouble + "");
+                }
+            }
+
+            Wlst.Cr.CoreMims.Services.SystemOptionSvr.SaveModuleXml(Moduleid, dic, false);
+        }
+    }
+
+    public partial class NewDataSettingViewModel
+    {
+        internal static int Moduleid = Ux.Wj3005ExNewDataExcelModule.Services.ViewIdAssign.ViewIdAssignBaseId + 1;
+        private ObservableDictionary<int, Wlst.Cr.CoreOne.Models.IntStringBoolDoubleKey> _items = null;
+
+        public ObservableDictionary<int, Wlst.Cr.CoreOne.Models.IntStringBoolDoubleKey> Items
+        {
+            get
+            {
+                if (_items == null || _items.Count == 0)
+                {
+                    if (_items == null)
+                        _items = new ObservableDictionary<int, Wlst.Cr.CoreOne.Models.IntStringBoolDoubleKey>();
+
+                    var tmpDadta = SettingDesc.GetItems();
+                    foreach (var f in tmpDadta)
+                    {
+                        if (_items.ContainsKey(f.Key) == false) _items.Add(f.Key, f.Value);
+                    }
+                }
+                return _items;
+            }
+
+        }
+
+    }
+
+
     [Export(typeof (IINewDataSetting))]
     [PartCreationPolicy(CreationPolicy.Shared)]
     public partial class NewDataSettingViewModel : ObservableObject, IINewDataSetting
@@ -1218,6 +1441,8 @@ namespace Wlst.Ux.Wj3005ExNewDataExcelModule.ZNewData.NewDataSetting
             //      NewDataWidth = Wlst.Cr.CoreOne.Services.OptionXmlSvr.GetOptionInt(2801, 13, 600);//最新数据 宽度
             //IsShowAbc=Wlst.Cr.CoreOne.Services.OptionXmlSvr.GetOptionBool(2801, 14, true);//是否显示 ABC 电流
             Wlst.Cr.CoreOne.Services.OptionXmlSvr.SaveXml(2801, dicOp, dicDesc); //3005模块，数据查询倒序
+
+            SettingDesc.SaveItems(Items);
         }
     }
 

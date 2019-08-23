@@ -6,54 +6,56 @@
              mc:Ignorable="d" 
                    d:DesignHeight="300" d:DesignWidth="600">
 
-    <Grid HorizontalAlignment="Center">
-        <Grid Margin="10">
+    <Grid HorizontalAlignment="Left">
+        <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="30"></RowDefinition>
-                <RowDefinition Height="30"></RowDefinition>
-                <RowDefinition Height="30"></RowDefinition>
-                <RowDefinition Height="30"></RowDefinition>
-                <RowDefinition Height="30"></RowDefinition>
-                <RowDefinition Height="30"></RowDefinition>
-                <RowDefinition Height="30"></RowDefinition>
-                <RowDefinition Height="30"></RowDefinition>
-                <RowDefinition Height="30"></RowDefinition>
-                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="25"></RowDefinition>
+                <RowDefinition Height="25"></RowDefinition>
+                <RowDefinition Height="25"></RowDefinition>
+                <RowDefinition Height="25"></RowDefinition>
+                <RowDefinition Height="25"></RowDefinition>
+                <RowDefinition Height="25"></RowDefinition>
+                <RowDefinition Height="25"></RowDefinition>
+                <RowDefinition Height="25"></RowDefinition>
+                <RowDefinition Height="25"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
 
-            <CheckBox Grid.Row="1" IsChecked="{Binding IsShowGrpInTreeModelShowId}" Content="分组显示组地址" VerticalAlignment="Center" ></CheckBox>
+            <!--<CheckBox Grid.Row="1" IsChecked="{Binding IsShowGrpInTreeModelShowId}" Content="分组显示组地址" VerticalAlignment="Center" ></CheckBox>-->
 
-            <CheckBox IsChecked="{Binding IsShowTreeOnTab}" Content="在主界面树区域显示线路检测设备面板" VerticalAlignment="Center" ></CheckBox>
+            <CheckBox VerticalContentAlignment="Center" IsChecked="{Binding IsShowTreeOnTab}" Content="显示线路检测设备树 [主界面树区域将显示线路检测设备树]" VerticalAlignment="Center" ></CheckBox>
 
-            <CheckBox Grid.Row="2" IsChecked="{Binding IsShowArea}" Content="是否显示区域" VerticalAlignment="Center" ></CheckBox>
+            <TextBlock   Grid.Row="1" VerticalAlignment="Center" Text="线路检测设备树显示设置: [重启或刷新设备树有效]"></TextBlock>
 
-            <CheckBox Grid.Row="3" IsChecked="{Binding IsShowGrp}" Content="是否显示分组" VerticalAlignment="Center" ></CheckBox>
+            <CheckBox VerticalContentAlignment="Center" Grid.Row="2" Margin="25,0,0,0" IsChecked="{Binding IsShowArea}" Content="显示区域节点" VerticalAlignment="Center" ></CheckBox>
 
-            <CheckBox Grid.Row="4" IsChecked="{Binding IsShowFid}" Content="是否显示主设备名称" VerticalAlignment="Center" ></CheckBox>
+            <CheckBox VerticalContentAlignment="Center" Grid.Row="3" Margin="25,0,0,0" IsChecked="{Binding IsShowGrp}" Content="显示分组节点" VerticalAlignment="Center" ></CheckBox>
 
-            <TextBlock Text="线路检测最新数据可选择显示一下数据列" VerticalAlignment="Center" Grid.Row="5"></TextBlock>
-            <DockPanel Grid.Row=" 6" HorizontalAlignment="Left" Grid.ColumnSpan="2" VerticalAlignment="Center" >
-                <CheckBox  Margin="0,0,0,0" Content="信号强度" VerticalAlignment="Center" IsChecked="{Binding IsShowXHQD}"/>
-                <CheckBox  Margin="15,0,0,0"  Content="回路阻抗" VerticalAlignment="Center" IsChecked="{Binding IsShowHLZK}"/>
+            <CheckBox VerticalContentAlignment="Center" Grid.Row="4" Margin="25,0,0,0" IsChecked="{Binding IsShowFid}" Content="显示线路检测设备连接的终端信息 [终端地址-终端名称]" VerticalAlignment="Center" ></CheckBox>
 
-                <CheckBox  Margin="15,0,0,0"  Content="有用信号" VerticalAlignment="Center" IsChecked="{Binding IsShowYYXH}"/>
-                <CheckBox  Margin="15,0,0,0"   Content="信号总数" VerticalAlignment="Center" IsChecked="{Binding IsShowXHZS}"/>
+            <TextBlock Text="线路检测最新数据显示选项 [最新数据刷新立即有效]" VerticalAlignment="Center" Grid.Row="5"></TextBlock>
+            <DockPanel Margin="25,0,0,0" Grid.Row=" 6" HorizontalAlignment="Left" Grid.ColumnSpan="2" VerticalAlignment="Center" >
+                <CheckBox VerticalContentAlignment="Center"  Margin="0,0,0,0" Content="信号强度" VerticalAlignment="Center" IsChecked="{Binding IsShowXHQD}"/>
+                <CheckBox  VerticalContentAlignment="Center" Margin="15,0,0,0"  Content="回路阻抗" VerticalAlignment="Center" IsChecked="{Binding IsShowHLZK}"/>
+
+                <CheckBox VerticalContentAlignment="Center"  Margin="15,0,0,0"  Content="有用信号" VerticalAlignment="Center" IsChecked="{Binding IsShowYYXH}"/>
+                <CheckBox VerticalContentAlignment="Center"  Margin="15,0,0,0"   Content="信号总数" VerticalAlignment="Center" IsChecked="{Binding IsShowXHZS}"/>
             </DockPanel>
 
-            <DockPanel Grid.Row=" 7" HorizontalAlignment="Left" Grid.ColumnSpan="2" VerticalAlignment="Center" >
-                <CheckBox  Margin="0,0,0,0" Content="有功功率" VerticalAlignment="Center" IsChecked="{Binding IsShowYGGL}"/>
-                <CheckBox  Margin="15,0,0,0" Content="无功功率" VerticalAlignment="Center" IsChecked="{Binding IsShowWGGL}"/>
-                <CheckBox  Margin="15,0,0,0"  Content="功率因素" VerticalAlignment="Center" IsChecked="{Binding IsShowGLYS}"/>
-                <CheckBox  Margin="15,0,0,0"   Content="亮灯率" VerticalAlignment="Center" IsChecked="{Binding IsShowLDL}"/>
+            <DockPanel Margin="25,0,0,0" Grid.Row=" 7" HorizontalAlignment="Left" Grid.ColumnSpan="2" VerticalAlignment="Center" >
+                <CheckBox VerticalContentAlignment="Center"  Margin="0,0,0,0" Content="有功功率" VerticalAlignment="Center" IsChecked="{Binding IsShowYGGL}"/>
+                <CheckBox VerticalContentAlignment="Center"  Margin="15,0,0,0" Content="无功功率" VerticalAlignment="Center" IsChecked="{Binding IsShowWGGL}"/>
+                <CheckBox VerticalContentAlignment="Center"  Margin="15,0,0,0"  Content="功率因素" VerticalAlignment="Center" IsChecked="{Binding IsShowGLYS}"/>
+                <CheckBox VerticalContentAlignment="Center"  Margin="15,0,0,0"   Content="亮灯率" VerticalAlignment="Center" IsChecked="{Binding IsShowLDL}"/>
             </DockPanel>
 
-            <DockPanel Grid.Row=" 8" HorizontalAlignment="Left" Grid.ColumnSpan="2" VerticalAlignment="Center" >
-                <CheckBox  Margin="0,0,0,0" Content="采集时间" VerticalAlignment="Center" IsChecked="{Binding IsShowCJSJ}"/>
-                <CheckBox  Margin="15,0,0,0"   Content="报警设置" VerticalAlignment="Center" IsChecked="{Binding IsShowBJSZ}"/>
-                <CheckBox  Margin="15,0,0,0" Content="线路状态" VerticalAlignment="Center" IsChecked="{Binding IsShowZT}"/>
+            <DockPanel Margin="25,0,0,0" Grid.Row=" 8" HorizontalAlignment="Left" Grid.ColumnSpan="2" VerticalAlignment="Center" >
+                <CheckBox VerticalContentAlignment="Center"  Margin="0,0,0,0" Content="采集时间" VerticalAlignment="Center" IsChecked="{Binding IsShowCJSJ}"/>
+                <CheckBox VerticalContentAlignment="Center"  Margin="15,0,0,0"   Content="报警设置" VerticalAlignment="Center" IsChecked="{Binding IsShowBJSZ}"/>
+                <CheckBox VerticalContentAlignment="Center"  Margin="15,0,0,0" Content="线路状态" VerticalAlignment="Center" IsChecked="{Binding IsShowZT}"/>
             </DockPanel>
             
-            <Button  Tag="11060007" Content="应用" Command="{Binding CmdApply}" 
+            <Button  Tag="11060007" Content="应用" Command="{Binding CmdApply}"  Margin="250,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"
                      Width="120" Height="25" Grid.Row="10"></Button>
         </Grid>
     </Grid>

@@ -18,15 +18,15 @@
         </RadioButtonConverter:RadioButtonIntConverter>
     </UserControl.Resources>
 
-    <Grid HorizontalAlignment="Left">
+    <Grid HorizontalAlignment="Left" Margin="5">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="35"></RowDefinition>
+            <RowDefinition Height="30"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid  Visibility="{Binding IsVisiFault}">          
         <Grid.RowDefinitions>
                 <RowDefinition></RowDefinition>
-                <RowDefinition Height="35"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
         </Grid.RowDefinitions>
         
             <Grid.ColumnDefinitions>
@@ -35,7 +35,7 @@
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
             <Label x:Name="fg" Width="0" HorizontalAlignment="Left"/>
-            <telerik:RadTreeListView Margin="5" Grid.ColumnSpan="3"   AllowDrop="True" AutoGenerateColumns="False" ShowGroupPanel="False" RowIndicatorVisibility="Collapsed" Width="900"
+            <telerik:RadTreeListView  Grid.ColumnSpan="3"   AllowDrop="True" AutoGenerateColumns="False" ShowGroupPanel="False" RowIndicatorVisibility="Collapsed" Width="900"
                                  ItemsSource="{Binding Path=Records}" SelectedItem="{Binding CurrentSelectItem}" ScrollViewer.VerticalScrollBarVisibility="Auto" FrozenColumnCount="4" >
                 <telerik:RadTreeListView.Columns>
                     <telerik:GridViewDataColumn Header="故障编码"  IsResizable="False"  IsFilterable="False"  Width="70" DataMemberBinding="{Binding Path=FaultId,Mode=TwoWay}" IsReadOnly="True" />
@@ -209,7 +209,7 @@
                 </telerik:RadTreeListView.Columns>
                 </telerik:RadTreeListView>
       
-            <Grid Grid.Row="1" Grid.ColumnSpan="3" Margin="5,0,0,0">
+            <Grid Grid.Row="1" Grid.ColumnSpan="3" VerticalAlignment="Center" Margin="0,5,0,0" Height="25">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="Auto"/>
@@ -218,7 +218,7 @@
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <TextBlock Foreground="{Binding ElementName=fg, Path=Foreground}" Text="统计报警次数时间 "  VerticalAlignment="Center"/>
                 <!--<TextBox Grid.Column="1"  Text="{Binding TimeLong}" Width="60" Height="25" VerticalAlignment="Center"/>-->
@@ -475,11 +475,11 @@
                
                 <TextBlock Grid.Column="0" Grid.ColumnSpan="4" Foreground="{Binding ElementName=fg, Path=Foreground}" Text="{Binding ShowMsg}" VerticalAlignment="Center" />
 
-                <Button Margin="20,3,20,3" Grid.Column="6" Content="增加" Command="{Binding CmdAdd}" Width="90" Height="25"  HorizontalAlignment="Right" />
-                <Button Margin="20,3,20,3"  Grid.Column="7" Content="删除" Command="{Binding CmdDelete}" Width="90" Height="25"  HorizontalAlignment="Right" />
-                <Button Margin="20,3,20,3"  Grid.Column="8" Content="保存" Command="{Binding CmdSaveAll}" Width="90" Height="25"  HorizontalAlignment="Right" />
+                <Button Margin="20,5,20,0" Grid.Column="6" Content="增加" Command="{Binding CmdAdd}" Width="90" Height="25"  HorizontalAlignment="Right" />
+                <Button Margin="20,5,20,0"  Grid.Column="7" Content="删除" Command="{Binding CmdDelete}" Width="90" Height="25"  HorizontalAlignment="Right" />
+                <Button Margin="20,5,0,0"  Grid.Column="8" Content="保存" Command="{Binding CmdSaveAll}" Width="90" Height="25"  HorizontalAlignment="Right" />
 
-            <CheckBox Name="bjgz"   Grid.Column="5" Margin="20,0,0,0"  Content="报警规则" IsChecked="{Binding IsCheckedRules}"  VerticalAlignment="Center" HorizontalAlignment="Right" />
+            <CheckBox Name="bjgz"   Grid.Column="5" Margin="20,5,0,0"  Content="报警规则" IsChecked="{Binding IsCheckedRules}" VerticalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Right" />
             </Grid>
             
     </Grid>

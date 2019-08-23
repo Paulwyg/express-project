@@ -186,9 +186,7 @@ namespace Wlst.Ux.WJ3005Module.Wj3005TmlInfoSetViewModel.ViewModel
             DataCreateZcSjStart = DateTime.Now.AddHours(-6);
 
 
-
-
-
+         
             InitEvent();
             //Wlst.Cr.Core.ModuleServices.DelayEvent.RegisterDelayEvent(RequestHttpData,3);
             if (parsObjects.Length==1)
@@ -302,7 +300,7 @@ namespace Wlst.Ux.WJ3005Module.Wj3005TmlInfoSetViewModel.ViewModel
         public void RequestHttpData()
         {
 
-            if (Wlst.Sr.EquipmentInfoHolding.Services.Others.SeverHttpPort == "0") return;
+            //if (Wlst.Sr.EquipmentInfoHolding.Services.Others.SeverHttpPort == "0") return;
             for (int i = 0; i < 7; i++)
             {
                 RtuRemarks[i]="";
@@ -318,8 +316,9 @@ namespace Wlst.Ux.WJ3005Module.Wj3005TmlInfoSetViewModel.ViewModel
             var base64data = System.Convert.ToBase64String(EquimentRemarkRead.SerializeToBytes(nt));
 
             //http get
-            var url ="http://"+ Wlst.Sr.EquipmentInfoHolding.Services.Others.SeverIpAddr + ":" + Wlst.Sr.EquipmentInfoHolding.Services.Others.SeverHttpPort + "/mims/get10010";//"http://10.3.9.8:18080/mims/get10010"
-            var data = wlst.sr.iif.HttpGetPost.HttpGet(url, "?pb2=" + base64data);
+            //var url ="http://"+ Wlst.Sr.EquipmentInfoHolding.Services.Others.SeverIpAddr + ":" + Wlst.Sr.EquipmentInfoHolding.Services.Others.SeverHttpPort + "/mims/get10010";//"http://10.3.9.8:18080/mims/get10010"
+            var url = Wlst.Cr.CoreMims.HttpGetPostforMsgWithMobile.HttpUrl + "get10010";
+          var data = wlst.sr.iif.HttpGetPost.HttpGet(url, "?pb2=" + base64data);
             if (data == null) return;
             // 反序列化get到的数据
             var databk = Wlst.iif.EquimentRemarkReturn.Deserialize(System.Convert.FromBase64String(data));
@@ -335,13 +334,14 @@ namespace Wlst.Ux.WJ3005Module.Wj3005TmlInfoSetViewModel.ViewModel
                 RtuRemarks.Add(g.Remark6);
                 RtuRemarks.Add(g.Remark7);
             }
+            this.RaisePropertyChanged(() => this.RtuRemarks);
 
         }
 
         public void PostHttpData(int rtuid)
         {
 
-            if (Wlst.Sr.EquipmentInfoHolding.Services.Others.SeverHttpPort == "0") return;
+            //if (Wlst.Sr.EquipmentInfoHolding.Services.Others.SeverHttpPort == "0") return;
             //请求数据协议格式，详见Sr\wlst.sr.iif\GoogleBuf\proto
             var nt = new Wlst.iif.EquimentRemarkSave();
             var datat = new List<EquimentRemarkSave.SingleEquimentRemark>();
@@ -365,8 +365,8 @@ namespace Wlst.Ux.WJ3005Module.Wj3005TmlInfoSetViewModel.ViewModel
             var base64data = System.Convert.ToBase64String(EquimentRemarkSave.SerializeToBytes(nt));
 
             //http get
-            var url ="http://"+ Wlst.Sr.EquipmentInfoHolding.Services.Others.SeverIpAddr + ":" + Wlst.Sr.EquipmentInfoHolding.Services.Others.SeverHttpPort + "/mims/post10011";//"http://10.3.9.8:18080/mims/get10010"
-
+            //var url ="http://"+ Wlst.Sr.EquipmentInfoHolding.Services.Others.SeverIpAddr + ":" + Wlst.Sr.EquipmentInfoHolding.Services.Others.SeverHttpPort + "/mims/post10011";//"http://10.3.9.8:18080/mims/get10010"
+            var url = Wlst.Cr.CoreMims.HttpGetPostforMsgWithMobile.HttpUrl + "post10011";
             var data = wlst.sr.iif.HttpGetPost.HttpPost(url, "?pb2=" + base64data);
             if (data == null) return;
             // 反序列化get到的数据
@@ -459,7 +459,7 @@ namespace Wlst.Ux.WJ3005Module.Wj3005TmlInfoSetViewModel.ViewModel
             else if ((int)t.RtuModel == 6005)
             {
                 CountSwitchIn = 16;
-                CountSwitchOut = 6;
+                CountSwitchOut = 8;
                 CountAmpLoops = 36;
                 CountVectorSample = 36;
                 Visi = Visibility.Collapsed;
@@ -508,6 +508,10 @@ namespace Wlst.Ux.WJ3005Module.Wj3005TmlInfoSetViewModel.ViewModel
 
             Visi = info.RtuModel == EnumRtuModel.Wj3006 ? Visibility.Visible : Visibility.Collapsed;
             CanChangeModuel = info.RtuModel == EnumRtuModel.Wj3006 ? false : true;
+            Visi = info.RtuModel == EnumRtuModel.Gz6005 ? Visibility.Visible : Visibility.Collapsed;
+            CanChangeModuel = info.RtuModel == EnumRtuModel.Gz6005 ? false : true;
+
+
 
             var tmps = new ObservableCollection<RtuLoopInfoVm>();
             //  RtuParaAnalogueAmpViewModels.Clear();
@@ -562,9 +566,7 @@ namespace Wlst.Ux.WJ3005Module.Wj3005TmlInfoSetViewModel.ViewModel
             {
                 loops.Add(t.BackRtuParaAnalogueAmp());
             }
-
-        
-
+            
             return new Wj3005Rtu(BackVmToTerminalInfomationBasePara(), BackVmToTerminalInfomationVoltage(),
                                  BackVmToTerminalInfomationGprs(), loops,  swout);
 
@@ -580,6 +582,8 @@ namespace Wlst.Ux.WJ3005Module.Wj3005TmlInfoSetViewModel.ViewModel
             if (RtuModelModify[IntRtuModelModify].Value == 3006) rtuModeltmp = EnumRtuModel.Wj3006;
             if (RtuModelModify[IntRtuModelModify].Value == 3090) rtuModeltmp = EnumRtuModel.Wj3090;
             if (RtuModelModify[IntRtuModelModify].Value == 6005) rtuModeltmp = EnumRtuModel.Gz6005;
+            long imeitmp = 0;
+            Int64.TryParse(RtuIdf, out imeitmp);
 
             return new EquipmentParameter()
                        {
@@ -603,7 +607,8 @@ namespace Wlst.Ux.WJ3005Module.Wj3005TmlInfoSetViewModel.ViewModel
                            RtuRealState = RtuRealState > 2 ? 0 : RtuRealState,
                            Idf = RtuIdf,
                            RtuRegion = this.intRtuRegion,
-                       };
+                           Imei = imeitmp,
+            };
 
         }
 
@@ -1243,6 +1248,7 @@ namespace Wlst.Ux.WJ3005Module.Wj3005TmlInfoSetViewModel.ViewModel
             }
 
             if (!CheckLoopCanBeSave()) return null;
+
 
             return BackViewModelToTerminalInformation();
 
@@ -2361,6 +2367,7 @@ namespace Wlst.Ux.WJ3005Module.Wj3005TmlInfoSetViewModel.ViewModel
             this.Call = info.WjGprs .IsCall ;
             // this.CommType = info.CommType;
             this.Display = info.WjGprs .IsDisplay ;
+
             this.ErrorDelays = info.WjGprs .RtuAlarmDelay ;
             this.HeartBeatPeriod = info.WjGprs .RtuHeartbeatCycle ;
             if (info.WjVoltage.RtuUsedType < 1 || info.WjVoltage.RtuUsedType > 6) 
@@ -2430,6 +2437,7 @@ namespace Wlst.Ux.WJ3005Module.Wj3005TmlInfoSetViewModel.ViewModel
             //地区解析  lvf 2019年5月6日09:14:34
             this.intRtuRegion = info.RtuRegion;
 
+            
 
             try
             {
@@ -3254,10 +3262,67 @@ namespace Wlst.Ux.WJ3005Module.Wj3005TmlInfoSetViewModel.ViewModel
                 {
                     _value19 = value;
                     this.RaisePropertyChanged(() => this.Display);
+                
                 }
             }
         }
 
+
+ 
+
+        private int _value199;
+        public  int DisplayTest
+        {
+            get { return _value199; }
+            set
+            {
+                if (value != _value199)
+                {
+                    _value199 = value;
+                    this.RaisePropertyChanged(() => this.DisplayTest);
+                }
+            }
+        }
+
+
+        private ObservableCollection<NameIntBool> _displayArray=null ;
+        public ObservableCollection<NameIntBool> DisplayArray
+        {
+            get
+            {
+                if(_displayArray ==null)
+                {
+                    _displayArray = new ObservableCollection<NameIntBool>();
+                    _displayArray.Add(new NameIntBool() { IsSelected = true  });
+                    _displayArray.Add(new NameIntBool() { IsSelected = true });
+                    _displayArray.Add(new NameIntBool() { IsSelected = true });
+                    _displayArray.Add(new NameIntBool() { IsSelected = false });
+                    _displayArray.Add(new NameIntBool() { IsSelected = false });
+                    _displayArray.Add(new NameIntBool() { IsSelected = false });
+                    _displayArray.Add(new NameIntBool() { IsSelected = false });
+                    _displayArray.Add(new NameIntBool() { IsSelected = false });
+                    _displayArray.Add(new NameIntBool() { IsSelected = true  });
+                    _displayArray.Add(new NameIntBool() { IsSelected = false });
+                    _displayArray.Add(new NameIntBool() { IsSelected = false });
+                    _displayArray.Add(new NameIntBool() { IsSelected = false });
+                    _displayArray.Add(new NameIntBool() { IsSelected = true  });
+                    _displayArray.Add(new NameIntBool() { IsSelected = false });
+                    _displayArray.Add(new NameIntBool() { IsSelected = false });
+                    _displayArray.Add(new NameIntBool() { IsSelected = false });
+                    _displayArray.Add(new NameIntBool() { IsSelected = false });
+                    _displayArray.Add(new NameIntBool() { IsSelected = false });
+                }
+                return _displayArray;
+            }
+            set
+            {
+                if (_displayArray != value)
+                {
+                    _displayArray = value;
+                    this.RaisePropertyChanged(() => this.DisplayArray);
+                }
+            }
+        }
         /// <summary>
         /// 工作参数 开机申请
         /// </summary>
@@ -3270,6 +3335,19 @@ namespace Wlst.Ux.WJ3005Module.Wj3005TmlInfoSetViewModel.ViewModel
                 {
                     _value20 = value;
                     this.RaisePropertyChanged(() => this.Boot);
+                }
+            }
+        }
+        private int _value192;
+        public int BootTest
+        {
+            get { return _value192; }
+            set
+            {
+                if (value != _value192)
+                {
+                    _value192 = value;
+                    this.RaisePropertyChanged(() => this.BootTest);
                 }
             }
         }
@@ -3287,6 +3365,21 @@ namespace Wlst.Ux.WJ3005Module.Wj3005TmlInfoSetViewModel.ViewModel
                 {
                     _value21 = value;
                     this.RaisePropertyChanged(() => this.Sound);
+                    //SoundTest = _value21 ? 1 : 0;
+                }
+            }
+        }
+
+        private int _value198;
+        public int SoundTest
+        {
+            get { return _value198; }
+            set
+            {
+                if (value != _value198)
+                {
+                    _value198 = value;
+                    this.RaisePropertyChanged(() => this.SoundTest);
                 }
             }
         }
@@ -3303,6 +3396,22 @@ namespace Wlst.Ux.WJ3005Module.Wj3005TmlInfoSetViewModel.ViewModel
                 {
                     _value22 = value;
                     this.RaisePropertyChanged(() => this.Selfcheck);
+
+                    //SelfcheckTest = _value22 ? 1 : 0;
+                }
+            }
+        }
+
+        private int _value197;
+        public int SelfcheckTest
+        {
+            get { return _value197; }
+            set
+            {
+                if (value != _value197)
+                {
+                    _value197 = value;
+                    this.RaisePropertyChanged(() => this.SelfcheckTest);
                 }
             }
         }
@@ -3319,6 +3428,22 @@ namespace Wlst.Ux.WJ3005Module.Wj3005TmlInfoSetViewModel.ViewModel
                 {
                     _value23 = value;
                     this.RaisePropertyChanged(() => this.Alarm);
+
+                    //AlarmTest = _value23 ? 1 : 0;
+                }
+            }
+        }
+
+        private int _value196;
+        public int AlarmTest
+        {
+            get { return _value196; }
+            set
+            {
+                if (value != _value196)
+                {
+                    _value196 = value;
+                    this.RaisePropertyChanged(() => this.AlarmTest);
                 }
             }
         }
@@ -3335,9 +3460,27 @@ namespace Wlst.Ux.WJ3005Module.Wj3005TmlInfoSetViewModel.ViewModel
                 {
                     _value24 = value;
                     this.RaisePropertyChanged(() => this.Report);
+
+                    //ReportTest = _value24 ? 1 : 0;
                 }
             }
         }
+
+        private int _value195;
+        public int ReportTest
+        {
+            get { return _value195; }
+            set
+            {
+                if (value != _value195)
+                {
+                    _value195 = value;
+                    this.RaisePropertyChanged(() => this.ReportTest);
+                }
+            }
+        }
+
+
 
         /// <summary>
         /// 工作参数 允许呼叫
@@ -3351,9 +3494,26 @@ namespace Wlst.Ux.WJ3005Module.Wj3005TmlInfoSetViewModel.ViewModel
                 {
                     _value25 = value;
                     this.RaisePropertyChanged(() => this.Call);
+
+                    //CallTest = _value25 ? 1 : 0;
                 }
             }
         }
+
+        private int _value194;
+        public int CallTest
+        {
+            get { return _value194; }
+            set
+            {
+                if (value != _value194)
+                {
+                    _value194 = value;
+                    this.RaisePropertyChanged(() => this.CallTest);
+                }
+            }
+        }
+
 
         /// <summary>
         /// 工作参数 禁止路由
@@ -3367,9 +3527,26 @@ namespace Wlst.Ux.WJ3005Module.Wj3005TmlInfoSetViewModel.ViewModel
                 {
                     _value26 = value;
                     this.RaisePropertyChanged(() => this.Route);
+
+                    //RouteTest = _value26 ? 1 : 0;
                 }
             }
         }
+
+        private int _value193;
+        public int RouteTest
+        {
+            get { return _value193; }
+            set
+            {
+                if (value != _value193)
+                {
+                    _value193 = value;
+                    this.RaisePropertyChanged(() => this.RouteTest);
+                }
+            }
+        }
+
 
         /// <summary>
         /// 工作参数 报警延时（秒）

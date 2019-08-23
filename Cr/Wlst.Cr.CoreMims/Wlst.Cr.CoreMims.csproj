@@ -31,6 +31,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Elysium, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\西安_通用版\Rr\Binaries\WPF\Elysium.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Practices.Prism, Version=4.1.0.1, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Rr\Binaries\WPF\Microsoft.Practices.Prism.dll</HintPath>
@@ -119,12 +123,14 @@
     <Compile Include="ReportExcel\ExcelExport.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\HttpGetPostforMsgWithMobile.cs" />
+    <Compile Include="Services\SettingDesc.cs" />
     <Compile Include="Services\SystemOption.cs" />
     <Compile Include="Services\ImageIcon.cs" />
     <Compile Include="Services\KeepAliveSocket.cs" />
     <Compile Include="Services\ProtocolServer.cs" />
     <Compile Include="Services\ShowNewDataServices.cs" />
     <Compile Include="Services\SndOrderServer.cs" />
+    <Compile Include="Services\SystemOptionSvr.cs" />
     <Compile Include="Services\UserInfo.cs" />
     <Compile Include="Services\VmEventActionProperyChangedBase.cs" />
     <Compile Include="ShowMsgInfo\ShowNewMsg.cs" />

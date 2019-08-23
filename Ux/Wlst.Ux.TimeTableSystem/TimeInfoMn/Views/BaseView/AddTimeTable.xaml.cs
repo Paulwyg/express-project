@@ -89,13 +89,19 @@ namespace Wlst.Ux.TimeTableSystem.TimeInfoMn.Views.BaseView
             {
                 if (t.Item1 > 999999)
                 {
-                    var tmp =
-                        Wlst.Sr.EquipmentInfoHolding.Services.EquipmentDataInfoHold.InfoItems[t.Item1];
 
-                    if (tmp.RtuModel == EnumRtuModel.Wj3005 || tmp.RtuModel == EnumRtuModel.Wj3090)
+                    if (Wlst.Sr.EquipmentInfoHolding.Services.EquipmentDataInfoHold.InfoItems.ContainsKey(t.Item1))
                     {
-                        msag.Add("终端 " + t.Item1 + " " +
-                        Wlst.Sr.EquipmentInfoHolding.Services.EquipmentDataInfoHold.InfoItems[t.Item1].RtuName); }
+                        var tmp =
+                     Wlst.Sr.EquipmentInfoHolding.Services.EquipmentDataInfoHold.InfoItems[t.Item1];
+
+                        if (tmp.RtuModel == EnumRtuModel.Wj3005 || tmp.RtuModel == EnumRtuModel.Wj3090)
+                        {
+                            msag.Add("终端 " + t.Item1 + " " +
+                            Wlst.Sr.EquipmentInfoHolding.Services.EquipmentDataInfoHold.InfoItems[t.Item1].RtuName);
+                        }
+                    }
+                 
                     
                 }
                 else

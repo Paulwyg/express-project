@@ -27,7 +27,7 @@ namespace Wlst.Sr.EquipmentInfoHolding.Services
         public static void InitLoad()
         {
             GrpSingle.InitLoad();
-            Wlst.Sr.EquipmentInfoHolding.Services.Others.SeverHttpPort = Wlst.Cr.CoreMims.SystemOption.GetOptionInt(1001) == -1 ? "8182" : Wlst.Cr.CoreMims.SystemOption.GetOptionInt(1001)+"";
+           // Wlst.Sr.EquipmentInfoHolding.Services.Others.SeverHttpPort = Wlst.Cr.CoreMims.SystemOption.GetOptionInt(1001) == -1 ? "8182" : Wlst.Cr.CoreMims.SystemOption.GetOptionInt(1001)+"";
         }
 
 
@@ -353,9 +353,11 @@ namespace Wlst.Sr.EquipmentInfoHolding.Services
             //获取区域信息
             Wlst.Cr.Core.ModuleServices.DelayEvent.RegisterDelayEvent(RequestHttpRegionInfo, 1);
             Wlst.Cr.Core.ModuleServices.DelayEvent.RegisterDelayEvent(RequestHttpRtuRegion, 1);
+            //RequestHttpRegionInfo();
+
+            //RequestHttpRtuRegion();
 
 
-       
 
         }
 
@@ -408,7 +410,8 @@ namespace Wlst.Sr.EquipmentInfoHolding.Services
             var arg = new PublishEventArgs()
             {
                 EventId = EventIdAssign.RegionNeedUpdate,
-                EventType = PublishEventType.Core
+                EventType = PublishEventType.Core,
+                EventAttachInfo = "ChangeStructure",
             };
             EventPublish.PublishEvent(arg);
         }
@@ -421,6 +424,9 @@ namespace Wlst.Sr.EquipmentInfoHolding.Services
           
 
             if (infos.WstAreagrpRegionInfo.RtuItems == null || infos.WstAreagrpRegionInfo.RtuItems.Count == 0) return;
+
+
+
 
             var rtulst = new List<int>();
             //
@@ -526,15 +532,15 @@ namespace Wlst.Sr.EquipmentInfoHolding.Services
 
 
             }
-            var arg = new PublishEventArgs()
+            var args = new PublishEventArgs()
             {
                 EventId = EventIdAssign.RtuRegionNeedUpdate,
                 EventType = PublishEventType.Core,
                 EventAttachInfo = opChangeImage ? "ChangeImage" : "ChangeStructure",
 
             };
-            arg.AddParams(rtulst);
-            EventPublish.PublishEvent(arg);
+            args.AddParams(rtulst);
+            EventPublish.PublishEvent(args);
 
 
 
@@ -646,7 +652,8 @@ namespace Wlst.Sr.EquipmentInfoHolding.Services
             var base64data = System.Convert.ToBase64String(MsgWithMobile.SerializeToBytes(info));
 
             //http get
-            var url = "http://" + Wlst.Sr.EquipmentInfoHolding.Services.Others.SeverIpAddr + ":" + Wlst.Sr.EquipmentInfoHolding.Services.Others.SeverHttpPort + "/mims/wls_area_region_id_name_info_http";
+            //var url = "http://" + Wlst.Sr.EquipmentInfoHolding.Services.Others.SeverIpAddr + ":" + Wlst.Sr.EquipmentInfoHolding.Services.Others.SeverHttpPort + "/mims/wls_area_region_id_name_info_http";
+            var url = Wlst.Cr.CoreMims.HttpGetPostforMsgWithMobile.HttpUrl + "wls_area_region_id_name_info_http";
             var data = wlst.sr.iif.HttpGetPost.HttpGet(url, "?pb2=" + base64data);
             //var data1 = wlst.sr.iif.HttpGetPost.HttpPost(url , "pb2=" + base64data);
 
@@ -668,7 +675,8 @@ namespace Wlst.Sr.EquipmentInfoHolding.Services
             var arg = new PublishEventArgs()
             {
                 EventId = EventIdAssign.RegionNeedUpdate,
-                EventType = PublishEventType.Core
+                EventType = PublishEventType.Core,
+                EventAttachInfo = "ChangeStructure",
             };
             EventPublish.PublishEvent(arg);
 
@@ -698,7 +706,8 @@ namespace Wlst.Sr.EquipmentInfoHolding.Services
             var base64data = System.Convert.ToBase64String(MsgWithMobile.SerializeToBytes(info));
 
             //http get
-            var url = "http://" + Wlst.Sr.EquipmentInfoHolding.Services.Others.SeverIpAddr + ":" + Wlst.Sr.EquipmentInfoHolding.Services.Others.SeverHttpPort + "/mims/wls_area_region_info_http";//"http://10.3.9.8:18080/mims/get10010"
+            //var url = "http://" + Wlst.Sr.EquipmentInfoHolding.Services.Others.SeverIpAddr + ":" + Wlst.Sr.EquipmentInfoHolding.Services.Others.SeverHttpPort + "/mims/wls_area_region_info_http";//"http://10.3.9.8:18080/mims/get10010"
+            var url = Wlst.Cr.CoreMims.HttpGetPostforMsgWithMobile.HttpUrl + "wls_area_region_info_http";
             var data = wlst.sr.iif.HttpGetPost.HttpGet(url, "?pb2=" + base64data);
             //var data1 = wlst.sr.iif.HttpGetPost.HttpPost(url , "pb2=" + base64data);
 
@@ -752,7 +761,9 @@ namespace Wlst.Sr.EquipmentInfoHolding.Services
                 var base64datas = System.Convert.ToBase64String(MsgWithMobile.SerializeToBytes(infos));
 
                 //http get
-                var urls = "http://" + Wlst.Sr.EquipmentInfoHolding.Services.Others.SeverIpAddr + ":" + Wlst.Sr.EquipmentInfoHolding.Services.Others.SeverHttpPort + "/mims/wls_area_region_info_http";//"http://10.3.9.8:18080/mims/get10010"
+                //var urls = "http://" + Wlst.Sr.EquipmentInfoHolding.Services.Others.SeverIpAddr + ":" + Wlst.Sr.EquipmentInfoHolding.Services.Others.SeverHttpPort + "/mims/wls_area_region_info_http";//"http://10.3.9.8:18080/mims/get10010"
+
+                var urls = Wlst.Cr.CoreMims.HttpGetPostforMsgWithMobile.HttpUrl + "wls_area_region_info_http";
                 var datas = wlst.sr.iif.HttpGetPost.HttpGet(urls, "?pb2=" + base64datas);
                 //var data1 = wlst.sr.iif.HttpGetPost.HttpPost(url , "pb2=" + base64data);
 
@@ -762,7 +773,8 @@ namespace Wlst.Sr.EquipmentInfoHolding.Services
                 if (databks == null || databks.WstAreagrpRegionInfo == null) return;
                 lastdatatime = databks.WstAreagrpRegionInfo.DtUpdate;
                 var rtuinfos = databks.WstAreagrpRegionInfo.RtuItems;
-                foreach(var k in rtuinfos)
+
+                foreach (var k in rtuinfos)
                 {
                     var grptu = new Tuple<int,int, int>(k.AreaId,k.GroupId,k.RegionId);
 
@@ -776,13 +788,22 @@ namespace Wlst.Sr.EquipmentInfoHolding.Services
                     }else
                     {
                         var rtulsttmp = RegionRtuInfo[grptu];
+
+                        //如果有这终端，先删掉
+                        for (int i = rtulsttmp.Count - 1; i >= 0; i--) {
+
+                            if (rtulsttmp[i].Item1 == k.RtuId) rtulsttmp.RemoveAt(i);
+
+                        }
+
+                        //添加新的
                         rtulsttmp.Add(new Tuple<int, int>(k.RtuId, k.ImageType));
                         RegionRtuInfo[grptu] =rtulsttmp;
                     }
 
                     // 记录终端属于哪个地区
 
-                    if(RtuRegionInfo.ContainsKey(k.RtuId)==false)
+                   if(RtuRegionInfo.ContainsKey(k.RtuId)==false)
                     {
                         RtuRegionInfo.Add(k.RtuId, new Tuple<int,int, int,int>(k.AreaId,k.GroupId, k.RegionId,k.ImageType));
                     }else
@@ -806,7 +827,10 @@ namespace Wlst.Sr.EquipmentInfoHolding.Services
                 EventAttachInfo = "ChangeImage" ,
 
             };
-            arg.AddParams(rtulsttt);
+
+
+            var rt = (from t in rtulst orderby t.RtuId select t.RtuId).ToList();
+            arg.AddParams(rt);
             EventPublish.PublishEvent(arg);
 
         }

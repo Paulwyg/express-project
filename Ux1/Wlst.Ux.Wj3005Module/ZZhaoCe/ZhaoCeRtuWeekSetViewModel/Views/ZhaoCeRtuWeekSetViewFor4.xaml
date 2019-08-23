@@ -12,51 +12,50 @@
         <Service:TimeDateConverter x:Key="myDateConverter"/>
         <Service:TimeIs2500 x:Key="TimeIs2500"/>
     </UserControl.Resources>
-    <Grid>
+    <Grid Margin="5" HorizontalAlignment="Left" VerticalAlignment="Top">
 
-            <Grid.RowDefinitions>
-                <RowDefinition Height="20"></RowDefinition>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="5"></RowDefinition>
         </Grid.RowDefinitions>
-            <DockPanel x:Name="SelectedRtuGrpName" Margin="8,0,3,0">
-                <TextBlock Text="当前分组或终端：" VerticalAlignment="Center"></TextBlock>
+        <DockPanel x:Name="SelectedRtuGrpName"  >
+            <TextBlock Text="当前终端：" VerticalAlignment="Center"></TextBlock>
             <TextBlock Text="{Binding CurrentSelectedItem.PhyId}"></TextBlock>
-            <TextBlock Text="-"></TextBlock>
+            <TextBlock Text=" - "></TextBlock>
             <TextBlock Text="{Binding CurrentSelectedItem.RtuName}"></TextBlock>
             <TextBlock Name="msgbox" Text="{Binding MsgBox}" DockPanel.Dock="Right" Foreground="Red" >
             </TextBlock>
             <TextBlock></TextBlock>
-            </DockPanel>
+        </DockPanel>
 
-        <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Auto"
+        <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Auto" Margin="0,5,0,0"
                               VerticalScrollBarVisibility="Auto">
-                <Grid x:Name="GroupTableManage" HorizontalAlignment="Left"  Margin="5,5,0,0" Grid.Row="0">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="200"/>
-                        <RowDefinition Height="200"/>
-                        <RowDefinition Height="{Binding CurrentSelectedItem.GridVisibility[0]}"/>
-                        <RowDefinition Height="{Binding CurrentSelectedItem.GridVisibility[1]}"/>
-                        <RowDefinition Height="*"/>
+            <Grid x:Name="GroupTableManage" HorizontalAlignment="Left"  Grid.Row="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="200"/>
+                    <RowDefinition Height="200"/>
+                    <RowDefinition Height="{Binding CurrentSelectedItem.GridVisibility[0]}"/>
+                    <RowDefinition Height="{Binding CurrentSelectedItem.GridVisibility[1]}"/>
+                    <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="460"></ColumnDefinition>
-                        <ColumnDefinition Width="460"></ColumnDefinition>
-                    </Grid.ColumnDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="460"></ColumnDefinition>
+                    <ColumnDefinition Width="460"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
 
-                    <Grid Column="0" Row="0">
+                <Grid Column="0" Row="0">
 
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="20"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="0"/>
-                        </Grid.RowDefinitions>
-                        <DockPanel Grid.Row="0">
-                            <TextBlock  Text="     K1" VerticalAlignment="Center" Width="50" ></TextBlock>
-                            <TextBlock  Text="    召测时间：" Visibility="Collapsed"></TextBlock>
-                        <TextBlock  Text="{Binding CurrentSelectedItem.WeekTime[0].DateTimeRecevie}" Visibility="Collapsed"></TextBlock>                   
-                        </DockPanel>
-                        <telerik:RadGridView x:Name="_K1GridView" AutoGenerateColumns="False" RowIndicatorVisibility="Collapsed" ShowGroupPanel="False" 
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="0"/>
+                    </Grid.RowDefinitions>
+                    <DockPanel Grid.Row="0">
+                        <TextBlock  Text="K1" VerticalAlignment="Center" Width="50" ></TextBlock>
+                        <TextBlock  Text="召测时间：" Visibility="Collapsed"></TextBlock>
+                        <TextBlock  Text="{Binding CurrentSelectedItem.WeekTime[0].DateTimeRecevie}" Visibility="Collapsed"></TextBlock>
+                    </DockPanel>
+                    <telerik:RadGridView x:Name="_K1GridView" AutoGenerateColumns="False" RowIndicatorVisibility="Collapsed" ShowGroupPanel="False" 
                                      ItemsSource="{Binding CurrentSelectedItem.WeekTime[0].ZhaoCeRtuItems}" FontSize="10" 
                                   RowHeight="8" Width="450" FrozenColumnCount="2" ScrollViewer.HorizontalScrollBarVisibility="{Binding CurrentSelectedItem.WeekTime[0].ZhaoCeScroll}"
                                HorizontalAlignment="Left" MaxHeight="450"  Grid.Row="1"  CanUserResizeColumns="False"   >
@@ -103,15 +102,15 @@
                     <TextBlock Grid.Row="2" x:Name="K1Value3" IsEnabled="{Binding CurrentSelectedItem.WeekTime[0].ZhaoCeIsOverOne[2]}"/>
                 </Grid>
 
-                    <Grid Column="1" Row="0">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="20"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="0"/>
-                        </Grid.RowDefinitions>
+                <Grid Column="1" Row="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="0"/>
+                    </Grid.RowDefinitions>
                     <DockPanel Grid.Row="0">
-                        <TextBlock  Text="     K2" VerticalAlignment="Center" Width="50" HorizontalAlignment="Left"></TextBlock>
-                        <TextBlock  Text="    召测时间：" Visibility="Collapsed"></TextBlock>
+                        <TextBlock  Text="K2" VerticalAlignment="Center" Width="50" HorizontalAlignment="Left"></TextBlock>
+                        <TextBlock  Text="召测时间：" Visibility="Collapsed"></TextBlock>
                         <TextBlock  Text="{Binding CurrentSelectedItem.WeekTime[1].DateTimeRecevie}" Visibility="Collapsed"></TextBlock>
                     </DockPanel>
                     <telerik:RadGridView x:Name="_K2GridView" AutoGenerateColumns="False" RowIndicatorVisibility="Collapsed" ShowGroupPanel="False" 
@@ -119,7 +118,7 @@
                                   RowHeight="8" Width="450" FrozenColumnCount="2"  ScrollViewer.HorizontalScrollBarVisibility="{Binding CurrentSelectedItem.WeekTime[1].ZhaoCeScroll}"
                                              ColumnBackground="{Binding CurrentSelectedItem.WeekTime[1].ZhaoCeBak}" CanUserResizeColumns="False"
                                HorizontalAlignment="Left" MaxHeight="450"   Grid.Row="1" >
-                            <telerik:RadGridView.RowStyle >
+                        <telerik:RadGridView.RowStyle >
                             <Style  TargetType="telerik:GridViewRow">
                                 <Setter Property="Height" Value="20"/>
                             </Style>
@@ -162,15 +161,15 @@
                     <TextBlock Grid.Row="2" x:Name="K2Value3" IsEnabled="{Binding CurrentSelectedItem.WeekTime[1].ZhaoCeIsOverOne[2]}"/>
                 </Grid>
 
-                    <Grid Column="0" Row="1">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="20"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="0"/>
-                        </Grid.RowDefinitions>
+                <Grid Column="0" Row="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="0"/>
+                    </Grid.RowDefinitions>
                     <DockPanel Grid.Row="0">
-                        <TextBlock  Text="     K3" VerticalAlignment="Center" Width="50" HorizontalAlignment="Left"></TextBlock>
-                        <TextBlock  Text="    召测时间：" Visibility="Collapsed"></TextBlock>
+                        <TextBlock  Text="K3" VerticalAlignment="Center" Width="50" HorizontalAlignment="Left"></TextBlock>
+                        <TextBlock  Text="召测时间：" Visibility="Collapsed"></TextBlock>
                         <TextBlock  Text="{Binding CurrentSelectedItem.WeekTime[2].DateTimeRecevie}" Visibility="Collapsed"></TextBlock>
                     </DockPanel>
                     <telerik:RadGridView x:Name="_K3GridView" AutoGenerateColumns="False" RowIndicatorVisibility="Collapsed" ShowGroupPanel="False" ItemsSource="{Binding CurrentSelectedItem.WeekTime[2].ZhaoCeRtuItems}" 
@@ -217,18 +216,18 @@
                     <TextBlock Grid.Row="2" x:Name="K3Value1" IsEnabled="{Binding CurrentSelectedItem.WeekTime[2].ZhaoCeIsOverOne[0]}" Width="{Binding CurrentSelectedItem.WeekTime[2].ZhaoCeType}" />
                     <TextBlock Grid.Row="2" x:Name="K3Value2" IsEnabled="{Binding CurrentSelectedItem.WeekTime[2].ZhaoCeIsOverOne[1]}"/>
                     <TextBlock Grid.Row="2" x:Name="K3Value3" IsEnabled="{Binding CurrentSelectedItem.WeekTime[2].ZhaoCeIsOverOne[2]}"/>
-                    </Grid>
+                </Grid>
 
-                    <Grid Column="1" Row="1">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="20"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="0"/>
-                        </Grid.RowDefinitions>
+                <Grid Column="1" Row="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="0"/>
+                    </Grid.RowDefinitions>
 
                     <DockPanel Grid.Row="0">
-                        <TextBlock  Text="     K4" VerticalAlignment="Center" Width="50" HorizontalAlignment="Left"></TextBlock>
-                        <TextBlock  Text="    召测时间：" Visibility="Collapsed"></TextBlock>
+                        <TextBlock  Text="K4" VerticalAlignment="Center" Width="50" HorizontalAlignment="Left"></TextBlock>
+                        <TextBlock  Text="召测时间：" Visibility="Collapsed"></TextBlock>
                         <TextBlock  Text="{Binding CurrentSelectedItem.WeekTime[3].DateTimeRecevie}" Visibility="Collapsed"></TextBlock>
                     </DockPanel>
                     <telerik:RadGridView x:Name="_K4GridView" AutoGenerateColumns="False" RowIndicatorVisibility="Collapsed" ShowGroupPanel="False" ItemsSource="{Binding CurrentSelectedItem.WeekTime[3].ZhaoCeRtuItems}" 
@@ -278,14 +277,14 @@
                 </Grid>
 
                 <Grid Column="0" Row="2"  >
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="20"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="0"/>
-                        </Grid.RowDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="0"/>
+                    </Grid.RowDefinitions>
                     <DockPanel Grid.Row="0">
-                        <TextBlock  Text="     K5" VerticalAlignment="Center" Width="50" HorizontalAlignment="Left"></TextBlock>
-                        <TextBlock  Text="    召测时间：" Visibility="Collapsed"></TextBlock>
+                        <TextBlock  Text="K5" VerticalAlignment="Center" Width="50" HorizontalAlignment="Left"></TextBlock>
+                        <TextBlock  Text="召测时间：" Visibility="Collapsed"></TextBlock>
                         <TextBlock  Text="{Binding CurrentSelectedItem.WeekTime[4].DateTimeRecevie}" Visibility="Collapsed"></TextBlock>
                     </DockPanel>
                     <telerik:RadGridView x:Name="_K5GridView" AutoGenerateColumns="False" RowIndicatorVisibility="Collapsed" ShowGroupPanel="False" ItemsSource="{Binding CurrentSelectedItem.WeekTime[4].ZhaoCeRtuItems}" 
@@ -332,17 +331,17 @@
                     <TextBlock Grid.Row="2" x:Name="K5Value1" IsEnabled="{Binding CurrentSelectedItem.WeekTime[4].ZhaoCeIsOverOne[0]}" Width="{Binding CurrentSelectedItem.WeekTime[4].ZhaoCeType}"/>
                     <TextBlock Grid.Row="2" x:Name="K5Value2" IsEnabled="{Binding CurrentSelectedItem.WeekTime[4].ZhaoCeIsOverOne[1]}"/>
                     <TextBlock Grid.Row="2" x:Name="K5Value3" IsEnabled="{Binding CurrentSelectedItem.WeekTime[4].ZhaoCeIsOverOne[2]}"/>
-                    </Grid>
+                </Grid>
 
                 <Grid Column="1" Row="2" >
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="20"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="0"/>
-                        </Grid.RowDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="0"/>
+                    </Grid.RowDefinitions>
                     <DockPanel Grid.Row="0">
-                        <TextBlock  Text="     K6" VerticalAlignment="Center" Width="50" HorizontalAlignment="Left"></TextBlock>
-                        <TextBlock  Text="    召测时间：" Visibility="Collapsed"></TextBlock>
+                        <TextBlock  Text="K6" VerticalAlignment="Center" Width="50" HorizontalAlignment="Left"></TextBlock>
+                        <TextBlock  Text="召测时间：" Visibility="Collapsed"></TextBlock>
                         <TextBlock  Text="{Binding CurrentSelectedItem.WeekTime[5].DateTimeRecevie}" Visibility="Collapsed"></TextBlock>
                     </DockPanel>
                     <telerik:RadGridView x:Name="_K6GridView" AutoGenerateColumns="False" RowIndicatorVisibility="Collapsed" ShowGroupPanel="False" ItemsSource="{Binding CurrentSelectedItem.WeekTime[5].ZhaoCeRtuItems}" 
@@ -388,18 +387,18 @@
                     </telerik:RadGridView>
                     <TextBlock Grid.Row="2" x:Name="K6Value1" IsEnabled="{Binding CurrentSelectedItem.WeekTime[5].ZhaoCeIsOverOne[0]}" Width="{Binding CurrentSelectedItem.WeekTime[5].ZhaoCeType}"/>
                     <TextBlock Grid.Row="2" x:Name="K6Value2" IsEnabled="{Binding CurrentSelectedItem.WeekTime[5].ZhaoCeIsOverOne[1]}"/>
-                    <TextBlock Grid.Row="2" x:Name="K6Value3" IsEnabled="{Binding CurrentSelectedItem.WeekTime[5].ZhaoCeIsOverOne[2]}"/> 
-                    </Grid>
+                    <TextBlock Grid.Row="2" x:Name="K6Value3" IsEnabled="{Binding CurrentSelectedItem.WeekTime[5].ZhaoCeIsOverOne[2]}"/>
+                </Grid>
 
                 <Grid Column="0" Row="3">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="20"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="0"/>
-                        </Grid.RowDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="0"/>
+                    </Grid.RowDefinitions>
                     <DockPanel Grid.Row="0">
-                        <TextBlock  Text="     K7" VerticalAlignment="Center" Width="50" HorizontalAlignment="Left"></TextBlock>
-                        <TextBlock  Text="    召测时间：" Visibility="Collapsed"></TextBlock>
+                        <TextBlock  Text="K7" VerticalAlignment="Center" Width="50" HorizontalAlignment="Left"></TextBlock>
+                        <TextBlock  Text="召测时间：" Visibility="Collapsed"></TextBlock>
                         <TextBlock  Text="{Binding CurrentSelectedItem.WeekTime[6].DateTimeRecevie}" Visibility="Collapsed"></TextBlock>
                     </DockPanel>
                     <telerik:RadGridView x:Name="_K7GridView" AutoGenerateColumns="False" RowIndicatorVisibility="Collapsed" ShowGroupPanel="False" ItemsSource="{Binding CurrentSelectedItem.WeekTime[6].ZhaoCeRtuItems}" 
@@ -449,14 +448,14 @@
                 </Grid>
 
                 <Grid Column="1" Row="3" >
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="20"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="0"/>
-                        </Grid.RowDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="0"/>
+                    </Grid.RowDefinitions>
                     <DockPanel Grid.Row="0">
-                        <TextBlock  Text="     K8" VerticalAlignment="Center" Width="50" HorizontalAlignment="Left"></TextBlock>
-                        <TextBlock  Text="    召测时间：" Visibility="Collapsed"></TextBlock>
+                        <TextBlock  Text="K8" VerticalAlignment="Center" Width="50" HorizontalAlignment="Left"></TextBlock>
+                        <TextBlock  Text="召测时间：" Visibility="Collapsed"></TextBlock>
                         <TextBlock  Text="{Binding CurrentSelectedItem.WeekTime[7].DateTimeRecevie}" Visibility="Collapsed"></TextBlock>
                     </DockPanel>
                     <telerik:RadGridView x:Name="_K8GridView" AutoGenerateColumns="False" RowIndicatorVisibility="Collapsed" ShowGroupPanel="False" ItemsSource="{Binding CurrentSelectedItem.WeekTime[7].ZhaoCeRtuItems}" 
@@ -503,13 +502,13 @@
                     <TextBlock Grid.Row="2" x:Name="K8Value1" IsEnabled="{Binding CurrentSelectedItem.WeekTime[7].ZhaoCeIsOverOne[0]}" Width="{Binding CurrentSelectedItem.WeekTime[7].ZhaoCeType}"/>
                     <TextBlock Grid.Row="2" x:Name="K8Value2" IsEnabled="{Binding CurrentSelectedItem.WeekTime[7].ZhaoCeIsOverOne[1]}"/>
                     <TextBlock Grid.Row="2" x:Name="K8Value3" IsEnabled="{Binding CurrentSelectedItem.WeekTime[7].ZhaoCeIsOverOne[2]}"/>
-                    </Grid>
-
-
-
-
-
                 </Grid>
+
+
+
+
+
+            </Grid>
         </ScrollViewer>
-        </Grid>
+    </Grid>
 </UserControl>

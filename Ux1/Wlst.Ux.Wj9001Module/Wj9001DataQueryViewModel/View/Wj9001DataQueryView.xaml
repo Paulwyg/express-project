@@ -14,9 +14,9 @@
         <converters:BoolToVisibleConverter x:Key="BoolToVisible"/>
         <converters:RadioButtonBooleanConverter x:Key="RadioButtonBooleanConverter" />
     </UserControl.Resources>
-    <Grid>
+    <Grid Margin="5" HorizontalAlignment="Left" >
         <Grid.RowDefinitions>
-            <RowDefinition Height="30"/>
+            <RowDefinition Height="25"/>
             <RowDefinition  Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
@@ -24,7 +24,7 @@
             <RowDefinition Height="30"/>
         </Grid.RowDefinitions>
         <Label x:Name="fg"/>
-        <Grid Grid.Row="0">
+        <Grid Grid.Row="0" Width="980" HorizontalAlignment="Left">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
@@ -34,25 +34,25 @@
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
             <RadioButton GroupName="rbGroupNew" Grid.Column="0"  x:Name="rbnew" VerticalContentAlignment="Center" VerticalAlignment="Center" IsChecked="{Binding Path=IsOldFaultQuery, Mode=TwoWay, Converter={StaticResource RadioButtonBooleanConverter}, ConverterParameter=false}" 
                          Content="最新数据" />
             <RadioButton GroupName="rbGroupOld" Grid.Column="1" x:Name="rbold" VerticalContentAlignment="Center" VerticalAlignment="Center" Margin="10,0,0,0" IsChecked="{Binding Path=IsOldFaultQuery, Mode=TwoWay, Converter={StaticResource RadioButtonBooleanConverter}, ConverterParameter=true}" 
                          Content="历史数据" />
-            <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}" Grid.Column="2" Text="起始时间：" Margin="10,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}" Grid.Column="2" Text="起始时间：" Margin="20,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center"/>
             <DatePicker SelectedDateFormat="Short"  Grid.Column="3" MinWidth="160" SelectedDate="{Binding DtStart, Mode=TwoWay}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0"/>
             <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}" Text="结束时间：" Grid.Column="4" Margin="10,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center"/>
             <DatePicker SelectedDateFormat="Short" Grid.Column="5" MinWidth="160" SelectedDate="{Binding DtEnd, Mode=TwoWay}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0"/>
-            <!--<CheckBox x:Name="AdvancedQuery" IsChecked="{Binding IsAdvacnceChecked}" Grid.Column="4" Margin="20,0,10,0" HorizontalAlignment="Center" VerticalAlignment="Center" Content="高级显示"/>-->
-            <CheckBox Grid.Column="6" IsChecked="{Binding IsLockTml}" Content="按设备查询" Margin="20,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-            <Button Content="查 询" Margin="20,0,0,0" MinWidth="120" Command="{Binding CmdBtnQuery}" VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Column="7"/>
+ 
+            <Button Content="查 询"  Height="25" Width="120" Command="{Binding CmdBtnQuery}" VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Column="9"/>
             
         </Grid>
-        <Grid Grid.Row="1" Visibility="{Binding ElementName=AdvancedQuery,Path=IsChecked, Converter={StaticResource BoolToVisible}}" >
+       
+        <Grid Grid.Row="1" Margin="0,5,0,0" Width="980" HorizontalAlignment="Left" Visibility="{Binding ElementName=AdvancedQuery,Path=IsChecked, Converter={StaticResource BoolToVisible}}" >
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                <CheckBox Margin="10,7,10,5" VerticalAlignment="Center" IsChecked="{Binding IsAUpper}" Content="按上限值"/>
+                <CheckBox   VerticalAlignment="Center" IsChecked="{Binding IsAUpper}" Content="按上限值"/>
                 <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}"  Text="上限值为:" Margin="10,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" />
                 <TextBox Margin="4"   Text="{Binding AUpperValue}"   VerticalAlignment="Center"  Width="60" />
                 <CheckBox  Margin="30,7,10,5" VerticalAlignment="Center" IsChecked="{Binding IsLdValue}" Content="按漏电值"/>
@@ -61,16 +61,18 @@
                 <CheckBox  Margin="30,5,10,5" VerticalAlignment="Center" IsChecked="{Binding IsShowErr}" Content="报警状态"/>
             </StackPanel>
         </Grid>
-        <Grid Grid.Row="2">
+
+
+        <Grid Grid.Row="2"  Margin="0,5,0,0" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition MinHeight="25"></RowDefinition>
+                <RowDefinition Height="25"></RowDefinition>
             </Grid.RowDefinitions>
             <StackPanel Orientation="Horizontal" Grid.Column="0">
-                <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}" Visibility="{Binding AttachVisi}" Text="主设备名称：" Margin="10,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                <CheckBox  IsChecked="{Binding IsLockTml}" Content="主设备名称:"   HorizontalAlignment="Left" VerticalAlignment="Center"/>
                 <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}" Visibility="{Binding AttachVisi}" Text="{Binding AttachPhyId}" Margin="10,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center"/>
                 <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}" Visibility="{Binding AttachVisi}" Text="  - " HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="7"/>
                 <TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}" Visibility="{Binding AttachVisi}" Text="{Binding AttachName}" Margin="10,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" />
@@ -90,12 +92,13 @@
                
             </StackPanel>
 
-            <!--<TextBlock  Foreground="{Binding ElementName=fg, Path=Foreground}" Grid.Column="12" HorizontalAlignment="Right" VerticalAlignment="Center" 
-                        Margin="0,0,10,0" Text="注意：请在右侧线检树中选择具体的终端、集中器或者线路进行查询！" />-->
+ 
         </Grid>
+        
+        
         <telerik:RadGridView    AutoGenerateColumns="False"  Grid.Row="3"  AllowDrop="True"   HorizontalAlignment="Left" 
                               ItemsSource="{Binding Path=Items}" ShowGroupPanel="False" Width=" 980"
-                             x:Name="gridview" ShowColumnHeaders="True"   RowIndicatorVisibility="Collapsed" Margin="0,7,0,-7">
+                             x:Name="gridview" ShowColumnHeaders="True"   RowIndicatorVisibility="Collapsed" Margin="0,5,0,0">
             <telerik:RadGridView.Columns>
                 <telerik:GridViewDataColumn  Header="序号"  IsFilterable="False"    DataMemberBinding="{Binding Path=RecordIndex,Mode=TwoWay}"  Width="60" />
                 <telerik:GridViewDataColumn  Header="终端名称"  IsFilterable="False" DataMemberBinding="{Binding  Path=AttachRtuName,Mode=TwoWay}" Width="140" />
@@ -135,19 +138,47 @@
                 </Style>
             </telerik:RadGridView.RowStyle>-->
         </telerik:RadGridView>
-        <Grid Visibility="{Binding PagerVisi}" Margin="0,5,0,5" Grid.Row="4" HorizontalAlignment="Center">
+        <!--<Grid Visibility="{Binding PagerVisi}" Margin="0,5,0,0" Grid.Row="4" HorizontalAlignment="Center">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="2*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <telerik:RadDataPager x:Name="radDataPager"
                              FontSize="12"  Background="Transparent" Opacity="1"  NumericButtonCount="7"
-                            BorderThickness="0" Width="550" PageIndex="{Binding PageIndex,Mode=TwoWay}"
+                            BorderThickness="0" Width="550" 
                             VerticalContentAlignment="Center" HorizontalContentAlignment="Right" HorizontalAlignment="Right"
                             DisplayMode="All" PageSize="100" ItemCount="{Binding ItemCount,Mode=TwoWay}" />
+            --><!--PageIndex="{Binding PageIndex,Mode=TwoWay}"--><!--
+            
             <TextBlock Grid.Column="1" Text="{Binding PageTotal,Mode=TwoWay}" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        </Grid>-->
+        <Grid Grid.Row="5" Margin="0,5,0,0" Height="25" Width="980" HorizontalAlignment="Left">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock   Foreground="{Binding ElementName=fg, Path=Foreground}" Text="{Binding Remind}" HorizontalAlignment="Left" Width="200" VerticalAlignment="Center"/>
+            <Grid Visibility="{Binding PagerVisi}" Grid.Column="1" HorizontalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <telerik:RadDataPager x:Name="radDataPager" Grid.Column="1"
+                             FontSize="12"  Background="Transparent" Opacity="1"  NumericButtonCount="7"
+                            BorderThickness="0"  
+                            VerticalContentAlignment="Bottom" HorizontalContentAlignment="Right" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,0,1"
+                            DisplayMode="All" PageSize="100" ItemCount="{Binding ItemCount,Mode=TwoWay}" />
+                <!--PageIndex="{Binding PageIndex,Mode=TwoWay}"-->
+
+                <TextBlock Grid.Column="2"  Margin="0,0,0,2" Text="{Binding PageTotal,Mode=TwoWay}" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
+            </Grid>
+
+            <Button Grid.Column="2" Content="导 出" Height="25" Width="120"  VerticalAlignment="Center" HorizontalAlignment="Left"  Click="Button_Click" />
         </Grid>
-        <TextBlock Grid.Row="5" Foreground="{Binding ElementName=fg, Path=Foreground}" Text="{Binding Remind}" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-        <Button Grid.Row="5" Content="导 出" Margin="650,5,0,0" MinWidth="120"  VerticalAlignment="Center" HorizontalAlignment="Left"  Click="Button_Click" />
     </Grid>
 </UserControl>
